@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2019
-lastupdated: "2019-06-10"
+lastupdated: "2019-06-27"
 
 subcollection: assistant-data
 
@@ -30,7 +30,10 @@ Create an assistant with the skills it needs to address the business goals of yo
 
 Follow these steps to create an assistant:
 
-1.  From the Assistants page, click **Create assistant**.
+1.  Click the Assistants tab, and then click **Create assistant**.
+
+    If you don't see the Assistants tab, click the breadcrumb link in the page header.
+    {: tip}
 
 1.  Add details about the new assistant:
 
