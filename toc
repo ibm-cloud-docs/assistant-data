@@ -1,0 +1,101 @@
+{:navgroup: .navgroup}
+{:topicgroup: .topicgroup}
+
+{: .toc subcollection="assistant-data" audience="service" href="/docs/services/assistant-data?topic=assistant-data-getting-started" path="services/assistant-data"}
+Watson Assistant for IBM Cloud Pak for Data
+
+    {: .navgroup id="learn"}
+    getting-started.md    
+    index.md
+    assistants.md
+    skills.md
+    tool-overview.md
+    [Demo: Banking Assistant](https://watson-conversation-duo-dev.ng.bluemix.net/)
+    resources.md
+    {: .navgroup-end}
+
+    {: .navgroup id="howto"}
+    dev-process.md
+
+    {: .topicgroup}
+    Installing
+        install.md
+        install-120.md
+        install-120-addon.md
+        [Helm chart README.md](https://github.com/IBM-Bluemix-Docs/data-readmes/blob/master/assistant-README.md)
+        manage.md
+
+    assistant-add.md
+    skill-add.md
+    skill-search-add.md
+    skill-dialog-add.md
+    catalog.md
+    intents.md
+
+    {: .topicgroup}
+    Creating a dialog
+        dialog-overview.md
+        dialog-runtime.md
+        dialog-build.md
+        dialog-tips.md
+        dialog-slots.md
+        dialog-responses-json.md
+        dialog-depiction.md
+
+    entities.md
+    deploy-custom-app.md
+    versions.md
+    assistant-settings.md
+    backup.md
+    upgrade.md
+
+    {: .topicgroup}
+    Tutorials
+        tutorial.md
+        tutorial-slots.md
+        tutorial-slots-complex.md
+        tutorial-car-dashboard.md
+        tutorial-digressions.md
+        [Tutorial: Defining contextual entities](https://www.ibm.com/cloud/garage/demo/try-watson-assistant-contextual-entities)
+
+    {: .topicgroup}
+    Using the API
+        api-overview.md
+        api-methods.md
+        api-client.md
+        api-context.md
+        api-dialog-responses.md
+        api-dialog-modify.md
+    {: .navgroup-end}
+
+    {: .navgroup id="reference"}
+    [v2 API reference](https://cloud.ibm.com/apidocs/assistant-data-v2)
+    [v1 API reference](https://cloud.ibm.com/apidocs/assistant-data-v1)
+    dialog-methods.md
+    expression-language.md
+    information-security.md
+    sample-apps.md
+    language-support.md
+
+    {: .topicgroup}
+    System entities
+        system-entities.md
+        time-zones.md
+
+    /watson/watson-using-sdks
+    [Watson GitHub repos](https://github.com/watson-developer-cloud/)
+    {: .navgroup-end}
+
+    {: .navgroup id="help"}
+    release-notes.md
+    services-information.md
+    feedback.md
+
+    {: .topicgroup}
+    Developer community
+        [StackOverflow](https://stackoverflow.com/questions/tagged/watson-assistant)
+        [IBM Developer Answers](https://developer.ibm.com/answers/search.html?f=&sort=relevance&q=%5Bwatson-assistant%5D+%5Bibm-cloud-private%5D+%24)
+        [WDC Slack channel](http://wdc-slack-inviter.mybluemix.net/)
+
+    accessibility.md
+    {: .navgroup-end}
