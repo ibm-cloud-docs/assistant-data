@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2019
-lastupdated: "2019-06-10"
+lastupdated: "2019-06-27"
 
 subcollection: assistant-data
 
@@ -45,7 +45,10 @@ To create a skill, complete the following steps:
 
 1.  Click the **Skills** tab, and then click **Create skill**.
 
-    - A page is displayed that gives you a choice of the type of skill to create: a dialog skill or a search skill. Select the skill type that you want to create, and then click **Next**.
+    If you don't see the Skills tab, click the breadcrumb link in the page header.
+    {: tip}
+
+    A page is displayed that gives you a choice of the type of skill to create: a dialog skill or a search skill. Select the skill type that you want to create, and then click **Next**.
 
     Follow the remaining steps in the appropriate procedure to complete the skill creation process.
 

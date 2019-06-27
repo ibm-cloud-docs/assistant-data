@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2019
-lastupdated: "2019-06-26"
+lastupdated: "2019-06-27"
 
 subcollection: assistant-data
 
@@ -62,6 +62,9 @@ If you do not have access to a provisioned instance of {{site.data.keyword.disco
 {: #skill-search-add-task}
 
 1.  Click the **Skills** tab, and then click **Create skill**.
+
+    If you don't see the Skills tab, click the breadcrumb link in the page header.
+    {: tip}
 
 1.  Click the *Search skill* option, and then click **Next**.
 

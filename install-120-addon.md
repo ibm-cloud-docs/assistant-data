@@ -31,7 +31,7 @@ subcollection: assistant-data
 Use {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} V1.2.0 to build conversational interfaces into any app, device, or channel. 
 {: shortdesc}
 
-For the full installation procedure, see [the {{site.data.keyword.icp4dfull_notm}} knowledge center instructions](https://www.ibm.com/support/knowledgecenter/SSQNUZ_2.1.0/com.ibm.icpdata.doc/zen/admin/assistant-install.html)
+For the full installation procedure, see [the {{site.data.keyword.icp4dfull_notm}} knowledge center instructions](https://www.ibm.com/support/knowledgecenter/SSQNUZ_2.1.0/com.ibm.icpdata.doc/zen/admin/assistant-install.html).
 
 The following supplemental information applies to the add-on. 
 

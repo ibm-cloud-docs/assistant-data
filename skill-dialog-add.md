@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2019
-lastupdated: "2019-06-10"
+lastupdated: "2019-06-27"
 
 subcollection: assistant-data
 
@@ -37,9 +37,10 @@ You can create a skill from scratch, use a sample skill that is provided by IBM,
 
 To add a skill, complete the following steps:
 
-1.  If you have not done so, complete the prerequisite steps in [Creating a skill](/docs/services/assistant-data?topic=assistant-data-skill-add).
-
 1.  Click the **Skills** tab, and then click **Create skill**.
+
+    If you don't see the Skills tab, click the breadcrumb link in the page header.
+    {: tip}    
 
 1.  Select the dialog skill tile, and then click **Next**.
 
