@@ -655,6 +655,13 @@ If you need to preserve any data, do so now before you begin this procedure.
 
     The `-l` for label is the selector to filter by, where you can specify the release name.
 
+1.  Remove the configmap by using the following command.
+
+    ```bash
+    kubectl delete cm stolon-cluster-{release name}
+    ```
+    {: pre}
+
 1.  To delete each physical persistent volume, use the following command. 
 
     You should have a list of the names of each persistent volume that you noted in an earlier step.
