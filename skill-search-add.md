@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2019
-lastupdated: "2019-06-27"
+lastupdated: "2019-06-28"
 
 subcollection: assistant-data
 
@@ -155,6 +155,9 @@ If you upload a JSON file that contains repeating name values, then only the fir
 {: #skill-search-add-configure}
 
 1.  From the {{site.data.keyword.discoveryshort}} for {{site.data.keyword.icp4dfull_notm}} instance, click **Finish setup in Watson Assistant**.
+
+    If you are not returned to the {{site.data.keyword.conversationshort}} user interface, then go to the {{site.data.keyword.conversationshort}} instance page, launch the tool again, and then return to your skill.
+    {: note} 
 
 1.  On the {{site.data.keyword.conversationshort}} search skill page, click **Configure**.
 
