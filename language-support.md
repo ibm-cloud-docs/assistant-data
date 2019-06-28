@@ -38,7 +38,7 @@ The first table shows the level of support for all features, except those relate
 
 **Table 1. Feature support details**
 
-| Language | **Defining [intents](/docs/services/assistant?topic=assistant-intents)**, **[entities](/docs/services/assistant?topic=assistant-entities)**, and **[dialog](/docs/services/assistant?topic=assistant-dialog-build)** |
+| Language | **Defining [intents](/docs/services/assistant?topic=assistant-data-intents)**, **[entities](/docs/services/assistant?topic=assistant-data-entities)**, and **[dialog](/docs/services/assistant?topic=assistant-data-dialog-build)** |
 |:---:|:---:|
 | **English (en)**                   | GA |
 | **Arabic (ar)**                    | GA |
@@ -57,7 +57,7 @@ The first table shows the level of support for all features, except those relate
 
 **Table 2. Intent feature support details**
 
-| Language | **[Absolute scoring](/docs/services/assistant?topic=assistant-intents#intents-absolute-scoring)** and **[Mark as irrelevant](/docs/services/assistant?topic=assistant-logs#logs-mark-irrelevant)** | **[Content Catalog](/docs/services/assistant?topic=assistant-catalog)** |
+| Language | **[Absolute scoring](/docs/services/assistant?topic=assistant-data-intents#intents-absolute-scoring)** and **[Mark as irrelevant](/docs/services/assistant?topic=assistant-data-logs#logs-mark-irrelevant)** | **[Content Catalog](/docs/services/assistant?topic=assistant-data-catalog)** |
 |:---:|:---:|:---:|
 | **English (en)**                   | GA | GA |
 | **Arabic (ar)**                    | Beta | GA |
@@ -76,7 +76,7 @@ The first table shows the level of support for all features, except those relate
 
 **Table 3. Entity feature support details**
 
-| Language | **[Entity fuzzy matching](/docs/services/assistant?topic=assistant-entities#entities-fuzzy-matching)** | **[Contextual entities](/docs/services/assistant?topic=assistant-entities#entities-create-annotation-based)** | **[Synonym recommendations](/docs/services/assistant?topic=assistant-entities#entities-synonyms)** |
+| Language | **[Entity fuzzy matching](/docs/services/assistant?topic=assistant-data-entities#entities-fuzzy-matching)** | **[Contextual entities](/docs/services/assistant?topic=assistant-data-entities#entities-create-annotation-based)** | **[Synonym recommendations](/docs/services/assistant?topic=assistant-data-entities#entities-synonyms)** |
 |:---:|:---:|:---:|:---:|
 | **English (en)**                   | GA | Beta | GA |
 | **Arabic (ar)**                    | GA (Misspelling only) | NA | NA |
@@ -95,9 +95,9 @@ The first table shows the level of support for all features, except those relate
 
 **Table 4. System entity feature support details**
 
-| Language | **System entities ([number](/docs/services/assistant?topic=assistant-system-entities#system-entities-sys-number), [currency](/docs/services/assistant?topic=assistant-system-entities#system-entities-sys-currency), [percentage](/docs/services/assistant?topic=assistant-system-entities#system-entities-sys-percentage), [date, time](/docs/services/assistant?topic=assistant-system-entities#system-entities-sys-date-time))** |
+| Language | **System entities ([number](/docs/services/assistant?topic=assistant-data-system-entities#system-entities-sys-number), [currency](/docs/services/assistant?topic=assistant-data-system-entities#system-entities-sys-currency), [percentage](/docs/services/assistant?topic=assistant-data-system-entities#system-entities-sys-percentage), [date, time](/docs/services/assistant?topic=assistant-data-system-entities#system-entities-sys-date-time))** |
 |:---|:---:|:---:|
-| **English (en)**                   | GA, Beta ([location](/docs/services/assistant?topic=assistant-system-entities#system-entities-sys-location), [person](/docs/services/assistant?topic=assistant-system-entities#system-entities-sys-person)) |
+| **English (en)**                   | GA, Beta ([location](/docs/services/assistant?topic=assistant-data-system-entities#system-entities-sys-location), [person](/docs/services/assistant?topic=assistant-data-system-entities#system-entities-sys-person)) |
 | **Arabic (ar)**                    | Beta |
 | **Chinese (Simplified) (zh-cn)**   | GA |
 | **Chinese (Traditional) (zh-tw)**  | Beta |
