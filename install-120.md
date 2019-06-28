@@ -147,8 +147,8 @@ Table 4. Storage requirements
 
 Follow these steps to install {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull_notm}}.
 
-1.  [Install the cluster](#install-120-install-icp4d)
 1.  [Purchase and download installation artifacts](#install-120-download-wa-icp)
+1.  [Install the cluster](#install-120-install-icp4d)
 1.  [Create a namespace](#install-120-create-namespace)
 1.  [Upload the archive file](#install-120-upload-archive)
 1.  [Extract files from the chart](#install-120-extract)
@@ -161,7 +161,27 @@ Follow these steps to install {{site.data.keyword.conversationshort}} for {{site
 1.  [Provision an instance of the add-on](#install-120-install-add-on)
 1.  [Launch the product](#install-120-launch-tool)
 
-## Step 1: Install the cluster
+## Step 1: Purchase and download installation artifacts
+{: #install-120-download-wa-icp}
+
+After you purchase the add-on, you download the software as a Passport Advantage archive (PPA) file. The PPA file for {{site.data.keyword.conversationshort}} contains a Helm chart and images. Helm is the Kubernetes package management system that is used for application management inside an {{site.data.keyword.icp4dfull_notm}} cluster.
+
+1.  Purchase {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull_notm}} from [Passport Advantage](https://www.ibm.com/software/passportadvantage/index.html){: external}.
+
+    Search for `{{site.data.keyword.conversationlong}} for {{site.data.keyword.icpvt4dfull_notm}} 1.2.0`.
+
+1.  Use the Secure Shell protocol to log in to the system that you will use as the master node of your cluster as the root user.
+
+1.  Change to the directory where you want the installation files to be stored.
+
+1.  Download the archive files.
+
+    - {{site.data.keyword.icpvt4dfull_notm}} Enterprise Edition V2.1.0 (0.5 MB)
+    - {{site.data.keyword.conversationshort}} for {{site.data.keyword.icpvt4dfull_notm}} V1.2.0 (over 28 GB)
+
+    The add-on archive download can take up to an hour to complete over a network connection.
+
+## Step 2: Install the cluster
 {: #install-120-install-icp4d}
 
 1.  Install {{site.data.keyword.icp4dfull_notm}}. 
@@ -179,21 +199,6 @@ Follow these steps to install {{site.data.keyword.conversationshort}} for {{site
 - [Use a custom SSL or TLS certificate for HTTPS connections to the web client](https://www.ibm.com/support/knowledgecenter/SSQNUZ_2.1.0/com.ibm.icpdata.doc/zen/install/https-config.html){: external}
 - Post-installation instructions in [Encrypting cluster data network traffic with IPsec](https://www.ibm.com/support/knowledgecenter/SSBS6K_3.1.2/installing/ipsec_mesh.html#ipsec-certificate-and-key)
 - Red Hat OpenShift-specific information about [encrypting traffic between nodes with IPsec](https://docs.openshift.com/container-platform/3.11/admin_guide/ipsec.html){: external}
-
-## Step 2: Purchase and download installation artifacts
-{: #install-120-download-wa-icp}
-
-After you purchase the add-on, you download the software as a Passport Advantage archive (PPA) file. The PPA file for {{site.data.keyword.conversationshort}} contains a Helm chart and images. Helm is the Kubernetes package management system that is used for application management inside an {{site.data.keyword.icp4dfull_notm}} cluster.
-
-1.  Purchase {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull_notm}} from [Passport Advantage](https://www.ibm.com/software/passportadvantage/index.html){: external}.
-
-1.  Use the Secure Shell protocol to log in to the master node (master-1) of your {{site.data.keyword.icp4dfull_notm}} cluster as the root user.
-
-1.  Change to the directory where you want the installation files to be stored.
-
-1.  Download the archive file.
-
-    This download takes about a half hour to an hour to complete over a network connection.
 
 ## Step 3: Create a namespace
 {: #install-120-create-namespace}
