@@ -33,8 +33,6 @@ Use {{site.data.keyword.conversationfull}} for {{site.data.keyword.icp4dfull}} V
 
 Use this installation method if you do not have a {{site.data.keyword.icp4dfull}} V2.1.0 cluster. These instructions describe how to install {{site.data.keyword.icp4dfull}} V2.1.0, and then add {{site.data.keyword.conversationshort}} to it as an add-on. You cannot install V1.2 into a {{site.data.keyword.icpfull_notm}} standalone environment.
 
-You can deploy {{site.data.keyword.conversationshort}} one time only in a single cluster.
-
 ## Application details
 {: #install-120-wa-details}
 
@@ -89,16 +87,6 @@ Before you install the add-on, ensure that you have sufficient resources to run 
 For details of the minimum requirements that must be met to support {{site.data.keyword.icp4dfull}} itself, see [System requirements](https://www.ibm.com/support/knowledgecenter/SSQNUZ_2.1.0/com.ibm.icpdata.doc/zen/install/reqs-ent.html){: external}. 
 <!--Lite sys req details? -->
 
-### Minimum requirements
-{: #install-120-reqs-minimum}
-
-The systems that host {{site.data.keyword.conversationshort}} must meet these requirements:
-
-- {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull_notm}} can run on Intel architecture nodes only.
-- CPUs must have 2.4 GHz or higher clock speed
-- CPUs must support Linux SSE 4.2
-- CPUs must support the AVX instruction set extension See the [Advanced Vector Extensions](https://en.wikipedia.org/wiki/Advanced_Vector_Extensions){: external} Wikipedia page for a list of CPUs that include this support (most CPUs since 2012). The service cannot function properly without AVX support.
-
 <!--The cluster must provide the following number of Virtual Private CPUs (VPCs) to support {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull_notm}} at a minimum.
 
 - **Production**: 27 CPU with 112 GB Memory across a minimum of 4 worker nodes
@@ -126,6 +114,13 @@ Table 3. Hardware verified to support a development deployment of the add-on
 |-----------|-----------------|--------------|-----------------|---------------|
 | worker | 3  | 8 | 64 | 500 |
 {: caption="Non-production hardware requirements" caption-side="top"}
+
+The systems that host {{site.data.keyword.conversationshort}} must meet these requirements:
+
+- {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull_notm}} can run on Intel architecture nodes only.
+- CPUs must have 2.4 GHz or higher clock speed
+- CPUs must support Linux SSE 4.2
+- CPUs must support the AVX instruction set extension See the [Advanced Vector Extensions](https://en.wikipedia.org/wiki/Advanced_Vector_Extensions){: external} Wikipedia page for a list of CPUs that include this support (most CPUs since 2012). The service cannot function properly without AVX support.
 
 ## Storage requirements
 {: #install-120-storage-reqs}
@@ -471,6 +466,8 @@ The configuration settings for the deployment are defined in a file named `value
        You cannot install the product if you do not accept the license.
        {: note}
 
+    - `ingress.wcnAddon.addon.maxDeployments`: If you are installing the chart a subsequent time to deploy the product more than once to a single cluster, then you must set this value to `2` or higher. The default value for this setting is 1, which enforces the rule that you can deploy {{site.data.keyword.conversationshort}} one time only in a single cluster.
+
     **Attention**: Currently, the service does not support the ability to provide your own instances of resources, such as Postgres or MongoDB. The values YAML file has `{resource-name}.create` settings that suggest you can do so. However, do not change these settings from their default value of `true`.
 
 1.  Save and close the `values-override.yaml` file.
@@ -584,6 +581,7 @@ To check the status of the installation process:
 If you need to start the deployment over, be sure to remove all trace of the current installation before you try to install again.
 
 If you need to preserve any data, do so now before you begin this procedure.
+{: important}
 
 1.  {: #install-120-delete-instance-sh}If you got as far as creating an instance of the add-on, then complete the following steps to delete the add-on instance. Otherwise, skip this step.
 
@@ -684,9 +682,7 @@ Now, you have cleared everything necessary to restart your installation. Your na
 ## Step 12: Provision an instance of the add-on
 {: #install-120-install-add-on}
 
-1.  If you provisioned an instance previously, you must run a script to delete the instance from the {{site.data.keyword.icp4dfull_notm}} database before you can provision a new instance. If you did not delete the prior instance, do so now. Otherwise, skip this step.
-
-    You can provision one instance of {{site.data.keyword.conversationshort}} only per cluster. 
+1.  If you are provisioning one instance only of {{site.data.keyword.conversationshort}} to a single cluster, and you provisioned an instance previously, you must run a script to delete the instance from the {{site.data.keyword.icp4dfull_notm}} database before you can provision a new instance. If you did not delete the prior instance, do so now. Otherwise, skip this step.
     
     To delete a previous instance, run the **deleteInstances.sh** script. For more details, see [Step 1 of the Uninstalling procedure](#install-120-uninstall).
 
