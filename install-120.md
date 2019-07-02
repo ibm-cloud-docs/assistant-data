@@ -77,7 +77,7 @@ Table 1. Language resource requirements
 | Korean | 2 | 1 | 2 GB |
 {: caption="Language resource requirements" caption-side="top"}
 
-Each of these languages requires an addition VPC for a production deployment and an additional 1/2 VPC for a development deployment. 
+Each of these languages requires an additional VPC for a production deployment and an additional 1/2 VPC for a development deployment. 
 
 For the full list of supported languages, see [Supported languages](https://cloud.ibm.com/docs/services/assistant-data?topic=assistant-data-language-support).
 
