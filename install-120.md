@@ -79,7 +79,7 @@ Table 1. Language resource requirements
 
 Each of these languages requires an additional VPC for a production deployment and an additional 1/2 VPC for a development deployment. 
 
-For the full list of supported languages, see [Supported languages](https://cloud.ibm.com/docs/services/assistant-data?topic=assistant-data-language-support).
+For the full list of supported languages, see [Supported languages](/docs/services/assistant-data?topic=assistant-data-language-support).
 
 ## System requirements
 {: #install-120-reqs-over}
@@ -201,7 +201,7 @@ After you purchase the add-on, you download the software as a Passport Advantage
 
 1.  Purchase {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull_notm}} from [Passport Advantage](https://www.ibm.com/software/passportadvantage/index.html){: external}.
 
-    Search for `{{site.data.keyword.conversationlong}} for {{site.data.keyword.icpvt4d_notm}} 1.2.0`.
+    Search for `{{site.data.keyword.conversationfull}} for {{site.data.keyword.icpvt4d_notm}} 1.2.0`.
 
 1.  Use the Secure Shell protocol to log in to the system that you will use as the master node of your cluster as the root user.
 
@@ -209,8 +209,8 @@ After you purchase the add-on, you download the software as a Passport Advantage
 
 1.  Download the archive files.
 
-    - {{site.data.keyword.icpvt4dfull_notm}} Enterprise Edition V2.1.0 (0.5 MB)
-    - {{site.data.keyword.conversationshort}} for {{site.data.keyword.icpvt4dfull_notm}} V1.2.0 (over 28 GB)
+    - {{site.data.keyword.icpvt4d_notm}} Enterprise Edition V2.1.0 (0.5 MB)
+    - {{site.data.keyword.conversationshort}} for {{site.data.keyword.icpvt4d_notm}} V1.2.0 (over 28 GB)
 
     The add-on archive download can take up to an hour to complete over a network connection.
 
@@ -240,7 +240,7 @@ After you purchase the add-on, you download the software as a Passport Advantage
 
 Create a namespace for your application. Namespaces are a way to divide cluster resources between multiple users, which can be managed by resource quota.
 
-If you are installing the helm chart a subsequent time to add another deployment of the add-on to the same cluster, you can skip this step. Install the subsequent deployment to the same namespace as the one being used for the previous deployment.
+If you are installing the helm chart a subsequent time to add another deployment of the add-on to the same cluster, you can skip this step. Install the subsequent deployment in the same namespace as the one being used for the previous deployment.
 
 1.  From the Kubernetes CLI, run a command with the following syntax:
 
