@@ -92,9 +92,6 @@ For details of the minimum requirements that must be met to support {{site.data.
 - **Production**: 27 CPU with 112 GB Memory across a minimum of 4 worker nodes
 - **Development**: 21 CPU with 75 GB Memory across a minimum of 1 worker node
 
-These numbers reflect the bare minimum requirements. In a cluster environment, where CPU and memory are assigned to containers dynamically, CPU and memory resources can become stranded on nodes, leaving insufficient resources to schedule subsequent workloads. In particular, the process of training a machine learning model requires at least one node to have 4 CPUs that can be dedicated to training. This capacity is only needed when training occurs, which happens after changes are made to the training data for an assistant.
-{: important}
-
 ### Lite system requirements
 {: #install-120-reqs-lite}
 
@@ -131,17 +128,22 @@ In production:
 - Minimum memory available: 120Gi
 - Minimum disk per node available: 500 GB
 
-<!--### Optimal deployment configuration for development
+### Optimal deployment configuration for development
 {: #install-120-tested-sys-reqs-dev}
 
-Table 3. Hardware verified to support a development deployment of the add-on with {{site.data.keyword.icp4dfull_notm}} Lite
+Table 2. Hardware verified to support a development deployment of the add-on with {{site.data.keyword.icp4dfull_notm}} Lite
 
-| Node type | Number of nodes | CPU per node | Memory per node (GB) | Disk per node (GB) |
-|-----------|-----------------|--------------|-----------------|---------------|
-| worker | 3  | 8 | 64 | 500 |
+| Number of nodes | CPU per node | Memory per node (GB) | Disk per node (GB) |
+|-----------------|--------------|-----------------|---------------|
+| 3 | 8 | 64 | 500 |
 {: caption="Non-production hardware requirements" caption-side="top"}
 
-### Optimal deployment configuration for production
+Out of the 24 cores, 6 are allocated to {{site.data.keyword.icp4dfull_notm}} Lite.
+
+Keep in mind that in a cluster environment, where CPU and memory are assigned to containers dynamically, CPU and memory resources can become stranded on nodes, leaving insufficient resources to schedule subsequent workloads. In particular, the process of training a machine learning model requires at least one node to have 4 CPUs that can be dedicated to training. This capacity is only needed when training occurs, which happens after changes are made to the training data for an assistant.
+{: important}
+
+<!-- ### Optimal deployment configuration for production
 {: #install-120-tested-sys-reqs-prod}
 
 Table 2. Hardware verified to support a production deployment of the add-on
@@ -163,7 +165,7 @@ The systems that host {{site.data.keyword.conversationshort}} must meet these re
 
 The following table lists the storage resources that are required to support a deployment.
 
-Table 2. Storage requirements
+Table 3. Storage requirements
 
 | Component | Number of replicas | Space per pod | Storage type |
 |-----------|-----------------|--------------|
@@ -199,7 +201,7 @@ After you purchase the add-on, you download the software as a Passport Advantage
 
 1.  Purchase {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull_notm}} from [Passport Advantage](https://www.ibm.com/software/passportadvantage/index.html){: external}.
 
-    Search for `{{site.data.keyword.conversationlong}} for {{site.data.keyword.icpvt4dfull_notm}} 1.2.0`.
+    Search for `{{site.data.keyword.conversationlong}} for {{site.data.keyword.icpvt4d_notm}} 1.2.0`.
 
 1.  Use the Secure Shell protocol to log in to the system that you will use as the master node of your cluster as the root user.
 
@@ -238,6 +240,8 @@ After you purchase the add-on, you download the software as a Passport Advantage
 
 Create a namespace for your application. Namespaces are a way to divide cluster resources between multiple users, which can be managed by resource quota.
 
+If you are installing the helm chart a subsequent time to add another deployment of the add-on to the same cluster, you can skip this step. Install the subsequent deployment to the same namespace as the one being used for the previous deployment.
+
 1.  From the Kubernetes CLI, run a command with the following syntax:
 
     ```bash
@@ -257,6 +261,8 @@ If you have any trouble running kubectl commands, see [Enabling access to kubect
 {: #install-120-upload-archive}
 
 After the download of the archive file from Passport Advantage is completed, load the file onto the cluster. The file must be available to the cluster before you can use Helm commands to install the add-on.
+
+If you are installing the helm chart a subsequent time to add another deployment of the add-on to the same namespace in the same cluster, you can skip this step.
 
 1.  From the {{site.data.keyword.icpfull_notm}} command line interface, run the following command to log in:
 
