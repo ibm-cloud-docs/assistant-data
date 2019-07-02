@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2019
-lastupdated: "2019-07-01"
+lastupdated: "2019-07-02"
 
 subcollection: assistant-data
 
@@ -77,12 +77,12 @@ Table 1. Language resource requirements
 | Korean | 2 | 1 | 2 GB |
 {: caption="Language resource requirements" caption-side="top"}
 
+Each of these languages requires an addition VPC for a production deployment and an additional 1/2 VPC for a development deployment. 
+
 For the full list of supported languages, see [Supported languages](https://cloud.ibm.com/docs/services/assistant-data?topic=assistant-data-language-support).
 
 ## System requirements
 {: #install-120-reqs-over}
-
-Before you install the add-on, ensure that you have sufficient resources to run the add-on. The following resources are required in addition to the minimum requirements.
 
 For details of the minimum requirements that must be met to support {{site.data.keyword.icp4dfull}} itself, see [System requirements](https://www.ibm.com/support/knowledgecenter/SSQNUZ_2.1.0/com.ibm.icpdata.doc/zen/install/reqs-ent.html){: external}. 
 <!--Lite sys req details? -->
@@ -94,7 +94,53 @@ For details of the minimum requirements that must be met to support {{site.data.
 
 These numbers reflect the bare minimum requirements. In a cluster environment, where CPU and memory are assigned to containers dynamically, CPU and memory resources can become stranded on nodes, leaving insufficient resources to schedule subsequent workloads. In particular, the process of training a machine learning model requires at least one node to have 4 CPUs that can be dedicated to training. This capacity is only needed when training occurs, which happens after changes are made to the training data for an assistant.
 {: important}
+
+### Lite system requirements
+{: #install-120-reqs-lite}
+
+If you choose to install {{site.data.keyword.icp4dfull_notm}} in the Lite configuration, then the system requirements are these:
+
+This configuration requires a minimum of three servers (either physical or virtual machines). Each node acts as a master and worker node (for example, node1 acts as both master1 and worker1).
+
+| Node type | Number of servers (BM/VM) |	CPU |	RAM |	Disk partition |
+|-----------|---------------------------|-----|-----|----------------|
+| Master/worker | 3 | 8 cores | 64 GB | - 50 GB free in the root file system, 50 GB free in /tmp (only if /tmp is a partition), and 50 GB free in /var (only if /var is a partition)
+- 500 GB mounted XFS file system for the installation path. This path is for the installer data storage on each node.
+- 500 GB mounted XFS file system for the data path. The data path is for user data storage on each of the three nodes in the cluster. This amount provides 500 GB of usable space for user data with 3x replication. Depending on the user workload, more disk space might be required. |
+
+Out of the 24 cores, 6 are allocated to the base {{site.data.keyword.icp4dfull_notm}} platform.
+
+For more details, see [3-node clusters](https://www.ibm.com/support/knowledgecenter/SSQNUZ_2.1.0/com.ibm.icpdata.doc/zen/install/reqs-ent.html?view=kc#reqs-ent__3-node-x86){: external}.
 -->
+### Add-on requirements
+{: install-120-reqs-addon}
+
+Before you install the add-on, ensure that you have sufficient resources to run the add-on. The following resources are required in addition to the minimum platform requirements. 
+
+In development:
+
+- Minimum worker nodes: 3
+- Minimum CPU available: 7
+- Minimum memory available: 75Gi
+- Minimum disk per node available: 500 GB
+
+In production:
+
+- Minimum worker nodes: 4
+- Minimum CPU available: 10
+- Minimum memory available: 120Gi
+- Minimum disk per node available: 500 GB
+
+<!--### Optimal deployment configuration for development
+{: #install-120-tested-sys-reqs-dev}
+
+Table 3. Hardware verified to support a development deployment of the add-on with {{site.data.keyword.icp4dfull_notm}} Lite
+
+| Node type | Number of nodes | CPU per node | Memory per node (GB) | Disk per node (GB) |
+|-----------|-----------------|--------------|-----------------|---------------|
+| worker | 3  | 8 | 64 | 500 |
+{: caption="Non-production hardware requirements" caption-side="top"}
+
 ### Optimal deployment configuration for production
 {: #install-120-tested-sys-reqs-prod}
 
@@ -104,17 +150,7 @@ Table 2. Hardware verified to support a production deployment of the add-on
 |-----------|-----------------|--------------|-----------------|---------------|
 | worker | 4 | 8 | 64 | 500 |
 {: caption="Production hardware requirements" caption-side="top"}
-
-### Optimal deployment configuration for development
-{: #install-120-tested-sys-reqs-dev}
-
-Table 3. Hardware verified to support a development deployment of the add-on
-
-| Node type | Number of nodes | CPU per node | Memory per node (GB) | Disk per node (GB) |
-|-----------|-----------------|--------------|-----------------|---------------|
-| worker | 3  | 8 | 64 | 500 |
-{: caption="Non-production hardware requirements" caption-side="top"}
-
+-->
 The systems that host {{site.data.keyword.conversationshort}} must meet these requirements:
 
 - {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull_notm}} can run on Intel architecture nodes only.
@@ -127,7 +163,7 @@ The systems that host {{site.data.keyword.conversationshort}} must meet these re
 
 The following table lists the storage resources that are required to support a deployment.
 
-Table 4. Storage requirements
+Table 2. Storage requirements
 
 | Component | Number of replicas | Space per pod | Storage type |
 |-----------|-----------------|--------------|
@@ -182,7 +218,9 @@ After you purchase the add-on, you download the software as a Passport Advantage
 1.  Install {{site.data.keyword.icp4dfull_notm}}. 
 
     Follow the instructions to install and set it up that begin with [Installing](https://www.ibm.com/support/knowledgecenter/SSQNUZ_2.1.0/com.ibm.icpdata.doc/zen/install/ovu.html){: external}.
-    <!--Lite install config details? -->
+    
+    To install in the Lite configuration, specify a `--lite` parameter when you run the command to install the platform.
+    {: note}
 
 1.  Review the following topics about cluster security and take steps to implement any security measures that you want to have in place before you install the add-on:
 
@@ -466,7 +504,7 @@ The configuration settings for the deployment are defined in a file named `value
        You cannot install the product if you do not accept the license.
        {: note}
 
-    - `ingress.wcnAddon.addon.maxDeployments`: If you are installing the chart a subsequent time to deploy the product more than once to a single cluster, then you must set this value to `2` or higher. The default value for this setting is 1, which enforces the rule that you can deploy {{site.data.keyword.conversationshort}} one time only in a single cluster.
+    - `ingress.wcnAddon.addon.maxDeployments`: If you are installing the chart a subsequent time to deploy the product more than once in a single cluster, then you must add this configuration setting and set its value to `2` or higher. The setting is specified in a separate YAML file with a default value of `1`, which enforces the rule that you can deploy {{site.data.keyword.conversationshort}} one time only in a single cluster by default.
 
     **Attention**: Currently, the service does not support the ability to provide your own instances of resources, such as Postgres or MongoDB. The values YAML file has `{resource-name}.create` settings that suggest you can do so. However, do not change these settings from their default value of `true`.
 
@@ -682,7 +720,9 @@ Now, you have cleared everything necessary to restart your installation. Your na
 ## Step 12: Provision an instance of the add-on
 {: #install-120-install-add-on}
 
-1.  If you are provisioning one instance only of {{site.data.keyword.conversationshort}} to a single cluster, and you provisioned an instance previously, you must run a script to delete the instance from the {{site.data.keyword.icp4dfull_notm}} database before you can provision a new instance. If you did not delete the prior instance, do so now. Otherwise, skip this step.
+You can provision one instance of {{site.data.keyword.conversationshort}} per deployment of Watson Assistant.
+
+1.  If you provisioned an instance for this deployment previously, you must run a script to delete the instance from the {{site.data.keyword.icp4dfull_notm}} database before you can provision a new instance. Otherwise, skip this step.
     
     To delete a previous instance, run the **deleteInstances.sh** script. For more details, see [Step 1 of the Uninstalling procedure](#install-120-uninstall).
 
