@@ -201,7 +201,7 @@ After you purchase the add-on, you download the software as a Passport Advantage
 
 1.  Purchase {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull_notm}} from [Passport Advantage](https://www.ibm.com/software/passportadvantage/index.html){: external}.
 
-    Search for `{{site.data.keyword.conversationfull}} for {{site.data.keyword.icpvt4d_notm}} 1.2.0`.
+    Search for `{{site.data.keyword.conversationshort}} for {{site.data.keyword.icpvt4d_notm}} 1.2.0`.
 
 1.  Use the Secure Shell protocol to log in to the system that you will use as the master node of your cluster as the root user.
 
