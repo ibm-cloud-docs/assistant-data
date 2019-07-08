@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2019
-lastupdated: "2019-06-24"
+lastupdated: "2019-07-08"
 
 subcollection: assistant-data
 
@@ -42,6 +42,11 @@ IBM releases services, features, and language support for your evaluation that a
 - Assistants are now available. An assistant can manage user sessions on your behalf. See [Assistants](/docs/services/assistant-data?topic=assistant-data-assistants).
 - Search skill is a new beta feature. You can create a search skill to trigger a search in an external data source that you configure in Watson Discovery. See [Creating a search skill](/docs/services/assistant-data?topic=assistant-data-skill-search-add).
 - Instead of creating a workspace as the container for your training data and dialog, you create a dialog skill. See [Creating a dialog skill](/docs/services/assistant-data?topic=assistant-data-skill-dialog-add).
+- **New major API version**: A V2 version of the API is available. This version provides access to methods you can use to interact with an assistant at run time. No more passing context with each API call; the session state is managed for you as part of the assistant layer.
+  
+  What is presented in the product user interface as a dialog skill is effectively a wrapper for a V1 workspace. There are currently no API methods for authoring skills and assistants with the V2 API. However, you can continue to use the V1 API for authoring workspaces. See [API Overview](/docs/services/assistant-data?topic=assistant-data-api-overview) for more details.
+  {: note}
+
 - Prevent your assistant from answering the wrong question by keeping your intents distinct from one another. Intent conflict resolution is now available. It can find intents with overlapping user examples, and gives you a graphical user interface in which to fix them. Nondistinct intents can result in misclassifications of user input. See [Resolving intent conflicts](/docs/services/assistant-data?topic=assistant-data-intents#intents-resolve-conflicts).
 - You can opt to see synonym recommendations that are made by Watson as you create a dictionary-based entity. See [Synonyms](/docs/services/assistant-data?topic=assistant-data-entities#entities-synonyms).
 
