@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2019
-lastupdated: "2019-07-02"
+lastupdated: "2019-07-08"
 
 subcollection: assistant-data
 
@@ -240,7 +240,10 @@ After you purchase the add-on, you download the software as a Passport Advantage
 
 Create a namespace for your application. Namespaces are a way to divide cluster resources between multiple users, which can be managed by resource quota.
 
-If you are installing the helm chart a subsequent time to add another deployment of the add-on to the same cluster, you can skip this step. Install the subsequent deployment in the same namespace as the one being used for the previous deployment.
+If you enabled one of the resource-intensive languages, which include Chinese (Simplified or Traditional), German, Japanese, or Korean, then you must use `conversation` as the namespace name.
+{: important}
+
+If you are installing the helm chart a subsequent time to add another deployment of the add-on to the same cluster, then you can skip this step. Install the subsequent deployment in the same namespace as the one being used for the previous deployment.
 
 1.  From the Kubernetes CLI, run a command with the following syntax:
 
