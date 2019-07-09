@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2019
-lastupdated: "2019-07-08"
+lastupdated: "2019-07-09"
 
 subcollection: assistant-data
 
@@ -240,8 +240,10 @@ After you purchase the add-on, you download the software as a Passport Advantage
 
 Create a namespace for your application. Namespaces are a way to divide cluster resources between multiple users, which can be managed by resource quota.
 
-If you enabled one of the resource-intensive languages, which include Chinese (Simplified or Traditional), German, Japanese, or Korean, then you must use `conversation` as the namespace name.
+If you plan to enable one of the resource-intensive languages, which include Chinese (Simplified or Traditional), German, Japanese, or Korean, then you must use `conversation` as the namespace name.
 {: important}
+
+If you are not enabling any of these languages and want to use the same namespace in which {{site.data.keyword.icp4dfull_notm}} is installed (which is typically `zen`), you can. If so, skip this step.
 
 If you are installing the helm chart a subsequent time to add another deployment of the add-on to the same cluster, then you can skip this step. Install the subsequent deployment in the same namespace as the one being used for the previous deployment.
 
@@ -442,31 +444,37 @@ You must be a cluster administrator to run the scripts.
 
 For each image in a repository, an image policy scope of either cluster or namespace is applied. When you deploy an application, IBM Container Image Security Enforcement checks whether the Kubernetes namespace that you are deploying to has any policy regulations that must be applied.
 
-1.  Create a YAML file named `policy.yaml`, and add the following content to the file:
+1.  Create a YAML file named `policy.yaml` to define the policy. You can do so by following these steps:
 
-    ```
-    apiVersion: securityenforcement.admission.cloud.ibm.com/v1beta1
-    kind: ClusterImagePolicy
-    metadata:
-     name: watson-assistant-{name}-policy
-    spec:
-     repositories:
-        - name: "{cluster4d-master-node}:8500/*"
-          policy:
-            va:
-              enabled: false
-    ```
-    {: codeblock}
+    - Run `vi image_policy.yaml` and press `i`.
 
-    Replace the following variables with the appropriate values for your cluster:
+    - Paste the following content into the file:
 
-    - `{cluster4d-master-node}`: Specify the hostname for the master node of the {{site.data.keyword.icp4dfull_notm}} cluster
-    - `{name}`: Specify a name that helps you identify this deployment. You can use the version number of the product, such as 120, for example.
+      ```yaml
+      apiVersion: securityenforcement.admission.cloud.ibm.com/v1beta1
+      kind: ClusterImagePolicy
+      metadata:
+       name: watson-assistant-{name}-policy
+      spec:
+       repositories:
+          - name: "{cluster4d-master-node}:8500/*"
+            policy:
+              va:
+                enabled: false
+      ```
+      {: codeblock}
+
+    - Replace the following variables with the appropriate values for your cluster:
+
+      - `{cluster4d-master-node}`: Specify the hostname for the master node of the {{site.data.keyword.icp4dfull_notm}} cluster
+      - `{name}`: Specify a name that helps you identify this deployment. You can use the version number of the product, such as 120, for example.
+
+    - Save the file and close the editor by pressing `esc`, typing `:wq` and pressing `Enter`.
 
 1.  Apply the policy by running the following command:
 
     ```bash
-    kubectl apply -f policy.yaml
+    kubectl apply -f ./policy.yaml
     ```
     {: pre}
 
@@ -515,6 +523,16 @@ The configuration settings for the deployment are defined in a file named `value
 
     - `ingress.wcnAddon.addon.maxDeployments`: If you are installing the chart a subsequent time to deploy the product more than once in a single cluster, then you must add this configuration setting and set its value to `2` or higher. The setting is specified in a separate YAML file with a default value of `1`, which enforces the rule that you can deploy {{site.data.keyword.conversationshort}} one time only in a single cluster by default.
 
+      For example:
+
+      ```yaml
+      ingress:
+        wcnAddon:
+          addon:
+            maxDeployments: "2"
+      ```
+      {: codeblock}
+
     **Attention**: Currently, the service does not support the ability to provide your own instances of resources, such as Postgres or MongoDB. The values YAML file has `{resource-name}.create` settings that suggest you can do so. However, do not change these settings from their default value of `true`.
 
 1.  Save and close the `values-override.yaml` file.
@@ -524,15 +542,12 @@ For information about other values in the YAML file, see [Configuration details]
 ## Step 10: Install from the Helm chart
 {: #install-120-load-helm-chart}
 
-1.  Log in to the {{site.data.keyword.icp4dfull_notm}} command line interface again. 
+1.  Set the targeted namespace to the namespace in which you want to install the product.
     
     ```bash
-    cloudctl login -u <clusteradmin> -p <password>
+    cloudctl target -n {namespace-name)
     ```
     {: pre}
-
-    Be sure to choose the new namespace in which you are installing the product.
-    {: important}
 
 1.  Verify that your Helm command line interface context is valid by running this command.
 
@@ -543,7 +558,7 @@ For information about other values in the YAML file, see [Configuration details]
 
 1.  Install the chart from the Helm command line interface. 
 
-    Enter the following command from the bm-waton-assistant-prod directory:
+    Enter the following command from the bm-watson-assistant-prod directory:
 
     ```bash
     helm install --tls --values {override-file-name} --namespace {namespace-name) --name {my-release} ibm-watson-assistant-prod-1.2.0.tgz
