@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2019
-lastupdated: "2019-06-24"
+lastupdated: "2019-07-10"
 
 subcollection: assistant-data
 
@@ -28,34 +28,24 @@ subcollection: assistant-data
 # Managing the cluster
 {: #manage}
 
-Manage the cluster nodes that host your {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} V1.2.0 deployment.
+Manage the cluster nodes that host your {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} deployment.
 {: shortdesc}
 
-Use the following commands to perform tasks that you cannot perform from the {{site.data.keyword.icp4dfull}} web client.
+## Common tasks
+{: #manage-common-tasks}
 
-- To identify which nodes the product is deployed to.
+You can use Kubernetes commands to perform tasks that you cannot perform from the {{site.data.keyword.icp4dfull}} web client.
 
-  ```bash
-  kubectl get pods -o wide | grep -v Completed
-  ```
-  {: codeblock}
+### To identify which nodes the product is deployed to
+{: #manage-id-nodes}
 
-- To scale the number of replicas in the deployment up or down.
+```bash
+kubectl get pods -o wide
+```
+{: codeblock}
 
-  Some of the microservices do not benefit from being scaled up; more replicas does not always mean more throughput. 
-  
-  - `etcd` cannot be scaled to more than 3 replicas by using the `kubectl scale statefulset` command.
-  - `master` triggers workspace trainings. Adding more master microservice replicas adds resiliency. 
-  - `TAS` and `ed-mm` manage how many models are loaded and where they are loaded. More replicas might mean that a model can be loaded more times. However, unless high load is present, scaling too high does not help.
-  - `Minio` has a hard-coded number of replicas and cannot be scaled manually.
-  - `MongoDB` cannot be scaled manually. 
-  - `Redis` can be scaled, but adding more redis-servers only improves resiliency to outages because only one of the servers is marked as master and responds to requests.
-  - `Store` can be scaled up to a maximum of 10 replicas.
-  - `PostgreSQL` can be scaled, but you might reach a limit to the number of database connections that can be created. 
-
-  Horizontal Pod Autoscaling (HPA) is enabled for {{site.data.keyword.conversationshort}}. As a result, the number of replicas changes dynamically in the range of 1/2 to 10 replicas. If you want to scale the deployment manually, you must disable HPA first or autoscaling will override any values you try to set manually.
-
-  To find out how many replicas are currently in use.
+### To find out how many replicas are in use
+{: #manage-get-replica-number}
 
   ```bash
   kubectl get deploy  -n {namespace-name}
@@ -71,25 +61,91 @@ Use the following commands to perform tasks that you cannot perform from the {{s
 
   The response shows you name and number of replicas.
 
-  To change the number of replicas (increase the number to scale up or decrease the number to scale down), use one of these commands:
+### To scale the number of replicas
+{: #manage-scale-replicas}
 
-  ```bash
-  kubectl scale deploy {pod-name} --replicas={number}
-  ```
-  {: pre}
+Some of the microservices do not benefit from being scaled up; more replicas does not always mean more throughput. 
+  
+- `etcd` cannot be scaled to more than 3 replicas by using the `kubectl scale statefulset` command.
+- `master` triggers workspace trainings. Adding more master microservice replicas adds resiliency. 
+- `TAS` and `ed-mm` manage how many models are loaded and where they are loaded. More replicas might mean that a model can be loaded more times. However, unless high load is present, scaling too high does not help.
+- `Minio` has a hard-coded number of replicas and cannot be scaled manually.
+- `MongoDB` cannot be scaled manually. 
+- `Redis` can be scaled, but adding more redis-servers only improves resiliency to outages because only one of the servers is marked as master and responds to requests.
+- `Store` can be scaled up to a maximum of 10 replicas.
+- `PostgreSQL` can be scaled, but you might reach a limit to the number of database connections that can be created. 
 
-  or
+1.  Disable Horizontal Pod Autoscaling (HPA). 
 
-  ```bash
-  kubectl scale statefulsets {set-name} --replicas={number}
-  ```
-  {: pre}
+    HPA is enabled automatically for {{site.data.keyword.conversationshort}}. As a result, the number of replicas changes dynamically in the range of 1/2 to 10 replicas. If you want to scale the deployment manually, you must disable HPA first or autoscaling will override any values you try to set manually.
 
-- To view logs
+1.  To increase the number to scale up or decrease the number to scale down, use one of these commands:
 
-  {{site.data.keyword.icp4dfull_notm}} automatically logs information from each service. For more information, see [Viewing logs](https://www.ibm.com/support/knowledgecenter/SSQNUZ_2.1.0/com.ibm.icpdata.doc/zen/admin/logs.html){: external}
+    ```bash
+    kubectl scale deploy {pod-name} --replicas={number}
+    ```
+    {: pre}
 
-  Also see [Integrating with Grafana or Kibana dashboards](https://www.ibm.com/support/knowledgecenter/SSQNUZ_2.1.0/com.ibm.icpdata.doc/zen/admin/admindash-integrate.html#admindash-integrate){: external}.
+    or
+
+    ```bash
+    kubectl scale statefulsets {set-name} --replicas={number}
+    ```
+    {: pre}
+
+### To scale the cluster all the way down and back
+{: #manage-scale-replicas}
+
+To scale down the cluster all the way, you must scale down the deployed services in the following order:
+
+- **store** deployment
+- **ui** deployment
+- **addon/auth** deployment
+- All other deployments
+- All statefulsets
+
+1.  If you have local storage, then connect over SSH to each worker node, and then run the following command from a given worker to synchronize data to the same directory on each other worker. 
+
+    The destination folders should be empty. If they're not, empty them.
+
+    ```bash
+    rsync -av /mnt/local-storage/storage/watson/assistant/{yourPV} {other worker}:/mnt/local-storage/storage/watson/assistant
+    ```
+    {: pre}
+
+1.  Double-check the **postgres-keeper** persistent volume permissions on each worker node. 
+
+    You might need to scale postgres-keeper deployments first to see which persistent volumes they claim.
+
+    ```bash
+    kubectl get pvc
+    ``` 
+    {: pre}
+
+    For each `postgres-keeper` persistent volume claim, change the permissions of `/postgres` to `u=rwx (0700)` on its given worker node.
+
+    ```bash
+    chmod 0700 /mnt/local-storage/storage/watson/assistant/{yourPV}/postgres`
+    ```
+    {: pre}
+
+1.  Scale the service back up by scaling up the deployed services in the following order:
+
+    - All statefulsets (except postgres-store-keeper)
+    - **postgres-store-sentinel** deployment
+    - **postgres-store-proxy** deployment
+    - **postgres-store-keeper** statefulset
+    - All deployments (except addon/auth, ui, and store)
+    - **addon/auth** deployment
+    - **ui** deployment
+    - **store** deployment
+
+## To view logs
+{: #manage-view-logs}
+
+{{site.data.keyword.icp4dfull_notm}} automatically logs information from each service. For more information, see [Viewing logs](https://www.ibm.com/support/knowledgecenter/SSQNUZ_2.1.0/com.ibm.icpdata.doc/zen/admin/logs.html){: external}
+
+Also see [Integrating with Grafana or Kibana dashboards](https://www.ibm.com/support/knowledgecenter/SSQNUZ_2.1.0/com.ibm.icpdata.doc/zen/admin/admindash-integrate.html#admindash-integrate){: external}.
 
 ## Managing user access
 {: #install-120-add-users}
