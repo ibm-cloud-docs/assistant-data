@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2019
-lastupdated: "2019-07-09"
+lastupdated: "2019-07-10"
 
 subcollection: assistant-data
 
@@ -558,7 +558,7 @@ For information about other values in the YAML file, see [Configuration details]
 
 1.  Install the chart from the Helm command line interface. 
 
-    Enter the following command from the bm-watson-assistant-prod directory:
+    Enter the following command from the ibm-watson-assistant-prod directory:
 
     ```bash
     helm install --tls --values {override-file-name} --namespace {namespace-name) --name {my-release} ibm-watson-assistant-prod-1.2.0.tgz
