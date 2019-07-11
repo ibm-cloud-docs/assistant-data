@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2019
-lastupdated: "2019-07-10"
+lastupdated: "2019-07-11"
 
 subcollection: assistant-data
 
@@ -335,7 +335,7 @@ To test the full experience that customers will have when they ask questions tha
     Use a POST request like this to create the session, and pass an empty body with the request: 
 
     ```curl
-    curl -H "Authorization: Bearer {token}" -H 'Content-Type: application/json' -d '{}' -X POST "https://{my-cluster-hostname}/assistant/api/v2/assistants/{assistant_id}/sessions?version=2019-02-28" 
+    curl -H "Authorization: Bearer {token}" -X POST "https://{my-cluster-hostname}/assistant/api/v2/assistants/{assistant_id}/sessions?version=2019-02-28" 
     ```
     {: codeblock}
 

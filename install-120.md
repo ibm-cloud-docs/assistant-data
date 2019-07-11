@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2019
-lastupdated: "2019-07-10"
+lastupdated: "2019-07-11"
 
 subcollection: assistant-data
 
@@ -163,7 +163,7 @@ The systems that host {{site.data.keyword.conversationshort}} must meet these re
 ## Storage requirements
 {: #install-120-storage-reqs}
 
-The following table lists the storage resources that are required to support a deployment.
+The following table lists the storage resources that are required to support a deployment that uses local storage.
 
 Table 3. Storage requirements
 
@@ -770,7 +770,16 @@ You can provision one instance of {{site.data.keyword.conversationshort}} per de
 1.  From the instance you created, click **Launch Tool**.
 1.  Log in using the same credentials you use to log into {{site.data.keyword.icp4dfull_notm}}.
 
-### Investigating issues
+## Next steps
+{: #install-120-next-steps}
+
+Use the {{site.data.keyword.conversationshort}} product user interface to build training data and a dialog that can be used by your assistant.
+
+- To learn more about the service first, read the [overview](https://cloud.ibm.com/docs/services/assistant-data?topic=assistant-data-index).
+- To see how it works for yourself, follow the steps in the [getting started tutorial](https://cloud.ibm.com/docs/services/assistant-data?topic=assistant-data-getting-started).
+- For help managing the cluster, see [Managing the cluster](https://cloud.ibm.com/docs/services/assistant-data?topic=assistant-data-manage).
+
+## Troubleshooting issues
 {: #install-120-ts-get-logs}
 
 The first step to take if you hit an installation issue, such as a cluster node is not starting as expected, is to get logs from the cluster which can provide more detail.
@@ -805,11 +814,9 @@ helm get <release-name> --tls
 
 The user-provided configuration values are listed at the start of the information that is returned.
 
-## Next steps
-{: #install-120-next-steps}
+### Can't create a session using the API
+{: #install-120-v2-api}
 
-Use the {{site.data.keyword.conversationshort}} product user interface to build training data and a dialog that can be used by your assistant.
-
-- To learn more about the service first, read the [overview](https://cloud.ibm.com/docs/services/assistant-data?topic=assistant-data-index).
-- To see how it works for yourself, follow the steps in the [getting started tutorial](https://cloud.ibm.com/docs/services/assistant-data?topic=assistant-data-getting-started).
-- For help managing the cluster, see [Managing the cluster](https://cloud.ibm.com/docs/services/assistant-data?topic=assistant-data-manage).
+**Problem**: You get a 500 response and see an error, such as `"You can't write against a read only slave."` when trying to use the v2 API to create a session.
+**Cause**: Redis sometimes applies the wrong roles to resources.
+**Solution**: Restart the Redis pods. Make a note of the replica numbers for Redis server and Redis sentinel first. Scale the Redis server and Redis sentinel replicas down to 0 and then scale them back to their original numbers. For details, see [To scale the number of replicas](/docs/services/assistant-data?topic=assistant-data-manage#manage-scale-replicas).
