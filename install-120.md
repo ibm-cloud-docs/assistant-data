@@ -529,7 +529,7 @@ For information about other values in the YAML file, see [Configuration details]
 ## Step 10: Install from the Helm chart
 {: #install-120-load-helm-chart}
 
-1.  Set the targeted namespace to the conversation namespace where you want to install the product.
+1.  Set the targeted namespace to the `conversation` namespace in which you want to install the product.
     
     ```bash
     cloudctl target -n conversation
