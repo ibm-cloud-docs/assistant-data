@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2019
-lastupdated: "2019-07-11"
+lastupdated: "2019-07-23"
 
 subcollection: assistant-data
 
@@ -224,6 +224,8 @@ After you purchase the add-on, you download the software as a Passport Advantage
     To install in the Lite configuration, specify a `--lite` parameter when you run the command to install the platform.
     {: note}
 
+    <!--To install on OpenShift, you must install the base {{site.data.keyword.icp_notm}} V 3.1.2, and then install {{site.data.keyword.icp4d_notm}} on top of it. Follow the instructions for [Installing on OpenShift](https://www.ibm.com/support/knowledgecenter/SSQNUZ_2.1.0/com.ibm.icpdata.doc/zen/install/openshift-withicp.html){:external}.-->
+
 1.  Review the following topics about cluster security and take steps to implement any security measures that you want to have in place before you install the add-on:
 
 - [Security in IBM Cloud Pak for Data](https://www.ibm.com/support/knowledgecenter/SSQNUZ_2.1.0/com.ibm.icpdata.doc/zen/overview/security.html){: external}
@@ -240,23 +242,15 @@ After you purchase the add-on, you download the software as a Passport Advantage
 
 Create a namespace for your application. Namespaces are a way to divide cluster resources between multiple users, which can be managed by resource quota.
 
-If you plan to enable one of the resource-intensive languages, which include Chinese (Simplified or Traditional), German, Japanese, or Korean, then you must use `conversation` as the namespace name.
+You must use `conversation` as the namespace name.
 {: important}
 
-If you are not enabling any of these languages and want to use the same namespace in which {{site.data.keyword.icp4dfull_notm}} is installed (which is typically `zen`), you can. If so, skip this step.
+If you are installing the helm chart a subsequent time to add another deployment of the add-on to the same cluster, then skip this step. You will install the subsequent deployment in the same namespace as the one being used for the previous deployment.
 
-If you are installing the helm chart a subsequent time to add another deployment of the add-on to the same cluster, then you can skip this step. Install the subsequent deployment in the same namespace as the one being used for the previous deployment.
-
-1.  From the Kubernetes CLI, run a command with the following syntax:
+1.  From the Kubernetes CLI, run the following command:
 
     ```bash
-    kubectl create namespace {namespace-name}
-    ```
-    {:pre}
-
-    For example:
-    ```bash
-    kubectl create namespace assistant
+    kubectl create namespace conversation
     ```
     {:pre}
 
@@ -415,17 +409,10 @@ You must be a cluster administrator to run the scripts.
 
 1.  Change to the **/path/to/ibm-watson-assistant-prod/ibm_cloud_pak/pak_extensions/pre-install** directory.
 
-1.  Run the **createSecurityNamespacePrereqs.sh** script by using a command with the following sytnax:
+1.  Run the **createSecurityNamespacePrereqs.sh** script by using the following command:
 
     ```bash
-    ./namespaceAdministration/createSecurityNamespacePrereqs.sh {namespace-name}
-    ```
-    {: pre}
-
-    For example:
-
-    ```bash
-    ./namespaceAdministration/createSecurityNamespacePrereqs.sh assistant
+    ./namespaceAdministration/createSecurityNamespacePrereqs.sh conversation
     ```
     {: pre}
 
@@ -542,10 +529,10 @@ For information about other values in the YAML file, see [Configuration details]
 ## Step 10: Install from the Helm chart
 {: #install-120-load-helm-chart}
 
-1.  Set the targeted namespace to the namespace in which you want to install the product.
+1.  Set the targeted namespace to the `conversation` namespace in which you want to install the product.
     
     ```bash
-    cloudctl target -n {namespace-name)
+    cloudctl target -n conversation
     ```
     {: pre}
 
@@ -567,13 +554,13 @@ For information about other values in the YAML file, see [Configuration details]
 ​​​
     - Replace `{my-release}` with a name for your release. The release name must start with an alphabetic character, end with an alphanumeric character, and consist of lower case alphanumeric characters or a hyphen (-). For example *my-120-wa*.
     - Replace `{override-file-name}` with the path to the file that contains the values that you want to override from the values.yaml file provided with the chart package. For example: `my-override.yaml`
-    - Replace `{namespace-name}` with the name of the Kubernetes namespace that hosts the Docker pods.
+    - Replace `{namespace-name}` with the name of the Kubernetes namespace that hosts the Docker pods, which in this case is `conversation`.
     - The `ibm-watson-assistant-prod-1.2.0.tgz` parameter represents the name of the downloaded file that contains the Helm chart.
 
     For example:
 
     ```bash
-    helm install --tls --values values-override.yaml --namespace assistant --name my120wa ../ibm-watson-assistant-prod-1.2.0.tgz
+    helm install --tls --values values-override.yaml --namespace conversation --name my120wa ../ibm-watson-assistant-prod-1.2.0.tgz
     ```
     {: pre}
 
@@ -587,7 +574,7 @@ To check the status of the installation process:
 1.  Check the status of the deployment by using the following command:
 
       ```bash
-      watch kubectl get job,pod,svc,secret,cm,pvc --namespace {namespace-name}
+      watch kubectl get job,pod,svc,secret,cm,pvc --namespace conversation
       ```
       {: pre}
 
@@ -606,7 +593,7 @@ To check the status of the installation process:
         1. Run the following command to see logs for the pod:
 
            ```bash
-           kubectl logs {podname} -n {namespace} -f --timestamps
+           kubectl logs {podname} -n conversation -f --timestamps
            ```
            {: pre}
 
@@ -624,14 +611,14 @@ To check the status of the installation process:
         1.  If one of the tests fails, review the logs to learn more. To see the log, use a command with the syntax `kubectl logs {podname} -n {namespace-name} -f --timestamps`. For example:
 
             ```bash
-            kubectl logs my-release-test -n assistant -f --timestamps
+            kubectl logs my-release-test -n conversation -f --timestamps
             ```
             {: pre}
 
         1.  To run the test script again, first delete the test pods by using a command with the syntax `kubectl delete pod {podname} --namespace {namespace-name}`. For example:
 
             ```bash
-            kubectl delete pod my-release-test --namespace assistant
+            kubectl delete pod my-release-test --namespace conversation
             ```
             {: pre}
 
