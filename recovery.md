@@ -33,4 +33,4 @@ You are responsible for understanding your configuration, customization, and usa
 ## Disaster recovery
 {: #recovery-dr}
 
-Your disaster recovery plan includes knowing, preserving, and being prepared to restore all data that is maintained on {{site.data.keyword.cloud_notm}}. See [Backing up and restoring data](/docs/services/assistant-data?topic=assistant-data-backup) for information about how to back up your service instances.
+Your disaster recovery plan includes knowing, preserving, and being prepared to restore all data that is maintained on {{site.data.keyword.cloud}}. See [Backing up and restoring data](/docs/services/assistant-data?topic=assistant-data-backup) for information about how to back up your service instances.
