@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2019
-lastupdated: "2019-06-10"
+lastupdated: "2019-07-23"
 
 subcollection: assistant-data
 
@@ -10,6 +10,7 @@ subcollection: assistant-data
 
 {:shortdesc: .shortdesc}
 {:new_window: target="_blank"}
+{:external: target="_blank" .external}
 {:deprecated: .deprecated}
 {:important: .important}
 {:note: .note}
@@ -27,6 +28,8 @@ subcollection: assistant-data
 
 Back up and restore your data by exporting, and then importing the data.
 {: shortdesc}
+
+This topic describes how to backup and restore data specific to {{site.data.keyword.conversationshort}}. For information about how to backup and restore {{site.data.keyword.icp4dfull_notm}}, see [Backing up your installation](https://www.ibm.com/support/knowledgecenter/SSQNUZ_2.1.0/com.ibm.icpdata.doc/zen/admin/backup_install.html).
 
 You can export the following data from a {{site.data.keyword.conversationshort}} service instance:
 

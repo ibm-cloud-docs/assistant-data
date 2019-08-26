@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2019
-lastupdated: "2019-07-23"
+lastupdated: "2019-08-13"
 
 subcollection: assistant-data
 
@@ -220,11 +220,6 @@ After you purchase the add-on, you download the software as a Passport Advantage
 1.  Install {{site.data.keyword.icp4dfull_notm}}. 
 
     Follow the instructions to install and set it up that begin with [Installing](https://www.ibm.com/support/knowledgecenter/SSQNUZ_2.1.0/com.ibm.icpdata.doc/zen/install/ovu.html){: external}.
-    
-    To install in the Lite configuration, specify a `--lite` parameter when you run the command to install the platform.
-    {: note}
-
-    <!--To install on OpenShift, you must install the base {{site.data.keyword.icp_notm}} V 3.1.2, and then install {{site.data.keyword.icp4d_notm}} on top of it. Follow the instructions for [Installing on OpenShift](https://www.ibm.com/support/knowledgecenter/SSQNUZ_2.1.0/com.ibm.icpdata.doc/zen/install/openshift-withicp.html){:external}.-->
 
 1.  Review the following topics about cluster security and take steps to implement any security measures that you want to have in place before you install the add-on:
 
@@ -499,7 +494,7 @@ The configuration settings for the deployment are defined in a file named `value
 
    At a minimum, you must provide your own values for the following configurable settings:
 
-    - `global.deploymentType`: Specify whether you want to set up a **Development** or **Production** instance. These values are uppercase and the setting is case sensitive.
+    - `global.deploymentType`: Specify whether you want to set up a **Development** or **Production** instance. These values are proper case and the setting is case sensitive.
     - `global.icp.masterHostname`: Specify the hostname of the master node of your cloud instance. Do not include the protocol prefix (`https://`) or port number (`:8443`).  For example: `my.company.name.icp.net`.
     - `global.icp.masterIP`: If you did not define a domain name for the master node of your cloud instance, then you must also specify the IP address of the master node.
     - `global.languages.{language-name}`: Change the value for an individual language to **true** to enable it. English and Czech are enabled by default. Additional resources are required to support additional languages.
@@ -524,7 +519,7 @@ The configuration settings for the deployment are defined in a file named `value
 
 1.  Save and close the `values-override.yaml` file.
 
-For information about other values in the YAML file, see [Configuration details](#install-120-config-details).
+For information about other values in the YAML file, see the values and their descriptions in the README file that is included in the archive package.
 
 ## Step 10: Install from the Helm chart
 {: #install-120-load-helm-chart}
@@ -756,6 +751,34 @@ You can provision one instance of {{site.data.keyword.conversationshort}} per de
 
 1.  From the instance you created, click **Launch Tool**.
 1.  Log in using the same credentials you use to log into {{site.data.keyword.icp4dfull_notm}}.
+
+## Adding another deployment
+{: #install-120-deploy-again}
+
+Complete the same steps to install a second deployment in the cluster.
+
+- Install to the same namespace that you created for the first deployment.
+- Add the `ingress.wcnAddon.addon.maxDeployments` configuration setting to the `values.yaml` file.
+
+After installing a subsequent deployment, complete the following steps:
+
+1.  Find the zen-core by running the following command:
+
+    ```bash
+    kubectl -n zen get po | grep zen-core
+    ```
+    {: codeblock}
+
+1.  On any of the zen-core-{pod-name} pods run the following command:
+
+    ```bash
+    kubectl -n zen exec -it zen-core-xxxxxxx -- /bin/bash
+    ```
+    {: codeblock}
+
+1.  From inside the pod, reload the nginx configuration:
+
+    `/user-home/.scripts/system/utils/nginx-reload`
 
 ## Next steps
 {: #install-120-next-steps}
