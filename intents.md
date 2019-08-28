@@ -2,7 +2,9 @@
 
 copyright:
   years: 2015, 2019
-lastupdated: "2019-06-20"
+lastupdated: "2019-08-28"
+
+keywords: intent, intent conflicts, annotate
 
 subcollection: assistant-data
 

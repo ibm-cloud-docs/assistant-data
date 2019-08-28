@@ -2,7 +2,9 @@
 
 copyright:
   years: 2015, 2019
-lastupdated: "2019-06-10"
+lastupdated: "2019-08-28"
+
+keywords: condition, response, options, jump, jump-to, multiline, response variations
 
 subcollection: assistant-data
 

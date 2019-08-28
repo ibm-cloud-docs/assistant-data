@@ -2,7 +2,9 @@
 
 copyright:
   years: 2015, 2019
-lastupdated: "2019-06-26"
+lastupdated: "2019-08-28"
+
+keywords: assistant, virtual agent, virtual assistant, chatbot, conversation, watson assistant, watson conversation
 
 subcollection: assistant-data
 
@@ -50,7 +52,7 @@ In this short tutorial, we introduce {{site.data.keyword.conversationshort}} and
 
 A new browser tab or window opens and the Assistants page of {{site.data.keyword.conversationshort}} is displayed.
 
-An assistant named **My first assistant** is created for you automatically. An [*assistant*](/docs/services/assistant?topic=assistant-assistants) is a cognitive bot to which you add skills that enable it to interact with your customers in useful ways.
+An assistant named **My first assistant** is created for you automatically. An [*assistant*](/docs/services/assistant-data?topic=assistant-data-assistants) is a cognitive bot to which you add skills that enable it to interact with your customers in useful ways.
 
 ## Step 2: Add a dialog skill
 {: #getting-started-add-skill}
@@ -92,7 +94,7 @@ You successfully started to build your training data by adding prebuilt content 
 ## Step 4: Build a dialog
 {: #getting-started-build-dialog}
 
-A [dialog](/docs/services/assistant?topic=assistant-dialog-overview) defines the flow of your conversation in the form of a logic tree. It matches intents (what users say) to responses (what the bot says back). Each node of the tree has a condition that triggers it, based on user input.
+A [dialog](/docs/services/assistant-data?topic=assistant-data-dialog-overview) defines the flow of your conversation in the form of a logic tree. It matches intents (what users say) to responses (what the bot says back). Each node of the tree has a condition that triggers it, based on user input.
 
 We'll create a simple dialog that handles greeting and ending intents, each with a single node.
 

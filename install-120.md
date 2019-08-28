@@ -428,7 +428,7 @@ You must be a cluster administrator to run the scripts.
 
 For each image in a repository, an image policy scope of either cluster or namespace is applied. When you deploy an application, IBM Container Image Security Enforcement checks whether the Kubernetes namespace that you are deploying to has any policy regulations that must be applied.
 
-1.  Create a YAML file named `policy.yaml` to define the policy. You can do so by following these steps:
+1.  Create a YAML file named `image_policy.yaml` to define the policy. You can do so by following these steps:
 
     - Run `vi image_policy.yaml` and press `i`.
 
@@ -458,7 +458,7 @@ For each image in a repository, an image policy scope of either cluster or names
 1.  Apply the policy by running the following command:
 
     ```bash
-    kubectl apply -f ./policy.yaml
+    kubectl apply -f ./image_policy.yaml
     ```
     {: pre}
 
