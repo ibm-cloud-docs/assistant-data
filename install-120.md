@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2019
-lastupdated: "2019-08-26"
+lastupdated: "2019-08-29"
 
 subcollection: assistant-data
 
@@ -221,7 +221,7 @@ After you purchase the add-on, you download the software as a Passport Advantage
 
     Follow the instructions to install and set it up that begin with [Installing](https://www.ibm.com/support/knowledgecenter/SSQNUZ_2.1.0/com.ibm.icpdata.doc/zen/install/ovu.html){: external}.
 
-    To install on OpenShift, you must install the base {{site.data.keyword.icp_notm}} V3.1.2, and then install {{site.data.keyword.icp4d_notm}} on top of it. Follow the instructions for [Installing on OpenShift](https://www.ibm.com/support/knowledgecenter/SSQNUZ_2.1.0/com.ibm.icpdata.doc/zen/install/openshift-withicp.html){:external}
+    To install on OpenShift, you must install the base {{site.data.keyword.icpfull_notm}} V3.1.2, and then install {{site.data.keyword.icp4dfull_notm}} on top of it. Follow the instructions for [Installing on OpenShift](https://www.ibm.com/support/knowledgecenter/SSQNUZ_2.1.0/com.ibm.icpdata.doc/zen/install/openshift-withicp.html){:external}
 
 1.  Review the following topics about cluster security and take steps to implement any security measures that you want to have in place before you install the add-on:
 
