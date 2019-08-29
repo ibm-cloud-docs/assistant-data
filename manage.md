@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2019
-lastupdated: "2019-07-10"
+lastupdated: "2019-08-28"
 
 subcollection: assistant-data
 
@@ -26,18 +26,18 @@ subcollection: assistant-data
 {:gif: data-image-type='gif'}
 
 # Managing the cluster
-{: #manage}
+{: #manage-130}
 
 Manage the cluster nodes that host your {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} deployment.
 {: shortdesc}
 
 ## Common tasks
-{: #manage-common-tasks}
+{: #manage-130-common-tasks}
 
 You can use Kubernetes commands to perform tasks that you cannot perform from the {{site.data.keyword.icp4dfull}} web client.
 
 ### To identify which nodes the product is deployed to
-{: #manage-id-nodes}
+{: #manage-130-id-nodes}
 
 ```bash
 kubectl get pods -o wide
@@ -45,7 +45,7 @@ kubectl get pods -o wide
 {: codeblock}
 
 ### To find out how many replicas are in use
-{: #manage-get-replica-number}
+{: #manage-130-get-replica-number}
 
   ```bash
   kubectl get deploy  -n {namespace-name}
@@ -61,8 +61,50 @@ kubectl get pods -o wide
 
   The response shows you name and number of replicas.
 
-### To scale the number of replicas
-{: #manage-scale-replicas}
+## Scaling
+{: #manage-130-scale}
+
+ Horizontal Pod Autoscaling (HPA) is enabled automatically for {{site.data.keyword.conversationshort}}. As a result, the number of replicas changes dynamically in the range of 1/2 to 10 replicas.
+
+To use horizontal pod autoscalers in a deployment with OpenShift, you must install the OpenShift Container Platform metrics server. For details, see [Requirements for Using Horizontal Pod Autoscalers](https://docs.openshift.com/container-platform/3.11/dev_guide/pod_autoscaling.html#req-for-using-hpas){: external}.
+
+The following table describes the deployment details.
+
+| Component name | Deployment name | Pod name | Default number of replicas |
+|----------------|-----------------|----------|----------------------------|
+| add-on | {release-name}-addon-assistant-addon | {release-name}-addon-assistant-addon-{pod-id} | 2-4 with HPA |
+| dialog | {release-name}-dialog | {release-name}-dialog-{pod-id} | 2-10 with HPA |
+| ed-mm | {release-name}-ed-mm | {release-name}-ed-mm-{pod-id} | 2-10 with HPA |
+| master | {release-name}-master | {release-name}-master-{pod-id} | 2-10 with HPA |
+| nlu | {release-name}-nlu | {release-name}-nlu-{pod-id} | 2-10 with HPA |
+| recommends | {release-name}-recommends | {release-name}-recommends-{pod-id} | 2 |
+| SIREG | {release-name}-sireg-de-tok-{version} | {release-name}-sireg-de-tok-{pod-id} | 2 |
+| SIREG | {release-name}-sireg-ja-tok-{version} | {release-name}-sireg-ja-tok-{pod-id} | 2 |
+| SIREG | {release-name}-sireg-ko-tok-{version} | {release-name}-sireg-ko-tok-{pod-id} | 2 |
+| SIREG | {release-name}-sireg-zhcn-tok-{version} | {release-name}-sireg-ko-tok-{pod-id} | 2 |
+| Dialog skill | {release-name}-skill-conversation | {release-name}-skill-conversation-{pod-id} | 2-10 with HPA |
+| Search skill | {release-name}-skill-search | {release-name}-skill-search-{pod-id} | 2-10 with HPA |
+| Store | {release-name}-store | {release-name}-store-{pod-id} | 2-10 with HPA |
+| PostgreSQL | {release-name}-store-postgres-proxy | {release-name}-store-postgres-proxy-{pod-id} | 2 |
+| PostgreSQL | {release-name}-store-postgres-sentinel | {release-name}-store-postgres-sentinel-{pod-id} | 3 |
+| TAS | {release-name}-tas | {release-name}-tas-{pod-id} | 2-10 with HPA |
+| UI | {release-name}-ui | {release-name}-ui-{pod-id} | 2-10 with HPA |
+{: caption="Deployment details" caption-side="top"}
+
+The following table describes the stateful set details.
+
+| Component name | Deployment name | Pod name | Default number of replicas |
+|----------------|-----------------|----------|----------------------------|
+| Minio | {release-name}-clu-minio | {release-name}-clu-minio-x | 4 |
+| etcd | {release-name}-etcd3 | {release-name}-etcd3-x | 3 |
+| MongoDB server | {release-name}-mongodb-server | {release-name}-mongodb-server-x | 3 |
+| Redis | {release-name}-redis-sentinel | {release-name}-redis-sentinel-x | 3 |
+| Redis | {release-name}-redis-server | {release-name}-redis-server-x | 2 |
+| PostgreSQL | {release-name}-store-postgres-keeper | {release-name}-store-postgres-keeper-x | 3 |
+{: caption="Stateful set details" caption-side="top"}
+
+### To scale the number of replicas:
+{: #manage-130-scale-replicas}
 
 Some of the microservices do not benefit from being scaled up; more replicas does not always mean more throughput. 
   
@@ -75,9 +117,14 @@ Some of the microservices do not benefit from being scaled up; more replicas doe
 - `Store` can be scaled up to a maximum of 10 replicas.
 - `PostgreSQL` can be scaled, but you might reach a limit to the number of database connections that can be created. 
 
-1.  Disable Horizontal Pod Autoscaling (HPA). 
+1.  Disable Horizontal Pod Autoscaling (HPA). If you want to scale the deployment manually, you must disable HPA first or autoscaling will override any values you try to set manually.
 
-    HPA is enabled automatically for {{site.data.keyword.conversationshort}}. As a result, the number of replicas changes dynamically in the range of 1/2 to 10 replicas. If you want to scale the deployment manually, you must disable HPA first or autoscaling will override any values you try to set manually.
+    To disable HPA, you must delete the HPA resource.
+
+    ```bash
+    kubectl delete hpa NAME-OF-HPA
+    ```
+    {: pre}
 
 1.  To increase the number to scale up or decrease the number to scale down, use one of these commands:
 
@@ -94,7 +141,7 @@ Some of the microservices do not benefit from being scaled up; more replicas doe
     {: pre}
 
 ### To scale the cluster all the way down and back
-{: #manage-scale-replicas}
+{: #manage-130-restart-replicas}
 
 To scale down the cluster all the way, you must scale down the deployed services in the following order:
 
@@ -141,14 +188,14 @@ To scale down the cluster all the way, you must scale down the deployed services
     - **store** deployment
 
 ## To view logs
-{: #manage-view-logs}
+{: #manage-130-view-logs}
 
 {{site.data.keyword.icp4dfull_notm}} automatically logs information from each service. For more information, see [Viewing logs](https://www.ibm.com/support/knowledgecenter/SSQNUZ_2.1.0/com.ibm.icpdata.doc/zen/admin/logs.html){: external}
 
 Also see [Integrating with Grafana or Kibana dashboards](https://www.ibm.com/support/knowledgecenter/SSQNUZ_2.1.0/com.ibm.icpdata.doc/zen/admin/admindash-integrate.html#admindash-integrate){: external}.
 
 ## Managing user access
-{: #install-120-add-users}
+{: #manage-130-add-users}
 
 After you provision an instance, you can share the URL for the product user interface with other users. However, those users can only log in to the product user interface if you give them access.
 
@@ -174,14 +221,14 @@ If you plan to use SAML for single sign-on (SSO), complete [Configuring single s
 
    Before people can create search skills in {{site.data.keyword.conversationshort}}, they need to have access to a {{site.data.keyword.discoveryshort}} instance. Add to the {{site.data.keyword.discoveryshort}} instance those people who need to be able to add new data collections to or query from existing collections by way of a search skill.
 
-## Prepare your local machine to perform management tasks
-{: #manage-prep-local-machine}
+## Prepare your local machine to perform management tasks (V1.2 only)
+{: #manage-130-prep-local-machine}
 
 Prepare your local machine to perform cluster management tasks.
 
 1.  Install the tools you will need on your local machine before you can complete management tasks from the command line.
  
-    The following software and tools are available as part of {{site.data.keyword.icp4dfull_notm}} V2.1.0, which runs on top of {{site.data.keyword.icpfull_notm}} V3.1.2:
+    The following software and tools are available as part of {{site.data.keyword.icp4dfull_notm}} V2.1.0.0, which runs on top of {{site.data.keyword.icpfull_notm}} V3.1.2:
 
     - **Helm V2.9.1**: You need this software to run the `helm` commands that are used in this installation.
 
