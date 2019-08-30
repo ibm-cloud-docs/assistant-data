@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2019
-lastupdated: "2019-08-29"
+lastupdated: "2019-08-30"
 
 subcollection: assistant-data
 
@@ -577,8 +577,8 @@ The configuration settings for the deployment are defined in a file named `value
 
     - `global.deploymentType`: Specify whether you want to set up a **Development** or **Production** instance. These values are uppercase and the setting is case sensitive.
     - `global.image.repository`: Specify your docker registry. This is the value of `{docker-registry}` from the step where you loaded the docker images.
-    - `global.icp.masterHostname`: Specify the hostname of the master node of your cloud instance. Do not include the protocol prefix (`https://`) or port number (`:8443`).  For example: `my.company.name.icp.net` or `mycluster.icp`.
-    - `global.icp.masterIP`: Required if you did not define a domain name for the master node of your cloud instance. Specify the IP address of the master node. If you are using a load balancer and have multiple master nodes, specify the private IP address of master node number 1.
+    - `global.icp.masterHostname`: Specify the hostname of the master node of your cloud instance. Do not include the protocol prefix (`https://`) or port number (`:8443`).  For example: `my.company.name.icp.net` or ` mywacluster-balancer.example.com`. If you are using a load balancer, specify the load balancer hostname.
+    - `global.icp.masterIP`: Specify the IP address of the master node. If you are using a load balancer and have multiple master nodes, specify the private IP address of master node number 1.
     - `global.languages.{language-name}`: Change the value for an individual language to **true** to enable it. English and Czech are enabled by default. Additional resources are required to support additional languages.
     - `license`: Read the license files that are provided in the `LICENSES` directory within the archive package. If you agree to the terms, set this configuration setting to **accept**. 
 
@@ -910,8 +910,8 @@ The configuration settings for the deployment are defined in a file named `value
 
     - `global.deploymentType`: Specify whether you want to set up a **Development** or **Production** instance. These values are proper case and the setting is case sensitive.
     - `global.image.repository`: Specify your docker registry url, including the {namespace}. For example `{cluster4d-master-node}:8500/{namespace}`.
-    - `global.icp.masterHostname`: Specify the hostname of the master node of your cloud instance. Do not include the protocol prefix (`https://`) or port number (`:8443`).  For example: `my.company.name.icp.net` or `mycluster.icp`.
-    - `global.icp.masterIP`: Required if you did not define a domain name for the master node of your cloud instance. Specify the IP address of the master node. If you are using a load balancer and have multiple master nodes, specify the private IP address of master node number 1.
+    - `global.icp.masterHostname`: Specify the hostname of the master node of your cloud instance. Do not include the protocol prefix (`https://`) or port number (`:8443`).  For example: `my.company.name.icp.net` or ` mywacluster-balancer.example.com`. If you are using a load balancer, specify the load balancer hostname.
+    - `global.icp.masterIP`: Specify the IP address of the master node. If you are using a load balancer and have multiple master nodes, specify the private IP address of master node number 1.
     - `global.languages.{language-name}`: Change the value for an individual language to **true** to enable it. English and Czech are enabled by default. Additional resources are required to support additional languages.
     - `license`: Read the license files that are provided in the `LICENSES` directory within the archive package. If you agree to the terms, set this configuration setting to **accept**. 
 
