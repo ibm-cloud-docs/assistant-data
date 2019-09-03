@@ -81,7 +81,7 @@ The following table describes the deployment details.
 | SIREG | {release-name}-sireg-de-tok-{version} | {release-name}-sireg-de-tok-{pod-id} | 2 |
 | SIREG | {release-name}-sireg-ja-tok-{version} | {release-name}-sireg-ja-tok-{pod-id} | 2 |
 | SIREG | {release-name}-sireg-ko-tok-{version} | {release-name}-sireg-ko-tok-{pod-id} | 2 |
-| SIREG | {release-name}-sireg-zhcn-tok-{version} | {release-name}-sireg-ko-tok-{pod-id} | 2 |
+| SIREG | {release-name}-sireg-zhcn-tok-{version} | {release-name}-sireg-zhcn-tok-{pod-id} | 2 |
 | Dialog skill | {release-name}-skill-conversation | {release-name}-skill-conversation-{pod-id} | 2-10 with HPA |
 | Search skill | {release-name}-skill-search | {release-name}-skill-search-{pod-id} | 2-10 with HPA |
 | Store | {release-name}-store | {release-name}-store-{pod-id} | 2-10 with HPA |
