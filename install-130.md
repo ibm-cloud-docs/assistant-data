@@ -974,8 +974,6 @@ For information about other values in the YAML file, see the values and their de
     ```
     {: pre}
 
-If you see the following recurring message, you can safely ignore it: `warning: cannot overwrite table with non table for affinity (map[])`
-
 ## Verifying that the installation was successful
 {: #install-130-verify}
 
