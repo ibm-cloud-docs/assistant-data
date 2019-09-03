@@ -18,9 +18,10 @@ Watson Assistant for IBM Cloud Pak for Data
     {: .topicgroup}
     Installing
         install.md
+        install-130.md
         install-120.md
         install-120-addon.md
-        [Helm chart README.md](https://github.com/IBM-Bluemix-Docs/data-readmes/blob/master/assistant-README.md)
+        [Helm chart README.md](https://github.com/ibm-cloud-docs/data-readmes/blob/master/assistant-README.md)
         manage.md
 
     dev-process.md

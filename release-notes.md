@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2019
-lastupdated: "2019-07-08"
+lastupdated: "2019-08-30"
 
 subcollection: assistant-data
 
@@ -34,19 +34,23 @@ IBM releases services, features, and language support for your evaluation that a
 ## Change log
 {: #rn-change-log}
 
+## 3 September 2019
+{: #3September2019}
+
+**{{site.data.keyword.conversationfull}} for {{site.data.keyword.icp4dfull}} version 1.3 is available.**: The following changes were made in this release:
+
+- Added support for installing {{site.data.keyword.icp4dfull_notm}} with Red Hat OpenShift.
+- Federal Information Security Management Act (FISMA) support is available for {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull_notm}} offerings purchased on or after August 30, 2019. {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull_notm}} is FISMA High Ready.
+- You can now provision up to 30 instances of {{site.data.keyword.conversationshort}} in a single deployment.
+
 ### 28 June 2019
 {: #28June2019}
 
-**{{site.data.keyword.conversationfull}} for {{site.data.keyword.icp4dfull}} version 1.2 is available.**: The {{site.data.keyword.conversationshort}} tool now works with {{site.data.keyword.icp4dfull_notm}} 2.1.0. The following changes were made in this release:
+**{{site.data.keyword.conversationfull}} for {{site.data.keyword.icp4dfull}} version 1.2 is available.**: The {{site.data.keyword.conversationshort}} tool now works with {{site.data.keyword.icp4dfull_notm}}. It does not work with standalone {{site.data.keyword.icpfull_notm}}. The following changes were made in this release:
 
 - Assistants are now available. An assistant can manage user sessions on your behalf. See [Assistants](/docs/services/assistant-data?topic=assistant-data-assistants).
 - Search skill is a new beta feature. You can create a search skill to trigger a search in an external data source that you configure in Watson Discovery. See [Creating a search skill](/docs/services/assistant-data?topic=assistant-data-skill-search-add).
 - Instead of creating a workspace as the container for your training data and dialog, you create a dialog skill. See [Creating a dialog skill](/docs/services/assistant-data?topic=assistant-data-skill-dialog-add).
-- **New major API version**: A V2 version of the API is available. This version provides access to methods you can use to interact with an assistant at run time. No more passing context with each API call; the session state is managed for you as part of the assistant layer.
-  
-  What is presented in the product user interface as a dialog skill is effectively a wrapper for a V1 workspace. There are currently no API methods for authoring skills and assistants with the V2 API. However, you can continue to use the V1 API for authoring workspaces. See [API Overview](/docs/services/assistant-data?topic=assistant-data-api-overview) for more details.
-  {: note}
-
 - Prevent your assistant from answering the wrong question by keeping your intents distinct from one another. Intent conflict resolution is now available. It can find intents with overlapping user examples, and gives you a graphical user interface in which to fix them. Nondistinct intents can result in misclassifications of user input. See [Resolving intent conflicts](/docs/services/assistant-data?topic=assistant-data-intents#intents-resolve-conflicts).
 - You can opt to see synonym recommendations that are made by Watson as you create a dictionary-based entity. See [Synonyms](/docs/services/assistant-data?topic=assistant-data-entities#entities-synonyms).
 
