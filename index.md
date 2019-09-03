@@ -104,7 +104,7 @@ Language support by feature is detailed in the [Supported languages](lang-suppor
 ## Security
 {: #index-security}
 
-Federal Information Security Management Act (FISMA) support is available for {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull_notm}} offerings purchased on or after August 30, 2019. {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull_notm}} is FISMA High Ready.
+Federal Information Security Management Act (FISMA) support is available for {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull_notm}} offerings purchased on or after 30 August 2019. FISMA support is also available to those who purchased version 1.2 (28 June 2019) and upgraded to version 1.3. {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull_notm}} is FISMA High Ready.
 
 ## Next steps
 {: #index-next-steps}
