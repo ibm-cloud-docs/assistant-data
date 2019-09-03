@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2019
-lastupdated: "2019-08-30"
+lastupdated: "2019-09-03"
 
 subcollection: assistant-data
 
@@ -425,19 +425,25 @@ After you purchase the add-on, you download the software as a Passport Advantage
 
 1.  Purchase {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull_notm}} from [Passport Advantage](https://www.ibm.com/software/passportadvantage/index.html){: external}.
 
-    Search for `{{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull_notm}} 1.3.0`.
+    Search for `IBM Watson Assistant for IBM Cloud Pak for Data V1.3.0`.
 
 1.  Use the Secure Shell protocol to log in to the system that you will use as the master node of your cluster as the root user.
 
 1.  Change to the directory where you want the installation files to be stored.
 
-1.  Download the add-on archive file only. The file is named {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull_notm}} V1.3.0. 
-
-    Do not download the {{site.data.keyword.icp4dfull}} Enterprise Edition V2.1.0.1 file that is included in the package. You will download a later version.
+1.  Download the add-on archive file. The file is named `IBM Watson Assistant for IBM Cloud Pak for Data V1.3.0`. 
 
     The add-on archive file is large (over 28 GB); the download can take up to an hour to complete over a network connection.
 
-1.  From Passport Advantage, download {{site.data.keyword.icp4dfull}} Enterprise Edition v2.1.0.2 - Bootstrap Config for Red Hat OpenShift (part number CC3E6ML).
+1.  Download the cluster package itself.
+
+    If you are installing on a stand-alone {{site.data.keyword.icp4dfull}} cluster, download {{site.data.keyword.icp4dfull}} Enterprise Edition V2.1.0.1.
+
+    If you are installing a cluster on Red Hat OpenShift, you can choose the version to install:
+
+    - {{site.data.keyword.icp4dfull}} Enterprise Edition V2.1.0.1.
+
+    - {{site.data.keyword.icp4dfull}} Enterprise Edition v2.1.0.2 - Bootstrap Config for Red Hat OpenShift (part number CC3E6ML). Version 2.1.0.2 is the Red Hat-certified version of {{site.data.keyword.icp4dfull}}.
 
 ### Step 2: Install the cluster
 {: #install-130-os-install-icp4d}
@@ -1159,7 +1165,7 @@ Use the {{site.data.keyword.conversationshort}} product user interface to build 
 
 - To learn more about the service first, read the [overview](https://cloud.ibm.com/docs/services/assistant-data?topic=assistant-data-index).
 - To see how it works for yourself, follow the steps in the [getting started tutorial](https://cloud.ibm.com/docs/services/assistant-data?topic=assistant-data-getting-started).
-- For help managing the cluster, see [Managing the cluster](https://cloud.ibm.com/docs/services/assistant-data?topic=assistant-data-manage).
+- For help managing the cluster, see [Managing the cluster](https://cloud.ibm.com/docs/services/assistant-data?topic=assistant-data-manage-130).
 
 ## Troubleshooting issues
 {: #install-130-ts-get-logs}
@@ -1199,6 +1205,6 @@ The user-provided configuration values are listed at the start of the informatio
 ### Can't create a session using the API
 {: #install-130-v2-api}
 
-**Problem**: You get a 500 response and see an error, such as `"You can't write against a read only slave."` when trying to use the v2 API to create a session.
-**Cause**: Redis sometimes applies the wrong roles to resources.
-**Solution**: Restart the Redis pods. Make a note of the replica numbers for Redis server and Redis sentinel first. Scale the Redis server and Redis sentinel replicas down to 0 and then scale them back to their original numbers. For details, see [To scale the number of replicas](/docs/services/assistant-data?topic=assistant-data-manage#manage-scale-replicas).
+- **Problem**: You get a 500 response and see an error, such as `"You can't write against a read only slave."` when trying to use the v2 API to create a session.
+- **Cause**: Redis sometimes applies the wrong roles to resources.
+- **Solution**: Restart the Redis pods. Make a note of the replica numbers for Redis server and Redis sentinel first. Scale the Redis server and Redis sentinel replicas down to 0 and then scale them back to their original numbers. For details, see [To scale the number of replicas](/docs/services/assistant-data?topic=assistant-data-manage-130#manage-130-scale).
