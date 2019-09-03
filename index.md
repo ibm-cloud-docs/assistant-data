@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2019
-lastupdated: "2019-06-26"
+lastupdated: "2019-09-03"
 
 subcollection: assistant-data
 
@@ -33,9 +33,9 @@ Use {{site.data.keyword.conversationfull}} for {{site.data.keyword.icp4dfull}} t
 ## How it works
 {: #index-how-it-works}
 
-This diagram shows the overall architecture of a complete solution:
+This diagram illustrates how the product works:
 
-![Flow diagram of the service](images/arch-data-overview.png)
+![Flow diagram of the service](images/simple-overview.png)
 
 - Users interact with your application through the user **interface** that you implement. For example, a simple chat window or a mobile app, or even a robot with a voice interface. The client application can be hosted either inside or outside the {{site.data.keyword.icp4dfull_notm}} infrastructure.
 
@@ -54,6 +54,10 @@ The tool does not currently include integrations for deploying the finished assi
 
 ## Implementation
 {: #index-implementation}
+
+This diagram shows the implementation in more detail:
+
+![Flow diagram of the service](images/arch-data-overview.png)
 
 Here's how you implement your assistant:
 
@@ -96,6 +100,11 @@ The {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull_no
 {: #index-language-support}
 
 Language support by feature is detailed in the [Supported languages](lang-support.html) topic.
+
+## Security
+{: #index-security}
+
+Federal Information Security Management Act (FISMA) support is available for {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull_notm}} offerings purchased on or after August 30, 2019. {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull_notm}} is FISMA High Ready.
 
 ## Next steps
 {: #index-next-steps}

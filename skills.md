@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2019
-lastupdated: "2019-06-07"
+lastupdated: "2019-09-03"
 
 subcollection: assistant-data
 
@@ -70,5 +70,9 @@ For help creating a dialog skill, see [Creating a dialog skill](/docs/services/a
 When Watson Assistant doesn't have an explicit solution to a problem, it routes the user question to a search skill to find an answer from across your disparate sources of self-service content. The search skill interacts with the {{site.data.keyword.discoveryfull}} service to extract this information from a configured data collection.
 
 If you already have {{site.data.keyword.discoveryshort}} for {{site.data.keyword.icp4dfull_notm}} installed and an instance provisioned, you can mine your existing data collections for source material that you can share with customers to address their questions.
+
+The following diagram illustrates how user input is processed when both a dialog skill and a search skill are added to an assistant. Any questions that the dialog is not designed to answer are sent to the search skill, which finds a relevant response from a Discovery data collection.
+
+![Diagram of how a question is sent to the Discovery service from a search skill.](images/search-skill-diagram.png)
 
 For help creating a search skill, see [Creating a search skill](/docs/services/assistant-data?topic=assistant-data-skill-search-add).

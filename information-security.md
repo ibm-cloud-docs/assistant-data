@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2019
-lastupdated: "2019-06-24"
+lastupdated: "2019-09-03"
 
 subcollection: assistant-data
 
@@ -49,4 +49,4 @@ Learn more about IBM's own GDPR readiness journey and our GDPR capabilities and 
 ## More information
 {: #information-security-gdpr-icp4d}
 
-For more information about data private in {{site.data.keyword.icp4dfull_notm}}, see [Considerations for GDPR readiness)](https://www.ibm.com/support/knowledgecenter/SSQNUZ_2.1.0/com.ibm.icpdata.doc/zen/overview/gdpr.html){: external}.
+For more information about data privacy in {{site.data.keyword.icp4dfull_notm}}, see [Considerations for GDPR readiness](https://www.ibm.com/support/knowledgecenter/SSQNUZ_2.1.0/com.ibm.icpdata.doc/zen/overview/gdpr.html){: external}.
