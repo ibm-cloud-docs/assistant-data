@@ -443,7 +443,7 @@ After you purchase the add-on, you download the software as a Passport Advantage
 
     - {{site.data.keyword.icp4dfull}} Enterprise Edition V2.1.0.1.
 
-    - {{site.data.keyword.icp4dfull}} Enterprise Edition v2.1.0.2 - Bootstrap Config for Red Hat OpenShift (part number CC3E6ML). Version 2.1.0.2 is the Red Hat-certified version of {{site.data.keyword.icp4dfull}}.
+    - {{site.data.keyword.icp4dfull}} Enterprise Edition v2.1.0.2 Lite - Bootstrap Config for Red Hat OpenShift (part number CC3E6ML). Version 2.1.0.2 Lite is the Red Hat-certified version of {{site.data.keyword.icp4dfull}}.
 
 ### Step 2: Install the cluster
 {: #install-130-os-install-icp4d}

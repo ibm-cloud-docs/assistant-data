@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2019
-lastupdated: "2019-07-11"
+lastupdated: "2019-09-05"
 
 subcollection: assistant-data
 
@@ -23,7 +23,7 @@ subcollection: assistant-data
 {:python: .ph data-hd-programlang='python'}
 {:swift: .ph data-hd-programlang='swift'}
 
-# Creating a search skill ![Beta](images/beta.png)
+# Creating a search skill
 {: #skill-search-add}
 
 An assistant uses a *search skill* to route complex customer inquiries to {{site.data.keyword.discoveryfull}} for {{site.data.keyword.icp4dfull}}. {{site.data.keyword.discoveryshort}} treats the user input as a search query. It finds information that is relevant to the query from a configured data source and returns it to the assistant.

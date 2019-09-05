@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2019
-lastupdated: "2019-08-28"
+lastupdated: "2019-09-05"
 
 subcollection: assistant-data
 
@@ -192,7 +192,7 @@ To scale down the cluster all the way, you must scale down the deployed services
 
 {{site.data.keyword.icp4dfull_notm}} automatically logs information from each service. For more information, see [Viewing logs](https://www.ibm.com/support/knowledgecenter/SSQNUZ_2.1.0/com.ibm.icpdata.doc/zen/admin/logs.html){: external}
 
-Also see [Integrating with Grafana or Kibana dashboards](https://www.ibm.com/support/knowledgecenter/SSQNUZ_2.1.0/com.ibm.icpdata.doc/zen/admin/admindash-integrate.html#admindash-integrate){: external}.
+If the cluster you installed includes {{site.data.keyword.icpfull_notm}}, see also [Integrating with Grafana or Kibana dashboards](https://www.ibm.com/support/knowledgecenter/SSQNUZ_2.1.0/com.ibm.icpdata.doc/zen/admin/admindash-integrate.html#admindash-integrate){: external}.
 
 ## Managing user access
 {: #manage-130-add-users}
