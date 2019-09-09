@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2019
-lastupdated: "2019-09-03"
+lastupdated: "2019-09-09"
 
 subcollection: assistant-data
 
@@ -136,7 +136,7 @@ The systems that host {{site.data.keyword.conversationshort}} must meet these re
 - {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull_notm}} can run on Intel architecture nodes only.
 - CPUs must have 2.4 GHz or higher clock speed
 - CPUs must support Linux SSE 4.2
-- CPUs must support the AVX instruction set extension See the [Advanced Vector Extensions](https://en.wikipedia.org/wiki/Advanced_Vector_Extensions){: external} Wikipedia page for a list of CPUs that include this support (most CPUs since 2012). The service cannot function properly without AVX support.
+- CPUs must support the AVX2 instruction set extension. See the [Advanced Vector Extensions](https://en.wikipedia.org/wiki/Advanced_Vector_Extensions#CPUs_with_AVX2){: external} Wikipedia page for a list of CPUs that include this support (most CPUs since 2013). The service cannot function properly without AVX2 support.
 
 ## Storage requirements
 {: #install-130-storage-reqs}
