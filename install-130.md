@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2019
-lastupdated: "2019-09-09"
+lastupdated: "2019-09-10"
 
 subcollection: assistant-data
 
@@ -410,6 +410,7 @@ Follow these steps to install {{site.data.keyword.conversationshort}} for {{site
 1.  [Purchase and download installation artifacts](#install-130-os-download-wa-cpd)
 1.  [Install the cluster](#install-130-os-install-icp4d)
 1.  [Create a namespace](#install-130-os-create-namespace)
+1.  [Apply security policy to namespace](#install-130-os-securitypolicy)
 1.  [Extract files from the chart](#install-130-os-extract)
 1.  [Load the docker images](#install-130-os-load-docker-images)
 1.  [Create persistent volumes](#install-130-os-create-pvs)
@@ -488,16 +489,34 @@ If you are installing the helm chart a subsequent time to add another deployment
     ```bash
     oc new-project {namespace-name}
     ```
+    {: pre}
 
 1.  Make sure you are pointing at the correct OpenShift project:
 
     ```bash
     oc project {namespace-name}
     ```
+    {: pre}
 
       - `{namespace-name}` is the Docker namespace that hosts the Docker image. This is the namespace you created earlier.
 
-### Step 4: Extract files from the archive
+### Step 4: Apply security policy to namespace
+{: #install-130-os-securitypolicy}
+
+The chart requires a SecurityContextConstraints to be bound to the target namespace prior to installation.
+
+The predefined SecurityContextConstraints name: `nonroot` has been verified for this chart. If your target namespace is bound to this SecurityContextConstraints resource, skip this step. 
+
+1.  Run the following command to bind the SecurityContextConstraints to your namespace:
+
+    ```bash
+    oc adm policy add-scc-to-group nonroot system:serviceaccounts:{namespace-name}
+    ```
+    {: pre}
+
+      - `{namespace-name}` is the Docker namespace that hosts the Docker image. This is the namespace you created earlier.
+
+### Step 5: Extract files from the archive
 {: #install-130-os-extract}
 
 After the archive file is loaded into the cluster, you can extract files from it. There are scripts provided with the chart that you can use to perform tasks such as creating persistent volumes and applying security policies.
@@ -522,7 +541,7 @@ After the archive file is loaded into the cluster, you can extract files from it
 
     The root directory that is extracted from the package is named **ibm-watson-assistant-prod**.
 
-### Step 5: Load the docker images
+### Step 6: Load the docker images
 {: #install-130-os-load-docker-images}
 
 1.  Load the docker images into the OpenShift docker registry:
@@ -537,12 +556,12 @@ After the archive file is loaded into the cluster, you can extract files from it
 
     To confirm that the load was successful, check that the docker images are available in the OpenShift docker registry.
 
-### Step 6: Create persistent volumes
+### Step 7: Create persistent volumes
 {: #install-130-os-create-pvs}
 
 See [Creating persistent volumes](#install-130-create-pvs).
 
-### Step 7: Add required namespace label
+### Step 8: Add required namespace label
 {: #install-130-os-apply-namespace-label}
 
 The following script is provided with the Watson Assistant archive package.
@@ -563,7 +582,7 @@ You must be a cluster administrator to run the script.
     ```
     {: pre}
 
-### Step 8: Customize the configuration
+### Step 9: Customize the configuration
 {: #install-130-os-config}
 
 The configuration settings for the deployment are defined in a file named `values.yaml`. Create a copy of the file and name it `values-override.yaml`. In this override file, you can change values for some of the default configuration settings to customize your add-on deployment.
@@ -609,7 +628,7 @@ The configuration settings for the deployment are defined in a file named `value
 
 For information about other values in the YAML file, see the values and their descriptions in the README file that is included in the archive package.
 
-### Step 9: Fetch secrets
+### Step 10: Fetch secrets
 
 Fetch the imagePullSecret that will be used for training.
 
@@ -620,22 +639,8 @@ Fetch the imagePullSecret that will be used for training.
     ```
     {: codeblock}
 
-### Step 10: Install from the Helm chart
+### Step 11: Install from the Helm chart
 {: #install-130-os-load-helm-chart}
-
-1.  Set the targeted namespace to the namespace in which you want to install the product.
-    
-    ```bash
-    cloudctl target -n {namespace-name}
-    ```
-    {: pre}
-
-1.  Verify that your Helm command line interface context is valid by running this command.
-
-    ```bash
-    helm version --tls
-    ```
-    {: pre}
 
 1.  Install the chart from the Helm command line interface. 
 
