@@ -601,7 +601,7 @@ The configuration settings for the deployment are defined in a file named `value
    At a minimum, you must provide your own values for the following configurable settings:
 
     - `global.deploymentType`: Specify whether you want to set up a **Development** or **Production** instance. These values are uppercase and the setting is case sensitive.
-    - `global.image.repository`: Specify your docker registry. This is the value of `{docker-registry}` from the step where you loaded the docker images.
+    - `global.image.repository`:  Specify your docker registry url, including the {namespace}. For example: `docker-registry.default.svc:5000/{namespace}`
     - `global.icp.masterHostname`: Specify the hostname of the master node of your cloud instance. Do not include the protocol prefix (`https://`) or port number (`:8443`). If you are using a load balancer, specify the load balancer hostname. For example: `my.company.name.icp.net` or ` mywacluster-balancer.example.com`.
     - `global.icp.masterIP`: Specify the IP address of the master node. If you are using a load balancer and have multiple master nodes, specify the private IP address of master node number 1.
     - `global.languages.{language-name}`: Change the value for an individual language to **true** to enable it. English and Czech are enabled by default. Additional resources are required to support additional languages.
