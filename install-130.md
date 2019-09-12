@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2019
-lastupdated: "2019-09-10"
+lastupdated: "2019-09-12"
 
 subcollection: assistant-data
 
@@ -176,7 +176,7 @@ Instead, consider using an {{site.data.keyword.icp4dfull_notm}} storage [add-on]
 
   When enabled, Portworx grabs umounted disks to use. For example, if you have 7 worker nodes in your cluster, 4 of which have umounted disks of 400G each, Portworx might provision each worker node with 3 to 4 pods-worth of persistent volumes.
 
-  To use Portworx storage:
+  To use Portworx storage with a stand-alone deployment:
   
   1. Follow the instructions for installing Portworx on Kubernetes helm. (Follow the storage add-on link provided earlier.) 
 
@@ -414,9 +414,9 @@ Follow these steps to install {{site.data.keyword.conversationshort}} for {{site
 1.  [Extract files from the chart](#install-130-os-extract)
 1.  [Load the docker images](#install-130-os-load-docker-images)
 1.  [Create persistent volumes](#install-130-os-create-pvs)
-1.  [Set up security policies](#install-130-os-apply-security-policy)
-1.  [Create the image policy](#install-130-os-image-policy)
+1.  [Add required namespace label](#install-130-os-apply-namespace-label)
 1.  [Customize the configuration](#install-130-os-config)
+1.  [Fetch secrets](#install-130-os-fetch-secrets)
 1.  [Install from the Helm chart](#install-130-os-load-helm-chart)
 
 ### Step 1: Purchase and download installation artifacts
@@ -629,10 +629,11 @@ The configuration settings for the deployment are defined in a file named `value
 For information about other values in the YAML file, see the values and their descriptions in the README file that is included in the archive package.
 
 ### Step 10: Fetch secrets
+{: #install-130-os-fetch-secrets}
 
 Fetch the imagePullSecret that will be used for training.
 
-1   Run the following command:
+1.  Run the following command:
 
     ```bash
     oc get secrets | grep default-dockercfg
@@ -1005,6 +1006,9 @@ To check the status of the installation process:
       ```
       {: pre}
 
+      The --tls argument is only required for stand-alone deployments.
+      {: note}
+
 1.    Take one of the following actions:
 
       - If a pod fails, try to determine the cause and fix it.
@@ -1080,7 +1084,7 @@ If you need to preserve any data, do so now before you begin this procedure.
 
 1.  Delete any associated artifacts that are left over by using the following command. 
 
-    Reminder: This command removes the data stores you created also, which must be removed and recreated if you need to start the installation over.
+    Reminder: This command also removes the data stores you created, which must be removed and recreated if you need to start the installation over.
     {: note}
 
     ```bash
