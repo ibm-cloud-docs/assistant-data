@@ -524,7 +524,7 @@ After the archive file is loaded into the cluster, you can extract files from it
 1.  Change to the directory where you downloaded the archive file, and then use the following command to expand the archive. 
 
     ```bash
-    cd {compressed-file-dir}
+    cd {compressed-file-dir}/charts/ibm-watson-assistant-prod
     tar xvfz {compressed-file-name}
     ```
     {: pre}
@@ -547,7 +547,7 @@ After the archive file is loaded into the cluster, you can extract files from it
 1.  Load the docker images into the OpenShift docker registry:
 
     ```bash
-    cd {compressed-file-dir}/ibm-watson-assistant-prod/ibm_cloud_pak/pak_extensions/pre-install/clusterAdministration
+    cd {compressed-file-dir}/charts/ibm-watson-assistant-prod/ibm_cloud_pak/pak_extensions/pre-install/clusterAdministration
     ./loadImagesOpenShift.sh --path {compressed_file_dir} --namespace {namespace-name} --registry {docker-registry}
     ```
     {: codeblock}
@@ -577,7 +577,7 @@ You must be a cluster administrator to run the script.
     {: note} 
 
     ```bash
-    cd {compressed-file-dir}/ibm-watson-assistant-prod/ibm_cloud_pak/pak_extensions/pre-install/clusterAdministration
+    cd {compressed-file-dir}/charts/ibm-watson-assistant-prod/ibm_cloud_pak/pak_extensions/pre-install/clusterAdministration
     ./labelNamespace.sh zen
     ```
     {: pre}
