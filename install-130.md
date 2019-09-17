@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2019
-lastupdated: "2019-09-12"
+lastupdated: "2019-09-17"
 
 subcollection: assistant-data
 
@@ -524,7 +524,7 @@ After the archive file is loaded into the cluster, you can extract files from it
 1.  Change to the directory where you downloaded the archive file, and then use the following command to expand the archive. 
 
     ```bash
-    cd {compressed-file-dir}/charts/ibm-watson-assistant-prod
+    cd {compressed-file-dir}
     tar xvfz {compressed-file-name}
     ```
     {: pre}
@@ -535,6 +535,7 @@ After the archive file is loaded into the cluster, you can extract files from it
 1.  Extract the files from the Helm chart package with the following command:
 
     ```bash
+    cd {compessed-file-dir}/charts
     tar xvfz ibm-watson-assistant-prod-1.3.0.tgz
     ```
     {: pre}
@@ -552,7 +553,7 @@ After the archive file is loaded into the cluster, you can extract files from it
     ```
     {: codeblock}
 
-    where `{docker-registry}` is the address of the internal OpenShift docker registry. For example `docker-registry.default.svc:5000/`.
+    where `{docker-registry}` is the address of the internal OpenShift docker registry. For example `docker-registry.default.svc:5000`.
 
     To confirm that the load was successful, check that the docker images are available in the OpenShift docker registry.
 
@@ -601,7 +602,7 @@ The configuration settings for the deployment are defined in a file named `value
    At a minimum, you must provide your own values for the following configurable settings:
 
     - `global.deploymentType`: Specify whether you want to set up a **Development** or **Production** instance. These values are uppercase and the setting is case sensitive.
-    - `global.image.repository`:  Specify your docker registry url, including the {namespace}. For example: `docker-registry.default.svc:5000/{namespace}`
+    - `global.image.repository`:  Specify your docker registry url, including the {namespace}. For example: `docker-registry.default.svc:5000/{namespace}/`
     - `global.icp.masterHostname`: Specify the hostname of the master node of your cloud instance. Do not include the protocol prefix (`https://`) or port number (`:8443`). If you are using a load balancer, specify the load balancer hostname. For example: `my.company.name.icp.net` or ` mywacluster-balancer.example.com`.
     - `global.icp.masterIP`: Specify the IP address of the master node. If you are using a load balancer and have multiple master nodes, specify the private IP address of master node number 1.
     - `global.languages.{language-name}`: Change the value for an individual language to **true** to enable it. English and Czech are enabled by default. Additional resources are required to support additional languages.
