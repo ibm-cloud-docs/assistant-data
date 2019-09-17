@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2019
-lastupdated: "2019-08-28"
+lastupdated: "2019-09-17"
 
 keywords: entity, entity value, contextual entity, dictionary entity, pattern entity, entity synonym, annotate mentions
 
@@ -384,7 +384,7 @@ System entities that you enable for use count toward your plan usage totals.
 
 | Contextual entities and annotations |
 |-------------------------------------|
-|        30 contextual entities with 3000 annotations |
+| 150 contextual entities with 3000 annotations |
 {: caption="Limit details continued" caption-side="top"}
 
 ## Editing entities
