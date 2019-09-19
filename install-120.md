@@ -25,7 +25,7 @@ subcollection: assistant-data
 {:download: .download}
 {:gif: data-image-type='gif'}
 
-# Installing 1.2
+# Installing Watson Assistant 1.2
 {: #install-120}
 
 Use {{site.data.keyword.conversationfull}} for {{site.data.keyword.icp4dfull}} V1.2.0 to build conversational interfaces into any app, device, or channel. 
