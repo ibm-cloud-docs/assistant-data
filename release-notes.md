@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2019
-lastupdated: "2019-09-05"
+lastupdated: "2019-10-04"
 
 subcollection: assistant-data
 
@@ -43,6 +43,12 @@ IBM releases services, features, and language support for your evaluation that a
 - Federal Information Security Management Act (FISMA) support is available for {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull_notm}} for this version (V1.3). FISMA support is also available to those who purchased V1.2 (28 June 2019) and upgraded to V1.3. {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull_notm}} is FISMA High Ready.
 - You can now provision up to 30 instances of {{site.data.keyword.conversationshort}} in a single deployment.
 - The search skill is now generally available.
+
+This release does not include the following features, which are currently available for cloud instances:
+
+- Webhooks and autocorrection are not supported.
+- The product tour that is available to some first time users of the cloud-based product is not available.
+- The new JavaScript library that is being used in cloud instances to increase the page responsiveness is not in use. 
 
 ### 28 June 2019
 {: #28June2019}
