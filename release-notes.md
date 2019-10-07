@@ -46,7 +46,7 @@ IBM releases services, features, and language support for your evaluation that a
 
 This release does not include the following features, which are currently available for cloud instances:
 
-- Autocorrection, dialog skill versioning, intent recommendations, and webhooks are not supported.
+- Autocorrection, intent recommendations, and webhooks are not supported.
 - The product tour that is available to some first time users of the cloud-based product is not available.
 - The new JavaScript library that is being used in cloud instances to increase the page responsiveness is not in use.
 
