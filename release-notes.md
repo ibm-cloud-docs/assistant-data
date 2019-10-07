@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2019
-lastupdated: "2019-10-04"
+lastupdated: "2019-10-07"
 
 subcollection: assistant-data
 
@@ -46,9 +46,9 @@ IBM releases services, features, and language support for your evaluation that a
 
 This release does not include the following features, which are currently available for cloud instances:
 
-- Webhooks and autocorrection are not supported.
+- Autocorrection, dialog skill versioning, intent recommendations, and Webhooks are not supported.
 - The product tour that is available to some first time users of the cloud-based product is not available.
-- The new JavaScript library that is being used in cloud instances to increase the page responsiveness is not in use. 
+- The new JavaScript library that is being used in cloud instances to increase the page responsiveness is not in use.
 
 ### 28 June 2019
 {: #28June2019}
