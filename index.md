@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2019
-lastupdated: "2019-09-03"
+lastupdated: "2019-10-24"
 
 subcollection: assistant-data
 
@@ -10,6 +10,7 @@ subcollection: assistant-data
 
 {:shortdesc: .shortdesc}
 {:new_window: target="_blank"}
+{:external: target="_blank" .external}
 {:deprecated: .deprecated}
 {:important: .important}
 {:note: .note}
@@ -94,7 +95,7 @@ Read more about these steps by following these links:
 ## Browser support
 {: #index-browser-support}
 
-The {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull_notm}} product user interface requires the same level of browser software as is required by {{site.data.keyword.icp4dfull_notm}}. For details, see [Browser requirements ![External link icon](../../icons/launch-glyph.svg "External link icon")](https://www.ibm.com/support/knowledgecenter/en/SSQNUZ_1.2.1/com.ibm.icpdata.doc/zen/install/reqs-ent.html#reqs-ent__web){: new_window}.
+The {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull_notm}} product user interface requires the same level of browser software as is required by {{site.data.keyword.icp4dfull_notm}}. For details, see [Browser requirements](https://www.ibm.com/support/knowledgecenter/en/SSQNUZ_1.2.1/com.ibm.icpdata.doc/zen/install/reqs-ent.html#reqs-ent__web){: external}.
 
 ## Language support
 {: #index-language-support}
@@ -111,14 +112,14 @@ Federal Information Security Management Act (FISMA) support is available for {{s
 
 - [Get started](/docs/services/assistant-data?topic=assistant-data-getting-started) with the service
 - Try out some [demos](/docs/services/assistant-data?topic=assistant-data-sample-apps).
-- View the list of [developer resources ![External link icon](../../icons/launch-glyph.svg "External link icon")](https://www.ibm.com/watson/developer-resources/){: new_window}.
+- View the list of [developer resources](https://www.ibm.com/watson/developer-resources/){: external}.
 
-Still have questions? Contact [IBM Sales ![External link icon](../../icons/launch-glyph.svg "External link icon")](https://www-01.ibm.com/marketing/iwm/dre/signup?source=urx-20970){: new_window}.
+Still have questions? Contact [IBM Sales](https://www-01.ibm.com/marketing/iwm/dre/signup?source=urx-20970){: external}.
 
 ## Trademarks
 {: index-trademarks}
 
-IBM, the IBM logo, and ibm.com are trademarks or registered trademarks of International Business Machines Corp., registered in many jurisdictions worldwide. Other product and service names might be trademarks of IBM or other companies. A current list of IBM trademarks is available on the web at [Copyright and trademark information ![External link icon](../../icons/launch-glyph.svg "External link icon")](www.ibm.com/legal/copytrade.shtml).
+IBM, the IBM logo, and ibm.com are trademarks or registered trademarks of International Business Machines Corp., registered in many jurisdictions worldwide. Other product and service names might be trademarks of IBM or other companies. A current list of IBM trademarks is available on the web at [Copyright and trademark information](www.ibm.com/legal/copytrade.shtml){: external}.
 
 Java and all Java-based trademarks and logos are trademarks or registered trademarks of Oracle and/or its affiliates.
 

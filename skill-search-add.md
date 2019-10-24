@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2019
-lastupdated: "2019-09-05"
+lastupdated: "2019-10-24"
 
 subcollection: assistant-data
 
@@ -38,14 +38,14 @@ The following 4-minute video provides an overview of the search skill.
 
 <iframe class="embed-responsive-item" id="youtubeplayer" title="Search skill overview" type="text/html" width="640" height="390" src="https://www.youtube.com/embed/ZcgGf8J2Cfw?rel=0" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen> </iframe>
 
-To learn more about how search skill can benefit your business, [read this blog post ![External link icon](../../icons/launch-glyph.svg "External link icon")](https://medium.com/ibm-watson/adding-search-to-watson-assistant-99e4e81839e5){: new_window}.
+To learn more about how search skill can benefit your business, [read this blog post](https://medium.com/ibm-watson/adding-search-to-watson-assistant-99e4e81839e5){: external}.
 
 ## How it works
 {: #skill-search-add-how}
 
 The search skill searches for information from a data collection that you create by using {{site.data.keyword.discoveryshort}} for {{site.data.keyword.icp4dfull_notm}}.
 
-{{site.data.keyword.discoveryshort}} for {{site.data.keyword.icp4dfull_notm}} crawls, converts, and normalizes your unstructured data. The product applies data analysis and cognitive intuition to enrich your data such that you can more easily find and retrieve meaningful information from it later. To read more about {{site.data.keyword.discoveryshort}}, see the [product documentation ![External link icon](../../icons/launch-glyph.svg "External link icon")](/docs/services/discovery-data?topic=discovery-data-about){: new_window}.
+{{site.data.keyword.discoveryshort}} for {{site.data.keyword.icp4dfull_notm}} crawls, converts, and normalizes your unstructured data. The product applies data analysis and cognitive intuition to enrich your data such that you can more easily find and retrieve meaningful information from it later. To read more about {{site.data.keyword.discoveryshort}}, see the [product documentation](/docs/services/discovery-data?topic=discovery-data-about){: external}.
 
 Typically, the type of data collection you add to {{site.data.keyword.discoveryshort}} and access from your assistant contains information that is owned by your company. This proprietary information can include FAQs, sales collateral, technical manuals, or papers written by subject matter experts. Mine this dense collection of proprietary information to find answers to customer questions quickly.
 
@@ -97,13 +97,13 @@ If you do not have access to a provisioned instance of {{site.data.keyword.disco
 
         1.  Provide the required information for the data source you choose, and then click **Connect**.
 
-            See [Connecting to data sources ![External link icon](../../icons/launch-glyph.svg "External link icon")](/docs/services/discovery-data?topic=discovery-data-sources){: new_window} for more details.
+            See [Connecting to data sources](/docs/services/discovery-data?topic=discovery-data-sources){: external} for more details.
         1.  Indicate the frequency with which you want data from the data source to be synchronized with the collection you are creating in {{site.data.keyword.discoveryshort}}.
         1.  Specify the information that you want to extract from the data source and include in your {{site.data.keyword.discoveryshort}} collection.
 
             The options that are displayed differ depending on the data source type.
 
-            - For a Salesforce data source, you select the object types that you want to extract from the source documents. You might select a [Case object type ![External link icon](../../icons/launch-glyph.svg "External link icon")](https://developer.salesforce.com/docs/atlas.en-us.object_reference.meta/object_reference/sforce_api_objects_case.htm#!) that represents a *case*, which is a customer issue or problem, for example.
+            - For a Salesforce data source, you select the object types that you want to extract from the source documents. You might select a [Case object type](https://developer.salesforce.com/docs/atlas.en-us.object_reference.meta/object_reference/sforce_api_objects_case.htm#!) that represents a *case*, which is a customer issue or problem, for example.
             - For a Sharepoint data source, you specify paths.
             - For file repositories, you specify directories or files.
             - For a web crawl data source, specify the base URL of a website that you want to crawl. The web page that you specify and any pages that it links to are crawled and a document is created per web page.
@@ -121,12 +121,12 @@ If you do not have access to a provisioned instance of {{site.data.keyword.disco
         1.  First, you define the collection, and then you upload the documents. Provide the following information:
 
             - Collection name. The name must be unique for this service instance.
-            - Language. Select the language of the files that you are adding to this collection. For information about the languages supported by {{site.data.keyword.discoveryshort}}, see [Language support ![External link icon](../../icons/launch-glyph.svg "External link icon")](/docs/services/discovery-data?topic=discovery-data-language-support){: new_window}.
+            - Language. Select the language of the files that you are adding to this collection. For information about the languages supported by {{site.data.keyword.discoveryshort}}, see [Language support](/docs/services/discovery-data?topic=discovery-data-language-support){: external}.
 
-              If you are uploading a PDF document and want to extract party, nature, and category information from it, then expand the **Advanced** section and click **Use the Default Contract Configuration with this collection**. See [Collection requirements ![External link icon](../../icons/launch-glyph.svg "External link icon")](/docs/services/discovery-data?topic=discovery-data-element-classification#element-collection){: new_window} for more details.
+              If you are uploading a PDF document and want to extract party, nature, and category information from it, then expand the **Advanced** section and click **Use the Default Contract Configuration with this collection**. See [Collection requirements](/docs/services/discovery-data?topic=discovery-data-element-classification#element-collection){: external} for more details.
         1.  Upload documents.
 
-            Supported file types include PDF, HTML, JSON, and DOC files. See [Adding content ![External link icon](../../icons/launch-glyph.svg "External link icon")](/docs/services/discovery-data?topic=discovery-data-addcontent){: new_window} for more details.
+            Supported file types include PDF, HTML, JSON, and DOC files. See [Adding content](/docs/services/discovery-data?topic=discovery-data-addcontent){: external} for more details.
             {: note}
 
             No ongoing synchronization of uploaded documents is available. If you want to pick up changes that are made to a document, upload a later version of the document.
@@ -232,7 +232,7 @@ The appropriate collection fields to extract data from vary depending on your co
 
 To learn more about the structure of the documents in your collection, including the names of fields that contain information you might want to extract, open the collection in {{site.data.keyword.discoveryshort}}, and then click the View data schema icon ![View data schema icon](images/icon-view-data-schema.png).
 
-The source fields are created when the collection is created. To learn more about fields that are generated for you, such as `enriched_text.concepts.text`, see [Configuring your service > Adding enrichments ![External link icon](../../icons/launch-glyph.svg "External link icon")](/docs/services/discovery-data?topic=discovery-data-configservice#adding-enrichments){: new_window}.
+The source fields are created when the collection is created. To learn more about fields that are generated for you, such as `enriched_text.concepts.text`, see [Configuring your service > Adding enrichments](/docs/services/discovery-data?topic=discovery-data-configservice#adding-enrichments){: external}.
 
 ## Troubleshooting
 {: #skill-search-add-troubleshoot}
@@ -250,7 +250,7 @@ Review this information for help with performing common tasks.
 
   This feature enables you to annotate documents based on text formatting. For example, you can teach {{site.data.keyword.discoveryshort}} that any text in 28-point bold font is a document title. If you apply this information to the collection when you ingest it, you can later use the *title* field as the source for the title section of your search result. 
   
-  You can also use Smart Document Understanding to split up large documents into segments that are easier to search. For more information, see the the [Smart Document Understanding ![External link icon](../../icons/launch-glyph.svg "External link icon")](/docs/services/discovery-data?topic=discovery-data-sdu) topic in the {{site.data.keyword.discoveryshort}} documentation.
+  You can also use Smart Document Understanding to split up large documents into segments that are easier to search. For more information, see the the [Smart Document Understanding](/docs/services/discovery-data?topic=discovery-data-sdu) topic in the {{site.data.keyword.discoveryshort}} documentation.
 
 - **Improve search results**: If you don't like the results you are seeing, review this information for help.
 
@@ -260,7 +260,7 @@ Review this information for help with performing common tasks.
     
     For example, you can define a filter that filters out any documents in the data collection that do not mention an intent in the document title or some other metadata field. Or the filter can filter out documents that do not identify an entity as a known entity in the data collection's metadata or that don't mention the entity anywhere in the full text of the document. For details about how to add a search skill response type, see [Adding rich responses](https://cloud.ibm.com/docs/services/assistant-data?topic=assistant-data-dialog-overview#dialog-overview-multimedia-add).
 
-    For more tips about improving results, read the [Improve your natural language query results from Watson Discovery ![External link icon](../../icons/launch-glyph.svg "External link icon")](https://developer.ibm.com/blogs/improving-your-natural-language-query-results-from-watson-discovery/) blog post.
+    For more tips about improving results, read the [Improve your natural language query results from Watson Discovery](https://developer.ibm.com/blogs/improving-your-natural-language-query-results-from-watson-discovery/) blog post.
 
 ## Next steps
 {: #skill-search-add-next-steps}
@@ -328,7 +328,7 @@ To test the full experience that customers will have when they ask questions tha
 
     - To get the ID for an assistant from the user interface, click the more menu on the tile for the assistant, and then click **Settings**. Click **API Details**.
 
-1.  First authenticate with the API service to generate a token. See [Authentication](https://cloud.ibm.com/apidocs/assistant-data-v2#authentication){: external}.
+1.  First authenticate with the API service to generate a token. See [Authentication](https://cloud.ibm.com/apidocs/assistant/assistant-data-v2#authentication){: external}.
 
 1.  Next, start a session, which is kind of like a new conversation, in which you will make the user input request.
 

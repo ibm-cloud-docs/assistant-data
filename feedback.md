@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2019
-lastupdated: "2019-09-05"
+lastupdated: "2019-10-24"
 
 subcollection: assistant-data
 
@@ -10,6 +10,7 @@ subcollection: assistant-data
 
 {:shortdesc: .shortdesc}
 {:new_window: target="_blank"}
+{:external: target="_blank" .external}
 {:deprecated: .deprecated}
 {:important: .important}
 {:note: .note}
@@ -31,7 +32,7 @@ We value your opinion and want to hear it.
 ## Share your ideas
 {: #feedback-ideas-portal}
 
-To share ideas or suggest new features for the {{site.data.keyword.conversationfull}} service, go to the [IBM Data and AI Ideas Portal ![External link icon](../../icons/launch-glyph.svg "External link icon")](https://ibm-data-and-ai.ideas.aha.io/?project=ASSISTANT){: new_window}.
+To share ideas or suggest new features for the {{site.data.keyword.conversationfull}} service, go to the [IBM Data and AI Ideas Portal](https://ibm-data-and-ai.ideas.aha.io/?project=ASSISTANT){: external}.
 
 ## Did the documentation help?
 {: #feedback-doc}

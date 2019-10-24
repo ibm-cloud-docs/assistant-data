@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2019
-lastupdated: "2019-07-23"
+lastupdated: "2019-10-24"
 
 subcollection: assistant-data
 
@@ -29,7 +29,7 @@ subcollection: assistant-data
 Back up and restore your data by exporting, and then importing the data.
 {: shortdesc}
 
-This topic describes how to backup and restore data specific to {{site.data.keyword.conversationshort}}. For information about how to backup and restore {{site.data.keyword.icp4dfull_notm}}, see [Backing up your installation](https://www.ibm.com/support/knowledgecenter/SSQNUZ_2.1.0/com.ibm.icpdata.doc/zen/admin/backup_install.html).
+This topic describes how to backup and restore data specific to {{site.data.keyword.conversationshort}}. For information about how to backup and restore {{site.data.keyword.icp4dfull_notm}}, see [Backing up your installation](https://www.ibm.com/support/knowledgecenter/SSQNUZ_2.1.0/com.ibm.icpdata.doc/zen/admin/backup_install.html){: external}.
 
 You can export the following data from a {{site.data.keyword.conversationshort}} service instance:
 
@@ -52,7 +52,7 @@ To back up dialog skill data, export the skill as a JSON file, and store the JSO
 
 1.  Specify a name for the JSON file and where to save it, and then click **Save**.
 
-Alternatively, you can use the `/workspaces` API to export a dialog skill. Include the `export=true` parameter with the GET workspace request. See the [API reference ![External link icon](../../icons/launch-glyph.svg "External link icon")](https://cloud.ibm.com/apidocs/assistant#get-information-about-a-workspace) for more details.
+Alternatively, you can use the `/workspaces` API to export a dialog skill. Include the `export=true` parameter with the GET workspace request. See the [API reference ](https://cloud.ibm.com/apidocs/assistant/assistant-data-v1#get-information-about-a-workspace){: external} for more details.
 
 ## Importing a dialog skill
 {: #backup-import-skill}
@@ -73,7 +73,7 @@ If the {{site.data.keyword.conversationshort}} service changes between the time 
     **Important:**
 
     - The imported JSON file must use UTF-8 encoding, without byte order mark (BOM) encoding.
-    - The maximum size for a skill JSON file is 10MB. If you need to import a larger skill, consider importing the intents and entities separately after you have imported the skill. (You can also import larger skills using the REST API. For more information, see the [API Reference ![External link icon](../../icons/launch-glyph.svg "External link icon")](https://cloud.ibm.com/apidocs/assistant#create-workspace){: new_window}.)
+    - The maximum size for a skill JSON file is 10MB. If you need to import a larger skill, consider importing the intents and entities separately after you have imported the skill. (You can also import larger skills using the REST API. For more information, see the [API Reference ](https://cloud.ibm.com/apidocs/assistant/assistant-data-v1#create-workspace){: external}.)
     - The JSON file cannot contain tabs, newlines, or carriage returns.
 
     Select **Everything (Intents, Entities, and Dialog)** to import a complete copy of the exported skill.

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2019
-lastupdated: "2019-10-07"
+lastupdated: "2019-10-17"
 
 subcollection: assistant-data
 
@@ -34,7 +34,7 @@ IBM releases services, features, and language support for your evaluation that a
 ## Change log
 {: #rn-change-log}
 
-## 3 September 2019
+### 3 September 2019
 {: #3September2019}
 
 **{{site.data.keyword.conversationfull}} for {{site.data.keyword.icp4dfull}} version 1.3 is available.**: The following changes were made in this release:

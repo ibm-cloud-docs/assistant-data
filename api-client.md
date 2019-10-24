@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2019
-lastupdated: "2019-06-07"
+lastupdated: "2019-10-24"
 
 subcollection: assistant-data
 
@@ -14,6 +14,7 @@ subcollection: assistant-data
 {:python: #python .ph data-hd-programlang='python'}
 {:swift: data-hd-programlang='swift'}
 {:new_window: target="_blank"}
+{:external: target="_blank" .external}
 {:shortdesc: .shortdesc}
 {:screen: .screen}
 {:pre: .pre}
@@ -247,7 +248,7 @@ Paste the example code into a file named `AssistantSimpleExample.java`. You can 
 **Note:** Make sure you have installed the Watson SDK for Python using `pip install --upgrade watson-developer-cloud` or `easy_install --upgrade watson-developer-cloud`.
 {: python}
 
-**Note:** Make sure you have installed the [Watson SDK for Java ![External link icon](../../icons/launch-glyph.svg "External link icon")](https://github.com/watson-developer-cloud/java-sdk/blob/master/README.md){: new_window}.
+**Note:** Make sure you have installed the [Watson SDK for Java](https://github.com/watson-developer-cloud/java-sdk/blob/master/README.md){: external}.
 {: java}
 
 Assuming everything works as expected, the assistant returns the output from the dialog, which is then printed to the console:
@@ -807,4 +808,4 @@ Using the v2 API is the recommended way to build a runtime client application th
 
 Note that if your app uses the v1 API, it communicates directly with the workspace, bypassing the orchestration and state-management capabilities of the assistant. This means that your application is responsible for managing state information using the context. Your application must maintain the context by saving the context received with each response and sending it back to the service with each new message request. (The v1 `/message` method always returns the context with each response.)
 
-For more information about the v1 `/message` method and context, see the [v1 API Reference ![External link icon](../../icons/launch-glyph.svg "External link icon")](https://cloud.ibm.com/apidocs/assistant#get-response-to-user-input){: new_window}.
+For more information about the v1 `/message` method and context, see the [v1 API Reference ](https://cloud.ibm.com/apidocs/assistant/assistant-data-v1#get-response-to-user-input){: external}.
