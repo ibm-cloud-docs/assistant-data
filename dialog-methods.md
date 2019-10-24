@@ -567,7 +567,7 @@ To return the flight codes only, you can create a collection projection expressi
 <? $flights_found.![flight_code] ?>
 ```
 
-This expression returns an array of the `flight_code` values as `["OK123","LH421","TS4156"]`. See the [SpEL Collection projection documentation](https://docs.spring.io/spring/docs/3.0.x/reference/expressions.html) for more details.
+This expression returns an array of the `flight_code` values as `["OK123","LH421","TS4156"]`. See the [SpEL Collection projection documentation](https://docs.spring.io/spring/docs/3.0.x/reference/expressions.html){: external} for more details.
 
 If you apply the `join()` method to the values in the returned array, the flight codes are displayed in a comma-separated list. For example, you can use the following syntax in a response:
 
@@ -1421,7 +1421,7 @@ You can use the the Class methods, including these:
 ```
 {: codeblock}
 
-See the [java.lang.Math reference documentation](https://docs.oracle.com/javase/7/docs/api/java/lang/Math.html) for information about other methods.
+See the [java.lang.Math reference documentation](https://docs.oracle.com/javase/7/docs/api/java/lang/Math.html){: external} for information about other methods.
 
 ### java.util.Random()
 
@@ -1458,7 +1458,7 @@ Condition = @sys-number
 ```
 {: codeblock}
 
-See the [java.util.Random reference documentation](https://docs.oracle.com/javase/7/docs/api/java/util/Random.html) for information about other methods.
+See the [java.util.Random reference documentation](https://docs.oracle.com/javase/7/docs/api/java/util/Random.html){: external} for information about other methods.
 
 You can use standard methods of the following classes also:
 
