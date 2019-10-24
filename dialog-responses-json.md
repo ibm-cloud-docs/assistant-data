@@ -105,9 +105,9 @@ In addition to the generic JSON format, the dialog node JSON also supports chann
 
 You can specify native JSON for Slack or Facebook using the appropriate field in the dialog node response:
 
-- `output.slack`: insert any JSON you want to be included in the `attachment` field of the Slack response. For more information about the Slack JSON format, see the Slack [documentation ](https://api.slack.com/docs/message-attachments){: external}.
+- `output.slack`: insert any JSON you want to be included in the `attachment` field of the Slack response. For more information about the Slack JSON format, see the Slack [documentation](https://api.slack.com/docs/message-attachments){: external}.
 
-- `output.facebook`: insert any JSON you want included in the `message.attachment.payload` field of the Facebook response. For more information about the Facebook JSON format, see the Facebook [documentation ](https://developers.facebook.com/docs/messenger-platform/send-messages/templates){: external}.
+- `output.facebook`: insert any JSON you want included in the `message.attachment.payload` field of the Facebook response. For more information about the Facebook JSON format, see the Facebook [documentation](https://developers.facebook.com/docs/messenger-platform/send-messages/templates){: external}.
 
 ## Response types
 {: #dialog-responses-json-response-types}
@@ -175,7 +175,7 @@ Displays a set of buttons or a drop-down list users can use to choose an option.
 This example displays two options:
 
 - Option 1 (labeled `Buy something`) sends a simple string message (`Place order`), which is sent to the workspace as the input text.
-- Option 2 (labeled `Exit`) sends a complex message that includes both input text and an array of intents. The response can include any field that is a valid part of a {{site.data.keyword.conversationshort}} message. (For more information about the structure of message input, see the [API Reference ](https://cloud.ibm.com/apidocs/assistant/assistant-data-v2#send-user-input-to-assistant){: external}.)
+- Option 2 (labeled `Exit`) sends a complex message that includes both input text and an array of intents. The response can include any field that is a valid part of a {{site.data.keyword.conversationshort}} message. (For more information about the structure of message input, see the [API Reference](https://cloud.ibm.com/apidocs/assistant/assistant-data-v2#send-user-input-to-assistant){: external}.)
 
 ```json
 {

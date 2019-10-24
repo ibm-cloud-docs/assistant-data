@@ -149,7 +149,7 @@ Use one of these syntax options to create valid expressions in conditions:
 
 - Shorthand notations to refer to intents, entities, and context variables. See [Accessing and evaluating objects](/docs/services/assistant-data?topic=assistant-data-expression-language).
 
-- Spring Expression (SpEL) language, which is an expression language that supports querying and manipulating an object graph at run time. See [Spring Expression Language (SpEL) language ](http://docs.spring.io/spring/docs/current/spring-framework-reference/html/expressions.html){: external} for more information.
+- Spring Expression (SpEL) language, which is an expression language that supports querying and manipulating an object graph at run time. See [Spring Expression Language (SpEL) language](http://docs.spring.io/spring/docs/current/spring-framework-reference/html/expressions.html){: external} for more information.
 
 You can use regular expressions to check for values to condition against.  To find a matching string, for example, you can use the `String.find` method. See  [Methods](/docs/services/assistant-data?topic=assistant-data-dialog-methods) for more details.
 
@@ -433,7 +433,7 @@ To add a rich response, complete the following steps:
 
         If you add both a query and a filter value, then the filter parameter is applied first to filter the data collection documents and cache the results. The query parameter then ranks the cached results. 
 
-        This field is equivalent to the {{site.data.keyword.discoveryshort}} `filter` parameter. For more information, see [Query parameters ](/docs/services/discovery?topic=discovery-query-parameters#filter){: external}.
+        This field is equivalent to the {{site.data.keyword.discoveryshort}} `filter` parameter. For more information, see [Query parameters](/docs/services/discovery?topic=discovery-query-parameters#filter){: external}.
 
       This response type only returns a valid response if the assistant to which you added this dialog skill also has a search skill associated with it.
 

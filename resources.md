@@ -61,7 +61,7 @@ From an IBM technical deep-dive series. These recordings provide step-by-step in
 Additional videos created by IBMers.
 
 - [Watson Assistant demos](https://www.ibm.com/demos/collection/Watson-Assistant/){: external}: A collection of resources, including a product tour and hands-on lab.
-- [{{site.data.keyword.conversationshort}} Integrations Tutorial ](https://www.youtube.com/watch?v=O3silvVBaC8&t=3s){: external}: A 10-minute tutorial you can follow to connect {{site.data.keyword.conversationshort}} with Twilio using Botkit to create a SMS chatbot.
+- [{{site.data.keyword.conversationshort}} Integrations Tutorial](https://www.youtube.com/watch?v=O3silvVBaC8&t=3s){: external}: A 10-minute tutorial you can follow to connect {{site.data.keyword.conversationshort}} with Twilio using Botkit to create a SMS chatbot.
 - [Show me how to use {{site.data.keyword.conversationshort}}](https://youtu.be/tUkLIUOm550){: external}: A 3-minute overview of the product.
 - [Introducing {{site.data.keyword.conversationshort}} service](https://youtu.be/A96nLYSMltA){: external}: A 1-minute introduction.
 - [Walkthrough of {{site.data.keyword.conversationshort}}](https://youtu.be/ELwWhJGE2P8){: external}: A 14-minute technical walkthrough.

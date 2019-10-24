@@ -192,4 +192,4 @@ The output from this request includes not only the usual output, but also the co
 }
 ```
 
-For detailed information about how to access context variables using the API, see the [v2 API Reference ](https://{DomainName}/apidocs/assistant/assistant-data-v2#send-user-input-to-assistant){: external}.)
+For detailed information about how to access context variables using the API, see the [v2 API Reference](https://{DomainName}/apidocs/assistant/assistant-data-v2#send-user-input-to-assistant){: external}.)

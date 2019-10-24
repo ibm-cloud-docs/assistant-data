@@ -808,4 +808,4 @@ Using the v2 API is the recommended way to build a runtime client application th
 
 Note that if your app uses the v1 API, it communicates directly with the workspace, bypassing the orchestration and state-management capabilities of the assistant. This means that your application is responsible for managing state information using the context. Your application must maintain the context by saving the context received with each response and sending it back to the service with each new message request. (The v1 `/message` method always returns the context with each response.)
 
-For more information about the v1 `/message` method and context, see the [v1 API Reference ](https://cloud.ibm.com/apidocs/assistant/assistant-data-v1#get-response-to-user-input){: external}.
+For more information about the v1 `/message` method and context, see the [v1 API Reference](https://cloud.ibm.com/apidocs/assistant/assistant-data-v1#get-response-to-user-input){: external}.
