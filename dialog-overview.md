@@ -2,9 +2,7 @@
 
 copyright:
   years: 2015, 2019
-lastupdated: "2019-08-28"
-
-keywords: condition, response, options, jump, jump-to, multiline, response variations
+lastupdated: "2019-10-24"
 
 subcollection: assistant-data
 
@@ -12,6 +10,7 @@ subcollection: assistant-data
 
 {:shortdesc: .shortdesc}
 {:new_window: target="_blank"}
+{:external: target="_blank" .external}
 {:deprecated: .deprecated}
 {:important: .important}
 {:note: .note}
@@ -150,7 +149,7 @@ Use one of these syntax options to create valid expressions in conditions:
 
 - Shorthand notations to refer to intents, entities, and context variables. See [Accessing and evaluating objects](/docs/services/assistant-data?topic=assistant-data-expression-language).
 
-- Spring Expression (SpEL) language, which is an expression language that supports querying and manipulating an object graph at run time. See [Spring Expression Language (SpEL) language ![External link icon](../../icons/launch-glyph.svg "External link icon")](http://docs.spring.io/spring/docs/current/spring-framework-reference/html/expressions.html){: new_window} for more information.
+- Spring Expression (SpEL) language, which is an expression language that supports querying and manipulating an object graph at run time. See [Spring Expression Language (SpEL) language](http://docs.spring.io/spring/docs/current/spring-framework-reference/html/expressions.html){: external} for more information.
 
 You can use regular expressions to check for values to condition against.  To find a matching string, for example, you can use the `String.find` method. See  [Methods](/docs/services/assistant-data?topic=assistant-data-dialog-methods) for more details.
 
@@ -420,7 +419,7 @@ To add a rich response, complete the following steps:
 
           You can include specific information provided by the user by referencing entities that were detected in the user's input as part of the query. For example, `Tell me about @product`. Or you can reference a context variable, such as `Do you have flights to $destination?`. Just be sure to design your dialog such that the search is not triggered unless any entities or context variables that you reference in the query have been set to valid values.
 
-          This field is equivalent to the {{site.data.keyword.discoveryshort}} `natural_language_query` parameter. For more information, see [Query parameters ![External link icon](../../icons/launch-glyph.svg "External link icon")](/docs/services/discovery?topic=discovery-query-parameters#nlq){: new_window}.
+          This field is equivalent to the {{site.data.keyword.discoveryshort}} `natural_language_query` parameter. For more information, see [Query parameters](/docs/services/discovery?topic=discovery-query-parameters#nlq){: external}.
 
         - **Filter**: Optional. Specify a text string that defines information that must be present in any of the search results that are returned.
 
@@ -434,7 +433,7 @@ To add a rich response, complete the following steps:
 
         If you add both a query and a filter value, then the filter parameter is applied first to filter the data collection documents and cache the results. The query parameter then ranks the cached results. 
 
-        This field is equivalent to the {{site.data.keyword.discoveryshort}} `filter` parameter. For more information, see [Query parameters ![External link icon](../../icons/launch-glyph.svg "External link icon")](/docs/services/discovery?topic=discovery-query-parameters#filter){: new_window}.
+        This field is equivalent to the {{site.data.keyword.discoveryshort}} `filter` parameter. For more information, see [Query parameters](/docs/services/discovery?topic=discovery-query-parameters#filter){: external}.
 
       This response type only returns a valid response if the assistant to which you added this dialog skill also has a search skill associated with it.
 

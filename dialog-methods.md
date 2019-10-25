@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2019
-lastupdated: "2019-06-10"
+lastupdated: "2019-10-24"
 
 subcollection: assistant-data
 
@@ -10,6 +10,7 @@ subcollection: assistant-data
 
 {:shortdesc: .shortdesc}
 {:new_window: target="_blank"}
+{:external: target="_blank" .external}
 {:deprecated: .deprecated}
 {:important: .important}
 {:note: .note}
@@ -566,7 +567,7 @@ To return the flight codes only, you can create a collection projection expressi
 <? $flights_found.![flight_code] ?>
 ```
 
-This expression returns an array of the `flight_code` values as `["OK123","LH421","TS4156"]`. See the [SpEL Collection projection documentation](https://docs.spring.io/spring/docs/3.0.x/reference/expressions.html) for more details.
+This expression returns an array of the `flight_code` values as `["OK123","LH421","TS4156"]`. See the [SpEL Collection projection documentation](https://docs.spring.io/spring/docs/3.0.x/reference/expressions.html){: external} for more details.
 
 If you apply the `join()` method to the values in the returned array, the flight codes are displayed in a comma-separated list. For example, you can use the following syntax in a response:
 
@@ -1033,7 +1034,7 @@ For example, this context variable definition creates a $time variable that save
 ```
 {: codeblock}
 
-Format follows the Java [SimpleDateFormat ![External link icon](../../icons/launch-glyph.svg "External link icon")](http://docs.oracle.com/javase/6/docs/api/java/text/SimpleDateFormat.html){: new_window} rules.
+Format follows the Java [SimpleDateFormat](http://docs.oracle.com/javase/6/docs/api/java/text/SimpleDateFormat.html){: external} rules.
 
 **Note**: When trying to format time only, the date is treated as `1970-01-01`.
 
@@ -1420,7 +1421,7 @@ You can use the the Class methods, including these:
 ```
 {: codeblock}
 
-See the [java.lang.Math reference documentation ![External link icon](../../icons/launch-glyph.svg "External link icon")](https://docs.oracle.com/javase/7/docs/api/java/lang/Math.html) for information about other methods.
+See the [java.lang.Math reference documentation](https://docs.oracle.com/javase/7/docs/api/java/lang/Math.html){: external} for information about other methods.
 
 ### java.util.Random()
 
@@ -1457,7 +1458,7 @@ Condition = @sys-number
 ```
 {: codeblock}
 
-See the [java.util.Random reference documentation](https://docs.oracle.com/javase/7/docs/api/java/util/Random.html) for information about other methods.
+See the [java.util.Random reference documentation](https://docs.oracle.com/javase/7/docs/api/java/util/Random.html){: external} for information about other methods.
 
 You can use standard methods of the following classes also:
 
@@ -1657,7 +1658,7 @@ There methods help you work with text.
 
 For information about how to recognize and extract certain types of Strings, such as people names and locations, from user input, see [System entities](/docs/services/assistant-data?topic=assistant-data-system-entities).
 
-**Note:** For methods that involve regular expressions, see [RE2 Syntax reference ![External link icon](../../icons/launch-glyph.svg "External link icon")](https://github.com/google/re2/wiki/Syntax){: new_window} for details about the syntax to use when you specify the regular expression.
+**Note:** For methods that involve regular expressions, see [RE2 Syntax reference](https://github.com/google/re2/wiki/Syntax){: external} for details about the syntax to use when you specify the regular expression.
 
 ### String.append(Object)
 
@@ -2043,7 +2044,7 @@ In addition to the built-in methods, you can use standard methods of the `java.l
 
 #### java.lang.String.format()
 
-You can apply the standard Java String `format()` method to text. See [java.util.formatter reference ![External link icon](../../icons/launch-glyph.svg "External link icon")](https://docs.oracle.com/javase/7/docs/api/java/util/Formatter.html#syntax){: new_window} for information about the syntax to use to specify the format details.
+You can apply the standard Java String `format()` method to text. See [java.util.formatter reference](https://docs.oracle.com/javase/7/docs/api/java/util/Formatter.html#syntax){: external} for information about the syntax to use to specify the format details.
 
 For example, the following expression takes three decimal integers (1, 1, and 2) and adds them to a sentence.
 

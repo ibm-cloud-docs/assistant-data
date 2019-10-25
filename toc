@@ -69,8 +69,8 @@ Watson Assistant for IBM Cloud Pak for Data
     {: .navgroup-end}
 
     {: .navgroup id="reference"}
-    [v2 API reference](https://cloud.ibm.com/apidocs/assistant-data-v2)
-    [v1 API reference](https://cloud.ibm.com/apidocs/assistant-data-v1)
+    [v2 API reference](https://cloud.ibm.com/apidocs/assistant/assistant-data-v2)
+    [v1 API reference](https://cloud.ibm.com/apidocs/assistant/assistant-data-v1)
     dialog-methods.md
     expression-language.md
     information-security.md

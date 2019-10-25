@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2019
-lastupdated: "2019-06-10"
+lastupdated: "2019-10-24"
 
 subcollection: assistant-data
 
@@ -10,6 +10,7 @@ subcollection: assistant-data
 
 {:shortdesc: .shortdesc}
 {:new_window: target="_blank"}
+{:external: target="_blank" .external}
 {:deprecated: .deprecated}
 {:important: .important}
 {:note: .note}
@@ -301,4 +302,4 @@ Optionally, you can review the **Customer Service - Sample** skill to see this s
 
 Now that you have built and tested your dialog skill, you can share it with customers. Deploy your skill by first connecting it to an assistant, and then deploying the assistant. See [Building a client application](/docs/services/assistant-data?topic=assistant-data-api-client) for more details.
 
-You can access the source code for a full car dashboard sample application from [GitHub ![External link icon](../../icons/launch-glyph.svg "External link icon")](https://github.com/watson-developer-cloud/car-dashboard).
+You can access the source code for a full car dashboard sample application from [GitHub](https://github.com/watson-developer-cloud/car-dashboard){: external}.

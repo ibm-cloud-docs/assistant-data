@@ -2,9 +2,7 @@
 
 copyright:
   years: 2015, 2019
-lastupdated: "2019-08-28"
-
-keywords: context, context variable, digression, disambiguation, autocorrection, spelling correction, spell check, confidence
+lastupdated: "2019-10-24"
 
 subcollection: assistant-data
 
@@ -12,6 +10,7 @@ subcollection: assistant-data
 
 {:shortdesc: .shortdesc}
 {:new_window: target="_blank"}
+{:external: target="_blank" .external}
 {:deprecated: .deprecated}
 {:important: .important}
 {:note: .note}
@@ -107,7 +106,7 @@ The following `output` object JSON format is supported for backwards compatibili
 
 There are response types other than a text response that you can define. See [Responses](/docs/services/assistant-data?topic=assistant-data-dialog-overview#dialog-overview-responses) for more details.
 
-You can learn more about the /message API call from the [API reference ![External link icon](../../icons/launch-glyph.svg "External link icon")](https://{DomainName}/apidocs/assistant-v2){: new_window}.
+You can learn more about the /message API call from the [API reference](https://{DomainName}/apidocs/assistant/assistant-data-v2){: external}.
 
 ### Retaining information across dialog turns
 {: #dialog-runtime-context}
