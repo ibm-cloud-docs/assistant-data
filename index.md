@@ -100,7 +100,7 @@ The {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull_no
 ## Language support
 {: #index-language-support}
 
-Language support by feature is detailed in the [Supported languages](lang-support.html) topic.
+Language support by feature is detailed in the [Supported languages](/docs/services/assistant-data?topic=assistant-data-language-support.html) topic.
 
 ## Security
 {: #index-security}

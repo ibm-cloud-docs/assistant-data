@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2019
-lastupdated: "2019-10-24"
+lastupdated: "2019-10-25"
 
 subcollection: assistant-data
 
@@ -97,7 +97,7 @@ If you do not have access to a provisioned instance of {{site.data.keyword.disco
 
         1.  Provide the required information for the data source you choose, and then click **Connect**.
 
-            See [Connecting to data sources](/docs/services/discovery-data?topic=discovery-data-sources){: external} for more details.
+            See [Creating collections](/docs/services/discovery-data?topic=discovery-data-collections){: external} for more details.
         1.  Indicate the frequency with which you want data from the data source to be synchronized with the collection you are creating in {{site.data.keyword.discoveryshort}}.
         1.  Specify the information that you want to extract from the data source and include in your {{site.data.keyword.discoveryshort}} collection.
 
@@ -123,10 +123,10 @@ If you do not have access to a provisioned instance of {{site.data.keyword.disco
             - Collection name. The name must be unique for this service instance.
             - Language. Select the language of the files that you are adding to this collection. For information about the languages supported by {{site.data.keyword.discoveryshort}}, see [Language support](/docs/services/discovery-data?topic=discovery-data-language-support){: external}.
 
-              If you are uploading a PDF document and want to extract party, nature, and category information from it, then expand the **Advanced** section and click **Use the Default Contract Configuration with this collection**. See [Collection requirements](/docs/services/discovery-data?topic=discovery-data-element-classification#element-collection){: external} for more details.
+              If you are uploading a PDF document and want to extract party, nature, and category information from it, then expand the **Advanced** section and click **Use the Default Contract Configuration with this collection**.
         1.  Upload documents.
 
-            Supported file types include PDF, HTML, JSON, and DOC files. See [Adding content](/docs/services/discovery-data?topic=discovery-data-addcontent){: external} for more details.
+            Supported file types include PDF, HTML, JSON, and DOC files.
             {: note}
 
             No ongoing synchronization of uploaded documents is available. If you want to pick up changes that are made to a document, upload a later version of the document.
@@ -232,7 +232,7 @@ The appropriate collection fields to extract data from vary depending on your co
 
 To learn more about the structure of the documents in your collection, including the names of fields that contain information you might want to extract, open the collection in {{site.data.keyword.discoveryshort}}, and then click the View data schema icon ![View data schema icon](images/icon-view-data-schema.png).
 
-The source fields are created when the collection is created. To learn more about fields that are generated for you, such as `enriched_text.concepts.text`, see [Configuring your service > Adding enrichments](/docs/services/discovery-data?topic=discovery-data-configservice#adding-enrichments){: external}.
+The source fields are created when the collection is created. To learn more about fields that are generated for you, such as `enriched_text.concepts.text`, see [Creating enrichments](/docs/services/discovery-data?topic=discovery-data-create-enrichments){: external}.
 
 ## Troubleshooting
 {: #skill-search-add-troubleshoot}
@@ -250,7 +250,7 @@ Review this information for help with performing common tasks.
 
   This feature enables you to annotate documents based on text formatting. For example, you can teach {{site.data.keyword.discoveryshort}} that any text in 28-point bold font is a document title. If you apply this information to the collection when you ingest it, you can later use the *title* field as the source for the title section of your search result. 
   
-  You can also use Smart Document Understanding to split up large documents into segments that are easier to search. For more information, see the the [Smart Document Understanding](/docs/services/discovery-data?topic=discovery-data-sdu) topic in the {{site.data.keyword.discoveryshort}} documentation.
+  You can also use Smart Document Understanding to split up large documents into segments that are easier to search. For more information, see the the [Configuring your collection with Smart Document Understanding](/docs/services/discovery-data?topic=discovery-data-configuring-fields) topic in the {{site.data.keyword.discoveryshort}} documentation.
 
 - **Improve search results**: If you don't like the results you are seeing, review this information for help.
 
@@ -386,7 +386,7 @@ Follow this procedure to make it less likely that the dialog will respond by res
 
 After changing the dialog, test the assistant to make sure the search skill is triggered as often as you want it to be.
 
-An alternative approach is to teach the dialog about topics to ignore. To do so, you can add utterances that you want the assistant to send to the search skill immediately as test utterances in the dialog skill's "Try it out" pane. You can then select the **Mark as irrevlant** option within the "Try it out" pane to teach the dialog not to respond to this utterance or others like it. For more information, see [Teaching your assistant about topics to ignore](/docs/services/assistant-data?topic=assistant-data-logs#logs-mark-irrelevant).
+An alternative approach is to teach the dialog about topics to ignore. To do so, you can add utterances that you want the assistant to send to the search skill immediately as test utterances in the dialog skill's "Try it out" pane. You can then select the **Mark as irrelevant** option within the "Try it out" pane to teach the dialog not to respond to this utterance or others like it.
 
 ## Disabling search
 {: #search-skill-add-disable}
