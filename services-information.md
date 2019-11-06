@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2019
-lastupdated: "2019-06-27"
+lastupdated: "2019-11-06"
 
 subcollection: assistant-data
 
@@ -52,4 +52,4 @@ Send the version parameter with every API request. The service uses the API vers
 - The dialog skill "Try it out" pane uses version `2018-07-10`.
 - The search skill "Try it out" pane uses {{site.data.keyword.discoveryshort}} API version `2018-12-03`.
 
-For API usage information, see the API reference documentation. Links for v1 and v2 are available from the table of contents. For an example of using the API, see [Test the search skill](/docs/services/assistant-data?topic=assistant-data-skill-search-add#search-skill-add-test-via-api).
+For API usage information, see the API reference documentation. Links for v1 and v2 are available from the table of contents. For an example of using the API, see [Test the search skill](/docs/services/assistant-data?topic=assistant-data-skill-search-add#skill-search-add-test-via-api).
