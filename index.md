@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2019
-lastupdated: "2019-10-24"
+lastupdated: "2019-11-07"
 
 subcollection: assistant-data
 
@@ -52,6 +52,8 @@ This diagram illustrates how the product works:
   - The **search skill** ![Beta](images/beta.png) routes complex customer inquiries to {{site.data.keyword.discoveryfull}}. {{site.data.keyword.discoveryshort}} treats the user input as a search query. It finds information that is relevant to the query from the configured data sources and returns it so the assistant can share the information with the user as its response.
 
 The tool does not currently include integrations for deploying the finished assistant nor metrics for analyzing conversations that your assistant is having with your users. Such deployment and metrics features are available from the public cloud version of the service only.
+
+You can integrate your assistant with the Watson Assistant for Voice Interaction add-on. For more details, see [Watson Assistant for Voice Interaction](https://www.ibm.com/support/knowledgecenter/SSQNUZ_2.1.0/com.ibm.icpdata.doc/watson/wavi-addon-install.html).
 
 ## Implementation
 {: #index-implementation}
