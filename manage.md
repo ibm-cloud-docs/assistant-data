@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2019
-lastupdated: "2019-11-25"
+lastupdated: "2019-11-27"
 
 subcollection: assistant-data
 
@@ -108,7 +108,7 @@ The following table describes the stateful set details.
 
 Some of the microservices do not benefit from being scaled up; more replicas does not always mean more throughput. 
   
-- `etcd` cannot be scaled to more than 3 replicas by using the `kubectl scale statefulset` command.
+- `etcd` cannot be scaled to more than 5 replicas by using the `kubectl scale statefulset` command.
 - `master` triggers workspace trainings. Adding more master microservice replicas adds resiliency. 
 - `TAS` and `ed-mm` manage how many models are loaded and where they are loaded. More replicas might mean that a model can be loaded more times. However, unless high load is present, scaling too high does not help.
 - `Minio` has a hard-coded number of replicas and cannot be scaled manually.
