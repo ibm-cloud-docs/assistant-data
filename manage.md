@@ -96,7 +96,7 @@ The following table describes the stateful set details.
 | Component name | Deployment name | Pod name | Default number of replicas |
 |----------------|-----------------|----------|----------------------------|
 | Minio | {release-name}-clu-minio | {release-name}-clu-minio-x | 4 |
-| etcd | {release-name}-etcd3 | {release-name}-etcd3-x | 3 |
+| etcd | {release-name}-etcd3 | {release-name}-etcd3-x | 5 |
 | MongoDB server | {release-name}-mongodb-server | {release-name}-mongodb-server-x | 3 |
 | Redis | {release-name}-redis-sentinel | {release-name}-redis-sentinel-x | 3 |
 | Redis | {release-name}-redis-server | {release-name}-redis-server-x | 2 |
