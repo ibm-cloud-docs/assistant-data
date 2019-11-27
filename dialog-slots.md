@@ -4,8 +4,6 @@ copyright:
   years: 2015, 2019
 lastupdated: "2019-10-24"
 
-keywords: slot, slots
-
 subcollection: assistant-data
 
 ---
@@ -29,7 +27,7 @@ subcollection: assistant-data
 # Gathering information with slots
 {: #dialog-slots}
 
-Add slots to a dialog node to gather multiple pieces of information from a user within that node. Slots collect information at the users' pace. Details the user provides upfront are saved, and your assistant asks only for the details they do not.
+Add slots to a dialog node to gather multiple pieces of information from a user within that node. Slots collect information at the user's pace. Details that a user provides up front are saved, and your assistant asks only for the missing details it needs to fulfill the request.
 
 <iframe class="embed-responsive-item" id="youtubeplayer" title="Adding slots to a node" type="text/html" width="640" height="390" src="https://www.youtube.com/embed/kMLyKfmO9wI?rel=0" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen> </iframe>
 
@@ -47,6 +45,10 @@ Slots can help you to collect multiple pieces of information that you need to co
 The user might provide values for mutliple slots at once. For example, the input might include the information, `There will be 6 of us dining at 7 PM.` This one input contains two of the missing required values: the number of guests and time of the reservation. Your assistant recognizes and stores both of them, each one in its corresponding slot. It then displays the prompt that is associated with the next empty slot.
 
 ![Shows that two slots are filled, and the service prompts for the remaining one.](images/pass-in-info.png)
+
+Slots make it possible for your assistant to answer follow-up questions without having to reestablish the user's goal. For example, a user might ask for a weather forecast, then ask a follow-up question about weather in another location or on a different day. If you save the required forecast variables, such as location and day, in slots, then if a user asks a follow-up question with new variable values, you can overwrite the slot values with the new values provided, and give a response that reflects the new information. (For more information about how to call an external service from a dialog, see [Making programmatic calls from a dialog node](/docs/services/assistant-data?topic=assistant-data-dialog-webhooks)).
+
+![Shows someone asking for a weather forecast, and then following up with a question about weather for a different location and time.](images/follow-up.png)
 
 Using slots produces a more natural dialog flow between the user and your assistant, and is easier for you to manage than trying to collect the information by using many separate nodes.
 
@@ -85,6 +87,82 @@ Using slots produces a more natural dialog flow between the user and your assist
        Do not reuse a context variable that is used elsewhere in the dialog. If the context variable has a value already, then the slot's prompt is not displayed. It is only when the context variable for the slot is null that the prompt for the slot is displayed.
 
     - **Prompt**: Write a statement that elicits the piece of the information you need from the user. After displaying this prompt, the conversation pauses and your assistant waits for the user to respond.
+
+      If you want the prompt to be something other than a text response, you can change the response type by clicking the **Edit slot** ![Edit slot](images/edit-slot.png) icon. Click **Text** to choose a different response type. 
+      
+      Response type options{: #dialog-slots-response-types}:
+
+      - **Image**. Add the full URL to the hosted image file into the **Image source** field. The image must be in .jpg, .gif, or .png format. The image file must be stored in a location that is publicly addressable by URL.
+
+        For example: `https://www.example.com/assets/common/logo.png`.
+
+        If you want to display an image title and description above the embedded image in the response, then add them in the fields provided.
+
+        Slack integrations require a title. Other integration channels ignore titles or descriptions.
+        {: note}
+
+      - **Option**. Complete the following steps:
+
+        1.  Click **Add option**.
+        1.  In the **List label** field, enter the option to display in the list. The label must be less than 2,048 characters in length.
+        1.  In the corresponding **Value** field, enter the user input to pass to your assistant when this option is selected. The value must be less than 2,048 characters in length.
+
+            Specify a value that you know will trigger the correct intent when it is submitted. For example, it might be a user example from the training data for the intent.
+        1.  Repeat the previous steps to add more options to the list.
+
+            You can add up to 20 options.
+        1.  Add a list introduction in the **Title** field. The title can ask the user to pick from the list of options.
+
+            Some integration channels do not display the title.
+            {: note}
+
+        1.  Optionally, add additional information in the **Description** field. If specified, the description is displayed after the title and before the option list.
+
+        Some integration channels do not display the description.
+        {: note}
+
+        For example, you can construct a response like this:
+
+        <table>
+        <caption>Response options</caption>
+        <tr>
+          <th>List title</th>
+          <th>List description</th>
+          <th>Option label</th>
+          <th>User input submitted when clicked</th>
+        </tr>
+        <tr>
+          <td>Insurance types</td>
+          <td>Which of these items do you want to insure?</td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td>Boat</td>
+          <td>I want to buy boat insurance</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td>Car</td>
+          <td>I want to buy car insurance</td>
+        </tr>
+         <tr>
+          <td></td>
+          <td></td>
+          <td>Home</td>
+          <td>I want to buy home insurance</td>
+        </tr>
+        </table>
+
+      - **Pause**. Add the length of time for the pause to last as a number of milliseconds (ms) to the **Duration** field.
+
+        The value cannot exceed 10,000 ms. Users are typically willing to wait about 8 seconds (8,000 ms) for someone to enter a response. To prevent a typing indicator from being displayed during the pause, choose **Off**.
+
+        Add another response type, such as a text response type, after the pause to clearly denote that the pause is over.
+        {: tip}
 
     - If you want different follow-up statements to be shown based on whether the user provides the information you need in response to the initial slot prompt, you can edit the slot (by clicking the **Edit slot** ![Edit slot](images/edit-slot.png) icon) and define the follow-up statements:
 
@@ -156,6 +234,8 @@ Using slots produces a more natural dialog flow between the user and your assist
 
     This condition is triggered if the user provides input that matches the slot handler conditions at any time during the dialog node flow up until the node-level response is displayed. See [Handling requests to exit a process](#dialog-slots-node-level-handler) for more ways to use the slot handler.
 1.  **Add a node-level response**. The node-level response is not executed until after all of the required slots are filled. You can add a response that summarizes the information you collected. For example, `A $size pizza is scheduled for delivery at $time. Enjoy!`
+
+    You can alternatively show an image or list of options as a response instead of a text response. See [Response type options](#dialog-slots-response-types).
 
     If you want to define different responses based on certain conditions, click **Customize**, and then click the **Multiple responses** toggle to turn it **On**. For information about conditional responses, see [Conditional responses](/docs/services/assistant-data?topic=assistant-data-dialog-overview#dialog-overview-multiple).
 1.  **Add logic that resets the slot context variables**. As you collect answers from the user per slot, they are saved in context variables. You can use the context variables to pass the information to another node or to an application or external service for use. However, after passing the information, you must set the context variables to null to reset the node so it can start collecting information again. You cannot null the context variables within the current node because your assistant will not exit the node until the required slots are filled. Instead, consider using one of the following methods:
@@ -258,7 +338,7 @@ Using `@sys-number` in a slot condition is helpful for capturing any numbers tha
 To ensure that a slot condition that checks for number mentions deals with zeros properly, complete the following step:
 
 1.  Add `@sys-number >= 0` to the slot condition field, and then provide the context variable name and text prompt.
-
+    
     What you check for in the input is also what is saved in the slot context variable. However, in this case, you want only the number (such as `5`) to be saved. You do not want to save `5 > = 0`. To change what is saved, you must edit the value of the context variable.
 
 1.  Open the slot to edit it by clicking the **Edit slot** ![Edit slot](images/edit-slot.png) icon. From the **Options** ![More icon](images/kabob.png) menu, open the JSON editor.
@@ -267,23 +347,30 @@ To ensure that a slot condition that checks for number mentions deals with zeros
 
     The value will look like this:
 
+    ```json
     {
       "context": {
         "number": "@sys-number >= 0"
       }
     }
+    ```
+    {: codeblock}
 
     Change it to look like this:
 
+    ```json
     {
       "context": {
         "number": "@sys-number"
       }
     }
+    ```
+    {: codeblock}
 
 1.  Save your changes. 
 
-The change you made to the context variable value is not reflected in the Check for field, which is appropriate. Do not edit the value of the Check for field or even click in the field. If you do, the change you made to the JSON will be lost. 
+The change you made to the context variable value is not reflected in the Check for field, which is appropriate. Do not edit the value of the Check for field or even click in the field. If you do, the change you made to the JSON will be lost.
+{: tip}
 
 If you do not want to accept a zero as the number value, then you can add a conditional response for the slot to check for zero, and tell the user that they must provide a number greater than zero. But, it is important for the slot condition to be able to recognize a zero when it is provided as input.
 
@@ -404,9 +491,6 @@ When a user input is evaluated, the slot with the first slot condition to match 
 
     **Solution**: In logic that is unique to the slots feature, when two system entities are recognized in a single user input, the one with the larger span is used. Therefore, even though your assistant recognizes both system entities in the text, only the system entity with the longer span (`@sys-date` with `2017-05-02`) is registered and applied to the slot.
 
-    This workaround is not necessary if you are using the revised system entities. With the updated entities, a date reference is considered to be a `@sys-date` mention only, and is not also treated as a `@sys-number` mention. For more details, see [New system entities](/docs/services/assistant-data?topic=assistant-data-beta-system-entities).
-  {: note}
-
 ### Adding conditions to Found and Not found responses
 {: #dialog-slots-handler-next-steps}
 
@@ -418,7 +502,7 @@ For each slot, you can use conditional responses with associated actions to help
 
     **Found example**: The slot is expecting the time for a dinner reservation. You might use @sys-time in the *Check for* field to capture it. To prevent an invalid time from being saved, you can add a conditional response that checks whether the time provided is before the restaurant's last seating time, for example. `@sys-time.after('21:00:00')` The corresponding response might be something like, *Our last seating is at 9PM.*
 
-    **Not found example**: The slot is expecting a @location entity that accepts a specific set of cities where the restaurant chain has restaurants. The Not found condition might check for @city in case the user specifies a valid city, but one in which the chain has no sites. The corresponding response might be, *We have no restaurants in that location.*
+    **Not found example**: The slot is expecting a @location entity that accepts a specific set of cities where the restaurant chain has restaurants. The Not found condition might check for @sys-location in case the user specifies a valid city, but one in which the chain has no sites. The corresponding response might be, *We have no restaurants in that location.*
 
 1.  If you want to customize what happens next if the condition is met, then click the **Edit response** ![Edit response](images/edit-slot.png) icon.
 

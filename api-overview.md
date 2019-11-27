@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2019
-lastupdated: "2019-10-24"
+lastupdated: "2019-11-26"
 
 subcollection: assistant-data
 
@@ -37,7 +37,7 @@ You can use the {{site.data.keyword.conversationshort}} REST APIs, and the corre
 
   The {{site.data.keyword.conversationshort}} v2 API provides access to methods you can use to interact with an assistant at run time (such as `/message`). This is the preferred API to use for developing new client applications. For details about the v2 API, see the {{site.data.keyword.conversationshort}} [v2 API Reference](https://{DomainName}/apidocs/assistant/assistant-data-v2){: external}.
 
-  The {{site.data.keyword.conversationshort}} v1 API includes a `/message` method that sends user input directly to the workspace used by a dialog skill, bypassing the assistant. The v1 runtime API is supported primarily for backward compatibility purposes. If you use the v1 `/message` method, your app cannot take advantage of the orchestration and state-management capabilities of an assistant. For more information, see [Using the v1 runtime API](/docs/services/assistant-data?topic=assistant-data-api-client#v1-api).
+  The {{site.data.keyword.conversationshort}} v1 API includes a `/message` method that sends user input directly to the workspace used by a dialog skill, bypassing the assistant. The v1 runtime API is supported primarily for backward compatibility purposes. If you use the v1 `/message` method, your app cannot take advantage of the orchestration and state-management capabilities of an assistant. For more information, see [Using the v1 runtime API](/docs/services/assistant-data?topic=assistant-data-api-client#api-client-v1-api).
 
 - **Authoring methods**: Methods that enable an application to create or modify dialog skills, as an alternative to building a skill graphically using the {{site.data.keyword.conversationshort}} tool. An authoring application uses various methods to create and modify skills, intents, entities, dialog nodes, and other artifacts that make up a dialog skill.
 

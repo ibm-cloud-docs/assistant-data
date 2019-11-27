@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2019
-lastupdated: "2019-11-08"
+lastupdated: "2019-11-25"
 
 subcollection: assistant-data
 
@@ -34,11 +34,11 @@ Use {{site.data.keyword.conversationfull}} for {{site.data.keyword.icp4dfull}} t
 ## How it works
 {: #index-how-it-works}
 
-This diagram illustrates how the product works:
+This diagram illustrates how the product delivers an omnichannel customer experience:
 
 ![Flow diagram of the service](images/simple-overview.png)
 
-- Users interact with your application through the user **interface** that you implement. For example, a simple chat window or a mobile app, or even a robot with a voice interface. The client application can be hosted either inside or outside the {{site.data.keyword.icp4dfull_notm}} infrastructure.
+- Users interact with your application through the **custom client user interface** that you implement. For example, a simple chat window or a mobile app, or even a robot with a voice interface. The client application can be hosted either inside or outside the {{site.data.keyword.icp4dfull_notm}} infrastructure.
 
 - Your application can interact with the following resources:
 
@@ -49,11 +49,11 @@ This diagram illustrates how the product works:
 
   - The **dialog skill** interprets the user input further, then directs the flow of the conversation. The dialog gathers any information it needs to respond or perform a transaction on the user's behalf.
 
-  - The **search skill** ![Beta](images/beta.png) routes complex customer inquiries to {{site.data.keyword.discoveryfull}}. {{site.data.keyword.discoveryshort}} treats the user input as a search query. It finds information that is relevant to the query from the configured data sources and returns it so the assistant can share the information with the user as its response.
+  - The **search skill** routes complex customer inquiries to {{site.data.keyword.discoveryfull}} for {{site.data.keyword.icp4dfull}}. {{site.data.keyword.discoveryshort}} treats the user input as a search query. It finds information that is relevant to the query from the configured data sources and returns it so the assistant can share the information with the user as its response.
 
 The tool does not currently include integrations for deploying the finished assistant nor metrics for analyzing conversations that your assistant is having with your users. Such deployment and metrics features are available from the public cloud version of the service only.
 
-You can integrate your assistant with the Watson Assistant for Voice Interaction add-on. For more details, see [Watson Assistant for Voice Interaction](https://www.ibm.com/support/knowledgecenter/SSQNUZ_2.1.0/com.ibm.icpdata.doc/watson/wavi-addon-install.html).
+You can integrate your assistant with the Watson Assistant for Voice Interaction service. For more details, see [Watson Assistant for Voice Interaction](https://www.ibm.com/support/knowledgecenter/SSQNUZ_2.5.0/svc-wavi/wavi-overview.html){: external}.
 {: tip}
 
 ## Implementation
@@ -61,7 +61,7 @@ You can integrate your assistant with the Watson Assistant for Voice Interaction
 
 This diagram shows the implementation in more detail:
 
-![Flow diagram of the service](images/arch-data-overview.png)
+![Flow diagram of the service](images/cp4d-assistant-overview.png)
 
 Here's how you implement your assistant:
 
@@ -81,7 +81,7 @@ Here's how you implement your assistant:
 
     As you add training data, a natural language classifier is automatically added to the skill. The classifier model is trained to understand the types of requests that you teach your assistant to listen for and respond to.
 
-- **Create a search skill** ![Beta](images/beta.png). Configure a connection to a {{site.data.keyword.discoveryshort}} instance. If the dialog is configured to perform a search or is not designed to answer a particular type of question, the assistant searches the configured external data sources to find a response.
+- **Create a search skill** Configure a connection to a {{site.data.keyword.discoveryshort}} instance. If the dialog is configured to perform a search or is not designed to answer a particular type of question, the assistant searches the configured external data sources to find a response.
 
 - **Add the skills to your assistant.**
 
@@ -98,17 +98,17 @@ Read more about these steps by following these links:
 ## Browser support
 {: #index-browser-support}
 
-The {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull_notm}} product user interface requires the same level of browser software as is required by {{site.data.keyword.icp4dfull_notm}}. For details, see [Browser requirements](https://www.ibm.com/support/knowledgecenter/en/SSQNUZ_1.2.1/com.ibm.icpdata.doc/zen/install/reqs-ent.html#reqs-ent__web){: external}.
+The {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull_notm}} product user interface requires the same level of browser software as is required by {{site.data.keyword.icp4dfull_notm}}. For details, see [Browser requirements](https://www.ibm.com/support/knowledgecenter/SSQNUZ_2.5.0/cpd/plan/rhos-reqs.html#rhos-reqs__web){: external}.
 
 ## Language support
 {: #index-language-support}
 
-Language support by feature is detailed in the [Supported languages](/docs/services/assistant-data?topic=assistant-data-language-support.html) topic.
+Language support by feature is detailed in the [Supported languages](/docs/services/assistant-data?topic=assistant-data-language-support) topic.
 
 ## Security
 {: #index-security}
 
-Federal Information Security Management Act (FISMA) support is available for {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull_notm}} offerings purchased on or after 30 August 2019, meaning version 1.3. FISMA support is also available to those who purchased version 1.2 (28 June 2019) and upgraded to version 1.3. {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull_notm}} is FISMA High Ready.
+Federal Information Security Management Act (FISMA) support is available for {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull_notm}} offerings purchased on or after 30 August 2019. {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull_notm}} is FISMA High Ready.
 
 ## Next steps
 {: #index-next-steps}

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2019
-lastupdated: "2019-08-28"
+lastupdated: "2019-11-25"
 
 keywords: intent, intent conflicts, annotate
 
@@ -246,17 +246,17 @@ If you have a large number of intents and examples, you might find it easier to 
     ```
     {: screen}
 
-    **Important:** Save the CSV file with UTF-8 encoding and no byte order mark (BOM).
+    Save the CSV file with UTF-8 encoding and no byte order mark (BOM).
+    {: important}
 
 1.  From the **Intents** page, click the *Import* icon ![Import icon](images/importGA.png), and then drag a file or browse to select a file from your computer.
 
-    ![Import option](images/ImportIntent.png)
-
-    **Important:** The maximum CSV file size is 10 MB. If your CSV file is larger, consider splitting it into multiple files and importing them separately.
+    The maximum CSV file size is 10 MB. If your CSV file is larger, consider splitting it into multiple files and importing them separately.
+    {: important}
 
     The file is validated and imported, and the system begins to train itself on the new data.
 
-You can view the imported intents and the corresponding examples on the **Intents** tab. You might need to refresh the page to see the new intents and examples.
+You can view the imported intents and the corresponding examples on the **Intents** page. You might need to refresh the page to see the new intents and examples.
 
 ## Resolving intent conflicts
 {: #intents-resolve-conflicts}
@@ -316,8 +316,7 @@ Watch this video to learn more.
 
 You can select a number of intents for deletion.
 
-**IMPORTANT**: By deleting intents that you are also deleting all associated examples, and these items cannot be retrieved later. All dialog nodes that reference these intents must be updated manually to no longer reference the deleted content.
+When you delete an intent, you delete its associated examples also, and these items cannot be retrieved later. All dialog nodes that reference these intents must be updated manually to no longer reference the deleted content.
+{: important}
 
-1.  From the **Intents** page, select the intents that you want from the list and click **Delete**.
-
-    ![Delete option](images/DeleteIntent.png)
+1.  From the **Intents** page, select the intents that you want to delete, and then click **Delete**.

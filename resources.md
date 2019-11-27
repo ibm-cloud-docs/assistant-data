@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2019
-lastupdated: "2019-10-24"
+lastupdated: "2019-11-15"
 
 subcollection: assistant-data
 
@@ -33,6 +33,11 @@ Links to resources, videos, tutorials, and articles that can help you to get sta
 {: #resources-for-developers}
 
 - [IBM Code Bot Asset Exchange](https://developer.ibm.com/code/exchanges/bots/){: external}
+
+## Popular product overview videos
+{: #resources-om-videos}
+
+- [Best practices in building a dialog flow](https://onlinexperiences.com/scripts/Server.nxp?LASCmd=AI:4;F:QS!10100&ShowUUID=269C27BC-909C-4094-879C-96832E1BEA9A&LangLocaleID=1033&Referrer=https%3A%2F%2Fmail.notes.na.collabserv.com%2Fverse)
 
 ## Developer resources for building assistants
 {: #resources-for-bots}

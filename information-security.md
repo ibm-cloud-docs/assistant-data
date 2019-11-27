@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2019
-lastupdated: "2019-10-24"
+lastupdated: "2019-11-25"
 
 subcollection: assistant-data
 
@@ -44,9 +44,9 @@ If you need to request GDPR support for {{site.data.keyword.cloud}} {{site.data.
 
 IBM is committed to providing our clients and partners with innovative data privacy, security and governance solutions to assist them on their journey to GDPR compliance.
 
-Learn more about IBM's own GDPR readiness journey and our GDPR capabilities and offerings to support your compliance journey [here](../../icons/launch-glyph.svg "External link icon")](http://www.ibm.com/gdpr){: external}.
+Learn more about IBM's own GDPR readiness journey and our GDPR capabilities and offerings to support your compliance journey [here](http://www.ibm.com/gdpr){: external}.
 
 ## More information
 {: #information-security-gdpr-icp4d}
 
-For more information about data privacy in {{site.data.keyword.icp4dfull_notm}}, see [Considerations for GDPR readiness](https://www.ibm.com/support/knowledgecenter/SSQNUZ_2.1.0/com.ibm.icpdata.doc/zen/overview/gdpr.html){: external}.
+For more information about data privacy in {{site.data.keyword.icp4dfull_notm}}, see [Considerations for GDPR readiness](https://www.ibm.com/support/knowledgecenter/SSQNUZ_2.5.0/cpd/overview/gdpr.html){: external}.

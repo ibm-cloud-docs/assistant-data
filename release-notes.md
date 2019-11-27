@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2019
-lastupdated: "2019-10-17"
+lastupdated: "2019-11-22"
 
 subcollection: assistant-data
 
@@ -33,6 +33,37 @@ IBM releases services, features, and language support for your evaluation that a
 
 ## Change log
 {: #rn-change-log}
+
+### 27 November 2019
+{: #27November2019}
+
+**{{site.data.keyword.conversationfull}} for {{site.data.keyword.icp4dfull}} version 1.4 is available.**: The following changes were made in this release:
+
+- {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} version 1.4 is compatible with {{site.data.keyword.icp4dfull}} version 2.5.
+- The Czech language is not enabled automatically anymore.
+- The main menu options of **Assistants** and **Skills** have moved from being displayed at the top of the page to being shown as icons in a new navigation pane.
+
+  - ![Assistants menu icon](images/nav-ass-icon.png) Assistants
+  - ![Skills menu icon](images/nav-skills-icon.png) Skills
+
+  The tabbed pages for the tools you use to develop a dialog skill were moved to a secondary navigation bar that is displayed when you open the skill.
+
+  ![Skills secondary navigation menu](images/secondary-nav.png)
+
+- **Rich response types are supported in a dialog node with slots**. You can display a list of options for a user to choose from as the prompt for a slot, for example. For more information, see [Gathering information with slots](/docs/services/assistant-data?topic=assistant-data-dialog-slots).
+- **Improved Entities, Dialog, and Intents page responsiveness**: The Entities, Dialog, and Intents pages were updated to use a new JavaScript library that increases the page responsiveness. As a result, the look of some graphical user interface elements, such as buttons, changed slightly, but the function did not.
+- **Creating contextual entities got easier**: The process you use to annotate entity mentions from intent user examples was improved. You can now put the intent page into annotation mode to more easily select and label mentions. For more information, see [Adding contextual entities](/docs/services/assistant-data?topic=assistant-data-entities#entities-create-annotation-based).
+- **Webhook callouts are available**: Add webhooks to dialog nodes to make programmatic calls to an external application as part of the conversational flow. This capability is being introduced as a beta feature. For more details, see [Making a programmatic call from dialog](/docs/services/assistant-data?topic=assistant-data-dialog-webhooks).
+- **Testing improvement**: You can now see the top three intents that were recognized in a test user input from the "Try it out" pane. For more details, see [Testing your dialog](/docs/services/assistant-data?topic=assistant-data-dialog-build#dialog-build-test).
+
+This release does not include the following features, which are available for cloud instances at the time of this release:
+
+- There are no metrics or analytics capabilities. Therefore, the *Analytics* page is not included in the product user interface.
+- There are no deployment connectors or built-in integrations available. You must build a custom client application that can host the assistant. As a result, the *Integrations* page is not included in the product user interface.
+- The @sys-person and @sys-location system entities are not supported.
+- There is no search function in the product.
+- Autocorrection, intent recommendations, and irrelevance detection are not supported.
+- The product tour that is available to some first-time users of the cloud-based product is not available.
 
 ### 3 September 2019
 {: #3September2019}

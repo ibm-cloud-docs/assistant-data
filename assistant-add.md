@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2019
-lastupdated: "2019-06-27"
+lastupdated: "2019-11-22"
 
 subcollection: assistant-data
 
@@ -30,10 +30,11 @@ Create an assistant with the skills it needs to address the business goals of yo
 
 Follow these steps to create an assistant:
 
-1.  Click the Assistants tab, and then click **Create assistant**.
+1.  Click the **Assistants** icon ![Assistants menu icon](images/nav-ass-icon.png).
 
-    If you don't see the Assistants tab, click the breadcrumb link in the page header.
-    {: tip}
+    **v1.3**: Click the Assistants tab. If you don't see the Assistants tab, click the breadcrumb link in the page header.
+
+1.  Click **Create assistant**.
 
 1.  Add details about the new assistant:
 
@@ -106,7 +107,14 @@ You can add one skill of each skill type to an assistant. If you want to change 
 
 1.  Choose an existing skill to use instead or [create a skill](/docs/services/assistant-data?topic=assistant-data-skill-add).
 
+    You cannot swap search skills currently.
+    {: important}
+
 ### Switching between service instances
 {: #assistant-add-switch-instance}
 
-If you have access to more than one provisioned instance, you can check the page header to find out which instance you are currently using. If you are working in a skill, click the **Skills** breadcrumb link first. The banner displays the current instance name. To switch to a different service instance, click **Change**, and then choose the appropriate instance.
+If you have more than one deployed instance of {{site.data.keyword.conversationshort}} in your cluster, you can switch to a different instance.
+
+To change to a different instance, you must open the other instance from the *My instances* page of the {{site.data.keyword.icp4dfull_notm}} web client.
+
+**V1.3 only**: If you are working within a skill, click the **Skills** breadcrumb link first. The banner displays the current instance name. To switch to a different service instance, click **Change**, and then choose the appropriate instance.

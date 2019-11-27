@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2019
-lastupdated: "2019-08-27"
+lastupdated: "2019-11-22"
 
 subcollection: assistant-data
 
@@ -97,7 +97,7 @@ The first table shows the level of support for all features, except those relate
 
 | Language | **System entities ([number](/docs/services/assistant-data?topic=assistant-data-system-entities#system-entities-sys-number), [currency](/docs/services/assistant-data?topic=assistant-data-system-entities#system-entities-sys-currency), [percentage](/docs/services/assistant-data?topic=assistant-data-system-entities#system-entities-sys-percentage), [date, time](/docs/services/assistant-data?topic=assistant-data-system-entities#system-entities-sys-date-time))** |
 |:---|:---:|:---:|
-| **English (en)**                   | GA, Beta ([location](/docs/services/assistant-data?topic=assistant-data-system-entities#system-entities-sys-location), [person](/docs/services/assistant-data?topic=assistant-data-system-entities#system-entities-sys-person)) |
+| **English (en)**                   | GA |
 | **Arabic (ar)**                    | Beta |
 | **Chinese (Simplified) (zh-cn)**   | GA |
 | **Chinese (Traditional) (zh-tw)**  | Beta |

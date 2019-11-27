@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2019
-lastupdated: "2019-10-24"
+lastupdated: "2019-11-25"
 
 subcollection: assistant-data
 
@@ -29,7 +29,7 @@ subcollection: assistant-data
 The natural-language processing for the {{site.data.keyword.conversationshort}} service is defined in a *dialog skill*, which is a container for all of the artifacts that define a conversation flow.
 {: shortdesc}
 
-You can add one dialog skill to an assistant. See [Skill limits](/docs/services/assistant-data?topic=assistant-data-skill-add#skill-add-limits) for information about limits per plan.
+You can add one dialog skill to an assistant.
 
 ## Create the dialog skill
 {: #skill-dialog-add-task}
@@ -38,12 +38,13 @@ You can create a skill from scratch, use a sample skill that is provided by IBM,
 
 To add a skill, complete the following steps:
 
-1.  Click the **Skills** tab, and then click **Create skill**.
+1.  Click the **Skills** icon ![Skills menu icon](images/nav-skills-icon.png).
 
-    If you don't see the Skills tab, click the breadcrumb link in the page header.
-    {: tip}    
+    **v1.3**: Click the **Skills** tab. If you don't see the Skills tab, click the breadcrumb link in the page header.    
 
-1.  Select the dialog skill tile, and then click **Next**.
+1.  Click **Create skill**.
+
+1.  Select the *dialog skill* option, and then click **Next**.
 
 1.  Take one of the following actions:
 
@@ -102,7 +103,11 @@ If you receive warnings when you try to upload a skill, take a moment to try to 
 
 You can add one skill to an assistant. You must open the assistant tile and add the skill to the assistant from the assistant configuration page; you cannot choose the assistant that will use the skill from within the skill configuration page. One dialog skill can be used by more than one assistant.
 
-1.  From the Assistants tab, click to open the tile for the assistant to which you want to add the skill.
+1.  Click the **Assistants** icon ![Skills menu icon](images/nav-ass-icon.png) to open the Assistants page.
+
+    **v1.3**: Click the Assistants tab.
+    
+1.  Click to open the tile for the assistant to which you want to add the skill.
 
 1.  Click **Add Dialog Skill**.
 
@@ -121,7 +126,9 @@ To download a dialog skill, complete the following steps:
 
 1.  Find the dialog skill tile on the Skills page or on the configuration page of an assistant that uses the skill.
 
-1.  Click the ![open and close list of options](images/kabob-beta.png) icon, and then choose **Download JSON**.
+1.  Click the ![open and close list of options](images/kabob-beta.png) icon, and then choose **Export**.
+
+    **v1.3**: Choose **Download JSON**.
 
 1.  Specify a name for the JSON file and where to save it, and then click **Save**.
 

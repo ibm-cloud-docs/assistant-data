@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2019
-lastupdated: "2019-10-24"
+lastupdated: "2019-11-26"
 
 subcollection: assistant-data
 
@@ -105,7 +105,7 @@ In addition to the generic JSON format, the dialog node JSON also supports chann
 
 You can specify native JSON for Slack or Facebook using the appropriate field in the dialog node response:
 
-- `output.slack`: insert any JSON you want to be included in the `attachment` field of the Slack response. For more information about the Slack JSON format, see the Slack [documentation](https://api.slack.com/docs/message-attachments){: external}.
+- `output.slack`: insert any JSON you want to be included in the `attachment` field of the Slack response. For more information about the Slack JSON format, see the Slack [documentation](https://api.slack.com/messaging/composing){: external}.
 
 - `output.facebook`: insert any JSON you want included in the `message.attachment.payload` field of the Facebook response. For more information about the Facebook JSON format, see the Facebook [documentation](https://developers.facebook.com/docs/messenger-platform/send-messages/templates){: external}.
 
