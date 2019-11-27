@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2019
-lastupdated: "2019-11-22"
+lastupdated: "2019-11-27"
 
 subcollection: assistant-data
 
@@ -91,6 +91,8 @@ If you do not have access to a provisioned instance of {{site.data.keyword.disco
 
 ## Create a data collection
 {: #skill-search-add-create-discovery-collection}
+
+When the {{site.data.keyword.discoveryshort}} application opens in a new browser tab or window, the *Projects* page might be displayed briefly. You do not need to create a project. A project is created for your collection automatically. Wait for the collections page to be displayed.
 
 1.  To create a {{site.data.keyword.discoveryshort}} collection, do one of the following things:
 
