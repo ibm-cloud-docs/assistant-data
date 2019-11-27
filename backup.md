@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2019
-lastupdated: "2019-10-24"
+lastupdated: "2019-11-25"
 
 subcollection: assistant-data
 
@@ -29,7 +29,7 @@ subcollection: assistant-data
 Back up and restore your data by exporting, and then importing the data.
 {: shortdesc}
 
-This topic describes how to backup and restore data specific to {{site.data.keyword.conversationshort}}. For information about how to backup and restore {{site.data.keyword.icp4dfull_notm}}, see [Backing up your installation](https://www.ibm.com/support/knowledgecenter/SSQNUZ_2.1.0/com.ibm.icpdata.doc/zen/admin/backup_install.html){: external}.
+This topic describes how to backup and restore data specific to {{site.data.keyword.conversationshort}}.
 
 You can export the following data from a {{site.data.keyword.conversationshort}} service instance:
 
@@ -48,11 +48,13 @@ To back up dialog skill data, export the skill as a JSON file, and store the JSO
 
 1.  Find the dialog skill tile on the Skills page or on the configuration page of an assistant that uses the skill.
 
-1.  Click the ![open and close list of options](images/kabob-beta.png) icon, and then choose **Download JSON**.
+1.  Click the ![open and close list of options](images/kabob-beta.png) icon, and then choose **Export**.
+
+    **v1.3**: Choose **Download JSON**.
 
 1.  Specify a name for the JSON file and where to save it, and then click **Save**.
 
-Alternatively, you can use the `/workspaces` API to export a dialog skill. Include the `export=true` parameter with the GET workspace request. See the [API reference](https://cloud.ibm.com/apidocs/assistant/assistant-data-v1#get-information-about-a-workspace){: external} for more details.
+Alternatively, you can use the `/workspaces` API to export a dialog skill. Include the `export=true` parameter with the GET workspace request. See the [API reference ](https://cloud.ibm.com/apidocs/assistant/assistant-data-v1#get-information-about-a-workspace){: external} for more details.
 
 ## Importing a dialog skill
 {: #backup-import-skill}
@@ -62,7 +64,9 @@ To reinstate a backup copy of a dialog skill that you exported from another serv
 If the {{site.data.keyword.conversationshort}} service changes between the time you export the skill and import it, due to functional updates which are regularly applied to instances in cloud-hosted continuous delivery environments, your imported skill might function differently than it did before.
 {: important}
 
-1.  Click the **Skills** tab.
+1.  Click the **Skills** icon ![Skills menu icon](images/nav-skills-icon.png).
+
+    **v1.3**: Click the **Skills** tab.
 
 1.  Click **Create skill**.
 
@@ -73,7 +77,7 @@ If the {{site.data.keyword.conversationshort}} service changes between the time 
     **Important:**
 
     - The imported JSON file must use UTF-8 encoding, without byte order mark (BOM) encoding.
-    - The maximum size for a skill JSON file is 10MB. If you need to import a larger skill, consider importing the intents and entities separately after you have imported the skill. (You can also import larger skills using the REST API. For more information, see the [API Reference](https://cloud.ibm.com/apidocs/assistant/assistant-data-v1#create-workspace){: external}.)
+    - The maximum size for a skill JSON file is 10MB. If you need to import a larger skill, consider importing the intents and entities separately after you have imported the skill. (You can also import larger skills using the REST API. For more information, see the [API Reference ](https://cloud.ibm.com/apidocs/assistant/assistant-data-v1#create-workspace){: external}.)
     - The JSON file cannot contain tabs, newlines, or carriage returns.
 
     Select **Everything (Intents, Entities, and Dialog)** to import a complete copy of the exported skill.

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2019
-lastupdated: "2019-06-20"
+lastupdated: "2019-10-24"
 
 subcollection: assistant-data
 
@@ -10,6 +10,7 @@ subcollection: assistant-data
 
 {:shortdesc: .shortdesc}
 {:new_window: target="_blank"}
+{:external: target="_blank" .external}
 {:deprecated: .deprecated}
 {:important: .important}
 {:note: .note}
@@ -134,9 +135,20 @@ Queries you submit through the "Try it out" pane generate `/message` API calls, 
     The chat window indicates what intents and entities were recognized in the input:
 
     ![Screen capture of test dialog output](images/test_dialog_output.png)
-1.  If you want to know which node in the dialog tree triggered a response, click the **Location** ![Location](images/location.png) icon next to it. If you are not already in the Dialog tab, open it.
+1.  To see the top intents that were recognized in the test input along with their confidence scores, hover over the eye icon that is displayed next to the intent with the highest confidence score.
 
-    The source node is given focus and the route that your assistant traversed through the tree to get to it is highlighted. It remains highlighted until you perform another action, such as entering a new test input.
+    ![Screen capture of the eye icon that is shown next to the top-most recognizes intent](images/tryit-intent-details.png)
+
+1.  If the response is not what you expected it to be, you can take the following actions from the "Try it out" pane:
+    
+    - If you want to edit an entity that is recognized in the input, click the entity name to open it in the Entities page. 
+    - If the wrong intent is recognized, you can click the arrow next to the intent name to correct it or mark the topic as irrelevant. For more information, see [Making training data improvements](/docs/services/assistant?topic=assistant-logs#logs-fix-data).
+
+1.  If you want to know which node in the dialog tree triggered a response, click the **Location** ![Location](images/location.png) icon next to it. 
+
+    If you are not already on the Dialog page, open it.
+    {: tip}
+
 1.  To check or set the value of a context variable, click the **Manage context** link.
 
     Any context variables that you defined in the dialog are displayed.

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2019
-lastupdated: "2019-11-25"
+lastupdated: "2019-11-26"
 
 subcollection: assistant-data
 
@@ -25,19 +25,19 @@ subcollection: assistant-data
 {:download: .download}
 {:gif: data-image-type='gif'}
 
-# Managing the cluster
-{: #manage}
+# v1.3: Managing the cluster
+{: #manage-130}
 
 Manage the cluster nodes that host your {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} deployment.
 {: shortdesc}
 
 ## Common tasks
-{: #manage-common-tasks}
+{: #manage-130-common-tasks}
 
 You can use Kubernetes commands to perform tasks that you cannot perform from the {{site.data.keyword.icp4dfull}} web client.
 
 ### To identify which nodes the product is deployed to
-{: #manage-id-nodes}
+{: #manage-130-id-nodes}
 
 ```bash
 kubectl get pods -o wide
@@ -45,7 +45,7 @@ kubectl get pods -o wide
 {: codeblock}
 
 ### To find out how many replicas are in use
-{: #manage-get-replica-number}
+{: #manage-130-get-replica-number}
 
   ```bash
   kubectl get deploy  -n {namespace-name}
@@ -62,7 +62,7 @@ kubectl get pods -o wide
   The response shows you name and number of replicas.
 
 ## Scaling
-{: #manage-scale}
+{: #manage-130-scale}
 
  Horizontal Pod Autoscaling (HPA) is enabled automatically for {{site.data.keyword.conversationshort}}. As a result, the number of replicas changes dynamically in the range of 1/2 to 10 replicas.
 
@@ -104,7 +104,7 @@ The following table describes the stateful set details.
 {: caption="Stateful set details" caption-side="top"}
 
 ### To scale the number of replicas:
-{: #manage-scale-replicas}
+{: #manage-130-scale-replicas}
 
 Some of the microservices do not benefit from being scaled up; more replicas does not always mean more throughput. 
   
@@ -141,7 +141,7 @@ Some of the microservices do not benefit from being scaled up; more replicas doe
     {: pre}
 
 ### To scale the cluster all the way down and back
-{: #manage-restart-replicas}
+{: #manage-130-restart-replicas}
 
 To scale down the cluster all the way, you must scale down the deployed services in the following order:
 
@@ -188,24 +188,26 @@ To scale down the cluster all the way, you must scale down the deployed services
     - **store** deployment
 
 ## To view logs
-{: #manage-view-logs}
+{: #manage-130-view-logs}
 
-Consider using [Analytics Dashboards](https://www.ibm.com/support/knowledgecenter/SSQNUZ_2.5.0/cpd/svc/cognos/dashboard/dashboard-svc.html) to identify patterns in your data.
+{{site.data.keyword.icp4dfull_notm}} automatically logs information from each service. For more information, see [Viewing logs](https://www.ibm.com/support/knowledgecenter/SSQNUZ_2.1.0/com.ibm.icpdata.doc/zen/admin/logs.html){: external}
+
+If the cluster you installed includes {{site.data.keyword.icpfull_notm}}, see also [Integrating with Grafana or Kibana dashboards](https://www.ibm.com/support/knowledgecenter/SSQNUZ_2.1.0/com.ibm.icpdata.doc/zen/admin/admindash-integrate.html#admindash-integrate){: external}.
 
 ## Managing user access
-{: #manage-add-users}
+{: #manage-130-add-users}
 
 After you provision an instance, you can share the URL for the product user interface with other users. However, those users can only log in to the product user interface if you give them access.
 
-If you plan to use SAML for single sign-on (SSO), complete [Configuring single sign-on](https://www.ibm.com/support/knowledgecenter/SSQNUZ_2.5.0/cpd/install/saml-sso.html) before you add users. If you add users before you configure SSO, you will need to re-add the users with their SAML ID to enable them to use SSO.
+If you plan to use SAML for single sign-on (SSO), complete [Configuring single sign-on](https://www.ibm.com/support/knowledgecenter/SSQNUZ_2.1.0/com.ibm.icpdata.doc/zen/admin/saml-sso.html#saml-sso) before you add users. If you add users before you configure SSO, you will need to re-add the users with their SAML ID to enable them to use SSO.
 
-1.  From the web client menu, click **Administer > Manage users**.
+1.  From the web client menu, click **Administer > Manage user**.
 
-1.  Click **New user**, and specify the user's full name, user name, and email address. Set the user's permissions, and then click **Save**.
+1.  Click **Add user**, and specify the user's full name, user name, and email address. Set the user's permissions, and then click **Add**.
 
 1.  From the web client menu, select **My Instances**.
 
-1.  Find your {{site.data.keyword.conversationshort}} instance, hover over the last column to find and click the menu ![More menu](images/cp4d-sideways-kebab.png), and then choose **Manage Access**.
+1.  Find your {{site.data.keyword.conversationshort}} instance, click the more menu, and then choose **Manage Access**.
 
 1.  Click **Add user**.
 
@@ -217,4 +219,73 @@ If you plan to use SAML for single sign-on (SSO), complete [Configuring single s
 
 1. {: #manage-add-users-to-disco}Repeat the access management steps on the {{site.data.keyword.discoveryshort}} instance. 
 
-   Before people can create search skills in {{site.data.keyword.conversationshort}}, they need to have access to a {{site.data.keyword.discoveryshort}} instance. Add to the {{site.data.keyword.discoveryshort}} instance those people who need to be able to add new data collections to or query from existing collections by using a search skill.
+   Before people can create search skills in {{site.data.keyword.conversationshort}}, they need to have access to a {{site.data.keyword.discoveryshort}} instance. Add to the {{site.data.keyword.discoveryshort}} instance those people who need to be able to add new data collections to or query from existing collections by way of a search skill.
+
+## Prepare your local machine to perform management tasks (V1.2 only)
+{: #manage-130-prep-local-machine}
+
+Prepare your local machine to perform cluster management tasks.
+
+1.  Install the tools you will need on your local machine before you can complete management tasks from the command line.
+ 
+    The following software and tools are available as part of {{site.data.keyword.icp4dfull_notm}} V2.1.0.0, which runs on top of {{site.data.keyword.icpfull_notm}} V3.1.2:
+
+    - **Helm V2.9.1**: You need this software to run the `helm` commands that are used in this installation.
+
+    - **{{site.data.keyword.icpfull_notm}} V3.1.2 Command Line Interface**: You need this CLI to run `cloudctl` commands.
+
+    - **Kubernetes V1.12.4**: You need this software to run `kubectl` commands. 
+    
+      Technically, Kubernetes V1.10 is required, but a compatible version can also be used. V1.12 is provided with the cluster tools, so is easier to download and use.
+
+1.  Go to this url to get the tools:
+
+    ```bash
+    https://{cluster4d-master-node}:8443/console/tools/cli
+    ```
+    {: pre}
+
+1.  Download each tool to your local machine by using the curl command that is appropriate for your operating system. 
+
+1.  After downloading the file, use these commands to get access to the file and move it to the right directory:
+
+    ```bash
+    chmod 755 {file downloaded via curl}
+    sudo mv {file downloaded via curl} /usr/local/bin/{cloudctl | helm | kubernetes}
+    ```
+    {: pre}
+
+1.  After you download the Helm software, run this command to start it:
+  
+    ```bash
+    helm init --client-only
+    ```
+    {: pre}
+
+1.  The tools are now installed. To check whether they are set up properly, run the following commands:
+
+    - Test CLI
+
+      ```bash
+      cloudctl login -a https://{cluster4d-master-node}:8443 -u {admin user id} -p {admin password}
+      ```
+      {: pre}
+    
+      If you are using a load balancer, the hostname to specify here is the hostname of the load balancer instead of the master node.
+      {: note}
+
+    - Test Kubernetes
+
+      ```bash
+      kubectl get namespaces
+      ```
+      {: pre}
+
+    - Test Helm
+
+      ```bash
+      helm version --tls
+      ```
+      {: pre}
+
+     If you cannot run the kubectl command, complete this procedure to enable access to the Kubernetes CLI. See [Enabling access to the Kubernetes command-line interface](https://www.ibm.com/support/knowledgecenter/SSQNUZ_2.1.0/com.ibm.icpdata.doc/zen/install/kubectl-access.html){: external}.

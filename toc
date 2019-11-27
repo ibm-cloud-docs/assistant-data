@@ -15,16 +15,20 @@ Watson Assistant for IBM Cloud Pak for Data
     {: .navgroup-end}
 
     {: .navgroup id="howto"}
+    dev-process.md
+
     {: .topicgroup}
     Installing
         install.md
+        install-140.md
+        [Helm chart README.md](https://github.com/ibm-cloud-docs/data-readmes/blob/master/assistant-README-140.md)
+        manage.md
         install-130.md
+        [v1.3 README.md](https://github.com/ibm-cloud-docs/data-readmes/blob/master/assistant-README.md)
+        manage-130.md
         install-120.md
         install-120-addon.md
-        [Helm chart README.md](https://github.com/ibm-cloud-docs/data-readmes/blob/master/assistant-README.md)
-        manage.md
 
-    dev-process.md
     assistant-add.md
     skill-add.md
     skill-search-add.md
@@ -39,6 +43,8 @@ Watson Assistant for IBM Cloud Pak for Data
         dialog-build.md
         dialog-tips.md
         dialog-slots.md
+        dialog-webhooks.md
+        dialog-actions-client.md
         dialog-responses-json.md
         dialog-depiction.md
 
