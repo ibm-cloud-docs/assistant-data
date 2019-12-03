@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2019
-lastupdated: "2019-11-25"
+lastupdated: "2019-12-03"
 
 subcollection: assistant-data
 
@@ -414,7 +414,7 @@ After you purchase the service, you download the software as a Passport Advantag
 
 1.  Install {{site.data.keyword.icp4dfull_notm}} on Red Hat OpenShift.
 
-    Follow the instructions for [Installing on OpenShift](https://www.ibm.com/support/knowledgecenter/SSQNUZ_2.5.0/com.ibm.icpdata.doc/cpd/install/rhos-install.html){:external}.
+    Follow the instructions for [Installing on OpenShift](https://www.ibm.com/support/knowledgecenter/SSQNUZ_2.5.0/cpd/install/rhos-install.html){:external}.
 
 1.  Review the following topics about cluster security and take steps to implement any security measures that you want to have in place before you install the service:
 
