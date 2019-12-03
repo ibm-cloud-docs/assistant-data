@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2019
-lastupdated: "2019-11-27"
+lastupdated: "2019-12-03"
 
 subcollection: assistant-data
 
@@ -42,7 +42,7 @@ In this short tutorial, we introduce {{site.data.keyword.conversationfull}} and 
 
 1.  From the {{site.data.keyword.icp4dfull_notm}} web client menu, choose **My Instances**.
 
-1.  On the **Provisioned instances** tab, find your {{site.data.keyword.conversationshort}} instance, and then hover over the last column to show and click the ellipses icon ![Ellipses icon](images/cp4d-sideways-kebab.png).
+1.  On the **Provisioned instances** tab, find your {{site.data.keyword.conversationshort}} instance, and then hover over the last column to show and click the ellipsis icon ![Ellipsis icon](images/cp4d-sideways-kebab.png).
 1.  Choose **View details**.
 1.  Click **Open {{site.data.keyword.conversationshort}}**.
 
