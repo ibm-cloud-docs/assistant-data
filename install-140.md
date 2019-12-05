@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2019
-lastupdated: "2019-12-03"
+lastupdated: "2019-12-05"
 
 subcollection: assistant-data
 
@@ -484,7 +484,7 @@ Ensure that you can run Helm commands with version 2.14.3 of Tiller.
     export HELM_TLS_CA_CERT=$PWD/ca.cert.pem
     export HELM_TLS_CERT=$PWD/helm.cert.pem
     export HELM_TLS_KEY=$PWD/helm.key.pem
-    helm version  --tls --tiller-namespace {namespace-name}
+    helm version  --tls
     ```
     {: codeblock}
 
