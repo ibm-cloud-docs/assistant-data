@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2019
-lastupdated: "2019-12-05"
+lastupdated: "2019-12-13"
 
 subcollection: assistant-data
 
@@ -26,32 +26,32 @@ subcollection: assistant-data
 # Backing up and restoring data
 {: #backup}
 
-You can backup and restore the data that is associated with your {{site.data.keyword.conversationshort}} deployment in {{site.data.keyword.icp4dfull_notm}}.
+You can back up and restore the data that is associated with your {{site.data.keyword.conversationshort}} deployment in {{site.data.keyword.icp4dfull_notm}}.
 {: shortdesc}
 
-{{site.data.keyword.conversationshort}} data is stored in a Store database, which is comprised of Postgres datastores. To backup the data, you can use the a tool that Postgres provides that is called `pg_dump`. The dump tool creates a backup by sending the database contents to stdout where you can write it to a file. 
+{{site.data.keyword.conversationshort}} data is stored in a Store database, which is composed of Postgres data stores. To back up the data, you can use a tool that Postgres provides that is called `pg_dump`. The dump tool creates a backup by sending the database contents to stdout where you can write it to a file. 
 
 A bash script is provided in the product's PPA file that you can use with an OpenShift installation. The script gathers the pod name and credentials for one of your Postgres Keeper pods, which is the pod from which the `pg_dump` command must be run, and then runs the command for you.
 
 ## Backing up data (OpenShift)
 {: #backup-os}
 
-To backup data by using the provided script, complete the following steps:
+To back up data by using the provided script, complete the following steps:
 
 1.  Log in to the OpenShift project namespace where you installed the product.
-1.  Go to the directory where the `backupPG.sh` script is stored, which is `{compressed-file-dir}/charts/ibm-watson-assistant-prod/ibm_cloud_pak/pak_extensions/post-install/namespaceAdministration` where `{compressed-file-dir}` is is the name of the directory where you downloaded PPA file.
+1.  Go to the directory where the `backupPG.sh` script is stored, which is `{compressed-file-dir}/charts/ibm-watson-assistant-prod/ibm_cloud_pak/pak_extensions/post-install/namespaceAdministration` where `{compressed-file-dir}` is the name of the directory where you downloaded PPA file.
 
 1.  Run the script by using the following command:
 
     ```
-    ./backupPG.sh > {file-name} [--helm-release {release-name}]
+    ./backupPG.sh [--release {release-name}] > {file-name}
     ```
     {: codeblock}
 
-    where the arguments are these:
+    where these are the arguments:
 
     - `{file-name}`: Specify a file where you want to write the downloaded data. For example, `/bu/store.dump`.
-    - `--helm-release {release-name}`: Targets a specific Helm release. Otherwise, the script backs up the first release it finds in the namespace you are logged in to.
+    - `--release {release-name}`: Targets a specific release. Otherwise, the script backs up the first release it finds in the namespace you are logged in to.
 
 To backup data by using the Postgres command directly, complete the following steps:
 
@@ -62,7 +62,7 @@ To backup data by using the Postgres command directly, complete the following st
     ```
     {: codeblock}
 
-    where the arguments are these:
+    where these are the arguments:
 
     - `KEEPER_POD`: Any Postgres Keeper pod in your {{site.data.keyword.conversationshort}} Helm release.
     - `DATABASE`: The store database name.
@@ -79,7 +79,7 @@ To backup data by using the Postgres command directly, complete the following st
 ## Backing up data (Stand-alone {{site.data.keyword.icp4dfull_notm}})
 {: #backup-cp4d}
 
-You cannot use the script witht a stand-alone {{site.data.keyword.icp4dfull_notm}} installation. Complete the following steps instead:
+You cannot use the script with a stand-alone {{site.data.keyword.icp4dfull_notm}} installation. Complete the following steps instead:
 
 1.  Fetch a running Postgres proxy pod.
 
@@ -88,7 +88,7 @@ You cannot use the script witht a stand-alone {{site.data.keyword.icp4dfull_notm
     ```
     {: codeblock}
 
-1.  Fetch the store vcap secret name.
+1.  Fetch the store VCAP secret name.
 
     ```
     kubectl get secrets -l component=store${RELEASE} -o=custom-columns=NAME:.metadata.name | grep store-vcap
@@ -128,18 +128,18 @@ You cannot use the script witht a stand-alone {{site.data.keyword.icp4dfull_notm
 ## Restoring data
 {: #backup-restore}
 
-IBM created a restore tool called `pgmig`. The tool restores your database backup by adding it to a database you choose, and migrates the schema to the one that is associated with the version of the product where you restore the data.
+IBM created a restore tool called `pgmig`. The tool restores your database backup by adding it to a database you choose. It also upgrades the schema to the one that is associated with the version of the product where you restore the data.
 
-Before it adds the backed-up data, the tool removes the data for all instances in the current service deployment, so any spares will be removed also.
+Before it adds the backed-up data, the tool removes the data for all instances in the current service deployment, so any spares are removed also.
 {: important}
 
 1.  Install the target {{site.data.keyword.icp4dfull_notm}} cluster to which you want to restore the data. Create one instance of {{site.data.keyword.conversationshort}} for each instance that was backed up on the old cluster.
 
     The target {{site.data.keyword.icp4dfull_notm}} cluster must have the same number of instances as there were in the environment where you backed up the database.
 
-1.  Back up the current database before replacing it with the backed-up database.
+1.  Back up the current database before you replace it with the backed-up database.
 
-    The tool clears the current database before it restores the backup. So, if you might need to revert back to the current database, be sure to create a backup of it first.
+    The tool clears the current database before it restores the backup. So, if you might need to revert to the current database, be sure to create a backup of it first.
 
 1.  Go to the directory where the backup script was stored in the PPA file, which is `{compressed-file-dir}/charts/ibm-watson-assistant-prod/ibm_cloud_pak/pak_extensions/post-install/namespaceAdministration` where `{compressed-file-dir}` is the name of the directory where you downloaded PPA file.
 
@@ -161,7 +161,7 @@ Before it adds the backed-up data, the tool removes the data for all instances i
 
     - **postgres.yaml**: The Postgres file lists details for the target Postgres pods. See [Creating the postgres.yaml file](#backup-postgres-yaml).
 
-1.  Copy the files that you downloaded and created in the previous steps into an existing directory of your choice on a Postgres Keeper pod by using the following comamnds:
+1.  Copy the files that you downloaded and created in the previous steps into an existing directory of your choice on a Postgres Keeper pod. The files that you need to copy are `pgmig`, `postgres.yaml`, `resourceController.yaml`, and `store.dump`. You can use the following commands to do so:
 
     - **OpenShift**
 
@@ -243,7 +243,7 @@ Before it adds the backed-up data, the tool removes the data for all instances i
 
     For more command options, see [Postgres migration tool details](#backup-pgmig-details).
 
-    As the script runs, you are prompted for information including the instance on the target cluster to which to add the backed-up data. The data on the instance you specify will be removed and replaced. If there are multiple instances in the backup, you will be prompted multiple times to specify the target instance information.
+    As the script runs, you are prompted for information that includes the instance on the target cluster to which to add the backed-up data. The data on the instance you specify will be removed and replaced. If there are multiple instances in the backup, you are prompted multiple times to specify the target instance information.
 
 1.  Scale the Store database pods back up.
 
@@ -275,7 +275,7 @@ port: 5000
 ```
 {: codeblock}
 
-To fill in the values that are specified in the file, complete the following steps:
+To add the values that are required but currently missing from the file, complete the following steps:
 
 1.  To get the accessTokens values list, you need to get a list of bearer tokens for the service instances. 
 
@@ -302,10 +302,10 @@ To fill in the values that are specified in the file, complete the following ste
 
 1.  To get the port information, again check the RESOURCE_CONTROLLER_URL entry. The port is specified after `<host>:` in the URL. In this sample URL, the port is `5000`.
 
-1.  Paste the values you discovered into the YAML file and save it.
+1.  Paste the values that you discovered into the YAML file and save it.
 
 ### Creating the postgres.yaml file
-{: #backuup-postrgres-yaml}
+{: #backup-postgres-yaml}
 
 The **postgres.yaml** file contains details about the Postgres prods from the old environment where backed up the data. Add the following information to the file:
 
@@ -319,19 +319,19 @@ su_password: password
 ```
 {: codeblock}
 
-To fill in the values that are specified in the file, complete the following steps:
+To the values that are required but currently missing from the file, complete the following steps:
 
-1.  To get the host , you must get the Store VCAP secret.
+1.  To get the host information, you must get the Store VCAP secret.
 
     ```
-    ocget secret $RELEASE-store-vcap -o yaml 
+    oc get secret $RELEASE-store-vcap -o yaml 
     ```
     {: codeblock}
 
     Look for the entry that says, `vcap_services: eyJ1c...`.
 
     ```
-    echo "eyJ1c..." | base64 -d:
+    echo "eyJ1c..." | base64 -d
     ```
     {: codeblock}
 
@@ -384,7 +384,7 @@ To fill in the values that are specified in the file, complete the following ste
     ```
     {: screen}
 
-    The value of `STKEEPER_PG_SU_USERNAME` is the su_username. Copy the user name and add it to the YAML file.
+    The value of `STKEEPER_PG_SU_USERNAME` is the su_username. Copy the username and add it to the YAML file.
 
 1.  To get the su_password, you must get the postgres secret. 
 
@@ -396,7 +396,7 @@ To fill in the values that are specified in the file, complete the following ste
     Look for the section that says, `pg_su_password: XXyyzz==`.
 
     ```
-    echo "XXyyzz==" | base64 -d:
+    echo "XXyyzz==" | base64 -d
     ```
     {: codeblock}
 
@@ -407,7 +407,7 @@ To fill in the values that are specified in the file, complete the following ste
 ### Postgres migration tool details
 {: #backup-pgmig-details}
 
-The following table lists the arguments that are supported with the `pgmig` tool:
+The following table lists the arguments that are supported by the `pgmig` tool:
 
 | Argument | Description |
 |---------|-------------|
@@ -416,16 +416,16 @@ The following table lists the arguments that are supported with the `pgmig` tool
 | -s, --source string | Backup file name |   
 | -r, --resourceController string | Resource Controller configuration file name |
 | -t, --target string | Target Postgres server configuration file name |
-| -m, --mapping string | Service instance mapping configuration file name (optional) |
-| --testRCConnection | Perform test connection for Resource Controller, then exit |
-| --testPGConnection | Perform test connection for Postgres server, then exit |
+| -m, --mapping string | Service instance-mapping configuration file name (optional) |
+| --testRCConnection | Test the connection for Resource Controller, then exit |
+| --testPGConnection | Test the connection for Postgres server, then exit |
 | -v, --version | Get Build version |
 {: caption="pgmig tool arguments" caption-side="top"}
 
 ### The mapping configuration file
 {: #backup-mapping-file}
 
-After you run the script and specify the mappings when prompted, the tool generates a file named `enteredMapping.yaml` in the current directory. This file reflects the mapping of the old cluster details to the new cluster based on the interactive inputs that were provided while the script was running.
+After you run the script and specify the mappings when prompted, the tool generates a file that is named `enteredMapping.yaml` in the current directory. This file reflects the mapping of the old cluster details to the new cluster based on the interactive inputs that were provided while the script was running.
 
 For example, the YAML file contains values like this:
 
