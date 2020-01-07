@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2015, 2019
-lastupdated: "2019-12-13"
+  years: 2015, 2020
+lastupdated: "2020-01-07"
 
 subcollection: assistant-data
 
@@ -39,7 +39,7 @@ A bash script is provided in the product's PPA file that you can use with an Ope
 To back up data by using the provided script, complete the following steps:
 
 1.  Log in to the OpenShift project namespace where you installed the product.
-1.  Go to the directory where the `backupPG.sh` script is stored, which is `{compressed-file-dir}/charts/ibm-watson-assistant-prod/ibm_cloud_pak/pak_extensions/post-install/namespaceAdministration` where `{compressed-file-dir}` is the name of the directory where you downloaded PPA file.
+1.  Go to the directory where the `backupPG.sh` script is stored, which is `{compressed-file-dir}/charts/ibm-watson-assistant-prod/ibm_cloud_pak/pak_extensions/post-install/namespaceAdministration` where `{compressed-file-dir}` is the name of the directory where you downloaded the PPA file.
 
 1.  Run the script by using the following command:
 
@@ -50,10 +50,33 @@ To back up data by using the provided script, complete the following steps:
 
     where these are the arguments:
 
-    - `{file-name}`: Specify a file where you want to write the downloaded data. For example, `/bu/store.dump`.
+    - `{file-name}`: Specify a file where you want to write the downloaded data. Be sure to specify a backup directory in which to store the file. For example, `/bu/store.dump` to create a backup directory named `bu`. This directory will be referenced later as `$BACKUP-DIR`.
     - `--release {release-name}`: Targets a specific release. Otherwise, the script backs up the first release it finds in the namespace you are logged in to.
 
 To backup data by using the Postgres command directly, complete the following steps:
+
+1.  Fetch the Postgres connection values. You must pass these values to the command that you run in the next step.
+
+    - To get the username:
+
+      ```
+      oc get secret $VCAP_SECRET_NAME -o jsonpath="{.data.vcap_services}" | base64 --decode | grep -o '"username":"[^"]*' | cut -d'"' -f4
+      ```
+      {: codeblock}
+
+    - To get the password:
+
+      ```
+      oc get secret $VCAP_SECRET_NAME -o jsonpath="{.data.vcap_services}" | base64 --decode | grep -o '"password":"[^"]*' | cut -d'"' -f4
+      ```
+      {: codeblock}
+
+    - To get the database:
+
+      ```
+      oc get secret $VCAP_SECRET_NAME -o jsonpath="{.data.vcap_services}" | base64 --decode | grep -o '"database":"[^"]*' | cut -d'"' -f4
+      ```
+      {: codeblock}
 
 1.  Run the following command:
 
@@ -62,13 +85,13 @@ To backup data by using the Postgres command directly, complete the following st
     ```
     {: codeblock}
 
-    where these are the arguments:
+    where these are the arguments. You retrieved the values for some of these parameters in the previous step:
 
     - `KEEPER_POD`: Any Postgres Keeper pod in your {{site.data.keyword.conversationshort}} Helm release.
     - `DATABASE`: The store database name.
     - `USERNAME`: Postgres user ID that can access the database.
     - `PASSWORD`: The password that corresponds with the Postgres user ID.
- 
+
     To see more information about the `pg_dump` command, you can run this command:
 
     ```bash
@@ -84,14 +107,14 @@ You cannot use the script with a stand-alone {{site.data.keyword.icp4dfull_notm}
 1.  Fetch a running Postgres proxy pod.
 
     ```
-    kubectl get pods --field-selector=status.phase=Running -l component=stolon-proxy${RELEASE} -o jsonpath="{.items[0].metadata.name}"
+    kubectl get pods --field-selector=status.phase=Running -l component=stolon-proxy,release=$RELEASE -o jsonpath="{.items[0].metadata.name}"
     ```
     {: codeblock}
 
 1.  Fetch the store VCAP secret name.
 
     ```
-    kubectl get secrets -l component=store${RELEASE} -o=custom-columns=NAME:.metadata.name | grep store-vcap
+    kubectl get secrets -l component=store,release=$RELEASE -o=custom-columns=NAME:.metadata.name | grep store-vcap
     ```
     {: codeblock}
 
@@ -141,7 +164,7 @@ Before it adds the backed-up data, the tool removes the data for all instances i
 
     The tool clears the current database before it restores the backup. So, if you might need to revert to the current database, be sure to create a backup of it first.
 
-1.  Go to the directory where the backup script was stored in the PPA file, which is `{compressed-file-dir}/charts/ibm-watson-assistant-prod/ibm_cloud_pak/pak_extensions/post-install/namespaceAdministration` where `{compressed-file-dir}` is the name of the directory where you downloaded PPA file.
+1.  Go to the backup directory that you specified in the file-name parameter in the previous procedure.
 
 1.  Download the `pgmig` tool from the [GitHub Watson Developer Cloud Community](https://github.com/watson-developer-cloud/community/blob/master/watson-assistant/pgmig) repository.
 
@@ -155,83 +178,49 @@ Before it adds the backed-up data, the tool removes the data for all instances i
     ```
     {: codeblock}
 
-1.  Create two configuration files, and store them in the same directory.
+1.  Create two configuration files, and store them in the same backup directory.
 
     - **resourceController.yaml**: The Resource Controller file keeps a list of all provisioned {{site.data.keyword.conversationshort}} instances. See [Creating the resourceController.yaml file](#backup-resource-controller-yaml).
 
     - **postgres.yaml**: The Postgres file lists details for the target Postgres pods. See [Creating the postgres.yaml file](#backup-postgres-yaml).
 
-1.  Copy the files that you downloaded and created in the previous steps into an existing directory of your choice on a Postgres Keeper pod. The files that you need to copy are `pgmig`, `postgres.yaml`, `resourceController.yaml`, and `store.dump`. You can use the following commands to do so:
+1.  Copy the files that you downloaded and created in the previous steps into an existing directory of your choice on a Postgres Keeper pod. The files that you need to copy are `pgmig`, `postgres.yaml`, `resourceController.yaml`, and `store.dump`. 
 
-    - **OpenShift**
+    You can use the following commands to do so. 
+    
+    If you are restoring data to a stand-alone {{site.data.keyword.icp4dfull_notm}} cluster, then replace all references to `oc` with `kubectl` in these sample commands.
+    {: note}
 
-      ```bash
-      oc exec -it $KEEPER_POD -- mkdir /tmp/bu
-      ```
-      {: codeblock}
+    ```bash
+    oc exec -it $KEEPER_POD -- mkdir /tmp/bu
+    ```
+    {: codeblock}
 
-      ```bash
-      oc rsync $BACKUP_DIR $KEEPER_POD:/tmp/bu/.
-      ```
-      {: codeblock}
-
-    - **Stand-alone {{site.data.keyword.icp4dfull_notm}}**
-
-      ```bash
-      kubectl exec -it $KEEPER_POD -- mkdir /tmp/bu
-      ```
-      {: codeblock}
-
-      ```bash
-      kubectl rsync $BACKUP_DIR $KEEPER_POD:/tmp/bu/.
-      ```
-      {: codeblock}
+    ```bash
+    oc rsync $BACKUP_DIR $KEEPER_POD:/tmp/bu/.
+    ```
+    {: codeblock}
 
 1.  Stop the Store by scaling the store pods down to 0 replicas.
 
-    - **OpenShift**
-
-      ```bash
-      oc get deployments -l component=store
-      ```
-      {: codeblock}
+    ```bash
+    oc get deployments -l component=store
+    ```
+    {: codeblock}
     
-      Make a note of how many replicas there are.
+    Make a note of how many replicas there are.
 
-      ```bash
-      oc scale deployment $STORE_DEPLOYMENT_NAME --replicas=0
-      ```
-      {: codeblock}
-
-    - **Stand-alone {{site.data.keyword.icp4dfull_notm}}**
-
-      ```bash
-      kubectl get deployments -l component=store
-      ```
-      {: codeblock}
-    
-      Make a note of how many replicas there are.
-
-      ```bash
-      kubectl scale deployment $STORE_DEPLOYMENT_NAME --replicas=0
-      ```
-      {: codeblock}
+    ```bash
+    oc scale deployment $STORE_DEPLOYMENT_NAME --replicas=0
+    ```
+    {: codeblock}
 
 1.  Initiate the execution of a remote command in the Keeper Pod.
 
-    - **OpenShift**
-
-      ```bash
-      oc exec -it $KEEPER_POD /bin/bash
-      ```
-      {: codeblock}
-
-    - **Stand-alone {{site.data.keyword.icp4dfull_notm}}**
-
-      ```bash
-      kubectl exec -it $KEEPER_POD /bin/bash
-      ```
-      {: codeblock}
+    ```bash
+    oc exec -it $KEEPER_POD /bin/bash
+    ```
+    {: codeblock}
 
 1.  Run the `pgmig` tool.
 
@@ -247,19 +236,10 @@ Before it adds the backed-up data, the tool removes the data for all instances i
 
 1.  Scale the Store database pods back up.
 
-    - **OpenShift**
-
-      ```bash
-      oc scale deployment $STORE_DEPLOYMENT --replicas=$ORIGINAL_NUMBER_OF_REPLICAS
-      ```
-      {: codeblock}
-
-    - **Stand-alone {{site.data.keyword.icp4dfull_notm}}**
-
-      ```bash
-      kubectl scale deployment $STORE_DEPLOYMENT --replicas=$ORIGINAL_NUMBER_OF_REPLICAS
-      ```
-      {: codeblock}
+    ```bash
+    oc scale deployment $STORE_DEPLOYMENT --replicas=$ORIGINAL_NUMBER_OF_REPLICAS
+    ```
+    {: codeblock}
 
 ### Creating the resourceController.yaml file
 {: #backup-resource-controller-yaml}
@@ -298,6 +278,13 @@ To add the values that are required but currently missing from the file, complet
 
     Look for the section that says, `RESOURCE_CONTROLLER_URL: https://$RELEASE-addon-assistant-gateway-svc.zen:5000/api/ibmcloud/resource-controller`
 
+    For example, you can use a command like this to find it:
+
+    ```bash
+    oc describe pod -l component=ui | grep RESOURCE_CONTROLLER_URL
+    ```
+    {: codeblock}
+
     Copy the host that is specified in the `RESOURCE_CONTROLLER_URL`. For example, in this sample URL, the host is  `pjmga2-addon-assistant-gateway-svc.zen`.
 
 1.  To get the port information, again check the RESOURCE_CONTROLLER_URL entry. The port is specified after `<host>:` in the URL. In this sample URL, the port is `5000`.
@@ -329,6 +316,13 @@ To the values that are required but currently missing from the file, complete th
     {: codeblock}
 
     Look for the entry that says, `vcap_services: eyJ1c...`.
+
+    For example, you can use a command like this to find it:
+
+    ```bash
+    oc get secret assistant-store-vcap -o yaml | grep vcap_services
+    ```
+    {: codeblock}
 
     ```
     echo "eyJ1c..." | base64 -d
@@ -370,8 +364,8 @@ To the values that are required but currently missing from the file, complete th
 
 1.  To get the value of su_username, you need to get details for the postgres keeper pod:
 
-    ```
-    kubectl describe pod $RELEASE-store-postgres-keeper-0
+    ```bash
+    oc describe pod $RELEASE-store-postgres-keeper-0
     ```
     {: codeblock}
 
@@ -384,18 +378,32 @@ To the values that are required but currently missing from the file, complete th
     ```
     {: screen}
 
+    For example, you can use a command like this to find it:
+
+    ```bash
+    oc describe pod $RELEASE-store-postgres-keeper-0 | grep STKEEPER_PG_SU_USERNAME
+    ```
+    {: codeblock}
+
     The value of `STKEEPER_PG_SU_USERNAME` is the su_username. Copy the username and add it to the YAML file.
 
 1.  To get the su_password, you must get the postgres secret. 
 
-    ```
-    kubectl get secret pjmga2-postgres-secret -o yaml
+    ```bash
+    oc get secret $RELEASE-postgres-secret -o yaml
     ```
     {: codeblock}
 
     Look for the section that says, `pg_su_password: XXyyzz==`.
 
+    For example, you can use a command like this to find it:
+
+    ```bash
+    oc get secret $RELEASE-postgres-secret -o yaml | grep pg_su_password
     ```
+    {: codeblock}
+
+    ```bash
     echo "XXyyzz==" | base64 -d
     ```
     {: codeblock}
