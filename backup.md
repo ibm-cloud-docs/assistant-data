@@ -107,14 +107,14 @@ You cannot use the script with a stand-alone {{site.data.keyword.icp4dfull_notm}
 1.  Fetch a running Postgres proxy pod.
 
     ```
-    kubectl get pods --field-selector=status.phase=Running -l component=stolon-proxy${RELEASE} -o jsonpath="{.items[0].metadata.name}"
+    kubectl get pods --field-selector=status.phase=Running -l component=stolon-proxy,release=$RELEASE -o jsonpath="{.items[0].metadata.name}"
     ```
     {: codeblock}
 
 1.  Fetch the store VCAP secret name.
 
     ```
-    kubectl get secrets -l component=store$RELEASE -o=custom-columns=NAME:.metadata.name | grep store-vcap
+    kubectl get secrets -l component=store,release=$RELEASE -o=custom-columns=NAME:.metadata.name | grep store-vcap
     ```
     {: codeblock}
 
