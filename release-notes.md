@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2015, 2019
-lastupdated: "2019-11-22"
+  years: 2015, 2020
+lastupdated: "2020-01-07"
 
 subcollection: assistant-data
 
@@ -62,7 +62,7 @@ This release does not include the following features, which are available for cl
 - There are no deployment connectors or built-in integrations available. You must build a custom client application that can host the assistant. As a result, the *Integrations* page is not included in the product user interface.
 - The @sys-person and @sys-location system entities are not supported.
 - There is no search function in the product.
-- Autocorrection, intent recommendations, and irrelevance detection are not supported.
+- Autocorrection, intent recommendations, and the new irrelevance detection model are not supported.
 - The product tour that is available to some first-time users of the cloud-based product is not available.
 
 ### 3 September 2019
