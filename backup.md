@@ -55,7 +55,21 @@ To back up data by using the provided script, complete the following steps:
 
 To backup data by using the Postgres command directly, complete the following steps:
 
-1.  Fetch the Postgres connection values. You must pass these values to the command that you run in the next step.
+1.  Fetch a running Postgres proxy pod.
+
+    ```
+    oc get pods --field-selector=status.phase=Running -l component=stolon-proxy,release=$RELEASE -o jsonpath="{.items[0].metadata.name}"
+    ```
+    {: codeblock}
+
+1.  Fetch the store VCAP secret name.
+
+    ```
+    oc get secrets -l component=store,release=$RELEASE -o=custom-columns=NAME:.metadata.name | grep store-vcap
+    ```
+    {: codeblock}
+
+1.  Fetch the Postgres connection values. You will pass these values to the command that you run in the next step.
 
     - To get the username:
 
