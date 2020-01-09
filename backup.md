@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-01-07"
+lastupdated: "2020-01-09"
 
 subcollection: assistant-data
 
@@ -95,7 +95,7 @@ To backup data by using the Postgres command directly, complete the following st
 1.  Run the following command:
 
     ```
-    oc exec $KEEPER_POD -- bash -c "export PGPASSWORD='$PASSWORD' && pg_dump -Fc -h localhost -d $DATABASE -U $USERNAME"
+    oc exec $KEEPER_POD -- bash -c "export PGPASSWORD='$PASSWORD' && pg_dump -Fc -h localhost -d $DATABASE -U $USERNAME" > {file-name}
     ```
     {: codeblock}
 
@@ -105,6 +105,7 @@ To backup data by using the Postgres command directly, complete the following st
     - `DATABASE`: The store database name.
     - `USERNAME`: Postgres user ID that can access the database.
     - `PASSWORD`: The password that corresponds with the Postgres user ID.
+    - `{file-name}`: Specify a file where you want to write the downloaded data. Be sure to specify a backup directory in which to store the file. For example, `/bu/store.dump` to create a backup directory named `bu`. This directory will be referenced later as `$BACKUP-DIR`.
 
     To see more information about the `pg_dump` command, you can run this command:
 
@@ -255,6 +256,8 @@ Before it adds the backed-up data, the tool removes the data for all instances i
     ```
     {: codeblock}
 
+You might need to wait a few minutes before the skills you restored are visible from the web UI. Also, your dialog skills will likely indicate that they are training; you must wait for training to finish before you can use the skills.
+
 ### Creating the resourceController.yaml file
 {: #backup-resource-controller-yaml}
 
@@ -378,8 +381,24 @@ To the values that are required but currently missing from the file, complete th
 
 1.  To get the value of su_username, you need to get details for the postgres keeper pod:
 
+    To get the keeper pod names, use the following command:
+
     ```bash
-    oc describe pod $RELEASE-store-postgres-keeper-0
+    oc get pods -o=custom-columns=NAME:.metadata.name |grep keeper
+    ```
+    {: codeblock}
+
+    Get information about the pod.
+
+    ```bash
+    oc describe pod $KEEPER-POD-NAME
+    ```
+    {: codeblock}
+
+    For example: 
+
+    ```bash
+    oc describe pod ibm-assistant-ts-z781-keeper-0
     ```
     {: codeblock}
 
