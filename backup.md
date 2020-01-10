@@ -60,7 +60,7 @@ If you don't want to use the script, and prefer to back up data by using the Pos
 
 You cannot use the script with a stand-alone {{site.data.keyword.icp4dfull_notm}} installation. Complete the steps in this procedure to back up your data by using the Postgres tool directly. 
 
-If you have an OpenShift cluster, you can follow these steps to perform the back up manually. Just replace all `kubectl` commands with `oc` commands. 
+If you have an OpenShift cluster, you can follow these steps to create the backup manually. Just replace all `kubectl` commands with `oc` commands. 
 
 To back up your data, complete these steps:
 
