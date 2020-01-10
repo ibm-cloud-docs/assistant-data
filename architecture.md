@@ -37,7 +37,7 @@ The {{site.data.keyword.conversationshort}} service provides a Helm chart, which
 {{site.data.keyword.conversationshort}} uses the following patterns to communicate and pass information among its resources:
 
 - **REST API**: Sends representational state transfer (REST) API calls over secure HTTP. 
-- **gRPC**: Makes method calls by using an open source remote procedure call framework, which enables the service to call a resource that is running on another system in the cluster as if it was a local object. 
+- **gRPC**: Makes method calls by using an open source remote procedure call framework, which enables the service to call a resource that is running on another system in the cluster as if it were a local object. 
 - **LiteLinks**: Uses the LiteLinks protocol that was developed by IBM. LiteLinks has a custom service discovery layer that serves as a wrapper for an underlying Apache Thrift-based remote procedure call framework.
 
 The following sections provide more detail about each resource that is used by the system. The objective is to give you information that can help you to do initial resource planning and help you to manage changes in data needs over time.

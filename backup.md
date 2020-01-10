@@ -53,14 +53,14 @@ To back up data by using the provided script, complete the following steps:
     - `${file-name}`: Specify a file where you want to write the downloaded data. Be sure to specify a backup directory in which to store the file. For example, `/bu/store.dump` to create a backup directory named `bu`. This directory will be referenced later as `$BACKUP-DIR`.
     - `--release ${release-name}`: Targets a specific release. Otherwise, the script backs up the first release it finds in the namespace you are logged in to.
 
-If you don't want to use the script, and prefer to backup data by using the Postgres tool directly, you can complete the procedure to back up data manually. Just replace all `kubectl` command with the `oc` command.
+If you don't want to use the script, and prefer to back up data by using the Postgres tool directly, you can complete the procedure to back up data manually. Just replace all `kubectl` command with the `oc` command.
 
 ## Backing up data (Stand-alone {{site.data.keyword.icp4dfull_notm}})
 {: #backup-cp4d}
 
 You cannot use the script with a stand-alone {{site.data.keyword.icp4dfull_notm}} installation. Complete the steps in this procedure to back up your data by using the Postgres tool directly. 
 
-If you have an OpenShift cluster, you can follow these steps to perform the backup manually. Just replace all `kubectl` commands with `oc` commands. 
+If you have an OpenShift cluster, you can follow these steps to perform the back up manually. Just replace all `kubectl` commands with `oc` commands. 
 
 To back up your data, complete these steps:
 
@@ -438,4 +438,4 @@ instance-mappings:
 
 where the first value (`00000000-0000-0000-0000-001570184978`) is the instance ID in the database backup and the second value (`00000000-0000-0000-0000-001570194490`) is the ID of a provisioned instance in the {{site.data.keyword.conversationshort}} service on the system.
 
-You can pass this file to the script for subsequent runs of the script in the same environment. Or you can edit it for use in other backup and restore operations. The mapping file is optional. If it is not provided, the tool prompts you for the mapping details based on information you provide in the YAML files.
+You can pass this file to the script for subsequent runs of the script in the same environment. Or you can edit it for use in other back up and restore operations. The mapping file is optional. If it is not provided, the tool prompts you for the mapping details based on information you provide in the YAML files.
