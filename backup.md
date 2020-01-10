@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-01-07"
+lastupdated: "2020-01-09"
 
 subcollection: assistant-data
 
@@ -58,14 +58,14 @@ To backup data by using the Postgres command directly, complete the following st
 1.  Fetch a running Postgres proxy pod.
 
     ```
-    oc get pods --field-selector=status.phase=Running -l component=stolon-proxy,release=$RELEASE -o jsonpath="{.items[0].metadata.name}"
+    oc get pods --field-selector=status.phase=Running -l component=stolon-proxy,release=${release-name} -o jsonpath="{.items[0].metadata.name}"
     ```
     {: codeblock}
 
 1.  Fetch the store VCAP secret name.
 
     ```
-    oc get secrets -l component=store,release=$RELEASE -o=custom-columns=NAME:.metadata.name | grep store-vcap
+    oc get secrets -l component=store,release=${release-name} -o=custom-columns=NAME:.metadata.name | grep store-vcap
     ```
     {: codeblock}
 
@@ -95,7 +95,7 @@ To backup data by using the Postgres command directly, complete the following st
 1.  Run the following command:
 
     ```
-    oc exec $KEEPER_POD -- bash -c "export PGPASSWORD='$PASSWORD' && pg_dump -Fc -h localhost -d $DATABASE -U $USERNAME"
+    oc exec $KEEPER_POD -- bash -c "export PGPASSWORD='$PASSWORD' && pg_dump -Fc -h localhost -d $DATABASE -U $USERNAME" > {file-name}
     ```
     {: codeblock}
 
@@ -105,11 +105,12 @@ To backup data by using the Postgres command directly, complete the following st
     - `DATABASE`: The store database name.
     - `USERNAME`: Postgres user ID that can access the database.
     - `PASSWORD`: The password that corresponds with the Postgres user ID.
+    - `{file-name}`: Specify a file where you want to write the downloaded data. Be sure to specify a backup directory in which to store the file. For example, `/bu/store.dump` to create a backup directory named `bu`. This directory will be referenced later as `$BACKUP-DIR`.
 
     To see more information about the `pg_dump` command, you can run this command:
 
     ```bash
-    oc exec -it $RELEASE-store-postgres-keeper-0 -- pg_dump --help
+    oc exec -it ${release-name}-store-postgres-keeper-0 -- pg_dump --help
     ```
     {: pre}
  
@@ -121,14 +122,14 @@ You cannot use the script with a stand-alone {{site.data.keyword.icp4dfull_notm}
 1.  Fetch a running Postgres proxy pod.
 
     ```
-    kubectl get pods --field-selector=status.phase=Running -l component=stolon-proxy,release=$RELEASE -o jsonpath="{.items[0].metadata.name}"
+    kubectl get pods --field-selector=status.phase=Running -l component=stolon-proxy,release=${release-name} -o jsonpath="{.items[0].metadata.name}"
     ```
     {: codeblock}
 
 1.  Fetch the store VCAP secret name.
 
     ```
-    kubectl get secrets -l component=store,release=$RELEASE -o=custom-columns=NAME:.metadata.name | grep store-vcap
+    kubectl get secrets -l component=store,release=${release-name} -o=custom-columns=NAME:.metadata.name | grep store-vcap
     ```
     {: codeblock}
 
@@ -255,6 +256,8 @@ Before it adds the backed-up data, the tool removes the data for all instances i
     ```
     {: codeblock}
 
+You might need to wait a few minutes before the skills you restored are visible from the web UI. Also, your dialog skills will likely indicate that they are training; you must wait for training to finish before you can use the skills.
+
 ### Creating the resourceController.yaml file
 {: #backup-resource-controller-yaml}
 
@@ -290,7 +293,7 @@ To add the values that are required but currently missing from the file, complet
     ```
     {: codeblock}
 
-    Look for the section that says, `RESOURCE_CONTROLLER_URL: https://$RELEASE-addon-assistant-gateway-svc.zen:5000/api/ibmcloud/resource-controller`
+    Look for the section that says, `RESOURCE_CONTROLLER_URL: https://${release-name}-addon-assistant-gateway-svc.zen:5000/api/ibmcloud/resource-controller`
 
     For example, you can use a command like this to find it:
 
@@ -325,7 +328,7 @@ To the values that are required but currently missing from the file, complete th
 1.  To get the host information, you must get the Store VCAP secret.
 
     ```
-    oc get secret $RELEASE-store-vcap -o yaml 
+    oc get secret ${release-name}-store-vcap -o yaml 
     ```
     {: codeblock}
 
@@ -353,10 +356,10 @@ To the values that are required but currently missing from the file, complete th
         "label":"user-provided",
         "credentials":
           {
-            "host":"$RELEASE-store-postgres-proxy-svc",
+            "host":"${release-name}-store-postgres-proxy-svc",
             "port":5432,
-            "database":"conversation_icp_$RELEASE",
-            "username":"store_icp_$RELEASE",
+            "database":"conversation_icp_${release-name}",
+            "username":"store_icp_${release-name}",
             "password":"XX="
           }
         }
@@ -370,16 +373,32 @@ To the values that are required but currently missing from the file, complete th
     For example, in this sample the values are:
     
     ```yaml
-    host: $RELEASE-store-postgres-proxy-svc
+    host: ${release-name}-store-postgres-proxy-svc
     port: 5432
-    database: conversation_icp_$RELEASE
-    username: store_icp_$RELEASE
+    database: conversation_icp_${release-name}
+    username: store_icp_${release-name}
     ```
 
 1.  To get the value of su_username, you need to get details for the postgres keeper pod:
 
+    To get the keeper pod names, use the following command:
+
     ```bash
-    oc describe pod $RELEASE-store-postgres-keeper-0
+    oc get pods -o=custom-columns=NAME:.metadata.name |grep keeper
+    ```
+    {: codeblock}
+
+    Get information about the pod.
+
+    ```bash
+    oc describe pod $KEEPER-POD-NAME
+    ```
+    {: codeblock}
+
+    For example: 
+
+    ```bash
+    oc describe pod ibm-assistant-ts-z781-keeper-0
     ```
     {: codeblock}
 
@@ -395,7 +414,7 @@ To the values that are required but currently missing from the file, complete th
     For example, you can use a command like this to find it:
 
     ```bash
-    oc describe pod $RELEASE-store-postgres-keeper-0 | grep STKEEPER_PG_SU_USERNAME
+    oc describe pod ${release-name}-store-postgres-keeper-0 | grep STKEEPER_PG_SU_USERNAME
     ```
     {: codeblock}
 
@@ -404,7 +423,7 @@ To the values that are required but currently missing from the file, complete th
 1.  To get the su_password, you must get the postgres secret. 
 
     ```bash
-    oc get secret $RELEASE-postgres-secret -o yaml
+    oc get secret ${release-name}-postgres-secret -o yaml
     ```
     {: codeblock}
 
@@ -413,7 +432,7 @@ To the values that are required but currently missing from the file, complete th
     For example, you can use a command like this to find it:
 
     ```bash
-    oc get secret $RELEASE-postgres-secret -o yaml | grep pg_su_password
+    oc get secret ${release-name}-postgres-secret -o yaml | grep pg_su_password
     ```
     {: codeblock}
 
