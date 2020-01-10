@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-01-09"
+lastupdated: "2020-01-10"
 
 subcollection: assistant-data
 
@@ -44,80 +44,25 @@ To back up data by using the provided script, complete the following steps:
 1.  Run the script by using the following command:
 
     ```
-    ./backupPG.sh [--release {release-name}] > {file-name}
+    ./backupPG.sh [--release ${release-name}] > ${file-name}
     ```
     {: codeblock}
 
     where these are the arguments:
 
-    - `{file-name}`: Specify a file where you want to write the downloaded data. Be sure to specify a backup directory in which to store the file. For example, `/bu/store.dump` to create a backup directory named `bu`. This directory will be referenced later as `$BACKUP-DIR`.
-    - `--release {release-name}`: Targets a specific release. Otherwise, the script backs up the first release it finds in the namespace you are logged in to.
+    - `${file-name}`: Specify a file where you want to write the downloaded data. Be sure to specify a backup directory in which to store the file. For example, `/bu/store.dump` to create a backup directory named `bu`. This directory will be referenced later as `$BACKUP-DIR`.
+    - `--release ${release-name}`: Targets a specific release. Otherwise, the script backs up the first release it finds in the namespace you are logged in to.
 
-To backup data by using the Postgres command directly, complete the following steps:
+If you don't want to use the script, and prefer to backup data by using the Postgres tool directly, you can complete the procedure to back up data manually. Just replace all `kubectl` command with the `oc` command.
 
-1.  Fetch a running Postgres proxy pod.
-
-    ```
-    oc get pods --field-selector=status.phase=Running -l component=stolon-proxy,release=${release-name} -o jsonpath="{.items[0].metadata.name}"
-    ```
-    {: codeblock}
-
-1.  Fetch the store VCAP secret name.
-
-    ```
-    oc get secrets -l component=store,release=${release-name} -o=custom-columns=NAME:.metadata.name | grep store-vcap
-    ```
-    {: codeblock}
-
-1.  Fetch the Postgres connection values. You will pass these values to the command that you run in the next step.
-
-    - To get the username:
-
-      ```
-      oc get secret $VCAP_SECRET_NAME -o jsonpath="{.data.vcap_services}" | base64 --decode | grep -o '"username":"[^"]*' | cut -d'"' -f4
-      ```
-      {: codeblock}
-
-    - To get the password:
-
-      ```
-      oc get secret $VCAP_SECRET_NAME -o jsonpath="{.data.vcap_services}" | base64 --decode | grep -o '"password":"[^"]*' | cut -d'"' -f4
-      ```
-      {: codeblock}
-
-    - To get the database:
-
-      ```
-      oc get secret $VCAP_SECRET_NAME -o jsonpath="{.data.vcap_services}" | base64 --decode | grep -o '"database":"[^"]*' | cut -d'"' -f4
-      ```
-      {: codeblock}
-
-1.  Run the following command:
-
-    ```
-    oc exec $KEEPER_POD -- bash -c "export PGPASSWORD='$PASSWORD' && pg_dump -Fc -h localhost -d $DATABASE -U $USERNAME" > {file-name}
-    ```
-    {: codeblock}
-
-    where these are the arguments. You retrieved the values for some of these parameters in the previous step:
-
-    - `KEEPER_POD`: Any Postgres Keeper pod in your {{site.data.keyword.conversationshort}} Helm release.
-    - `DATABASE`: The store database name.
-    - `USERNAME`: Postgres user ID that can access the database.
-    - `PASSWORD`: The password that corresponds with the Postgres user ID.
-    - `{file-name}`: Specify a file where you want to write the downloaded data. Be sure to specify a backup directory in which to store the file. For example, `/bu/store.dump` to create a backup directory named `bu`. This directory will be referenced later as `$BACKUP-DIR`.
-
-    To see more information about the `pg_dump` command, you can run this command:
-
-    ```bash
-    oc exec -it ${release-name}-store-postgres-keeper-0 -- pg_dump --help
-    ```
-    {: pre}
- 
 ## Backing up data (Stand-alone {{site.data.keyword.icp4dfull_notm}})
 {: #backup-cp4d}
 
-You cannot use the script with a stand-alone {{site.data.keyword.icp4dfull_notm}} installation. Complete the following steps instead:
+You cannot use the script with a stand-alone {{site.data.keyword.icp4dfull_notm}} installation. Complete the steps in this procedure to back up your data by using the Postgres tool directly. 
+
+If you have an OpenShift cluster, you can follow these steps to perform the backup manually. Just replace all `kubectl` commands with `oc` commands. 
+
+To back up your data, complete these steps:
 
 1.  Fetch a running Postgres proxy pod.
 
@@ -133,7 +78,7 @@ You cannot use the script with a stand-alone {{site.data.keyword.icp4dfull_notm}
     ```
     {: codeblock}
 
-1.  Fetch the Postgres connection values.
+1.  Fetch the Postgres connection values. You will pass these values to the command that you run in the next step.
 
     - To get the username:
 
@@ -156,13 +101,28 @@ You cannot use the script with a stand-alone {{site.data.keyword.icp4dfull_notm}
       ```
       {: codeblock}
 
-1.  Run the `pg_dump` command.
+1.  Run the following command:
 
     ```
-    kubectl exec $PROXY_POD -- bash -c "export PGPASSWORD='$PASSWORD' && pg_dump $PGDUMP_ARGS -h localhost -d $DATABASE -U $USERNAME"
+    kubectl exec $KEEPER_POD -- bash -c "export PGPASSWORD='$PASSWORD' && pg_dump -Fc -h localhost -d $DATABASE -U $USERNAME" > ${file-name}
     ```
     {: codeblock}
 
+    The following lists describes the arguments. You retrieved the values for some of these parameters in the previous step:
+
+    - `KEEPER_POD`: Any Postgres Keeper pod in your {{site.data.keyword.conversationshort}} Helm release.
+    - `DATABASE`: The store database name.
+    - `USERNAME`: Postgres user ID that can access the database.
+    - `PASSWORD`: The password that corresponds with the Postgres user ID.
+    - `${file-name}`: Specify a file where you want to write the downloaded data. Be sure to specify a backup directory in which to store the file. For example, `/bu/store.dump` to create a backup directory named `bu`. This directory will be referenced later as `$BACKUP-DIR`.
+
+    To see more information about the `pg_dump` command, you can run this command:
+
+    ```bash
+    kubectl exec -it ${release-name}-store-postgres-keeper-0 -- pg_dump --help
+    ```
+    {: pre}
+ 
 ## Restoring data
 {: #backup-restore}
 
