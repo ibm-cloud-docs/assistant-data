@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2019-11-27"
+lastupdated: "2020-01-10"
 
 subcollection: assistant-data
 
@@ -72,7 +72,7 @@ The following table describes the deployment details.
 
 | Component name | Deployment name | Pod name | Default number of replicas |
 |----------------|-----------------|----------|----------------------------|
-| add-on | {release-name}-addon-assistant-addon | {release-name}-addon-assistant-addon-{pod-id} | 2-4 with HPA |
+| gateway | {release-name}-addon-assistant-gateway | {release-name}-addon-assistant-gateway-{pod-id} | 2-4 with HPA |
 | dialog | {release-name}-dialog | {release-name}-dialog-{pod-id} | 2-10 with HPA |
 | ed-mm | {release-name}-ed-mm | {release-name}-ed-mm-{pod-id} | 2-10 with HPA |
 | master | {release-name}-master | {release-name}-master-{pod-id} | 2-10 with HPA |
@@ -147,7 +147,7 @@ To scale down the cluster all the way, you must scale down the deployed services
 
 - **store** deployment
 - **ui** deployment
-- **addon/auth** deployment
+- **gateway** deployment
 - All other deployments
 - All statefulsets
 
@@ -182,8 +182,8 @@ To scale down the cluster all the way, you must scale down the deployed services
     - **postgres-store-sentinel** deployment
     - **postgres-store-proxy** deployment
     - **postgres-store-keeper** statefulset
-    - All deployments (except addon/auth, ui, and store)
-    - **addon/auth** deployment
+    - All deployments (except gateway, ui, and store)
+    - **gateway** deployment
     - **ui** deployment
     - **store** deployment
 
