@@ -176,7 +176,7 @@ To scale down the cluster all the way, you must scale down the deployed services
     ```
     {: pre}
 
-    For information about how to stop an restart the underlying cluster, see [How To: Stop and start a production OpenShift Cluster](https://servicesblog.redhat.com/2019/05/29/how-to-stop-and-start-a-production-openshift-cluster/){: external}.
+    For information about how to stop and restart the underlying cluster, see [How To: Stop and start a production OpenShift Cluster](https://servicesblog.redhat.com/2019/05/29/how-to-stop-and-start-a-production-openshift-cluster/){: external}.
 
 1.  Scale the service back up by scaling up the deployed services in the following order:
 
