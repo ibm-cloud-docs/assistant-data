@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2019-12-09"
+lastupdated: "2020-01-15"
 
 subcollection: assistant-data
 
@@ -1072,6 +1072,9 @@ If you need to start the deployment over, be sure to remove all trace of the cur
 If you need to preserve any data, do so now before you begin this procedure.
 {: important}
 
+For OpenScale clusters, use the `oc` command instead of `kubectl` in these steps.
+{: note}
+
 1.  {: #install-140-delete-instance-sh}If you got as far as creating one or more instances of the service, then complete the following steps to delete the instances. Otherwise, skip this step.
 
     1. From the main menu of the {{site.data.keyword.icp4dfull_notm}} web client, go to the **My Instances** page, and then click the **Provisioned instances** tab.
@@ -1105,7 +1108,7 @@ If you need to preserve any data, do so now before you begin this procedure.
     {: note}
 
     ```bash
-    kubectl delete job,deploy,replicaset,pod,statefulset,configmap,secret,ingress,service,serviceaccount,role,rolebinding,persistentvolumeclaim,poddisruptionbudget,horizontalpodautoscaler -l release={release-name}
+    kubectl delete job,deploy,replicaset,pod,statefulset,configmap,secret,ingress,service,serviceaccount,role,rolebinding,persistentvolumeclaim,poddisruptionbudget,horizontalpodautoscaler,networkpolicies -l release={release-name}
     ```
     {: pre}
 

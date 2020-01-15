@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-01-10"
+lastupdated: "2020-01-14"
 
 subcollection: assistant-data
 
@@ -175,6 +175,8 @@ To scale down the cluster all the way, you must scale down the deployed services
     chmod 0700 /mnt/local-storage/storage/watson/assistant/{yourPV}/postgres`
     ```
     {: pre}
+
+    For information about how to stop an restart the underlying cluster, see [How To: Stop and start a production OpenShift Cluster](https://servicesblog.redhat.com/2019/05/29/how-to-stop-and-start-a-production-openshift-cluster/){: external}.
 
 1.  Scale the service back up by scaling up the deployed services in the following order:
 
