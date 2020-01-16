@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-01-14"
+lastupdated: "2020-01-16"
 
 subcollection: assistant-data
 
@@ -189,15 +189,15 @@ To manage the PostgreSQL cluster, use `stolonctl` commands inside the keeper pod
 
 Postgres is used by the Store microservice to store assistants, skills, and workspaces. If PostgreSQL and the Store microservice are running, even if nothing else is working, you can export your skills from the product and save them. 
 
-During the installation process, the Postgres database for {{site.data.keyword.conversationshort}} is created. The user for the Store microservice and a corresponding randomly-generated password. You can change the detail names for the store database and user if you want, by overriding configuration settings in the `values.yaml` configuration file.
+During installation, the Postgres database is created, as is the user that is used by the Store microservice. You can specify the name of the database, the name of the user and a corresponding password if you want by overriding configuration settings in the `values.yaml` configuration file.
 
-The following table lists the configuration settings that you can change.
+The following table lists the configuration settings that are used by the Store microservice to connect to the PostgresSQL and for PostgreSQL initialization at installation time.
 
-| Database setting | Configuration setting name | Default value |
-|------------------|----------------------------|---------------|
-| Store username | global.postgres.store.auth.user | `store_icp_${release-name}` |
-| Secret with the password that corresponds to store user | global.postgres.store.auth.authSecretName | null |
-| Store PostgreSQL database name | global.postgres.store.database | `conversation_icp_${release-name}` |
+| Configuration setting name | Description | Default value |
+|----------------------------|-------------|---------------|
+| global.postgres.store.auth.user | Username that is used by the Store microservice | `store_icp_${release-name}` |
+| global.postgres.store.auth.authSecretName | Name of the kubernetes secret with password for the Store user. The default value is null because a password is randomly generated. | null |
+| global.postgres.store.database | Name of the database that is used by the Store microservice | `conversation_icp_${release-name}` |
 {: caption="Postrgres datasource configuration settings" caption-side="top"}
 
 ## Model mesh
