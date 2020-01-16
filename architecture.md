@@ -189,7 +189,7 @@ To manage the PostgreSQL cluster, use `stolonctl` commands inside the keeper pod
 
 Postgres is used by the Store microservice to store assistants, skills, and workspaces. If PostgreSQL and the Store microservice are running, even if nothing else is working, you can export your skills from the product and save them. 
 
-During installation, the Postgres database is created, as is the user that is used by the Store microservice. You can specify the name of the database, the name of the user and its password if you want by overriding configuration settings in the `values.yaml` configuration file.
+During installation, the Postgres database is created, as is the user that is used by the Store microservice. You can specify the name of the database, the name of the user and a corresponding password if you want by overriding configuration settings in the `values.yaml` configuration file.
 
 The following table lists the configuration settings that are used by the Store microservice to connect to the PostgresSQL and for PostgreSQL initialization at installation time.
 
