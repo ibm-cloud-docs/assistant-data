@@ -113,7 +113,7 @@ The training pods that are started by this component are sometimes referred to a
 ## Data store details
 {: #architecture-datasource-details}
 
-The following sections provide more detail about how the data stores are used by the {{site.data.keyword.conversationshort}} service. The objective is to help you troubleshoot issue that might arise during installation or after the service is deployed and running in a data center.
+The following sections provide more detail about how the data stores are used by the {{site.data.keyword.conversationshort}} service. The objective is to help you troubleshoot issues that might arise during installation or after the service is deployed and running in a data center.
 
 ### Etcd store
 {: #architecture-etcd}
