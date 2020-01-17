@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-01-14"
+lastupdated: "2020-01-17"
 
 subcollection: assistant-data
 
@@ -145,38 +145,42 @@ Some of the microservices do not benefit from being scaled up; more replicas doe
 
 To scale down the cluster all the way, you must scale down the deployed services in the following order:
 
-- **store** deployment
 - **ui** deployment
+- **store** deployment
 - **gateway** deployment
 - All other deployments
 - All statefulsets
 
-1.  If you have local storage, then connect over SSH to each worker node, and then run the following command from a given worker to synchronize data to the same directory on each other worker. 
+1.  If you have local storage, complete the following steps:
 
-    The destination folders should be empty. If they're not, empty them.
+    - Connect over SSH to each worker node, and then run the following command from a given worker to synchronize data to the same directory on each other worker.
 
-    ```bash
-    rsync -av /mnt/local-storage/storage/watson/assistant/{yourPV} {other worker}:/mnt/local-storage/storage/watson/assistant
-    ```
-    {: pre}
+      The destination folders should be empty. If they're not, empty them.
 
-1.  Double-check the **postgres-keeper** persistent volume permissions on each worker node. 
+      ```bash
+      rsync -av /mnt/local-storage/storage/watson/assistant/{yourPV} {other worker}:/mnt/local-storage/storage/watson/assistant
+      ```
+      {: codeblock}
 
-    You might need to scale postgres-keeper deployments first to see which persistent volumes they claim.
+    - Double-check the **postgres-keeper** persistent volume permissions on each worker node. 
 
-    ```bash
-    kubectl get pvc
-    ``` 
-    {: pre}
+      You might need to scale postgres-keeper deployments first to see which persistent volumes they claim. Connect over SSH to a worker node, and then run the following command:
 
-    For each `postgres-keeper` persistent volume claim, change the permissions of `/postgres` to `u=rwx (0700)` on its given worker node.
+      ```bash
+      kubectl get pvc
+      ``` 
+      {: pre}
 
-    ```bash
-    chmod 0700 /mnt/local-storage/storage/watson/assistant/{yourPV}/postgres`
-    ```
-    {: pre}
+      For each `postgres-keeper` persistent volume claim, change the permissions of `/postgres` to `u=rwx (0700)` on its given worker node.
 
-    For information about how to stop and restart the underlying cluster, see [How To: Stop and start a production OpenShift Cluster](https://servicesblog.redhat.com/2019/05/29/how-to-stop-and-start-a-production-openshift-cluster/){: external}.
+      ```bash
+      chmod 0700 /mnt/local-storage/storage/watson/assistant/{yourPV}/postgres`
+      ```
+      {: pre}
+
+1.  If you need to stop and restart the underlying OpenShift cluster for any reason, you can do so now. 
+
+    For more information, see [How To: Stop and start a production OpenShift Cluster](https://servicesblog.redhat.com/2019/05/29/how-to-stop-and-start-a-production-openshift-cluster/){: external}.
 
 1.  Scale the service back up by scaling up the deployed services in the following order:
 
@@ -186,8 +190,8 @@ To scale down the cluster all the way, you must scale down the deployed services
     - **postgres-store-keeper** statefulset
     - All deployments (except gateway, ui, and store)
     - **gateway** deployment
-    - **ui** deployment
     - **store** deployment
+    - **ui** deployment
 
 ## To view logs
 {: #manage-view-logs}
