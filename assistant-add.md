@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2019-11-22"
+lastupdated: "2020-01-29"
 
 subcollection: assistant-data
 
@@ -56,7 +56,7 @@ Follow these steps to create an assistant:
       You must have {{site.data.keyword.discoveryshort}} for {{site.data.keyword.icp4dfull_notm}} installed, and an instance provisioned before you can complete the steps to create a search skill.
       {: important}
 
-    See [Creating a skill](/docs/services/assistant-data?topic=assistant-data-skill-add).
+    See [Creating a skill](/docs/assistant-data?topic=assistant-data-skill-add).
 
 ## Assistant limits
 {: #assistant-add-limits}
@@ -66,7 +66,7 @@ Follow these steps to create an assistant:
 | 100 |
 {: caption="Limit details" caption-side="top"}
 
-For information about the inactivity timeout limit, see [Changing the inactivity timeout setting](/docs/services/assistant-data?topic=assistant-data-assistant-settings).
+For information about the inactivity timeout limit, see [Changing the inactivity timeout setting](/docs/assistant-data?topic=assistant-data-assistant-settings).
 
 You can connect one skill of each type to your assistant. 
 
@@ -105,7 +105,7 @@ You can add one skill of each skill type to an assistant. If you want to change 
 
     To swap the current dialog skill for a different version of the skill, choose **Change skill version**.
 
-1.  Choose an existing skill to use instead or [create a skill](/docs/services/assistant-data?topic=assistant-data-skill-add).
+1.  Choose an existing skill to use instead or [create a skill](/docs/assistant-data?topic=assistant-data-skill-add).
 
     You cannot swap search skills currently.
     {: important}

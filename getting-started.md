@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2019-12-03"
+lastupdated: "2020-01-29"
 
 subcollection: assistant-data
 
@@ -35,7 +35,7 @@ In this short tutorial, we introduce {{site.data.keyword.conversationfull}} and 
 ## Before you begin
 {: #before-you-begin}
 
-1. Provision an instance of the {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} service. For more information about provisioning, see [Installing](/docs/services/assistant-data?topic=assistant-data-install).
+1. Provision an instance of the {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} service. For more information about provisioning, see [Installing](/docs/assistant-data?topic=assistant-data-install).
 
 ## Step 1: Open Watson Assistant
 {: #getting-started-launch-tool}
@@ -185,6 +185,6 @@ That's it. You created a simple conversation with two intents and a dialog to re
 This tutorial is built around a simple example. For a real application, you need to define some more interesting intents, some entities, and a more complex dialog that uses them both. When you have a polished version of the assistant, you can make API calls to it from your client application.
 
 - Complete follow-on tutorials that build more advanced dialogs:
-    - Add standard nodes with the [Building a complex dialog](/docs/services/assistant-data?topic=assistant-data-tutorial) tutorial.
-    - Learn about slots with the [Adding a node with slots](/docs/services/assistant-data?topic=assistant-data-tutorial-slots) tutorial.
-- Check out more [sample apps](/docs/services/assistant-data?topic=assistant-data-sample-apps) to get ideas.
+    - Add standard nodes with the [Building a complex dialog](/docs/assistant-data?topic=assistant-data-tutorial) tutorial.
+    - Learn about slots with the [Adding a node with slots](/docs/assistant-data?topic=assistant-data-tutorial-slots) tutorial.
+- Check out more [sample apps](/docs/assistant-data?topic=assistant-data-sample-apps) to get ideas.

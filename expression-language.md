@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2019-10-24"
+lastupdated: "2020-01-29"
 
 subcollection: assistant-data
 
@@ -256,7 +256,7 @@ The following example shows how to access input:
 - To execute a node if the user input is "Yes", add this expression to the node condition:
   `input.text == 'Yes'`
 
-You can use any of the [String methods](/docs/services/assistant/dialog-methods#dialog-methods-strings) to evaluate or manipulate text from the user input. For example:
+You can use any of the [String methods](/docs/assistant/dialog-methods#dialog-methods-strings) to evaluate or manipulate text from the user input. For example:
 
 - To check whether the user input contains "Yes", use: `input.text.contains( 'Yes' )`.
 - Returns true if the user input is a number: `input.text.matches( '[0-9]+' )`.

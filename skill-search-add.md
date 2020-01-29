@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2019-11-27"
+lastupdated: "2020-01-29"
 
 subcollection: assistant-data
 
@@ -47,7 +47,7 @@ To learn more about how search skill can benefit your business, [read this blog 
 
 The search skill searches for information from a data collection that you create by using {{site.data.keyword.discoveryshort}} for {{site.data.keyword.icp4dfull_notm}}.
 
-{{site.data.keyword.discoveryshort}} for {{site.data.keyword.icp4dfull_notm}} crawls, converts, and normalizes your unstructured data. The product applies data analysis and cognitive intuition to enrich your data such that you can more easily find and retrieve meaningful information from it later. To read more about {{site.data.keyword.discoveryshort}}, see the [product documentation](/docs/services/discovery-data?topic=discovery-data-about){: external}.
+{{site.data.keyword.discoveryshort}} for {{site.data.keyword.icp4dfull_notm}} crawls, converts, and normalizes your unstructured data. The product applies data analysis and cognitive intuition to enrich your data such that you can more easily find and retrieve meaningful information from it later. To read more about {{site.data.keyword.discoveryshort}}, see the [product documentation](/docs/discovery-data?topic=discovery-data-about){: external}.
 
 Typically, the type of data collection you add to {{site.data.keyword.discoveryshort}} and access from your assistant contains information that is owned by your company. This proprietary information can include FAQs, sales collateral, technical manuals, or papers written by subject matter experts. Mine this dense collection of proprietary information to find answers to customer questions quickly.
 
@@ -103,7 +103,7 @@ When the {{site.data.keyword.discoveryshort}} application opens in a new browser
         1.  Click **Next**.
         1.  Provide the required information for the data source you choose.
 
-            See [Creating collections](/docs/services/discovery-data?topic=discovery-data-collections){: external} for more details.
+            See [Creating collections](/docs/discovery-data?topic=discovery-data-collections){: external} for more details.
         1.  Indicate the frequency with which you want data from the data source to be synchronized with the collection you are creating in {{site.data.keyword.discoveryshort}}.
         1.  Specify the information that you want to extract from the data source and include in your {{site.data.keyword.discoveryshort}} collection.
 
@@ -129,7 +129,7 @@ When the {{site.data.keyword.discoveryshort}} application opens in a new browser
             - Collection name. The name must be unique for this service instance.
             - Language. Select the language of the files that you are adding to this collection. 
             
-              For information about the languages supported by {{site.data.keyword.discoveryshort}}, see [Language support](/docs/services/discovery-data?topic=discovery-data-language-support){: external}.
+              For information about the languages supported by {{site.data.keyword.discoveryshort}}, see [Language support](/docs/discovery-data?topic=discovery-data-language-support){: external}.
 
               If you are uploading a PDF document and want to extract party, nature, and category information from it, then expand the **Advanced** section and click **Use the Default Contract Configuration with this collection**.
 
@@ -156,7 +156,7 @@ For example, you might have a JSON file like this one:
   "Title": "About",
   "Shortdesc": "IBM Watson Assistant is a cognitive bot that you can customize for your business needs, and deploy across multiple channels to bring help to your customers where and when they need it.",
   "Topics": "overview",
-  "url": "https://cloud.ibm.com/docs/services/assistant-data?topic=assistant-data-index"
+  "url": "https://cloud.ibm.com/docs/assistant-data?topic=assistant-data-index"
 }
 ```
 {: codeblock}
@@ -245,7 +245,7 @@ The appropriate collection fields to extract data from vary depending on your co
 
 To learn more about the structure of the documents in your collection, including the names of fields that contain information you might want to extract, open the collection in {{site.data.keyword.discoveryshort}}.
 
-The source fields are created when the collection is created. To learn more about fields that are generated for you, such as `enriched_text.concepts.text`, see [Creating enrichments](/docs/services/discovery-data?topic=discovery-data-create-enrichments){: external}.
+The source fields are created when the collection is created. To learn more about fields that are generated for you, such as `enriched_text.concepts.text`, see [Creating enrichments](/docs/discovery-data?topic=discovery-data-create-enrichments){: external}.
 
 ## Troubleshooting
 {: #skill-search-add-troubleshoot}
@@ -262,7 +262,7 @@ Review this information for help with performing common tasks.
 
   This feature enables you to annotate documents based on text formatting. For example, you can teach {{site.data.keyword.discoveryshort}} that any text in 28-point bold font is a document title. If you apply this information to the collection when you ingest it, you can later use the *title* field as the source for the title section of your search result. 
   
-  You can also use Smart Document Understanding to split up large documents into segments that are easier to search. For more information, see the the [Configuring your collection with Smart Document Understanding](/docs/services/discovery-data?topic=discovery-data-configuring-fields){: external} topic in the {{site.data.keyword.discoveryshort}} documentation.
+  You can also use Smart Document Understanding to split up large documents into segments that are easier to search. For more information, see the the [Configuring your collection with Smart Document Understanding](/docs/discovery-data?topic=discovery-data-configuring-fields){: external} topic in the {{site.data.keyword.discoveryshort}} documentation.
 
 - **Improve search results**: If you don't like the results you are seeing, review this information for help.
 
@@ -270,7 +270,7 @@ Review this information for help with performing common tasks.
 
     From a dialog node search skill response, you can specify a full {{site.data.keyword.discoveryshort}} query syntax filter to help narrow the results. 
     
-    For example, you can define a filter that filters out any documents in the data collection that do not mention an intent in the document title or some other metadata field. Or the filter can filter out documents that do not identify an entity as a known entity in the data collection's metadata or that don't mention the entity anywhere in the full text of the document. For details about how to add a search skill response type, see [Adding rich responses](https://cloud.ibm.com/docs/services/assistant-data?topic=assistant-data-dialog-overview#dialog-overview-multimedia-add).
+    For example, you can define a filter that filters out any documents in the data collection that do not mention an intent in the document title or some other metadata field. Or the filter can filter out documents that do not identify an entity as a known entity in the data collection's metadata or that don't mention the entity anywhere in the full text of the document. For details about how to add a search skill response type, see [Adding rich responses](https://cloud.ibm.com/docs/assistant-data?topic=assistant-data-dialog-overview#dialog-overview-multimedia-add).
 
     For more tips about improving results, read the [Improve your natural language query results from Watson Discovery](https://developer.ibm.com/blogs/improving-your-natural-language-query-results-from-watson-discovery/){: external} blog post.
 
@@ -279,7 +279,7 @@ Review this information for help with performing common tasks.
 
 After you create the skill, it appears as a tile on the Skills page.
 
-The search skill cannot interact with customers until it is added to an assistant and the assistant is deployed. See [Creating assistants](/docs/services/assistant-data?topic=assistant-data-assistant-add).
+The search skill cannot interact with customers until it is added to an assistant and the assistant is deployed. See [Creating assistants](/docs/assistant-data?topic=assistant-data-assistant-add).
 
 ### Adding the skill to an assistant
 {: #skill-search-add-to-assistant}
@@ -309,7 +309,7 @@ After you add a search skill to an assistant, it is automatically enabled for th
   You can prevent the search from being triggered from the `anything_else` node by following the steps in [Disabling search](#search-skill-add-disable).
   {: note}
 
-- If you want a specific search query to be triggered for specific questions, add a *search skill* response type to the appropriate dialog node. See [Responses](/docs/services/assistant-data?topic=assistant-data-dialog-overview#dialog-overview-multimedia) for more details.
+- If you want a specific search query to be triggered for specific questions, add a *search skill* response type to the appropriate dialog node. See [Responses](/docs/assistant-data?topic=assistant-data-dialog-overview#dialog-overview-multimedia) for more details.
 
 ## Search triggers
 {: #skill-search-add-trigger}

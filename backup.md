@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-01-10"
+lastupdated: "2020-01-28"
 
 subcollection: assistant-data
 
@@ -262,7 +262,7 @@ To add the values that are required but currently missing from the file, complet
     ```
     {: codeblock}
 
-    Copy the host that is specified in the `RESOURCE_CONTROLLER_URL`. For example, in this sample URL, the host is  `pjmga2-addon-assistant-gateway-svc.zen`.
+    Copy the host that is specified in the `RESOURCE_CONTROLLER_URL`.
 
 1.  To get the port information, again check the RESOURCE_CONTROLLER_URL entry. The port is specified after `<host>:` in the URL. In this sample URL, the port is `5000`.
 

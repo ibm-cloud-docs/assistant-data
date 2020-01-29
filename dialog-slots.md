@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2019-11-27"
+lastupdated: "2020-01-29"
 
 subcollection: assistant-data
 
@@ -46,7 +46,7 @@ The user might provide values for mutliple slots at once. For example, the input
 
 ![Shows that two slots are filled, and the service prompts for the remaining one.](images/pass-in-info.png)
 
-Slots make it possible for your assistant to answer follow-up questions without having to reestablish the user's goal. For example, a user might ask for a weather forecast, then ask a follow-up question about weather in another location or on a different day. If you save the required forecast variables, such as location and day, in slots, then if a user asks a follow-up question with new variable values, you can overwrite the slot values with the new values provided, and give a response that reflects the new information. (For more information about how to call an external service from a dialog, see [Making programmatic calls from a dialog node](/docs/services/assistant-data?topic=assistant-data-dialog-webhooks)).
+Slots make it possible for your assistant to answer follow-up questions without having to reestablish the user's goal. For example, a user might ask for a weather forecast, then ask a follow-up question about weather in another location or on a different day. If you save the required forecast variables, such as location and day, in slots, then if a user asks a follow-up question with new variable values, you can overwrite the slot values with the new values provided, and give a response that reflects the new information. (For more information about how to call an external service from a dialog, see [Making programmatic calls from a dialog node](/docs/assistant-data?topic=assistant-data-dialog-webhooks)).
 
 ![Shows someone asking for a weather forecast, and then following up with a question about weather for a different location and time.](images/follow-up.png)
 
@@ -60,7 +60,7 @@ Using slots produces a more natural dialog flow between the user and your assist
     - Delivery time
     - Size
 
-1.  If you have not started to create a dialog, follow the instructions in [Creating a dialog](/docs/services/assistant-data?topic=assistant-data-dialog-build) to create one.
+1.  If you have not started to create a dialog, follow the instructions in [Creating a dialog](/docs/assistant-data?topic=assistant-data-dialog-build) to create one.
 
 1.  From the dialog node edit view, click **Customize**, and then click the toggle next to **Slots** to turn it **On**.
 
@@ -237,14 +237,14 @@ Using slots produces a more natural dialog flow between the user and your assist
 
     You can alternatively show an image or list of options as a response instead of a text response. See [Response type options](#dialog-slots-response-types).
 
-    If you want to define different responses based on certain conditions, click **Customize**, and then click the **Multiple responses** toggle to turn it **On**. For information about conditional responses, see [Conditional responses](/docs/services/assistant-data?topic=assistant-data-dialog-overview#dialog-overview-multiple).
+    If you want to define different responses based on certain conditions, click **Customize**, and then click the **Multiple responses** toggle to turn it **On**. For information about conditional responses, see [Conditional responses](/docs/assistant-data?topic=assistant-data-dialog-overview#dialog-overview-multiple).
 1.  **Add logic that resets the slot context variables**. As you collect answers from the user per slot, they are saved in context variables. You can use the context variables to pass the information to another node or to an application or external service for use. However, after passing the information, you must set the context variables to null to reset the node so it can start collecting information again. You cannot null the context variables within the current node because your assistant will not exit the node until the required slots are filled. Instead, consider using one of the following methods:
 
     - Add processing to the external application that nulls the variables.
     - Add a child node that nulls the variables.
     - Insert a parent node that nulls the variables, and then jumps to the node with slots.
 
-Give it a try! Follow the step-by-step [tutorial](/docs/services/assistant-data?topic=assistant-data-tutorial-slots).
+Give it a try! Follow the step-by-step [tutorial](/docs/assistant-data?topic=assistant-data-tutorial-slots).
 
 ## Slots usage tips
 {: #dialog-slots-tips}
@@ -328,7 +328,7 @@ For example, time values are saved in the `hh:mm:ss` format. You can use the JSO
 ```
 {: codeblock}
 
-See [Expression language methods](/docs/services/assistant-data?topic=assistant-data-dialog-methods) for other reformatting ideas.
+See [Expression language methods](/docs/assistant-data?topic=assistant-data-dialog-methods) for other reformatting ideas.
 
 ### Dealing with zeros
 {: #dialog-slots-zero}

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2019-06-28"
+lastupdated: "2020-01-29"
 
 subcollection: assistant-data
 
@@ -38,7 +38,7 @@ The following supplemental information applies to the add-on.
 ## System requirements
 {: #install-120-addon-reqs-over}
 
-See [System requirements](/docs/services/assistant-data?topic=assistant-data-install-120#install-120-reqs-over).
+See [System requirements](/docs/assistant-data?topic=assistant-data-install-120#install-120-reqs-over).
 
 ## Creating persistent volumes for a production environment
 {: #install-120-addon-create-pvs-prod}

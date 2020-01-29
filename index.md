@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2019-11-25"
+lastupdated: "2020-01-29"
 
 subcollection: assistant-data
 
@@ -89,11 +89,11 @@ Here's how you implement your assistant:
 
 Read more about these steps by following these links:
 
-- [Intent creation overview](/docs/services/assistant-data?topic=assistant-data-intents#intents-described)
-- [Dialog overview](/docs/services/assistant-data?topic=assistant-data-dialog-overview)
-- [Entity creation overview](/docs/services/assistant-data?topic=assistant-data-entities#entities-described)
-- [Assistant overview](/docs/services/assistant-data?topic=assistant-data-assistant-add)
-- [Building a client application](/docs/services/assistant-data?topic=assistant-data-api-client)
+- [Intent creation overview](/docs/assistant-data?topic=assistant-data-intents#intents-described)
+- [Dialog overview](/docs/assistant-data?topic=assistant-data-dialog-overview)
+- [Entity creation overview](/docs/assistant-data?topic=assistant-data-entities#entities-described)
+- [Assistant overview](/docs/assistant-data?topic=assistant-data-assistant-add)
+- [Building a client application](/docs/assistant-data?topic=assistant-data-api-client)
 
 ## Browser support
 {: #index-browser-support}
@@ -103,7 +103,7 @@ The {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull_no
 ## Language support
 {: #index-language-support}
 
-Language support by feature is detailed in the [Supported languages](/docs/services/assistant-data?topic=assistant-data-language-support) topic.
+Language support by feature is detailed in the [Supported languages](/docs/assistant-data?topic=assistant-data-language-support) topic.
 
 ## Security
 {: #index-security}
@@ -113,8 +113,8 @@ Federal Information Security Management Act (FISMA) support is available for {{s
 ## Next steps
 {: #index-next-steps}
 
-- [Get started](/docs/services/assistant-data?topic=assistant-data-getting-started) with the service
-- Try out some [demos](/docs/services/assistant-data?topic=assistant-data-sample-apps).
+- [Get started](/docs/assistant-data?topic=assistant-data-getting-started) with the service
+- Try out some [demos](/docs/assistant-data?topic=assistant-data-sample-apps).
 - View the list of [developer resources](https://www.ibm.com/watson/developer-resources/){: external}.
 
 Still have questions? Contact [IBM Sales](https://www-01.ibm.com/marketing/iwm/dre/signup?source=urx-20970){: external}.

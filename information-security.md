@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2019-11-25"
+lastupdated: "2020-01-29"
 
 subcollection: assistant-data
 
@@ -36,8 +36,8 @@ The products, services, and other capabilities described herein are not suitable
 
 If you need to request GDPR support for {{site.data.keyword.cloud}} {{site.data.keyword.watson}} resources that are created
 
-- In the European Union, see [Requesting support for IBM Cloud Watson resources created in the European Union](https://cloud.ibm.com/docs/services/watson/getting-started-gdpr-sar#request-EU){: external}.
-- Outside the European Union, see [Requesting support for resources outside the European Union](https://cloud.ibm.com/docs/services/watson/getting-started-gdpr-sar#request-non-EU){: external}.
+- In the European Union, see [Requesting support for IBM Cloud Watson resources created in the European Union](https://cloud.ibm.com/docs/watson/getting-started-gdpr-sar#request-EU){: external}.
+- Outside the European Union, see [Requesting support for resources outside the European Union](https://cloud.ibm.com/docs/watson/getting-started-gdpr-sar#request-non-EU){: external}.
 
 ## European Union General Data Protection Regulation (GDPR)
 {: #information-security-gdpr}

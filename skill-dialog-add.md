@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2019-11-25"
+lastupdated: "2020-01-29"
 
 subcollection: assistant-data
 
@@ -78,10 +78,10 @@ To add a skill, complete the following steps:
 
 After you create the dialog skill, it appears as a tile on the Skills page. Now, you can start identifying the user goals that you want the dialog skill to address.
 
-- To add prebuilt intents to your skill, see [Using content catalogs](/docs/services/assistant-data?topic=assistant-data-catalog).
-- To define your own intents, see [Defining intents](/docs/services/assistant-data?topic=assistant-data-intents).
+- To add prebuilt intents to your skill, see [Using content catalogs](/docs/assistant-data?topic=assistant-data-catalog).
+- To define your own intents, see [Defining intents](/docs/assistant-data?topic=assistant-data-intents).
 
-The dialog skill cannot interact with customers until it is added to an assistant and the assistant is deployed. See [Creating an assistant](/docs/services/assistant-data?topic=assistant-data-assistant-add).
+The dialog skill cannot interact with customers until it is added to an assistant and the assistant is deployed. See [Creating an assistant](/docs/assistant-data?topic=assistant-data-assistant-add).
 
 ### Troubleshooting skill import issues
 {: #skill-dialog-add-import-errors}
