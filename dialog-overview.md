@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2019-11-26"
+lastupdated: "2020-01-29"
 
 subcollection: assistant-data
 
@@ -79,7 +79,7 @@ You can disrupt the standard first-to-last flow in the following ways:
 
 - By customizing what happens after a node is processed. For example, you can configure a node to jump directly to another node after it is processed, even if the other node is positioned earlier in the tree. See [Defining what to do next](#dialog-overview-jump-to) for more information.
 - By configuring conditional responses to jump to other nodes. See [Conditional responses](#dialog-overview-multiple) for more information.
-- By configuring digression settings for dialog nodes. Digressions can also impact how users move through the nodes at run time. If you enable digressions away from most nodes and configure returns, users can jump from one node to another and back again more easily. See [Digressions](/docs/services/assistant-data?topic=assistant-data-dialog-runtime#dialog-runtime-digressions) for more information.
+- By configuring digression settings for dialog nodes. Digressions can also impact how users move through the nodes at run time. If you enable digressions away from most nodes and configure returns, users can jump from one node to another and back again more easily. See [Digressions](/docs/assistant-data?topic=assistant-data-dialog-runtime#dialog-runtime-digressions) for more information.
 
 ## Conditions
 {: #dialog-overview-conditions}
@@ -90,7 +90,7 @@ A node condition determines whether that node is used in the conversation. Respo
 - [Special conditions](#dialog-overview-special-conditions)
 - [Condition syntax details](#dialog-overview-condition-syntax)
 
-For tips on performing more advanced actions in conditions, see [Condition usage tips](/docs/services/assistant-data?topic=assistant-data-dialog-tips#dialog-tips-condition-usage-tips).
+For tips on performing more advanced actions in conditions, see [Condition usage tips](/docs/assistant-data?topic=assistant-data-dialog-tips#dialog-tips-condition-usage-tips).
 
 ### Condition artifacts
 {: #dialog-overview-condition-artifacts}
@@ -106,14 +106,14 @@ You can use one or more of the following artifacts in any combination to define 
 
   For response conditions, this artifact type can be used alone. You can change the response based on a specific context variable value. For example, `$city:Boston` checks whether the `$city` context variable contains the value, `Boston`. If so, the response is returned.
   
-  For more information about context variables, see [Context variables](/docs/services/assistant-data?topic=assistant-data-dialog-runtime#dialog-runtime-context).
+  For more information about context variables, see [Context variables](/docs/assistant-data?topic=assistant-data-dialog-runtime#dialog-runtime-context).
 
 - **Entity**: The node is used when any value or synonym for the entity is recognized in the user input. Use the syntax, `@entity_name`. For example, `@city` checks whether any of the city names that are defined for the @city entity were detected in the user input. If so, the node or response is processed.
 
   Consider creating a peer node to handle the case where none of the entity's values or synonyms are recognized.
   {: tip}
 
-  For more information about entities, see [Defining entities](/docs/services/assistant-data?topic=assistant-data-entities).
+  For more information about entities, see [Defining entities](/docs/assistant-data?topic=assistant-data-entities).
 
 - **Entity value**: The node is used if the entity value is detected in the user input. Use the syntax, `@entity_name:value` and specify a defined value for the entity, not a synonym. For example: `@city:Boston` checks whether the specific city name, `Boston`, was detected in the user input.
 
@@ -121,11 +121,11 @@ You can use one or more of the following artifacts in any combination to define 
   {: tip}
 
   If the entity is a pattern entity with capture groups, then you can check for a certain group value match. For example, you can use the syntax: `@us_phone.groups[1] == '617'`
-  See [Storing and recognizing pattern entity groups in input](/docs/services/assistant-data?topic=assistant-data-dialog-tips#dialog-tips-get-pattern-groups) for more information.
+  See [Storing and recognizing pattern entity groups in input](/docs/assistant-data?topic=assistant-data-dialog-tips#dialog-tips-get-pattern-groups) for more information.
 
 - **Intent**: The simplest condition is a single intent. The node is used if, after your assistant's natural language processing evaluates the user's input, it determines that the purpose of the user's input maps to the pre-defined intent. Use the syntax, `#intent_name`. For example, `#weather` checks if the user input is asking for a weather forecast. If so, the node with the `#weather` intent condition is processed.
 
-  For more information about intents, see [Defining intents](/docs/services/assistant-data?topic=assistant-data-intents).
+  For more information about intents, see [Defining intents](/docs/assistant-data?topic=assistant-data-intents).
 
 - **Special condition**: Conditions that are provided with the product that you can use to perform common dialog functions. See the **Special conditions** table in the next section for details.
 
@@ -147,11 +147,11 @@ You can use one or more of the following artifacts in any combination to define 
 
 Use one of these syntax options to create valid expressions in conditions:
 
-- Shorthand notations to refer to intents, entities, and context variables. See [Accessing and evaluating objects](/docs/services/assistant-data?topic=assistant-data-expression-language).
+- Shorthand notations to refer to intents, entities, and context variables. See [Accessing and evaluating objects](/docs/assistant-data?topic=assistant-data-expression-language).
 
 - Spring Expression (SpEL) language, which is an expression language that supports querying and manipulating an object graph at run time. See [Spring Expression Language (SpEL) language](http://docs.spring.io/spring/docs/current/spring-framework-reference/html/expressions.html){: external} for more information.
 
-You can use regular expressions to check for values to condition against.  To find a matching string, for example, you can use the `String.find` method. See  [Methods](/docs/services/assistant-data?topic=assistant-data-dialog-methods) for more details.
+You can use regular expressions to check for values to condition against.  To find a matching string, for example, you can use the `String.find` method. See  [Methods](/docs/assistant-data?topic=assistant-data-dialog-methods) for more details.
 
 ## Responses
 {: #dialog-overview-responses}
@@ -171,7 +171,7 @@ If you want to provide a text response, simply enter the text that you want your
 
 ![Shows a node that shows a user ask, Where are you located, and the dialog response is, We have no brick and mortar stores! But, with an internet connection, you can shop us from anywhere.](images/response-simple.png)
 
-To include a context variable value in the response, use the syntax `$variable_name` to specify it. See [Context variables](/docs/services/assistant-data?topic=assistant-data-dialog-runtime#dialog-runtime-context) for more information. For example, if you know that the $user context variable is set to the current user's name before a node is processed, then you can refer to it in the text response of the node like this:
+To include a context variable value in the response, use the syntax `$variable_name` to specify it. See [Context variables](/docs/assistant-data?topic=assistant-data-dialog-runtime#dialog-runtime-context) for more information. For example, if you know that the $user context variable is set to the current user's name before a node is processed, then you can refer to it in the text response of the node like this:
 
 ```
 Hello $user
@@ -324,7 +324,7 @@ In addition to the default response type of **Text**, for which you specify the 
 - **Image**: Embeds an image into the response. The source image file must be hosted somewhere and have a URL that you can use to reference it. It cannot be a file that is stored in a directory that is not publicly accessible.
 - **Option**: Adds a list of one or more options. When a user clicks one of the options, an associated user input value is sent to your assistant. How options are rendered can differ depending on where you deploy the dialog. For example, in one integration channel the options might be displayed as clickable buttons, but in another they might be displayed as a dropdown list.
 - **Pause**: Forces the application to wait for a specified number of milliseconds before continuing with processing. You can choose to show an indicator that the dialog is working on typing a response. Use this response type if you need to perform an action that might take some time. For example, a parent node makes a Cloud Function call and displays the result in a child node. You could use this response type as the response for the parent node to give the programmatic call time to complete, and then jump to the child node to show the result. This response type does not render in the "Try it out" pane. You must access a node that uses this response type from a test deployment to see how your users will experience it.
-- **Search skill**: Searches an external data source for relevant information to return to the user. The data source that is searched is a {{site.data.keyword.discoveryshort}} service data collection that you configure when you add a search skill to the assistant that uses this dialog skill. For more information, see [Creating a search skill](/docs/services/assistant-data?topic=assistant-data-skill-search-add).
+- **Search skill**: Searches an external data source for relevant information to return to the user. The data source that is searched is a {{site.data.keyword.discoveryshort}} service data collection that you configure when you add a search skill to the assistant that uses this dialog skill. For more information, see [Creating a search skill](/docs/assistant-data?topic=assistant-data-skill-search-add).
 
 #### Adding rich responses
 {: #dialog-overview-multimedia-add}
@@ -419,7 +419,7 @@ To add a rich response, complete the following steps:
 
           You can include specific information provided by the user by referencing entities that were detected in the user's input as part of the query. For example, `Tell me about @product`. Or you can reference a context variable, such as `Do you have flights to $destination?`. Just be sure to design your dialog such that the search is not triggered unless any entities or context variables that you reference in the query have been set to valid values.
 
-          This field is equivalent to the {{site.data.keyword.discoveryshort}} `natural_language_query` parameter. For more information, see [Query parameters](/docs/services/discovery?topic=discovery-query-parameters#nlq){: external}.
+          This field is equivalent to the {{site.data.keyword.discoveryshort}} `natural_language_query` parameter. For more information, see [Query parameters](/docs/discovery?topic=discovery-query-parameters#nlq){: external}.
 
         - **Filter**: Optional. Specify a text string that defines information that must be present in any of the search results that are returned.
 
@@ -433,7 +433,7 @@ To add a rich response, complete the following steps:
 
         If you add both a query and a filter value, then the filter parameter is applied first to filter the data collection documents and cache the results. The query parameter then ranks the cached results. 
 
-        This field is equivalent to the {{site.data.keyword.discoveryshort}} `filter` parameter. For more information, see [Query parameters](/docs/services/discovery?topic=discovery-query-parameters#filter){: external}.
+        This field is equivalent to the {{site.data.keyword.discoveryshort}} `filter` parameter. For more information, see [Query parameters](/docs/discovery?topic=discovery-query-parameters#filter){: external}.
 
       This response type only returns a valid response if the assistant to which you added this dialog skill also has a search skill associated with it.
 
@@ -458,7 +458,7 @@ A single dialog node can provide different responses, each one triggered by a di
 
 The node still has a main condition, which is the condition for using the node and processing the conditions and responses that it contains.
 
-In this example, your assistant uses information that it collected earlier about the user's location to tailor its response, and provide information about the store nearest the user. See [Context variables](/docs/services/assistant-data?topic=assistant-data-dialog-runtime#dialog-runtime-context) for more information about how to store information collected from the user.
+In this example, your assistant uses information that it collected earlier about the user's location to tailor its response, and provide information about the store nearest the user. See [Context variables](/docs/assistant-data?topic=assistant-data-dialog-runtime#dialog-runtime-context) for more information about how to store information collected from the user.
 
 ![Shows a node that shows a user ask, Where are you located, and the dialog has three different responses depending on conditions that use info from the $state context variable to specify locations in those states.](images/multiple-responses.png)
 
@@ -525,4 +525,4 @@ If you choose to jump to another node, specify when the target node is processed
 
 For information about the expression language used by dialog, plus methods, system entities, and other useful details, see the **Reference** section in the navigation pane.
 
-You can also use the API to add nodes or otherwise edit a dialog. See [Modifying a dialog using the API](/docs/services/assistant-data?topic=assistant-data-api-dialog-modify) for more information.
+You can also use the API to add nodes or otherwise edit a dialog. See [Modifying a dialog using the API](/docs/assistant-data?topic=assistant-data-api-dialog-modify) for more information.

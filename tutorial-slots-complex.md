@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2019-09-03"
+lastupdated: "2020-01-29"
 
 subcollection: assistant-data
 
@@ -46,7 +46,7 @@ This tutorial will take approximately 2 to 3 hours to complete.
 ### Prerequisite
 {: #tutorial-slots-complex-prereqs}
 
-Before you begin, complete the [Adding a node with slots to a dialog](/docs/services/assistant-data?topic=assistant-data-tutorial-slots). You must complete the first slots tutorial before you begin this one because you will build on the node with slots that you create in the first tutorial.
+Before you begin, complete the [Adding a node with slots to a dialog](/docs/assistant-data?topic=assistant-data-tutorial-slots). You must complete the first slots tutorial before you begin this one because you will build on the node with slots that you create in the first tutorial.
 
 ## Step 1: Improve the format of the responses
 {: #tutorial-slots-complex-fix-format}
@@ -125,7 +125,7 @@ When the date and time system entity values are saved, they are converted into a
 
     This time Watson responds with, `OK. I am making you a reservation for 6 on Friday, December 29 at 5:00 PM.`
 
-You have successfully improved the format that the dialog uses when it references context variable values in its responses. The dialog now uses `Friday, December 29` instead of the more technical, `2017-12-29`. And it uses `5:00 PM` instead of `17:00:00`. To learn about other SpEL methods you can use with date and time values, see [Methods to process values](/docs/services/assistant-data?topic=assistant-data-dialog-methods#dialog-methods-date-time).
+You have successfully improved the format that the dialog uses when it references context variable values in its responses. The dialog now uses `Friday, December 29` instead of the more technical, `2017-12-29`. And it uses `5:00 PM` instead of `17:00:00`. To learn about other SpEL methods you can use with date and time values, see [Methods to process values](/docs/assistant-data?topic=assistant-data-dialog-methods#dialog-methods-date-time).
 
 ## Step 2: Ask for everything at once
 {: #tutorial-slots-complex-ask-for-everything}
@@ -657,7 +657,7 @@ Adding a node with slots is powerful because it keeps users on track with provid
 
     The `has_skipped_slots` condition checks the properties of the slots node to see if any of the slots were skipped. The `#exit` handler skips all remaining slots to go directly to the node response. So, when the `has_skipped_slots` property is present, you know the `#exit` intent was triggered, and the dialog can display an alternate response.
 
-    If you configure more than one slot to skip other slots, or configure another node-level event handler to skip slots, then you must use a different approach to check whether the #exit intent was triggered. See [Handling requests to exit a process](/docs/services/assistant-data?topic=assistant-data-dialog-slots#dialog-slots-node-level-handler) for an alternate way to do so.
+    If you configure more than one slot to skip other slots, or configure another node-level event handler to skip slots, then you must use a different approach to check whether the #exit intent was triggered. See [Handling requests to exit a process](/docs/assistant-data?topic=assistant-data-dialog-slots#dialog-slots-node-level-handler) for an alternate way to do so.
     {: note}
 
 1.  You want your assistant to check for the `has_skipped_slots` property before it displays the standard node-level response. Move the `has_skipped_slots` conditional response up so it gets processed before the original conditional response or it will never be triggered. To do so, click the response you just added, use the **up arrow** to move it up, and then click **Save**.
@@ -822,9 +822,9 @@ For the $time information, you will define a follow-up statement that is display
 ### Summary
 {: #tutorial-slots-complex-summary}
 
-In this tutorial you tested a node with slots and made changes that optimize how it interacts with real users. For more information about this subject, see [Gathering information with slots](/docs/services/assistant-data?topic=assistant-data-dialog-slots).
+In this tutorial you tested a node with slots and made changes that optimize how it interacts with real users. For more information about this subject, see [Gathering information with slots](/docs/assistant-data?topic=assistant-data-dialog-slots).
 
 ## Next steps
 {: #tutorial-slots-complex-deploy}
 
-Deploy your dialog skill by first connecting it to an assistant, and then deploying the assistant. For more details, see [Deploying](/docs/services/assistant-data?topic=assistant-data-deploy-custom-app).
+Deploy your dialog skill by first connecting it to an assistant, and then deploying the assistant. For more details, see [Deploying](/docs/assistant-data?topic=assistant-data-deploy-custom-app).

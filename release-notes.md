@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-01-07"
+lastupdated: "2020-01-29"
 
 subcollection: assistant-data
 
@@ -50,11 +50,11 @@ IBM releases services, features, and language support for your evaluation that a
 
   ![Skills secondary navigation menu](images/secondary-nav.png)
 
-- **Rich response types are supported in a dialog node with slots**. You can display a list of options for a user to choose from as the prompt for a slot, for example. For more information, see [Gathering information with slots](/docs/services/assistant-data?topic=assistant-data-dialog-slots).
+- **Rich response types are supported in a dialog node with slots**. You can display a list of options for a user to choose from as the prompt for a slot, for example. For more information, see [Gathering information with slots](/docs/assistant-data?topic=assistant-data-dialog-slots).
 - **Improved Entities, Dialog, and Intents page responsiveness**: The Entities, Dialog, and Intents pages were updated to use a new JavaScript library that increases the page responsiveness. As a result, the look of some graphical user interface elements, such as buttons, changed slightly, but the function did not.
-- **Creating contextual entities got easier**: The process you use to annotate entity mentions from intent user examples was improved. You can now put the intent page into annotation mode to more easily select and label mentions. For more information, see [Adding contextual entities](/docs/services/assistant-data?topic=assistant-data-entities#entities-create-annotation-based).
-- **Webhook callouts are available**: Add webhooks to dialog nodes to make programmatic calls to an external application as part of the conversational flow. This capability is being introduced as a beta feature. For more details, see [Making a programmatic call from dialog](/docs/services/assistant-data?topic=assistant-data-dialog-webhooks).
-- **Testing improvement**: You can now see the top three intents that were recognized in a test user input from the "Try it out" pane. For more details, see [Testing your dialog](/docs/services/assistant-data?topic=assistant-data-dialog-build#dialog-build-test).
+- **Creating contextual entities got easier**: The process you use to annotate entity mentions from intent user examples was improved. You can now put the intent page into annotation mode to more easily select and label mentions. For more information, see [Adding contextual entities](/docs/assistant-data?topic=assistant-data-entities#entities-create-annotation-based).
+- **Webhook callouts are available**: Add webhooks to dialog nodes to make programmatic calls to an external application as part of the conversational flow. This capability is being introduced as a beta feature. For more details, see [Making a programmatic call from dialog](/docs/assistant-data?topic=assistant-data-dialog-webhooks).
+- **Testing improvement**: You can now see the top three intents that were recognized in a test user input from the "Try it out" pane. For more details, see [Testing your dialog](/docs/assistant-data?topic=assistant-data-dialog-build#dialog-build-test).
 
 This release does not include the following features, which are available for cloud instances at the time of this release:
 
@@ -86,13 +86,13 @@ This release does not include the following features, which are currently availa
 
 **{{site.data.keyword.conversationfull}} for {{site.data.keyword.icp4dfull}} version 1.2 is available.**: The {{site.data.keyword.conversationshort}} tool now works with {{site.data.keyword.icp4dfull_notm}}. It does not work with stand-alone {{site.data.keyword.icpfull_notm}}. The following changes were made in this release:
 
-- Assistants are now available. An assistant can manage user sessions on your behalf. See [Assistants](/docs/services/assistant-data?topic=assistant-data-assistants).
-- Search skill is a new beta feature. You can create a search skill to trigger a search in an external data source that you configure in Watson Discovery. See [Creating a search skill](/docs/services/assistant-data?topic=assistant-data-skill-search-add).
-- Instead of creating a workspace as the container for your training data and dialog, you create a dialog skill. See [Creating a dialog skill](/docs/services/assistant-data?topic=assistant-data-skill-dialog-add).
-- Prevent your assistant from answering the wrong question by keeping your intents distinct from one another. Intent conflict resolution is now available. It can find intents with overlapping user examples, and gives you a graphical user interface in which to fix them. Nondistinct intents can result in misclassifications of user input. See [Resolving intent conflicts](/docs/services/assistant-data?topic=assistant-data-intents#intents-resolve-conflicts).
-- You can opt to see synonym recommendations that are made by Watson as you create a dictionary-based entity. See [Synonyms](/docs/services/assistant-data?topic=assistant-data-entities#entities-synonyms).
+- Assistants are now available. An assistant can manage user sessions on your behalf. See [Assistants](/docs/assistant-data?topic=assistant-data-assistants).
+- Search skill is a new beta feature. You can create a search skill to trigger a search in an external data source that you configure in Watson Discovery. See [Creating a search skill](/docs/assistant-data?topic=assistant-data-skill-search-add).
+- Instead of creating a workspace as the container for your training data and dialog, you create a dialog skill. See [Creating a dialog skill](/docs/assistant-data?topic=assistant-data-skill-dialog-add).
+- Prevent your assistant from answering the wrong question by keeping your intents distinct from one another. Intent conflict resolution is now available. It can find intents with overlapping user examples, and gives you a graphical user interface in which to fix them. Nondistinct intents can result in misclassifications of user input. See [Resolving intent conflicts](/docs/assistant-data?topic=assistant-data-intents#intents-resolve-conflicts).
+- You can opt to see synonym recommendations that are made by Watson as you create a dictionary-based entity. See [Synonyms](/docs/assistant-data?topic=assistant-data-entities#entities-synonyms).
 
-For information about upgrading from a previous version, see [Upgrading](/docs/services/assistant-data?topic=assistant-data-upgrade)
+For information about upgrading from a previous version, see [Upgrading](/docs/assistant-data?topic=assistant-data-upgrade)
 
 ### 21 February 2019
 {: #21February2019}

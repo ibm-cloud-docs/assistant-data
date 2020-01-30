@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2019-11-25"
+lastupdated: "2020-01-29"
 
 keywords: intent, intent conflicts, annotate
 
@@ -122,7 +122,7 @@ If you have defined, or plan to define, entities that are related to this intent
 
 As you define entities, you can annotate mentions of the entity directly from your existing intent user examples. A relationship that you identify in this way between the intent and the entity is *not* used by the intent classification model. However, when you add the mention to the entity, it is also added to that entity as new value. And when you add the mention to an existing entity value, it is also added to that entity value as new synonym. Intent classification does use these types of dictionary references in intent user examples to establish a weak reference between an intent and an entity.
 
-For more information about contextual entities, see [Adding contextual entities](/docs/services/assistant-data?topic=assistant-data-entities#entities-create-annotation-based).
+For more information about contextual entities, see [Adding contextual entities](/docs/assistant-data?topic=assistant-data-entities#entities-create-annotation-based).
 
 ### Directly referencing an entity name in an intent example
 {: #intents-entity-as-example}
@@ -139,7 +139,7 @@ You can choose to directly reference entities in your intent examples. For insta
 
 ![Screen capture showing intent definition](images/define_intent_entity.png)
 
-Currently, you can only directly reference synonym entities that you define (pattern values are ignored). You cannot use [system entities](/docs/services/assistant-data?topic=assistant-data-system-entities).
+Currently, you can only directly reference synonym entities that you define (pattern values are ignored). You cannot use [system entities](/docs/assistant-data?topic=assistant-data-system-entities).
 
 If you choose to reference an entity as an intent example (for example, `@PhoneModelName`) *anywhere* in your training data it cancels the value of using a direct reference (for example, *Galaxy S8*) in an intent example anywhere else. All intents will then use the entity-as-an-intent-example approach. You cannot apply this approach for a specific intent only.
 {: important}
@@ -175,7 +175,7 @@ After you have finished creating new intents, you can test the system to see if 
 
     ![Mark as irrelevant screen capture](images/irrelevant.png)
 
-    For more information about this action, see [Teaching your assistant about topics to ignore](/docs/services/assistant-data?topic=assistant-data-logs#logs-mark-irrelevant).
+    For more information about this action, see [Teaching your assistant about topics to ignore](/docs/assistant-data?topic=assistant-data-logs#logs-mark-irrelevant).
 
 If your intents are not being correctly recognized, consider making the following kinds of changes:
 
@@ -186,7 +186,7 @@ If your intents are not being correctly recognized, consider making the followin
 ## Absolute scoring
 {: #intents-absolute-scoring}
 
-The {{site.data.keyword.conversationshort}} service scores each intent’s confidence independently, not in relation to other intents. This approach adds flexibility; multiple intents can be detected in a single user input. It also means that the system might not return an intent at all. If the top intent has a low confidence score (less than 0.2), the top intent is included in the intents array that is returned by the API, but any nodes that condition on the intent are not triggered. If you want to detect the case when no intents with good confidence scores were detected, use the `irrelevant` special condition in your dialog node. See [Special conditions](/docs/services/assistant-data?topic=assistant-data-dialog-overview#dialog-overview-special-conditions) for more information.
+The {{site.data.keyword.conversationshort}} service scores each intent’s confidence independently, not in relation to other intents. This approach adds flexibility; multiple intents can be detected in a single user input. It also means that the system might not return an intent at all. If the top intent has a low confidence score (less than 0.2), the top intent is included in the intents array that is returned by the API, but any nodes that condition on the intent are not triggered. If you want to detect the case when no intents with good confidence scores were detected, use the `irrelevant` special condition in your dialog node. See [Special conditions](/docs/assistant-data?topic=assistant-data-dialog-overview#dialog-overview-special-conditions) for more information.
 
 As intent confidence scores change, your dialogs might need restructuring. For example, if a dialog node uses an intent in its condition, and the intent's confidence score starts to consistently drop below 0.2, the dialog node stops being processed. If the confidence score changes, the behavior of the dialog can also change.
 

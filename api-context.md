@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2019-11-26"
+lastupdated: "2020-01-29"
 
 subcollection: assistant-data
 
@@ -151,7 +151,7 @@ System.out.println(response);
 {: codeblock}
 {: java}
 
-In this example request, the application specifies a value for `user_id` as part of the global context. In addition, it sets one user-defined context variable (`account_number`) as part of the skill-specific context. This context variable can be accessed by dialog nodes as `$account_number`. (For more information about using the context in your dialog, see [How the dialog is processed](/docs/services/assistant-data?topic=assistant-data-dialog-runtime).)
+In this example request, the application specifies a value for `user_id` as part of the global context. In addition, it sets one user-defined context variable (`account_number`) as part of the skill-specific context. This context variable can be accessed by dialog nodes as `$account_number`. (For more information about using the context in your dialog, see [How the dialog is processed](/docs/assistant-data?topic=assistant-data-dialog-runtime).)
 
 You can specify any variable name you want to use for a user-defined context variable. If the specified variable already exists, it is overwritten with the new value; if not, a new variable is added to the context.
 

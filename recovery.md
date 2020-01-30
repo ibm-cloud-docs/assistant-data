@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2019-04-12"
+lastupdated: "2020-01-29"
 
 subcollection: assistant-data
 
@@ -33,4 +33,4 @@ You are responsible for understanding your configuration, customization, and usa
 ## Disaster recovery
 {: #recovery-dr}
 
-Your disaster recovery plan includes knowing, preserving, and being prepared to restore all data that is maintained on {{site.data.keyword.cloud}}. See [Backing up and restoring data](/docs/services/assistant-data?topic=assistant-data-backup) for information about how to back up your service instances.
+Your disaster recovery plan includes knowing, preserving, and being prepared to restore all data that is maintained on {{site.data.keyword.cloud}}. See [Backing up and restoring data](/docs/assistant-data?topic=assistant-data-backup) for information about how to back up your service instances.

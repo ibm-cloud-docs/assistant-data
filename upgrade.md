@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2019-12-03"
+lastupdated: "2020-01-29"
 
 subcollection: assistant-data
 
@@ -44,9 +44,9 @@ You cannot export the following data:
 
 To upgrade your instance, complete these steps:
 
-1.  From the earlier version of the service, [download any dialog skills](/docs/services/assistant-data?topic=assistant-data-skill-dialog-add#skill-dialog-add-download) that you want to keep. Store them in a repository that will not be impacted when you uninstall the product.
+1.  From the earlier version of the service, [download any dialog skills](/docs/assistant-data?topic=assistant-data-skill-dialog-add#skill-dialog-add-download) that you want to keep. Store them in a repository that will not be impacted when you uninstall the product.
 
-    If you are upgrading to V1.3, you [download workspaces](/docs/services/assistant-icp?topic=assistant-private-configure-workspace#exporting-and-copying-workspaces){: external} instead of skills.
+    If you are upgrading to V1.3, you [download workspaces](/docs/assistant-icp?topic=assistant-private-configure-workspace#exporting-and-copying-workspaces){: external} instead of skills.
 
     Alternatively, you can use the `/workspaces` API to export a dialog skill. Include the `export=true` parameter with the GET workspace request. See the [API reference ](https://cloud.ibm.com/apidocs/assistant/assistant-data-v1#get-information-about-a-workspace){: external} for more details.
     
@@ -54,7 +54,7 @@ To upgrade your instance, complete these steps:
 1.  Install the new version of the service.
 1.  Import the data you downloaded from your previous skill by creating a new dialog skill. 
 
-    At creation time, choose to import a skill, and then upload the JSON file from the skill that was exported earlier. For more details, see [Creating a dialog skill](/docs/services/assistant-data?topic=assistant-data-skill-dialog-add).
+    At creation time, choose to import a skill, and then upload the JSON file from the skill that was exported earlier. For more details, see [Creating a dialog skill](/docs/assistant-data?topic=assistant-data-skill-dialog-add).
 
     If you are upgrading to V1.3, in this version of the product, a workspace is now represented by a dialog skill.
     {: note} 
@@ -64,7 +64,7 @@ To upgrade your instance, complete these steps:
 
 You can now re-create your assistant. You can then link your imported dialog skill to the assistant.
 
-See [Creating an assistant](/docs/services/assistant-data?topic=assistant-data-assistant-add) for more details.
+See [Creating an assistant](/docs/assistant-data?topic=assistant-data-assistant-add) for more details.
 
 ## Update your client applications (V1.3 and earlier only)
 {: #upgrade-api}

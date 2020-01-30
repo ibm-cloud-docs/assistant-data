@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2019-10-24"
+lastupdated: "2020-01-29"
 
 subcollection: assistant-data
 
@@ -83,22 +83,22 @@ To create a dialog, complete the following steps:
 
     The condition you define must be less than 2,048 characters in length.
 
-    For more information about how to test for values in conditions, see [Conditions](/docs/services/assistant-data?topic=assistant-data-dialog-overview#dialog-overview-conditions).
-1.  **Optional**: If you want to collect multiple pieces of information from the user in this node, then click **Customize** and enable **Slots**. See [Gathering information with slots](/docs/services/assistant-data?topic=assistant-data-dialog-slots) for more details.
+    For more information about how to test for values in conditions, see [Conditions](/docs/assistant-data?topic=assistant-data-dialog-overview#dialog-overview-conditions).
+1.  **Optional**: If you want to collect multiple pieces of information from the user in this node, then click **Customize** and enable **Slots**. See [Gathering information with slots](/docs/assistant-data?topic=assistant-data-dialog-slots) for more details.
 1.  Enter a response.
     - Add the text or multimedia elements that you want your assistant to display to the user as a response.
     - If you want to define different responses based on certain conditions, then click **Customize** and enable **Multiple responses**.
-    - For information about conditional responses, rich responses, or how to add variety to responses, see [Responses](/docs/services/assistant-data?topic=assistant-data-dialog-overview#dialog-overview-responses).
+    - For information about conditional responses, rich responses, or how to add variety to responses, see [Responses](/docs/assistant-data?topic=assistant-data-dialog-overview#dialog-overview-responses).
 
 1.  Specify what to do after the current node is processed. You can choose from the following options:
 
     - **Wait for user input**: Your assistant pauses until new input is provided by the user.
     - **Skip user input**: Your assistant jumps directly to the first child node. This option is only available if the current node has at least one child node.
-    - **Jump to**: Your assistant continues the dialog by processing the node you specify. You can choose whether your assistant should evaluate the target node's condition or skip directly to the target node's response. See [Configuring the Jump to action](/docs/services/assistant-data?topic=assistant-data-dialog-overview#dialog-overview-jump-to-config) for more details.
+    - **Jump to**: Your assistant continues the dialog by processing the node you specify. You can choose whether your assistant should evaluate the target node's condition or skip directly to the target node's response. See [Configuring the Jump to action](/docs/assistant-data?topic=assistant-data-dialog-overview#dialog-overview-jump-to-config) for more details.
 
 1.  **Optional**: If you want this node to be considered when users are shown a set of node choices at run time, and asked to pick the one that best matches their goal, then add a short description of the user goal handled by this node to the **external node name** field. For example, *Open an account*.
 
-    See [Disambiguation](/docs/services/assistant-data?topic=assistant-data-dialog-runtime#dialog-runtime-disambiguation) for more details.
+    See [Disambiguation](/docs/assistant-data?topic=assistant-data-dialog-runtime#dialog-runtime-disambiguation) for more details.
 
 1.  **Optional**: Name the node.
 
@@ -112,7 +112,7 @@ To create a dialog, complete the following steps:
     - To create a child node to the selected node, select **Add child node**. A child node is processed after its parent node.
     - To copy the current node, select **Duplicate**.
 
-    For more information about the order in which dialog nodes are processed, see [Dialog overview](/docs/services/assistant-data?topic=assistant-data-dialog-overview#dialog-overview-flow).
+    For more information about the order in which dialog nodes are processed, see [Dialog overview](/docs/assistant-data?topic=assistant-data-dialog-overview#dialog-overview-flow).
 1.  Test the dialog as you build it.
    See [Testing your dialog](#dialog-build-test) for more information.
 
@@ -142,7 +142,7 @@ Queries you submit through the "Try it out" pane generate `/message` API calls, 
 1.  If the response is not what you expected it to be, you can take the following actions from the "Try it out" pane:
     
     - If you want to edit an entity that is recognized in the input, click the entity name to open it in the Entities page. 
-    - If the wrong intent is recognized, you can click the arrow next to the intent name to correct it or mark the topic as irrelevant. For more information, see [Making training data improvements](/docs/services/assistant?topic=assistant-logs#logs-fix-data).
+    - If the wrong intent is recognized, you can click the arrow next to the intent name to correct it or mark the topic as irrelevant. For more information, see [Making training data improvements](/docs/assistant?topic=assistant-logs#logs-fix-data).
 
 1.  If you want to know which node in the dialog tree triggered a response, click the **Location** ![Location](images/location.png) icon next to it. 
 
@@ -160,7 +160,7 @@ Queries you submit through the "Try it out" pane generate `/message` API calls, 
     1.  To add a context variable, specify the variable name, and press **Enter**.
     1.  To define a default value for the context variable, find the context variable you added in the list, and then specify a value for it.
 
-    See [Context variables](/docs/services/assistant-data?topic=assistant-data-dialog-runtime#dialog-runtime-context) for more information.
+    See [Context variables](/docs/assistant-data?topic=assistant-data-dialog-runtime#dialog-runtime-context) for more information.
 
 1.  Continue to interact with the dialog to see how the conversation flows through it.
     - To find and resubmit a test utterance, you can press the Up key to cycle through your recent inputs.
@@ -173,9 +173,9 @@ If you determine that the wrong intents or entities are being recognized, you mi
 
 If the correct intents and entities are being recognized, but the wrong nodes are being triggered in your dialog, make sure your conditions are written properly.
 
-See [Dialog building tips](/docs/services/assistant-data?topic=assistant-data-dialog-tips) for tips that might help you as you get started.
+See [Dialog building tips](/docs/assistant-data?topic=assistant-data-dialog-tips) for tips that might help you as you get started.
 
-If you are ready to put the conversation to work helping your users, call the assistant from a client application. See [Building a client application](/docs/services/assistant-data?topic=assistant-data-api-client).
+If you are ready to put the conversation to work helping your users, call the assistant from a client application. See [Building a client application](/docs/assistant-data?topic=assistant-data-api-client).
 
 ## Dialog node limits
 {: #dialog-build-node-limits}
@@ -197,8 +197,10 @@ To see the number of dialog nodes in a dialog skill, do one of the following thi
 - Send a GET request to the /dialog_nodes API endpoint, and include the `include_count=true` parameter. For example:
 
   ```curl
-  curl -u "apikey:{apikey}" "https://gateway.watsonplatform.net/assistant/api/v1/workspaces/{workspace_id}/dialog_nodes?version=2018-09-20&include_count=true"
+  curl -u "apikey:{apikey}" "https://{service-hostname}.watsonplatform.net/assistant/api/v1/workspaces/{workspace_id}/dialog_nodes?version=2018-09-20&include_count=true"
   ```
+
+  where {service-hostname} is the appropriate URL for your instance. For more details, see [Service endpoint](https://cloud.ibm.com/apidocs/assistant/assistant-data-v1#service-endpoint){: external}.
 
   In the response, the `total` attribute in the `pagination` object contains the number of dialog nodes.
 

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2019-06-27"
+lastupdated: "2020-01-29"
 
 subcollection: assistant-data
 
@@ -48,4 +48,4 @@ The dialog skill itself is defined in text, but you can integrate it with Watson
 
 A search skill leverages information from existing corporate knowledge bases or other collections of content authored by subject matter experts to address unanticipated or more nuanced customer inquiries.
 
-See [Creating assistants](/docs/services/assistant-data?topic=assistant-data-assistant-add) to get started.
+See [Creating assistants](/docs/assistant-data?topic=assistant-data-assistant-add) to get started.

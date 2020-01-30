@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2019-11-15"
+lastupdated: "2020-01-29"
 
 subcollection: assistant-data
 
@@ -29,5 +29,5 @@ subcollection: assistant-data
 Build your own client application as the interface between the assistant and your users.
 {: shortdesc}
 
-- For guidance, see [Building a client application](/docs/services/assistant-data?topic=assistant-data-api-client).
-- For more information about the API, see [API overview](/docs/services/assistant-data?topic=assistant-data-api-overview).
+- For guidance, see [Building a client application](/docs/assistant-data?topic=assistant-data-api-client).
+- For more information about the API, see [API overview](/docs/assistant-data?topic=assistant-data-api-overview).

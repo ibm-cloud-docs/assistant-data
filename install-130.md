@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2019-09-17"
+lastupdated: "2020-01-29"
 
 subcollection: assistant-data
 
@@ -82,7 +82,7 @@ Table 1. Language resource requirements
 
 Each of these languages requires an additional VPC for a production deployment and an additional 1/2 VPC for a development deployment. 
 
-For the full list of supported languages, see [Supported languages](/docs/services/assistant-data?topic=assistant-data-language-support).
+For the full list of supported languages, see [Supported languages](/docs/assistant-data?topic=assistant-data-language-support).
 
 ## System requirements
 {: #install-130-reqs-over}
@@ -1173,9 +1173,9 @@ After installing a subsequent deployment, complete the following steps:
 
 Use the {{site.data.keyword.conversationshort}} product user interface to build training data and a dialog that can be used by your assistant.
 
-- To learn more about the service first, read the [overview](https://cloud.ibm.com/docs/services/assistant-data?topic=assistant-data-index).
-- To see how it works for yourself, follow the steps in the [getting started tutorial](https://cloud.ibm.com/docs/services/assistant-data?topic=assistant-data-getting-started).
-- For help managing the cluster, see [Managing the cluster](https://cloud.ibm.com/docs/services/assistant-data?topic=assistant-data-manage-130).
+- To learn more about the service first, read the [overview](https://cloud.ibm.com/docs/assistant-data?topic=assistant-data-index).
+- To see how it works for yourself, follow the steps in the [getting started tutorial](https://cloud.ibm.com/docs/assistant-data?topic=assistant-data-getting-started).
+- For help managing the cluster, see [Managing the cluster](https://cloud.ibm.com/docs/assistant-data?topic=assistant-data-manage-130).
 
 ## Troubleshooting issues
 {: #install-130-ts-get-logs}
@@ -1217,4 +1217,4 @@ The user-provided configuration values are listed at the start of the informatio
 
 - **Problem**: You get a 500 response and see an error, such as `"You can't write against a read only slave."` when trying to use the v2 API to create a session.
 - **Cause**: Redis sometimes applies the wrong roles to resources.
-- **Solution**: Restart the Redis pods. Make a note of the replica numbers for Redis server and Redis sentinel first. Scale the Redis server and Redis sentinel replicas down to 0 and then scale them back to their original numbers. For details, see [To scale the number of replicas](/docs/services/assistant-data?topic=assistant-data-manage-130#manage-130-scale).
+- **Solution**: Restart the Redis pods. Make a note of the replica numbers for Redis server and Redis sentinel first. Scale the Redis server and Redis sentinel replicas down to 0 and then scale them back to their original numbers. For details, see [To scale the number of replicas](/docs/assistant-data?topic=assistant-data-manage-130#manage-130-scale).

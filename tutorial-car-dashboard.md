@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2019-10-24"
+lastupdated: "2020-01-29"
 
 subcollection: assistant-data
 
@@ -47,7 +47,7 @@ This tutorial will take approximately 2 to 3 hours to complete.
 ### Prerequisite
 {: #tutorial-car-dashboard-prereqs}
 
-Before you begin, complete the [Getting Started tutorial](/docs/services/assistant-data?topic=assistant-data-getting-started).
+Before you begin, complete the [Getting Started tutorial](/docs/assistant-data?topic=assistant-data-getting-started).
 
 You will use the {{site.data.keyword.conversationshort}} tutorial skill that you created, and add nodes to the simple dialog that you built as part of the getting started exercise.
 
@@ -300,6 +300,6 @@ Optionally, you can review the **Customer Service - Sample** skill to see this s
 ## Next steps
 {: #tutorial-car-dashboard-deploy}
 
-Now that you have built and tested your dialog skill, you can share it with customers. Deploy your skill by first connecting it to an assistant, and then deploying the assistant. See [Building a client application](/docs/services/assistant-data?topic=assistant-data-api-client) for more details.
+Now that you have built and tested your dialog skill, you can share it with customers. Deploy your skill by first connecting it to an assistant, and then deploying the assistant. See [Building a client application](/docs/assistant-data?topic=assistant-data-api-client) for more details.
 
 You can access the source code for a full car dashboard sample application from [GitHub](https://github.com/watson-developer-cloud/car-dashboard){: external}.

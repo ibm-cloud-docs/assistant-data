@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2019-11-06"
+lastupdated: "2020-01-29"
 
 subcollection: assistant-data
 
@@ -33,13 +33,13 @@ The assistant that you build is hosted by {{site.data.keyword.icp4dfull_notm}}.
 
 For information about artifact limits, see these topics:
 
-- [Assistants](/docs/services/assistant-data?topic=assistant-data-assistant-add#assistant-add-limits)
-- [Dialog nodes](/docs/services/assistant-data?topic=assistant-data-dialog-build#dialog-build-node-limits)
-- [Entities](/docs/services/assistant-data?topic=assistant-data-entities#entities-limits)
-- [Inactivity timeout](/docs/services/assistant-data?topic=assistant-data-assistant-settings#assistant-settings-session-limits)
-- [Intents](/docs/services/assistant-data?topic=assistant-data-intents#intents-limits)
-- [Skills](/docs/services/assistant-data?topic=assistant-data-skill-add#skill-add-limits)
-- [Versions](/docs/services/assistant-data?topic=assistant-data-versions#versions-limits)
+- [Assistants](/docs/assistant-data?topic=assistant-data-assistant-add#assistant-add-limits)
+- [Dialog nodes](/docs/assistant-data?topic=assistant-data-dialog-build#dialog-build-node-limits)
+- [Entities](/docs/assistant-data?topic=assistant-data-entities#entities-limits)
+- [Inactivity timeout](/docs/assistant-data?topic=assistant-data-assistant-settings#assistant-settings-session-limits)
+- [Intents](/docs/assistant-data?topic=assistant-data-intents#intents-limits)
+- [Skills](/docs/assistant-data?topic=assistant-data-skill-add#skill-add-limits)
+- [Versions](/docs/assistant-data?topic=assistant-data-versions#versions-limits)
 
 ## Service API Versioning
 {: services-information-api-version}
@@ -52,4 +52,4 @@ Send the version parameter with every API request. The service uses the API vers
 - The dialog skill "Try it out" pane uses version `2018-07-10`.
 - The search skill "Try it out" pane uses {{site.data.keyword.discoveryshort}} API version `2018-12-03`.
 
-For API usage information, see the API reference documentation. Links for v1 and v2 are available from the table of contents. For an example of using the API, see [Test the search skill](/docs/services/assistant-data?topic=assistant-data-skill-search-add#skill-search-add-test-via-api).
+For API usage information, see the API reference documentation. Links for v1 and v2 are available from the table of contents. For an example of using the API, see [Test the search skill](/docs/assistant-data?topic=assistant-data-skill-search-add#skill-search-add-test-via-api).
