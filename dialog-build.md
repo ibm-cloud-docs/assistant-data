@@ -2,14 +2,13 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-01-29"
+lastupdated: "2020-02-05"
 
 subcollection: assistant-data
 
 ---
 
 {:shortdesc: .shortdesc}
-{:new_window: target="_blank"}
 {:external: target="_blank" .external}
 {:deprecated: .deprecated}
 {:important: .important}
@@ -46,7 +45,7 @@ To create a dialog, complete the following steps:
 
     - **Anything else**: The final node. It contains phrases that are used to reply to users when their input is not recognized. You can replace the responses that are provided or add more responses with a similar meaning to add variety to the conversation. You can also choose whether you want your assistant to return each response that is defined in turn or return them in random order.
 1.  To add more nodes to the dialog tree, click the **More** ![More icon](images/kabob.png) icon on the **Welcome** node, and then select **Add node below**.
-1.  In the **If assistant recognizes** field, enter a condition that, when met, triggers your assistant to process the node. 
+1.  In the **If assistant recognizes** field, enter a condition that, when met, triggers your assistant to process the node.
 
     To start off, you typically want to add an intent as the condition. For example, if you add `#open_account` here, it means that you want the response that you will specify in this node to be returned to the user if the user input indicates that the user wants to open an account.
 
@@ -140,11 +139,11 @@ Queries you submit through the "Try it out" pane generate `/message` API calls, 
     ![Screen capture of the eye icon that is shown next to the top-most recognizes intent](images/tryit-intent-details.png)
 
 1.  If the response is not what you expected it to be, you can take the following actions from the "Try it out" pane:
-    
-    - If you want to edit an entity that is recognized in the input, click the entity name to open it in the Entities page. 
+
+    - If you want to edit an entity that is recognized in the input, click the entity name to open it in the Entities page.
     - If the wrong intent is recognized, you can click the arrow next to the intent name to correct it or mark the topic as irrelevant. For more information, see [Making training data improvements](/docs/assistant?topic=assistant-logs#logs-fix-data).
 
-1.  If you want to know which node in the dialog tree triggered a response, click the **Location** ![Location](images/location.png) icon next to it. 
+1.  If you want to know which node in the dialog tree triggered a response, click the **Location** ![Location](images/location.png) icon next to it.
 
     If you are not already on the Dialog page, open it.
     {: tip}
@@ -196,19 +195,20 @@ To see the number of dialog nodes in a dialog skill, do one of the following thi
 - If it is not associated with an assistant already, add the dialog skill to an assistant, and then view the skill tile from the main page of the assistant. The *trained data* section lists the number of dialog nodes.
 - Send a GET request to the /dialog_nodes API endpoint, and include the `include_count=true` parameter. For example:
 
-  ```curl
-  curl -u "apikey:{apikey}" "https://{service-hostname}.watsonplatform.net/assistant/api/v1/workspaces/{workspace_id}/dialog_nodes?version=2018-09-20&include_count=true"
+  ```sh
+  curl -u "apikey:{apikey}" "{url}/v1/workspaces/{workspace_id}/dialog_nodes?version=2018-09-20&include_count=true"
   ```
+  {: pre}
 
-  where {service-hostname} is the appropriate URL for your instance. For more details, see [Service endpoint](https://cloud.ibm.com/apidocs/assistant/assistant-data-v1#service-endpoint){: external}.
+  where {url} is the appropriate URL for your instance. For more details, see [Service endpoint](https://cloud.ibm.com/apidocs/assistant/assistant-data-v1#service-endpoint){: external}.
 
   In the response, the `total` attribute in the `pagination` object contains the number of dialog nodes.
 
 If the total seems larger than you expected, it might be because the dialog that you build from the application is translated into a JSON object. Some fields that appear to be part of a single node are actually structured as separate dialog nodes in the underlying JSON object.
 
-  - Each node and folder is represented as its own node.
-  - Each conditional response that is associated with a single dialog node is represented as an individual node.
-  - For a node with slots, each slot, slot found response, slot not found response, slot handler, and if set, the "prompt for everything" response is an individual node. In effect, one node with three slots might be equivalent to eleven dialog nodes.
+- Each node and folder is represented as its own node.
+- Each conditional response that is associated with a single dialog node is represented as an individual node.
+- For a node with slots, each slot, slot found response, slot not found response, slot handler, and if set, the "prompt for everything" response is an individual node. In effect, one node with three slots might be equivalent to eleven dialog nodes.
 
 ## Finding a dialog node by its node ID
 {: #dialog-build-get-node-id}
