@@ -20,11 +20,12 @@ Watson Assistant for IBM Cloud Pak for Data
     {: .topicgroup}
     Installing
         install.md
-        install-140.md
+        install-141.md
         [Helm chart README.md](https://github.com/ibm-cloud-docs/data-readmes/blob/master/assistant-README-140.md)
 
     {: .topicgroup}
     Installing previous versions
+        install-140.md
         install-130.md
         [v1.3 README.md](https://github.com/ibm-cloud-docs/data-readmes/blob/master/assistant-README.md)
         manage-130.md

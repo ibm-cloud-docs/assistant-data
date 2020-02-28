@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-01-28"
+lastupdated: "2020-02-28"
 
 subcollection: assistant-data
 
@@ -29,17 +29,26 @@ subcollection: assistant-data
 You can back up and restore the data that is associated with your {{site.data.keyword.conversationshort}} deployment in {{site.data.keyword.icp4dfull_notm}}.
 {: shortdesc}
 
-{{site.data.keyword.conversationshort}} data is stored in a Store database, which is composed of Postgres data stores. To back up the data, you can use a tool that Postgres provides that is called `pg_dump`. The dump tool creates a backup by sending the database contents to stdout where you can write it to a file. 
+The primary data storage for {{site.data.keyword.conversationshort}} is a Postgres database. Your data, such as workspaces, assistants, and skills are stored in Postgres. Other internal data, such as trained models, can be recreated from the data in Postgres.
 
-A bash script is provided in the product's PPA file that you can use with an OpenShift installation. The script gathers the pod name and credentials for one of your Postgres Keeper pods, which is the pod from which the `pg_dump` command must be run, and then runs the command for you.
+To back up the data, you can use a tool that Postgres provides that is called `pg_dump`. The dump tool creates a backup by sending the database contents to stdout where you can write it to a file. 
 
-## Backing up data (OpenShift)
+A bash script is provided in the product's PPA file. The script gathers the pod name and credentials for one of your Postgres Proxy pods, which is the pod from which the `pg_dump` command must be run, and then runs the command for you.
+
+## Important considerations
+
+- When you create a backup by using this procedure, the backup includes all of the assistants and skills from all of the service instances. Meaning it includes even skills and assistants to which you do not have access. 
+- The access permissions information of the original service instances is not stored in the backup. Meaning original access rights, which determine who can see a service instance and who cannot, are not preserved. 
+- The target {{site.data.keyword.icp4dfull_notm}} cluster where you restore the data must have the same number of instances as the environment from which you back up the database.
+- The tool that restores the data clears the current database before it restores the backup. Therefore, if you might need to revert to the current database, create a backup of it first.
+
+## Backing up data by using the script
 {: #backup-os}
 
 To back up data by using the provided script, complete the following steps:
 
-1.  Log in to the OpenShift project namespace where you installed the product.
-1.  Go to the directory where the `backupPG.sh` script is stored, which is `{compressed-file-dir}/charts/ibm-watson-assistant-prod/ibm_cloud_pak/pak_extensions/post-install/namespaceAdministration` where `{compressed-file-dir}` is the name of the directory where you downloaded the PPA file.
+1.  Log in to the OpenShift project namespace or Kubernetes namespace where you installed the product.
+1.  Go to the directory where the `backupPG.sh` script is stored, which is `{compressed-file-dir}/charts/ibm-watson-assistant-prod/ibm_cloud_pak/pak_extensions/post-install/namespaceAdministration` where `{compressed-file-dir}` is the name of the directory where you extracted the downloaded PPA file.
 
 1.  Run the script by using the following command:
 
@@ -53,14 +62,15 @@ To back up data by using the provided script, complete the following steps:
     - `${file-name}`: Specify a file where you want to write the downloaded data. Be sure to specify a backup directory in which to store the file. For example, `/bu/store.dump` to create a backup directory named `bu`. This directory will be referenced later as `$BACKUP-DIR`.
     - `--release ${release-name}`: Targets a specific release. Otherwise, the script backs up the first release it finds in the namespace you are logged in to.
 
-If you don't want to use the script, and prefer to back up data by using the Postgres tool directly, you can complete the procedure to back up data manually. Just replace all `kubectl` command with the `oc` command.
+If you prefer to back up data by using the Postgres tool directly, you can complete the procedure to back up data manually.
 
-## Backing up data (Stand-alone {{site.data.keyword.icp4dfull_notm}})
+## Backing up data manually
 {: #backup-cp4d}
 
-You cannot use the script with a stand-alone {{site.data.keyword.icp4dfull_notm}} installation. Complete the steps in this procedure to back up your data by using the Postgres tool directly. 
+Complete the steps in this procedure to back up your data by using the Postgres tool directly. 
 
-If you have an OpenShift cluster, you can follow these steps to create the backup manually. Just replace all `kubectl` commands with `oc` commands. 
+If you have an OpenShift cluster, replace all `kubectl` commands with `oc` commands.
+{: note}
 
 To back up your data, complete these steps:
 
@@ -70,6 +80,10 @@ To back up your data, complete these steps:
     kubectl get pods --field-selector=status.phase=Running -l component=stolon-proxy,release=${release-name} -o jsonpath="{.items[0].metadata.name}"
     ```
     {: codeblock}
+
+    Replace ${release-name} with the release name for the deployment that you want to back up.
+
+    Postgres pods are prefixed by `store-postgres`.
 
 1.  Fetch the store VCAP secret name.
 
@@ -86,6 +100,8 @@ To back up your data, complete these steps:
       kubectl get secret $VCAP_SECRET_NAME -o jsonpath="{.data.vcap_services}" | base64 --decode | grep -o '"username":"[^"]*' | cut -d'"' -f4
       ```
       {: codeblock}
+
+      where {.data.vcap_services} is the VCAP secret name that you retrieved in the previous step.
 
     - To get the password:
 
@@ -104,13 +120,13 @@ To back up your data, complete these steps:
 1.  Run the following command:
 
     ```
-    kubectl exec $KEEPER_POD -- bash -c "export PGPASSWORD='$PASSWORD' && pg_dump -Fc -h localhost -d $DATABASE -U $USERNAME" > ${file-name}
+    kubectl exec $PROXY_POD -- bash -c "export PGPASSWORD='$PASSWORD' && pg_dump -Fc -h localhost -d $DATABASE -U $USERNAME" > ${file-name}
     ```
     {: codeblock}
 
     The following lists describes the arguments. You retrieved the values for some of these parameters in the previous step:
 
-    - `KEEPER_POD`: Any Postgres Keeper pod in your {{site.data.keyword.conversationshort}} Helm release.
+    - `PROXY_POD`: Any Postgres Proxy pod in your {{site.data.keyword.conversationshort}} Helm release.
     - `DATABASE`: The store database name.
     - `USERNAME`: Postgres user ID that can access the database.
     - `PASSWORD`: The password that corresponds with the Postgres user ID.
@@ -119,7 +135,7 @@ To back up your data, complete these steps:
     To see more information about the `pg_dump` command, you can run this command:
 
     ```bash
-    kubectl exec -it ${release-name}-store-postgres-keeper-0 -- pg_dump --help
+    kubectl exec -it ${PROXY_POD} -- pg_dump --help
     ```
     {: pre}
  
@@ -131,7 +147,7 @@ IBM created a restore tool called `pgmig`. The tool restores your database backu
 Before it adds the backed-up data, the tool removes the data for all instances in the current service deployment, so any spares are removed also.
 {: important}
 
-1.  Install the target {{site.data.keyword.icp4dfull_notm}} cluster to which you want to restore the data. Create one instance of {{site.data.keyword.conversationshort}} for each instance that was backed up on the old cluster.
+1.  Install the target {{site.data.keyword.icp4dfull_notm}} cluster to which you want to restore the data. From the web client for the target cluster, create one service instance of {{site.data.keyword.conversationshort}} for each service instance that was backed up on the old cluster.
 
     The target {{site.data.keyword.icp4dfull_notm}} cluster must have the same number of instances as there were in the environment where you backed up the database.
 
@@ -159,7 +175,7 @@ Before it adds the backed-up data, the tool removes the data for all instances i
 
     - **postgres.yaml**: The Postgres file lists details for the target Postgres pods. See [Creating the postgres.yaml file](#backup-postgres-yaml).
 
-1.  Copy the files that you downloaded and created in the previous steps into an existing directory of your choice on a Postgres Keeper pod. The files that you need to copy are `pgmig`, `postgres.yaml`, `resourceController.yaml`, and `store.dump`. 
+1.  Copy the files that you downloaded and created in the previous steps into an existing directory of your choice on a Postgres Proxy pod. The files that you need to copy are `pgmig`, `postgres.yaml`, `resourceController.yaml`, and `store.dump`. 
 
     You can use the following commands to do so. 
     
@@ -175,6 +191,7 @@ Before it adds the backed-up data, the tool removes the data for all instances i
     oc rsync $BACKUP_DIR $KEEPER_POD:/tmp/bu/.
     ```
     {: codeblock}
+    <!-- add command for stand-alone since there is no kubectl rsync command -->
 
 1.  Stop the Store by scaling the store pods down to 0 replicas.
 
@@ -190,7 +207,7 @@ Before it adds the backed-up data, the tool removes the data for all instances i
     ```
     {: codeblock}
 
-1.  Initiate the execution of a remote command in the Keeper Pod.
+1.  Initiate the execution of a remote command in the Proxy Pod.
 
     ```bash
     oc exec -it $KEEPER_POD /bin/bash
@@ -271,7 +288,7 @@ To add the values that are required but currently missing from the file, complet
 ### Creating the postgres.yaml file
 {: #backup-postgres-yaml}
 
-The **postgres.yaml** file contains details about the Postgres prods from the old environment where backed up the data. Add the following information to the file:
+The **postgres.yaml** file contains details about the Postgres pods from the old environment where you backed up the data. Add the following information to the file:
 
 ```yaml
 host: localhost
@@ -283,30 +300,17 @@ su_password: password
 ```
 {: codeblock}
 
-To the values that are required but currently missing from the file, complete the following steps:
+To add the values that are required but currently missing from the file, complete the following steps:
 
-1.  To get the host information, you must get the Store VCAP secret.
+1.  To get information about the `host`, you must get the Store VCAP secret.
 
     ```
-    oc get secret ${release-name}-store-vcap -o yaml 
-    ```
-    {: codeblock}
+    oc get secret ${release-name}-store-vcap -o jsonpath='{.data.vcap_services}' | base64 -d
 
-    Look for the entry that says, `vcap_services: eyJ1c...`.
-
-    For example, you can use a command like this to find it:
-
-    ```bash
-    oc get secret assistant-store-vcap -o yaml | grep vcap_services
     ```
     {: codeblock}
 
-    ```
-    echo "eyJ1c..." | base64 -d
-    ```
-    {: codeblock}
-
-    The following information is returned by the decode command:
+    The following information is returned:
 
     ```
     {
@@ -328,7 +332,7 @@ To the values that are required but currently missing from the file, complete th
     ```
     {: codeblock}
 
-1.  Copy the values for user-provided credentials host, port, database, and username. 
+1.  Copy the values for user-provided credentials `host`, `port`, `database`, and `username`. 
 
     For example, in this sample the values are:
     
@@ -339,19 +343,19 @@ To the values that are required but currently missing from the file, complete th
     username: store_icp_${release-name}
     ```
 
-1.  To get the value of su_username, you need to get details for the postgres keeper pod:
+1.  To get the value of `su_username`, you need to get details for the postgres keeper pods:
 
     To get the keeper pod names, use the following command:
 
     ```bash
-    oc get pods -o=custom-columns=NAME:.metadata.name |grep keeper
+    oc get pods -o=custom-columns=NAME:.metadata.name -l component=stolon-keeper,release=${release-name}
     ```
     {: codeblock}
 
     Get information about the pod.
 
     ```bash
-    oc describe pod $KEEPER-POD-NAME
+    oc describe pod ${KEEPER_POD}
     ```
     {: codeblock}
 
@@ -374,34 +378,20 @@ To the values that are required but currently missing from the file, complete th
     For example, you can use a command like this to find it:
 
     ```bash
-    oc describe pod ${release-name}-store-postgres-keeper-0 | grep STKEEPER_PG_SU_USERNAME
+    oc describe pod ibm-assistant-ts-z781-keeper-0 | grep STKEEPER_PG_SU_USERNAME
     ```
     {: codeblock}
 
-    The value of `STKEEPER_PG_SU_USERNAME` is the su_username. Copy the username and add it to the YAML file.
+    The value of `STKEEPER_PG_SU_USERNAME` is the `su_username`. Copy the username and add it to the YAML file.
 
-1.  To get the su_password, you must get the postgres secret. 
+1.  To get the `su_password`, you must get the postgres secret. 
 
     ```bash
-    oc get secret ${release-name}-postgres-secret -o yaml
+    oc get secret ${release-name}-postgres-secret -o jsonpath={.data.pg_su_password} | base64 -d
     ```
     {: codeblock}
 
-    Look for the section that says, `pg_su_password: XXyyzz==`.
-
-    For example, you can use a command like this to find it:
-
-    ```bash
-    oc get secret ${release-name}-postgres-secret -o yaml | grep pg_su_password
-    ```
-    {: codeblock}
-
-    ```bash
-    echo "XXyyzz==" | base64 -d
-    ```
-    {: codeblock}
-
-    The output of the decode command is the su_password. Copy the password and add it to the YAML file.
+    Copy the password and add it to the YAML file.
 
 1.  Save the **postgres.yaml** file.
 

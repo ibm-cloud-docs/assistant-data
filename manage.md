@@ -66,7 +66,7 @@ kubectl get pods -o wide
 
  Horizontal Pod Autoscaling (HPA) is enabled automatically for {{site.data.keyword.conversationshort}}. As a result, the number of replicas changes dynamically in the range of 1/2 to 10 replicas.
 
-To use horizontal pod autoscalers in a deployment with OpenShift, you must install the OpenShift Container Platform metrics server. For details, see [Requirements for Using Horizontal Pod Autoscalers](https://docs.openshift.com/container-platform/3.11/dev_guide/pod_autoscaling.html#req-for-using-hpas){: external}.
+To use horizontal pod autoscalers in a deployment with OpenShift, you must install the OpenShift Container Platform metrics server. For more information, see [Requirements for Using Horizontal Pod Autoscalers](https://docs.openshift.com/container-platform/3.11/dev_guide/pod_autoscaling.html#req-for-using-hpas){: external}.
 
 The following table describes the deployment details.
 
