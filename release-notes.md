@@ -42,7 +42,7 @@ IBM releases services, features, and language support for your evaluation that a
 The following changes were made in this release:
 
 - A new backup and restore script is available. See [Backing up and restoring data](/docs/assistant-data?topic=assistant-data-backup).
-- The Webhooks feature is now generally available. See [Making a programmatic call from dialog](/docs/assistant-data?topic=assistant-dialog-webhooks).
+- The Webhooks feature is now generally available. See [Making a programmatic call from dialog](/docs/assistant-data?topic=assistant-data-dialog-webhooks).
 - Multiple bug fixes were made.
 
 This release does not include the following features, which are available for cloud instances at the time of this release:

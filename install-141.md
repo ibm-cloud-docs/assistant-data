@@ -31,7 +31,7 @@ subcollection: assistant-data
 Use {{site.data.keyword.conversationfull}} for {{site.data.keyword.icp4dfull}} to build conversational interfaces into any app, device, or channel. 
 {: shortdesc}
 
-Use this installation method if you do not have a {{site.data.keyword.icp4dfull}} cluster. These instructions include  pointers to instructions for installing {{site.data.keyword.icp4dfull}} 2.5 as a stand-alone deployment or as a Red Hat OpenShift V3.11 deployment. You then add {{site.data.keyword.conversationshort}} to it as an service.
+Use this installation method if you do not have a {{site.data.keyword.icp4dfull}} cluster. These instructions include  pointers to instructions for installing {{site.data.keyword.icp4dfull}} 2.5 as a stand-alone deployment or as a Red Hat OpenShift V3.11 deployment. You then add {{site.data.keyword.conversationshort}} to it as a service.
 
 ## Application details
 {: #install-141-wa-details}
