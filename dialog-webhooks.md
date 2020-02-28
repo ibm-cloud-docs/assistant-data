@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-01-29"
+lastupdated: "2020-02-14"
 
 subcollection: assistant-data
 
@@ -23,10 +23,10 @@ subcollection: assistant-data
 {:python: .ph data-hd-programlang='python'}
 {:swift: .ph data-hd-programlang='swift'}
 
-# Making a programmatic call from dialog ![Beta](images/beta.png)
+# Making a programmatic call from dialog
 {: #dialog-webhooks}
 
-Beta support for this feature was introduced with version 1.4.
+This feature is generally available with 1.4.1. It was released as a Beta feature with 1.4.
 {: note}
 
 To make a programmatic call, define a webhook that sends a POST request callout to an external application that performs a programmatic function. You can then invoke the webhook from one or more dialog nodes.
