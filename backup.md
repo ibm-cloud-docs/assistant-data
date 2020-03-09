@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-02-28"
+lastupdated: "2020-03-09"
 
 subcollection: assistant-data
 
@@ -37,10 +37,11 @@ A bash script is provided in the product's PPA file. The script gathers the pod 
 
 ## Important considerations
 
-- When you create a backup by using this procedure, the backup includes all of the assistants and skills from all of the service instances. Meaning it includes even skills and assistants to which you do not have access. 
+- When you create a backup by using this procedure, the backup includes all of the assistants and skills from all of the service instances. Meaning it can include even skills and assistants to which you do not have access.
 - The access permissions information of the original service instances is not stored in the backup. Meaning original access rights, which determine who can see a service instance and who cannot, are not preserved. 
 - The target {{site.data.keyword.icp4dfull_notm}} cluster where you restore the data must have the same number of instances as the environment from which you back up the database.
 - The tool that restores the data clears the current database before it restores the backup. Therefore, if you might need to revert to the current database, create a backup of it first.
+- If you back up and restore or otherwise change the {{site.data.keyword.discoveryshort}} service that your search skill connects to, then you cannot retore the search skill, but must recreate it. When you set up a search skill, you map sections of the assistant's response to fields in a data collection that is hosted by an instance of {{site.data.keyword.discoveryshort}} on the same cluster. If the {{site.data.keyword.discoveryshort}} instance changes, your mapping to it is broken. If your {{site.data.keyword.discoveryshort}} service does not change, then the search skill can continue to connect to the data collection.
 
 ## Backing up data by using the script
 {: #backup-os}
@@ -233,7 +234,9 @@ Before it adds the backed-up data, the tool removes the data for all instances i
     ```
     {: codeblock}
 
-You might need to wait a few minutes before the skills you restored are visible from the web UI. Also, your dialog skills will likely indicate that they are training; you must wait for training to finish before you can use the skills.
+You might need to wait a few minutes before the skills you restored are visible from the web UI. 
+
+Reopen only one assistant or dialog skill at a time. Each time you open a dialog skill after its training data has been changed, training is initiated automatically. Give the skill time to retrain on the restored data. Remember, the process of training a machine learning model requires at least one node to have 4 CPUs that can be dedicated to training. Therefore, open restored assistants and skills during low traffic periods and open them one at a time.
 
 ### Creating the resourceController.yaml file
 {: #backup-resource-controller-yaml}
