@@ -2,7 +2,9 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-01-29"
+lastupdated: "2020-03-09"
+
+keywords: sample applications, sample apps, Watson Assistant for IBM Cloud Pak for Data
 
 subcollection: assistant-data
 
