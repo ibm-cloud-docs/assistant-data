@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2019-11-26"
+lastupdated: "2020-03-17"
 
 subcollection: assistant-data
 
@@ -36,7 +36,7 @@ When a chat session is reset, the dialog loses any contextual information that i
 
 | Chat session default inactivity period | Chat session maximum inactivity period |
 |--------------------------------|----------------------------|
-|                         1 hour |         168 hours (7 days) |
+|                         1 hour |                   24 hours |
 {: caption="Session inactivity timeout details" caption-side="top"}
 
 ## Changing the setting
@@ -45,8 +45,5 @@ When a chat session is reset, the dialog loses any contextual information that i
 1.  Click the menu for your assistant ![open and close list of options](images/kabob-beta.png), and then choose **Settings**.
 
 1.  Change the time specified in the **Timeout limit** field.
-
-    Use `01:00` instead of `00:60` to specify one hour.
-    {: tip}
 
 1.  Close the settings page. Your change is saved automatically.
