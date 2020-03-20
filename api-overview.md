@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-01-29"
+lastupdated: "2020-03-20"
 
 subcollection: assistant-data
 
@@ -41,7 +41,7 @@ You can use the {{site.data.keyword.conversationshort}} REST APIs, and the corre
 
 - **Authoring methods**: Methods that enable an application to create or modify dialog skills, as an alternative to building a skill graphically using the {{site.data.keyword.conversationshort}} tool. An authoring application uses various methods to create and modify skills, intents, entities, dialog nodes, and other artifacts that make up a dialog skill.
 
-  To build an authoring application, use the v1 API. For more information, see the [v1 API Reference](https://{DomainName}/apidocs/assistant/assistant-data){: external}.
+  To build an authoring application, use the v1 API. For more information, see the [v1 API Reference](https://{DomainName}/apidocs/assistant/assistant-data-v1){: external}.
 
   **Note:** The v1 authoring methods interact with workspaces rather than skills. A workspace is a container for the dialog and training data (such as intents and entities) within a dialog skill. For most purposes, when using the API you can think of workspaces and dialog skills as interchangeable; for example, if you create a new workspace using the API, it will appear as a new dialog skill in the {{site.data.keyword.conversationshort}} tool.
 

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-02-27"
+lastupdated: "2020-03-20"
 
 subcollection: assistant-data
 
@@ -162,7 +162,10 @@ To deploy resilient storage in a production environment, do not use the script t
 
 Instead, consider using an {{site.data.keyword.icp4dfull_notm}} storage service.
 
-- **Portworx**: If you choose to use Portworx, you do not need to create persistent volumes before you install the product. Portworx dynamically creates persistent volumes. 
+#### Portworx storage
+{: #install-141-portworx}
+
+If you choose to use Portworx, you do not need to create persistent volumes before you install the product. Portworx dynamically creates persistent volumes. 
 
   When enabled, Portworx grabs unmounted disks to use. For example, if you have 7 worker nodes in your cluster, 4 of which have unmounted disks of 400G each, Portworx might provision each worker node with 3 to 4 pods-worth of persistent volumes.
 
@@ -258,7 +261,7 @@ Instead, consider using an {{site.data.keyword.icp4dfull_notm}} storage service.
 ### Creating persistent volumes for a development environment
 {: #install-141-create-pvs-dev}
 
-A script named **createLocalVolumePV.sh** is included in the archive file that you can use to create persistent volumes for a development deployment only. 
+A script named `createLocalVolumePV.sh` is included in the archive file that you can use to create persistent volumes for a development deployment only. 
 
 Do not use the script to create persistent volumes for a production deployment.
 {: important}
@@ -281,13 +284,13 @@ Table 3. Storage requirements
 | MongoDB   | 3 | 80 GB | local-storage |
 {: caption="Storage requirements" caption-side="top"}
 
-When you install the service, persistent volume claims are created for the components automatically. However, when the preferred storage class for the service is **local-storage**, which is the default setting, you must explicitly create the persistent volumes in the cluster before you install the service.
+When you install the service, persistent volume claims are created for the components automatically. However, when the preferred storage class for the service is `local-storage`, which is the default setting, you must explicitly create the persistent volumes in the cluster before you install the service.
 
 Because the script that you need to run is included in the archive package, you cannot create the volumes until after you download and unpack the PPA archive file for the Helm chart. Start the installation process and return to this section when you get to the point in the procedure where the persistent volumes must be created. Skip to [Installation overview](#install-141-choose-cluster).
 
-Use the **createLocalVolumePV.sh** script to create persistent volumes that are bounded to cluster nodes where data stores such as MongoDB and Postgres will run. Volumes that you create with the script are assigned a label that uses the release name. This label is used later to bound each volume to the correct datastore pods. 
+Use the `createLocalVolumePV.sh` script to create persistent volumes that are bounded to cluster nodes where data stores such as MongoDB and Postgres will run. Volumes that you create with the script are assigned a label that uses the release name. This label is used later to bound each volume to the correct datastore pods. 
 
-This script creates a file named **wa-persistence.yaml**. This YAML file adds configuration values that prevent dynamic provisioning from being applied to the volumes. You will reference this YAML file from the *--values* parameter when you install the product.
+This script creates a file named `wa-persistence.yaml`. This YAML file adds configuration values that prevent dynamic provisioning from being applied to the volumes. You will reference this YAML file from the *--values* parameter when you install the product.
 
 You will need to choose available worker nodes that can host the persistent volumes. Find out which worker nodes are available to host the volumes by running the following command:
 
@@ -300,12 +303,12 @@ From the list of nodes that is returned, choose 5 nodes where you want the persi
 
 Be careful if you need to update or stop a node with bounded local-storage persistent volumes to perform maintenance tasks.
 
-**To create persistent volumes**
+To create persistent volumes, complete the following steps:
 
 You must be a cluster administrator to create local storage volumes, and the script used to create them must be run from the master node of the cluster.
 {: important}
 
-1.  On the master node, change to the **/path/to/ibm-watson-assistant-prod/ibm_cloud_pak/pak_extensions/pre-install** subdirectory of the archive file that you extracted the product files from earlier.
+1.  On the master node, change to the `/path/to/ibm-watson-assistant-prod/ibm_cloud_pak/pak_extensions/pre-install` subdirectory of the archive file that you extracted the product files from earlier.
 
 1.  If you want to see all of the options that are available to you when you create persistent volumes, run the following command:
 
@@ -316,7 +319,7 @@ You must be a cluster administrator to create local storage volumes, and the scr
 
     The rest of these steps describe how to set up basic local storage persistent volumes with node affinity.
 
-1.  Run the **createLocalVolumePV.sh** script to create the persistent volumes. 
+1.  Run the `createLocalVolumePV.sh` script to create the persistent volumes. 
 
     The parameters to include differ depending on whether you want to enable node affinity or not.
 
@@ -591,14 +594,14 @@ See [Creating persistent volumes](#install-141-create-pvs).
 
 The following script is provided with the Watson Assistant archive package.
 
-- **labelNamespace.sh**: Adds the cluster namespace label to your namespace. The label is needed to permit communication between your application's namespace and the {{site.data.keyword.icp4dfull_notm}} namespace using a network policy.
+- `labelNamespace.sh`: Adds the cluster namespace label to your namespace. The label is needed to permit communication between your application's namespace and the {{site.data.keyword.icp4dfull_notm}} namespace using a network policy.
 
 You must be a cluster administrator to run the script.
 {: important}
 
-1.  Run the **labelNamespace.sh** script.
+1.  Run the `labelNamespace.sh` script.
 
-    This command assumes that you used **zen** as the {{site.data.keyword.icp4dfull_notm}} namespace when you installed {{site.data.keyword.icp4dfull_notm}}. If you used a different namespace name, then specify it instead.
+    This command assumes that you used `zen` as the {{site.data.keyword.icp4dfull_notm}} namespace when you installed {{site.data.keyword.icp4dfull_notm}}. If you used a different namespace name, then specify it instead.
     {: note} 
 
     ```bash
@@ -651,7 +654,8 @@ The configuration settings for the deployment are defined in a file named `value
       ```
       {: codeblock}
 
-    **Attention**: Currently, the service does not support the ability to provide your own instances of resources, such as Postgres or MongoDB. The values YAML file has `{resource-name}.create` settings that suggest you can do so. However, do not change these settings from their default value of `true`.
+    Currently, the service does not support the ability to provide your own instances of resources, such as Postgres or MongoDB. The values YAML file has `{resource-name}.create` settings that suggest you can do so. However, do not change these settings from their default value of `true`.
+    {: important}
 
 1.  Save and close the `values-override.yaml` file.
 
@@ -832,8 +836,8 @@ See [Creating persistent volumes](#install-141-create-pvs).
 
 A set of scripts is provided with the {{site.data.keyword.conversationshort}} archive package. Use the scripts to set up the appropriate security policies. The provided scripts include:
 
-- **createSecurityNamespacePrereqs.sh**: Creates a role binding in the namespace specified and prevents pods that don't meet the `ibm-restricted-psp` pod security policy from being started. The policy named `ibm-restricted-psp` is the most restrictive policy. It requires pods to run with a non-root user ID and prevents pods from accessing the host. The role binding rules are defined in the `ibm-watson-assistant-prod-roldebinding.tpl` file, which is also provided in the archive.
-- **labelNamespace.sh**: Adds the cluster namespace label to your namespace. The label is needed to permit communication between your application's namespace and the {{site.data.keyword.icp4dfull_notm}} namespace using a network policy.
+- `createSecurityNamespacePrereqs.sh`: Creates a role binding in the namespace specified and prevents pods that don't meet the `ibm-restricted-psp` pod security policy from being started. The policy named `ibm-restricted-psp` is the most restrictive policy. It requires pods to run with a non-root user ID and prevents pods from accessing the host. The role binding rules are defined in the `ibm-watson-assistant-prod-roldebinding.tpl` file, which is also provided in the archive.
+- `labelNamespace.sh`: Adds the cluster namespace label to your namespace. The label is needed to permit communication between your application's namespace and the {{site.data.keyword.icp4dfull_notm}} namespace using a network policy.
  
 For more information about the `ibm-restricted-psp` security policy, see the Helm Chart README.md file. A link to the file is available from the table of contents.
 {: tip}
@@ -841,9 +845,9 @@ For more information about the `ibm-restricted-psp` security policy, see the Hel
 You must be a cluster administrator to run the scripts.
 {: important}
 
-1.  Change to the **/path/to/ibm-watson-assistant-prod/ibm_cloud_pak/pak_extensions/pre-install** directory.
+1.  Change to the `/path/to/ibm-watson-assistant-prod/ibm_cloud_pak/pak_extensions/pre-install` directory.
 
-1.  Run the **createSecurityNamespacePrereqs.sh** script by using the following command:
+1.  Run the `createSecurityNamespacePrereqs.sh` script by using the following command:
 
     ```bash
     cd {compressed-file-dir}/ibm-watson-assistant-prod/ibm_cloud_pak/pak_extensions/pre-install
@@ -851,9 +855,9 @@ You must be a cluster administrator to run the scripts.
     ```
     {: pre}
 
-1.  Run the **labelNamespace.sh** script.
+1.  Run the `labelNamespace.sh` script.
 
-    This command assumes that you used **zen** as the {{site.data.keyword.icp4dfull_notm}} namespace when you installed {{site.data.keyword.icp4dfull_notm}}. If you used a different namespace name, then specify it instead.
+    This command assumes that you used `zen` as the {{site.data.keyword.icp4dfull_notm}} namespace when you installed {{site.data.keyword.icp4dfull_notm}}. If you used a different namespace name, then specify it instead.
     {: note} 
 
     ```bash
@@ -959,7 +963,8 @@ The configuration settings for the deployment are defined in a file named `value
       ```
       {: codeblock}
 
-    **Attention**: Currently, the service does not support the ability to provide your own instances of resources, such as Postgres or MongoDB. The values YAML file has `{resource-name}.create` settings that suggest you can do so. However, do not change these settings from their default value of `true`.
+    Currently, the service does not support the ability to provide your own instances of resources, such as Postgres or MongoDB. The values YAML file has `{resource-name}.create` settings that suggest you can do so. However, do not change these settings from their default value of `true`.
+    {: important}
 
     - `global.zenNamespace`: If {{site.data.keyword.icp4dfull_notm}} is installed to a namespace other than `zen`, then edit this property to change the value of this property to the {{site.data.keyword.icp4dfull_notm}} cluster's namespace name.
 

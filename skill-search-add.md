@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-01-29"
+lastupdated: "2020-03-20"
 
 subcollection: assistant-data
 
@@ -395,7 +395,7 @@ Follow this procedure to make it less likely that the dialog will respond by res
 
     Whenever this node is processed, the search skill is triggered.
 
-1.  Add a folder to the dialog. Position the folder above the first dialog node that you want to de-emphasize. Add the following condition to the folder:
+1.  Add a folder to the dialog. Position the folder before the first dialog node that you want to de-emphasize. Add the following condition to the folder:
 
     `intents[0].confidence > 0.5`
 

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-01-29"
+lastupdated: "2020-03-20"
 
 subcollection: assistant-data
 
@@ -90,7 +90,7 @@ A node condition determines whether that node is used in the conversation. Respo
 - [Special conditions](#dialog-overview-special-conditions)
 - [Condition syntax details](#dialog-overview-condition-syntax)
 
-For tips on performing more advanced actions in conditions, see [Condition usage tips](/docs/assistant-data?topic=assistant-data-dialog-tips#dialog-tips-condition-usage-tips).
+For tips on performing more advanced actions in conditions, see [Condition usage tips](/docs/assistant-data?topic=assistant-data-dialog-tips#dialog-tips-condition-usage).
 
 ### Condition artifacts
 {: #dialog-overview-condition-artifacts}
@@ -342,7 +342,7 @@ To add a rich response, complete the following steps:
 
         For example: `https://www.example.com/assets/common/logo.png`.
 
-        If you want to display an image title and description above the embedded image in the response, then add them in the fields provided.
+        If you want to display an image title and description before the embedded image in the response, then add them in the fields provided.
 
     - **Option**. Complete the following steps:
 
@@ -512,7 +512,7 @@ If you choose to jump to another node, specify when the target node is processed
 
     Targeting the condition is useful for chaining the conditions of dialog nodes. For example, you might want to first check whether the input contains an intent, such as `#turn_on`, and if it does, you might want to check whether the input contains entities, such as `@lights`, `@radio`, or `@wipers`. Chaining conditions helps to structure larger dialog trees.
 
-    Avoid choosing this option when configuring a jump-to from a conditional response that goes to a node situated above the current node in the dialog tree. Otherwise, you can create an infinite loop. If your assistant jumps to the earlier node and checks its condition, it is likely to return false because the same user input is being evaluated that triggered the current node last time through the dialog. Your assistant will go to the next sibling or back to root to check the conditions on those nodes, and will likely end up triggering this node again, which means the process will repeat itself.
+    Avoid choosing this option when configuring a jump-to from a conditional response that goes to a node situated before the current node in the dialog tree. Otherwise, you can create an infinite loop. If your assistant jumps to the earlier node and checks its condition, it is likely to return false because the same user input is being evaluated that triggered the current node last time through the dialog. Your assistant will go to the next sibling or back to root to check the conditions on those nodes, and will likely end up triggering this node again, which means the process will repeat itself.
     {: note}
 
 - **Response**: If the statement targets the response section of the selected dialog node, it is run immediately. That is, the system does not evaluate the condition of the selected dialog node; it processes the response of the selected dialog node immediately.

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-01-29"
+lastupdated: "2020-03-20"
 
 subcollection: assistant-data
 
@@ -45,7 +45,7 @@ This tutorial will take approximately 20 minutes to complete.
 ### Prerequisite
 {: #tutorial-digressions-prereqs}
 
-If you do not have a {{site.data.keyword.conversationshort}} instance, complete the **Before you begin** step from the [Getting Started tutorial](/docs/assistant-data?topic=assistant-data-getting-started#getting-started-prerequisites) to create one.
+If you do not have a {{site.data.keyword.conversationshort}} instance, complete the **Before you begin** step from the [Getting Started tutorial](/docs/assistant-data?topic=assistant-data-getting-started#before-you-begin) to create one.
 
 ## Step 1: Import the Digressions showcase dialog skill
 {: #tutorial-digressions-import-json}

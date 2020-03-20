@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-01-29"
+lastupdated: "2020-03-20"
 
 subcollection: assistant-data
 
@@ -96,7 +96,7 @@ Using slots produces a more natural dialog flow between the user and your assist
 
         For example: `https://www.example.com/assets/common/logo.png`.
 
-        If you want to display an image title and description above the embedded image in the response, then add them in the fields provided.
+        If you want to display an image title and description before the embedded image in the response, then add them in the fields provided.
 
         Slack integrations require a title. Other integration channels ignore titles or descriptions.
         {: note}
@@ -521,7 +521,7 @@ For each slot, you can use conditional responses with associated actions to help
         {: tip}
 
       - **Skip this slot**: Instructs your assistant to stop trying to fill the current slot, and instead, move on to the prompt for the next empty slot. This option is useful in a slot where you want to both make the slot optional and to display a prompt that asks the user for information. For example, you might have a @seating entity that captures restaurant seating preferences, such as *outside*, *near the fireplace*, *private*, and so on. You can add a slot that prompts the user with, *Do you have any seating preferences?* and checks for `@seating.values`. If a valid response is provided, it saves the preference information to `$seating_preferences`. However, by choosing this action as the Not found response next step, you instruct your assistant to stop trying to fill this slot if the user does not provide a valid value for it.
-      - **Skip to response**: If, when the condition you define is met, you no longer need to fill any of the remaining slots in this node, choose this action to skip the remaining slots and go directly to the node-level response next. For example, if after capturing the one-way flight information, the slot prompt is, *Are you buying round trip tickets?* the Not found condition can check for #No. If #No is found, use this option to skip the remaining slots that capture information about the return flight, and go straight to the node-level response instead.
+      - **Skip to response**: If, when the condition you define is met, you no longer need to fill any of the remaining slots in this node, choose this action to skip the remaining slots and go directly to the node-level response next. For example, if after capturing the one-way flight information, the slot prompt is, *Are you buying round-trip tickets?* the Not found condition can check for #No. If #No is found, use this option to skip the remaining slots that capture information about the return flight, and go straight to the node-level response instead.
 
     Click **Back** to return to the edit view of the slot.
 1.  To add another conditional response, click **Add a response**, and then enter the condition and the response to display if the condition is met.

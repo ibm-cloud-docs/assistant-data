@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-01-29"
+lastupdated: "2020-03-20"
 
 subcollection: assistant-data
 
@@ -116,7 +116,7 @@ Dictionary-based entites are those for which you define specific terms, synonyms
 
     **Important:** Don't include sensitive or personal information in entity names or values. The names and values can be exposed in URLs in an app.
 
-1.  Add synonyms for the value. For example, you might add `NYC` and `The Big Apple` as synonyms for `New York City`.
+1.  {: #entities-synonyms}Add synonyms for the value. For example, you might add `NYC` and `The Big Apple` as synonyms for `New York City`.
 
     A synonym can be any string up to 64 characters in length.
 
@@ -253,7 +253,7 @@ For English, fuzzy matching prevents the capturing of some common, valid English
 
 Your fuzzy matching setting has no impact on synonym recommendations. Even if fuzzy matching is enabled, synonyms are suggested for the exact value you specify only, not the value and slight variations of the value.
 
-To understand how fuzzy matching and autocorrection are related to one another, see the [autocorrection documentation](/docs/assistant-data?topic=assistant-data-dialog-runtime#dialog-runtime-spell-check-vs-fuzzy-matching).
+<!-- **1.4.2 only**: To understand how fuzzy matching and autocorrection are related to one another, see the [autocorrection documentation](/docs/assistant-data?topic=assistant-data-dialog-runtime#dialog-runtime-spell-check-vs-fuzzy-matching).-->
 
 ## Adding contextual entities
 {: #entities-create-annotation-based}
@@ -438,10 +438,6 @@ Using an intent's user examples to define contextual entities does not affect th
     {: note}
 
     If you do not want your contextual entities to use this expanded understanding of entity values, select all the user examples in the *Annotation* view for that entity, and then click **Delete**.
-
-The following video demonstrates how to annotate entity mentions.
-
-<iframe class="embed-responsive-item" id="youtubeplayer0" title="Annotating entity mentions" type="text/html" width="640" height="390" src="https://www.youtube.com/embed/3WjzJpLsnhQ" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen> </iframe>
 
 To walk through a tutorial that shows you how to define contextual entities before you add your own, go to [Tutorial: Defining contextual entities](https://www.ibm.com/cloud/garage/demo/try-watson-assistant-contextual-entities){: external}.
 

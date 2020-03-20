@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-01-29"
+lastupdated: "2020-03-20"
 
 subcollection: assistant-data
 
@@ -69,7 +69,7 @@ Review these tips from experienced dialog designers.
 - Avoid overusing buttons. Encouraging users to pick predefined options from a set of buttons is less like a real conversation, and decreases your ability to learn what users really want to do. When you let real users ask for things in their own words, you can use the input to train the system and derive better intents.
 - Avoid using a bunch of nodes when one node will do. For example, add multiple conditional responses to a single node to return different responses depending on details provided by the user. See [Conditional responses](/docs/assistant-data?topic=assistant-data-dialog-overview#dialog-overview-multiple).
 - Word your responses carefully. You can change how someone reacts to your system based simply on how you phrase a response. Changing one line of text can prevent you from having to write multiple lines of code to implement a complex programmatic solution.
-- Back up your skill frequently. See [Downloading a skill](/docs/assistant-data?topic=assistant-data-skill-add#skill-add-download).
+- Back up your skill frequently. See [Downloading a skill](/docs/assistant-data?topic=assistant-data-skill-dialog-add#skill-dialog-add-download).
 
 ## Tips for capturing information from user input
 {: #dialog-tips-user-input}

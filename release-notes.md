@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-03-02"
+lastupdated: "2020-03-20"
 
 subcollection: assistant-data
 
@@ -37,7 +37,9 @@ IBM releases services, features, and language support for your evaluation that a
 ### 28 February 2020
 {: #28February2020}
 
-**{{site.data.keyword.conversationfull}} for {{site.data.keyword.icp4dfull}} version 1.4.1 is available.**: {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} version 1.4.1 is compatible with {{site.data.keyword.icp4dfull}} version 2.5.
+{{site.data.keyword.conversationfull}} for {{site.data.keyword.icp4dfull}} version 1.4.1 is available. 
+
+{{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} 1.4.1 is compatible with {{site.data.keyword.icp4dfull}} version 2.5.
 
 The following changes were made in this release:
 
@@ -58,13 +60,13 @@ This release does not include the following features, which are available for cl
 ### 27 November 2019
 {: #27November2019}
 
-**{{site.data.keyword.conversationfull}} for {{site.data.keyword.icp4dfull}} version 1.4 is available.**
+{{site.data.keyword.conversationfull}} for {{site.data.keyword.icp4dfull}} version 1.4 is available.
 
 The following changes were made in this release:
 
-- {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} version 1.4 is compatible with {{site.data.keyword.icp4dfull}} version 2.5.
+- {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} 1.4 is compatible with {{site.data.keyword.icp4dfull}} version 2.5.
 - The Czech language is not enabled automatically anymore.
-- The main menu options of **Assistants** and **Skills** have moved from being displayed at the top of the page to being shown as icons in a new navigation pane.
+- The main menu options of **Assistants** and **Skills** have moved from being displayed in the page header to being shown as icons in a new navigation pane.
 
   - ![Assistants menu icon](images/nav-ass-icon.png) Assistants
   - ![Skills menu icon](images/nav-skills-icon.png) Skills
@@ -82,11 +84,11 @@ The following changes were made in this release:
 ### 3 September 2019
 {: #3September2019}
 
-**{{site.data.keyword.conversationfull}} for {{site.data.keyword.icp4dfull}} version 1.3 is available.**
+{{site.data.keyword.conversationfull}} for {{site.data.keyword.icp4dfull}} version 1.3 is available.
 
 The following changes were made in this release:
 
-- {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} version 1.3 is compatible with {{site.data.keyword.icp4dfull}} versions 2.1.0.1 and 2.1.0.2.
+- {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} 1.3 is compatible with {{site.data.keyword.icp4dfull}} versions 2.1.0.1 and 2.1.0.2.
 - Added support for installing {{site.data.keyword.icp4dfull_notm}} with Red Hat OpenShift.
 - Federal Information Security Management Act (FISMA) support is available for {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull_notm}} for this version (V1.3). FISMA support is also available to those who purchased V1.2 (28 June 2019) and upgraded to V1.3. {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull_notm}} is FISMA High Ready.
 - You can now provision up to 30 instances of {{site.data.keyword.conversationshort}} in a single deployment.
@@ -101,7 +103,7 @@ This release does not include the following features, which are currently availa
 ### 28 June 2019
 {: #28June2019}
 
-**{{site.data.keyword.conversationfull}} for {{site.data.keyword.icp4dfull}} version 1.2 is available.**
+{{site.data.keyword.conversationfull}} for {{site.data.keyword.icp4dfull}} version 1.2 is available.
 
 - The {{site.data.keyword.conversationshort}} tool now works with {{site.data.keyword.icp4dfull_notm}} 2.1. It does not work with stand-alone {{site.data.keyword.icpfull_notm}}. The following changes were made in this release:
 - Assistants are now available. An assistant can manage user sessions on your behalf. See [Assistants](/docs/assistant-data?topic=assistant-data-assistants).
@@ -115,7 +117,9 @@ For information about upgrading from a previous version, see [Upgrading](/docs/a
 ### 21 February 2019
 {: #21February2019}
 
-**{{site.data.keyword.conversationfull}} for {{site.data.keyword.icpfull}} version 1.1 is available.**: The {{site.data.keyword.conversationshort}} tool now works with {{site.data.keyword.icpfull_notm}} 3.1.0. It does not work with {{site.data.keyword.icpfull_notm}} 2.1.0.3.
+{{site.data.keyword.conversationfull}} for {{site.data.keyword.icpfull}} version 1.1 is available.
+
+The {{site.data.keyword.conversationshort}} tool now works with {{site.data.keyword.icpfull_notm}} 3.1.0. It does not work with {{site.data.keyword.icpfull_notm}} 2.1.0.3.
 
 - {{site.data.keyword.conversationshort}} for {{site.data.keyword.icpfull_notm}} version 1.1 is compatible with {{site.data.keyword.icp4dfull}} version 1.2.
 
@@ -142,7 +146,7 @@ For information about upgrading from a previous version, see [Upgrading](/docs/a
 ### 26 September 2018
 {: #26September2018}
 
-- **{{site.data.keyword.conversationfull}} for {{site.data.keyword.icpfull}} 1 is available.**
+{{site.data.keyword.conversationfull}} for {{site.data.keyword.icpfull}} 1 is available.
 
   {{site.data.keyword.conversationfull}} for {{site.data.keyword.icpfull}} version 1 runs on IBM Cloud Private 2.1.0.3.
 

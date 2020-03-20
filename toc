@@ -61,6 +61,7 @@ Watson Assistant for IBM Cloud Pak for Data
          manage.md
          architecture.md
          backup.md
+         recovery.md
          upgrade.md
 
     {: .topicgroup}
