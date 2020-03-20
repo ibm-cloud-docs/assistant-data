@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-01-29"
+lastupdated: "2020-03-20"
 
 subcollection: assistant-data
 
@@ -172,7 +172,10 @@ To deploy resilient storage in a production environment, do not use the script t
 
 Instead, consider using an {{site.data.keyword.icp4dfull_notm}} storage [add-on](https://www.ibm.com/support/knowledgecenter/SSQNUZ_2.1.0/com.ibm.icpdata.doc/zen/admin/install-storage-add-ons.html){: external} or a storage option that is hosted outside the cluster, such as [vSphere Cloud Provider](https://www.ibm.com/support/knowledgecenter/SSBS6K_3.1.2/manage_cluster/vsphere_land.html){: external}.
 
-- **Portworx**: If you choose to use Portworx, you do not need to create persistent volumes before you install the product. Portworx dynamically creates persistent volumes. 
+#### Portworx storage
+{: #install-130-portworx}
+
+If you choose to use Portworx, you do not need to create persistent volumes before you install the product. Portworx dynamically creates persistent volumes. 
 
   When enabled, Portworx grabs umounted disks to use. For example, if you have 7 worker nodes in your cluster, 4 of which have umounted disks of 400G each, Portworx might provision each worker node with 3 to 4 pods-worth of persistent volumes.
 
@@ -265,7 +268,7 @@ Use the **createLocalVolumePV.sh** script to create persistent volumes that are 
 
 Be careful if you need to update or stop a node with bounded local-storage persistent volumes to perform maintenance tasks.
 
-**To enable node affinity** 
+To enable node affinity, complete the following steps:
 
 1.  Create a file named `wa-persistence.yaml` that adds configuration values that prevent dynamic provisioning from being applied to the volumes. You will reference this YAML file from the *--values* parameter when you install the product.
 
@@ -305,7 +308,7 @@ Be careful if you need to update or stop a node with bounded local-storage persi
 
 1.  Replace all references to `${release-name}` with the release name for your deployment, and then save and close the file. This is the same name you will specify as the value of the *--name* parameter when you install the product.
 
-      The release name must start with an alphabetic character, end with an alphanumeric character, and consist of all lower case alphanumeric characters or a hyphen (-). For example *my-130-wa*.
+      The release name must start with an alphabetic character, end with an alphanumeric character, and consist of all lowercase alphanumeric characters or a hyphen (-). For example *my-130-wa*.
       {: important}
 
 1.  Find out which worker nodes are available to host the volumes by running the following command:
@@ -317,7 +320,7 @@ Be careful if you need to update or stop a node with bounded local-storage persi
 
     From the list of nodes that is returned, choose 4 nodes where you want the persistent volumes to reside. Make a note of the node IP addresses because you will pass them as arguments to the `--nodeAffinities` parameter later.
 
-**To create persistent volumes**
+To create persistent volumes, complete the following steps:
 
 You must be a cluster administrator to create local storage volumes, and the script used to create them must be run from the master node of the cluster.
 {: important}
@@ -623,7 +626,8 @@ The configuration settings for the deployment are defined in a file named `value
       ```
       {: codeblock}
 
-    **Attention**: Currently, the service does not support the ability to provide your own instances of resources, such as Postgres or MongoDB. The values YAML file has `{resource-name}.create` settings that suggest you can do so. However, do not change these settings from their default value of `true`.
+    Currently, the service does not support the ability to provide your own instances of resources, such as Postgres or MongoDB. The values YAML file has `{resource-name}.create` settings that suggest you can do so. However, do not change these settings from their default value of `true`.
+    {: important}
 
 1.  Save and close the `values-override.yaml` file.
 
@@ -654,7 +658,7 @@ Fetch the imagePullSecret that will be used for training.
     {: codeblock}
 
     - Replace `{training-secret}` with the name of the secret you discovered in the previous step.
-    - Replace `{my-release}` with a name for your release. The release name must start with an alphabetic character, end with an alphanumeric character, and consist of lower case alphanumeric characters or a hyphen (-). For example *my-130-wa*.
+    - Replace `{my-release}` with a name for your release. The release name must start with an alphabetic character, end with an alphanumeric character, and consist of lowercase alphanumeric characters or a hyphen (-). For example *my-130-wa*.
     - Replace `{override-file-name}` with the path to the file that contains the values that you want to override from the values.yaml file provided with the chart package. For example: `{compressed-file-dir}/ibm-watson-assistant-prod/values-override.yaml`. If you are creating local storage persistent volumes with node affinity, you must specify the `wa-persistence.yaml` file here also. For example: `values-override.yaml,wa-persistence.yaml`.
     - Replace `{namespace-name}` with the name of the Kubernetes namespace that hosts the Docker pods.
     - The `ibm-watson-assistant-prod` parameter represents the name of the downloaded file that contains the Helm chart.
@@ -943,7 +947,8 @@ The configuration settings for the deployment are defined in a file named `value
       ```
       {: codeblock}
 
-    **Attention**: Currently, the service does not support the ability to provide your own instances of resources, such as Postgres or MongoDB. The values YAML file has `{resource-name}.create` settings that suggest you can do so. However, do not change these settings from their default value of `true`.
+    Currently, the service does not support the ability to provide your own instances of resources, such as Postgres or MongoDB. The values YAML file has `{resource-name}.create` settings that suggest you can do so. However, do not change these settings from their default value of `true`.
+    {: important}
 
 1.  Save and close the `values-override.yaml` file.
 
@@ -977,7 +982,7 @@ For information about other values in the YAML file, see the values and their de
 ​​​
     - Replace `{override-file-name}` with the path to the file that contains the values that you want to override from the values.yaml file provided with the chart package. For example: `{compressed-file-dir}/ibm-watson-assistant-prod/values-override.yaml`. If you are creating local storage persistent volumes with node affinity, you must specify the `wa-persistence.yaml` file here also. For example: `values-override.yaml,wa-persistence.yaml`.
     - Replace `{namespace-name}` with the name of the Kubernetes namespace that hosts the Docker pods.
-    - Replace `{my-release}` with a name for your release. The release name must start with an alphabetic character, end with an alphanumeric character, and consist of lower case alphanumeric characters or a hyphen (-). For example *my-130-wa*.
+    - Replace `{my-release}` with a name for your release. The release name must start with an alphabetic character, end with an alphanumeric character, and consist of lowercase alphanumeric characters or a hyphen (-). For example *my-130-wa*.
     - The `ibm-watson-assistant-prod-1.3.0.tgz` parameter represents the name of the downloaded file that contains the Helm chart.
 
     For example:
@@ -1083,7 +1088,7 @@ If you need to preserve any data, do so now before you begin this procedure.
     ```
     {: pre}
 
-1.  Delete any associated artifacts that are left over by using the following command. 
+1.  Delete any associated artifacts that remain by using the following command. 
 
     Reminder: This command also removes the data stores you created, which must be removed and recreated if you need to start the installation over.
     {: note}

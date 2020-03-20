@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-01-29"
+lastupdated: "2020-03-20"
 
 subcollection: assistant-data
 
@@ -344,15 +344,15 @@ Consider using an {{site.data.keyword.icp4dfull_notm}} storage [add-on](https://
 ### Creating persistent volumes for a development environment
 {: #install-120-create-pvs-dev}
 
-When you install the service, persistent volume claims are created for the components automatically. However, because the preferred storage class for the service is **local-storage**, you must explicitly create persistent volumes before you install the service.
+When you install the service, persistent volume claims are created for the components automatically. However, because the preferred storage class for the service is `local-storage`, you must explicitly create persistent volumes before you install the service.
 
 A script is included in the archive file that you can use to create persistent volumes for a development deployment only. 
 
 For more information about the commands used in the script, see [Creating a PersistentVolume](https://www.ibm.com/support/knowledgecenter/en/SSBS6K_3.1.2/manage_cluster/create_volume.html){: external}.
 
-1.  From the master node, change to the **/path/to/ibm-watson-assistant-prod/ibm_cloud_pak/pak_extensions/pre-install** subdirectory of the archive file that you extracted the product files from earlier.
+1.  From the master node, change to the `/path/to/ibm-watson-assistant-prod/ibm_cloud_pak/pak_extensions/pre-install` subdirectory of the archive file that you extracted the product files from earlier.
 
-1.  Run the **createLocalVolumePV.sh** script by using a command with the following sytnax:
+1.  Run the `createLocalVolumePV.sh` script by using a command with the following sytnax:
 
     ```bash
     ./clusterAdministration/createLocalVolumePV.sh [--path PATH]
@@ -395,8 +395,8 @@ For more information about the commands used in the script, see [Creating a Pers
 
 A set of scripts is provided with the {{site.data.keyword.conversationshort}} archive package. Use the scripts to set up the appropriate security policies. The provided scripts include:
 
-- **createSecurityNamespacePrereqs.sh**: Creates a role binding in the namespace specified and prevents pods that don't meet the `ibm-restricted-psp` pod security policy from being started. The policy named `ibm-restricted-psp` is the most restrictive policy. It requires pods to run with a non-root user ID and prevents pods from accessing the host. The role binding rules are defined in the `ibm-watson-assistant-prod-roldebinding.tpl` file, which is also provided in the archive.
-- **labelNamespace.sh**: Adds the cluster namespace label to your namespace. The label is needed to permit communication between your application's namespace and the {{site.data.keyword.icp4dfull_notm}} namespace using a network policy.
+- `createSecurityNamespacePrereqs.sh`: Creates a role binding in the namespace specified and prevents pods that don't meet the `ibm-restricted-psp` pod security policy from being started. The policy named `ibm-restricted-psp` is the most restrictive policy. It requires pods to run with a non-root user ID and prevents pods from accessing the host. The role binding rules are defined in the `ibm-watson-assistant-prod-roldebinding.tpl` file, which is also provided in the archive.
+- `labelNamespace.sh`: Adds the cluster namespace label to your namespace. The label is needed to permit communication between your application's namespace and the {{site.data.keyword.icp4dfull_notm}} namespace using a network policy.
  
 For more information about the `ibm-restricted-psp` security policy, see the Helm Chart README.md file. A link to the file is available from the table of contents.
 {: tip}
@@ -406,16 +406,16 @@ You must be a cluster administrator to run the scripts.
 
 1.  Change to the **/path/to/ibm-watson-assistant-prod/ibm_cloud_pak/pak_extensions/pre-install** directory.
 
-1.  Run the **createSecurityNamespacePrereqs.sh** script by using the following command:
+1.  Run the `createSecurityNamespacePrereqs.sh` script by using the following command:
 
     ```bash
     ./namespaceAdministration/createSecurityNamespacePrereqs.sh conversation
     ```
     {: pre}
 
-1.  Run the **labelNamespace.sh** script.
+1.  Run the `labelNamespace.sh` script.
 
-    This command assumes that you used **zen** as the {{site.data.keyword.icp4dfull_notm}} namespace when you installed {{site.data.keyword.icp4dfull_notm}}. If you used a different namespace name, then specify it instead.
+    This command assumes that you used `zen` as the {{site.data.keyword.icp4dfull_notm}} namespace when you installed {{site.data.keyword.icp4dfull_notm}}. If you used a different namespace name, then specify it instead.
     {: note} 
 
     ```bash
@@ -517,7 +517,8 @@ The configuration settings for the deployment are defined in a file named `value
       ```
       {: codeblock}
 
-    **Attention**: Currently, the service does not support the ability to provide your own instances of resources, such as Postgres or MongoDB. The values YAML file has `{resource-name}.create` settings that suggest you can do so. However, do not change these settings from their default value of `true`.
+    Currently, the service does not support the ability to provide your own instances of resources, such as Postgres or MongoDB. The values YAML file has `{resource-name}.create` settings that suggest you can do so. However, do not change these settings from their default value of `true`.
+    {: important}
 
 1.  Save and close the `values-override.yaml` file.
 
@@ -732,7 +733,7 @@ You can provision one instance of {{site.data.keyword.conversationshort}} per de
 
 1.  If you provisioned an instance for this deployment previously, you must run a script to delete the instance from the {{site.data.keyword.icp4dfull_notm}} database before you can provision a new instance. Otherwise, skip this step.
     
-    To delete a previous instance, run the **deleteInstances.sh** script. For more details, see [Step 1 of the Uninstalling procedure](#install-120-uninstall).
+    To delete a previous instance, run the `deleteInstances.sh` script. For more details, see [Step 1 of the Uninstalling procedure](#install-120-uninstall).
 
 1.  From the {{site.data.keyword.icp4dfull_notm}} web client, go to the Add-ons page.
 

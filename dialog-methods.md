@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-01-29"
+lastupdated: "2020-03-20"
 
 subcollection: assistant-data
 
@@ -34,21 +34,21 @@ You can process values extracted from user utterances that you want to reference
 
 To expand variable values inside other variables, or apply methods to output text or context variables, use the `<? expression ?>` expression syntax. For example:
 
-- **Referencing a user's input from a dialog node text response**
+- Referencing a user's input from a dialog node text response
 
   ```bash
   You said <? input.text ?>.
   ```
   {: codeblock}
 
-- **Incrementing a numeric property from the JSON editor**
+- Incrementing a numeric property from the JSON editor
 
     ```json
     "output":{"number":"<? output.number + 1 ?>"}
     ```
     {: codeblock}
 
-- **Adding an element to a context variable array from the context editor**
+- Adding an element to a context variable array from the context editor
 
 | Context variable name | Context variable value |
 |-----------------------|------------------------|
@@ -56,14 +56,14 @@ To expand variable values inside other variables, or apply methods to output tex
 
 You can use SpEL expressions in dialog node conditions and dialog node response conditions also. When an expression is used in a condition, the surrounding `<? ?>` syntax is not required.
 
-- **Checking for a specific entity value from a dialog node condition**
+- Checking for a specific entity value from a dialog node condition
 
   ```bash
   @city.toLowerCase() == 'paris'
   ```
   {: codeblock}
 
-- **Checking for a specific date range from a dialog node response condition**
+- Checking for a specific date range from a dialog node response condition
 
   ```bash
   @sys-date.after(today())
@@ -176,7 +176,7 @@ For example, use the following expression in a node condition when you want to t
 
 - The `#General_Ending` intent is present.
 - The confidence score of the `#General_Ending` intent is over 80%.
-- The `#General_Ending` intent is one of the top 2 intents in the intents array.
+- The `#General_Ending` intent is one of the top two intents in the intents array.
 
 ```bash
 intents.containsIntent("General_Ending", 0.8, 2)
@@ -443,7 +443,8 @@ Dialog node output:
 
 Result: `"ham is a great choice!"` or `"onion is a great choice!"` or `"olives is a great choice!"`
 
-**Note:** The resulting output text is randomly chosen.
+The resulting output text is randomly chosen.
+{: note}
 
 ### JSONArray.indexOf(value)
 {: #dialog-methods-array-indexOf}
@@ -461,6 +462,7 @@ For example, the following context variables contain arrays:
   }
 }
 ```
+{: codeblock}
 
 The following expressions can be used to determine the array index at which the value is specified:
 
@@ -469,6 +471,7 @@ The following expressions can be used to determine the array index at which the 
 <? $array2.indexOf(9) ?> returns `1`
 <? $array3.indexOf(10.1) ?> returns `2`
 ```
+{: codeblock}
 
 This method can be useful for getting the index of an element in an intents array, for example. You can apply the `indexOf` method to the array of intents generated each time user input is evaluated to determine the array index number of a specific intent.
 
@@ -477,7 +480,7 @@ intents.indexOf("General_Greetings")
 ```
 {: codeblock}
 
-If you want to know the confidence score for a specific intent, you can pass the expression above in as the *`index`* value to an expression with the syntax `intents[`*`index`*`].confidence`. For example:
+If you want to know the confidence score for a specific intent, you can pass the prior expression in as the *`index`* value to an expression with the syntax `intents[`*`index`*`].confidence`. For example:
 
 ```bash
 intents[intents.indexOf("General_Greetings")].confidence
@@ -566,6 +569,7 @@ To return the flight codes only, you can create a collection projection expressi
 ```
 <? $flights_found.![flight_code] ?>
 ```
+{: codeblock}
 
 This expression returns an array of the `flight_code` values as `["OK123","LH421","TS4156"]`. See the [SpEL Collection projection documentation](https://docs.spring.io/spring/docs/3.0.x/reference/expressions.html){: external} for more details.
 
@@ -731,6 +735,7 @@ This is the dialog node response:
     }
   ]
   ```
+  {: codeblock}
 
 Notice that the order of the `arrival` and `departure` elements is swapped in the response. The service typically reorders elements in a JSON Object. If you want the elements to be returned in a specific order, define the template by using a JSON Array or String value instead.
 
@@ -1038,7 +1043,8 @@ For example, this context variable definition creates a $time variable that save
 
 Format follows the Java [SimpleDateFormat](http://docs.oracle.com/javase/6/docs/api/java/text/SimpleDateFormat.html){: external} rules.
 
-**Note**: When trying to format time only, the date is treated as `1970-01-01`.
+When trying to format time only, the date is treated as `1970-01-01`.
+{: note}
 
 ### .sameMoment(String date/time)
 
@@ -1265,6 +1271,7 @@ In the following start and end date context variable expressions, the date is be
    "start_date": "<? now().reformatDateTime('Y') + '-11-25' ?>"
  }
 ```
+{: codeblock}
 
 In the response condition, you can indicate that you want to show the response only if the current date falls between the start and end dates that you defined as context variables.
 
@@ -1510,13 +1517,13 @@ You can use the `clear()` method on the `context` or `output` JSON objects in th
 #### Clearing context
 {: #dialog-methods-clearing-context}
 
-When you use the `clear()` method to clear the `context` object, it clears **all** variables except these ones:
+When you use the `clear()` method to clear the `context` object, it clears all variables except these ones:
 
  - `context.conversation_id`
  - `context.timezone`
  - `context.system`
 
-**Warning**: All context variable values means:
+All context variable values means:
 
   - All default values that were set for variables in nodes that have been triggered during the current session.
   - Any updates made to the default values with information provided by the user or external services during the current session.
@@ -1540,8 +1547,8 @@ To use the method, you can specify it in an expression in a variable that you de
     "context_eraser": "<? context.clear() ?>"
   }
 }
-
 ```
+{: codeblock}
 
 #### Clearing output
 {: #dialog-methods-clearing-output}
@@ -1571,8 +1578,9 @@ To use the method, you can specify it in an expression in a variable that you de
   }
 }
 ```
+{: codeblock}
 
-If a node earlier in the tree defines a text response of `I'm happy to help.` and then jumps to a node with the JSON output object defined above, then  only `Have a great day.` is displayed as the response. The `I'm happy to help.` output is not displayed, because it is cleared and replaced with the text response from the node that is calling the `clear()` method.
+If a node earlier in the tree defines a text response of `I'm happy to help.` and then jumps to a node with the JSON output object defined earlier, then  only `Have a great day.` is displayed as the response. The `I'm happy to help.` output is not displayed, because it is cleared and replaced with the text response from the node that is calling the `clear()` method.
 
 ### JSONObject.has(String)
 
@@ -1660,7 +1668,8 @@ There methods help you work with text.
 
 For information about how to recognize and extract certain types of Strings, such as people names and locations, from user input, see [System entities](/docs/assistant-data?topic=assistant-data-system-entities).
 
-**Note:** For methods that involve regular expressions, see [RE2 Syntax reference](https://github.com/google/re2/wiki/Syntax){: external} for details about the syntax to use when you specify the regular expression.
+For methods that involve regular expressions, see [RE2 Syntax reference](https://github.com/google/re2/wiki/Syntax){: external} for details about the syntax to use when you specify the regular expression.
+{: note}
 
 ### String.append(Object)
 
@@ -1971,7 +1980,7 @@ Results in this output:
 
 ### String.toUpperCase()
 
-This method returns the original String converted to upper case letters.
+This method returns the original String converted to uppercase letters.
 
 For this input:
 

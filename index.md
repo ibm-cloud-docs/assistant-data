@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-01-29"
+lastupdated: "2020-03-20"
 
 subcollection: assistant-data
 
@@ -65,27 +65,27 @@ This diagram shows the implementation in more detail:
 
 Here's how you implement your assistant:
 
-- **Create an assistant**.
+1.  Create an assistant**.
 
-- **Create a dialog skill**. Use the intuitive graphical tool to define the training data and dialog for the conversation between your assistant and your customers.
+1.  Create a dialog skill. Use the intuitive graphical tool to define the training data and dialog for the conversation between your assistant and your customers.
 
-  The training data consists of the following artifacts:
+    The training data consists of the following artifacts:
 
-  - **Intents**: Goals that you anticipate your users have when they interact with your assistant. Define one intent for each goal that can be identified in a user's input. For example, you might define an intent that is named *store_hours* that answers questions about store hours. For each intent, you add sample utterances that reflect the input customers might use to ask for the information they need, such as, `What time do you open?`
+    - **Intents**: Goals that you anticipate your users have when they interact with your assistant. Define one intent for each goal that can be identified in a user's input. For example, you might define an intent that is named *store_hours* that answers questions about store hours. For each intent, you add sample utterances that reflect the input customers might use to ask for the information they need, such as, `What time do you open?`
 
-    Or use prebuilt **content catalogs** that are provided by IBM to get started with data that addresses common customer goals.
+      Or use prebuilt **content catalogs** that are provided by IBM to get started with data that addresses common customer goals.
 
-  - **Dialog**: Use the dialog tool to build a dialog flow that incorporates your intents. The dialog flow is represented graphically in the tool as a tree. You can add a branch to process each of the intents that you want your assistant to handle.
+    - **Dialog**: Use the dialog tool to build a dialog flow that incorporates your intents. The dialog flow is represented graphically in the tool as a tree. You can add a branch to process each of the intents that you want your assistant to handle.
 
-  - **Entities**: An entity represents a term or object that provides context for an intent. For example, an entity might be a city name that helps your dialog to distinguish which store the user wants to know store hours for. After you add entities, update your dialog to use them. Add dialog nodes that handle the many possible permutations of a request based on the entities that are found in the user input.
+    - **Entities**: An entity represents a term or object that provides context for an intent. For example, an entity might be a city name that helps your dialog to distinguish which store the user wants to know store hours for. After you add entities, update your dialog to use them. Add dialog nodes that handle the many possible permutations of a request based on the entities that are found in the user input.
 
     As you add training data, a natural language classifier is automatically added to the skill. The classifier model is trained to understand the types of requests that you teach your assistant to listen for and respond to.
 
-- **Create a search skill** Configure a connection to a {{site.data.keyword.discoveryshort}} instance. If the dialog is configured to perform a search or is not designed to answer a particular type of question, the assistant searches the configured external data sources to find a response.
+1.  Create a search skill. Configure a connection to a {{site.data.keyword.discoveryshort}} instance. If the dialog is configured to perform a search or is not designed to answer a particular type of question, the assistant searches the configured external data sources to find a response.
 
-- **Add the skills to your assistant.**
+1.  Add the skills to your assistant.
 
-- **Deploy your assistant.** Deploy the assistant to users by connecting it to a front-end user interface that you build.
+1.  Deploy your assistant. Deploy the assistant to users by connecting it to a front-end user interface that you build.
 
 Read more about these steps by following these links:
 
@@ -122,7 +122,7 @@ Still have questions? Contact [IBM Sales](https://www-01.ibm.com/marketing/iwm/d
 ## Trademarks
 {: index-trademarks}
 
-IBM, the IBM logo, and ibm.com are trademarks or registered trademarks of International Business Machines Corp., registered in many jurisdictions worldwide. Other product and service names might be trademarks of IBM or other companies. A current list of IBM trademarks is available on the web at [Copyright and trademark information](www.ibm.com/legal/copytrade.shtml){: external}.
+IBM, the IBM logo, and ibm.com are trademarks or registered trademarks of International Business Machines Corp., registered in many jurisdictions worldwide. Other product and service names might be trademarks of IBM or other companies. A current list of IBM trademarks is available on the web at [Copyright and trademark information](https://www.ibm.com/legal/copytrade){: external}.
 
 Java and all Java-based trademarks and logos are trademarks or registered trademarks of Oracle and/or its affiliates.
 

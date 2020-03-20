@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-01-29"
+lastupdated: "2020-03-20"
 
 subcollection: assistant-data
 
@@ -55,7 +55,7 @@ To add a skill, complete the following steps:
 
     - To add an existing skill to this service instance, you can import it as a JSON file. Click **Import skill**, and then click **Choose JSON File**, and select the JSON file you want to import.
 
-      **Important:**
+      Important:
 
       - The imported JSON file must use UTF-8 encoding, without byte order mark (BOM) encoding.
       - The maximum size for a skill JSON file is 10MB. If you need to import a larger skill, consider importing the intents and entities separately after you have imported the skill. (You can also import larger skills using the REST API. For more information, see the [API Reference](https://cloud.ibm.com/apidocs/assistant/assistant-data-v1?curl=#create-workspace){: external}.)

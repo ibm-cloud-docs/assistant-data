@@ -2,16 +2,16 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-01-29"
+lastupdated: "2020-03-20"
 
 subcollection: assistant-data
 
 ---
 
 {:curl: .ph data-hd-programlang='curl'}
-{:javascript: #javascript .ph data-hd-programlang='javascript'}
-{:java: #java .ph data-hd-programlang='java'}
-{:python: #python .ph data-hd-programlang='python'}
+{:javascript: .ph data-hd-programlang='javascript'}
+{:java: .ph data-hd-programlang='java'}
+{:python: .ph data-hd-programlang='python'}
 {:swift: data-hd-programlang='swift'}
 {:new_window: target="_blank"}
 {:external: target="_blank" .external}

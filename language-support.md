@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-01-29"
+lastupdated: "2020-03-20"
 
 subcollection: assistant-data
 
@@ -36,7 +36,10 @@ In the following tables, the level of language and feature support is indicated 
 
 The first table shows the level of support for all features, except those related to intents and entities, which are shown in the second and third tables.
 
-**Table 1. Feature support details**
+## Feature support details
+{: #language-support-tables}
+
+Table 1. Feature support details
 
 | Language | **Defining [intents](/docs/assistant-data?topic=assistant-data-intents)**, **[entities](/docs/assistant-data?topic=assistant-data-entities)**, and **[dialog](/docs/assistant-data?topic=assistant-data-dialog-build)** |
 |:---:|:---:|
@@ -55,9 +58,9 @@ The first table shows the level of support for all features, except those relate
 | **Spanish (es)**                   | GA |
 {: caption="Feature support details" caption-side="top"}
 
-**Table 2. Intent feature support details**
+Table 2. Intent feature support details
 
-| Language | **[Absolute scoring](/docs/assistant-data?topic=assistant-data-intents#intents-absolute-scoring)** and **[Mark as irrelevant](/docs/assistant-data?topic=assistant-data-logs#logs-mark-irrelevant)** | **[Content Catalog](/docs/assistant-data?topic=assistant-data-catalog)** |
+| Language | **[Absolute scoring](/docs/assistant-data?topic=assistant-data-intents#intents-absolute-scoring)** and **[Mark as irrelevant](/docs/assistant-data?topic=assistant-intents#logs-mark-irrelevant)** | **[Content Catalog](/docs/assistant-data?topic=assistant-data-catalog)** |
 |:---:|:---:|:---:|
 | **English (en)**                   | GA | GA |
 | **Arabic (ar)**                    | Beta | GA |
@@ -74,7 +77,7 @@ The first table shows the level of support for all features, except those relate
 | **Spanish (es)**                   | GA | GA |
 {: caption="Intent feature support details" caption-side="top"}
 
-**Table 3. Entity feature support details**
+Table 3. Entity feature support details
 
 | Language | **[Entity fuzzy matching](/docs/assistant-data?topic=assistant-data-entities#entities-fuzzy-matching)** | **[Contextual entities](/docs/assistant-data?topic=assistant-data-entities#entities-create-annotation-based)** | **[Synonym recommendations](/docs/assistant-data?topic=assistant-data-entities#entities-synonyms)** |
 |:---:|:---:|:---:|:---:|
@@ -93,7 +96,7 @@ The first table shows the level of support for all features, except those relate
 | **Spanish (es)**                   | GA (Misspelling only) | NA | GA |
 {: caption="Entity feature support details" caption-side="top"}
 
-**Table 4. System entity feature support details**
+Table 4. System entity feature support details
 
 | Language | **System entities ([number](/docs/assistant-data?topic=assistant-data-system-entities#system-entities-sys-number), [currency](/docs/assistant-data?topic=assistant-data-system-entities#system-entities-sys-currency), [percentage](/docs/assistant-data?topic=assistant-data-system-entities#system-entities-sys-percentage), [date, time](/docs/assistant-data?topic=assistant-data-system-entities#system-entities-sys-date-time))** |
 |:---|:---:|:---:|
@@ -112,9 +115,10 @@ The first table shows the level of support for all features, except those relate
 | **Spanish (es)**                   | GA |
 {: caption="System entity feature support details" caption-side="top"}
 
-**Note:** The {{site.data.keyword.conversationshort}} service supports multiple languages as noted, but the tool interface itself (descriptions, labels, etc.) is in English. All supported languages can be input and trained through the English interface.
+The {{site.data.keyword.conversationshort}} service supports multiple languages as noted, but the tool interface itself (descriptions, labels, etc.) is in English. All supported languages can be input and trained through the English interface.
 
-**GB18030 compliance**: GB18030 is a Chinese standard that specifies an extended code page for use in the Chinese market. This code page standard is important for the software industry because the China National Information Technology Standardization Technical Committee has mandated that any software application that is released for the Chinese market after September 1, 2001, be enabled for GB18030. The {{site.data.keyword.conversationshort}} service supports this encoding, and is certified GB18030-compliant
+GB18030 is a Chinese standard that specifies an extended code page for use in the Chinese market. This code page standard is important for the software industry because the China National Information Technology Standardization Technical Committee has mandated that any software application that is released for the Chinese market after September 1, 2001, be enabled for GB18030. The {{site.data.keyword.conversationshort}} service supports this encoding, and is certified GB18030-compliant.
+{: note}
 
 ## Changing a skill language
 {: #language-support-change-language}

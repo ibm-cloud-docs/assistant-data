@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-01-29"
+lastupdated: "2020-03-20"
 
 keywords: intent, intent conflicts, annotate
 
@@ -175,7 +175,7 @@ After you have finished creating new intents, you can test the system to see if 
 
     ![Mark as irrelevant screen capture](images/irrelevant.png)
 
-    For more information about this action, see [Teaching your assistant about topics to ignore](/docs/assistant-data?topic=assistant-data-logs#logs-mark-irrelevant).
+    For more information about this action, see [Teaching your assistant about topics to ignore](#logs-mark-irrelevant).
 
 If your intents are not being correctly recognized, consider making the following kinds of changes:
 
@@ -320,3 +320,19 @@ When you delete an intent, you delete its associated examples also, and these it
 {: important}
 
 1.  From the **Intents** page, select the intents that you want to delete, and then click **Delete**.
+
+### Teaching your assistant about topics to ignore
+{: #logs-mark-irrelevant}
+
+It is important to help your assistant stay focused on the types of customer questions and business transactions you have designed it to handle. You can use test utterances that you submit through the "Try it out" pane to highlight subjects that you do not want your assistant to even attempt to address.
+
+To teach your assistant about subjects it should ignore, mark utterances that discuss these off-topic subjects as irrelevant.
+
+The **Mark as irrelevant** option is not available in all languages. See [supported languages](/docs/assistant?topic=assistant-language-support) for details.
+
+Intents that are marked as irrelevant are saved as counterexamples in the JSON workspace, and are included as part of the training data. They teach your assistant to explicitly not answer utterances of this type.
+
+Be sure before you designate an input as irrelevant.
+
+- There is no way to access or change the inputs from the user interface later.
+- The only way to reverse the identification of an input as being irrelevant is to use the same input as a test utterance, and then explicitly assign it to an intent.

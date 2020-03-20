@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2019-11-15"
+lastupdated: "2020-03-20"
 
 subcollection: assistant-data
 
@@ -41,4 +41,4 @@ To provide feedback about the documentation, click the **FEEDBACK** button that 
 
   **Note**: The **FEEDBACK** button is not available when you access the documentation site from mobile devices.
 
-Rate and comment about whether the topic is helpful by clicking **Yes** or **No** at the bottom of the topic.
+Rate and comment about whether the topic is helpful by clicking **Yes** or **No** at the end of the topic.

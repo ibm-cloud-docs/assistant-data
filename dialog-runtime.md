@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-01-29"
+lastupdated: "2020-03-20"
 
 subcollection: assistant-data
 
@@ -169,9 +169,9 @@ Define a context variable by adding the variable name to the **Variable** field 
 
 1.  Add the variable name and value pair to the **Variable** and **Value** fields.
 
-    - The `name` can contain any upper- and lowercase alphabetic characters, numeric characters (0-9), and underscores.
+    - The `name` can contain any uppercase and lowercase alphabetic characters, numeric characters (0-9), and underscores.
 
-      You can include other characters, such as periods and hyphens, in the name. However, if you do, then you must specify the shorthand syntax `$(variable-name)` every time you subsequently reference the variable. See [Expressions for accessing objects](/docs/assistant-data?topic=assistant-data-expression-language#expression-language-shorthand-context) for more details.
+      You can include other characters, such as periods and hyphens, in the name. However, if you do, then you must specify the shorthand syntax `$(variable-name)` every time you subsequently reference the variable. See [Expressions for accessing objects](/docs/assistant-data?topic=assistant-data-expression-language#expression-language-shorthand-syntax) for more details.
       {:tip}
 
     - The `value` can be any supported JSON type, such as a simple string variable, a number, a JSON array, or a JSON object.
@@ -319,9 +319,9 @@ You can also define a context variable in the JSON editor. You might want to use
 
 The name and value pair must meet these requirements:
 
-- The `name` can contain any upper- and lowercase alphabetic characters, numeric characters (0-9), and underscores.
+- The `name` can contain any uppercase and lowercase alphabetic characters, numeric characters (0-9), and underscores.
 
-  You can include other characters, such as periods and hyphens, in the name. However, if you do, then you must specify the shorthand syntax `$(variable-name)` every time you subsequently reference the variable. See [Expressions for accessing objects](/docs/assistant-data?topic=assistant-data-expression-language#expression-lanaguage-shorthand-context) for more details.
+  You can include other characters, such as periods and hyphens, in the name. However, if you do, then you must specify the shorthand syntax `$(variable-name)` every time you subsequently reference the variable. See [Expressions for accessing objects](/docs/assistant-data?topic=assistant-data-expression-language#expression-language-shorthand-syntax) for more details.
   {:tip}
 
 - The `value` can be any supported JSON type, such as a simple string variable, a number, a JSON array, or a JSON object.
@@ -720,7 +720,7 @@ To change the digression behavior for an individual node, complete the following
 
     - **All nodes that have children**: Choose whether you want the conversation to come back to the current node after a digression if the current node's response has already been displayed and its child nodes are incidental to the node's goal. Set the *Allow return from digressions triggered after this node's response* toggle to **No** to prevent the dialog from returning to the current node and continuing to process its branch.
 
-      For example, if the user asks, `Do you sell cupcakes?` and the response, `We offer cupcakes in a variety of flavors and sizes` is displayed before the user changes subjects, you might not want the dialog to return to where it left off. Especially, if the child nodes only address possible follow-up questions from the user and can safely be ignored.
+      For example, if the user asks, `Do you sell cupcakes?` and the response, `We offer cupcakes in a variety of flavors and sizes` is displayed before the user changes subjects, you might not want the dialog to return to where it was. Especially, if the child nodes only address possible follow-up questions from the user and can safely be ignored.
 
       However, if the node relies on its child nodes to address the question, then you might want to force the conversation to return and continue processing the nodes in the current branch. For example, the initial response might be, `We offer cupcakes in all shapes and sizes. Which menu do you want to see: gluten-free, dairy-free, or regular?` If the user changes subjects at this point, you might want the dialog to return so the user can pick a menu type and get the information they wanted.
 
@@ -830,15 +830,23 @@ Follow the [tutorial](/docs/assistant-data?topic=assistant-data-tutorial-digress
 ### Design considerations
 {: #dialog-runtime-digression-design-considerations}
 
-- **Avoid fallback node proliferation**: Many dialog designers include a node with a `true` or `anything_else` condition at the end of every dialog branch as a way to prevent users from getting stuck in the branch. This design returns a generic message if the user input does not match anything that you anticipated and included a specific dialog node to address. However, users cannot digress away from dialog flows that use this approach.
+- Avoid fallback node proliferation
+
+  Many dialog designers include a node with a `true` or `anything_else` condition at the end of every dialog branch as a way to prevent users from getting stuck in the branch. This design returns a generic message if the user input does not match anything that you anticipated and included a specific dialog node to address. However, users cannot digress away from dialog flows that use this approach.
 
   Evaluate any branches that use this approach to determine whether it would be better to allow digressions away from the branch. If the user's input does not match anything you anticipated, it might find a match against an entirely different dialog flow in your tree. Rather than responding with a generic message, you can effectively put the rest of the dialog to work to try to address the user's input. And the root-level `Anything else` node can always respond to input that none of the other root nodes can address.
 
-- **Reconsider jumps to a closing node**: Many dialogs are designed to ask a standard closing question, such as, `Did I answer your question today?` Users cannot digress away from nodes that are configured to jump to another node. So, if you configure all of your final branch nodes to jump to a common closing node, digressions cannot occur. Consider tracking user satisfaction through metrics or some other means.
+- Reconsider jumps to a closing node
 
-- **Test possible digression chains**: If a user digresses away from the current node to another node that allows digressions away, the user could potentially digress away from that other node, and repeat this pattern one or more times again. If the starting node in the digression chain is configured to return after the digression, then the user will eventually be brought back to the current dialog node. In fact, any subsequent nodes in the chain that are configured not to return are excluded from being considered as digression targets. Test scenarios that digress multiple times to determine whether individual nodes function as expected.
+  Many dialogs are designed to ask a standard closing question, such as, `Did I answer your question today?` Users cannot digress away from nodes that are configured to jump to another node. So, if you configure all of your final branch nodes to jump to a common closing node, digressions cannot occur. Consider tracking user satisfaction through metrics or some other means.
 
-- **Remember that the current node gets priority**: Remember that nodes outside the current flow are only considered as digression targets if the current flow cannot address the user input. It is even more important in a node with slots that allows digressions away, in particular, to make it clear to users what information is needed from them, and to add confirmation statements that are displayed after the user provides a value.
+- Test possible digression chains**
+
+  If a user digresses away from the current node to another node that allows digressions away, the user could potentially digress away from that other node, and repeat this pattern one or more times again. If the starting node in the digression chain is configured to return after the digression, then the user will eventually be brought back to the current dialog node. In fact, any subsequent nodes in the chain that are configured not to return are excluded from being considered as digression targets. Test scenarios that digress multiple times to determine whether individual nodes function as expected.
+
+- Remember that the current node gets priority
+
+  Remember that nodes outside the current flow are only considered as digression targets if the current flow cannot address the user input. It is even more important in a node with slots that allows digressions away, in particular, to make it clear to users what information is needed from them, and to add confirmation statements that are displayed after the user provides a value.
 
   Any slot can be filled during the slot-filling process. So, a slot might capture user input unexpectedly. For example, you might have a node with slots that collects the information necessary to make a dinner reservation. One of the slots collects date information. While providing the reservation details, the user might ask, `What's the weather meant to be tomorrow?` You might have a root node that conditions on #forecast which could answer the user. However, because the user's input includes the word `tomorrow` and the reservation node with slots is being processed, your assistant assumes the user is providing or updating the reservation date instead. *The current node always gets priority.* If you define a clear confirmation statement, such as, `Ok, setting the reservation date to tomorrow,` the user is more likely to realize there was a miscommunication and correct it.
 
@@ -846,7 +854,9 @@ Follow the [tutorial](/docs/assistant-data?topic=assistant-data-tutorial-digress
 
   Be sure to do lots of testing as you configure the digression behavior.
 
-- **When to use digressions instead of slot handlers**: For general questions that users might ask at any time, use a root node that allows digressions into it, processes the input, and then goes back to the flow that was in progress. For nodes with slots, try to anticipate the types of related questions users might want to ask while filling in the slots, and address them by adding handlers to the node.
+- When to use digressions instead of slot handlers
+
+  For general questions that users might ask at any time, use a root node that allows digressions into it, processes the input, and then goes back to the flow that was in progress. For nodes with slots, try to anticipate the types of related questions users might want to ask while filling in the slots, and address them by adding handlers to the node.
 
   For example, if the node with slots collects the information required to fill out an insurance claim, then you might want to add handlers that address common questions about insurance. However, for questions about how to get help, or your stores locations, or the history of your company, use a root level node.
 
@@ -856,7 +866,7 @@ Follow the [tutorial](/docs/assistant-data?topic=assistant-data-tutorial-digress
 If you are using version 1.3 of the product, see [Disambiguation in v1.3](#dialog-runtime-disambiguation-v13) instead. The way disambiguation works changed slightly between releases.
 {: important}
 
-When you enable disambiguation, you instruct your assistant to ask users for help when it finds that more than one dialog node can respond to their input. Instead of guessing which node to process, your assistant shares a list of the top node options with the user, and asks the user to pick the right one.
+When you enable disambiguation, you instruct your assistant to ask users for help when it finds that more than one dialog node can respond to their input. Instead of guessing which node to process, your assistant shares a list of the best node options with the user, and asks the user to pick the right one.
 
 ![Shows a sample conversation between a user and the assistant, where the assistant asks for clarification from the user.](images/disambig-demo.png)
 
@@ -895,7 +905,7 @@ If the user input is `i must cancel it today`, then the following intents might 
   {"intent":"Customer_Care_Appointments","confidence":0.29033891558647157},
   {"intent":"General_Greetings","confidence":0.2894785046577454},
 ```
-{: code block}
+{: codeblock}
 
 In fact, if you test from the "Try it out" pane, you can hover over the eye icon to see the top three intents that were recognized in the test input.
 
@@ -971,7 +981,7 @@ Keep in mind:
 
   - It impacts which nodes are included in the disambiguation options list
   
-    Sometimes a node is not listed as a disambiguation option as expected. This can happen if a condition value is also referenced by a node that is not eligible for inclusion in the disambiguation list for some reason. For example, an entity mention might trigger a node that is situated earlier in the dialog tree but is not enabled for disambiguation. If the same entity is the only condition for a node that *is* enabled for disambiguation, but is situated lower in the tree, then it might not be added as a disambiguation option because your assistant never reaches it. If it matched against the earlier node and was omitted, your assistant might not process the later node.
+    Sometimes a node is not listed as a disambiguation option as expected. This can happen if a condition value is also referenced by a node that is not eligible for inclusion in the disambiguation list for some reason. For example, an entity mention might trigger a node that is situated earlier in the dialog tree but is not enabled for disambiguation. If the same entity is the only condition for a node that *is* enabled for disambiguation, but is situated later in the tree, then it might not be added as a disambiguation option because your assistant never reaches it. If it matched against the earlier node and was omitted, your assistant might not process the later node.
 
 For each node that you opt in to disambiguation, test scenarios in which you expect the node to be included in the disambiguation options list. Testing gives you a chance to make adjustments to the node order or other factors that might impact how well disambiguation works at run time.
 
@@ -1035,7 +1045,7 @@ Again, keep in mind that the options included in the list and the order of the o
 ## Disambiguation in v1.3
 {: #dialog-runtime-disambiguation-v13}
 
-When you enable disambiguation, you instruct your assistant to ask users for help when it finds that more than one dialog node can respond to their input. Instead of guessing which node to process, your assistant shares a list of the top node options with the user, and asks the user to pick the right one.
+When you enable disambiguation, you instruct your assistant to ask users for help when it finds that more than one dialog node can respond to their input. Instead of guessing which node to process, your assistant shares a list of the best node options with the user, and asks the user to pick the right one.
 
 ![Shows a sample conversation between a user and the assistant, where the assistant asks for clarification from the user.](images/disambig-demo.png)
 
@@ -1090,10 +1100,6 @@ Notice that your assistant recognizes the term `today` in the user input as a da
 
 ![Service prompts the user to choose from a list of dialog options, including Capture date information.](images/disambig-tryitout-date.png)
 
-The following video provides an overview of disambiguation.
-
-<iframe class="embed-responsive-item" id="youtubeplayer0" title="Disambiguation overview" type="text/html" width="640" height="390" src="https://www.youtube.com/embed/VVyklAXlmbA?rel=0" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen> </iframe>
-
 ### Enabling disambiguation
 {: #dialog-runtime-disambig-enable-v13}
 
@@ -1142,7 +1148,7 @@ Keep in mind:
 
   - It impacts which nodes are included in the disambiguation options list
   
-    Sometimes a node is not listed as a disambiguation option as expected. This can happen if a condition value is also referenced by a node that is not eligible for inclusion in the disambiguation list for some reason. For example, an entity mention might trigger a node that is situated earlier in the dialog tree but is not enabled for disambiguation. If the same entity is the only condition for a node that *is* enabled for disambiguation, but is situated lower in the tree, then it is not added as a disambiguation option because your assistant never reaches it. It matched against the earlier node and was omitted, so your assistant does not process the later node.
+    Sometimes a node is not listed as a disambiguation option as expected. This can happen if a condition value is also referenced by a node that is not eligible for inclusion in the disambiguation list for some reason. For example, an entity mention might trigger a node that is situated earlier in the dialog tree but is not enabled for disambiguation. If the same entity is the only condition for a node that *is* enabled for disambiguation, but is situated later in the tree, then it is not added as a disambiguation option because your assistant never reaches it. It matched against the earlier node and was omitted, so your assistant does not process the later node.
 
 For each node that you opt in to disambiguation, test scenarios in which you expect the node to be included in the disambiguation options list. Testing gives you a chance to make adjustments to the node order or other factors that might impact how well disambiguation works at run time.
 
