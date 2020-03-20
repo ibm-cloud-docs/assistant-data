@@ -235,7 +235,7 @@ While testing your dialog, you can see details of the intents that are recognize
 ```
 {: codeblock}
 
-For the user input, *Hello now*, your assistant finds an exact match with the #greeting intent. Therefore, it lists the #greeting intent object details first. The response also includes the  10 other intents that are defined in the skill regardless of their confidence score. (In this example, its confidence in the other intents is set to 0 because the first intent is an exact match.) The top 10 intents are returned because the "Try it out" pane sends the `alternate_intents:true` parameter with its request. If you are using the API directly and want to see the top 10 results, be sure to specify this parameter in your call. If `alternate_intents` is false, which is the default value, only intents with a confidence above 0.2 are returned in the array.
+For the user input, *Hello now*, your assistant finds an exact match with the #greeting intent. Therefore, it lists the #greeting intent object details first. The response also includes the 10 other intents that are defined in the skill regardless of their confidence score. (In this example, its confidence in the other intents is set to 0 because the first intent is an exact match.) The top 10 intents are returned because the "Try it out" pane sends the `alternate_intents:true` parameter with its request. If you are using the API directly and want to see the top 10 results, be sure to specify this parameter in your call. If `alternate_intents` is false, which is the default value, only intents with a confidence above 0.2 are returned in the array.
 
 ```json
 [{"intent":"greeting","confidence":1},
