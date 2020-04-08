@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-03-20"
+lastupdated: "2020-04-08"
 
 subcollection: assistant-data
 
@@ -31,7 +31,7 @@ subcollection: assistant-data
 Use {{site.data.keyword.conversationfull}} for {{site.data.keyword.icp4dfull}} to build conversational interfaces into any app, device, or channel. 
 {: shortdesc}
 
-Use this installation method if you do not have a {{site.data.keyword.icp4dfull}} cluster. These instructions include  pointers to instructions for installing {{site.data.keyword.icp4dfull}} 2.5 as a stand-alone deployment or as a Red Hat OpenShift V3.11 deployment. You then add {{site.data.keyword.conversationshort}} to it as a service.
+Use this installation method if you do not have a {{site.data.keyword.icp4dfull}} cluster. These instructions include pointers to instructions for installing {{site.data.keyword.icp4dfull}} 2.5 as a stand-alone deployment or as a Red Hat OpenShift V3.11 deployment. You then add {{site.data.keyword.conversationshort}} to it as a service.
 
 ## Application details
 {: #install-141-wa-details}
@@ -116,7 +116,7 @@ In production:
 ### Optimal deployment configuration for development
 {: #install-141-tested-sys-reqs-dev}
 
-Table 2. Hardware verified to support a development deployment of the service with {{site.data.keyword.icp4dfull_notm}} Lite
+Table 2. Hardware verified to support a development deployment of the service with {{site.data.keyword.icp4dfull_notm}}
 
 | Number of nodes | CPU per node | Memory per node (GB) | Disk per node (GB) |
 |-----------------|--------------|-----------------|---------------|
@@ -160,7 +160,21 @@ Follow the correct procedure for your deployment.
 
 To deploy resilient storage in a production environment, do not use the script that is provided in the archive file. The script creates local storage volumes that are meant for deployments into a development or test environment.
 
-Instead, consider using an {{site.data.keyword.icp4dfull_notm}} storage service.
+A Portworx package is included with {{site.data.keyword.icp4dfull_notm}}. Per the Portworx Limited Use Rights, you can use Portworx for free. The Portworx license that is provided with {{site.data.keyword.icp4dfull_notm}} covers the following features:
+  
+- Maximum number of nodes: 8
+- Maximum number of volumes: 500
+- Maximum volume capacity: 5
+
+The following features are not supported:
+
+- BYOK data encryption
+- Snapshot to object store
+- Cluster-level migration
+- Disaster recovery
+- Autopilot capacity management
+ 
+To upgrade the license, go to the [Portworx support site](https://docs.portworx.com/knowledgebase/support.html){: external}.
 
 #### Portworx storage
 {: #install-141-portworx}
