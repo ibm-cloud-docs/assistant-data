@@ -174,7 +174,7 @@ The following features are not supported:
 - Disaster recovery
 - Autopilot capacity management
  
-To upgrade the license, go to the [Portworx support site](https://docs.portworx.com/knowledgebase/support.html).
+To upgrade the license, go to the [Portworx support site](https://docs.portworx.com/knowledgebase/support.html){: external}.
 
 #### Portworx storage
 {: #install-141-portworx}
