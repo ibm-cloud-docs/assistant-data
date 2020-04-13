@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-04-08"
+lastupdated: "2020-04-13"
 
 subcollection: assistant-data
 
@@ -160,10 +160,21 @@ Before it adds the backed-up data, the tool removes the data for all instances i
 
 1.  Download the `pgmig` tool from the [GitHub Watson Developer Cloud Community](https://github.com/watson-developer-cloud/community/blob/master/watson-assistant/data) repository.
 
-    ```
-    wget https://github.com/watson-developer-cloud/community/blob/master/watson-assistant/data/1.4.0/pgmig
-    ```
-    {: codeblock}
+    - 1.4.1
+
+      ```
+      wget https://github.com/watson-developer-cloud/community/blob/master/watson-assistant/data/1.4.1/pgmig
+      ```
+      {: codeblock}
+
+    - 1.4.0
+
+      ```
+      wget https://github.com/watson-developer-cloud/community/blob/master/watson-assistant/data/1.4.0/pgmig
+      ```
+      {: codeblock}
+
+    Run this command so you can access the `pgmig` script:
 
     ```
     chmod 755 pgmig
