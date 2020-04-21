@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-04-08"
+lastupdated: "2020-04-21"
 
 subcollection: assistant-data
 
@@ -332,6 +332,26 @@ You must be a cluster administrator to create local storage volumes, and the scr
     {: pre}
 
     The rest of these steps describe how to set up basic local storage persistent volumes with node affinity.
+
+1.  **Stand-alone {{site.data.keyword.icp4dfull_notm}} cluster only**: You must change the group write permissions for the directory before you run the script. 
+
+    Edit the `createLocalVolumePV.sh` file to change the following lines:
+
+    From this:
+
+    ```
+    echo ssh $SSH_ARGS $SSH_USER@${NODE} mkdir -p "${NODE_PATH}"
+    ssh $SSH_ARGS $SSH_USER@${NODE} mkdir -p "${NODE_PATH}"
+    ```
+    {codeblock}
+
+    To this:
+    
+    ```
+    echo ssh $SSH_ARGS $SSH_USER@${NODE} mkdir -p -m 775 "${NODE_PATH}"
+    ssh $SSH_ARGS $SSH_USER@${NODE} mkdir -p -m 775 "${NODE_PATH}"
+    ```
+    {codeblock}
 
 1.  Run the `createLocalVolumePV.sh` script to create the persistent volumes. 
 
