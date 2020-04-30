@@ -27,10 +27,11 @@ Watson Assistant for IBM Cloud Pak for Data
     Installing previous versions
         install-140.md
         install-130.md
-        [v1.3 README.md](https://github.com/ibm-cloud-docs/data-readmes/blob/master/assistant-README.md)
+        [1.3 README.md](https://github.com/ibm-cloud-docs/data-readmes/blob/master/assistant-README.md)
         manage-130.md
         install-120.md
         install-120-addon.md
+        [1.1 and 1.0 PDF](https://github.com/watson-developer-cloud/community/blob/master/watson-assistant/data/pre1.4/assistant-icp-1.1.pdf)
 
     assistant-add.md
     skill-add.md
