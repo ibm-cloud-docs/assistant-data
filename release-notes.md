@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-04-03"
+lastupdated: "2020-04-30"
 
 subcollection: assistant-data
 
@@ -126,6 +126,8 @@ The {{site.data.keyword.conversationshort}} tool now works with {{site.data.keyw
 - The number of required Virtual Private CPUs has decreased from its previous number (of 60 VPCs).
 
 - Language support was improved, which means you do not need as many additional resources when you add support for more languages.
+
+A PDF of the usage documentation for this version of the product is available for download from [GitHub](https://github.com/watson-developer-cloud/community/blob/master/watson-assistant/data/pre1.4/assistant-icp-1.1.pdf).
 
 ### 23 November 2018
 {: #23November2018}
