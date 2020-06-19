@@ -188,3 +188,5 @@ This tutorial is built around a simple example. For a real application, you need
     - Add standard nodes with the [Building a complex dialog](/docs/assistant-data?topic=assistant-data-tutorial) tutorial.
     - Learn about slots with the [Adding a node with slots](/docs/assistant-data?topic=assistant-data-tutorial-slots) tutorial.
 - Check out more [sample apps](/docs/assistant-data?topic=assistant-data-sample-apps) to get ideas.
+
+When you're ready to deploy your assistant, see [Deploying](/docs/assistant-data?topic=assistant-data-deploy-custom-app).

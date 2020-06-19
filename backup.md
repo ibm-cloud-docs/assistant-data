@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-04-13"
+lastupdated: "2020-06-02"
 
 subcollection: assistant-data
 
@@ -31,25 +31,182 @@ You can back up and restore the data that is associated with your {{site.data.ke
 
 The primary data storage for {{site.data.keyword.conversationshort}} is a Postgres database. Your data, such as workspaces, assistants, and skills are stored in Postgres. Other internal data, such as trained models, can be recreated from the data in Postgres.
 
-To back up the data, you can use a tool that Postgres provides that is called `pg_dump`. The dump tool creates a backup by sending the database contents to stdout where you can write it to a file. 
+To back up the data, you use a tool that Postgres provides that is called `pg_dump`. The dump tool creates a backup by sending the database contents to stdout where you can write it to a file. 
 
-A bash script is provided in the product's PPA file. The script gathers the pod name and credentials for one of your Postgres Proxy pods, which is the pod from which the `pg_dump` command must be run, and then runs the command for you.
+Choose one of the following ways to manage the backup of data:
 
-## Important considerations
+- **Kubernetes CronJob**: Use the `$RELEASE-backup-cronjob` cronjob that is provided for you.
+- **backupPG.sh script**: Use the `backupPG.sh` bash script that is provided with the service's installation files.
+- **pg_dump tool**: Run the `pg_dump` tool on each cluster directly. This is the most manual option, but also affords the most control over the process.
+
+## Before you begin
 
 - When you create a backup by using this procedure, the backup includes all of the assistants and skills from all of the service instances. Meaning it can include even skills and assistants to which you do not have access.
 - The access permissions information of the original service instances is not stored in the backup. Meaning original access rights, which determine who can see a service instance and who cannot, are not preserved. 
-- The target {{site.data.keyword.icp4dfull_notm}} cluster where you restore the data must have the same number of instances as the environment from which you back up the database.
-- The tool that restores the data clears the current database before it restores the backup. Therefore, if you might need to revert to the current database, create a backup of it first.
 - If you back up and restore or otherwise change the {{site.data.keyword.discoveryshort}} service that your search skill connects to, then you cannot retore the search skill, but must recreate it. When you set up a search skill, you map sections of the assistant's response to fields in a data collection that is hosted by an instance of {{site.data.keyword.discoveryshort}} on the same cluster. If the {{site.data.keyword.discoveryshort}} instance changes, your mapping to it is broken. If your {{site.data.keyword.discoveryshort}} service does not change, then the search skill can continue to connect to the data collection.
+- The tool that restores the data clears the current database before it restores the backup. Therefore, if you might need to revert to the current database, create a backup of it first.
+- The target {{site.data.keyword.icp4dfull_notm}} cluster where you restore the data must have the same number of instances as the environment from which you back up the database.
+
+## Backing up data by using the CronJob
+{: #backup-cronjob}
+
+A CronJob named `$RELEASE-backup-cronjob` is created and enabled for you automatically when you deploy the service. A CronJob is a type of Kubernetes controller. A CronJob creates Jobs on a repeating schedule. For more information, see [CronJob](https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/){: external} in the Kubernetes documentation. 
+
+The jobs that are created by the backup cron job are called `$RELEASE-backup-job-$TIMESTAMP`. Each job deletes old logs and runs a backup of the store Postgres database. The backups are created with the `pg_dump` command and stored. You decide where to store the backups:
+
+- **Portworx**: Jobs store backups in Portworx storage.
+- **Local persistent volume claim**: Jobs store backups in a local storage persistent volume claim. If the `postgres.backup.persistence.enabled` configuration setting is set to `true`, a local storage persistent volume claim is created for you as part of the deployment process.
+- **Job logs**: If the `postgres.backup.persistence.enabled` configuration setting is set to `false`, the jobs store the backups in the job logs only. 
+
+  If you disable persistence and you're using the `storage.sh` script to create local storage for the deployment, be sure to set `pgBackupLocalStorage` to `false` so that a persistent volume is not created for storing backups. For more information, see [Creating persistent volumes for a development deployment](/docs/assistant-data?topic=assistant-data-install-142#install-142-create-pvs-dev).
+  {: tip}
+
+Regardless of the temporary storage method you choose, you are reponsible for moving the backup to a more secure location after its initial creation.
+{: important}
+
+The following table lists the configuration values that control the backup cron job. You can change the default values for these settings by adding them to the `wa-override.yaml` file and changing their default values when you deploy the service. Or you can edit these settings by editing the cron job after the service is deployed by using the `oc edit cronjob $RELEASE-backup-cronjob` command.
+
+| Variable | Description | Default value |
+|----------|-------------|---------------|
+| postgres.backup.suspend | If true, the cron job does not create any backup jobs. | `false` |
+| postgres.backup.schedule | Specifies the time of day at which to run the backup jobs. Specify the schedule by using a cron expression. For example `{minute} {hour} {day} {month} {day-of-week}` where `{day-of-week}` is specified as `0`=Sunday, `1`=Monday, and so on. The default schedule is to run every day at 11 PM. | `0 23 * * *` |
+| postgres.backup.history.jobs.success | The number of successful jobs to keep. If `postgres.backup.persistence.enabled` is set to `false`, specifies the number of valid backup dumps to store in the job logs. | `30` |
+| postgres.backup.history.jobs.failed | The number of failed jobs to keep in the job logs. | `10` |
+| postgres.backup.persistence.enabled | If set to `true`, backups are written to persistent storage. | `true` |
+{: caption="Cron job variables" caption-side="top"}
+
+The following values configure how backups are stored in the persistent volume. They are only used if `postgres.backup.persistence.enabled` is `true`.
+
+| Variable | Description | Default value |
+|----------|-------------|---------------|
+| postgres.backup.history.files.weeklyBackupDay | A day of the week is designated as the weekly backup day. 0=Sunday, 1=Monday and so on. | `0` |
+| postgres.backup.history.files.weekly | The number of weekly backups to keep. | `4` |
+| postgres.backup.history.files.daily | The number of daily backups to keep. | `6`  |
+| postgres.backup.dataPVC.name | The name of the persistent volume claim in which to store the backups. | `store-backup` |
+| postgres.backup.dataPVC.storageClassName | The storage class to use in the persistent volume claim. By default, a persistent volume claim with the same class that you use for the main deployment, which is typically `portworx-assistant` is used. | `global.storageClassName`  |
+| postgres.backup.dataPVC.size | The size of the persistent volume claim. | `1Gi` |
+{: caption="Cron job persistent volume variables" caption-side="top"}
+
+### Accessing backed-up files from Portworx
+{: #backup-access-portworx}
+
+To access the backup files from Portworx, complete the following steps:
+
+1.  Get the name of the persistent volume that is used for the Postgres backup.
+
+    ```bash
+    oc get pv |grep $RELEASE-store-backup
+    ```
+    {: codeblock}
+
+    This command returns the name of the persistent volume claim where the store backup is located, such as `pvc-d2b7aa93-3602-4617-acea-e05baba94de3`. The name is referred to later in this procedure as the `$pv_name`.
+
+1.  Find nodes where Portworx is running.
+
+    ```bash
+    oc get pods -n kube-system -o wide -l name=portworx-api
+    ```
+    {: codeblock}
+
+1.  Log in as the core user to one of the nodes where Portworx is running.
+
+    ```bash
+    ssh core@<node hostname>
+    sudo su -
+    ```
+    {: codeblock}
+
+1.  Make sure the persistent volume is in a detached state and that no store backups are scheduled to occur during the time you plan to transfer the backup files.
+
+    Remember, backups occur daily at 11 PM (in the time zone configured for the nodes) unless you change the schedule by editing the value of the `postgres.backup.schedule` configuration parameter. You can run the `oc get cronjobs` command to check the current schedule for the `$RELEASE-backup-cronjob` job.
+
+    ```bash
+    pxctl volume inspect $pv_name |head -40
+    ```
+    {: codeblock}
+
+    where `$pvc_node` is the name of the node that you discovered in Step 1 of this procedure.
+
+1.  Attach the persistent volume to the host.
+
+   ```bash
+   pxctl host attach $pv_name
+   ```
+   {: codeblock}
+
+1.  Create a folder where you want to mount the node.
+
+    ```bash
+    mkdir /var/lib/osd/mounts/voldir
+    ```
+    {: codeblock}
+
+1.  Mount the node.
+
+    ```bash
+    pxctl host mount $pv_name --path /var/lib/osd/mounts/voldir
+    ```
+    {: codeblock}
+
+1.  Change Directory to `/var/lib/osd/mounts/voldir`. Transfer backup files to a secure location. Afterwards, exit the directory. Unmount the volume.
+
+    ```bash
+    pxctl host unmount --path /var/lib/osd/mounts/voldir $pv_name
+    ```
+    {: codeblock}
+
+1.  Detach the volume from the host.
+
+    ```bash
+    pxctl host detach $pv_name
+    ```
+    {: codeblock}
+
+1.  Make sure the volume is in the detached state. Otherwise, subsequent backups will fail.
+
+    ```bash
+    pxctl volume inspect $pv_name |head -40
+    ```
+    {: codeblock}
+
+### Accessing backed-up local storage files
+{: #backup-access-local-storage}
+
+To access the backup files from local storage:
+
+1.  SSH into the node on which you created the persistent volume.
+1.  Run the following command to get the details of the persistent volume that you created by using the `storage.sh` script. 
+
+    The `$pv_name` has the syntax `wa-$TIMESTAMP-backup-1gi-1`.
+
+    ```bash
+    oc get -o yaml pv $pv_name
+    ```
+    {: codeblock}
+
+    where `$pv_name` is the name of the persistent volume.
+
+    You will see the hostname and directory path where the backups are being written. 
+
+1.  Log in to the node as the core user and change to the directory where the backups are stored.
+
+    ```bash
+    ssh core@<node hostname>
+    cd $storage_path
+    ```
+    {: codeblock}
+
+1.  Securely copy the files to wherever you want to store them for a longer period of time.
 
 ## Backing up data by using the script
 {: #backup-os}
 
+The `backupPG.sh` script gathers the pod name and credentials for one of your Postgres Proxy pods, which is the pod from which the `pg_dump` command must be run, and then runs the command for you.
+
 To back up data by using the provided script, complete the following steps:
 
 1.  Log in to the OpenShift project namespace or Kubernetes namespace where you installed the product.
-1.  Go to the directory where the `backupPG.sh` script is stored, which is `{compressed-file-dir}/charts/ibm-watson-assistant-prod/ibm_cloud_pak/pak_extensions/post-install/namespaceAdministration` where `{compressed-file-dir}` is the name of the directory where you extracted the downloaded PPA file.
+1.  The `backupPG.sh` script is included in the Helm chart for the product. The chart can be found in fileserver https://github.com/IBM/cloud-pak/raw/master/repo/cpd3/modules/ibm-watson-assistant/x86_64/1.4.2/. Extract the backup.sh file from the Helm chart named `ibm-watson-assistant-prod-1.4.2.tgz`. The script is in the `ibm_cloud_pak/pak_extensions/post-install/namespaceAdministration` directory.
 
 1.  Run the script by using the following command:
 
@@ -68,17 +225,14 @@ If you prefer to back up data by using the Postgres tool directly, you can compl
 ## Backing up data manually
 {: #backup-cp4d}
 
-Complete the steps in this procedure to back up your data by using the Postgres tool directly. 
-
-If you have an OpenShift cluster, replace all `kubectl` commands with `oc` commands.
-{: note}
+Complete the steps in this procedure to back up your data by using the Postgres tool directly.
 
 To back up your data, complete these steps:
 
 1.  Fetch a running Postgres proxy pod.
 
     ```
-    kubectl get pods --field-selector=status.phase=Running -l component=stolon-proxy,release=${release-name} -o jsonpath="{.items[0].metadata.name}"
+    oc get pods --field-selector=status.phase=Running -l component=stolon-proxy,release=${release-name} -o jsonpath="{.items[0].metadata.name}"
     ```
     {: codeblock}
 
@@ -89,7 +243,7 @@ To back up your data, complete these steps:
 1.  Fetch the store VCAP secret name.
 
     ```
-    kubectl get secrets -l component=store,release=${release-name} -o=custom-columns=NAME:.metadata.name | grep store-vcap
+    oc get secrets -l component=store,release=${release-name} -o=custom-columns=NAME:.metadata.name | grep store-vcap
     ```
     {: codeblock}
 
@@ -98,7 +252,7 @@ To back up your data, complete these steps:
     - To get the username:
 
       ```
-      kubectl get secret $VCAP_SECRET_NAME -o jsonpath="{.data.vcap_services}" | base64 --decode | grep -o '"username":"[^"]*' | cut -d'"' -f4
+      oc get secret $VCAP_SECRET_NAME -o jsonpath="{.data.vcap_services}" | base64 --decode | grep -o '"username":"[^"]*' | cut -d'"' -f4
       ```
       {: codeblock}
 
@@ -107,21 +261,21 @@ To back up your data, complete these steps:
     - To get the password:
 
       ```
-      kubectl get secret $VCAP_SECRET_NAME -o jsonpath="{.data.vcap_services}" | base64 --decode | grep -o '"password":"[^"]*' | cut -d'"' -f4
+      oc get secret $VCAP_SECRET_NAME -o jsonpath="{.data.vcap_services}" | base64 --decode | grep -o '"password":"[^"]*' | cut -d'"' -f4
       ```
       {: codeblock}
 
     - To get the database:
 
       ```
-      kubectl get secret $VCAP_SECRET_NAME -o jsonpath="{.data.vcap_services}" | base64 --decode | grep -o '"database":"[^"]*' | cut -d'"' -f4
+      oc get secret $VCAP_SECRET_NAME -o jsonpath="{.data.vcap_services}" | base64 --decode | grep -o '"database":"[^"]*' | cut -d'"' -f4
       ```
       {: codeblock}
 
 1.  Run the following command:
 
     ```
-    kubectl exec $PROXY_POD -- bash -c "export PGPASSWORD='$PASSWORD' && pg_dump -Fc -h localhost -d $DATABASE -U $USERNAME" > ${file-name}
+    oc exec $PROXY_POD -- bash -c "export PGPASSWORD='$PASSWORD' && pg_dump -Fc -h localhost -d $DATABASE -U $USERNAME" > ${file-name}
     ```
     {: codeblock}
 
@@ -136,7 +290,7 @@ To back up your data, complete these steps:
     To see more information about the `pg_dump` command, you can run this command:
 
     ```bash
-    kubectl exec -it ${PROXY_POD} -- pg_dump --help
+    oc exec -it ${PROXY_POD} -- pg_dump --help
     ```
     {: pre}
  
@@ -151,6 +305,7 @@ Before it adds the backed-up data, the tool removes the data for all instances i
 1.  Install the target {{site.data.keyword.icp4dfull_notm}} cluster to which you want to restore the data. From the web client for the target cluster, create one service instance of {{site.data.keyword.conversationshort}} for each service instance that was backed up on the old cluster.
 
     The target {{site.data.keyword.icp4dfull_notm}} cluster must have the same number of instances as there were in the environment where you backed up the database.
+    {: important}
 
 1.  Back up the current database before you replace it with the backed-up database.
 
@@ -158,23 +313,14 @@ Before it adds the backed-up data, the tool removes the data for all instances i
 
 1.  Go to the backup directory that you specified in the file-name parameter in the previous procedure.
 
-1.  Download the `pgmig` tool from the [GitHub Watson Developer Cloud Community](https://github.com/watson-developer-cloud/community/blob/master/watson-assistant/data) repository.
+1.  Download the `pgmig` tool from the [GitHub Watson Developer Cloud Community](https://github.com/watson-developer-cloud/community/blob/master/watson-assistant/pgmig) repository.
 
-    - 1.4.1
+    ```
+    wget https://github.com/watson-developer-cloud/community/raw/master/watson-assistant/data/{version}/pgmig
+    ```
+    {: codeblock}
 
-      ```
-      wget https://github.com/watson-developer-cloud/community/blob/master/watson-assistant/data/1.4.1/pgmig
-      ```
-      {: codeblock}
-
-    - 1.4.0
-
-      ```
-      wget https://github.com/watson-developer-cloud/community/blob/master/watson-assistant/data/1.4.0/pgmig
-      ```
-      {: codeblock}
-
-    Run this command so you can access the `pgmig` script:
+    where {version} matches the version of the service that you are using, such as `1.4.2`.
 
     ```
     chmod 755 pgmig

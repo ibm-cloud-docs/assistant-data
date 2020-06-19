@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-03-17"
+lastupdated: "2020-04-15"
 
 subcollection: assistant-data
 
@@ -36,7 +36,7 @@ When a chat session is reset, the dialog loses any contextual information that i
 
 | Chat session default inactivity period | Chat session maximum inactivity period |
 |--------------------------------|----------------------------|
-|                         1 hour |                   24 hours |
+|                         1 hour |         168 hours (7 days) |
 {: caption="Session inactivity timeout details" caption-side="top"}
 
 ## Changing the setting

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-03-20"
+lastupdated: "2020-06-16"
 
 subcollection: assistant-data
 
@@ -60,21 +60,21 @@ Table 1. Feature support details
 
 Table 2. Intent feature support details
 
-| Language | **[Absolute scoring](/docs/assistant-data?topic=assistant-data-intents#intents-absolute-scoring)** and **[Mark as irrelevant](/docs/assistant-data?topic=assistant-intents#logs-mark-irrelevant)** | **[Content Catalog](/docs/assistant-data?topic=assistant-data-catalog)** |
-|:---:|:---:|:---:|
-| **English (en)**                   | GA | GA |
-| **Arabic (ar)**                    | Beta | GA |
-| **Chinese (Simplified) (zh-cn)**   | GA | NA |
-| **Chinese (Traditional) (zh-tw)**  | Beta | NA |
-| **Czech (cs)**                     | GA | NA |
-| **Dutch (nl)**                     | GA | NA |
-| **French (fr)**                    | GA | GA |
-| **German (de)**                    | GA | GA |
-| **Italian (it)**                   | GA | GA |
-| **Japanese (ja)**                  | GA | GA |
-| **Korean (ko)**                    | GA | NA |
-| **Portuguese (Brazilian) (pt-br)** | GA | GA |
-| **Spanish (es)**                   | GA | GA |
+| Language | **[Absolute scoring](/docs/assistant-data?topic=assistant-data-intents#intents-absolute-scoring)** and **[Mark as irrelevant](/docs/assistant-data?topic=assistant-data-intents#logs-mark-irrelevant)** | **[Content Catalog](/docs/assistant-data?topic=assistant-data-catalog)** | **[Autocorrection](/docs/assistant-data?topic=assistant-data-dialog-runtime#dialog-runtime-spell-check)** |
+|:---:|:---:|:---:|:---:|
+| **English (en)**                   | GA | GA | GA |
+| **Arabic (ar)**                    | Beta | GA | NA |
+| **Chinese (Simplified) (zh-cn)**   | GA | NA | NA |
+| **Chinese (Traditional) (zh-tw)**  | Beta | NA | NA |
+| **Czech (cs)**                     | GA | NA | NA |
+| **Dutch (nl)**                     | GA | NA | NA |
+| **French (fr)**                    | GA | GA | Beta |
+| **German (de)**                    | GA | GA | NA |
+| **Italian (it)**                   | GA | GA | NA |
+| **Japanese (ja)**                  | GA | GA | NA |
+| **Korean (ko)**                    | GA | NA | NA |
+| **Portuguese (Brazilian) (pt-br)** | GA | GA | NA |
+| **Spanish (es)**                   | GA | GA | NA |
 {: caption="Intent feature support details" caption-side="top"}
 
 Table 3. Entity feature support details
@@ -87,7 +87,7 @@ Table 3. Entity feature support details
 | **Chinese (Traditional) (zh-tw)**  | NA | NA | NA |
 | **Czech (cs)**                     | GA (Misspelling only) | NA | NA |
 | **Dutch (nl)**                     | GA (Misspelling only) | NA | NA |
-| **French (fr)**                    | GA (Misspelling only) | NA | GA |
+| **French (fr)**                    | GA | GA | GA |
 | **German (de)**                    | GA (Misspelling only) | NA | NA |
 | **Italian (it)**                   | GA (Misspelling only) | NA | NA |
 | **Japanese (ja)**                  | GA (Misspelling only) | NA | GA |

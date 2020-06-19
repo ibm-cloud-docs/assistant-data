@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-03-20"
+lastupdated: "2020-04-14"
 
 subcollection: assistant-data
 
@@ -74,11 +74,11 @@ To learn more about contextual entities, [read this blog post](https://medium.co
 ## Creating entities
 {: #entities-creating-task}
 
-1.  Open your dialog skill, and then click **Entities** from the skill menu.
+1.  Open your dialog skill and then click the **Entities** tab.
 
     **v1.3**: Click the **Entities** tab.
 
-    You can also click **System entities** to select from a list of common entities, provided by {{site.data.keyword.IBM_notm}}. For more information, see [Enabling system entities](#entities-enable-system-entities).
+    You can also click **System entities** to select from a list of common entities, provided by {{site.data.keyword.IBM_notm}}, that can be applied to any use case. See [Enabling system entities](#entities-enable-system-entities) for more detail.
 
 1.  Click **Create entity**.
 
@@ -133,13 +133,11 @@ Dictionary-based entites are those for which you define specific terms, synonyms
     The more coherent your entity value synonyms are, the more relevant and better focused your recommendations will be. For example, if you have several words that are focused on a theme, you will get better suggestions than if you have one or two random words.
     {: tip}
 
-    ![Synonym recommendation screen 2](images/synonym_2.png)
+    ![Shows synonym recommendations for the word apple](images/entities-recommended-synonyms.png)
 
     1. Select any synonyms you want to include, and then click **Add selected**.
 
        You must click the **Add selected** button for any synonyms you selected to be added. If you move to the next set without clicking this button first, your selections will be lost.
-
-       ![Synonym recommendation screen 3](images/synonym_3.png)
 
        The synonyms are added to your entity, and Watson suggests more synonyms.
 
@@ -149,7 +147,7 @@ Dictionary-based entites are those for which you define specific terms, synonyms
        If you choose not to select a recommended synonym, the system will treat that as a term you are not interested in, and will alter the next set of recommendations you see when you press **Add selected** or **Next set**. This inference only persists while you are choosing synonyms; information about skipped synonyms is not used for any other purpose by your assistant.
        {: note}
 
-       ![Synonym recommendation screen 4](images/synonym_4.png)
+       ![Shows a set of synonym recommendations that will be added to the entity value](images/entities-synonyms-added.png)
 
     1. Continue adding synonyms as desired. When you're finished accepting recommendations, click the **X** to close the recommendations panel.
 
@@ -253,7 +251,7 @@ For English, fuzzy matching prevents the capturing of some common, valid English
 
 Your fuzzy matching setting has no impact on synonym recommendations. Even if fuzzy matching is enabled, synonyms are suggested for the exact value you specify only, not the value and slight variations of the value.
 
-<!-- **1.4.2 only**: To understand how fuzzy matching and autocorrection are related to one another, see the [autocorrection documentation](/docs/assistant-data?topic=assistant-data-dialog-runtime#dialog-runtime-spell-check-vs-fuzzy-matching).-->
+To understand how fuzzy matching and autocorrection are related to one another, see the [autocorrection documentation](/docs/assistant-data?topic=assistant-data-dialog-runtime#dialog-runtime-spell-check-vs-fuzzy-matching).
 
 ## Adding contextual entities
 {: #entities-create-annotation-based}
@@ -265,10 +263,13 @@ Annotation-based entites are those for which you annotate occurrences of the ent
 
 In order to train a contextual entity model, you can take advantage of your intent examples, which provide readily-available sentences to annotate.
 
+This feature is generally available in English-language dialog skills and is available as a beta feature in French-langage dialog skills. For more information about language support, see [Supported languages](/docs/assistant-data?topic=assistant-data-language-support).
+{: note}
+
 Using an intent's user examples to define contextual entities does not affect the classification of that intent. However, entity mentions that you label are also added to that entity as synonyms. And intent classification does use synonym mentions in intent user examples to establish a weak reference between an intent and an entity.
 {: note}
 
-1.  From the skill menu, click **Intents**.
+1.  From your dialog skill, click the **Intents** tab.
 
 1.  Click an intent to open it.
 
@@ -340,9 +341,9 @@ The following video demonstrates how to annotate entity mentions.
 
 <iframe class="embed-responsive-item" id="youtubeplayer0" title="Annotating entity mentions" type="text/html" width="640" height="390" src="https://www.youtube.com/embed/3WjzJpLsnhQ" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen> </iframe>
 
-**Tutorial**: To walk through a tutorial that shows you how to define contextual entities before you add your own, go to [Tutorial: Defining contextual entities](https://www.ibm.com/cloud/garage/demo/try-watson-assistant-contextual-entities){: external}.
+**Tutorial**: To walk through a tutorial that shows you how to define contextual entities before you add your own, go to [Tutorial: Defining contextual entities](https://www.ibm.com/cloud/architecture/demo/try-watson-assistant-contextual-entities){: external}.
 
-The contextual entities tutorial shows a slightly older veresion of the user interface. But the concepts it covers are the same, so it is still a worthwhile exercise.
+The contextual entities tutorial shows a slightly older version of the user interface. But the concepts it covers are the same, so it is still a worthwhile exercise.
 {: note}
 
 ### What you don't annotate matters
@@ -452,6 +453,8 @@ System entities are centrally maintained, so any updates are available automatic
 
 1.  From the skill menu, click to expand **Entities**, and then click **System entities**.
 
+    ![Screen capture of "System entities" tab](images/system-entities1.png)
+
     **v1.3**: On the Entities page, click **System entities**.
 
 1.  Browse through the list of system entities to choose the ones that are useful for your application.
@@ -488,9 +491,15 @@ You can export a number of entities to a CSV file, so you can then import and re
 - Pattern information is included in the CSV export. Any string wrapped with `/` will be considered a pattern (as opposed to a synonym).
 - Annotations associated with contexual entities are not exported. You must export the entire dialog skill to capture both the entity value and any associated annotations.
 
-1.  Select the entities you want, then click the export icon.
+1.  Go to the **Entities** page
 
-    ![Export entity button](images/export-entity.png)
+    - To export all entities, meaning the entities that are listed on this and any additional pages, do not select any individual entities. Instead, click the *Export* icon. ![Export option](images/export-c10.png)
+
+    - To export the entities that are listed on the current page only, select the checkbox in the header. This action selects all of the entities on the current page. Click **Export**.
+
+    - To export one or more specific entities, select the entities that you want to export, and then click **Export**.
+
+1.  Specify the name and location in which to store the CSV file that is generated.
 
 ## Importing entities
 {: #entities-import}
@@ -536,23 +545,29 @@ Entity annotations are not included in the import of an entity CSV file. You mus
     ```
     {: screen}
 
-    Save the CSV file with UTF-8 encoding and no byte order mark (BOM). The maximum CSV file size is 10MB. If your CSV file is larger, consider splitting it into multiple files and importing them separately.
+    Save the CSV file with UTF-8 encoding and no byte order mark (BOM). The maximum CSV file size is 10MB. If your CSV file is larger, consider splitting it into multiple files and importing them separately.  Open your dialog skill and then click the **Entities** tab.
     {: tip}
 
-1.  From the *Entities* page, click the import icon.
+1.  Click the import icon.
 
     ![Import](images/import-entity.png)
 
 1.  Drag a file, or browse to select a file from your computer. The file is validated and imported, and the system begins to train itself on the new data.
+
+You can view the imported entities on the Entities tab. You might need to refresh the page to see the new entities.
 
 ## Deleting entities
 {: #entities-delete}
 
 You can select a number of entities for deletion.
 
-By deleting entities you are also deleting all associated values, synonyms, or patterns, and these items cannot be retrieved later. All dialog nodes that reference these entities or values must be updated manually to no longer reference the deleted content.
+When you delete an entity, you remove any values, synonyms, patterns, or annotations that are associated with the entity. This data cannot be retrieved later. All dialog nodes that reference these entities or values must be updated manually to no longer reference the deleted content.
 {: important}
 
-1.  Select the entities you want to delete, and then click the delete icon.
+1.  Go to the **Entities** page.
 
-    ![Delete entity button](images/delete-entity.png)
+    - To delete all entities, meaning the entities listed on this and any additional pages, do not select any individual entities. Instead, click the *Delete all entities* icon. ![Delete option](images/delete-c10.png)
+
+    - To delete the entities that are listed on the current page only, select the checkbox in the header. This action selects all of the entities that are listed on the current page. Click **Delete**.
+
+    - To delete one or more specific entities, select the entities that you want to delete, and then click **Delete**.
