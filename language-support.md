@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-06-16"
+lastupdated: "2020-06-19"
 
 subcollection: assistant-data
 
@@ -41,40 +41,40 @@ The first table shows the level of support for all features, except those relate
 
 Table 1. Feature support details
 
-| Language | **Defining [intents](/docs/assistant-data?topic=assistant-data-intents)**, **[entities](/docs/assistant-data?topic=assistant-data-entities)**, and **[dialog](/docs/assistant-data?topic=assistant-data-dialog-build)** |
-|:---:|:---:|
-| **English (en)**                   | GA |
-| **Arabic (ar)**                    | GA |
-| **Chinese (Simplified) (zh-cn)**   | GA |
-| **Chinese (Traditional) (zh-tw)**  | Beta |
-| **Czech (cs)**                     | GA |
-| **Dutch (nl)**                     | GA |
-| **French (fr)**                    | GA |
-| **German (de)**                    | GA |
-| **Italian (it)**                   | GA |
-| **Japanese (ja)**                  | GA |
-| **Korean (ko)**                    | GA |
-| **Portuguese (Brazilian) (pt-br)** | GA |
-| **Spanish (es)**                   | GA |
+| Language | **Defining [intents](/docs/assistant-data?topic=assistant-data-intents)**, **[entities](/docs/assistant-data?topic=assistant-data-entities)**, and **[dialog](/docs/assistant-data?topic=assistant-data-dialog-build)** | **[Content Catalog](/docs/assistant-data?topic=assistant-data-catalog)** |
+|:---:|:---:|:---:|
+| **English (en)**                   | GA | GA |
+| **Arabic (ar)**                    | GA | GA (except Covid-19) |
+| **Chinese (Simplified) (zh-cn)**   | GA | NA |
+| **Chinese (Traditional) (zh-tw)**  | GA | NA |
+| **Czech (cs)**                     | GA | NA |
+| **Dutch (nl)**                     | GA | NA |
+| **French (fr)**                    | GA | GA |
+| **German (de)**                    | GA | GA (except Covid-19) |
+| **Italian (it)**                   | GA | GA (except Covid-19) |
+| **Japanese (ja)**                  | GA | GA (except Covid-19) |
+| **Korean (ko)**                    | GA | NA |
+| **Portuguese (Brazilian) (pt-br)** | GA | GA |
+| **Spanish (es)**                   | GA | GA |
 {: caption="Feature support details" caption-side="top"}
 
 Table 2. Intent feature support details
 
-| Language | **[Absolute scoring](/docs/assistant-data?topic=assistant-data-intents#intents-absolute-scoring)** and **[Mark as irrelevant](/docs/assistant-data?topic=assistant-data-intents#logs-mark-irrelevant)** | **[Content Catalog](/docs/assistant-data?topic=assistant-data-catalog)** | **[Autocorrection](/docs/assistant-data?topic=assistant-data-dialog-runtime#dialog-runtime-spell-check)** |
+| Language | **[Absolute scoring](/docs/assistant-data?topic=assistant-data-intents#intents-absolute-scoring)** and **[Mark as irrelevant](/docs/assistant-data?topic=assistant-data-intents#logs-mark-irrelevant)** | **[Autocorrection](/docs/assistant-data?topic=assistant-data-dialog-runtime#dialog-runtime-spell-check)** |
 |:---:|:---:|:---:|:---:|
-| **English (en)**                   | GA | GA | GA |
-| **Arabic (ar)**                    | Beta | GA | NA |
-| **Chinese (Simplified) (zh-cn)**   | GA | NA | NA |
-| **Chinese (Traditional) (zh-tw)**  | Beta | NA | NA |
-| **Czech (cs)**                     | GA | NA | NA |
-| **Dutch (nl)**                     | GA | NA | NA |
-| **French (fr)**                    | GA | GA | Beta |
-| **German (de)**                    | GA | GA | NA |
-| **Italian (it)**                   | GA | GA | NA |
-| **Japanese (ja)**                  | GA | GA | NA |
-| **Korean (ko)**                    | GA | NA | NA |
-| **Portuguese (Brazilian) (pt-br)** | GA | GA | NA |
-| **Spanish (es)**                   | GA | GA | NA |
+| **English (en)**                   | GA | GA |
+| **Arabic (ar)**                    | GA | NA |
+| **Chinese (Simplified) (zh-cn)**   | GA | NA |
+| **Chinese (Traditional) (zh-tw)**  | GA | NA |
+| **Czech (cs)**                     | GA | NA |
+| **Dutch (nl)**                     | GA | NA |
+| **French (fr)**                    | GA | Beta |
+| **German (de)**                    | GA | NA |
+| **Italian (it)**                   | GA | NA |
+| **Japanese (ja)**                  | GA | NA |
+| **Korean (ko)**                    | GA | NA |
+| **Portuguese (Brazilian) (pt-br)** | GA | NA |
+| **Spanish (es)**                   | GA | NA |
 {: caption="Intent feature support details" caption-side="top"}
 
 Table 3. Entity feature support details
