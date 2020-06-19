@@ -39,6 +39,8 @@ IBM releases services, features, and language support for your evaluation that a
 
 **{{site.data.keyword.conversationfull}} for {{site.data.keyword.icp4dfull}} 1.4.2 is available.**: {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} 1.4.2 is compatible with {{site.data.keyword.icp4dfull}} 3.0.1 on OpenShift Red Hat 3.11 or 4.3 and {{site.data.keyword.icp4dfull}} 2.5 deployments on OpenShift Red Hat 3.11.
 
+The 1.4.2 release is certified on Red Hat OpenShift 4.3.
+
 The following changes were made in this release:
 
 - **Autocorrection support was added**: Autocorrection helps your assistant understand what your customers want. It corrects misspellings in the input that customers submit before the input is evaluated. With more precise input, your assistant can more easily recognize entity mentions and understand the customer's intent. This feature is not available in all languages. See [Correcting user input](/docs/assistant-data?topic=assistant-data-dialog-runtime#dialog-runtime-spell-check) for more details.
@@ -47,11 +49,11 @@ The following changes were made in this release:
 
 - **The Covid-19 content catalog is available in Brazilian Portuguese, English, French, and Spanish**: The content catalog defines a group of intents that recognize the common types of questions people ask about the novel coronavirus. You can use the catalog to jump-start development of chatbots that can answer questions about the virus and help to minimize the anxiety and misinformation associated with it. For more information about how to add a content catalog to your skill, see [Using content catalogs](/docs/assistant-data?topic=assistant-data-catalog).
 
-- The 1.4.2 release is certified on Red Hat OpenShift 4.3.
+- **Backup automation**: Support was added for doing data backups on a schedule. For more information, see [Backing up and restoring data](/docs/assistant-data?topic=assistant-data-backup).
 
-- Added support for automated backups. For more information, see [Backing up and restoring data](/docs/assistant-data?topic=assistant-data-backup).
+- **Stateless v2 message API**: The v2 runtime API now supports a new stateless `message` method. For more information, see the [API Reference](https://cloud.ibm.com/apidocs/assistant/assistant-v2#send-user-input-to-assistant-stateless){: external}.
 
-- The following changes were made to the service architecture:
+- **Architecture improvements**: The following changes were made to the service architecture:
 
     - The Skill-conversation microservice was removed. The microservice used to convert v2 API calls to v1 format and the other way around. The conversion is now done within the Store microservice. Reimplementing this function in the Store increased the overall speed with which v2 API requests are processed.
     - The Spellchecker and CLU Embedding microservices were added.
