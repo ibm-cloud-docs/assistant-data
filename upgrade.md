@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-01-29"
+lastupdated: "2020-06-16"
 
 subcollection: assistant-data
 
@@ -46,7 +46,7 @@ To upgrade your instance, complete these steps:
 
 1.  From the earlier version of the service, [download any dialog skills](/docs/assistant-data?topic=assistant-data-skill-dialog-add#skill-dialog-add-download) that you want to keep. Store them in a repository that will not be impacted when you uninstall the product.
 
-    If you are upgrading to V1.3, you [download workspaces](/docs/assistant-icp?topic=assistant-private-configure-workspace#exporting-and-copying-workspaces){: external} instead of skills.
+    If you are upgrading to V1.3, you [download workspaces](/docs/assistant-icp?topic=assistant-icp-configure-workspace#exporting-and-copying-workspaces){: external} instead of skills.
 
     Alternatively, you can use the `/workspaces` API to export a dialog skill. Include the `export=true` parameter with the GET workspace request. See the [API reference ](https://cloud.ibm.com/apidocs/assistant/assistant-data-v1#get-information-about-a-workspace){: external} for more details.
     
@@ -69,6 +69,6 @@ See [Creating an assistant](/docs/assistant-data?topic=assistant-data-assistant-
 ## Update your client applications (V1.3 and earlier only)
 {: #upgrade-api}
 
-When you import a dialog skill that you exported, a new skill is created. The new skill has a new workspace ID. If you have existing client applications that use the v1 API to access this skill, then you must update any workspace ID references to use the new worskpace ID instead.
+When you import a dialog skill that you exported, a new skill is created. The new skill has a new workspace ID. If you have existing client applications that use the v1 API to access this skill, then you must update any workspace ID references to use the new workspace ID instead.
 
 When you re-create your assistant, it is given a new assistant ID. If you have existing client applications that use the v2 API to access the assistant, then you must update any assistant ID references to use the new assistant ID instead.

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-03-20"
+lastupdated: "2020-06-19"
 
 subcollection: assistant-data
 
@@ -26,7 +26,7 @@ subcollection: assistant-data
 # Making a programmatic call from dialog
 {: #dialog-webhooks}
 
-This feature is generally available with 1.4.1. It was released as a beta feature with 1.4.
+This feature became generally available in the 1.4.1 release. It was released as a beta feature with 1.4.
 {: note}
 
 To make a programmatic call, define a webhook that sends a POST request callout to an external application that performs a programmatic function. You can then invoke the webhook from one or more dialog nodes.
@@ -261,13 +261,15 @@ The *Multiple conditioned responses* section is editable again. You can choose t
 
 To change the external service that you call from dialog nodes, edit the webhook details defined on the Webhooks page of the **Options** page. If the new service expects different parameters to be passed to it, be sure to update any dialog nodes that call it.
 
-## Calling IBM Cloud Functions
+<!--## Calling IBM Cloud Functions
 {: #dialog-webhooks-cf}
 
 You write the webhook URL and provide headers differently based on whether you are calling a standard action or a web action.
-
+-->
 ### Calling a web action
 {: #dialog-webhooks-cf-web-action}
+
+Typically, web actions can be run without requiring the caller to authenticate first. However, you can secure a web action that requires any callers to pass an ID with the request. For more information about how to secure a web action, see [Securing web actions](/docs/openwhisk?topic=openwhisk-actions_web#actions_web_secure){: external}.
 
 The following tips will help you call a {{site.data.keyword.openwhisk_short}} web action from your dialog. 
 
@@ -284,7 +286,7 @@ The following tips will help you call a {{site.data.keyword.openwhisk_short}} we
 
     If the external application that you call returns a response, it must be able to send back a response in JSON format.
 
-    Notice the request URL in this example ends in `.json`. By specifying this extension, you take advantage of a feature of web actions that lets you specify the desired content type of the response. Specifying this extension type ensures that, if the web actions can return responses in more than one format, a JSON response will be returned. See [Extra features](/docs/openwhisk?topic=cloud-functions-actions_web#actions_web_extra){: new_window} for more details.
+    Notice the request URL in this example ends in `.json`. By specifying this extension, you take advantage of a feature of web actions that lets you specify the desired content type of the response. Specifying this extension type ensures that, if the web actions can return responses in more than one format, a JSON response will be returned. See [Extra features](/docs/openwhisk?topic=openwhisk-actions_web#actions_web_extra){: new_window} for more details.
     {: tip}
 
 1.  You do not need to add any headers.
@@ -338,9 +340,9 @@ The following tips will help you call a {{site.data.keyword.openwhisk_short}} we
       </tr>
     </table>
 
-1.  When you are done, click the X to close the node. Your changes are automatically saved.
+1.  When you are done, click the X to close the node. Your changes are saved automatically.
 
-### Calling a standard action
+<!--### Calling a standard action
 {: #dialog-webhooks-cf-action}
 
 You can make a call to an action that is managed by Cloud Foundry, but not to an action that uses token-based Identity and Access Management (IAM) authentication.
@@ -378,7 +380,7 @@ To make a synchronous call to a {{site.data.keyword.openwhisk_short}} action tha
     
     ![Shows the URL field and Headers section of the Options page.](images/webhook-to-cfaction.png)
 
-    <!-- - If you are calling a {{site.data.keyword.openwhisk_short}} action that is managed by IBM Cloud Identity and Access Management (IAM) instead of CLoud Foundry, then you must provide an IAM bearer token to authenticate the request. 
+    - If you are calling a {{site.data.keyword.openwhisk_short}} action that is managed by IBM Cloud Identity and Access Management (IAM) instead of Cloud Foundry, then you must provide an IAM bearer token to authenticate the request. 
     
       1. Follow the instructions in [Passing an IBM Cloud IAM token to authenticate with a service's API](/docs/iam?topic=iam-iamapikeysforservices#token_auth). 
       
@@ -396,7 +398,6 @@ To make a synchronous call to a {{site.data.keyword.openwhisk_short}} action tha
            </tr>
          </table>
 
-    -->
     Your webhook details are saved automatically.
 
 1.  From the skill menu, click **Dialog**.
@@ -429,4 +430,4 @@ To make a synchronous call to a {{site.data.keyword.openwhisk_short}} action tha
       </tr>
     </table>
 
-1.  When you are done, click the X to close the node. Your changes are automatically saved.
+1.  When you are done, click the X to close the node. Your changes are automatically saved. -->

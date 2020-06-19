@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-01-16"
+lastupdated: "2020-06-11"
 
 subcollection: assistant-data
 
@@ -43,7 +43,7 @@ The {{site.data.keyword.conversationshort}} service provides a Helm chart, which
 
 The following diagram illustrates how data flows through the service's resources.
 
-![Flow diagram of the service](images/wa-for-cp4d-arch-diagram.png)
+![Flow diagram of the service](images/wa-arch-142.png)
 
 The following sections provide more detail about each resource that is used by the system. The objective is to give you information that can help you to do initial resource planning and help you to manage changes in data needs over time.
 
@@ -52,11 +52,16 @@ The following sections provide more detail about each resource that is used by t
 
 {{site.data.keyword.conversationshort}} consists of the following stateless microservices:
 
+- **CLU Embedding**: Provides the word embeddings for other microservices in the language understanding pipeline. The TAS, ED-MM, and training pods call the CLU Embedding microservice by using the gRPC protocol.
+
 - **Dialog**: Processes the dialog tree that is defined in a dialog skill to generate responses to user inputs. Based on the context (variables that are passed from previous conversation turns) and the intents and entities that are recognized in the user input, this service follows the dialog tree in the skill to find an appropriate response. Dialog is also responsible for making programmatic callouts to other services or programs. This microservice, which is sometimes referred to as the Dialog runtime, is a LiteLinks server that is called by the Store microservice. It has in-memory cache for dialog skills and uses Redis as the cache for dialog skills.
 
-- **ED-MM**: Recognizes contextual entities in user input. This microservice is part of the language understanding pipeline. ED-MM stands for Entities Distro model mesh. The {{site.data.keyword.conversationshort}} service's implementation of the ED-MM microservice is based on the model-mesh pattern. (For more information, see [Model mesh](#architecture-model-mesh).) The ED-MM microservice is called by the TAS microservice to evaluate user input only if the dialog skill that is being processed has contextual entities in its training data. Contextual entities are bound to a context. The ED-MM microservervice loads the models from MinIO. At run time, the models are used to look up the entities and validate the context. The ED-MM microservice also accesses the MongoDB for word embeddings.
+- **ED-MM**: Recognizes contextual entities in user input. This microservice is part of the language understanding pipeline. ED-MM stands for Entities Distro model mesh. The {{site.data.keyword.conversationshort}} service's implementation of the ED-MM microservice is based on the model-mesh pattern. (For more information, see [Model mesh](#architecture-model-mesh).) The ED-MM microservice is called by the TAS microservice to evaluate user input only if the dialog skill that is being processed has contextual entities in its training data. Contextual entities are bound to a context. The ED-MM microservervice loads the models from MinIO. At run time, the models are used to look up the entities and validate the context. The ED-MM microservice also accesses the CLU Embedding service for word embeddings.
 
-- **Gateway**: An adaption layer that interacts with {{site.data.keyword.icp4dfull_notm}} API and mimics the behavior of the public IBM Cloud. Its pods are named `${release-name}-addon-assistant-gateway`.
+- **Gateway**: An adaption layer that interacts with {{site.data.keyword.icp4dfull_notm}} API and mimics the behavior of the public IBM Cloud. Its pods are named `${release-name}-addon-assistant-gw-deployment`.
+
+  For 1.4.2, the ${release-name} is `watson-assistant`.
+  {: note}
 
   It serves the following functions:
 
@@ -76,13 +81,13 @@ The following sections provide more detail about each resource that is used by t
 
 - **SIREG**: Tokenizes user input that is sumbmitted to the system. SIRE stands for Statistical Information and Relation Extraction. SIREG runs SIRE tokenizers as microservices with a gRPC interface. For most of the supported Romance languages, the language understanding pipeline has a built-in library for tokenization. Generally, and to oversimplify it, each word in the user input is treated as a separate token. However, for supported languages with a more complex syntax, namely Korean, Chinese, Japanese, and German, SIREG is needed. SIREG provides extra resources that are needed to tokenize the input properly. One or more separate SIREG pods (per language) are started if these languages are installed. The SIREG microservice is called from the training pods and from the TAS microservice by using gRPC.
 
-- **Skill-conversation**: Processes v2 API /message requests that are submitted to the system. When a v2 /message API call reaches the Store microservice, the Store retrieves session state information from Redis. The Store microservice then calls the appropriate skill microservice, either this microservice or the Skill-search microservice. When the Store microservice calls a skill microservice, it does so over HTTPS REST. This microservice essentially converts the data from the format used in the v2 /message API to the format used by the V1 /message API (a format that is understood by the underlying workspace object), and then calls the Store microservice back. This microservice performs a similar conversion on the message response, except from v1 to v2.
+- **Skill-search**: Manages API calls to a {{site.data.keyword.discoveryshort}} service instance that is enabled in the same cluster. When a v2 `/message` API call reaches the Store microservice, the Store retrieves session state information from Redis and start processing skills. When the assistant that is being processed has a search skill, the Store microservice calls this microservice over HTTPS REST. This microservice queries the {{site.data.keyword.discoveryshort}} instance and and converts the output that is returned by {{site.data.keyword.discoveryshort}} to the v2 `/message` API schema.
 
-- **Skill-search**: Manages API calls to a {{site.data.keyword.discoveryshort}} service instance that is enabled in the same cluster. When a v2 /message API call reaches the Store microservice, the Store retrieves session state information from Redis. The Store microservice then calls the appropriate skill microservice, either this microservice or the Skill-conversation microservice. When the assistant that is being processed has a search skill, the Store microservice calls this microservice over HTTPS REST. This microservice queries the {{site.data.keyword.discoveryshort}} instance and and converts the output that is returned by {{site.data.keyword.discoveryshort}} to the v2 /message API schema.
+- **Spellchecker**: Corrects spelling mistakes that are made in user input that is submitted with `/message` requests. This autocorrection feature is enabled automatically for English dialog skills, and can be turned on for French skills. This microservice provides basic spell-checking capabilities by using correction techniques such as edit-distance from vocabulary word and generic language models. If enabled, the TAS microservice calls the Spellchecker using gRPC before it performs recognition of intents and entities in the user input. Spellchecker does not depend on datastores and it does not call any other microservice. Spellcheker was added with the 1.4.2 release.
 
-- **Store**: Handles all assistant API calls. This microservice either processes the request itself or calls the other {{site.data.keyword.conversationshort}} microservices that are needed to process the request. For example, if a customer submits user input with a v1 /message API call, the request is sent to and processed by the store. If the request is made with a v2 /message API call, then the store retrieves session state information from Redis and forwards the request to one of the Skill microservices for processing first. When a v1 /message API request reaches the Store microservice, the Store first calls the NLU microservice to analyze the user input and identify any intent and entity references in the input. The Store then calls the Dialog microservice to generate the appropriate response to return to the customer. The Store microservice stores the assistants, skills, and workspace definitions in a PostgreSQL database. As mentioned earlier, the Store microservice saves the state of the session (from the v2 API) in the Redis data store.
+- **Store**: Handles all assistant API calls. This microservice either processes the request itself or calls the other {{site.data.keyword.conversationshort}} microservices that are needed to process the request. For example, if a customer submits user input with a v1 /message API call, the request is sent to and processed by the store. For stateful v2 `/message` API calls, the store retrieves session state information from Redis first. It then calls the NLU microservice to analyze the user input and identify any intent and entity references in the input. Next, the Store calls the Dialog microservice to generate the appropriate response to return to the customer. The Store microservice stores the assistants, skills, and workspace definitions in a PostgreSQL database. The Store microservice saves the state of the session (from the v2 API) in the Redis data store.
 
-- **TAS**: Performs model inferencing, which means it identifies the best-matching intents and entities in the user input. TAS stands for Train and Serve, but it mostly serves up the existing models. The TAS microservice loads the models from MinIO storage into memory and runs the models to find intents. The TAS microservice is called from the NLU microservice by using LiteLinks. TAS and the ED-MM microservices are based on a model-mesh pattern. (For more information, see [Model mesh](#architecture-model-mesh).) If needed, it calls other microservices from the language understanding pipeline. Specifically, it calls SireG for tokenization and ED-MM for contextual entities by using gRPC. The TAS microservice accesses the MongoDB database to retrieve word embeddings for user input.
+- **TAS**: Performs model inferencing, which means it identifies the best-matching intents and entities in the user input. TAS stands for Train and Serve, but it mostly serves up the existing models. The TAS microservice loads the models from MinIO storage into memory and runs the models to find intents. The TAS microservice is called from the NLU microservice by using LiteLinks. TAS and the ED-MM microservices are based on a model-mesh pattern. (For more information, see [Model mesh](#architecture-model-mesh).) If needed, TAS calls other microservices from the language understanding pipeline. Specifically, it calls SireG for tokenization, ED-MM for contextual entities (by using gRPC), and Spellcheck to correct misspellings. For intent recogniton, the TAS microservice requires word-embeddings data, which is provided by the CLU Embedding microservice.
 
 - **UI**: The web application that virtual assistant builders use to create skills and assistants.
 
@@ -95,20 +100,31 @@ The {{site.data.keyword.conversationshort}} microservices use the following reso
 
 - **MinIO**: MinIO is an object storage service that implements the Amazon S3 API. It is used by the language understanding pipeline microservices (NLU, Master, TAS, ED-MM, and the training pods) to store and load trained models for intent and entity classification. Data is stored in the `nlclassifier-icp` bucket. In {{site.data.keyword.conversationshort}}, MinIO is often referred to as `COS`, which stands for Cloud Object Storage. For more information, see [MinIO](#architecture-minio).
 
-- **MongoDB**: A document-oriented database. Mongo is used in read-only mode for storing word embeddings that are used by the language understanding pipeline (training, TAS, ED-MM). It also contains embeddings and other data that is used by the Recommends microservice for synonym recommendations. For more information, see [MongoDB database](#architecture-mongodb).
+- **MongoDB**: A document-oriented database. Mongo is used in read-only mode for storing embeddings and other data that is used by the Recommends microservice for synonym recommendations. For more information, see [MongoDB database](#architecture-mongodb).
 
 - **PostgreSQL**: A popular relational database. This database is used only by the Store microservice and it is the primary store for workspaces, skills, and assistants. The deployment and pod names that are related to PostgreSQL are prefixed as `${release-name}-store-postgres`. For more information, see [PostgreSQL data store](#architecture-postgres).
 
 - **Redis**: An in-memory data store, often used for caching or sharing session state. Redis is used by the Store microservice for storing current conversation state for assistants. The UI microservice stores session state in Redis. The Recommends and Dialog microservices use a Redis instance as a cache.
+
+#### Architecture changes
+
+- **1.4.2**: The following changes to the architecture occurred with this release:
+
+  - The *Skill-conversation* microservice was removed. The microservice used to convert v2 API calls to v1 format and the other way around. The conversion is now done within the Store microservice. Reimplementing this function in the Store increased the overall speed with which v2 API requests are processed.
+  - The *Spellchecker* and *CLU Embedding* microservices were added.
+  - The word embeddings that are used by the language understanding pipeline (training, TAS, ED-MM) now are stored in the CLU Embedding microservice instead of MongoDB.
 
 ## Training component
 {: #architecture-slad}
 
 Training a new model is one-time, short-running, resource-heavy activity. Models are trained in pods that are created on demand. The same pods are removed after the training is completed. Because of its transient nature, the training component is not considered to be one of the standard {{site.data.keyword.conversationshort}} microservices. The component, the training pods, only get used when a model needs to be trained. Training starts each time the intent user examples are added or changed in a dialog skill.
 
-The NLU microservice notifies the Master microservice when a new machine learning models needs to be trained. The Master microservice dynamically creates training pods. It handles the training pod removal and retraining if a training run fails. It also is responsible for removing a model from MinIO if the model is deleted. The system determines whether a training run competed successfully based on a flag that is stored in MinIO storage. The Master microservice must have API access to the Docker registry where the training images are stored. The image metadata that is obtained from the registry is used to correctly start the training pods.
+The NLU microservice notifies the Master microservice when a new machine learning models needs to be trained. The Master microservice dynamically creates training pods. It handles the training pod removal and retraining if a training run fails. It also is responsible for removing a model from MinIO if the model is deleted. The system determines whether a training run completed successfully based on a flag that is stored in MinIO storage. The Master microservice must have API access to the Docker registry where the training images are stored. The image metadata that is obtained from the registry is used to correctly start the training pods.
 
 The training pods that are started by this component are sometimes referred to as SLAD pods. SLAD stands for Statistical Learning and Discovery, which is the name of the research group that developed the language classifier that is used by the pods. The training pod names start with `tr[12]?`, followed by the internal `vn-…` ID. The training images are named `nlclassifier-training` or `clu-training`, depending on the chart version. The `${release-name}-master-config` configuration map contains the JSON template for the training pods.
+
+For 1.4.2, the ${release-name} is `watson-assistant`.
+  {: note}
 
 ## Data store details
 {: #architecture-datasource-details}
@@ -126,6 +142,9 @@ Etcd consists of five pods. The Etcd pod names follow the convention `${release-
 {: #architecture-etcd-litelinks}
 
 The Dialog, NLU, Master, TAS, and ED-MM microservices act as LiteLinks servers. Each LiteLinks server is registered in Etcd with its own key under the `/bluegoat/litelinks/` path. Each pod stores its metadata, such as its IP address and port, into Etcd. For example, the Dialog microservice pod with IP address 10.131.2.25 might register itself under a key named `/bluegoat/litelinks/voyager-dialog-slot-${release-name}/10.128.0.231_8089_16ea2cde43f`.
+
+For 1.4.2, the ${release-name} is `watson-assistant`.
+  {: note}
 
 The Store, NLU, Master, TAS, and ED-MM microservices are LiteLinks clients. (Some microservices function as both a server and client.) Each LiteLinks client reads these Etcd keys and communicates directly with the registered pod IP address and port of the server. In effect, LiteLinks clients do not use the Kubernetes DNS. As a result, Kubernetes service objects are not used for LiteLinks servers. Without the Kubernetes service objects, the readiness probes are ignored even though they are good indicators of pod health.
 
@@ -162,10 +181,16 @@ The configuration values per microservice are stored under a `/config` subpath.
 ### MongoDB database
 {: #architecture-mongodb}
 
-MongoDB is a document-based, distributed database. The MongoDB database has three pods. It runs in replicaSet mode, which means that one pod runs in the master role in read/write mode, and the rest of the pods run in the secondary role and are read-only. Changes from the master pod are replicated to the secondary pods. During the service installation, data is loaded into the Mongo database by two Kubernetes jobs. No data is written to the Mongo database after the chart is successfully installed. The training pods and the TAS, ED-MM, and Recommends microservices read data from Mongo. On creation, their pods check whether Mongo is running, and wait until the Mongo database is loaded with the required data. During the service installation, loading data for Recommends in the Mongo database can take up to 30 minutes.
+MongoDB is a document-based, distributed database. The MongoDB database has three pods. It runs in replicaSet mode, which means that one pod runs in the master role in read/write mode, and the rest of the pods run in the secondary role and are read-only. Changes from the master pod are replicated to the secondary pods. During the service installation, data is loaded into the Mongo database by a Kubernetes job. No data is written to the Mongo database after the service is installed. Only the Recommends microservices read data from Mongo. On creation, Recommends pods check whether Mongo is running, and wait until the Mongo database is loaded with the required data.
 
-The mongoDB pod names follow the convention `${release-name}-ibm-mongodb-server-[0-9]*`. 
-The names of the two Kubernetes jobs that run during the installation of the service are `${release-name}-clu-load-mongo` and `${release-name}-recommends-load-mongo`.
+The process of loading data for Recommends into the Mongo database that happens as part of the installation can take 30 minutes (or more).
+{: note}
+
+- The mongoDB pod names follow the convention `${release-name}-ibm-mongodb-server-[0-9]*`. For longer release names, the name is shorten to `${release-name prefix}-[a-f0-9]{4}-336f-server-*`.
+- The names of the Kubernetes job that runs during the installation of the service is `${release-name}-recommends-load-mongo`.
+
+For 1.4.2, the ${release-name} is `watson-assistant`.
+  {: note}
 
 ### MinIO
 {: #architecture-minio}
@@ -182,6 +207,10 @@ The Postgres data store is based on stolon, which is a cloud-native PostgreSQL m
 - keeper: These pods run the PostgreSQL database. There are three keeper pods. One of the three is selected as the master keeper. The master keeper handles all of the SQL queries. The remaining pods are on standby and their state is updated by the master keeper pod. 
 
   The keeper pod names follow the convention of `${release-name}-store-postgres-keeper-*`. If the release name is long, the pod names might be shortened to something like `${release-name prefix}-[a-f0-9]{4}-st-a617-keeper-*`.
+
+  For 1.4.2, the ${release-name} is `watson-assistant`. The shortened name is `watson-ass`.
+  {: note}
+
 - proxy: These pods are the entry point that is used by the Store microservice. The proxy pods route traffic to the master keeper pod.
 - sentinel: These pods are the ones that decide which of the keepers is the master. 
 
@@ -189,7 +218,7 @@ To manage the PostgreSQL cluster, use `stolonctl` commands inside the keeper pod
 
 Postgres is used by the Store microservice to store assistants, skills, and workspaces. If PostgreSQL and the Store microservice are running, even if nothing else is working, you can export your skills from the product and save them. 
 
-During installation, the Postgres database is created, as is the user that is used by the Store microservice. You can specify the name of the database, the name of the user and a corresponding password if you want by overriding configuration settings in the `values.yaml` configuration file.
+During installation, the Postgres database is created. The Store microstore user is also created. You can specify the name of the database, the name of the user, and a corresponding password if you want by overriding configuration settings in the `values.yaml` configuration file.
 
 The following table lists the configuration settings that are used by the Store microservice to connect to the PostgresSQL and for PostgreSQL initialization at installation time.
 
@@ -207,6 +236,6 @@ The TAS and ED-MM microservices use a model-mesh pattern. In model mesh, each po
 
 TAS and ED-MM belong to separate model-mesh groups. Each group has an independent set of pods and loaded models. 
 
-Here's how model mesh functions in the ED-MM microservice pod group. For the ED-MM microservice, you might have two pods, A and B. A gRPS request is received through Kubernetes DNS for help with contextual entity recognition. The request goes to pod A, but the contextual entity model that is needed is loaded in pod B. The model mesh on pod A forwards the request to pod B by using LiteLinks. Pod B uses the appropriate model to identify contextual entities in the input, and then sends a response to pod A. Pod A sends the information in a response back to the service that sent the initial gRPC request.
+Here's how model mesh functions in the ED-MM microservice pod group. For the ED-MM microservice, you might have two pods, A and B. A gRPS request for help with contextual entity recognition is received through Kubernetes DNS. The request goes to pod A, but the contextual entity model that is needed is loaded in pod B. The model mesh on pod A forwards the request to pod B by using LiteLinks. Pod B uses the appropriate model to identify contextual entities in the input, and then sends a response to pod A. Pod A sends the information in a response back to the service that sent the initial gRPC request.
 
 Model mesh functions in the same way for the TAS microservice. The difference is that incoming requests to TAS are sent by using LiteLinks and not gRPC. As a result, the NLU and Master microservices have no way of knowing which models are loaded in which TAS pods.

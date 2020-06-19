@@ -2,9 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-03-20"
-
-keywords: intent, intent conflicts, annotate
+lastupdated: "2020-04-14"
 
 subcollection: assistant-data
 
@@ -71,9 +69,9 @@ Start with a few intents, and test them as you iteratively expand the scope of t
 
 1.  Select **Create intent** to save your intent name.
 
-    ![Screen capture that shows new intent definition](images/create_intent.png)
+    ![Screen capture that shows new intent definition](images/intent-create.png)
 
-1.  Next, in the **Add user example** field, type the text of a user example for the intent. An example can be any string up to 1024 characters in length. The following utterances might be examples for the `#pay_bill` intent:
+1.  In the **User example** field, type the text of a user example for the intent. An example can be any string up to 1,024 characters in length. The following utterances might be examples for the `#pay_bill` intent:
     - `I need to pay my bill.`
     - `Pay my account balance`
     - `make a payment`
@@ -85,6 +83,8 @@ Start with a few intents, and test them as you iteratively expand the scope of t
     {: important}
 
 1.  Click **Add example** to save the user example.
+
+    ![Screen capture that shows adding a user example to an intent](images/intent-user-example.png)
 
 1.  Repeat the same process to add more examples.
 
@@ -108,8 +108,6 @@ When you include an entity mention in a user example, the machine learning model
 {: #intents-related-entities}
 
 If you have defined, or plan to define, entities that are related to this intent, mention the entity values or synonyms in some of the examples. Doing so helps to establish a relationship between the intent and entities. It is a weak relationship, but it does inform the model.
-
-![Screen capture that shows intent definition](images/define_intent.png)
 
 *Important*:
 
@@ -137,7 +135,7 @@ You can choose to directly reference entities in your intent examples. For insta
 - Is the `@PhoneModelName` in stock?
 - Add a `@PhoneModelName` to my order.
 
-![Screen capture showing intent definition](images/define_intent_entity.png)
+![Screen capture showing intent definition](images/define-intent-entity.png)
 
 Currently, you can only directly reference synonym entities that you define (pattern values are ignored). You cannot use [system entities](/docs/assistant-data?topic=assistant-data-system-entities).
 
@@ -153,7 +151,9 @@ Defining one example intent with an `@Entity` that has 10 values that are define
 
 After you have finished creating new intents, you can test the system to see if it recognizes your intents as you expect.
 
-1.  Click the ![Ask Watson](images/ask_watson.png) icon.
+1.  Click **Try it**. 
+
+    ![Ask Watson](images/ask_watson.png)
 
 1.  In the "Try it out" pane, enter a question or other text string and press Enter to see which intent is recognized. If the wrong intent is recognized, you can improve your model by adding this text as an example to the correct intent.
 
@@ -208,20 +208,28 @@ You can click any intent in the list to open it for editing. You can make the fo
 - Add, edit, or delete examples.
 - Move an example to a different intent.
 
-You can tab from the intent name to each example, editing the examples if you want.
+You can tab from the intent name to each example.
 
-To move or delete an example, click the check box that is associated with it, and then click **Move** or **Delete**.
+1.  To move or delete an example, click the checkbox that is associated with it, and then click **Move** or **Delete**.
 
-  ![Screen capture showing how to move or delete an example](images/move_example.png)
+    ![Screen capture showing how to move or delete an example](images/move_example.png)
 
 ## Exporting intents
 {: #intents-export}
 
 You can export a number of intents to a CSV file, so you can then import and reuse them for another {{site.data.keyword.conversationshort}} application.
 
-1.  From the **Intents** page, select the intents that you want from the list and click **Export**.
+1.  Go to the **Intents** page.
 
-    ![Export option](images/ExportIntent.png)
+    - To export all intents, meaning the intents listed on this and any additional pages, do not select any individual intents. Instead, click the *Export all intents* icon. ![Export option](images/export-c10.png)
+
+    - To export the intents that are listed on the current page only, select the checkbox in the header. This action selects all of the intents on the current page. Click **Export**.
+
+    - To export one or more specific intents, select the intents that you want to export, and then click **Export**.
+
+      ![Shows that two intents are selected and the export icon is in focus](images/intent-export.png)
+
+1.  Specify the name and location in which to store the CSV file that is generated.
 
 ## Importing intents and examples
 {: #intents-import}
@@ -246,17 +254,15 @@ If you have a large number of intents and examples, you might find it easier to 
     ```
     {: screen}
 
-    Save the CSV file with UTF-8 encoding and no byte order mark (BOM).
-    {: important}
+    **Important:** Save the CSV file with UTF-8 encoding and no byte order mark (BOM).
 
 1.  From the **Intents** page, click the *Import* icon ![Import icon](images/importGA.png), and then drag a file or browse to select a file from your computer.
 
-    The maximum CSV file size is 10 MB. If your CSV file is larger, consider splitting it into multiple files and importing them separately.
-    {: important}
+    **Important:** The maximum CSV file size is 10 MB. If your CSV file is larger, consider splitting it into multiple files and importing them separately.
 
     The file is validated and imported, and the system begins to train itself on the new data.
 
-You can view the imported intents and the corresponding examples on the **Intents** page. You might need to refresh the page to see the new intents and examples.
+You can view the imported intents and the corresponding examples on the **Intents** tab. You might need to refresh the page to see the new intents and examples.
 
 ## Resolving intent conflicts
 {: #intents-resolve-conflicts}
@@ -267,47 +273,38 @@ To resolve conflicts:
 
 1.  From the **Intents** page, review any intents with conflicts.
 
-    ![Conflicts in intent list](images/ConflictIntent1.png)
+    ![Shows an intent list with a conflict](images/intent-conflicts.png)
 
-    Toggle the **Show only conflicts** switch to see a list of just your intents with conflicts.
-    {: tip}
+1.  Click an intent with a conflict to open it. Find the user example that is causing the conflict, and then click **Resolve conflicts**.
 
-    ![Conflicts only view](images/ConflictIntent2.png)
+    ![Shows an intent with a user example list where one of the user examples has a Resolve conflicts button](images/intent-resolve-conflicts.png)
 
-1.  Open an intent conflict. For the intent example that is causing the conflict, click **Resolve conflict**.
+1.  Choose whether to delete the example from the intent or to move it to another intent.
 
-    ![Conflicting intent example](images/ConflictIntent3.png)
+    ![Shows the intent conflict details page](images/intent-fix-conflict.png)
 
-1.  Now, you have the option to either move a conflicting example to another intent, or delete a conflicting example entirely.
-
-    In this case, the examples `Cancel my order` and `I want to cancel my order` appear in both the `#cancel` intent and in the `#eCommerce_Cancel_Product_Order` intent.
-
-    ![Conflicting intent example](images/ConflictIntent4.png)
-
-    Additional user examples are training examples that are not necessarily in conflict, but are similar to the examples in conflict. They are shown to provide context to help resolve the conflict.
-
-1.  Select the examples `Cancel  my order` and `I want to cancel my order`, and move them from the `#cancel` intent to the `#eCommerce_Cancel_Product_Order` intent:
-
-    ![Conflicting intent example](images/ConflictIntent5.png)
-
-1.  When deciding where to place an example, look for the intent that has synonymous, or nearly synonymous examples.
+    Similar user examples are displayed for each intent. These examples are not necessarily in conflict. They are shown to give you a quick view of the other types of user examples that are defined for each intent. It provides you with context that can help you make a more informed decision.
 
     Keep each intent as distinct and focused on one goal as possible. If you have two intents with multiple user examples that overlap, maybe you don't need two separate intents. You can move or delete user examples that don't directly overlap into one intent, and then delete the other.
     {: tip}
 
-    Select the other examples in the `#cancel` intent, and delete them:
+1.  To move a user example, click **Move**, and then click the intent where you want to move the example.
 
-    ![Conflicting intent example](images/ConflictIntent6.png)
+    ![Shows the Move menu with a list of one intent options](images/intent-move-conflict.png)
 
-1.  Click the **Submit** button to resolve the conflicts:
+    When deciding where to put an example, look for the intent that has synonymous, or nearly synonymous, examples. 
+    
+    If the exact same example is used by the other intent already, the move action only removes the example from the current intent. It does not add the same example to the other intent twice.
 
-    ![Conflicting intent example](images/ConflictIntent7.png)
+1.  After moving or deleting the example, click **Submit** to resolve the conflict.
 
-    The *Reset* option allows you to start over with moving the conflict example among intents. *Cancel* returns you to the intent page.
+    ![Shows a resolved conflict](images/intent-submit-conflict.png)
 
-You have resolved a conflict, and can continue your review of other intents with conflicts.
+    The *Reset* reverts your changes. Click the **x** to close the page without submitting your changes.
 
-Watch this video to learn more.
+1.  Repeat the previous steps to resolve other intents with conflicts.
+
+You can watch the following video to learn more.
 
 <iframe class="embed-responsive-item" id="youtubeplayer0" title="Intent conflict resolution overview" type="text/html" width="640" height="390" src="https://www.youtube.com/embed/9gQtjCBxjdc?rel=0" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen> </iframe>
 
@@ -316,10 +313,17 @@ Watch this video to learn more.
 
 You can select a number of intents for deletion.
 
-When you delete an intent, you delete its associated examples also, and these items cannot be retrieved later. All dialog nodes that reference these intents must be updated manually to no longer reference the deleted content.
-{: important}
+**IMPORTANT**: By deleting intents that you are also deleting all associated examples, and these items cannot be retrieved later. All dialog nodes that reference these intents must be updated manually to no longer reference the deleted content.
 
-1.  From the **Intents** page, select the intents that you want to delete, and then click **Delete**.
+1.  Go to the **Intents** page
+
+    - To delete all intents, meaning the intents listed on this and any additional pages, do not select any individual intents. Instead, click the *Delete all intents* icon. ![Delete option](images/delete-c10.png)
+
+    - To delete the intents that are listed on the current page only, select the checkbox in the header. This action selects all of the intents that are listed on the current page. Click **Delete**.
+
+    - To delete one or more specific intents, select the intents that you want to delete, and then click **Delete**.
+
+      ![Shows that an intent was selected and the delete icon is in focus](images/intent-delete.png)
 
 ### Teaching your assistant about topics to ignore
 {: #logs-mark-irrelevant}

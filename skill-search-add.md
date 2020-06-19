@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-03-20"
+lastupdated: "2020-04-28"
 
 subcollection: assistant-data
 
@@ -341,25 +341,26 @@ You cannot test the full end-to-end user experience from the dialog "Try it out"
 
 To test the full experience that customers will have when they ask questions that are either answered by the dialog or trigger a search, you must test it by using the API. 
 
+1.  From the {{site.data.keyword.icp4dfull_notm}} web client, go to the details page for the provisioned instance.
+1.  Copy the URL from the "Access information" section of the page. You will specify this value as the `{url}`.
+1.  Copy the bearer token also. You will need to pass the token when you make an API call.
 1.  From the dialog builder in the user interface, add a *search skill* response type to a dialog node.
 
 1.  Make a note of the unique ID of the assistant to which you added the dialog that you edited in the previous step.
 
     - To get the ID for an assistant from the user interface, click the more menu on the tile for the assistant, and then click **Settings**. Click **API Details**.
 
-1.  First authenticate with the API service to generate a token. See [Authentication](https://cloud.ibm.com/apidocs/assistant/assistant-data-v2#authentication){: external}.
-
-1.  Next, start a session, which is kind of like a new conversation, in which you will make the user input request.
+1.  Start a session, which is kind of like a new conversation, in which you will make the user input request.
 
     Use a POST request like this to create the session, and pass an empty body with the request: 
 
     ```curl
-    curl -H "Authorization: Bearer {token}" -X POST "https://{my-cluster-hostname}/assistant/api/v2/assistants/{assistant_id}/sessions?version=2019-02-28" 
+    curl -H "Authorization: Bearer {token}" -X POST "{url}/v2/assistants/{assistant_id}/sessions?version=2020-04-01 -k"
     ```
     {: codeblock}
 
-    - {token} is the token that is generated in Step 3.
-    - {assistant_id} is the assistant ID you copied in Step 2.
+    - {token} is the token you copied earlier.
+    - {assistant_id} is the assistant ID you copied earlier.
 
 1.  Now, send a user input request that triggers the dialog node with the search skill response type.
 
