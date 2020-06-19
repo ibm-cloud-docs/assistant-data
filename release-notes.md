@@ -49,7 +49,15 @@ The following changes were made in this release:
 
 - The 1.4.2 release is certified on Red Hat OpenShift 4.3.
 
-- Added automated backups. For more information, see [Backing up and restoring data](/docs/assistant-data?topic=assistant-data-backup).
+- Added support for automated backups. For more information, see [Backing up and restoring data](/docs/assistant-data?topic=assistant-data-backup).
+
+- The following changes were made to the service architecture:
+
+    - The Skill-conversation microservice was removed. The microservice used to convert v2 API calls to v1 format and the other way around. The conversion is now done within the Store microservice. Reimplementing this function in the Store increased the overall speed with which v2 API requests are processed.
+    - The Spellchecker and CLU Embedding microservices were added.
+    - The word embeddings that are used by the language understanding pipeline (training, TAS, ED-MM) now are stored in the CLU Embedding microservice instead of MongoDB.
+
+    For more information, see [Service architecture](/docs/assistant-data?topic=assistant-data-architecture).
 
 - Multiple bug fixes were made.
 
