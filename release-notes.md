@@ -72,6 +72,13 @@ This release does not include the following features, which are available for cl
 - The product tour that is available to some first-time users of the cloud-based product is not available.
 - You cannot manage user access at the individual skill and assistant level. You can control only who can access the entire service instance, which includes all of its skills and assistants. For more information about granting access to services in {{site.data.keyword.icp4dfull_notm}}, see [3.0.1 Managing users](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.0.1/cpd/admin/users.html){: external} or [2.5 Managing users](https://www.ibm.com/support/knowledgecenter/SSQNUZ_2.5.0/cpd/admin/users.html){: external}.
 
+### 14 April 2020
+{: #14April2020}
+
+**IBM Cloud Private End Of Support**: Effective 30 September 2020, IBM will withdraw support for IBM Watson Assistant on IBM Cloud Private.
+
+For more information, see the [announcement](http://www.ibm.com/common/ssi/cgi-bin/ssialias?infotype=an&subtype=ca&appname=gpateam&supplier=897&letternum=ENUS920-075){: external}.
+
 ### 28 February 2020
 {: #28February2020}
 
