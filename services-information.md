@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-03-20"
+lastupdated: "2020-06-19"
 
 subcollection: assistant-data
 
@@ -48,7 +48,7 @@ API requests require a version parameter that takes a date in the format `versio
 
 Send the version parameter with every API request. The service uses the API version for the date you specify, or the most recent version before that date. Don't default to the current date. Instead, specify a date that matches a version that is compatible with your app, and don't change it until your app is ready for a later version.
 
-- The current version for both V1 and V2 is `2019-02-28`. CHECK!
+- The current version for both V1 and V2 is `2019-02-28`.
 - The dialog skill "Try it out" pane uses version `2018-07-10`.
 - The search skill "Try it out" pane uses {{site.data.keyword.discoveryshort}} API version `2018-12-03`.
 

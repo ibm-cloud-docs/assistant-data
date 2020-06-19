@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-06-16"
+lastupdated: "2020-06-19"
 
 subcollection: assistant-data
 
@@ -380,7 +380,7 @@ To make a synchronous call to a {{site.data.keyword.openwhisk_short}} action tha
     
     ![Shows the URL field and Headers section of the Options page.](images/webhook-to-cfaction.png)
 
-    - If you are calling a {{site.data.keyword.openwhisk_short}} action that is managed by IBM Cloud Identity and Access Management (IAM) instead of CLoud Foundry, then you must provide an IAM bearer token to authenticate the request. 
+    - If you are calling a {{site.data.keyword.openwhisk_short}} action that is managed by IBM Cloud Identity and Access Management (IAM) instead of Cloud Foundry, then you must provide an IAM bearer token to authenticate the request. 
     
       1. Follow the instructions in [Passing an IBM Cloud IAM token to authenticate with a service's API](/docs/iam?topic=iam-iamapikeysforservices#token_auth). 
       
