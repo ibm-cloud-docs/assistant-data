@@ -17,7 +17,6 @@ Watson Assistant for IBM Cloud Pak for Data
     {: .navgroup-end}
 
     {: .navgroup id="howto"}
-
     {: .topicgroup}
     Installing
         install.md
