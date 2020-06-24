@@ -74,8 +74,7 @@ Watson Assistant for IBM Cloud Pak for Data
             tutorial-car-dashboard.md
             tutorial-digressions.md
 
-        versions.md
-
+    versions.md
     deploy-custom-app.md
 
     {: .topicgroup}
