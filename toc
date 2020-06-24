@@ -9,13 +9,15 @@ Watson Assistant for IBM Cloud Pak for Data
     index.md
     assistants.md
     skills.md
+    dev-process.md
     tool-overview.md
     [Demo: Banking Assistant](https://watson-conversation-duo-dev.ng.bluemix.net/)
-    resources.md
+    sample-apps.md
+    release-notes.md
     {: .navgroup-end}
 
     {: .navgroup id="howto"}
-    dev-process.md
+    
 
     {: .topicgroup}
     Installing
@@ -36,44 +38,56 @@ Watson Assistant for IBM Cloud Pak for Data
 
     assistant-add.md
     skill-add.md
+    assistant-settings.md
     skill-search-add.md
-    skill-dialog-add.md
-    catalog.md
-    intents.md
 
     {: .topicgroup}
-    Creating a dialog
-        dialog-overview.md
-        dialog-runtime.md
-        dialog-build.md
-        dialog-tips.md
-        dialog-slots.md
-        dialog-webhooks.md
-        dialog-actions-client.md
-        dialog-responses-json.md
-        dialog-depiction.md
+    Creating a dialog skill
+        skill-dialog-add.md
 
-    entities.md
-    versions.md
-    assistant-settings.md
+        {: .topicgroup}
+        Adding intents
+            catalog.md
+            intents.md
+
+        {: .topicgroup}
+        Creating a dialog
+            dialog-build.md
+            dialog-plan.md
+            dialog-overview.md
+            dialog-tips.md
+            dialog-tasks.md
+
+        entities.md
+        
+        {: .topicgroup}
+        Advanced dialog tasks
+            dialog-runtime.md
+            dialog-slots.md
+            dialog-webhooks.md
+            dialog-actions-client.md
+            dialog-responses-json.md
+
+        {: .topicgroup}
+        Tutorials
+            tutorial.md
+            tutorial-slots.md
+            tutorial-slots-complex.md
+            tutorial-car-dashboard.md
+            tutorial-digressions.md
+
+        versions.md
+
     deploy-custom-app.md
 
     {: .topicgroup}
     Administering
          manage.md
          architecture.md
+         information-security.md
          backup.md
          recovery.md
          upgrade.md
-
-    {: .topicgroup}
-    Tutorials
-        tutorial.md
-        tutorial-slots.md
-        tutorial-slots-complex.md
-        tutorial-car-dashboard.md
-        tutorial-digressions.md
-        [Tutorial: Defining contextual entities](https://www.ibm.com/cloud/garage/demo/try-watson-assistant-contextual-entities)
 
     {: .topicgroup}
     Using the API
@@ -83,6 +97,7 @@ Watson Assistant for IBM Cloud Pak for Data
         api-context.md
         api-dialog-responses.md
         api-dialog-modify.md
+        /watson/watson-using-sdks
     {: .navgroup-end}
 
     {: .navgroup id="reference"}
@@ -90,21 +105,16 @@ Watson Assistant for IBM Cloud Pak for Data
     [v1 API reference](https://cloud.ibm.com/apidocs/assistant/assistant-data-v1)
     dialog-methods.md
     expression-language.md
-    information-security.md
-    sample-apps.md
-    language-support.md
 
     {: .topicgroup}
     System entities
         system-entities.md
         time-zones.md
 
-    /watson/watson-using-sdks
-    [Watson GitHub repos](https://github.com/watson-developer-cloud/)
+    language-support.md
     {: .navgroup-end}
 
     {: .navgroup id="help"}
-    release-notes.md
     services-information.md
     feedback.md
 

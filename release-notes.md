@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-06-19"
+lastupdated: "2020-06-24"
 
 subcollection: assistant-data
 
@@ -60,6 +60,8 @@ The following changes were made in this release:
     - The word embeddings that are used by the language understanding pipeline (training, TAS, ED-MM) now are stored in the CLU Embedding microservice instead of MongoDB.
 
     For more information, see [Service architecture](/docs/assistant-data?topic=assistant-data-architecture).
+
+- **Slot prompt JSON editor**: You can now use the context or JSON editors for the slot response field where you define the question that your assistant asks to get information it needs from the customer. For more information about slots, see [Gathering information with slots](/docs/assistant-data?topic=assistant-data-dialog-slots).
 
 - Multiple bug fixes were made.
 
