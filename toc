@@ -97,7 +97,6 @@ Watson Assistant for IBM Cloud Pak for Data
         api-dialog-responses.md
         api-dialog-modify.md
         /watson/watson-using-sdks
-
     {: .navgroup-end}
 
     {: .navgroup id="reference"}
