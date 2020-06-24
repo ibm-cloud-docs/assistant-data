@@ -13,10 +13,11 @@ Watson Assistant for IBM Cloud Pak for Data
     tool-overview.md
     [Demo: Banking Assistant](https://watson-conversation-duo-dev.ng.bluemix.net/)
     sample-apps.md
-    release-notes.md
     {: .navgroup-end}
 
     {: .navgroup id="howto"}
+    release-notes.md
+
     {: .topicgroup}
     Installing
         install.md
