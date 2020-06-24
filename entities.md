@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-04-14"
+lastupdated: "2020-06-24"
 
 subcollection: assistant-data
 
@@ -23,7 +23,7 @@ subcollection: assistant-data
 {:python: .ph data-hd-programlang='python'}
 {:swift: .ph data-hd-programlang='swift'}
 
-# Creating entities
+# Adding entities
 {: #entities}
 
 ***Entities*** represent information in the user input that is relevant to the user's purpose.

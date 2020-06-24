@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-03-20"
+lastupdated: "2020-06-24"
 
 subcollection: assistant-data
 
@@ -27,21 +27,8 @@ subcollection: assistant-data
 # Dialog building tips
 {: #dialog-tips}
 
-Learn how to approach building a dialog and get some tips on completing more complex steps.
+Get tips about ways to address common tasks.
 {: shortdesc}
-
-Review these tips from experienced dialog designers.
-
-## Planning the overall dialog
-{: #dialog-tips-plan}
-
-- Plan out the design of the dialog that you want to build before you add a single dialog node. Sketch it out on paper, if necessary.
-- Whenever possible, base your design decisions on data from real-world evidence and behaviors. Do not add nodes to handle a situation that someone *thinks* might occur.
-- Avoid copying business processes as-is. They are rarely conversational.
-- If people already use a process, examine how they approach it. People typically optimize the process from a conversational perspective.
-- Decide on the tone, personality, and positioning of your assistant. Consistently reflect these choices in the dialog you create.
-- Never misrepresent the assistant as being a human. If users believe the assistant is a person, then find out it's not, they are likely to distrust it.
-- Not everything has to be a conversation. Sometimes a web form works better.
 
 ## Adding nodes
 {: #dialog-tips-nodes}

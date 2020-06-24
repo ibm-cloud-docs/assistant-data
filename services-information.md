@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-06-19"
+lastupdated: "2020-06-24"
 
 subcollection: assistant-data
 
@@ -34,7 +34,7 @@ The assistant that you build is hosted by {{site.data.keyword.icp4dfull_notm}}.
 For information about artifact limits, see these topics:
 
 - [Assistants](/docs/assistant-data?topic=assistant-data-assistant-add#assistant-add-limits)
-- [Dialog nodes](/docs/assistant-data?topic=assistant-data-dialog-build#dialog-build-node-limits)
+- [Dialog nodes](/docs/assistant-data?topic=assistant-data-dialog-tasks#dialog-tasks-node-limits)
 - [Entities](/docs/assistant-data?topic=assistant-data-entities#entities-limits)
 - [Inactivity timeout](/docs/assistant-data?topic=assistant-data-assistant-settings#assistant-settings-session-limits)
 - [Intents](/docs/assistant-data?topic=assistant-data-intents#intents-limits)

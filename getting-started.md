@@ -33,7 +33,7 @@ In this short tutorial, we introduce {{site.data.keyword.conversationfull}} and 
 {: shortdesc}
 
 ## Before you begin
-{: #before-you-begin}
+{: #getting-started-before-you-begin}
 
 1. Provision an instance of the {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} service. For more information about provisioning, see [Installing](/docs/assistant-data?topic=assistant-data-install).
 
