@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-06-11"
+lastupdated: "2020-07-01"
 
 subcollection: assistant-data
 
@@ -181,7 +181,7 @@ The configuration values per microservice are stored under a `/config` subpath.
 ### MongoDB database
 {: #architecture-mongodb}
 
-MongoDB is a document-based, distributed database. The MongoDB database has three pods. It runs in replicaSet mode, which means that one pod runs in the master role in read/write mode, and the rest of the pods run in the secondary role and are read-only. Changes from the master pod are replicated to the secondary pods. During the service installation, data is loaded into the Mongo database by a Kubernetes job. No data is written to the Mongo database after the service is installed. Only the Recommends microservices read data from Mongo. On creation, Recommends pods check whether Mongo is running, and wait until the Mongo database is loaded with the required data.
+MongoDB is a document-based, distributed database. The MongoDB database has three pods. It runs in replicaSet mode, which means that one pod runs in the coordinator role in read/write mode, and the rest of the pods run in the secondary role and are read-only. Changes from the coordinator pod are replicated to the secondary pods. During the service installation, data is loaded into the Mongo database by a Kubernetes job. No data is written to the Mongo database after the service is installed. Only the Recommends microservices read data from Mongo. On creation, Recommends pods check whether Mongo is running, and wait until the Mongo database is loaded with the required data.
 
 The process of loading data for Recommends into the Mongo database that happens as part of the installation can take 30 minutes (or more).
 {: note}
@@ -204,15 +204,15 @@ MinIO pods are named `${release-name}-clu-minio-[0-9]*`. CLU, which stands for C
 
 The Postgres data store is based on stolon, which is a cloud-native PostgreSQL manager for PostgreSQL high availability. (For more information, see the [GitHub sorintlab repo](https://github.com/sorintlab/stolon){: external}.) The Postgres store consists of the following kinds of pods:
 
-- keeper: These pods run the PostgreSQL database. There are three keeper pods. One of the three is selected as the master keeper. The master keeper handles all of the SQL queries. The remaining pods are on standby and their state is updated by the master keeper pod. 
+- keeper: These pods run the PostgreSQL database. There are three keeper pods. One of the three is selected as the coordinator keeper. The coordinator keeper handles all of the SQL queries. The remaining pods are on standby and their state is updated by the coordinator keeper pod. 
 
   The keeper pod names follow the convention of `${release-name}-store-postgres-keeper-*`. If the release name is long, the pod names might be shortened to something like `${release-name prefix}-[a-f0-9]{4}-st-a617-keeper-*`.
 
   For 1.4.2, the ${release-name} is `watson-assistant`. The shortened name is `watson-ass`.
   {: note}
 
-- proxy: These pods are the entry point that is used by the Store microservice. The proxy pods route traffic to the master keeper pod.
-- sentinel: These pods are the ones that decide which of the keepers is the master. 
+- proxy: These pods are the entry point that is used by the Store microservice. The proxy pods route traffic to the coordinator keeper pod.
+- sentinel: These pods are the ones that decide which of the keepers is the coordinator. 
 
 To manage the PostgreSQL cluster, use `stolonctl` commands inside the keeper pods. The metadata about the PostgreSQL configuration is stored in the configmap named `stolon-cluster-${release-name}`.
 

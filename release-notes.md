@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-06-24"
+lastupdated: "2020-07-01"
 
 subcollection: assistant-data
 
@@ -178,7 +178,7 @@ For information about upgrading from a previous version, see [Upgrading](/docs/a
 {{site.data.keyword.conversationfull}} for {{site.data.keyword.icpfull}} version 1.0.1 runs on IBM Cloud Private 2.1.0.3.
 
 - A revised Helm chart (version 1.0.1) was published, which improves the Helm chart and packaging.
-- New configuration settings were added that allow you to specify domain names and IP addresses for the master and proxy nodes of the {{site.data.keyword.icpfull}} cluster. A new checkbox is visible for enabling recommendations; however, do not select it as the feature is not fully supported yet.
+- New configuration settings were added that allow you to specify domain names and IP addresses for the coordinator and proxy nodes of the {{site.data.keyword.icpfull}} cluster. A new checkbox is visible for enabling recommendations; however, do not select it as the feature is not fully supported yet.
 - The resources required for a development deployment changed for Minio from one 20 GB replica to four 5 GB replicas. This change means you need to create 13 persistent volumes instead of 10 to support the deployment.
 
 ### 5 October 2018

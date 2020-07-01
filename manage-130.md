@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2019-11-26"
+lastupdated: "2020-07-01"
 
 subcollection: assistant-data
 
@@ -113,7 +113,7 @@ Some of the microservices do not benefit from being scaled up; more replicas doe
 - `TAS` and `ed-mm` manage how many models are loaded and where they are loaded. More replicas might mean that a model can be loaded more times. However, unless high load is present, scaling too high does not help.
 - `Minio` has a hard-coded number of replicas and cannot be scaled manually.
 - `MongoDB` cannot be scaled manually. 
-- `Redis` can be scaled, but adding more redis-servers only improves resiliency to outages because only one of the servers is marked as master and responds to requests.
+- `Redis` can be scaled, but adding more redis-servers only improves resiliency to outages because only one of the servers is marked as coordinator and responds to requests.
 - `Store` can be scaled up to a maximum of 10 replicas.
 - `PostgreSQL` can be scaled, but you might reach a limit to the number of database connections that can be created. 
 
@@ -241,7 +241,7 @@ Prepare your local machine to perform cluster management tasks.
 1.  Go to this url to get the tools:
 
     ```bash
-    https://{cluster4d-master-node}:8443/console/tools/cli
+    https://{cluster4d-coordinator-node}:8443/console/tools/cli
     ```
     {: pre}
 
@@ -267,11 +267,11 @@ Prepare your local machine to perform cluster management tasks.
     - Test CLI
 
       ```bash
-      cloudctl login -a https://{cluster4d-master-node}:8443 -u {admin user id} -p {admin password}
+      cloudctl login -a https://{cluster4d-coordinator-node}:8443 -u {admin user id} -p {admin password}
       ```
       {: pre}
     
-      If you are using a load balancer, the hostname to specify here is the hostname of the load balancer instead of the master node.
+      If you are using a load balancer, the hostname to specify here is the hostname of the load balancer instead of the coordinator node.
       {: note}
 
     - Test Kubernetes

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-03-20"
+lastupdated: "2020-07-01"
 
 subcollection: assistant-data
 
@@ -97,11 +97,11 @@ For details of the minimum requirements that must be met to support {{site.data.
 
 If you choose to install {{site.data.keyword.icp4dfull_notm}} in the Lite configuration, then the system requirements are these:
 
-This configuration requires a minimum of three servers (either physical or virtual machines). Each node acts as a master and worker node (for example, node1 acts as both master1 and worker1).
+This configuration requires a minimum of three servers (either physical or virtual machines). Each node acts as a coordinator and worker node (for example, node1 acts as both coordinator1 and worker1).
 
 | Node type | Number of servers (BM/VM) |	CPU |	RAM |	Disk partition |
 |-----------|---------------------------|-----|-----|----------------|
-| Master/worker | 3 | 8 cores | 64 GB | - 50 GB free in the root file system, 50 GB free in /tmp (only if /tmp is a partition), and 50 GB free in /var (only if /var is a partition)
+| Coordinator/worker | 3 | 8 cores | 64 GB | - 50 GB free in the root file system, 50 GB free in /tmp (only if /tmp is a partition), and 50 GB free in /var (only if /var is a partition)
 - 500 GB mounted XFS file system for the installation path. This path is for the installer data storage on each node.
 - 500 GB mounted XFS file system for the data path. The data path is for user data storage on each of the three nodes in the cluster. This amount provides 500 GB of usable space for user data with 3x replication. Depending on the user workload, more disk space might be required. |
 
@@ -203,7 +203,7 @@ After you purchase the add-on, you download the software as a Passport Advantage
 
     Search for `{{site.data.keyword.conversationshort}} for {{site.data.keyword.icpvt4d_notm}} 1.2.0`.
 
-1.  Use the Secure Shell protocol to log in to the system that you will use as the master node of your cluster as the root user.
+1.  Use the Secure Shell protocol to log in to the system that you will use as the coordinator node of your cluster as the root user.
 
 1.  Change to the directory where you want the installation files to be stored.
 
@@ -263,7 +263,7 @@ If you are installing the helm chart a subsequent time to add another deployment
 1.  From the {{site.data.keyword.icpfull_notm}} command line interface, run the following command to log in:
 
     ```bash
-    cloudctl login -a {cluster4d-master-node}:8443 -u {admin-user-id} -p {admin password} 
+    cloudctl login -a {cluster4d-coordinator-node}:8443 -u {admin-user-id} -p {admin password} 
     ```
     {: pre}
 
@@ -272,11 +272,11 @@ If you are installing the helm chart a subsequent time to add another deployment
 1.  Run the following command to upload the archive file to the cluster:
 
     ```bash
-    cloudctl catalog load-archive --registry {cluster4d-master-node}:8500 --archive {archive-name}.tar.gz --repo local-charts
+    cloudctl catalog load-archive --registry {cluster4d-coordinator-node}:8500 --archive {archive-name}.tar.gz --repo local-charts
     ```
     {: pre}
 
-    Do not include a protocol prefix (such as `https://`) with the {cluster4d-master-node} value.
+    Do not include a protocol prefix (such as `https://`) with the {cluster4d-coordinator-node} value.
     {: important}
 
     For example:
@@ -293,7 +293,7 @@ If you are installing the helm chart a subsequent time to add another deployment
 
 If you get the following error message, it means you included `https://` with the cluster address. Try to load the file again without it.
 
-`Error parsing reference: "https://{cluster4d-master-node}:8500/us.icr.io/icp-common-components/wcn-addon:1.x" is not a valid repository/tag: invalid reference format`
+`Error parsing reference: "https://{cluster4d-coordinator-node}:8500/us.icr.io/icp-common-components/wcn-addon:1.x" is not a valid repository/tag: invalid reference format`
 
 ## Step 5: Extract files from the archive
 {: #install-120-extract}
@@ -305,11 +305,11 @@ After the archive file is loaded into the cluster, you can extract files from it
     This step is important because the `values.yaml`, which defines configuration settings for your deployment, gets populated with information during the process. If you were to extract the files without expanding them, this information would not be populated properly.
 
     ```bash
-    wget --no-check-certificate https://{cluster4d-master-node}:8443/helm-repo/requiredAssets/ibm-watson-assistant-prod-1.2.0.tgz
+    wget --no-check-certificate https://{cluster4d-coordinator-node}:8443/helm-repo/requiredAssets/ibm-watson-assistant-prod-1.2.0.tgz
     ```
     {: pre}
 
-    If you are using a load balancer, then the {cluster4d-master-node} is the hostname for the load balancer.
+    If you are using a load balancer, then the {cluster4d-coordinator-node} is the hostname for the load balancer.
     {: note}
 
 1.  Extract the files from the Helm chart package with the following command:
@@ -328,7 +328,7 @@ A PersistentVolume (PV) is a unit of storage in the cluster. In the same way tha
 
 For an overview, see [Persistent Volumes in the Kubernetes documentation ](https://kubernetes.io/docs/concepts/storage/persistent-volumes/){: external}.
 
-You must be a cluster administrator to create local storage volumes, and the script used to create them must be run from the master node of the cluster.
+You must be a cluster administrator to create local storage volumes, and the script used to create them must be run from the coordinator node of the cluster.
 {: important}
 
 Follow the correct procedure for your deployment.
@@ -350,7 +350,7 @@ A script is included in the archive file that you can use to create persistent v
 
 For more information about the commands used in the script, see [Creating a PersistentVolume](https://www.ibm.com/support/knowledgecenter/en/SSBS6K_3.1.2/manage_cluster/create_volume.html){: external}.
 
-1.  From the master node, change to the `/path/to/ibm-watson-assistant-prod/ibm_cloud_pak/pak_extensions/pre-install` subdirectory of the archive file that you extracted the product files from earlier.
+1.  From the coordinator node, change to the `/path/to/ibm-watson-assistant-prod/ibm_cloud_pak/pak_extensions/pre-install` subdirectory of the archive file that you extracted the product files from earlier.
 
 1.  Run the `createLocalVolumePV.sh` script by using a command with the following sytnax:
 
@@ -441,7 +441,7 @@ For each image in a repository, an image policy scope of either cluster or names
        name: watson-assistant-{name}-policy
       spec:
        repositories:
-          - name: "{cluster4d-master-node}:8500/*"
+          - name: "{cluster4d-coordinator-node}:8500/*"
             policy:
               va:
                 enabled: false
@@ -450,7 +450,7 @@ For each image in a repository, an image policy scope of either cluster or names
 
     - Replace the following variables with the appropriate values for your cluster:
 
-      - `{cluster4d-master-node}`: Specify the hostname for the master node of the {{site.data.keyword.icp4dfull_notm}} cluster
+      - `{cluster4d-coordinator-node}`: Specify the hostname for the coordinator node of the {{site.data.keyword.icp4dfull_notm}} cluster
       - `{name}`: Specify a name that helps you identify this deployment. You can use the version number of the product, such as 120, for example.
 
     - Save the file and close the editor by pressing `esc`, typing `:wq` and pressing `Enter`.
@@ -497,8 +497,8 @@ The configuration settings for the deployment are defined in a file named `value
    At a minimum, you must provide your own values for the following configurable settings:
 
     - `global.deploymentType`: Specify whether you want to set up a **Development** or **Production** instance. These values are proper case and the setting is case sensitive.
-    - `global.icp.masterHostname`: Specify the hostname of the master node of your cloud instance. Do not include the protocol prefix (`https://`) or port number (`:8443`).  For example: `my.company.name.icp.net`.
-    - `global.icp.masterIP`: If you did not define a domain name for the master node of your cloud instance, then you must also specify the IP address of the master node.
+    - `global.icp.masterHostname`: Specify the hostname of the coordinator node of your cloud instance. Do not include the protocol prefix (`https://`) or port number (`:8443`).  For example: `my.company.name.icp.net`.
+    - `global.icp.masterIP`: If you did not define a domain name for the coordinator node of your cloud instance, then you must also specify the IP address of the coordinator node.
     - `global.languages.{language-name}`: Change the value for an individual language to **true** to enable it. English and Czech are enabled by default. Additional resources are required to support additional languages.
     - `license`: Read the license files that are provided in the `LICENSES` directory within the archive package. If you agree to the terms, set this configuration setting to **accept**. 
 
@@ -830,6 +830,6 @@ The user-provided configuration values are listed at the start of the informatio
 ### Can't create a session using the API
 {: #install-120-v2-api}
 
-**Problem**: You get a 500 response and see an error, such as `"You can't write against a read only slave."` when trying to use the v2 API to create a session.
+**Problem**: You get a 500 response and see an error, such as `"You can't write against a read only worker."` when trying to use the v2 API to create a session.
 **Cause**: Redis sometimes applies the wrong roles to resources.
 **Solution**: Restart the Redis pods. Make a note of the replica numbers for Redis server and Redis sentinel first. Scale the Redis server and Redis sentinel replicas down to 0 and then scale them back to their original numbers. For details, see [To scale the number of replicas](/docs/assistant-data?topic=assistant-data-manage#manage-scale-replicas).
