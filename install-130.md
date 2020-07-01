@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-03-20"
+lastupdated: "2020-07-01"
 
 subcollection: assistant-data
 
@@ -322,10 +322,10 @@ To enable node affinity, complete the following steps:
 
 To create persistent volumes, complete the following steps:
 
-You must be a cluster administrator to create local storage volumes, and the script used to create them must be run from the master node of the cluster.
+You must be a cluster administrator to create local storage volumes, and the script used to create them must be run from the coordinator node of the cluster.
 {: important}
 
-1.  On the master node, change to the **/path/to/ibm-watson-assistant-prod/ibm_cloud_pak/pak_extensions/pre-install** subdirectory of the archive file that you extracted the product files from earlier.
+1.  On the coordinator node, change to the **/path/to/ibm-watson-assistant-prod/ibm_cloud_pak/pak_extensions/pre-install** subdirectory of the archive file that you extracted the product files from earlier.
 
 1.  If you want to see all of the options that are available to you when you create persistent volumes, run the following command:
 
@@ -431,7 +431,7 @@ After you purchase the add-on, you download the software as a Passport Advantage
 
     Search for `IBM Watson Assistant for IBM Cloud Pak for Data V1.3.0`.
 
-1.  Use the Secure Shell protocol to log in to the system that you will use as the master node of your cluster as the root user.
+1.  Use the Secure Shell protocol to log in to the system that you will use as the coordinator node of your cluster as the root user.
 
 1.  Change to the directory where you want the installation files to be stored.
 
@@ -606,8 +606,8 @@ The configuration settings for the deployment are defined in a file named `value
 
     - `global.deploymentType`: Specify whether you want to set up a **Development** or **Production** instance. These values are uppercase and the setting is case sensitive.
     - `global.image.repository`:  Specify your docker registry url, including the {namespace}. For example: `docker-registry.default.svc:5000/{namespace}/`
-    - `global.icp.masterHostname`: Specify the hostname of the master node of your cloud instance. Do not include the protocol prefix (`https://`) or port number (`:8443`). If you are using a load balancer, specify the load balancer hostname. For example: `my.company.name.icp.net` or ` mywacluster-balancer.example.com`.
-    - `global.icp.masterIP`: Specify the IP address of the master node. If you are using a load balancer and have multiple master nodes, specify the private IP address of master node number 1.
+    - `global.icp.masterHostname`: Specify the hostname of the coordinator node of your cloud instance. Do not include the protocol prefix (`https://`) or port number (`:8443`). If you are using a load balancer, specify the load balancer hostname. For example: `my.company.name.icp.net` or ` mywacluster-balancer.example.com`.
+    - `global.icp.masterIP`: Specify the IP address of the coordinator node. If you are using a load balancer and have multiple coordinator nodes, specify the private IP address of coordinator node number 1.
     - `global.languages.{language-name}`: Change the value for an individual language to **true** to enable it. English and Czech are enabled by default. Additional resources are required to support additional languages.
     - `license`: Read the license files that are provided in the `LICENSES` directory within the archive package. If you agree to the terms, set this configuration setting to **accept**. 
 
@@ -696,7 +696,7 @@ After you purchase the add-on, you download the software as a Passport Advantage
 
     Search for `{{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull_notm}} 1.3.0`.
 
-1.  Use the Secure Shell protocol to log in to the system that you will use as the master node of your cluster as the root user.
+1.  Use the Secure Shell protocol to log in to the system that you will use as the coordinator node of your cluster as the root user.
 
 1.  Change to the directory where you want the installation files to be stored.
 
@@ -754,7 +754,7 @@ If you are installing the helm chart a subsequent time to add another deployment
 1.  From the {{site.data.keyword.icpfull_notm}} command line interface, run the following command to log in:
 
     ```bash
-    cloudctl login -a {cluster4d-master-node}:8443 -u {admin-user-id} -p {admin password} 
+    cloudctl login -a {cluster4d-coordinator-node}:8443 -u {admin-user-id} -p {admin password} 
     ```
     {: pre}
 
@@ -763,11 +763,11 @@ If you are installing the helm chart a subsequent time to add another deployment
 1.  Run the following command to upload the archive file to the cluster:
 
     ```bash
-    cloudctl catalog load-archive --registry {cluster4d-master-node}:8500 --archive {archive-name}.tar.gz --repo local-charts
+    cloudctl catalog load-archive --registry {cluster4d-coordinator-node}:8500 --archive {archive-name}.tar.gz --repo local-charts
     ```
     {: pre}
 
-    Do not include a protocol prefix (such as `https://`) with the {cluster4d-master-node} value. If you are using a load balancer, then the {cluster4d-master-node} is the hostname for the load balancer.
+    Do not include a protocol prefix (such as `https://`) with the {cluster4d-coordinator-node} value. If you are using a load balancer, then the {cluster4d-coordinator-node} is the hostname for the load balancer.
     {: important}
 
     For example:
@@ -784,7 +784,7 @@ If you are installing the helm chart a subsequent time to add another deployment
 
 If you get the following error message, it means you included `https://` with the cluster address. Try to load the file again without it.
 
-`Error parsing reference: "https://{cluster4d-master-node}:8500/us.icr.io/icp-common-components/wcn-addon:1.x" is not a valid repository/tag: invalid reference format`
+`Error parsing reference: "https://{cluster4d-coordinator-node}:8500/us.icr.io/icp-common-components/wcn-addon:1.x" is not a valid repository/tag: invalid reference format`
 
 ### Step 5: Extract files from the archive
 {: #install-130-cpd-extract}
@@ -796,11 +796,11 @@ After the archive file is loaded into the cluster, you can extract files from it
     This step is important because the `values.yaml`, which defines configuration settings for your deployment, gets populated with information during the process. If you were to extract the files without expanding them, this information would not be populated properly.
 
     ```bash
-    wget --no-check-certificate https://{cluster4d-master-node}:8443/helm-repo/requiredAssets/ibm-watson-assistant-prod-1.3.0.tgz
+    wget --no-check-certificate https://{cluster4d-coordinator-node}:8443/helm-repo/requiredAssets/ibm-watson-assistant-prod-1.3.0.tgz
     ```
     {: pre}
 
-    If you are using a load balancer, then the {cluster4d-master-node} is the hostname for the load balancer.
+    If you are using a load balancer, then the {cluster4d-coordinator-node} is the hostname for the load balancer.
     {: note}
 
 1.  Extract the files from the Helm chart package with the following command:
@@ -870,7 +870,7 @@ For each image in a repository, an image policy scope of either cluster or names
        name: watson-assistant-{name}-policy
       spec:
        repositories:
-          - name: "{cluster4d-master-node}:8500/*"
+          - name: "{cluster4d-coordinator-node}:8500/*"
             policy:
               va:
                 enabled: false
@@ -879,7 +879,7 @@ For each image in a repository, an image policy scope of either cluster or names
 
     - Replace the following variables with the appropriate values for your cluster:
 
-      - `{cluster4d-master-node}`: Specify the hostname for the master node of the {{site.data.keyword.icp4dfull_notm}} cluster
+      - `{cluster4d-coordinator-node}`: Specify the hostname for the coordinator node of the {{site.data.keyword.icp4dfull_notm}} cluster
       - `{name}`: Specify a name that helps you identify this deployment. You can use the version number of the product, such as 130, for example.
 
     - Save the file and close the editor by pressing `esc`, typing `:wq` and pressing `Enter`.
@@ -926,9 +926,9 @@ The configuration settings for the deployment are defined in a file named `value
    At a minimum, you must provide your own values for the following configurable settings:
 
     - `global.deploymentType`: Specify whether you want to set up a **Development** or **Production** instance. These values are proper case and the setting is case sensitive.
-    - `global.image.repository`: Specify your docker registry url, including the {namespace}. For example `{cluster4d-master-node}:8500/{namespace}`.
-    - `global.icp.masterHostname`: Specify the hostname of the master node of your cloud instance. Do not include the protocol prefix (`https://`) or port number (`:8443`). If you are using a load balancer, specify the load balancer hostname. For example: `my.company.name.icp.net` or ` mywacluster-balancer.example.com`.
-    - `global.icp.masterIP`: Specify the IP address of the master node. If you are using a load balancer and have multiple master nodes, specify the private IP address of master node number 1.
+    - `global.image.repository`: Specify your docker registry url, including the {namespace}. For example `{cluster4d-coordinator-node}:8500/{namespace}`.
+    - `global.icp.masterHostname`: Specify the hostname of the coordinator node of your cloud instance. Do not include the protocol prefix (`https://`) or port number (`:8443`). If you are using a load balancer, specify the load balancer hostname. For example: `my.company.name.icp.net` or ` mywacluster-balancer.example.com`.
+    - `global.icp.masterIP`: Specify the IP address of the coordinator node. If you are using a load balancer and have multiple coordinator nodes, specify the private IP address of coordinator node number 1.
     - `global.languages.{language-name}`: Change the value for an individual language to **true** to enable it. English and Czech are enabled by default. Additional resources are required to support additional languages.
     - `license`: Read the license files that are provided in the `LICENSES` directory within the archive package. If you agree to the terms, set this configuration setting to **accept**. 
 
@@ -1220,6 +1220,6 @@ The user-provided configuration values are listed at the start of the informatio
 ### Can't create a session using the API
 {: #install-130-v2-api}
 
-- **Problem**: You get a 500 response and see an error, such as `"You can't write against a read only slave."` when trying to use the v2 API to create a session.
+- **Problem**: You get a 500 response and see an error, such as `"You can't write against a read only worker."` when trying to use the v2 API to create a session.
 - **Cause**: Redis sometimes applies the wrong roles to resources.
 - **Solution**: Restart the Redis pods. Make a note of the replica numbers for Redis server and Redis sentinel first. Scale the Redis server and Redis sentinel replicas down to 0 and then scale them back to their original numbers. For details, see [To scale the number of replicas](/docs/assistant-data?topic=assistant-data-manage-130#manage-130-scale).

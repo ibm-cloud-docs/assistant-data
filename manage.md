@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-01-17"
+lastupdated: "2020-07-01"
 
 subcollection: assistant-data
 
@@ -113,7 +113,7 @@ Some of the microservices do not benefit from being scaled up; more replicas doe
 - `TAS` and `ed-mm` manage how many models are loaded and where they are loaded. More replicas might mean that a model can be loaded more times. However, unless high load is present, scaling too high does not help.
 - `Minio` has a hard-coded number of replicas and cannot be scaled manually.
 - `MongoDB` cannot be scaled manually. 
-- `Redis` can be scaled, but adding more redis-servers only improves resiliency to outages because only one of the servers is marked as master and responds to requests.
+- `Redis` can be scaled, but adding more redis-servers only improves resiliency to outages because only one of the servers is marked as coordinator and responds to requests.
 - `Store` can be scaled up to a maximum of 10 replicas.
 - `PostgreSQL` can be scaled, but you might reach a limit to the number of database connections that can be created. 
 
