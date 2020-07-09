@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-06-19"
+lastupdated: "2020-07-09"
 
 subcollection: assistant-data
 
@@ -202,7 +202,7 @@ To upgrade the license, go to the [Portworx support site](https://docs.portworx.
 
       - Access the Helm chart from the file server at https://github.com/IBM/cloud-pak/tree/master/repo/cpd/modules/ibm-watson-assistant/x86_64/1.4.2/.
       - Unzip the helm chart so you can access the scripts that are provided in the service installation package.
-      - On the master node, change to the **/path/to/ibm-watson-assistant-prod/ibm_cloud_pak/pak_extensions/pre-install** subdirectory of the archive file that you extracted the product files from earlier.
+      - On the coordinator node, change to the **/path/to/ibm-watson-assistant-prod/ibm_cloud_pak/pak_extensions/pre-install** subdirectory of the archive file that you extracted the product files from earlier.
       - Run the **storage.sh** script and specify a single parameter.
 
         ```bash
@@ -237,12 +237,12 @@ A script is provided that you can use to create a local storage persistent volum
 
 1.  If you want to use a local storage persistent volume to store backups only, run the `storage.sh` script to create it.
 
-    You must be a cluster administrator to create a local storage volume, and the script used to create it must be run from the master node of the cluster. The master node must have `ssh` access to all of the nodes in your cluster.
+    You must be a cluster administrator to create a local storage volume, and the script used to create it must be run from the coordinator node of the cluster. The coordinator node must have `ssh` access to all of the nodes in your cluster.
     {: important}
 
     - Access the Helm chart from the file server at https://github.com/IBM/cloud-pak/tree/master/repo/cpd/modules/ibm-watson-assistant/x86_64/1.4.2/.
     - Unzip the helm chart so you can access the scripts that are provided in the service installation package.
-    - On the master node, change to the **/path/to/ibm-watson-assistant-prod/ibm_cloud_pak/pak_extensions/pre-install** subdirectory of the archive file that you extracted the product files from earlier.
+    - On the coordinator node, change to the **/path/to/ibm-watson-assistant-prod/ibm_cloud_pak/pak_extensions/pre-install** subdirectory of the archive file that you extracted the product files from earlier.
     - Run the following command:
 
       ```bash
@@ -285,7 +285,7 @@ Table 4. Local storage schema
 
 To create local storage persistent volumes, complete the following steps:
 
-You must be a cluster administrator to create local storage volumes, and the script used to create them must be run from the master node of the cluster. The master node must have `ssh` access to all of the nodes in your development cluster.
+You must be a cluster administrator to create local storage volumes, and the script used to create them must be run from the coordinator node of the cluster. The coordinator node must have `ssh` access to all of the nodes in your development cluster.
 {: important}
 
 1.  You will need to choose available worker nodes that can host the persistent volumes. Find out which worker nodes are available to host the volumes by running the following command:
@@ -299,7 +299,7 @@ You must be a cluster administrator to create local storage volumes, and the scr
 
 1.  Unzip the helm chart so you can access the scripts that are provided in the service installation package.
 
-1.  On the master node, change to the **/path/to/ibm-watson-assistant-prod/ibm_cloud_pak/pak_extensions/pre-install** subdirectory.
+1.  On the coordinator node, change to the **/path/to/ibm-watson-assistant-prod/ibm_cloud_pak/pak_extensions/pre-install** subdirectory.
 
 1.  If you want to see all of the options that are available to you when you create persistent volumes, run the following command:
 
@@ -415,6 +415,9 @@ The intallation steps you need to perform differ slightly depending on whether y
 - [Installing on {{site.data.keyword.icp4dfull_notm}} 2.5](#install-142-cpd25)
 
 If you have a previous version of the service installed, you can retain any assistants and skills that you created. Follow the instructions to back up data from the previous version, so that you can restore it in this new version. For more information, see [Backing up and restoring data](/docs/assistant-data?topic=assistant-data-backup).
+
+This documentation refers to the `master` node as the `coordinator` node.
+{: note}
 
 ## Installing on Cloud Pak for Data 3.0.1
 {: #install-142-cpd30}

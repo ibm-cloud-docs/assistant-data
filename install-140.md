@@ -364,6 +364,9 @@ The intallation steps you need to perform differ slightly depending on whether y
 - [Installing on OpenShift](#install-140-openshift)
 - [Installing on stand-alone {{site.data.keyword.icp4dfull_notm}}](#install-140-cpd)
 
+This documentation refers to the `master` node as the `coordinator` node.
+{: note}
+
 ## Installing on an OpenShift {{site.data.keyword.icp4dfull_notm}} cluster
 {: #install-140-openshift}
 
