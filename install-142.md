@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-06-19"
+lastupdated: "2020-07-09"
 
 subcollection: assistant-data
 
@@ -202,7 +202,7 @@ To upgrade the license, go to the [Portworx support site](https://docs.portworx.
 
       - Access the Helm chart from the file server at https://github.com/IBM/cloud-pak/tree/master/repo/cpd/modules/ibm-watson-assistant/x86_64/1.4.2/.
       - Unzip the helm chart so you can access the scripts that are provided in the service installation package.
-      - On the master node, change to the **/path/to/ibm-watson-assistant-prod/ibm_cloud_pak/pak_extensions/pre-install** subdirectory of the archive file that you extracted the product files from earlier.
+      - On the coordinator node, change to the **/path/to/ibm-watson-assistant-prod/ibm_cloud_pak/pak_extensions/pre-install** subdirectory of the archive file that you extracted the product files from earlier.
       - Run the **storage.sh** script and specify a single parameter.
 
         ```bash
@@ -237,12 +237,12 @@ A script is provided that you can use to create a local storage persistent volum
 
 1.  If you want to use a local storage persistent volume to store backups only, run the `storage.sh` script to create it.
 
-    You must be a cluster administrator to create a local storage volume, and the script used to create it must be run from the master node of the cluster. The master node must have `ssh` access to all of the nodes in your cluster.
+    You must be a cluster administrator to create a local storage volume, and the script used to create it must be run from the coordinator node of the cluster. The coordinator node must have `ssh` access to all of the nodes in your cluster.
     {: important}
 
     - Access the Helm chart from the file server at https://github.com/IBM/cloud-pak/tree/master/repo/cpd/modules/ibm-watson-assistant/x86_64/1.4.2/.
     - Unzip the helm chart so you can access the scripts that are provided in the service installation package.
-    - On the master node, change to the **/path/to/ibm-watson-assistant-prod/ibm_cloud_pak/pak_extensions/pre-install** subdirectory of the archive file that you extracted the product files from earlier.
+    - On the coordinator node, change to the **/path/to/ibm-watson-assistant-prod/ibm_cloud_pak/pak_extensions/pre-install** subdirectory of the archive file that you extracted the product files from earlier.
     - Run the following command:
 
       ```bash
@@ -285,7 +285,7 @@ Table 4. Local storage schema
 
 To create local storage persistent volumes, complete the following steps:
 
-You must be a cluster administrator to create local storage volumes, and the script used to create them must be run from the master node of the cluster. The master node must have `ssh` access to all of the nodes in your development cluster.
+You must be a cluster administrator to create local storage volumes, and the script used to create them must be run from the coordinator node of the cluster. The coordinator node must have `ssh` access to all of the nodes in your development cluster.
 {: important}
 
 1.  You will need to choose available worker nodes that can host the persistent volumes. Find out which worker nodes are available to host the volumes by running the following command:
@@ -299,7 +299,7 @@ You must be a cluster administrator to create local storage volumes, and the scr
 
 1.  Unzip the helm chart so you can access the scripts that are provided in the service installation package.
 
-1.  On the master node, change to the **/path/to/ibm-watson-assistant-prod/ibm_cloud_pak/pak_extensions/pre-install** subdirectory.
+1.  On the coordinator node, change to the **/path/to/ibm-watson-assistant-prod/ibm_cloud_pak/pak_extensions/pre-install** subdirectory.
 
 1.  If you want to see all of the options that are available to you when you create persistent volumes, run the following command:
 
@@ -415,6 +415,9 @@ The intallation steps you need to perform differ slightly depending on whether y
 - [Installing on {{site.data.keyword.icp4dfull_notm}} 2.5](#install-142-cpd25)
 
 If you have a previous version of the service installed, you can retain any assistants and skills that you created. Follow the instructions to back up data from the previous version, so that you can restore it in this new version. For more information, see [Backing up and restoring data](/docs/assistant-data?topic=assistant-data-backup).
+
+This documentation refers to the `master` node as the `coordinator` node.
+{: note}
 
 ## Installing on Cloud Pak for Data 3.0.1
 {: #install-142-cpd30}
@@ -672,9 +675,26 @@ If you ran the `storage.sh` script, copy the content from the `wa-persistence.ya
         - Replace the `{Operating_System}` in the `cpd-{Operating_System}` command with `linux` for Linux and with `darwin` for Mac OS.
         - The`wa-repo.yaml` file is the file you created earlier.
         - For `{assembly_version}`, specify `1.4.2`.
-        - For `Registry_location`, specify `$(oc registry info)/{namespace}`. The command `oc registry info` retrieves the registry location. Be sure to add `/{namespace}` to it. The location must be accessible from the machine where you run the install command. The  `image-registry.openshift-image-registry.svc:5000` and `docker-registry.default.svc:5000` are acecessible only from cluster nodes. They cannot be accessed from an infrastructure node or from external machines. You might want to (temporarily) enable external access to the registries. For more information, see one of the following topics:
-          - OpenShift 4.3: [Exposing the registry](https://docs.openshift.com/container-platform/4.3/registry/securing-exposing-registry.html){: external}
-          - OpenShift 3.11: [Securing and exposing the registry](https://docs.openshift.com/container-platform/3.11/install_config/registry/securing_and_exposing_registry.html){: external}
+        - For `Registry_location`, you must specify a route to the registry followed by the namespace. The route must be accessible from the machine where you run the install command. If the cluster you are installing does not have a route to the registry, you can to (temporarily) enable external access to the registries. For more information, see one of the following topics:
+
+          - Red Hat OpenShift 4.3: [Exposing the registry](https://docs.openshift.com/container-platform/4.3/registry/securing-exposing-registry.html){: external}
+          - Red Hat OpenShift 3.11: [Securing and exposing the registry](https://docs.openshift.com/container-platform/3.11/install_config/registry/securing_and_exposing_registry.html){: external}
+
+          For example, for OpenShift 4.3:
+
+          ```
+          export REGISTRY_ROUTE=`oc get route default-route -n openshift-image-registry | grep registry | awk {'print $2'}
+          ```
+          {: codeblock}
+
+          For example, for OpenShift 3.11:
+
+          ```
+          export REGISTRY_ROUTE=`oc get route docker-registry -n default | grep registry | awk {'print $2'}`
+          ```
+          {: codeblock}
+
+          When you add the `--transfer-image-to` parameter, you can specify `${REGISTRY_ROUTE}/{namespace}`.
         - Provide the username and password for a user with access to the registry in the `target-registry-username` and `target-registry-password` parameters. This name must be the same name that you used when you ran the `oc login` command. The default username is typically `kubeadmin` for OpenShift 4.x and `ocadmin` for OpenShift 3.x. If you specify `$(oc whoami -t)` as the password, the corresponding password is populated for you.
         - If you are using the internal Red Hat OpenShift registry and you are using the default self-signed certificate, specify the `--insecure-skip-tls-verify` flag to prevent x509 errors.
         - `Registry_from_cluster`: Address of the internal OpenShift Docker registry. For OpenShift 4.x, it is typically, `image-registry.openshift-image-registry.svc:5000`. For OpenShift 3.x, it is typically, `docker-registry.default.svc:5000`.
@@ -725,9 +745,26 @@ If you ran the `storage.sh` script, copy the content from the `wa-persistence.ya
         ```
         {: codeblock}
 
-        - For `Registry_location`, specify `$(oc registry info)/{namespace}`. The command `oc registry info` retrieves the registry location. Be sure to add `/{namespace}` to it. The registry must be accessible from the machine where you run the install command. For example,  `image-registry.openshift-image-registry.svc:5000` and `docker-registry.default.svc:5000` are acecessible only from the cluster nodes. They cannot be accessed from an infrastructure node or from external machines. You might want to (temporarily) enable external access to the registries. For more information, see one of the following topics:
-          - OpenShift 4.3: [Exposing the registry](https://docs.openshift.com/container-platform/4.3/registry/securing-exposing-registry.html){: external}
-          - OpenShift 3.11: [Securing and exposing the registry](https://docs.openshift.com/container-platform/3.11/install_config/registry/securing_and_exposing_registry.html){: external}
+        - For `Registry_location`, you must specify a route to the registry followed by the namespace. The route must be accessible from the machine where you run the install command. If the cluster you are installing does not have a route to the registry, you can to (temporarily) enable external access to the registries. For more information, see one of the following topics:
+
+          - Red Hat OpenShift 4.3: [Exposing the registry](https://docs.openshift.com/container-platform/4.3/registry/securing-exposing-registry.html){: external}
+          - Red Hat OpenShift 3.11: [Securing and exposing the registry](https://docs.openshift.com/container-platform/3.11/install_config/registry/securing_and_exposing_registry.html){: external}
+
+          For example, for OpenShift 4.3:
+
+          ```
+          export REGISTRY_ROUTE=`oc get route default-route -n openshift-image-registry | grep registry | awk {'print $2'}
+          ```
+          {: codeblock}
+
+          For example, for OpenShift 3.11:
+
+          ```
+          export REGISTRY_ROUTE=`oc get route docker-registry -n default | grep registry | awk {'print $2'}`
+          ```
+          {: codeblock}
+
+          When you add the `--transfer-image-to` parameter, you can specify `${REGISTRY_ROUTE}/{namespace}`.
         - Provide the username and password for a user with access to the registry in the `target-registry-username` and `target-registry-password` parameters. This name must be the same name that you used when you ran the `oc login` command. The default username is typically `kubeadmin` for OpenShift 4.x and `ocadmin` for OpenShift 3.x. If you specify `$(oc whoami -t)` as the password, the corresponding password is populated for you.
         - If you are using the internal Red Hat OpenShift registry and you are using the default self-signed certificate, specify the `--insecure-skip-tls-verify` flag to prevent x509 errors.
 
@@ -1033,7 +1070,26 @@ If you ran the `storage.sh` script, copy the content from the `wa-persistence.ya
         - Replace the `{Operating_System}` in the `cpd-{Operating_System}` command with `linux` for Linux and with `darwin` for Mac OS.
         - The`wa-repo.yaml` file is the file you created earlier.
         - For `{assembly_version}`, specify `1.4.2`.
-        - For `Registry_location`, specify `$(oc registry info)/{namespace}`. The command `oc registry info` retrieves the registry location. Be sure to add `/{namespace}` to it.
+        - For `Registry_location`, you must specify a route to the registry followed by the namespace. The route must be accessible from the machine where you run the install command. If the cluster you are installing does not have a route to the registry, you can to (temporarily) enable external access to the registries. For more information, see one of the following topics:
+
+          - Red Hat OpenShift 4.3: [Exposing the registry](https://docs.openshift.com/container-platform/4.3/registry/securing-exposing-registry.html){: external}
+          - Red Hat OpenShift 3.11: [Securing and exposing the registry](https://docs.openshift.com/container-platform/3.11/install_config/registry/securing_and_exposing_registry.html){: external}
+
+          For example, for OpenShift 4.3:
+
+          ```
+          export REGISTRY_ROUTE=`oc get route default-route -n openshift-image-registry | grep registry | awk {'print $2'}
+          ```
+          {: codeblock}
+
+          For example, for OpenShift 3.11:
+
+          ```
+          export REGISTRY_ROUTE=`oc get route docker-registry -n default | grep registry | awk {'print $2'}`
+          ```
+          {: codeblock}
+
+          When you add the `--transfer-image-to` parameter, you can specify `${REGISTRY_ROUTE}/{namespace}`.
         - Provide the username and password for a user with access to the registry in the `target-registry-username` and `target-registry-password` parameters. The default username is `ocadmin` for OpenShift 3.x. If you specify `$(oc whoami -t)` as the password, the corresponding password is populated for you.
         - If you are using the internal Red Hat OpenShift registry and you are using the default self-signed certificate, specify the `--insecure-skip-tls-verify` flag to prevent x509 errors.
         - `Registry_from_cluster`: Address of the internal OpenShift Docker registry. For OpenShift 3.x, it is typically, `docker-registry.default.svc:5000`.
@@ -1084,7 +1140,26 @@ If you ran the `storage.sh` script, copy the content from the `wa-persistence.ya
         ```
         {: codeblock}
 
-        - For `Registry_location`, specify `$(oc registry info)/{namespace}`. The command `oc registry info` retrieves the registry location. Be sure to add `/{namespace}` to it. The registry must be accessible from the machine where you run the install command. For example,  `image-registry.openshift-image-registry.svc:5000` and `docker-registry.default.svc:5000` are acecessible only from the cluster nodes. They cannot be accessed from an infrastructure node or from external machines. You might want to (temporarily) enable external access to the registries. For more information, see [Securing and exposing the registry](https://docs.openshift.com/container-platform/3.11/install_config/registry/securing_and_exposing_registry.html){: external}
+        - For `Registry_location`, you must specify a route to the registry followed by the namespace. The route must be accessible from the machine where you run the install command. If the cluster you are installing does not have a route to the registry, you can to (temporarily) enable external access to the registries. For more information, see one of the following topics:
+
+          - Red Hat OpenShift 4.3: [Exposing the registry](https://docs.openshift.com/container-platform/4.3/registry/securing-exposing-registry.html){: external}
+          - Red Hat OpenShift 3.11: [Securing and exposing the registry](https://docs.openshift.com/container-platform/3.11/install_config/registry/securing_and_exposing_registry.html){: external}
+
+          For example, for OpenShift 4.3:
+
+          ```
+          export REGISTRY_ROUTE=`oc get route default-route -n openshift-image-registry | grep registry | awk {'print $2'}
+          ```
+          {: codeblock}
+
+          For example, for OpenShift 3.11:
+
+          ```
+          export REGISTRY_ROUTE=`oc get route docker-registry -n default | grep registry | awk {'print $2'}`
+          ```
+          {: codeblock}
+
+          When you add the `--transfer-image-to` parameter, you can specify `${REGISTRY_ROUTE}/{namespace}`.
         - Provide the username and password for a user with access to the registry in the `target-registry-username` and `target-registry-password` parameters. This name must be the same name that you used when you ran the `oc login` command. The default username is typically `ocadmin` for OpenShift 3.x. If you specify `$(oc whoami -t)` as the password, the corresponding password is populated for you.
         - If you are using the internal Red Hat OpenShift registry and you are using the default self-signed certificate, specify the `--insecure-skip-tls-verify` flag to prevent x509 errors.
 

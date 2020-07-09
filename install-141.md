@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-07-01"
+lastupdated: "2020-07-09"
 
 subcollection: assistant-data
 
@@ -417,6 +417,9 @@ The intallation steps you need to perform differ slightly depending on whether y
 
 - [Installing on OpenShift](#install-141-openshift)
 - [Installing on stand-alone {{site.data.keyword.icp4dfull_notm}}](#install-141-cpd)
+
+This documentation refers to the `master` node as the `coordinator` node.
+{: note}
 
 ## Installing on an OpenShift {{site.data.keyword.icp4dfull_notm}} cluster
 {: #install-141-openshift}

@@ -194,6 +194,9 @@ Follow these steps to install {{site.data.keyword.conversationshort}} for {{site
 1.  [Provision an instance of the add-on](#install-120-install-add-on)
 1.  [Launch the product](#install-120-launch-tool)
 
+This documentation refers to the `master` node as the `coordinator` node.
+{: note}
+
 ## Step 1: Purchase and download installation artifacts
 {: #install-120-download-wa-icp}
 
