@@ -1087,7 +1087,27 @@ If you ran the `storage.sh` script, copy the content from the `wa-persistence.ya
         ```
         {: codeblock}
 
-        - For `Registry_location`, specify `$(oc registry info)/{namespace}`. The command `oc registry info` retrieves the registry location. Be sure to add `/{namespace}` to it. The registry must be accessible from the machine where you run the install command. For example,  `image-registry.openshift-image-registry.svc:5000` and `docker-registry.default.svc:5000` are acecessible only from the cluster nodes. They cannot be accessed from an infrastructure node or from external machines. You might want to (temporarily) enable external access to the registries. For more information, see [Securing and exposing the registry](https://docs.openshift.com/container-platform/3.11/install_config/registry/securing_and_exposing_registry.html){: external}
+        - For Registry_location, you must specify a route to the registry followed by the namespace. The route must be accessible from the machine where you run the install command. If the cluster you are installing does not have a route to the registry, you can to (temporarily) enable external access to the registries. For more information, see one of the following topics:
+
+        - Red Hat OpenShift 4.3: [Exposing the registry](https://docs.openshift.com/container-platform/4.3/registry/securing-exposing-registry.html){: external}
+        - Red Hat OpenShift 3.11: [Securing and exposing the registry](https://docs.openshift.com/container-platform/3.11/install_config/registry/securing_and_exposing_registry.html){: external}
+
+        For example, for OpenShift 4.3:
+
+        ```
+        export REGISTRY_ROUTE=`oc get route default-route -n openshift-image-registry | grep registry | awk {'print $2'}
+        ```
+        {: codeblock}
+
+        For example, for OpenShift 3.11:
+
+        ```
+        export REGISTRY_ROUTE=`oc get route docker-registry -n default | grep registry | awk {'print $2'}`
+        ```
+        {: codeblock}
+
+        When you add the `--transfer-image-to` parameter, you can specify `${REGISTRY_ROUTE}/{namespace}`.
+
         - Provide the username and password for a user with access to the registry in the `target-registry-username` and `target-registry-password` parameters. This name must be the same name that you used when you ran the `oc login` command. The default username is typically `ocadmin` for OpenShift 3.x. If you specify `$(oc whoami -t)` as the password, the corresponding password is populated for you.
         - If you are using the internal Red Hat OpenShift registry and you are using the default self-signed certificate, specify the `--insecure-skip-tls-verify` flag to prevent x509 errors.
 
