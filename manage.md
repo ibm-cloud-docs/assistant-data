@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-07-01"
+lastupdated: "2020-07-17"
 
 subcollection: assistant-data
 
@@ -69,6 +69,9 @@ kubectl get pods -o wide
 To use horizontal pod autoscalers in a deployment with OpenShift, you must install the OpenShift Container Platform metrics server. For more information, see [Requirements for Using Horizontal Pod Autoscalers](https://docs.openshift.com/container-platform/3.11/dev_guide/pod_autoscaling.html#req-for-using-hpas){: external}.
 
 The following table describes the deployment details.
+
+For 1.4.2, the `${release-name}` is hard-coded to `watson-assistant`. If a pod name becomes too long, the `${release-name}` is shortened to 10 characters.
+{: note}
 
 | Component name | Deployment name | Pod name | Default number of replicas |
 |----------------|-----------------|----------|----------------------------|

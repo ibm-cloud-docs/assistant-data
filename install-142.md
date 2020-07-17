@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-07-09"
+lastupdated: "2020-07-16"
 
 subcollection: assistant-data
 
@@ -190,12 +190,14 @@ The following features are not supported:
  
 To upgrade the license, go to the [Portworx support site](https://docs.portworx.com/knowledgebase/support.html).
 
-1.  Use the Portworx deployment that is bundled with {{site.data.keyword.icp4dfull_notm}}.
+**Red Hat OpenShift 4.3 only**: Alternatively, you can use VMware vSphere volumes, Microsoft Azure Disk volumes, or Amazon Web Services Elastic Block Store (EBS) as a storage solution. For more information, see [Understanding persistent storage](https://docs.openshift.com/container-platform/4.3/storage/understanding-persistent-storage.html){: external}.
+
+1.  You can use the Portworx deployment that is bundled with {{site.data.keyword.icp4dfull_notm}}.
 
     - **3.0.1**: See [Installing the entitled Portworx instance](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.0.1/cpd/install/portworx-install.html).
     - **2.5**: See [Installing the entitled Portworx instance](https://www.ibm.com/support/knowledgecenter/SSQNUZ_2.5.0/cpd/install/portworx-install.html).
 
-1.  Create the Portworx storage class for {{site.data.keyword.conversationshort}}.
+1.  If you are using Portworx as the storage solution, create the Portworx storage class for {{site.data.keyword.conversationshort}}.
 
     - 3.0.1: [Creating Portworx storage classes](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.0.1/cpd/install/portworx-storage-classes.html){: external}.
     - 2.5: You can run a script that is provided with the service installation files to define the Portworx storage class.
@@ -675,26 +677,41 @@ If you ran the `storage.sh` script, copy the content from the `wa-persistence.ya
         - Replace the `{Operating_System}` in the `cpd-{Operating_System}` command with `linux` for Linux and with `darwin` for Mac OS.
         - The`wa-repo.yaml` file is the file you created earlier.
         - For `{assembly_version}`, specify `1.4.2`.
-        - For `Registry_location`, you must specify a route to the registry followed by the namespace. The route must be accessible from the machine where you run the install command. If the cluster you are installing does not have a route to the registry, you can to (temporarily) enable external access to the registries. For more information, see one of the following topics:
+        - For `Registry_location`, you must specify a route to the registry followed by the namespace (project name). The route must be accessible from the machine where you run the install command. If the cluster you are installing does not have a route to the registry, you can to (temporarily) enable external access to the registries. For more information, see one of the following topics:
 
           - Red Hat OpenShift 4.3: [Exposing the registry](https://docs.openshift.com/container-platform/4.3/registry/securing-exposing-registry.html){: external}
           - Red Hat OpenShift 3.11: [Securing and exposing the registry](https://docs.openshift.com/container-platform/3.11/install_config/registry/securing_and_exposing_registry.html){: external}
 
-          For example, for OpenShift 4.3:
+          When you add the `--transfer-image-to` parameter, you can specify the registry location as follows:
 
-          ```
-          export REGISTRY_ROUTE=`oc get route default-route -n openshift-image-registry | grep registry | awk {'print $2'}
-          ```
-          {: codeblock}
+          - **OpenShift 4.3**
 
-          For example, for OpenShift 3.11:
+            ```
+            oc get route/default-route -n openshift-image-registry --template='{{ .spec.host }}'
+            ```
+            {: codeblock}
 
-          ```
-          export REGISTRY_ROUTE=`oc get route docker-registry -n default | grep registry | awk {'print $2'}`
-          ```
-          {: codeblock}
+            The command returns a route similar to `default-route-openshift-image-registry.apps.my_cluster_address`. Append the namespace to the route. For example:
 
-          When you add the `--transfer-image-to` parameter, you can specify `${REGISTRY_ROUTE}/{namespace}`.
+            ```
+            default-route-openshift-image-registry.apps.my_cluster_address/zen
+            ```
+            {: codeblock}
+
+          - **OpenShift 3.11**
+
+            ```
+            oc get route/docker-registry -n default --template {{.spec.host}}
+            ```
+            {: codeblock}
+
+            The command returns a route similar to `docker-registry-default.apps.my_cluster_address`. Append the namespace to the route. For example:
+
+            ```
+            docker-registry-default.apps.my_cluster_address/zen
+            ```
+            {: codeblock}
+
         - Provide the username and password for a user with access to the registry in the `target-registry-username` and `target-registry-password` parameters. This name must be the same name that you used when you ran the `oc login` command. The default username is typically `kubeadmin` for OpenShift 4.x and `ocadmin` for OpenShift 3.x. If you specify `$(oc whoami -t)` as the password, the corresponding password is populated for you.
         - If you are using the internal Red Hat OpenShift registry and you are using the default self-signed certificate, specify the `--insecure-skip-tls-verify` flag to prevent x509 errors.
         - `Registry_from_cluster`: Address of the internal OpenShift Docker registry. For OpenShift 4.x, it is typically, `image-registry.openshift-image-registry.svc:5000`. For OpenShift 3.x, it is typically, `docker-registry.default.svc:5000`.
@@ -750,21 +767,36 @@ If you ran the `storage.sh` script, copy the content from the `wa-persistence.ya
           - Red Hat OpenShift 4.3: [Exposing the registry](https://docs.openshift.com/container-platform/4.3/registry/securing-exposing-registry.html){: external}
           - Red Hat OpenShift 3.11: [Securing and exposing the registry](https://docs.openshift.com/container-platform/3.11/install_config/registry/securing_and_exposing_registry.html){: external}
 
-          For example, for OpenShift 4.3:
+          When you add the `--transfer-image-to` parameter, you can specify the registry location as follows:
 
-          ```
-          export REGISTRY_ROUTE=`oc get route default-route -n openshift-image-registry | grep registry | awk {'print $2'}
-          ```
-          {: codeblock}
+          - **OpenShift 4.3**
 
-          For example, for OpenShift 3.11:
+            ```
+            oc get route/default-route -n openshift-image-registry --template='{{ .spec.host }}'
+            ```
+            {: codeblock}
 
-          ```
-          export REGISTRY_ROUTE=`oc get route docker-registry -n default | grep registry | awk {'print $2'}`
-          ```
-          {: codeblock}
+            The command returns a route similar to `default-route-openshift-image-registry.apps.my_cluster_address`. Append the namespace to the route. For example:
 
-          When you add the `--transfer-image-to` parameter, you can specify `${REGISTRY_ROUTE}/{namespace}`.
+            ```
+            default-route-openshift-image-registry.apps.my_cluster_address/zen
+            ```
+            {: codeblock}
+
+          - **OpenShift 3.11**
+
+            ```
+            oc get route/docker-registry -n default --template {{.spec.host}}
+            ```
+            {: codeblock}
+
+            The command returns a route similar to `docker-registry-default.apps.my_cluster_address`. Append the namespace to the route. For example:
+
+            ```
+            docker-registry-default.apps.my_cluster_address/zen
+            ```
+            {: codeblock}
+
         - Provide the username and password for a user with access to the registry in the `target-registry-username` and `target-registry-password` parameters. This name must be the same name that you used when you ran the `oc login` command. The default username is typically `kubeadmin` for OpenShift 4.x and `ocadmin` for OpenShift 3.x. If you specify `$(oc whoami -t)` as the password, the corresponding password is populated for you.
         - If you are using the internal Red Hat OpenShift registry and you are using the default self-signed certificate, specify the `--insecure-skip-tls-verify` flag to prevent x509 errors.
 
