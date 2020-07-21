@@ -156,7 +156,7 @@ Starting with 1.4.2, you can use the **wactl.sh** script to stop or restart the 
 To use the script to stop or restart the service, complete the following steps:
 
 1.  From a machine that has Kubernetes access to your cluster, log in to your cluster and change to the correct namespace (project).
-1.  Access the Helm chart from the file server at https://github.com/IBM/cloud-pak/tree/master/repo/cpd3/modules/ibm-watson-assistant/x86_64/1.4.2/.
+1.  Access the Helm chart from the file server on [Github](https://github.com/IBM/cloud-pak/tree/master/repo/cpd3/modules/ibm-watson-assistant/x86_64/1.4.2/){: external}.
 1.  Unzip the helm chart TGZ file so you can access the scripts that are provided in the service installation package.
 1.  On the coordinator node, change to the **/path/to/ibm-watson-assistant-prod/ibm_cloud_pakpak_extensions/post-install/namespaceAdministration/** subdirectory.
 1.  Run the `wactl.sh` script.
