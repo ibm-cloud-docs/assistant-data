@@ -7,16 +7,13 @@ Watson Assistant for IBM Cloud Pak for Data
     {: .navgroup id="learn"}
     getting-started.md    
     index.md
-    assistants.md
-    skills.md
-    dev-process.md
     tool-overview.md
     [Demo: Banking Assistant](https://watson-conversation-duo-dev.ng.bluemix.net/)
     sample-apps.md
     {: .navgroup-end}
 
     {: .navgroup id="howto"}
-    release-notes.md
+    dev-process.md
 
     {: .topicgroup}
     Installing
@@ -35,10 +32,12 @@ Watson Assistant for IBM Cloud Pak for Data
             install-120-addon.md
             [1.1 and 1.0 PDF](https://github.com/watson-developer-cloud/community/blob/master/watson-assistant/data/pre1.4/assistant-icp-1.1.pdf)
 
-    assistant-add.md
-    skill-add.md
-    assistant-settings.md
-    skill-search-add.md
+    {: .topicgroup}
+    Creating your assistant
+        assistants.md
+        assistant-add.md
+        skill-add.md
+        assistant-settings.md
 
     {: .topicgroup}
     Creating a dialog skill
@@ -75,7 +74,9 @@ Watson Assistant for IBM Cloud Pak for Data
             tutorial-car-dashboard.md
             tutorial-digressions.md
 
-    versions.md
+        versions.md
+
+    skill-search-add.md
     deploy-custom-app.md
 
     {: .topicgroup}
@@ -99,8 +100,8 @@ Watson Assistant for IBM Cloud Pak for Data
     {: .navgroup-end}
 
     {: .navgroup id="reference"}
-    [v2 API reference](https://cloud.ibm.com/apidocs/assistant/assistant-data-v2)
-    [v1 API reference](https://cloud.ibm.com/apidocs/assistant/assistant-data-v1)
+    [v2 API reference](https://cloud.ibm.com/apidocs/assistant-data-v2)
+    [v1 API reference](https://cloud.ibm.com/apidocs/assistant-data-v1)
     dialog-methods.md
     expression-language.md
 
@@ -113,6 +114,7 @@ Watson Assistant for IBM Cloud Pak for Data
     {: .navgroup-end}
 
     {: .navgroup id="help"}
+    release-notes.md
     services-information.md
     feedback.md
 
