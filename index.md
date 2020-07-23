@@ -36,6 +36,9 @@ Use {{site.data.keyword.conversationfull}} for {{site.data.keyword.icp4dfull}} t
 | *Create AI-driven conversational flows* | Your assistant leverages industry-leading AI capabilities to understand questions that your customers ask in natural language. It uses machine learning models that are custom built from your data to deliver accurate answers in real time. |
 | *Embed existing help content* | You already know the answers to customer questions? Put your subject matter expertise to work. Add a search skill to give your assistant access to corporate data collections that it can mine for answers. |
 
+This documentation describes installed instances of {{site.data.keyword.conversationshort}}. For more information about using a managed instance in IBM Cloud or in Cloud Pak for Data as a service, see [this documentation](/docs/assistant-data?topic=assistant-index).
+{: note}
+
 ## How it works
 {: #index-how-it-works}
 
