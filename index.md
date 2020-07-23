@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-07-21"
+lastupdated: "2020-07-23"
 
 subcollection: assistant-data
 
@@ -34,7 +34,7 @@ Use {{site.data.keyword.conversationfull}} for {{site.data.keyword.icp4dfull}} t
 | | |
 |------------|-------------|
 | *Create AI-driven conversational flows* | Your assistant leverages industry-leading AI capabilities to understand questions that your customers ask in natural language. It uses machine learning models that are custom built from your data to deliver accurate answers in real time. |
-| *Embed existing help content* | You already know the answers to customer questions? Put your subject matter experise to work. Add a search skill to give your assistant access to corporate data collections that it can mine for answers. |
+| *Embed existing help content* | You already know the answers to customer questions? Put your subject matter expertise to work. Add a search skill to give your assistant access to corporate data collections that it can mine for answers. |
 
 ## How it works
 {: #index-how-it-works}
