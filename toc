@@ -2,7 +2,7 @@
 {:topicgroup: .topicgroup}
 
 {: .toc subcollection="assistant-data" category="cloud_pak" audience="service" href="/docs/assistant-data?topic=assistant-data-getting-started" path="assistant-data"}
-Watson Assistant for IBM Cloud Pak for Data
+Watson Assistant for IBM Cloud Pak for Data (Installed)
 
     {: .navgroup id="learn"}
     getting-started.md    
