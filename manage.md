@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-07-21"
+lastupdated: "2020-07-22"
 
 subcollection: assistant-data
 
@@ -161,8 +161,6 @@ To use the script to stop or restart the service, complete the following steps:
 1.  On the coordinator node, change to the **/path/to/ibm-watson-assistant-prod/ibm_cloud_pakpak_extensions/post-install/namespaceAdministration/** subdirectory.
 1.  Run the `wactl.sh` script.
 
-The script accepts the following parameters:
-
 ```
 wactl.sh 
   --action [stop | start | restart | clean] 
@@ -172,7 +170,7 @@ wactl.sh
 ```
 {: codeblock}
 
-The parameters 
+The script accepts the following parameters:
 
 - `action`: Required. Indicates the action you want to perform. Options include:
 
@@ -185,7 +183,7 @@ The parameters
 - `cli`: Specify the command line interface you are using. 
 
   Specify `oc` for OpenShift and `kubectl` for Kubernetes.
-- `include-ds`: Optional. Indicates that you want to perform the action on the data sources (except Redis).
+- `include-ds`: Optional. Indicates that you want to perform the action on the data sources. When you specify this parameter with the `restart` action, all of the data sources are restarted except Redis.
 
 ### To manually scale the cluster all the way down and back
 {: #manage-restart-replicas}
