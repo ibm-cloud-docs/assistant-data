@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-06-22"
+lastupdated: "2020-07-28"
 
 subcollection: assistant-data
 
@@ -35,7 +35,7 @@ To back up the data, you use a tool that Postgres provides that is called `pg_du
 
 Choose one of the following ways to manage the backup of data:
 
-- **Kubernetes CronJob**: Use the `$RELEASE-backup-cronjob` cronjob that is provided for you.
+- **Kubernetes CronJob**: Use the `$RELEASE-backup-cronjob` cron job that is provided for you.
 - **backupPG.sh script**: Use the `backupPG.sh` bash script that is provided with the service's installation files.
 - **pg_dump tool**: Run the `pg_dump` tool on each cluster directly. This is the most manual option, but also affords the most control over the process.
 

@@ -847,18 +847,18 @@ If you ran the `storage.sh` script, copy the content from the `wa-persistence.ya
 For a list of all available options, enter the command: `./cpd-{Operating_System} --help`.
 {: tip}
 
-1.  **For deployments with Azure Disk data sources only**: You must run the backup cronjob as part of the installation process.
+1.  **For deployments with Azure Disk data sources only**: You must run the backup cron job as part of the installation process.
 
-    The installation process waits until all PVCs have been bound before it completes. However, if you use Azure Disk, the PVC for the Postgres backup won't become bound until after the Postgres backup cronjob runs for the first time. To prevent the installation from having to wait for the job or timing out, start the cronjob manually.
+    The installation process waits until all PVCs have been bound before it completes. However, if you use Azure Disk, the PVC for the Postgres backup won't become bound until after the Postgres backup cron job runs for the first time. To prevent the installation from having to wait for the job or timing out, start the cron job manually.
 
-    - Check the status of the installation. Do not run the cronjob until after the store pod is running. You can check the status of the store pod by using the following command:
+    - Check the status of the installation. Do not run the cron job until after the store pod is running. You can check the status of the store pod by using the following command:
 
       ```
       oc get pods -l release=watson-assistant,component=store
       ```
       {: codeblock}
 
-    - Run the cronjob:
+    - Run the cron job:
 
       ```
       oc create job --from=cronjob/watson-assistant-backup-cronjob 
@@ -868,7 +868,7 @@ For a list of all available options, enter the command: `./cpd-{Operating_System
 
     After the job creates a pod, the PVC becomes bound and the installation can finish. After the installation is complete, you can delete the job you created.
 
-    For more information about using cronjobs, see [Backing up and restoring data](/docs/assistant-data?topic=assistant-data-backup).
+    For more information about using cron jobs, see [Backing up and restoring data](/docs/assistant-data?topic=assistant-data-backup).
 
 ## Installing on an Cloud Pak for Data 2.5
 {: #install-142-cpd25}
