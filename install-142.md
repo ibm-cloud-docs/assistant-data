@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-07-28"
+lastupdated: "2020-07-30"
 
 subcollection: assistant-data
 
@@ -844,8 +844,8 @@ If you ran the `storage.sh` script, copy the content from the `wa-persistence.ya
         ```
         {: codeblock}
 
-For a list of all available options, enter the command: `./cpd-{Operating_System} --help`.
-{: tip}
+    For a list of all available options, enter the command: `./cpd-{Operating_System} --help`.
+    {: tip}
 
 1.  **For deployments with Azure Disk data sources only**: You must run the backup cron job as part of the installation process.
 
@@ -1319,15 +1319,25 @@ To check the status of the installation process:
 ## Checking for available patches
 {: #install-142-patches}
 
-1.  Run the following command to check for available patches:
+From a cluster that can connect to the internet, run the following command to check for available patches:
 
-      ```bash
-      ./cpd-linux status --repo wa-repo.yaml --namespace {namespace} \
-      --assembly ibm-watson-assistant --patches
-      ```
-      {: pre}
+    ```bash
+    ./cpd-Operating_System --repo ./wa-repo.yaml status \
+    --namespace Project \ 
+    --assembly ibm-watson-assistant \
+    --patches
+    ```
+    {: pre}
 
-      - `{namespace}`: Namespace where {{site.data.keyword.icp4dfull_notm}} was installed, which is typically `zen`.
+    For example:
+
+    ```bash
+    ./cpd-linux --repo wa-repo.yaml status --namespace zen \
+    --assembly ibm-watson-assistant --patches
+    ```
+    {: pre}
+
+To check for patches on an air-gapped cluster, see the list of [available patches for Watson Assistant](https://www.ibm.com/support/pages/node/6240164).
 
 ### Uninstalling the service
 {: #install-142-uninstall}
