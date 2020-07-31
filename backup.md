@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-07-28"
+lastupdated: "2020-07-31"
 
 subcollection: assistant-data
 
@@ -35,9 +35,12 @@ To back up the data, you use a tool that Postgres provides that is called `pg_du
 
 Choose one of the following ways to manage the backup of data:
 
-- **Kubernetes CronJob**: Use the `$RELEASE-backup-cronjob` cron job that is provided for you.
-- **backupPG.sh script**: Use the `backupPG.sh` bash script that is provided with the service's installation files.
-- **pg_dump tool**: Run the `pg_dump` tool on each cluster directly. This is the most manual option, but also affords the most control over the process.
+- **[Kubernetes CronJob](#backup-cronjob) (1.4.2 and later only)**: Use the `$RELEASE-backup-cronjob` cron job that is provided for you.
+- **[backupPG.sh script](#backup-os) (1.4.1 and later only)**: Use the `backupPG.sh` bash script that is provided with the service's installation files.
+- **[pg_dump tool](#backup-cp4d)**: Run the `pg_dump` tool on each cluster directly. This is the most manual option, but also affords the most control over the process.
+
+When you back up data with one of these procedures before you upgrade from one version to another, the workspace IDs of your skills are preserved, but the service instance IDs and credentials change.
+{: note}
 
 ## Before you begin
 
@@ -46,7 +49,7 @@ Choose one of the following ways to manage the backup of data:
 - You cannot use this procedure to back up the data that is returned by the search skill. Data that is retrieved by the search skill comes from a data collection in a {{site.data.keyword.discoveryshort}} instance. See the [{{site.data.keyword.discoveryshort}} documentation](/docs/discovery-data?topic=discovery-data-backup-restore) to find out how to back up its data. 
 - If you back up and restore or otherwise change the {{site.data.keyword.discoveryshort}} service that your search skill connects to, then you cannot restore the search skill, but must recreate it. When you set up a search skill, you map sections of the assistant's response to fields in a data collection that is hosted by an instance of {{site.data.keyword.discoveryshort}} on the same cluster. If the {{site.data.keyword.discoveryshort}} instance changes, your mapping to it is broken. If your {{site.data.keyword.discoveryshort}} service does not change, then the search skill can continue to connect to the data collection.
 - The tool that restores the data clears the current database before it restores the backup. Therefore, if you might need to revert to the current database, create a backup of it first.
-- The target {{site.data.keyword.icp4dfull_notm}} cluster where you restore the data must have the same number of instances as the environment from which you back up the database.
+- The target {{site.data.keyword.icp4dfull_notm}} cluster where you restore the data must have the same number of provisioned {{site.data.keyword.conversationshort}} service instances as the environment from which you back up the database.
 
 ## Backing up data by using the CronJob
 {: #backup-cronjob}
@@ -208,6 +211,10 @@ To back up data by using the provided script, complete the following steps:
 
 1.  Log in to the OpenShift project namespace or Kubernetes namespace where you installed the product.
 1.  The `backupPG.sh` script is included in the Helm chart for the product. The chart can be found in fileserver https://github.com/IBM/cloud-pak/raw/master/repo/cpd3/modules/ibm-watson-assistant/x86_64/1.4.2/. Extract the backup.sh file from the Helm chart named `ibm-watson-assistant-prod-1.4.2.tgz`. The script is in the `ibm_cloud_pak/pak_extensions/post-install/namespaceAdministration` directory.
+
+1.  Find out how many provisioned service instances there are in your existing cluster. To find out, open the {{site.data.keyword.icp4dfull_notm}} web client. From the main navigation menu, select **My instances**, and then open the **Provisioned instances** tab.
+
+    You need to know this information so you can be sure to set up the target cluster with the same number of instances.
 
 1.  Run the script by using the following command:
 
