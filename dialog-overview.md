@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-03-20"
+lastupdated: "2020-08-03"
 
 subcollection: assistant-data
 
@@ -113,7 +113,7 @@ To create a dialog, complete the following steps:
     - To create a child node to the selected node, select **Add child node**. A child node is processed after its parent node.
     - To copy the current node, select **Duplicate**.
 
-    For more information about the order in which dialog nodes are processed, see [Dialog overview](/docs/assistant-data?topic=assistant-data-dialog-overview#dialog-overview-flow).
+    For more information about the order in which dialog nodes are processed, see [Dialog overview](/docs/assistant-data?topic=assistant-data-dialog-build#dialog-build-flow).
 1.  Test the dialog as you build it.
 
     See [Testing your dialog](#dialog-build-test) for more information.

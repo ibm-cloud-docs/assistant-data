@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-03-20"
+lastupdated: "2020-08-03"
 
 subcollection: assistant-data
 
@@ -39,7 +39,7 @@ Note: The video is 15 minutes in duration; the first 5 minutes cover how to add 
 The dialog is represented graphically in {{site.data.keyword.conversationshort}} as a tree. Create a branch to process each intent that you want your conversation to handle. A branch is composed of multiple nodes.
 
 ## Dialog nodes
-{: #dialog-overview-nodes}
+{: #dialog-build-nodes}
 
 Each dialog node contains, at a minimum, a condition and a response.
 
@@ -59,7 +59,7 @@ A single node with one condition and response can handle simple user requests. B
 ![Shows that the first node in the dialog asks which type of cupcake the user wants, gluten-free or regular, and has two child nodes that provide a different response depending on the user's answer.](images/node1-children.png)
 
 ## Dialog flow
-{: #dialog-overview-flow}
+{: #dialog-build-flow}
 
 The dialog that you create is processed by your assistant from the first node in the tree to the last.
 

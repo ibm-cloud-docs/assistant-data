@@ -71,7 +71,6 @@ Watson Assistant for IBM Cloud Pak for Data (Installed)
             tutorial.md
             tutorial-slots.md
             tutorial-slots-complex.md
-            tutorial-car-dashboard.md
             tutorial-digressions.md
 
         versions.md

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-06-24"
+lastupdated: "2020-08-03"
 
 subcollection: assistant-data
 
@@ -38,7 +38,7 @@ Get tips about ways to address common tasks.
   You know what the node does right now, but months from now you might not. Your future self and any team members will thank you for adding a descriptive node name. And the node name is displayed in the log, which can help you debug a conversation later.
 - To gather the information that is required to perform a task, try using a node with slots instead of a bunch of separate nodes to elicit information from users. See [Gathering information with slots](/docs/assistant-data?topic=assistant-data-dialog-slots).
 - For a complex process flow, tell users about any information they will need to provide at the start of the process.
-- Understand how your assistant travels through the dialog tree and the impact that folders, branches, jump-tos, and digressions have on the route. See [Dialog flow](/docs/assistant-data?topic=assistant-data-dialog-overview#dialog-overview-flow).
+- Understand how your assistant travels through the dialog tree and the impact that folders, branches, jump-tos, and digressions have on the route. See [Dialog flow](/docs/assistant-data?topic=assistant-data-dialog-build#dialog-build-flow).
 - Do not add jump-tos everywhere. They increase the complexity of the dialog flow, and make it harder to debug the dialog later.
 - To jump to a node in the same branch as the current node, use *Skip user input* instead of a *Jump-to*.
 

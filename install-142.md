@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-07-30"
+lastupdated: "2020-08-03"
 
 subcollection: assistant-data
 
@@ -1415,7 +1415,7 @@ You can provision up to 30 instances of {{site.data.keyword.conversationshort}} 
 
 1.  Find the {{site.data.keyword.conversationshort}} service tile, and then click it.
 
-    The tile shows that the service is *Enabled* only if the service was added to the cluster by following the installation steps that are described earlier.
+    The tile shows that the service is *Available* only if the service was added to the cluster by following the installation steps that are described earlier.
 
 1.  Click the *More* icon ![kebab icon](images/cp4d-vertical-kebab.png), and then click **Provision instance**.
 
@@ -1489,6 +1489,22 @@ To get log files, complete the following steps:
     oc describe pod {pod-name}
     ```
     {: codeblock}
+
+### Cannot provision an instance, and service images are missing from the catalog
+{: #install-142-missing-label}
+
+If you run the installation with no errors, but cannot provision an instance, check whether the product icon is visible in the service tile. From the {{site.data.keyword.icp4dfull_notm}} web client, go to the *Services* page. 
+
+    ![Services icon](images/cp4d-services-icon.png)
+
+1.  Find the {{site.data.keyword.conversationshort}} service tile. Check whether the product logo (![Watson Assistant logo](images/assistant-icon.png)) is displayed on the tile. 
+
+    ![Watson Assistant service tile](images/missing-icon.png)
+
+1.  If the logo is missing, it is likely that you missed the step in the installation process where you label the namespace.
+
+    - **3.0.1**: See [Step 4: Add the cluster namespace label to your service namespace](#install-142-cpd30-apply-namespace-label).
+    - **2.5**: See: [Step 4: Add the cluster namespace label to your service namespace](#install-142-cpd25-apply-namespace-label).
 
 ### To check the configuration
 {: #install-142-check-config}
