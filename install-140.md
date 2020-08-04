@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-07-01"
+lastupdated: "2020-08-04"
 
 subcollection: assistant-data
 
@@ -87,7 +87,7 @@ For the full list of supported languages, see [Supported languages](/docs/assist
 For details of the minimum requirements that must be met to support {{site.data.keyword.icp4dfull}} itself, see [System requirements](https://www.ibm.com/support/knowledgecenter/SSQNUZ_2.5.0/cpd/plan/rhos-reqs.html){: external}. 
 
 ### Service requirements
-{: install-140-reqs-addon}
+{: #install-140-reqs-addon}
 
 Before you install the service, ensure that you have sufficient resources to run the service. The following resources are required in addition to the minimum platform requirements. 
 
@@ -371,6 +371,7 @@ This documentation refers to the `master` node as the `coordinator` node.
 {: #install-140-openshift}
 
 ### OpenShift software prerequisites
+{: #install-140-os-prereqs}
 
 - IBM Cloud Pak for Data V2.1.0.2 or V2.5 with Red Hat OpenShift V3.11
 - Kubernetes V1.11.0
@@ -675,6 +676,7 @@ Jump to [Verifying that the installation was successful](#install-140-verify).
 {: #install-140-cpd}
 
 ### Stand-alone IBM Cloud Pak for Data software prerequisites
+{: #install-140-cpd-prereqs}
 
 - IBM Cloud Pak for Data V2.1.0.2
 - Kubernetes V1.11.0

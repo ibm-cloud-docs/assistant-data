@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-08-03"
+lastupdated: "2020-08-04"
 
 subcollection: assistant-data
 
@@ -99,7 +99,7 @@ For details of the minimum requirements that must be met to support {{site.data.
 - **2.5**: [System requirements](https://www.ibm.com/support/knowledgecenter/SSQNUZ_2.5.0/cpd/plan/rhos-reqs.html){: external}. 
 
 ### Service requirements
-{: install-142-reqs-addon}
+{: #install-142-reqs-addon}
 
 Before you install the service, ensure that you have sufficient resources to run the service. The following resources are required in addition to the minimum platform requirements. 
 

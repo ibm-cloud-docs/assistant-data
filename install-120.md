@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-07-01"
+lastupdated: "2020-08-04"
 
 subcollection: assistant-data
 
@@ -110,7 +110,7 @@ Out of the 24 cores, 6 are allocated to the base {{site.data.keyword.icp4dfull_n
 For more details, see [3-node clusters](https://www.ibm.com/support/knowledgecenter/SSQNUZ_2.1.0/com.ibm.icpdata.doc/zen/install/reqs-ent.html?view=kc#reqs-ent__3-node-x86){: external}.
 -->
 ### Add-on requirements
-{: install-120-reqs-addon}
+{: #install-120-reqs-addon}
 
 Before you install the add-on, ensure that you have sufficient resources to run the add-on. The following resources are required in addition to the minimum platform requirements. 
 
