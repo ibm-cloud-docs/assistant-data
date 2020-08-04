@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-07-01"
+lastupdated: "2020-08-04"
 
 subcollection: assistant-data
 
@@ -90,7 +90,7 @@ For the full list of supported languages, see [Supported languages](/docs/assist
 For details of the minimum requirements that must be met to support {{site.data.keyword.icp4dfull}} itself, see [System requirements](https://www.ibm.com/support/knowledgecenter/SSQNUZ_2.1.0/com.ibm.icpdata.doc/zen/install/reqs-ent.html){: external}. 
 
 ### Add-on requirements
-{: install-130-reqs-addon}
+{: #install-130-reqs-addon}
 
 Before you install the add-on, ensure that you have sufficient resources to run the add-on. The following resources are required in addition to the minimum platform requirements. 
 
@@ -406,6 +406,7 @@ This documentation refers to the `master` node as the `coordinator` node.
 {: #install-130-openshift}
 
 ### OpenShift software prerequisites
+{: #install-130-os-prereqs}
 
 - IBM Cloud Pak for Data V2.1.0.1 or V2.1.0.2
 - Kubernetes V1.11.0
@@ -672,6 +673,7 @@ Jump to [Verifying that the installation was successful](#install-130-verify).
 {: #install-130-cpd}
 
 ### Stand-alone IBM Cloud Pak for Data software prerequisites
+{: #install-130-cpd-prereqs}
 
 - IBM Cloud Pak for Data V2.1.0.1 or V2.1.0.2
 - Kubernetes V1.11.0
