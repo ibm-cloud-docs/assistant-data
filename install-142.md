@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-08-04"
+lastupdated: "2020-08-12"
 
 subcollection: assistant-data
 
@@ -847,9 +847,9 @@ If you ran the `storage.sh` script, copy the content from the `wa-persistence.ya
     For a list of all available options, enter the command: `./cpd-{Operating_System} --help`.
     {: tip}
 
-1.  **For deployments with Azure Disk data sources only**: You must run the backup cron job as part of the installation process.
+1.  **For deployments that don't use Portworx**: This step is required if you are using a storage solution other than Portworx, such as VMware vSphere volumes, Microsoft Azure Disk volumes, or Amazon Web Services Elastic Block Store (EBS). You must run the backup cron job as part of the installation process.
 
-    The installation process waits until all PVCs have been bound before it completes. However, if you use Azure Disk, the PVC for the Postgres backup won't become bound until after the Postgres backup cron job runs for the first time. To prevent the installation from having to wait for the job or timing out, start the cron job manually.
+    The installation process waits until all PVCs have been bound before it completes. However, if you use a storage solution other than Portworx, the PVC for the Postgres backup won't become bound until after the Postgres backup cron job runs for the first time. To prevent the installation from having to wait for the job or timing out, start the cron job manually.
 
     - Check the status of the installation. Do not run the cron job until after the store pod is running. You can check the status of the store pod by using the following command:
 
