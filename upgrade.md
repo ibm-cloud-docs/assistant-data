@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-07-13"
+lastupdated: "2020-08-20"
 
 subcollection: assistant-data
 
@@ -46,7 +46,7 @@ To upgrade your instance, complete these steps:
 
 1.  From the earlier version of the service, [download any dialog skills](/docs/assistant-data?topic=assistant-data-skill-dialog-add#skill-dialog-add-download) that you want to keep. Store them in a repository that will not be impacted when you uninstall the product.
 
-    Alternatively, you can use the `/workspaces` API to export a dialog skill. Include the `export=true` parameter with the GET workspace request. See the [API reference ](https://cloud.ibm.com/apidocs/assistant/assistant-data-v1#get-information-about-a-workspace){: external} for more details.
+    Alternatively, you can use the `/workspaces` API to export a dialog skill. Include the `export=true` parameter with the GET workspace request. See the [API reference ](https://cloud.ibm.com/apidocs/assistant/assistant-data-v1#getworkspace){: external} for more details.
     
 1.  Uninstall the previous version.
 1.  Install the new version of the service.
