@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-04-28"
+lastupdated: "2020-08-21"
 
 subcollection: assistant-data
 
@@ -34,11 +34,7 @@ Add a search skill to your assistant to prevent the assistant from having to say
 You must have {{site.data.keyword.discoveryshort}} for {{site.data.keyword.icp4dfull_notm}} installed and an instance provisioned before you can complete this procedure to create a search skill. The search skill can connect only to an existing {{site.data.keyword.discoveryshort}} for {{site.data.keyword.icp4dfull_notm}} instance.
 {: important} 
 
-Your search skill can connect to a single {{site.data.keyword.discoveryshort}} data collection. If you have a project with multiple collections, you can link to one of the data collections in the project. 
-
-The following 4-minute video provides an overview of the search skill.
-
-<iframe class="embed-responsive-item" id="youtubeplayer" title="Search skill overview" type="text/html" width="640" height="390" src="https://www.youtube.com/embed/ZcgGf8J2Cfw?rel=0" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen> </iframe>
+Your search skill can connect to a single {{site.data.keyword.discoveryshort}} data collection. If you have a project with multiple collections, you can link to one of the data collections in the project.
 
 To learn more about how search skill can benefit your business, [read this blog post](https://medium.com/ibm-watson/adding-search-to-watson-assistant-99e4e81839e5){: external}.
 
