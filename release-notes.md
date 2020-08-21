@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-08-03"
+lastupdated: "2020-08-20"
 
 subcollection: assistant-data
 
@@ -51,7 +51,7 @@ The following changes were made in this release:
 
 - **Backup automation**: Support was added for doing data backups on a schedule. For more information, see [Backing up and restoring data](/docs/assistant-data?topic=assistant-data-backup).
 
-- **Stateless v2 message API**: The v2 runtime API now supports a new stateless `message` method. For more information, see the [API Reference](https://cloud.ibm.com/apidocs/assistant/assistant-data-v2#send-user-input-to-assistant-stateless){: external}.
+- **Stateless v2 message API**: The v2 runtime API now supports a new stateless `message` method. For more information, see the [API Reference](https://cloud.ibm.com/apidocs/assistant/assistant-data-v2#message-stateless){: external}.
 
 - **Architecture improvements**: The following changes were made to the service architecture:
 

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-07-21"
+lastupdated: "2020-08-20"
 
 subcollection: assistant-data
 
@@ -58,7 +58,7 @@ To add a skill, complete the following steps:
       Important:
 
       - The imported JSON file must use UTF-8 encoding, without byte order mark (BOM) encoding.
-      - The maximum size for a skill JSON file is 10MB. If you need to import a larger skill, consider importing the intents and entities separately after you have imported the skill. (You can also import larger skills using the REST API. For more information, see the [API Reference](https://cloud.ibm.com/apidocs/assistant/assistant-data-v1?curl=#create-workspace){: external}.)
+      - The maximum size for a skill JSON file is 10MB. If you need to import a larger skill, consider importing the intents and entities separately after you have imported the skill. (You can also import larger skills using the REST API. For more information, see the [API Reference](https://cloud.ibm.com/apidocs/assistant/assistant-data-v1?curl=#createworkspace){: external}.)
       - The JSON cannot contain tabs, newlines, or carriage returns.
 
       Specify the data you want to include:
@@ -132,4 +132,4 @@ To download a dialog skill, complete the following steps:
 
 1.  Specify a name for the JSON file and where to save it, and then click **Save**.
 
-You can export a skill by using the API also. Include the `export=true` parameter with the request. See the [API reference](https://cloud.ibm.com/apidocs/assistant/assistant-data-v1#get-information-about-a-workspace) for more details.
+You can export a skill by using the API also. Include the `export=true` parameter with the request. See the [API reference](https://cloud.ibm.com/apidocs/assistant/assistant-data-v1#getworkspace) for more details.
