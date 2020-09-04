@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-08-12"
+lastupdated: "2020-09-03"
 
 subcollection: assistant-data
 
@@ -31,7 +31,7 @@ subcollection: assistant-data
 Use {{site.data.keyword.conversationfull}} for {{site.data.keyword.icp4dfull}} to build conversational interfaces into any app, device, or channel. 
 {: shortdesc}
 
-Use this installation method if you do not have a {{site.data.keyword.icp4dfull}} cluster. These instructions include pointers to instructions for installing {{site.data.keyword.icp4dfull}} 2.5 as a Red Hat OpenShift 3.11 deployment or installing {{site.data.keyword.icp4dfull}} 3.0.1 as a Red Hat OpenShift 3.11 or 4.3 deployment. You then add {{site.data.keyword.conversationshort}} to it as a service.
+Use this installation method if you do not have a {{site.data.keyword.icp4dfull}} cluster. These instructions include pointers to instructions for installing {{site.data.keyword.icp4dfull}} 2.5 as a Red Hat OpenShift 3.11 deployment or installing {{site.data.keyword.icp4dfull}} 3.0.1 as a Red Hat OpenShift 3.11 or 4.5 deployment. You then add {{site.data.keyword.conversationshort}} to it as a service.
 
 ## Application details
 {: #install-142-wa-details}
@@ -190,7 +190,7 @@ The following features are not supported:
  
 To upgrade the license, go to the [Portworx support site](https://docs.portworx.com/knowledgebase/support.html).
 
-**Red Hat OpenShift 4.3 only**: Alternatively, you can use VMware vSphere volumes, Microsoft Azure Disk volumes, or Amazon Web Services Elastic Block Store (EBS) as a storage solution. For more information, see [Understanding persistent storage](https://docs.openshift.com/container-platform/4.3/storage/understanding-persistent-storage.html){: external}.
+**Red Hat OpenShift 4.5 only**: Alternatively, you can use VMware vSphere volumes, Microsoft Azure Disk volumes, or Amazon Web Services Elastic Block Store (EBS) as a storage solution. For more information, see [Understanding persistent storage](https://docs.openshift.com/container-platform/4.5/storage/understanding-persistent-storage.html){: external}.
 
 1.  You can use the Portworx deployment that is bundled with {{site.data.keyword.icp4dfull_notm}}.
 
@@ -261,7 +261,7 @@ You can use the Portworx storage for a development environment deployment.
 
 If you prefer to use local storage, you can use the **storage.sh** script to create local storage persistent volumes.
 
-Do not use only local storage persistent volumes for a production deployment.
+Do not use local storage persistent volumes in a production deployment for anything other than data backup storage.
 {: important}
 
 When you install the service, persistent volume claims are created for the components automatically. However, when the preferred storage class for the service is **local-storage**, you must explicitly create the persistent volumes in the cluster before you install the service.
@@ -456,6 +456,9 @@ After you purchase the service, you download the software from GitHub.
 ### Step 2: Install {{site.data.keyword.icp4dfull_notm}} on OpenShift
 {: #install-142-cpd30-install-icp4d}
 
+{{site.data.keyword.icp4dfull_notm}} 3.0.1 is deprecating support for Red Hat OpenShift 4.3 on 1 September 2020. Red Hat OpenShift 4.3 is going out of service on 22 October 2020. IBM Cloud Pak for Data is introducing support for Red Hat OpenShift 4.5. IBM Cloud Pak for Data is recommending that clients upgrade to Red Hat OpenShift 4.5 before 22 October 2020. IBM Support will work with any customers who already installed IBM Cloud Pak for Data 3.0.1 on Red Hat OpenShift 4.3. New customers who want to install on Red Hat OpenShift 4.x are instructed to install Red Hat OpenShift 4.5.
+{: important}
+
 1.  Install {{site.data.keyword.icp4dfull_notm}} on Red Hat OpenShift.
 
     Follow the instructions for [Installing on OpenShift](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.0.1/cpd/install/install.html){:external}.
@@ -463,7 +466,7 @@ After you purchase the service, you download the software from GitHub.
 1.  Enable metrics in OpenShift so that it can support horizontal pod autoscaling in {{site.data.keyword.icp4dfull_notm}}.
 
     - 3.11: See [Pod Autoscaling](https://docs.openshift.com/container-platform/3.11/dev_guide/pod_autoscaling.html){: external}.
-    - 4.3: See [Automatically scaling pods](https://docs.openshift.com/container-platform/4.3/nodes/pods/nodes-pods-autoscaling.html){: external}.
+    - 4.5: See [Automatically scaling pods](https://docs.openshift.com/container-platform/4.5/nodes/pods/nodes-pods-autoscaling.html){: external}.
 
 1.  Review the following topics about cluster security and take steps to implement any security measures that you want to have in place before you install the service:
 
@@ -679,12 +682,12 @@ If you ran the `storage.sh` script, copy the content from the `wa-persistence.ya
         - For `{assembly_version}`, specify `1.4.2`.
         - For `Registry_location`, you must specify a route to the registry followed by the namespace (project name). The route must be accessible from the machine where you run the install command. If the cluster you are installing does not have a route to the registry, you can to (temporarily) enable external access to the registries. For more information, see one of the following topics:
 
-          - Red Hat OpenShift 4.3: [Exposing the registry](https://docs.openshift.com/container-platform/4.3/registry/securing-exposing-registry.html){: external}
+          - Red Hat OpenShift 4.5: [Exposing the registry](https://docs.openshift.com/container-platform/4.5/registry/securing-exposing-registry.html){: external}
           - Red Hat OpenShift 3.11: [Securing and exposing the registry](https://docs.openshift.com/container-platform/3.11/install_config/registry/securing_and_exposing_registry.html){: external}
 
           When you add the `--transfer-image-to` parameter, you can specify the registry location as follows:
 
-          - **OpenShift 4.3**
+          - **OpenShift 4.5**
 
             ```
             oc get route/default-route -n openshift-image-registry --template='{{ .spec.host }}'
@@ -764,12 +767,12 @@ If you ran the `storage.sh` script, copy the content from the `wa-persistence.ya
 
         - For `Registry_location`, you must specify a route to the registry followed by the namespace. The route must be accessible from the machine where you run the install command. If the cluster you are installing does not have a route to the registry, you can to (temporarily) enable external access to the registries. For more information, see one of the following topics:
 
-          - Red Hat OpenShift 4.3: [Exposing the registry](https://docs.openshift.com/container-platform/4.3/registry/securing-exposing-registry.html){: external}
+          - Red Hat OpenShift 4.5: [Exposing the registry](https://docs.openshift.com/container-platform/4.5/registry/securing-exposing-registry.html){: external}
           - Red Hat OpenShift 3.11: [Securing and exposing the registry](https://docs.openshift.com/container-platform/3.11/install_config/registry/securing_and_exposing_registry.html){: external}
 
           When you add the `--transfer-image-to` parameter, you can specify the registry location as follows:
 
-          - **OpenShift 4.3**
+          - **OpenShift 4.5**
 
             ```
             oc get route/default-route -n openshift-image-registry --template='{{ .spec.host }}'
@@ -1127,15 +1130,7 @@ If you ran the `storage.sh` script, copy the content from the `wa-persistence.ya
         - For `{assembly_version}`, specify `1.4.2`.
         - For `Registry_location`, you must specify a route to the registry followed by the namespace. The route must be accessible from the machine where you run the install command. If the cluster you are installing does not have a route to the registry, you can to (temporarily) enable external access to the registries. For more information, see one of the following topics:
 
-          - Red Hat OpenShift 4.3: [Exposing the registry](https://docs.openshift.com/container-platform/4.3/registry/securing-exposing-registry.html){: external}
           - Red Hat OpenShift 3.11: [Securing and exposing the registry](https://docs.openshift.com/container-platform/3.11/install_config/registry/securing_and_exposing_registry.html){: external}
-
-          For example, for OpenShift 4.3:
-
-          ```
-          export REGISTRY_ROUTE=`oc get route default-route -n openshift-image-registry | grep registry | awk {'print $2'}
-          ```
-          {: codeblock}
 
           For example, for OpenShift 3.11:
 
@@ -1197,15 +1192,7 @@ If you ran the `storage.sh` script, copy the content from the `wa-persistence.ya
 
         - For `Registry_location`, you must specify a route to the registry followed by the namespace. The route must be accessible from the machine where you run the install command. If the cluster you are installing does not have a route to the registry, you can to (temporarily) enable external access to the registries. For more information, see one of the following topics:
 
-          - Red Hat OpenShift 4.3: [Exposing the registry](https://docs.openshift.com/container-platform/4.3/registry/securing-exposing-registry.html){: external}
           - Red Hat OpenShift 3.11: [Securing and exposing the registry](https://docs.openshift.com/container-platform/3.11/install_config/registry/securing_and_exposing_registry.html){: external}
-
-          For example, for OpenShift 4.3:
-
-          ```
-          export REGISTRY_ROUTE=`oc get route default-route -n openshift-image-registry | grep registry | awk {'print $2'}
-          ```
-          {: codeblock}
 
           For example, for OpenShift 3.11:
 
