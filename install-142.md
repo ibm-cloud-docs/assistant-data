@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-09-03"
+lastupdated: "2020-09-15"
 
 subcollection: assistant-data
 
@@ -502,9 +502,7 @@ SecurityContextConstraints definition:
 apiVersion: security.openshift.io/v1
 kind: SecurityContextConstraints
 metadata:
-  name: restr
-
-icted
+  name: restricted
   annotations:
     kubernetes.io/description: restricted denies access to all host features and requires
       pods to be run with a UID, and SELinux context that are allocated to the namespace.  This
@@ -950,9 +948,7 @@ SecurityContextConstraints definition:
 apiVersion: security.openshift.io/v1
 kind: SecurityContextConstraints
 metadata:
-  name: restr
-
-icted
+  name: restricted
   annotations:
     kubernetes.io/description: restricted denies access to all host features and requires
       pods to be run with a UID, and SELinux context that are allocated to the namespace.  This
