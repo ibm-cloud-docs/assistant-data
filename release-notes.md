@@ -81,7 +81,7 @@ This release does not include the following features, which are available for cl
 
 **IBM Cloud Private End Of Support**: Effective 30 September 2020, IBM will withdraw support for IBM Watson Assistant on IBM Cloud Private.
 
-For more information, see the [announcement](http://www.ibm.com/common/ssi/cgi-bin/ssialias?infotype=an&subtype=ca&appname=gpateam&supplier=897&letternum=ENUS920-075){: external}.
+For more information, see the [announcement](https://www-01.ibm.com/common/ssi/cgi-bin/ssialias?infotype=an&subtype=ca&appname=gpateam&supplier=897&letternum=ENUS920-075){: external}.
 
 ### 28 February 2020
 {: #28February2020}
