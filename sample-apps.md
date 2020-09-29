@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-06-24"
+lastupdated: "2020-09-29"
 
 keywords: sample applications, sample apps, Watson Assistant for IBM Cloud Pak for Data
 
@@ -54,8 +54,6 @@ This Node.js app is a fully developed example of the type of app you can build w
 - [Pizza ordering chatbot using slots](https://developer.ibm.com/patterns/assemble-a-pizza-ordering-chatbot-dialog/){: external}
 - [Create an Alexa skill with serverless and a conversation](https://developer.ibm.com/patterns/create-an-alexa-skill-with-serverless-and-a-conversation/){: external}
 - [Adding a chatbot to WordPress with {{site.data.keyword.conversationshort}}](https://wordpress.org/plugins/conversation-watson/){: external}
-- [Tutorial: Build a database-driven Slackbot](https://cloud.ibm.com/docs/tutorials/slack-chatbot-database-watson.html){: external}
-- [Tutorial: Build a voice-enabled Android chatbot](https://cloud.ibm.com/docs/tutorials/android-watson-chatbot.html){: external}
 
 ## Popular product overview videos
 {: #resources-videos}
