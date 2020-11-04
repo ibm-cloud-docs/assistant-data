@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-08-20"
+lastupdated: "2020-10-02"
 
 subcollection: assistant-data
 
@@ -37,9 +37,9 @@ IBM releases services, features, and language support for your evaluation that a
 ### 19 June 2020
 {: #19June2020}
 
-**{{site.data.keyword.conversationfull}} for {{site.data.keyword.icp4dfull}} 1.4.2 is available.**: {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} 1.4.2 is compatible with {{site.data.keyword.icp4dfull}} 3.0.1 on OpenShift Red Hat 3.11 or 4.3 and {{site.data.keyword.icp4dfull}} 2.5 deployments on OpenShift Red Hat 3.11.
+**{{site.data.keyword.conversationfull}} for {{site.data.keyword.icp4dfull}} 1.4.2 is available.**: {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} 1.4.2 is compatible with {{site.data.keyword.icp4dfull}} 3.0.1 on OpenShift Red Hat 3.11 or 4.5 and {{site.data.keyword.icp4dfull}} 2.5 deployments on OpenShift Red Hat 3.11.
 
-The 1.4.2 release is certified on Red Hat OpenShift 4.3.
+The 1.4.2 release is certified on Red Hat OpenShift 4.5.
 
 The following changes were made in this release:
 
