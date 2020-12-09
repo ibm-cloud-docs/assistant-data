@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-06-05"
+lastupdated: "2020-12-09"
 
 subcollection: assistant-data
 
@@ -37,6 +37,7 @@ The installation process differs depending on the version you are installing. Th
 
 | Watson Assistant chart |  Cluster | Installation checklist |
 |------------------------|---------------------------|-------------------|
+| 1.5.0 | {{site.data.keyword.icp4dfull_notm}} 3.0.1 or 3.5 | [Installing 1.5.0](/docs/assistant-data?topic=assistant-data-install-150) |
 | 1.4.2 | {{site.data.keyword.icp4dfull_notm}} 2.5 or 3.0.1 (**I do not have a cluster**)  | [Installing {{site.data.keyword.conversationshort}} 1.4.2](/docs/assistant-data?topic=assistant-data-install-142) |
 | 1.4.2 | {{site.data.keyword.icp4dfull_notm}} 3.0.1 (**I already have a cluster**) | [Installing the {{site.data.keyword.conversationshort}} service](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.0.1/cpd/svc/watson/assistant-install.html){: external} |
 | 1.4.1 | {{site.data.keyword.icp4dfull_notm}} 2.1.0.2 or 2.5 (**I do not have a cluster**)  | [Installing {{site.data.keyword.conversationshort}} 1.4.1](/docs/assistant-data?topic=assistant-data-install-141) |

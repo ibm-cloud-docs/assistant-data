@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-06-24"
+lastupdated: "2020-10-06"
 
 subcollection: assistant-data
 
@@ -251,7 +251,7 @@ For English, fuzzy matching prevents the capturing of some common, valid English
 
 Your fuzzy matching setting has no impact on synonym recommendations. Even if fuzzy matching is enabled, synonyms are suggested for the exact value you specify only, not the value and slight variations of the value.
 
-To understand how fuzzy matching and autocorrection are related to one another, see the [autocorrection documentation](/docs/assistant-data?topic=assistant-data-dialog-runtime#dialog-runtime-spell-check-vs-fuzzy-matching).
+To understand how fuzzy matching and autocorrection are related to one another, see the [autocorrection documentation](/docs/assistant-data?topic=assistant-data-dialog-runtime-spell-check#dialog-runtime-spell-check-vs-fuzzy-matching).
 
 ## Adding contextual entities
 {: #entities-create-annotation-based}
@@ -482,6 +482,29 @@ You can click any entity in the list to open it for editing. You can rename or d
 
 If you change the entity type from `synonym` to `pattern`, or vice versa, the existing values are converted, but might not be useful as-is.
 {: note}
+
+## Searching entities
+{: #entities-search}
+
+The search capability was introduced with the 1.5.0 release.
+{: note}
+
+Use the Search feature to find entity names, values, and synonyms.
+
+1.  From the **Entities** page header, click the Search icon ![Search icon in the Intents page header](images/search_icon.png).
+
+    System entities are not searchable.
+    {: important}
+
+1.  Enter a search term or phrase.
+
+    The first time you search for something, you might get a message that says the skill is being indexed. If so, wait a minute, and then resubmit the search term.
+
+    ![Entity search term](images/entities-search-index.png)
+
+Entities containing your search term, with corresponding examples, are shown.
+
+![Entity search return](images/entities-search-results.png)
 
 ## Exporting entities
 {: #entities-export}

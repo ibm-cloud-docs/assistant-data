@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-07-01"
+lastupdated: "2020-12-01"
 
 subcollection: assistant-data
 
@@ -43,7 +43,7 @@ The {{site.data.keyword.conversationshort}} service provides a Helm chart, which
 
 The following diagram illustrates how data flows through the service's resources.
 
-![Flow diagram of the service](images/wa-arch-142.png)
+![Flow diagram of the service](images/arch-diagram-150.png)
 
 The following sections provide more detail about each resource that is used by the system. The objective is to give you information that can help you to do initial resource planning and help you to manage changes in data needs over time.
 
@@ -51,6 +51,10 @@ The following sections provide more detail about each resource that is used by t
 {: #architecture-microservices}
 
 {{site.data.keyword.conversationshort}} consists of the following stateless microservices:
+
+- **Analytics**: Logs conversations that take place between the assistant and your customers. These user conversation logs are available from the Analytics page in the product and from the `/logs` API endpoint. Introduced with the 1.5.0 release. The Analytics feature relies on a microservice that is supported only on Red Hat OpenShift 4.5 and later.
+
+- **CLU**: A Conversational Language Understanding interface, also known as Natural Language Understanding (NLU) that is an entry point to the language understanding pipeline, which is where text is analyzed to find intent and entity mentions. The Store microservice uses the LiteLinks protocol to call this microservice to initiate machine learning training. The NLU microservice controls the lifecycle of the machine learning models. It maps the workspace ID that is used by the Store microservice to the machine language understanding pipeline's internal ID. The NLU microservice uploads the training data for machine learning models to the MinIO object storage. When a language model needs to be trained, such as after intents are edited, the NLU microservice calls the Master microservice. When the updated model is available, NLU calls the TAS microservice to analyze the user input that is provided by the customer. The workspace ID has a UUID format. The internal IDs of models in the language understanding pipeline typically follows the regular expression pattern, `vn-[0-9a-f]*-[0-9a-f]*`.
 
 - **CLU Embedding**: Provides the word embeddings for other microservices in the language understanding pipeline. The TAS, ED-MM, and training pods call the CLU Embedding microservice by using the gRPC protocol.
 
@@ -60,7 +64,7 @@ The following sections provide more detail about each resource that is used by t
 
 - **Gateway**: An adaption layer that interacts with {{site.data.keyword.icp4dfull_notm}} API and mimics the behavior of the public IBM Cloud. Its pods are named `${release-name}-addon-assistant-gw-deployment`.
 
-  For 1.4.2, the ${release-name} is `watson-assistant`.
+  For 1.4.2 and later, the ${release-name} is `watson-assistant`.
   {: note}
 
   It serves the following functions:
@@ -73,9 +77,11 @@ The following sections provide more detail about each resource that is used by t
   When an API request comes in, it is processed by the {{site.data.keyword.icp4dfull_notm}} ingress nginx server first. The nginx server is configured to call the Gateway microservice to check authorization and obtain authentication data for the request. The nginx server adds a header to the original request, and then calls the Store microservice. However, the initial steps do not produce any logs. To see the first logs from an incoming API request, check the logs in the Store microservice.
   {: note}
 
+- **Integrations**: Service that supports the built-in integrations, such as web chat and preview link. Introduced with the 1.5.0 release.
+
 - **Master**: Controls the lifecycle of underlying intent and entity models. This microservice is part of the language understanding pipeline. The NLU microservice uses LiteLinks to send a request to the Master microservice for a new model to be trained. This type of request occurs when a dialog skill is created or an existing dialog skill is updated. After a model is successfully trained, the TAS microservice is called to load the model.
 
-- **NLU**: A Natural Language Understanding interface that is an entry point to the language understanding pipeline, which is where text is analyzed to find intent and entity mentions. The Store microservice uses the LiteLinks protocol to call this microservice to initiate machine learning training. The NLU microservice controls the lifecycle of the machine learning models. It maps the workspace ID that is used by the Store microservice to the machine language understanding pipeline's internal ID. The NLU microservice uploads the training data for machine learning models to the MinIO object storage. When a language model needs to be trained, such as after intents are edited, the NLU microservice calls the Master microservice. When the updated model is available, NLU calls the TAS microservice to analyze the user input that is provided by the customer. The workspace ID has a UUID format. The internal IDs of models in the language understanding pipeline typically follows the regular expression pattern, `vn-[0-9a-f]*-[0-9a-f]*`.
+- **Numeric system entities**: Manages the numeric value recognition that is used by the system entities (such as `@sys-date`, `@sys-number`, and so on). Introduced with the 1.5.0 release.
 
 - **Recommends**: Supports recommendations from Watson, such as dictionary-based entity synonyms and intent conflicts. Used only at authoring time from the web UI. When a user requests synonym recommendations for an entity, for example, the UI microservice calls the Store microservice. The Store microservice forwards the request to the Recommends microservice. The Recommends microservice looks up the synonyms for the current word by using the embeddings that are stored in MongoDB, and stores them in a Redis cache. This microservice sends a response with a list of synonyms to the Store microservice. A similar workflow is used to identify intent conflicts in a dialog skill.
 
@@ -89,6 +95,8 @@ The following sections provide more detail about each resource that is used by t
 
 - **TAS**: Performs model inferencing, which means it identifies the best-matching intents and entities in the user input. TAS stands for Train and Serve, but it mostly serves up the existing models. The TAS microservice loads the models from MinIO storage into memory and runs the models to find intents. The TAS microservice is called from the NLU microservice by using LiteLinks. TAS and the ED-MM microservices are based on a model-mesh pattern. (For more information, see [Model mesh](#architecture-model-mesh).) If needed, TAS calls other microservices from the language understanding pipeline. Specifically, it calls SireG for tokenization, ED-MM for contextual entities (by using gRPC), and Spellcheck to correct misspellings. For intent recogniton, the TAS microservice requires word-embeddings data, which is provided by the CLU Embedding microservice.
 
+- **TF-MM**: The tensor flow model mesh microservice manages the universal sentence encoder and auto-encoder models to improve off-topic and irrelevant intent recognition. Introduced with the 1.5.0 release.
+
 - **UI**: The web application that virtual assistant builders use to create skills and assistants.
 
 ## Data sources
@@ -96,17 +104,39 @@ The following sections provide more detail about each resource that is used by t
 
 The {{site.data.keyword.conversationshort}} microservices use the following resources:
 
+- **Elastic**: The elastic data store stores customer messages. These user conversation logs that can be reviewed from the Analtyics page or searched from the `/logs` API endpoint. Introduced with the 1.5.0 release.
+
 - **Etcd**: A popular distributed key-value storage solution. Ectd is used by Litelinks clients and servers (Store, Dialog, NLU, Master, TAS, ED-MM) for service discovery. It is used by microservices from the language understanding pipeline (NLU, Master, TAS, ED-MM) to store metadata. For more information, see [Etcd store](#architecture-etcd).
 
-- **MinIO**: MinIO is an object storage service that implements the Amazon S3 API. It is used by the language understanding pipeline microservices (NLU, Master, TAS, ED-MM, and the training pods) to store and load trained models for intent and entity classification. Data is stored in the `nlclassifier-icp` bucket. In {{site.data.keyword.conversationshort}}, MinIO is often referred to as `COS`, which stands for Cloud Object Storage. For more information, see [MinIO](#architecture-minio).
+- **Kafka**: A queuing system for incoming customer messages. Introduced with the 1.5.0 release. 
 
-- **MongoDB**: A document-oriented database. Mongo is used in read-only mode for storing embeddings and other data that is used by the Recommends microservice for synonym recommendations. For more information, see [MongoDB database](#architecture-mongodb).
+- **MinIO**: MinIO is an object storage service that implements the Amazon S3 API. It is used by the language understanding pipeline microservices (NLU, Master, TAS, ED-MM, and the training pods) to store and load trained models for intent and entity classification. Data is stored in the `nlclassifier-icp` bucket. In {{site.data.keyword.conversationshort}}, MinIO is often referred to as `COS`, which stands for Cloud Object Storage. For more information, see [MinIO](#architecture-minio).
 
 - **PostgreSQL**: A popular relational database. This database is used only by the Store microservice and it is the primary store for workspaces, skills, and assistants. The deployment and pod names that are related to PostgreSQL are prefixed as `${release-name}-store-postgres`. For more information, see [PostgreSQL data store](#architecture-postgres).
 
 - **Redis**: An in-memory data store, often used for caching or sharing session state. Redis is used by the Store microservice for storing current conversation state for assistants. The UI microservice stores session state in Redis. The Recommends and Dialog microservices use a Redis instance as a cache.
 
+**1.5.0**: The following data source is no longer used, starting with the 1.5.0 release:
+
+- **MongoDB**: A document-oriented database. Mongo is used in read-only mode for storing embeddings and other data that is used by the Recommends microservice for synonym recommendations. For more information, see [MongoDB database](#architecture-mongodb).
+
+  MongoDB is a document-based, distributed database. The MongoDB database has three pods. It runs in replicaSet mode, which means that one pod runs in the coordinator role in read/write mode, and the rest of the pods run in the secondary role and are read-only. Changes from the coordinator pod are replicated to the secondary pods. During the service installation, data is loaded into the Mongo database by a Kubernetes job. No data is written to the Mongo database after the service is installed. Only the Recommends microservices read data from Mongo. On creation, Recommends pods check whether Mongo is running, and wait until the Mongo database is loaded with the required data.
+
+  The process of loading data for Recommends into the Mongo database that happens as part of the installation can take 30 minutes (or more).
+  {: note}
+
+  - The mongoDB pod names follow the convention `${release-name}-ibm-mongodb-server-[0-9]*`. For longer release names, the name is shorten to `${release-name prefix}-[a-f0-9]{4}-336f-server-*`.
+  - The names of the Kubernetes job that runs during the installation of the service is `${release-name}-recommends-load-mongo`.
+
+  For 1.4.2 and later, the ${release-name} is `watson-assistant`.
+  {: note}
+
 #### Architecture changes
+
+- **1.5.0**: The following changes to the architecture occurred with this release:
+
+  - The *Analytics*, *Integrations*, and *Numeric system entities* microservices were introduced.
+  - The *Elastic search* and *Kafka* data sources were introduced. The *MongoDB* data source was removed.
 
 - **1.4.2**: The following changes to the architecture occurred with this release:
 
@@ -119,11 +149,11 @@ The {{site.data.keyword.conversationshort}} microservices use the following reso
 
 Training a new model is one-time, short-running, resource-heavy activity. Models are trained in pods that are created on demand. The same pods are removed after the training is completed. Because of its transient nature, the training component is not considered to be one of the standard {{site.data.keyword.conversationshort}} microservices. The component, the training pods, only get used when a model needs to be trained. Training starts each time the intent user examples are added or changed in a dialog skill.
 
-The NLU microservice notifies the Master microservice when a new machine learning models needs to be trained. The Master microservice dynamically creates training pods. It handles the training pod removal and retraining if a training run fails. It also is responsible for removing a model from MinIO if the model is deleted. The system determines whether a training run completed successfully based on a flag that is stored in MinIO storage. The Master microservice must have API access to the Docker registry where the training images are stored. The image metadata that is obtained from the registry is used to correctly start the training pods.
+The CLU microservice notifies the Master microservice when a new machine learning models needs to be trained. The Master microservice dynamically creates training pods. It handles the training pod removal and retraining if a training run fails. It also is responsible for removing a model from MinIO if the model is deleted. The system determines whether a training run completed successfully based on a flag that is stored in MinIO storage. The Master microservice must have API access to the Docker registry where the training images are stored. The image metadata that is obtained from the registry is used to correctly start the training pods.
 
 The training pods that are started by this component are sometimes referred to as SLAD pods. SLAD stands for Statistical Learning and Discovery, which is the name of the research group that developed the language classifier that is used by the pods. The training pod names start with `tr[12]?`, followed by the internal `vn-…` ID. The training images are named `nlclassifier-training` or `clu-training`, depending on the chart version. The `${release-name}-master-config` configuration map contains the JSON template for the training pods.
 
-For 1.4.2, the ${release-name} is `watson-assistant`.
+For 1.4.2 and later, the ${release-name} is `watson-assistant`.
   {: note}
 
 ## Data store details
@@ -143,7 +173,7 @@ Etcd consists of five pods. The Etcd pod names follow the convention `${release-
 
 The Dialog, NLU, Master, TAS, and ED-MM microservices act as LiteLinks servers. Each LiteLinks server is registered in Etcd with its own key under the `/bluegoat/litelinks/` path. Each pod stores its metadata, such as its IP address and port, into Etcd. For example, the Dialog microservice pod with IP address 10.131.2.25 might register itself under a key named `/bluegoat/litelinks/voyager-dialog-slot-${release-name}/10.128.0.231_8089_16ea2cde43f`.
 
-For 1.4.2, the ${release-name} is `watson-assistant`.
+For 1.4.2 and later, the ${release-name} is `watson-assistant`.
   {: note}
 
 The Store, NLU, Master, TAS, and ED-MM microservices are LiteLinks clients. (Some microservices function as both a server and client.) Each LiteLinks client reads these Etcd keys and communicates directly with the registered pod IP address and port of the server. In effect, LiteLinks clients do not use the Kubernetes DNS. As a result, Kubernetes service objects are not used for LiteLinks servers. Without the Kubernetes service objects, the readiness probes are ignored even though they are good indicators of pod health.
@@ -178,20 +208,6 @@ Each microservice has its own path in Etcd. Other metadata about models, such as
 
 The configuration values per microservice are stored under a `/config` subpath. 
 
-### MongoDB database
-{: #architecture-mongodb}
-
-MongoDB is a document-based, distributed database. The MongoDB database has three pods. It runs in replicaSet mode, which means that one pod runs in the coordinator role in read/write mode, and the rest of the pods run in the secondary role and are read-only. Changes from the coordinator pod are replicated to the secondary pods. During the service installation, data is loaded into the Mongo database by a Kubernetes job. No data is written to the Mongo database after the service is installed. Only the Recommends microservices read data from Mongo. On creation, Recommends pods check whether Mongo is running, and wait until the Mongo database is loaded with the required data.
-
-The process of loading data for Recommends into the Mongo database that happens as part of the installation can take 30 minutes (or more).
-{: note}
-
-- The mongoDB pod names follow the convention `${release-name}-ibm-mongodb-server-[0-9]*`. For longer release names, the name is shorten to `${release-name prefix}-[a-f0-9]{4}-336f-server-*`.
-- The names of the Kubernetes job that runs during the installation of the service is `${release-name}-recommends-load-mongo`.
-
-For 1.4.2, the ${release-name} is `watson-assistant`.
-  {: note}
-
 ### MinIO
 {: #architecture-minio}
 
@@ -208,7 +224,7 @@ The Postgres data store is based on stolon, which is a cloud-native PostgreSQL m
 
   The keeper pod names follow the convention of `${release-name}-store-postgres-keeper-*`. If the release name is long, the pod names might be shortened to something like `${release-name prefix}-[a-f0-9]{4}-st-a617-keeper-*`.
 
-  For 1.4.2, the ${release-name} is `watson-assistant`. The shortened name is `watson-ass`.
+  For 1.4.2 and later, the ${release-name} is `watson-assistant`. The shortened name is `watson-ass`.
   {: note}
 
 - proxy: These pods are the entry point that is used by the Store microservice. The proxy pods route traffic to the coordinator keeper pod.

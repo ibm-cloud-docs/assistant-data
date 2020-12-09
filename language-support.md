@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-06-19"
+lastupdated: "2020-10-09"
 
 subcollection: assistant-data
 
@@ -60,21 +60,21 @@ Table 1. Feature support details
 
 Table 2. Intent feature support details
 
-| Language | **[Absolute scoring](/docs/assistant-data?topic=assistant-data-intents#intents-absolute-scoring)** and **[Mark as irrelevant](/docs/assistant-data?topic=assistant-data-intents#logs-mark-irrelevant)** | **[Autocorrection](/docs/assistant-data?topic=assistant-data-dialog-runtime#dialog-runtime-spell-check)** |
+| Language | **[Autocorrection](/docs/assistant-data?topic=assistant-data-dialog-runtime-spell-check)** | **[Irrelevance detection](/docs/assistant-data?topic=assistant-data-irrelevance-detection)** |
 |:---:|:---:|:---:|:---:|
 | **English (en)**                   | GA | GA |
-| **Arabic (ar)**                    | GA | NA |
-| **Chinese (Simplified) (zh-cn)**   | GA | NA |
-| **Chinese (Traditional) (zh-tw)**  | GA | NA |
-| **Czech (cs)**                     | GA | NA |
-| **Dutch (nl)**                     | GA | NA |
-| **French (fr)**                    | GA | Beta |
-| **German (de)**                    | GA | NA |
-| **Italian (it)**                   | GA | NA |
-| **Japanese (ja)**                  | GA | NA |
-| **Korean (ko)**                    | GA | NA |
-| **Portuguese (Brazilian) (pt-br)** | GA | NA |
-| **Spanish (es)**                   | GA | NA |
+| **Arabic (ar)**                    | NA | NA |
+| **Chinese (Simplified) (zh-cn)**   | NA | NA |
+| **Chinese (Traditional) (zh-tw)**  | NA | NA |
+| **Czech (cs)**                     | NA | NA |
+| **Dutch (nl)**                     | NA | NA |
+| **French (fr)**                    | Beta | NA |
+| **German (de)**                    | NA | NA |
+| **Italian (it)**                   | NA | NA |
+| **Japanese (ja)**                  | NA | NA |
+| **Korean (ko)**                    | NA | NA |
+| **Portuguese (Brazilian) (pt-br)** | NA | NA |
+| **Spanish (es)**                   | NA | NA |
 {: caption="Intent feature support details" caption-side="top"}
 
 Table 3. Entity feature support details
@@ -98,21 +98,21 @@ Table 3. Entity feature support details
 
 Table 4. System entity feature support details
 
-| Language | **System entities ([number](/docs/assistant-data?topic=assistant-data-system-entities#system-entities-sys-number), [currency](/docs/assistant-data?topic=assistant-data-system-entities#system-entities-sys-currency), [percentage](/docs/assistant-data?topic=assistant-data-system-entities#system-entities-sys-percentage), [date, time](/docs/assistant-data?topic=assistant-data-system-entities#system-entities-sys-date-time))** |
+| Language | **[System entities (1.4.2 and earlier)](/docs/assistant-data?topic=assistant-data-system-entities-142)** | **[System entities](/docs/assistant-data?topic=assistant-data-system-entities)** |
 |:---|:---:|:---:|
-| **English (en)**                   | GA |
-| **Arabic (ar)**                    | Beta |
-| **Chinese (Simplified) (zh-cn)**   | GA |
-| **Chinese (Traditional) (zh-tw)**  | Beta |
-| **Czech (cs)**                     | GA |
-| **Dutch (nl)**                     | GA |
-| **French (fr)**                    | GA |
-| **German (de)**                    | GA |
-| **Italian (it)**                   | GA |
-| **Japanese (ja)**                  | GA |
-| **Korean (ko)**                    | GA |
-| **Portuguese (Brazilian) (pt-br)** | GA |
-| **Spanish (es)**                   | GA |
+| **English (en)**                   | GA | GA |
+| **Arabic (ar)**                    | Beta | GA |
+| **Chinese (Simplified) (zh-cn)**   | GA | GA |
+| **Chinese (Traditional) (zh-tw)**  | Beta | GA |
+| **Czech (cs)**                     | GA | GA |
+| **Dutch (nl)**                     | GA | GA |
+| **French (fr)**                    | GA | GA |
+| **German (de)**                    | GA | GA |
+| **Italian (it)**                   | GA | GA |
+| **Japanese (ja)**                  | GA | GA |
+| **Korean (ko)**                    | GA | GA |
+| **Portuguese (Brazilian) (pt-br)** | GA | GA |
+| **Spanish (es)**                   | GA | GA |
 {: caption="System entity feature support details" caption-side="top"}
 
 The {{site.data.keyword.conversationshort}} service supports multiple languages as noted, but the tool interface itself (descriptions, labels, etc.) is in English. All supported languages can be input and trained through the English interface.
