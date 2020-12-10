@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-04-28"
+lastupdated: "2020-10-06"
 
 subcollection: assistant-data
 
@@ -23,10 +23,10 @@ subcollection: assistant-data
 {:python: .ph data-hd-programlang='python'}
 {:swift: .ph data-hd-programlang='swift'}
 
-# Deploying
+# Integrating with a custom application
 {: #deploy-custom-app}
 
-Build your own client application as the interface between the assistant and your users.
+Build your own client application as the interface between the assistant and your customers.
 {: shortdesc}
 
 To use the API, you need to construct the URL to use in your requests.

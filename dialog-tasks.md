@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-06-24"
+lastupdated: "2020-10-06"
 
 subcollection: assistant-data
 
@@ -23,7 +23,7 @@ subcollection: assistant-data
 {:swift: .ph data-hd-programlang='swift'}
 {:table: .aria-labeledby="caption"}
 
-# Improving your dialog
+# Improving your conversation
 {: #dialog-tasks}
 
 Test your dialog, and organize your dialog nodes.
@@ -73,7 +73,7 @@ Queries you submit through the "Try it out" pane generate `/message` API calls, 
     1.  To add a context variable, specify the variable name, and press **Enter**.
     1.  To define a default value for the context variable, find the context variable you added in the list, and then specify a value for it.
 
-    See [Context variables](/docs/assistant-data?topic=assistant-data-dialog-runtime#dialog-runtime-context) for more information.
+    See [Context variables](/docs/assistant-data?topic=assistant-data-dialog-runtime-context#dialog-runtime-context-variables) for more information.
 
 1.  Continue to interact with the dialog to see how the conversation flows through it.
 
@@ -88,6 +88,25 @@ If you determine that the wrong intents or entities are being recognized, you mi
 If the correct intents and entities are being recognized, but the wrong nodes are being triggered in your dialog, make sure your conditions are written properly.
 
 If you are ready to put the conversation to work helping your users, call the assistant from a client application. See [Building a client application](/docs/assistant-data?topic=assistant-data-api-client).
+
+## Searching your dialog
+{: #dialog-tasks-search}
+
+The search capability was introduced with the 1.5.0 release.
+{: note}
+
+You can search the dialog to find one or more dialog nodes that mention a given word or phrase.
+
+1.  From the **Dialog** page header, click the Search icon ![Search icon in the Intents page header](images/search_icon.png).
+
+1.  Enter a search term or phrase.
+
+    The first time you search, an index is created. You might be asked to wait for the text in your dialog nodes to be indexed and then resubmit your request.
+    {: note}
+
+Dialog nodes that contain your search term, with corresponding examples, are shown. Select a result to open it for editing.
+
+![Intent search return](images/search_dialog.png)
 
 ## Copying a dialog node
 {: #dialog-tasks-copy-node}

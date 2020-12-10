@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-08-21"
+lastupdated: "2020-12-03"
 
 subcollection: assistant-data
 
@@ -31,17 +31,19 @@ An assistant uses a *search skill* to route complex customer inquiries to {{site
 
 Add a search skill to your assistant to prevent the assistant from having to say things like, `I'm sorry. I can't help you with that`. Instead, the assistant can query existing company documents or data to see whether any useful information can be found and shared with the customer.
 
+![Shows a search result in the preview link integration](images/search-skill-preview-link.png)
+
 You must have {{site.data.keyword.discoveryshort}} for {{site.data.keyword.icp4dfull_notm}} installed and an instance provisioned before you can complete this procedure to create a search skill. The search skill can connect only to an existing {{site.data.keyword.discoveryshort}} for {{site.data.keyword.icp4dfull_notm}} instance.
 {: important} 
 
-Your search skill can connect to a single {{site.data.keyword.discoveryshort}} data collection. If you have a project with multiple collections, you can link to one of the data collections in the project.
+Starting with 1.5.0, your search skill can connect to a single {{site.data.keyword.discoveryshort}} project. The project can contain multiple collections.
 
 To learn more about how search skill can benefit your business, [read this blog post](https://medium.com/ibm-watson/adding-search-to-watson-assistant-99e4e81839e5){: external}.
 
 ## How it works
 {: #skill-search-add-how}
 
-The search skill searches for information from a data collection that you create by using {{site.data.keyword.discoveryshort}} for {{site.data.keyword.icp4dfull_notm}}.
+The search skill searches for information from one or more data collections that you create by using {{site.data.keyword.discoveryshort}} for {{site.data.keyword.icp4dfull_notm}}.
 
 {{site.data.keyword.discoveryshort}} for {{site.data.keyword.icp4dfull_notm}} crawls, converts, and normalizes your unstructured data. The product applies data analysis and cognitive intuition to enrich your data such that you can more easily find and retrieve meaningful information from it later. To read more about {{site.data.keyword.discoveryshort}}, see the [product documentation](/docs/discovery-data?topic=discovery-data-about){: external}.
 
@@ -80,7 +82,12 @@ If you do not have access to a provisioned instance of {{site.data.keyword.disco
 
     If no instances are available, ask an administrator whether {{site.data.keyword.discoveryshort}} is deployed in your environment. If so, ask to be given access to the {{site.data.keyword.discoveryshort}} instance. If not, you cannot create a search skill.
 
-1.  {: #pick-data-collection} Indicate the data collection to use, by doing one of the following things:
+1.  {: #pick-data-collection} **1.5.0**: Starting with the 1.5.0 release, choose the project that you want to use, by doing one of the following things:
+
+    - Choose an existing project, and then click **Configure**. Skip to the [Configure the search](#search-skill-add-configure) procedure.
+    - If you do not have a project or do not want to use any of the projects that are listed, click **Create a new project** to add one. Follow the procedure in [Create a data collection](#search-skill-add-create-discovery-collection).
+
+1.  {: #pick-data-collection} **1.4.2**: With the 1.4.2 and earlier releases: Indicate the data collection to use, by doing one of the following things:
 
     - Choose an existing data collection, and then skip to the [Configure the search](#search-skill-add-configure) procedure.
     - If you do not have a collection or do not want to use any of the data collections that are listed, click **Create new collection** to add one. Follow the procedure in [Create a data collection](#search-skill-add-create-discovery-collection).
@@ -114,9 +121,9 @@ When the {{site.data.keyword.discoveryshort}} application opens in a new browser
             
             To get help with creating data sources, see [Troubleshooting](#skill-search-add-troubleshoot).
 
-        1.  Click **Next**.
+        1.  Click **Finish**.
 
-            The data collection is created. After the process completes, a summary page is displayed in {{site.data.keyword.discoveryshort}}, which is hosted in a separate web browser tab.
+            The data collection is created. After the process completes, a summary page is displayed in {{site.data.keyword.discoveryshort}}.
 
       - To create a collection by uploading documents, click **Upload data**, and then click **Next**.
 
@@ -137,10 +144,17 @@ When the {{site.data.keyword.discoveryshort}} application opens in a new browser
 
             No ongoing synchronization of uploaded documents is available. If you want to pick up changes that are made to a document, upload a later version of the document.
 
-1.  Wait for the collection to be fully ingested before you return to {{site.data.keyword.conversationshort}}.
+1.  Wait for the collection to be fully ingested.
 
-Your collection is added to a project that is created for you automatically. The project is a conversational search project with a name like `Untitled Project 3`; its sole purpose is to store your data collection. You can find the project name in the page breadcrumb after your collection is created. Make a note of the project name in case you want to return to the collection from the {{site.data.keyword.discoveryshort}} application later.
-{: tip} 
+    Your collection is added to a project that is created for you automatically. The project is a conversational search project with a name like `Untitled Project 3`; its sole purpose is to store your data collection.
+    
+1.  Find the project name in the page breadcrumb after your collection is created. Make a note of the project name in case you want to return to the collection from the {{site.data.keyword.discoveryshort}} application later.
+
+1.  **1.5.0 only**: If you want to add another collection to the project, click *Manage collections*, and then click *New collection* to add another collection.
+
+1.  When the project contains all of the data collections that you want to use, click **Back to Watson Assistant** to finish creating the search skill.
+
+1.  Select the project you just created from the list of projects, and then click **Configure**.
 
 ### Data collection creation example
 {: #skill-search-add-json-collection-example}
@@ -176,16 +190,18 @@ If you upload a JSON file that contains repeating name values, then only the fir
 
     Each search result can consist of the following sections:
 
-    - **Title**: Search result title. Use the title, name, or similar type of field from the collection as the search result title.
+    - **Title**: Search result title. Use the title, name, or similar type of field from the collection as the search result title. The field `title` is used by default.
 
-    - **Body**: Search result description. Use an abstract, summary, or highlight field from the collection as the search result body.
+    - **Body**: Search result description. Use an abstract, summary, or highlight field from the collection as the search result body. The field `text` is used by default.
 
-    - **URL**: This field can be populated with any footer content that you want to include at the end of the search result.
+    - **URL**: This field can be populated with any footer content that you want to include at the end of the search result. When you use a web crawl data collection, `metadata.source.url` is specified by default.
 
        For example, you might want to include a hypertext link to the original data object in its native data source. Most online data sources provide self-referencing public URLs for objects in the store to support direct access. 
 
     You must choose a value for at least one of the search result sections.
     {: important}
+
+    **1.5.0**: If your project contains more than one data collection, choose fields that are common to all or as many of the data collections as possible.
 
     See [Tips for collection field selection](#skill-search-add-field-tips) for help.
 
@@ -224,6 +240,24 @@ If you upload a JSON file that contains repeating name values, then only the fir
       <td>I might have information that could help address your query, but am unable to search my knowledge base at the moment.</td>
     </tr>
     </table>
+
+1.  Specify the number of results to return.
+
+    The top three results are returned automatically. Can you choose to show fewer or more (up to 10) results in the response.
+
+    By default, customers can choose to see more results. If you don't want to give customers this choice, clear the **Include link for customers to view up to 10 results** checkbox.
+
+    This option was introduced with the 1.5.0 release.
+    {: note}
+
+1.  Decide whether to be more selective with the answers that are returned.
+
+    By default, all search query matches, regardless of the confidence score of the match, are returned as search results. You can limit the search results to include only matches with a confidence score of 20% or higher in {{site.data.keyword.discoveryshort}}. 
+    
+    To enable the beta feature that filters the results, toggle the *Refine results to return more selective answers* switch to **On**.
+
+    This option was introduced with the 1.5.0 release.
+    {: note}
 
 1.  Click **Try it** to open the "Try it out" pane for testing. Enter a test message to see the results that are returned when your configuration choices are applied to the search. Make adjustments as necessary.
 
@@ -332,8 +366,16 @@ The search skill is triggered in the following ways:
 
 After you configure the search, you can send test queries to see the search results that get returned from {{site.data.keyword.discoveryshort}} by using the "Try it out" pane of the search skill.
 
-You cannot test the full end-to-end user experience from the dialog "Try it out" pane. The search skill is configured separately and attached to an assistant. The dialog skill has no way of knowing the details of the search, and therefore cannot show search results in its "Try it out" pane. In fact, if you trigger a search response, the message that is displayed says you can see the results in the `preview link integration`. However, this message only applies to the public version of the product, which includes built-in integrations. There is no preview link integration available for the {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull_notm}} version of the product.
+You cannot test the full end-to-end user experience from the dialog skill's "Try it out" pane. The search skill is configured separately and attached to an assistant. The dialog skill has no way of knowing the details of the search, and therefore cannot show search results in its "Try it out" pane.
+
+**1.5.0 and later**: Starting with the 1.5.0 release, you can test the end-to-end user experience by using the *preview link* integration. For more information, see [Testing your assistant from a web page](/docs/assistant-data?topic=assistant-data-deploy-web-link).
 {: important}
+
+### Testing the search skill by using the API
+{: #search-skill-add-test-via-api}
+
+If you are using a version of the product before the 1.5.0 release, you must use the API to test the end-to-end user experience. With version 1.5.0 or later, you can use the preview link integration for testing.
+{: note}
 
 To test the full experience that customers will have when they ask questions that are either answered by the dialog or trigger a search, you must test it by using the API. 
 

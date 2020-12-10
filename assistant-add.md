@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-01-29"
+lastupdated: "2020-11-25"
 
 subcollection: assistant-data
 
@@ -32,7 +32,7 @@ Follow these steps to create an assistant:
 
 1.  Click the **Assistants** icon ![Assistants menu icon](images/nav-ass-icon.png).
 
-    **v1.3**: Click the Assistants tab. If you don't see the Assistants tab, click the breadcrumb link in the page header.
+    **1.3**: Click the Assistants tab. If you don't see the Assistants tab, click the breadcrumb link in the page header.
 
 1.  Click **Create assistant**.
 
@@ -40,6 +40,14 @@ Follow these steps to create an assistant:
 
     - **Name**: A name no more than 100 characters in length. A name is required.
     - **Description**: An optional description no more than 200 characters in length.
+
+    **1.5**: With the 1.5.0 release, if your assistant has a skill associated with it, the following integrations are created for you automatically unless you choose not to enable them:
+
+    - **Web chat**: Creates a chat widget that you can embed in your company website to deploy your assistant in minutes.
+    - **Preview link**: Creates an IBM-branded public web page that you and your team can use to test your assistant.
+
+    You cannot enable the integrations from the assistant creation page unless a skill (dialog or search) exists.
+    {: note}
 
 1.  Click **Create assistant**.
 

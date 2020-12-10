@@ -214,6 +214,24 @@ You can tab from the intent name to each example.
 
     ![Screen capture showing how to move or delete an example](images/move_example.png)
 
+## Searching intents
+{: #intents-search}
+
+The search capability was introduced with the 1.5.0 release.
+{: note}
+
+Use the Search feature to find user examples, intent names, and descriptions.
+
+1.  From the **Intents** page header, click the *Search* icon ![Search icon in the Intents page header](images/search_icon.png).
+
+1.  Submit a search term or phrase.
+
+    The first time you search for something, you might get a message that says the skill is being indexed. If so, wait a minute, and then resubmit the search term.
+
+    Intents that contain your search term are displayed.
+
+    ![Shows the results from a search for intents](images/intent-search-results.png)
+
 ## Exporting intents
 {: #intents-export}
 

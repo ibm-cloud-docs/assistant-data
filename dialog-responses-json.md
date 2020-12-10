@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-08-20"
+lastupdated: "2020-10-06"
 
 subcollection: assistant-data
 
@@ -33,7 +33,7 @@ In some situations, you might need to define responses using the JSON editor. (F
 
 The generic JSON format for responses is used to specify responses that are intended for any messaging channel. This format can be implemented by a custom client application. (This is the format that is used by default for dialog responses defined using the {{site.data.keyword.conversationshort}} user interface.)
 
-For information about how to open the JSON editor for a dialog node response from the tool, see [Context variables in the JSON editor](/docs/assistant-data?topic=assistant-data-dialog-runtime#dialog-runtime-context-var-json).
+For information about how to open the JSON editor for a dialog node response from the tool, see [Context variables in the JSON editor](/docs/assistant-data?topic=assistant-data-dialog-runtime-context#dialog-runtime-context-var-json).
 
 To specify an interactive response in the generic JSON format, insert the appropriate JSON objects into the `output.generic` field of the dialog node response. The following example shows how you might send a response containing multiple response types (text, an image, and clickable options):
 

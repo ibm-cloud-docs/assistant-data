@@ -12,21 +12,27 @@ Watson Assistant for IBM Cloud Pak for Data (Installed)
     sample-apps.md
     {: .navgroup-end}
 
+    {: .navgroup id="tutorial"}
+    tutorial.md
+    tutorial-slots.md
+    tutorial-slots-complex.md
+    tutorial-digressions.md
+    {: .navgroup-end}
+
     {: .navgroup id="howto"}
     dev-process.md
 
     {: .topicgroup}
     Installing
         install.md
-        install-142.md
+        install-150.md
 
         {: .topicgroup}
         Installing previous versions
+            install-142.md
             install-141.md
             install-140.md
-            [Helm chart README.md](https://github.com/ibm-cloud-docs/data-readmes/blob/master/assistant-README-140.md)
             install-130.md
-            [1.3 README.md](https://github.com/ibm-cloud-docs/data-readmes/blob/master/assistant-README.md)
             manage-130.md
             install-120.md
             install-120-addon.md
@@ -53,30 +59,41 @@ Watson Assistant for IBM Cloud Pak for Data (Installed)
             dialog-build.md
             dialog-plan.md
             dialog-overview.md
-            dialog-tips.md
+            dialog-runtime-context.md
+            dialog-slots.md
+            dialog-runtime.md
             dialog-tasks.md
+            dialog-tips.md
+            dialog-support.md
+            dialog-runtime-spell-check.md
 
         entities.md
 
         {: .topicgroup}
         Advanced dialog tasks
-            dialog-runtime.md
-            dialog-slots.md
             dialog-webhooks.md
             dialog-actions-client.md
+            dialog-integrations.md
             dialog-responses-json.md
-
-        {: .topicgroup}
-        Tutorials
-            tutorial.md
-            tutorial-slots.md
-            tutorial-slots-complex.md
-            tutorial-digressions.md
 
         versions.md
 
     skill-search-add.md
-    deploy-custom-app.md
+
+    {: .topicgroup}
+    Deploying
+        deploy-integration-add.md
+        deploy-web-link.md
+        deploy-web-chat.md
+        deploy-custom-app.md
+        deploy-integration-delete.md
+
+    {: .topicgroup}
+    Analytics
+        logs-overview.md
+        logs.md
+        irrelevance-detection.md
+        logs-resources.md
 
     {: .topicgroup}
     Administering
@@ -103,24 +120,30 @@ Watson Assistant for IBM Cloud Pak for Data (Installed)
     [v1 API reference](https://cloud.ibm.com/apidocs/assistant-data-v1)
     dialog-methods.md
     expression-language.md
+    filter-reference.md
 
     {: .topicgroup}
-    System entities
+    Built-in entities
         system-entities.md
+        system-entities-142.md
+        sys-date-festivals.md
         time-zones.md
 
+    services-information.md
     language-support.md
     {: .navgroup-end}
 
     {: .navgroup id="help"}
+    faqs.md
     release-notes.md
-    services-information.md
+    troubleshoot.md
     feedback.md
 
     {: .topicgroup}
     Developer community
         [StackOverflow](https://stackoverflow.com/questions/tagged/watson-assistant)
         [WDC Slack channel](http://wdc-slack-inviter.mybluemix.net/)
+        [IBM Watson Apps Community](https://community.ibm.com/community/user/watsonapps/communities/community-home?CommunityKey=7a3dc5ba-3018-452d-9a43-a49dc6819633)
 
     accessibility.md
     {: .navgroup-end}

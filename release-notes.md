@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-10-02"
+lastupdated: "2020-12-09"
 
 subcollection: assistant-data
 
@@ -34,16 +34,48 @@ IBM releases services, features, and language support for your evaluation that a
 ## Change log
 {: #rn-change-log}
 
+### 9 December 2020
+{: #9December2020}
+
+**{{site.data.keyword.conversationfull}} for {{site.data.keyword.icp4dfull}} 1.5.0 is available**:  {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} 1.5.0 is compatible with {{site.data.keyword.icp4dfull}} 3.5 and {{site.data.keyword.icp4dfull}} 3.0.1 deployments on Red Hat OpenShift 4.5 or 3.11.
+
+The following changes were made in this release:
+
+- **Now access conversation logs and metrics**: An **Analytics** page is now available. From this page, you can see conversation logs and metrics that give you insights, such as what topics your customers are asking about and how often the assistant succeeds in addressing customer requests. For more information, see [Metrics overview](/docs/assistant-data?topic=assistant-data-logs-overview).
+
+- **Introducing the *Web chat* integration**: Deploy your assistant in minutes. Create a web chat integration to embed your assistant into a page on your website as a chat widget. Web chat version 3.3.0 is included in this release. For more information, see [Integrating the web chat with your website](/docs/assistant-data?topic=assistant-data-deploy-web-chat). 
+
+- **Introducing the *Preview link* integration**: Deploy your assistant to an IBM-branded web site for testing purposes. When you add both a dialog skill and search skill to your assistant, you can test the overall interaction between the two skills by using the preview link integration. For more information, see [Testing your assistant from a web page](/docs/assistant-data?topic=assistant-data-deploy-web-link).
+
+- **Improved system entities**: A new `interpretation` property is returned for the system entities in all languages. The new property provides additional information about the recognized entity which can be leveraged by your dialog. For more information, see [System entities](/docs/assistant-data?topic=assistant-data-system-entities).
+
+- **Irrelevance detection**: The irrelevance detection classification algorithm was updated to make it even smarter out of the box. Now, even before you begin to teach the system about irrelevant requests, it is able to recognize user input that your skill is not designed to address. The new algorithm is enabled by default for any English-language skills that you import or create. For more information, see [Irrelevance detection](/docs/assistant-data?topic=assistant-data-irrelevance-detection).
+
+- **Search was added to the Dialog, Intents, and Entities pages**: You can now search within the product. For example, if you want to find any dialog nodes that condition on an intent, you can open the Dialog page and search on the intent name.
+
+- **v2 Logs API is available**: Use the v2 API logs method to list log events for an assistant. For more information, see the [API reference documentation](/apidocs/assistant-data-v2#listlogs).
+
+This release does not include the following features, which are available for cloud instances at the time of this release:
+
+- While the web chat integration is now available, service desk support is not included.
+- The Facebook, Slack, Intercom, Phone, SMS with Twilio, and WhatsApp integrations are not supported.
+- The actions skill is not available.
+- You cannot enable FAQ extraction when you add a web crawl data collection to the search skill.
+- You cannot use the Activity Tracker service to track user actions for auditing purposes.
+- The intent recommendations feature and the enhanced intent detection model are not supported.
+- The *Learning center* and its associated product tours are not available.
+- You cannot manage user access at the individual skill and assistant level. You can control only who can access the entire service instance, which includes all of its skills and assistants. For more information about granting access to services in {{site.data.keyword.icp4dfull_notm}}, see [3.5 Managing users](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.5.0/cpd/admin/users.html){: external} or [3.0.1 Managing users](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.0.1/cpd/admin/users.html){: external}.
+
 ### 19 June 2020
 {: #19June2020}
 
-**{{site.data.keyword.conversationfull}} for {{site.data.keyword.icp4dfull}} 1.4.2 is available.**: {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} 1.4.2 is compatible with {{site.data.keyword.icp4dfull}} 3.0.1 on OpenShift Red Hat 3.11 or 4.5 and {{site.data.keyword.icp4dfull}} 2.5 deployments on OpenShift Red Hat 3.11.
+**{{site.data.keyword.conversationfull}} for {{site.data.keyword.icp4dfull}} 1.4.2 is available**: {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} 1.4.2 is compatible with {{site.data.keyword.icp4dfull}} 3.0.1 on OpenShift Red Hat 3.11 or 4.5 and {{site.data.keyword.icp4dfull}} 2.5 deployments on OpenShift Red Hat 3.11.
 
 The 1.4.2 release is certified on Red Hat OpenShift 4.5.
 
 The following changes were made in this release:
 
-- **Autocorrection support was added**: Autocorrection helps your assistant understand what your customers want. It corrects misspellings in the input that customers submit before the input is evaluated. With more precise input, your assistant can more easily recognize entity mentions and understand the customer's intent. This feature is not available in all languages. See [Correcting user input](/docs/assistant-data?topic=assistant-data-dialog-runtime#dialog-runtime-spell-check) for more details.
+- **Autocorrection support was added**: Autocorrection helps your assistant understand what your customers want. It corrects misspellings in the input that customers submit before the input is evaluated. With more precise input, your assistant can more easily recognize entity mentions and understand the customer's intent. This feature is not available in all languages. See [Correcting user input](/docs/assistant-data?topic=assistant-data-dialog-runtime-spell-check) for more details.
 
 - **French-language dialog skill improvements**: Added full support for fuzzy matching and contextual entities and added beta support for autocorrection. For more information, see [Supported languages](/docs/assistant-data?topic=assistant-data-language-support).
 

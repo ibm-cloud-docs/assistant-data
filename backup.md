@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-08-03"
+lastupdated: "2020-12-09"
 
 subcollection: assistant-data
 
@@ -36,7 +36,7 @@ To back up the data, you use a tool that Postgres provides that is called `pg_du
 Choose one of the following ways to manage the backup of data:
 
 - **[Kubernetes CronJob](#backup-cronjob) (1.4.2 and later only)**: Use the `$RELEASE-backup-cronjob` cron job that is provided for you.
-- **[backupPG.sh script](#backup-os) (1.4.1 and later only)**: Use the `backupPG.sh` bash script that is provided with the service's installation files.
+- **[backupPG.sh script](#backup-os) (1.4.2 and earlier only)**: Use the `backupPG.sh` bash script that is provided with the service's installation files.
 - **[pg_dump tool](#backup-cp4d)**: Run the `pg_dump` tool on each cluster directly. This is the most manual option, but also affords the most control over the process.
 
 When you back up data with one of these procedures before you upgrade from one version to another, the workspace IDs of your skills are preserved, but the service instance IDs and credentials change.
@@ -202,7 +202,7 @@ To access the backup files from local storage:
 
 1.  Securely copy the files to wherever you want to store them for a longer period of time.
 
-## Backing up data by using the script
+## Backing up data by using the script (1.4.2 and earlier only)
 {: #backup-os}
 
 The `backupPG.sh` script gathers the pod name and credentials for one of your Postgres Proxy pods, which is the pod from which the `pg_dump` command must be run, and then runs the command for you.
@@ -321,10 +321,12 @@ Before it adds the backed-up data, the tool removes the data for all instances i
 
 1.  Go to the backup directory that you specified in the file-name parameter in the previous procedure.
 
-1.  Download the `pgmig` tool from the [GitHub Watson Developer Cloud Community](https://github.com/watson-developer-cloud/community/tree/master/watson-assistant/data) repository.
+1.  Download the `pgmig` tool from the correct directory for your release from the [GitHub Watson Developer Cloud Community](https://github.com/watson-developer-cloud/community/tree/master/watson-assistant/data) repository.
+
+    For example:
 
     ```
-    wget https://github.com/watson-developer-cloud/community/raw/master/watson-assistant/data/1.4.2/pgmig
+    wget https://github.com/watson-developer-cloud/community/raw/master/watson-assistant/data/1.5.0/pgmig
     ```
     {: codeblock}
 
