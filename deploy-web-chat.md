@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-12-04"
+lastupdated: "2020-12-10"
 
 subcollection: assistant-data
 
@@ -140,7 +140,7 @@ To add the assistant to a web page on your company website, complete the followi
 
 1.  Paste the code snippet into each web page where you want the assistant to be available to your customers.
 
-    You can paste the same script tag into as many pages on your website as you want. Add it anywhere where you want users to be able to reach your assistant for help. However, be sure to add it only one time per page.
+    You can paste the same script tag into as many pages on your website as you want. Add in anywhere where you want users to be able to reach your assistant for help. However, be sure to add in only one time per page.
     {: tip}
 
 1.  Submit test utterances from the chat widget that is displayed on your web page to see how the assistant responds.
