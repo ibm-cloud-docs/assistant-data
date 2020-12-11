@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-12-10"
+lastupdated: "2020-12-11"
 
 subcollection: assistant-data
 
@@ -43,33 +43,28 @@ After installing the service, run a verification test to make sure that things a
     apiVersion: com.ibm.watson.watson-assistant/v1
     kind: WatsonAssistantDvt
     metadata:
-      name: watson-assistant-${instance name}
-      annotations:
-        oppy.ibm.com/disable-rollback: "true"
+      name: watson-assistant---wa
+      annotations:
+        oppy.ibm.com/disable-rollback: "true"
     spec:
-    #Additional labels to pass down to all objects created by the operator
-    labels:
-    "app.kubernetes.io/instance": "watson-assistant-${instance name}"
-    
-    version: develop
-    #The name of the WA instance to target with this DVT run
-    assistantInstanceName: watson-assistant-${instance name}
-    #The test tags to execute ( change @accuracy to @accuracyOS311 if you are running on OpenShift 3.11)
-    testTags: "@accuracy,@dialogErrors,@dialogs,@dialogV1,@dialogV1errors,@embedsearch,@entities,@folders,@fuzzy,@generic,@healthcheck,@intents,@newse,@openentities,@patterns,@prebuilt,@search,@slots,@spellcheck,@spellcheckfr,@v2assistants,@v2authorskill,@v2authorwksp,@v2healthcheck,@v2skillref,@v2snapshots,@workspaces"
-    
-    #Information specific to this cluster
-    cluster:
-      type: "private"
-      # :image_pull_secrets: pull secret names
-      imagePullSecrets: []
-    
-      #docker_registry_prefix: (private only) Docker registry, including namespace, to get images from
-      dockerRegistryPrefix: "${registry info}"
-    
-    appConfigOverrides:
-      container_images_defaults:
-        registry: stg.icr.io
-
+      # Additional labels to pass down to all objects created by the operator
+      labels:
+        "app.kubernetes.io/instance": "watson-assistant---wa"
+      version: 1.5.0
+      # The name of the WA instance to target with this DVT run
+      assistantInstanceName: watson-assistant---wa
+      # The cucumber test tags to execute
+      testTags: "@accuracy,@dialogErrors,@dialogs,@dialogV1,@dialogV1errors,@embedsearch,@entities,@folders,@fuzzy,@generic,@healthcheck,@intents,@newse,@openentities,@patterns,@prebuilt,@search,@slots,@spellcheck,@spellcheckfr,@v2assistants,@v2authorskill,@v2authorwksp,@v2healthcheck,@v2skillref,@v2snapshots,@workspaces"
+      # Information specific to this cluster
+      cluster:
+        # :type: Cluster environment type
+        # - options: 'public', 'dedicated', 'premium', 'private'
+        type: "private"
+        # :image_pull_secrets: pull secret names
+        imagePullSecrets: []
+        # TODO: These are for WA dev
+        # :docker_registry_prefix: (private only) Docker registry, including namespace, to get images from
+        dockerRegistryPrefix: "image-registry.openshift-image-registry.svc:5000/zen"
     ```
     {: codeblock}
 
@@ -81,7 +76,9 @@ After installing the service, run a verification test to make sure that things a
       - **4.5**: `"image-registry.openshift-image-registry.svc:5000/${namespace}"`
       - **3.11**: `"docker-registry.default.svc:5000/${namespace}"`
 
-      where you replace `${namespace}` with the namespace, such as `zen`. 
+      where you replace `${namespace}` with the namespace, such as `zen`.
+
+    - **3.11 only**: Change `@accuracy` to `@accuracyOS311`.
 
 1.  Run the following command to apply the configuration changes that you specified in the yaml file. Your changes initiate a job named `dvt` which starts a pod named `dvt` to run the test.
 
