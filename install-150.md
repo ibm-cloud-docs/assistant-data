@@ -43,16 +43,16 @@ After installing the service, run a verification test to make sure that things a
     apiVersion: com.ibm.watson.watson-assistant/v1
     kind: WatsonAssistantDvt
     metadata:
-      name: watson-assistant---wa
+      name: watson-assistant---${instance-name}
       annotations:
         oppy.ibm.com/disable-rollback: "true"
     spec:
       # Additional labels to pass down to all objects created by the operator
       labels:
-        "app.kubernetes.io/instance": "watson-assistant---wa"
+        "app.kubernetes.io/instance": "watson-assistant---${instance-name}"
       version: 1.5.0
       # The name of the WA instance to target with this DVT run
-      assistantInstanceName: watson-assistant---wa
+      assistantInstanceName: watson-assistant---${instance-name}
       # The cucumber test tags to execute
       testTags: "@accuracy,@dialogErrors,@dialogs,@dialogV1,@dialogV1errors,@embedsearch,@entities,@folders,@fuzzy,@generic,@healthcheck,@intents,@newse,@openentities,@patterns,@prebuilt,@search,@slots,@spellcheck,@spellcheckfr,@v2assistants,@v2authorskill,@v2authorwksp,@v2healthcheck,@v2skillref,@v2snapshots,@workspaces"
       # Information specific to this cluster
@@ -64,7 +64,7 @@ After installing the service, run a verification test to make sure that things a
         imagePullSecrets: []
         # TODO: These are for WA dev
         # :docker_registry_prefix: (private only) Docker registry, including namespace, to get images from
-        dockerRegistryPrefix: "image-registry.openshift-image-registry.svc:5000/zen"
+        dockerRegistryPrefix: "${registry info}"
     ```
     {: codeblock}
 
