@@ -183,7 +183,7 @@ To back up data by using the provided script, complete the following steps:
 1.  Run the script by using the following command:
 
     ```
-    ./backupPG.sh [----instance ${instance-name}] > ${file-name}
+    ./backupPG.sh [--instance ${instance-name}] > ${file-name}
     ```
     {: codeblock}
 
