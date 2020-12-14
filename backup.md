@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-12-11"
+lastupdated: "2020-12-14"
 
 subcollection: assistant-data
 
@@ -64,24 +64,14 @@ The following table lists the configuration values that control the backup cron 
 
 | Variable | Description | Default value |
 |----------|-------------|---------------|
-| postgres.backup.suspend | If true, the cron job does not create any backup jobs. | `false` |
-| postgres.backup.schedule | Specifies the time of day at which to run the backup jobs. Specify the schedule by using a cron expression. For example `{minute} {hour} {day} {month} {day-of-week}` where `{day-of-week}` is specified as `0`=Sunday, `1`=Monday, and so on. The default schedule is to run every day at 11 PM. | `0 23 * * *` |
-| postgres.backup.history.jobs.success | The number of successful jobs to keep. If `postgres.backup.persistence.enabled` is set to `false`, specifies the number of valid backup dumps to store in the job logs. | `30` |
-| postgres.backup.history.jobs.failed | The number of failed jobs to keep in the job logs. | `10` |
-| postgres.backup.persistence.enabled | If set to `true`, backups are written to persistent storage. | `true` |
+| store.backup.suspend | If True, the cron job does not create any backup jobs. | `False` |
+| store.backup.schedule | Specifies the time of day at which to run the backup jobs. Specify the schedule by using a cron expression. For example `{minute} {hour} {day} {month} {day-of-week}` where `{day-of-week}` is specified as `0`=Sunday, `1`=Monday, and so on. The default schedule is to run every day at 11 PM. | `0 23 * * *` |
+| store.backup.history.jobs.success | The number of successful jobs to keep. | `30` |
+| store.backup.history.jobs.failed | The number of failed jobs to keep in the job logs. | `10` |
+| store.backup.history.files.weekly_backup_day | A day of the week is designated as the weekly backup day. 0=Sunday, 1=Monday and so on. | `0` |
+| store.backup.history.files.keep_weekly | The number of backups to keep that were taken on weekly_backup_day. | `4`  |
+| store.backup.history.files.keep_daily | The number of backups to keep that were taken on all the other days of the week | `6`  |
 {: caption="Cron job variables" caption-side="top"}
-
-The following values configure how backups are stored in the persistent volume. They are only used if `postgres.backup.persistence.enabled` is `true`.
-
-| Variable | Description | Default value |
-|----------|-------------|---------------|
-| postgres.backup.history.files.weeklyBackupDay | A day of the week is designated as the weekly backup day. 0=Sunday, 1=Monday and so on. | `0` |
-| postgres.backup.history.files.weekly | The number of weekly backups to keep. | `4` |
-| postgres.backup.history.files.daily | The number of daily backups to keep. | `6`  |
-| postgres.backup.dataPVC.name | The name of the persistent volume claim in which to store the backups. | `store-backup` |
-| postgres.backup.dataPVC.storageClassName | The storage class to use in the persistent volume claim. By default, a persistent volume claim with the same class that you use for the main deployment, which is typically `portworx-assistant` is used. | `global.storageClassName`  |
-| postgres.backup.dataPVC.size | The size of the persistent volume claim. | `1Gi` |
-{: caption="Cron job persistent volume variables" caption-side="top"}
 
 ### Accessing backed-up files from Portworx
 {: #backup-access-portworx}
@@ -220,22 +210,6 @@ To back up your data, complete these steps:
 
 1.  Fetch the Postgres connection values. You will pass these values to the command that you run in the next step. (You must have `jq` installed.)
 
-    - To get the username:
-
-      ```
-      oc get secret $VCAP_SECRET_NAME -o jsonpath="{.data.vcap_services}" | base64 --decode | jq --raw-output '.["user-provided"][]|.credentials|.username'
-      ```
-      {: codeblock}
-
-      where {.data.vcap_services} is the VCAP secret name that you retrieved in the previous step.
-
-    - To get the password:
-
-      ```
-      oc get secret $VCAP_SECRET_NAME -o jsonpath="{.data.vcap_services}" | base64 --decode | jq --raw-output '.["user-provided"][]|.credentials|.password'
-      ```
-      {: codeblock}
-
     - To get the database:
 
       ```
@@ -252,7 +226,7 @@ To back up your data, complete these steps:
 1.  Run the following command:
 
     ```
-    oc exec $KEEPER_POD -- bash -c "export PGPASSWORD='$PASSWORD' && pg_dump -Fc -h $HOSTNAME -d $DATABASE -U $USERNAME" > ${file-name}
+    oc exec $KEEPER_POD -- bash -c "export pg_dump -Fc -h $HOSTNAME -d $DATABASE" > ${file-name}
     ```
     {: codeblock}
 
@@ -261,14 +235,13 @@ To back up your data, complete these steps:
     - `KEEPER_POD`: Any Postgres Keeper pod in your {{site.data.keyword.conversationshort}} instance.
     - `DATABASE`: The store database name.
     - `HOSTNAME`: The hostname.
-    - `USERNAME`: Postgres user ID that can access the database.
-    - `PASSWORD`: The password that corresponds with the Postgres user ID.
     - `${file-name}`: Specify a file where you want to write the downloaded data. Be sure to specify a backup directory in which to store the file. For example, `/bu/store.dump` to create a backup directory named `bu`. This directory will be referenced later as `$BACKUP-DIR`.
+    -  The `su_username` and `su_password` from the Store VCAP secret are retrieved and used.
 
     To see more information about the `pg_dump` command, you can run this command:
 
     ```bash
-    oc exec -it ${KEEPER_POD} -- pg_dump --help
+    oc exec -it ${KEEPER_POD} --pg_dump --help
     ```
     {: pre}
  
@@ -664,3 +637,74 @@ To access the backup files from local storage:
     {: codeblock}
 
 1.  Securely copy the files to wherever you want to store them for a longer period of time.
+
+## Backing up data manually (1.4.2 and earlier)
+{: #backup-cp4d-142}
+
+Complete the steps in this procedure to back up your data by using the Postgres tool directly.
+
+To back up your data, complete these steps:
+
+1.  Fetch a running Postgres keeper pod.
+
+    ```
+    oc get pods --field-selector=status.phase=Running -l component=stolon-keeper,instance=${INSTANCE} -o jsonpath="{.items[0].metadata.name}"
+    ```
+    {: codeblock}
+
+    Replace ${INSTANCE} with the instance of the Assistant deployment that you want to back up.
+
+1.  Fetch the store VCAP secret name.
+
+    ```
+    oc get secrets -l component=store${INSTANCE} -o=custom-columns=NAME:.metadata.name | grep store-vcap
+
+    ```
+    {: codeblock}
+
+1.  Fetch the Postgres connection values. You will pass these values to the command that you run in the next step. (You must have `jq` installed.)
+
+    - To get the username:
+
+      ```
+      oc get secret $VCAP_SECRET_NAME -o jsonpath="{.data.vcap_services}" | base64 --decode | jq --raw-output '.["user-provided"][]|.credentials|.username'
+      ```
+      {: codeblock}
+
+      where {.data.vcap_services} is the VCAP secret name that you retrieved in the previous step.
+
+    - To get the password:
+
+      ```
+      oc get secret $VCAP_SECRET_NAME -o jsonpath="{.data.vcap_services}" | base64 --decode | jq --raw-output '.["user-provided"][]|.credentials|.password'
+      ```
+      {: codeblock}
+
+    - To get the database:
+
+      ```
+      oc get secret $VCAP_SECRET_NAME -o jsonpath="{.data.vcap_services}" | base64 --decode | jq --raw-output '.["user-provided"][]|.credentials|.database'
+      ```
+      {: codeblock}
+
+1.  Run the following command:
+
+    ```
+    oc exec $KEEPER_POD -- bash -c "export PGPASSWORD='$PASSWORD' && pg_dump -Fc -h localhost -d $DATABASE -U $USERNAME" > ${file-name}
+    ```
+    {: codeblock}
+
+    The following lists describes the arguments. You retrieved the values for some of these parameters in the previous step:
+
+    - `KEEPER_POD`: Any Postgres Keeper pod in your {{site.data.keyword.conversationshort}} instance.
+    - `DATABASE`: The store database name.
+    - `USERNAME`: Postgres user ID that can access the database.
+    - `PASSWORD`: The password that corresponds with the Postgres user ID.
+    - `${file-name}`: Specify a file where you want to write the downloaded data. Be sure to specify a backup directory in which to store the file. For example, `/bu/store.dump` to create a backup directory named `bu`. This directory will be referenced later as `$BACKUP-DIR`.
+
+    To see more information about the `pg_dump` command, you can run this command:
+
+    ```bash
+    oc exec -it ${KEEPER_POD} -- pg_dump --help
+    ```
+    {: pre}
