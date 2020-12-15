@@ -236,7 +236,7 @@ To back up your data, complete these steps:
     - `DATABASE`: The store database name.
     - `HOSTNAME`: The hostname.
     - `${file-name}`: Specify a file where you want to write the downloaded data. Be sure to specify a backup directory in which to store the file. For example, `/bu/store.dump` to create a backup directory named `bu`. This directory will be referenced later as `$BACKUP-DIR`.
-    -  The `su_username` and `su_password` from the Store VCAP secret are retrieved and used for $PASSWORD and $USERNAME.
+    -  The `su_username` and `su_password` from the Store VCAP secret are retrieved and used for `$PASSWORD` and `$USERNAME`.
 
     To see more information about the `pg_dump` command, you can run this command:
 
