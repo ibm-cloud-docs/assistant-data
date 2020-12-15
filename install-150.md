@@ -36,7 +36,7 @@ For installation instructions, find the instructions for the appropriate version
 ## Installing on IBM Cloud Pak for Data 3.0.1
 {: #install-150-on-301}
 
-The latest release of {{site.data.keyword.conversationshort}} uses operators. You must use the cpd-cli command line that is available only with {{site.data.keyword.icp4dfull_notm}} 3.5 to install it.
+The latest release of {{site.data.keyword.conversationshort}} uses operators. (An operator is a method of packaging, deploying, and managing a Kubernetes-native application in a RedHat OpenShift environment.) You must use the cpd-cli command line that is available only with {{site.data.keyword.icp4dfull_notm}} 3.5 to install it.
 
 To install {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull_notm}} on {{site.data.keyword.icp4dfull_notm}} 3.0.1, complete the following steps:
 
