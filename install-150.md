@@ -36,7 +36,7 @@ For installation instructions, find the instructions for the appropriate version
 ## Installing on IBM Cloud Pak for Data 3.0.1
 {: #install-150-on-301}
 
-The latest release of {{site.data.keyword.conversationshort}} uses operators. (An operator is a method of packaging, deploying, and managing a Kubernetes-native application in a RedHat OpenShift environment.) You must use the cpd-cli command line that is available only with {{site.data.keyword.icp4dfull_notm}} 3.5 to install it.
+The latest release of {{site.data.keyword.conversationshort}} uses operators. (An operator is a method of packaging, deploying, and managing a Kubernetes-native application in a Red Hat OpenShift environment.) You must use the cpd-cli command line that is available only with {{site.data.keyword.icp4dfull_notm}} 3.5 to install it.
 
 To install {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull_notm}} on {{site.data.keyword.icp4dfull_notm}} 3.0.1, complete the following steps:
 
@@ -51,7 +51,7 @@ To install {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4d
     ```
     {: codeblock}
 
-    where $PROJECT is the name of the project or namespace where you want to install the service.
+    where $PROJECT is the project where the {{site.data.keyword.icp4dfull_notm}} control plane to be upgraded is deployed.
 
 1.  Follow [the instructions](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.5.0/svc-assistant/assistant-install.html){: external} for installing the {{site.data.keyword.conversationshort}} service on {{site.data.keyword.icp4dfull_notm}} 3.5.
 
