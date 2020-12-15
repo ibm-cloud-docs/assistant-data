@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-12-14"
+lastupdated: "2020-12-15"
 
 subcollection: assistant-data
 
@@ -226,7 +226,7 @@ To back up your data, complete these steps:
 1.  Run the following command:
 
     ```
-    oc exec $KEEPER_POD -- bash -c "export pg_dump -Fc -h $HOSTNAME -d $DATABASE" > ${file-name}
+    oc exec $KEEPER_POD -- bash -c "export PGPASSWORD='$PASSWORD' && pg_dump -Fc -h $HOSTNAME -d $DATABASE -U $USERNAME" > ${file-name}
     ```
     {: codeblock}
 
@@ -236,7 +236,7 @@ To back up your data, complete these steps:
     - `DATABASE`: The store database name.
     - `HOSTNAME`: The hostname.
     - `${file-name}`: Specify a file where you want to write the downloaded data. Be sure to specify a backup directory in which to store the file. For example, `/bu/store.dump` to create a backup directory named `bu`. This directory will be referenced later as `$BACKUP-DIR`.
-    -  The `su_username` and `su_password` from the Store VCAP secret are retrieved and used.
+    -  The `su_username` and `su_password` from the Store VCAP secret are retrieved and used for `$PASSWORD` and `$USERNAME`.
 
     To see more information about the `pg_dump` command, you can run this command:
 
