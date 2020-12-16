@@ -30,7 +30,7 @@ subcollection: assistant-data
 
 For installation instructions, find the instructions for the appropriate version of {{site.data.keyword.icp4dfull_notm}}:
 
-- [Installing on {{site.data.keyword.icp4dfull_notm}} 3.5](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.5.0/svc-assistant/assistant-install.html){: external} 
+- [Installing on {{site.data.keyword.icp4dfull_notm}} 3.5](#install-150-on-301)
 - [Installing on {{site.data.keyword.icp4dfull_notm}} 3.0.1](#install-150-on-301)
 
 ## System requirements
@@ -49,6 +49,75 @@ The following table shows details for a typical deployment.
 |-------|------|-----------------|
 |     4 |   16 |          128 GB |
 {: caption="Deployment details" caption-side="top"}
+
+## Installing on IBM Cloud Pak for Data 3.5
+{: #install-150-on-35}
+
+The overall steps are specified here as a preview. For the complete procedure, see the installation instructions on the [{{site.data.keyword.icp4dfull_notm}} knowledge center 3.5](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.5.0/svc-assistant/assistant-install.html){: external}
+
+The installation process takes 1 or 2 hours. These example commands are for installing in a cluster with internet access.
+
+1.  Copy images to your cluster. For example:
+
+    ```
+    ./cpd-cli adm --repo repo.yaml --assembly watson-assistant --namespace zen --apply
+    ```
+    {: codeblock}
+
+    To see a sample `repo.yaml` that installs assistant only, see [Setting up the cluster](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.5.0/svc-assistant/assistant-svc-install-adm.html){: external}
+
+1.  Get the Cloud Pak layer images. For example:
+
+    ```
+    ./cpd-cli install --assembly lite --namespace zen --repo repo.yaml \
+    --storageclass portworx-shared-gp3 --target-registry-username=ocadmin \
+    --target-registry-password=$(oc whoami -t) --cluster-pull-prefix $(oc registry info)/zen \ --transfer-image-to $(oc get routes docker-registry -n default -o=template={{.spec.host}})/zen
+    ```
+    {: codeblock}
+
+    If you see `CrashLoopBackoff` messages, you can ingore them. Give the pods time to recover and the installation will complete.
+
+1.  Get the Events service images.
+
+    The Events service is required if you want to use the Analytics feature.
+
+    Follow the instructions [here](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.5.0/cpd/install/common-svcs.html){: external}. If you have the option to install only the Events service, do so.
+
+1.  Install the EDB operator to get Postgres resources. For example:
+
+    ```
+    ./cpd-cli install --assembly edb-operator --optional-modules edb-pg-base:x86_64 \
+    --namespace zen --repo repo.yaml --cluster-pull-prefix $(oc registry info \
+    --internal)/zen --transfer-image-to=$(oc registry info)/zen \
+    --ask-push-registry-credentials --insecure-skip-tls-verify
+    ```
+    {: codeblock}
+
+1.  Get the images for the service. For example:
+
+    ```
+    ./cpd-cli install --assembly watson-assistant-operator \
+    --optional-modules watson-assistant-operand-ibm-events-operator:x86_64 \
+    --override install-override.yaml --namespace zen --repo repo.yaml \
+    --cluster-pull-prefix $(oc registry info --internal)/zen \
+    --transfer-image-to=$(oc registry info)/zen --ask-push-registry-credentials \
+    --insecure-skip-tls-verify
+    ```
+    {: codeblock}
+
+    For details about the override file, see [Creating an override file](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.5.0/svc-assistant/assistant-svc-override.html){: external}
+
+1.  Install the service. For example:
+
+    ```
+    ./cpd-cli  install --assembly watson-assistant --instance wa001 \
+    --override install-override.yaml --namespace zen --repo repo.yaml \
+    --storageclass portworx-watson-assistant-sc \
+    --cluster-pull-prefix $(oc registry info --internal)/zen \
+    --transfer-image-to=$(oc registry info)/zen --ask-push-registry-credentials \
+    --insecure-skip-tls-verify
+    ```
+    {: codeblock}
 
 ## Installing on IBM Cloud Pak for Data 3.0.1
 {: #install-150-on-301}
@@ -241,6 +310,59 @@ To get log files, complete the following steps:
     oc describe pod {pod-name}
     ```
     {: codeblock}
+
+## Uninstalling on IBM Cloud Pak for Data 3.5
+{: #install-150-uninstall-35}
+
+The steps to uninstall are outlined here:
+
+1.  **Optional**: From the web client, remove any provisioned instances of you service. 
+
+    This step is a useful check for you to see what instances will be removed when you uninstall the service.
+
+    - Log in to the Cloud Pak for Data web client as an administrator.
+    - From the menu, select *Services > Instances*.
+    - Filter the list to show only watson-assistant service instances.
+    - Delete all of the instances of the service.
+
+1.  Change to the directory where you placed the Cloud Pak for Data command-line interface, and then log in to your Red Hat OpenShift cluster as a project administrator:
+
+    ```
+    oc login ${OpenShift_URL:port}
+    ```
+    {: codeblock}
+
+1.  To uninstall Watson Assistant, you must run the installer multiple times to install the following assemblies in this order:
+
+    - **watson-assistant**: The assistant assembly installs the service. When you uninstall this assembly, you must specify the `--instance Instance_name` parameter, which represents the deployment name. For example:
+
+      ```
+      ./cpd-cli uninstall --assembly  watson-assistant --instance wa001 -n zen
+      ```
+      {: codeblock}
+
+    - **watson-assistant-operator**: The assistant operator is a prerequisite for Watson Assistant that installs resources that are required by the service.
+
+      ```
+      ./cpd-cli uninstall --assembly  watson-assistant-operator -n zen
+      ```
+      {: codeblock}
+
+1.  Remove the persistent volume claims that are created by the service.
+
+    - Use the following command to get a list of claims that are used by the service:
+
+      ```
+      oc get pvc -l icpdsupport/addOnId=assistant
+      ```
+      {: codeblock}
+
+    - Run the following command for each volume claim to delete them one at a time:
+
+      ```
+      oc delete pvc ${pvc name}
+      ```
+      {: codeblock}
 
 ## Next steps
 {: #install-150-next-steps}
