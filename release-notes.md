@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-12-09"
+lastupdated: "2020-12-15"
 
 subcollection: assistant-data
 
@@ -65,6 +65,19 @@ This release does not include the following features, which are available for cl
 - The intent recommendations feature and the enhanced intent detection model are not supported.
 - The *Learning center* and its associated product tours are not available.
 - You cannot manage user access at the individual skill and assistant level. You can control only who can access the entire service instance, which includes all of its skills and assistants. For more information about granting access to services in {{site.data.keyword.icp4dfull_notm}}, see [3.5 Managing users](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.5.0/cpd/admin/users.html){: external} or [3.0.1 Managing users](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.0.1/cpd/admin/users.html){: external}.
+
+#### Known issues
+{: #9December2020-bugs}
+
+- The Events service is not supported on a Red Hat OpenShift 4.5 air-gapped cluster that uses the in-cluster registry for storing images. If you have such a cluster, you must disable the Analytics feature and skip the prerequisite step of installing the Events service. Alternatively, you can install on a cluster that is connected to the internet.
+
+- The assistant might return a 400 error if the following set of events occur:
+<!-- issue 39667-->
+  - Autocorrection is enabled, and is being applied to an incoming message.
+  - The Postgres data store is down.
+  - The dialog skill that is being used by the assistant is being used for the first time, or there is otherwise no cache for it in the data store.
+  
+  To prevent the errors, you can temporarily disable autocorrection from the *Options>Autocorrection* page of the dialog skill.
 
 ### 19 June 2020
 {: #19June2020}

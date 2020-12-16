@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-12-14"
+lastupdated: "2020-12-16"
 
 subcollection: assistant-data
 
@@ -32,6 +32,23 @@ For installation instructions, find the instructions for the appropriate version
 
 - [Installing on {{site.data.keyword.icp4dfull_notm}} 3.5](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.5.0/svc-assistant/assistant-install.html){: external} 
 - [Installing on {{site.data.keyword.icp4dfull_notm}} 3.0.1](#install-150-on-301)
+
+## System requirements
+: #install-150-reqs}
+
+| Resource | Large  | Medium |  Small |
+|----------|--------|--------|--------|
+| vCPU     |     35 |     25 |     15 |
+| Memory   | 250 GB | 180 GB | 100 GB |
+| Storage  | 284 Gi | 284 Gi | 284 Gi |
+{: caption="System requirements" caption-side="top"}
+
+The following table shows details for a typical deployment.
+
+| Nodes | VPCs | Memory per node |
+|-------|------|-----------------|
+|     4 |   16 |          128 GB |
+{: caption="Deployment details" caption-side="top"}
 
 ## Installing on IBM Cloud Pak for Data 3.0.1
 {: #install-150-on-301}
