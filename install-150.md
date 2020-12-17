@@ -34,7 +34,7 @@ For installation instructions, find the instructions for the appropriate version
 - [Installing on {{site.data.keyword.icp4dfull_notm}} 3.0.1](#install-150-on-301)
 
 ## System requirements
-{}: #install-150-reqs}
+{: #install-150-reqs}
 
 The following table provides system requirements for the various supported deployment sizes.
 
