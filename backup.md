@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-12-15"
+lastupdated: "2020-12-17"
 
 subcollection: assistant-data
 
@@ -31,13 +31,11 @@ You can back up and restore the data that is associated with your {{site.data.ke
 
 The primary data storage for {{site.data.keyword.conversationshort}} is a Postgres database. Your data, such as workspaces, assistants, and skills are stored in Postgres. Other internal data, such as trained models, can be recreated from the data in Postgres.
 
-To back up the data, you use a tool that Postgres provides that is called `pg_dump`. The dump tool creates a backup by sending the database contents to `stdout` where you can write it to a file. 
-
-Choose one of the following ways to manage the backup of data:
+<!--Choose one of the following ways to manage the backup of data:
 
 - **[Kubernetes CronJob](#backup-cronjob)**: Use the `$INSTANCE-store-cronjob` cron job that is provided for you.
 - **[backupPG.sh script](#backup-os)**: Use the `backupPG.sh` bash script.
-- **[pg_dump tool](#backup-cp4d)**: Run the `pg_dump` tool on each cluster directly. This is the most manual option, but also affords the most control over the process.
+- **[pg_dump tool](#backup-cp4d)**: Run the `pg_dump` tool on each cluster directly. This is the most manual option, but also affords the most control over the process.-->
 
 When you back up data with one of these procedures before you upgrade from one version to another, the workspace IDs of your skills are preserved, but the service instance IDs and credentials change.
 {: note}
@@ -58,7 +56,7 @@ If you're using version 1.4.2, see the instructions [here](#backup-cronjob-142).
 
 A CronJob named `$INSTANCE-store-cronjob` is created and enabled for you automatically when you deploy the service. A CronJob is a type of Kubernetes controller. A CronJob creates Jobs on a repeating schedule. For more information, see [CronJob](https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/){: external} in the Kubernetes documentation. 
 
-The jobs that are created by the store cron job are called `$INSTANCE-backup-job-$TIMESTAMP`. Each job deletes old logs and runs a backup of the store Postgres database. The backups are created with the `pg_dump` command and stored in a persistent volume claim (PVC) named $INSTANCE-store-pvc . You are responsible for moving the backup to a more secure location after its initial creation.
+The jobs that are created by the store cron job are called `$INSTANCE-backup-job-$TIMESTAMP`. Each job deletes old logs and runs a backup of the store Postgres database. Postgres provides a tool that is called `pg_dump`. The dump tool creates a backup by sending the database contents to `stdout` where you can write it to a file. The backups are created with the `pg_dump` command and stored in a persistent volume claim (PVC) named $INSTANCE-store-pvc . You are responsible for moving the backup to a more secure location after its initial creation.
 
 The following table lists the configuration values that control the backup cron job. You can change the default values for these settings by adding them to the `install-override.yaml` file and changing their default values when you deploy the service. Or you can edit these settings by editing the cron job after the service is deployed by using the `oc edit cronjob $INSTANCE-store-cronjob` command.
 
@@ -155,7 +153,7 @@ To access the backup files from Portworx, complete the following steps:
     ```
     {: codeblock}
 
-## Backing up data by using the script
+<!--## Backing up data by using the script
 {: #backup-os}
 
 If you're using version 1.4.2, see the instructions [here](#backup-os-142).
@@ -244,7 +242,7 @@ To back up your data, complete these steps:
     oc exec -it ${KEEPER_POD} --pg_dump --help
     ```
     {: pre}
- 
+ -->
 ## Restoring data
 {: #backup-restore}
 
@@ -541,7 +539,9 @@ where the first value (`00000000-0000-0000-0000-001570184978`) is the instance I
 
 You can pass this file to the script for subsequent runs of the script in the same environment. Or you can edit it for use in other back up and restore operations. The mapping file is optional. If it is not provided, the tool prompts you for the mapping details based on information you provide in the YAML files.
 
-## Backing up data by using the CronJob (1.4.2 only)
+## Backup instructions for previous releases
+
+### Backing up data by using the CronJob (1.4.2 only)
 {: #backup-cronjob-142}
 
 A CronJob named `$RELEASE-backup-cronjob` is created and enabled for you automatically when you deploy the service. A CronJob is a type of Kubernetes controller. A CronJob creates Jobs on a repeating schedule. For more information, see [CronJob](https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/){: external} in the Kubernetes documentation. 
@@ -581,7 +581,7 @@ The following values configure how backups are stored in the persistent volume. 
 | postgres.backup.dataPVC.size | The size of the persistent volume claim. | `1Gi` |
 {: caption="Cron job persistent volume variables" caption-side="top"}
 
-## Backing up data by using the script (1.4.2 and earlier only)
+### Backing up data by using the script (1.4.2 and earlier only)
 {: #backup-os-142}
 
 The `backupPG.sh` script gathers the pod name and credentials for one of your Postgres Proxy pods, which is the pod from which the `pg_dump` command must be run, and then runs the command for you.
@@ -638,7 +638,7 @@ To access the backup files from local storage:
 
 1.  Securely copy the files to wherever you want to store them for a longer period of time.
 
-## Backing up data manually (1.4.2 and earlier)
+### Backing up data manually (1.4.2 and earlier)
 {: #backup-cp4d-142}
 
 Complete the steps in this procedure to back up your data by using the Postgres tool directly.

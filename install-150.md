@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-12-16"
+lastupdated: "2020-12-17"
 
 subcollection: assistant-data
 
@@ -30,11 +30,13 @@ subcollection: assistant-data
 
 For installation instructions, find the instructions for the appropriate version of {{site.data.keyword.icp4dfull_notm}}:
 
-- [Installing on {{site.data.keyword.icp4dfull_notm}} 3.5](#install-150-on-301)
+- [Installing on {{site.data.keyword.icp4dfull_notm}} 3.5](#install-150-on-35)
 - [Installing on {{site.data.keyword.icp4dfull_notm}} 3.0.1](#install-150-on-301)
 
 ## System requirements
-: #install-150-reqs}
+{: #install-150-reqs}
+
+The following table provides system requirements for the various supported deployment sizes.
 
 | Resource | Large  | Medium |  Small |
 |----------|--------|--------|--------|
@@ -86,8 +88,9 @@ The installation process takes 1 or 2 hours. These example commands are for inst
 1.  Install the EDB operator to get Postgres resources. For example:
 
     ```
-    ./cpd-cli install --assembly edb-operator --optional-modules edb-pg-base:x86_64 \
-    --namespace zen --repo repo.yaml --cluster-pull-prefix $(oc registry info \
+    ./cpd-cli install --assembly edb-operator \
+    --optional-modules edb-pg-base:x86_64 --namespace zen \
+    --repo repo.yaml --cluster-pull-prefix $(oc registry info \
     --internal)/zen --transfer-image-to=$(oc registry info)/zen \
     --ask-push-registry-credentials --insecure-skip-tls-verify
     ```
@@ -264,6 +267,64 @@ After installing the service, run a verification test to make sure that things a
     oc edit dvt watson-assistant---wa001
     ```
     {: pre}
+
+## Using Microsoft Azure storage
+{: #install-150-azure}
+
+To use Microsoft Azure Disk volumes as a storage solution, complete the following steps:
+
+1.  Create the storage class. For more information, see [Creating the Azure storage class](https://docs.openshift.com/container-platform/4.5/storage/persistent_storage/persistent-storage-azure.html#storage-create-azure-storage-class_persistent-storage-azure){: external}
+
+    The storage class defition looks as follows:
+
+    ```
+    allowVolumeExpansion: true
+    apiVersion: storage.k8s.io/v1
+    kind: StorageClass
+    metadata:
+      name: managed-premium-now
+    parameters:
+      kind: Managed
+      storageaccounttype: Premium_LRS
+    provisioner: kubernetes.io/azure-disk
+    reclaimPolicy: Delete
+    volumeBindingMode: Immediate
+    ```
+    {: codeblock}
+
+1.  Add the following `appConfigOverrides` entry to the `install-override.yaml` file:
+
+    ```
+    appConfigOverrides: |
+        crDefaults:
+          datastores:
+            elasticSearch:
+            - name: analytics
+              cloudpakopenElasticSearch:
+                storage:
+                  storageSize: 50Gi
+                settings:
+                  autoCreateIndex: False
+            - name: store
+              cloudpakopenElasticSearch:
+                storage:
+                  storageSize: 50Gi
+                settings:
+                  autoCreateIndex: False
+    ```
+    {: codeblock}
+
+1.  For any command where you include the `--storageclass` parameter, specify the `managed-premium-now` class name. For example:
+
+    ```
+    ./cpd-cli  install --assembly watson-assistant --instance wa001 \
+    --override install-override.yaml --namespace zen --repo repo.yaml \
+    --storageclass managed-premium-now \
+    --cluster-pull-prefix $(oc registry info --internal)/zen \
+    --transfer-image-to=$(oc registry info)/zen --ask-push-registry-credentials \
+    --insecure-skip-tls-verify
+    ```
+    {: codeblock}
 
 ## Troubleshooting issues
 {: #install-150-ts-get-logs}
