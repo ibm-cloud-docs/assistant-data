@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2015, 2020
-lastupdated: "2020-12-17"
+  years: 2015, 2021
+lastupdated: "2021-01-07"
 
 subcollection: assistant-data
 
@@ -31,11 +31,11 @@ You can back up and restore the data that is associated with your {{site.data.ke
 
 The primary data storage for {{site.data.keyword.conversationshort}} is a Postgres database. Your data, such as workspaces, assistants, and skills are stored in Postgres. Other internal data, such as trained models, can be recreated from the data in Postgres.
 
-<!--Choose one of the following ways to manage the backup of data:
+Choose one of the following ways to manage the backup of data:
 
 - **[Kubernetes CronJob](#backup-cronjob)**: Use the `$INSTANCE-store-cronjob` cron job that is provided for you.
 - **[backupPG.sh script](#backup-os)**: Use the `backupPG.sh` bash script.
-- **[pg_dump tool](#backup-cp4d)**: Run the `pg_dump` tool on each cluster directly. This is the most manual option, but also affords the most control over the process.-->
+- **[pg_dump tool](#backup-cp4d)**: Run the `pg_dump` tool on each cluster directly. This is the most manual option, but also affords the most control over the process.
 
 When you back up data with one of these procedures before you upgrade from one version to another, the workspace IDs of your skills are preserved, but the service instance IDs and credentials change.
 {: note}
@@ -153,7 +153,7 @@ To access the backup files from Portworx, complete the following steps:
     ```
     {: codeblock}
 
-<!--## Backing up data by using the script
+## Backing up data by using the script
 {: #backup-os}
 
 If you're using version 1.4.2, see the instructions [here](#backup-os-142).
@@ -162,8 +162,10 @@ The `backupPG.sh` script gathers the pod name and credentials for one of your Po
 
 To back up data by using the provided script, complete the following steps:
 
-1.  Download the `backupPG.sh` script from GitHub.
-1.  Log in to the OpenShift project namespace or Kubernetes namespace where you installed the product.
+1.  Download the `backupPG.sh` script. 
+
+    Go to [GitHub](https://github.com/watson-developer-cloud/community/blob/master/watson-assistant/data/){: external}, and find the directory for your version to find the file.
+1.  Log in to the OpenShift project namespace where you installed the product.
 1.  Find out how many provisioned service instances there are in your existing cluster. To find out, open the {{site.data.keyword.icp4dfull_notm}} web client. From the main navigation menu, select Services, then **My instances**, and then open the **Provisioned instances** tab.
 
     You need to know this information so you can be sure to set up the target cluster with the same number of instances.
@@ -242,7 +244,7 @@ To back up your data, complete these steps:
     oc exec -it ${KEEPER_POD} --pg_dump --help
     ```
     {: pre}
- -->
+
 ## Restoring data
 {: #backup-restore}
 
