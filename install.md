@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2015, 2020
-lastupdated: "2020-12-09"
+  years: 2015, 2021
+lastupdated: "2021-01-11"
 
 subcollection: assistant-data
 
@@ -47,3 +47,20 @@ The installation process differs depending on the version you are installing. Th
 | 1.3 | {{site.data.keyword.icp4dfull_notm}} 2.1.0.1 -2.1.0.2 (**I do not have a cluster**)  | [Installing 1.3](/docs/assistant-data?topic=assistant-data-install-130) |
 | 1.2 | {{site.data.keyword.icp4dfull_notm}} 2.1.0.0 (**I do not have a cluster**)  | [Installing 1.2](/docs/assistant-data?topic=assistant-data-install-120) |
 {: caption="Available versions" caption-side="top"}
+
+## Support matrix
+{: #install-support-matrix}
+
+The following tables describes which versions of {{site.data.keyword.conversationshort}} are supported on which versions of {{site.data.keyword.icp4dfull_notm}} and Red Hat OpenShift.
+
+| {{site.data.keyword.conversationshort}} version | {{site.data.keyword.icp4dfull_notm}} version | Red Hat OpenShift (RHOS) version | Notes |
+| ----------------------------------|----------------|----------------|----------|
+| 1.5.0 | 3.5 | 4.5 | Analytics feature works with this configuration only. |
+| 1.5.0 | 3.5 | 3.11 | N/A |
+| 1.5.0 | 3.0.1 | 4.5 | N/A |
+| 1.5.0 | 3.0.1 | 3.11 | N/A |
+| 1.4.2 | 3.0.1 | 4.5 | N/A |
+| 1.4.2 | 3.0.1 | 3.11 | N/A |
+| 1.4.2 | 2.5 | 3.11 | N/A |
+| 1.4.1 | 2.5 | 3.11 | N/A |
+{: caption="Support matrix" caption-side="top"}
