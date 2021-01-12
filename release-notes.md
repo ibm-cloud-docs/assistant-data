@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2015, 2020
-lastupdated: "2020-12-15"
+  years: 2015, 2021
+lastupdated: "2021-01-11"
 
 subcollection: assistant-data
 
@@ -70,6 +70,8 @@ This release does not include the following features, which are available for cl
 {: #9December2020-bugs}
 
 - The Events service is not supported on a Red Hat OpenShift 4.5 air-gapped cluster that uses the in-cluster registry for storing images. If you have such a cluster, you must disable the Analytics feature and skip the prerequisite step of installing the Events service. Alternatively, you can install on a cluster that is connected to the internet.
+
+<!-- {{site.data.keyword.conversationshort}} 1.5.0 is not supported on FIPS-enabled clusters.-->
 
 - The assistant might return a 400 error if the following set of events occur:
 <!-- issue 39667-->

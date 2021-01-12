@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2021
-lastupdated: "2021-01-07"
+lastupdated: "2021-01-11"
 
 subcollection: assistant-data
 
@@ -166,9 +166,11 @@ To back up data by using the provided script, complete the following steps:
 
     Go to [GitHub](https://github.com/watson-developer-cloud/community/blob/master/watson-assistant/data/){: external}, and find the directory for your version to find the file.
 1.  Log in to the OpenShift project namespace where you installed the product.
-1.  Find out how many provisioned service instances there are in your existing cluster. To find out, open the {{site.data.keyword.icp4dfull_notm}} web client. From the main navigation menu, select Services, then **My instances**, and then open the **Provisioned instances** tab.
+1.  Find out how many provisioned service instances there are in your existing cluster. You need to know this information so you can be sure to set up the target cluster with the same number of instances.
 
-    You need to know this information so you can be sure to set up the target cluster with the same number of instances.
+    To find out, open the {{site.data.keyword.icp4dfull_notm}} web client. From the main navigation menu, select Services, then **Instances**, and then open the **Provisioned instances** tab.
+
+    If more than one person created instances, then ask the other people who created instances to log in and check the number they created. You can then sum them to get the total number of instances for your deployment. Not even an administrative user can see instances that were created by others from the web client user interface.
 
 1.  Run the script by using the following command:
 
@@ -180,7 +182,7 @@ To back up data by using the provided script, complete the following steps:
     where these are the arguments:
 
     - `${file-name}`: Specify a file where you want to write the downloaded data. Be sure to specify a backup directory in which to store the file. For example, `/bu/store.dump` to create a backup directory named `bu`. This directory will be referenced later as `$BACKUP-DIR`.
-    - `--instance ${instance-name}`: Targets a specific instance of the Assistant deployment. Otherwise, the script backs up the first instance it finds in the namespace you are logged in to.
+    - `--instance ${instance-name}`: Targets a specific instance of the Assistant deployment. Otherwise, the script backs up the first instance it finds in the namespace you are logged in to. You can find the instance name by running the command `./cpd-cli status -n $NAMESPACE`.
 
 If you prefer to back up data by using the Postgres tool directly, you can complete the procedure to back up data manually.
 
@@ -284,7 +286,16 @@ Before it adds the backed-up data, the tool removes the data for all instances i
 
     - **postgres.yaml**: The Postgres file lists details for the target Postgres pods. See [Creating the postgres.yaml file](#backup-postgres-yaml).
 
-1.  Copy the files that you downloaded and created in the previous steps into an existing directory of your choice on a Postgres Keeper pod. The files that you need to copy are `pgmig`, `postgres.yaml`, `resourceController.yaml`, and `store.dump`. 
+1.  Copy the files that you downloaded and created in the previous steps into an existing directory of your choice on a Postgres Keeper pod.
+
+    Use the following command to find the keeper pods:
+
+    ```
+    oc get pods --field-selector=status.phase=Running -l component=stolon-keeper
+    ```
+    {: pre}
+
+    The files that you need to copy are `pgmig`, `postgres.yaml`, `resourceController.yaml`, and `store.dump`. 
 
     You can use the following commands to do so. 
     
@@ -416,93 +427,49 @@ To add the values that are required but currently missing from the file, complet
 1.  To get information about the `host`, you must get the Store VCAP secret.
 
     ```
-    oc get secret ${release-name}-store-vcap -o jsonpath='{.data.vcap_services}' | base64 -d
+    oc get secret ${instance}-store-vcap -o jsonpath='{.data.vcap_services}' | base64 -d
 
     ```
     {: codeblock}
 
-    The following information is returned:
+    Information for the Redis and Postgres databases is returned. Look for the segment of JSON code for the Postgres database, named `pgservice`. It looks like this:
 
     ```
     {
       "user-provided":[
-      {
-        "name":"pgservice",
-        "label":"user-provided",
-        "credentials":
+        {
+          "name": "pgservice", 
+          "label": "user-provided", 
+          "credentials": 
           {
-            "host":"${release-name}-store-postgres-proxy-svc",
-            "port":5432,
-            "database":"conversation_icp_${release-name}",
-            "username":"store_icp_${release-name}",
-            "password":"XX="
+            "host": "${instance}-postgres-proxy-service.${namespace}.svc.cluster.local", 
+            "port": 5432, 
+            "database": "conversation_pprd_${instance}", 
+            "username": "${dbadmin}", 
+            "password": "${password}"
           }
         }
-      ]
+      ],
+      ...
     }
     ```
     {: codeblock}
 
-1.  Copy the values for user-provided credentials `host`, `port`, `database`, and `username`. 
+1.  Copy the values for user-provided credentials (`host`, `port`, `database`, `username`, and `password`).
 
-    For example, in this sample the values are:
-    
+    You can specify the same values that are returned for `username`, and `password` as the `su_username` and `su_password` values.
+
+    The updated file will look something like this:
+
     ```yaml
-    host: ${release-name}-store-postgres-proxy-svc
+    host: wa_inst-postgres-proxy-service.my150wa.svc.cluster.local
     port: 5432
-    database: conversation_icp_${release-name}
-    username: store_icp_${release-name}
-    ```
-
-1.  To get the value of `su_username`, you need to get details for the postgres keeper pods:
-
-    To get the keeper pod names, use the following command:
-
-    ```bash
-    oc get pods -o=custom-columns=NAME:.metadata.name -l component=stolon-keeper,release=${release-name}
+    database: conversation_pprd_wa_inst
+    username: dbadmin
+    su_username: dbadmin
+    su_password: mypassword
     ```
     {: codeblock}
-
-    Get information about the pod.
-
-    ```bash
-    oc describe pod ${KEEPER_POD}
-    ```
-    {: codeblock}
-
-    For example: 
-
-    ```bash
-    oc describe pod ibm-assistant-ts-z781-keeper-0
-    ```
-    {: codeblock}
-
-    Look for this section:
-
-    ```
-    Environment:
-    ...
-    STKEEPER_PG_SU_USERNAME: admin
-    ```
-    {: screen}
-
-    For example, you can use a command like this to find it:
-
-    ```bash
-    oc describe pod ibm-assistant-ts-z781-keeper-0 | grep STKEEPER_PG_SU_USERNAME
-    ```
-    {: codeblock}
-
-    The value of `STKEEPER_PG_SU_USERNAME` is the `su_username`. Copy the username and add it to the YAML file.
-
-1.  To get the `su_password`, you must get the postgres secret. 
-
-    ```bash
-    oc get secret ${release-name}-postgres-secret -o jsonpath={.data.pg_su_password} | base64 -d
-    ```
-    {: codeblock}
-
-    Copy the password and add it to the YAML file.
 
 1.  Save the **postgres.yaml** file.
 

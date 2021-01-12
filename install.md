@@ -51,11 +51,11 @@ The installation process differs depending on the version you are installing. Th
 ## Support matrix
 {: #install-support-matrix}
 
-The following tables describes which versions of {{site.data.keyword.conversationshort}} are supported on which versions of {{site.data.keyword.icp4dfull_notm}} and Red Hat OpenShift.
+The following table describes which versions of {{site.data.keyword.conversationshort}} are supported on which versions of {{site.data.keyword.icp4dfull_notm}} and Red Hat OpenShift.
 
-| {{site.data.keyword.conversationshort}} version | {{site.data.keyword.icp4dfull_notm}} version | Red Hat OpenShift (RHOS) version | Notes |
+| {{site.data.keyword.conversationshort}} version | {{site.data.keyword.icp4dfull_notm}} version | Red Hat OpenShift (RHOS) version | Special notes |
 | ----------------------------------|----------------|----------------|----------|
-| 1.5.0 | 3.5 | 4.5 | Analytics feature works with this configuration only. |
+| 1.5.0 | 3.5 | 4.5 | Analytics feature is supported with this configuration only. |
 | 1.5.0 | 3.5 | 3.11 | N/A |
 | 1.5.0 | 3.0.1 | 4.5 | N/A |
 | 1.5.0 | 3.0.1 | 3.11 | N/A |
