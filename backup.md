@@ -457,7 +457,7 @@ To add the values that are required but currently missing from the file, complet
 
 1.  Copy the values for user-provided credentials (`host`, `port`, `database`, `username`, and `password`).
 
-    You can specify the same values that are returned for `username`, and `password` as the `su_username` and `su_password` values.
+    You can specify the same values that were returned for `username` and `password` as the `su_username` and `su_password` values.
 
     The updated file will look something like this:
 
