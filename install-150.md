@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2015, 2020
-lastupdated: "2020-12-17"
+  years: 2015, 2021
+lastupdated: "2021-01-14"
 
 subcollection: assistant-data
 
@@ -292,7 +292,23 @@ To use Microsoft Azure Disk volumes as a storage solution, complete the followin
     ```
     {: codeblock}
 
-1.  Add the following `appConfigOverrides` entry to the `install-override.yaml` file:
+1.  Make the following edits to the to the `install-override.yaml` file before you install the product.
+
+    Increase the size of the persistent volumes by changing the value of the `storageSize` settings to `50Gi` for the following data stores:
+
+    ```
+    etcd:
+      storageSize: 50Gi
+    kafka:
+      storageSize: 50Gi
+    minio:
+      storageSize: 50Gi
+    postgres:
+      storageSize: 50Gi
+    ```
+    {: codeblock}
+
+    Add the following `appConfigOverrides` entry:
 
     ```
     appConfigOverrides: |
