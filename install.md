@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2021
-lastupdated: "2021-01-11"
+lastupdated: "2021-01-13"
 
 subcollection: assistant-data
 
@@ -53,7 +53,7 @@ The installation process differs depending on the version you are installing. Th
 
 The following table describes which versions of {{site.data.keyword.conversationshort}} are supported on which versions of {{site.data.keyword.icp4dfull_notm}} and Red Hat OpenShift.
 
-| {{site.data.keyword.conversationshort}} version | {{site.data.keyword.icp4dfull_notm}} version | Red Hat OpenShift (RHOS) version | Special notes |
+| {{site.data.keyword.conversationshort}} version | {{site.data.keyword.icp4dfull_notm}} version | Red Hat OpenShift version | Special notes |
 | ----------------------------------|----------------|----------------|----------|
 | 1.5.0 | 3.5 | 4.5 | Analytics feature is supported with this configuration only. |
 | 1.5.0 | 3.5 | 3.11 | N/A |
@@ -63,4 +63,7 @@ The following table describes which versions of {{site.data.keyword.conversation
 | 1.4.2 | 3.0.1 | 3.11 | N/A |
 | 1.4.2 | 2.5 | 3.11 | N/A |
 | 1.4.1 | 2.5 | 3.11 | N/A |
+| 1.4.1 | 2.5 | stand-alone version | N/A |
 {: caption="Support matrix" caption-side="top"}
+
+N/A means `not applicable`.
