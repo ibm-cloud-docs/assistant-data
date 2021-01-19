@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2021
-lastupdated: "2021-01-13"
+lastupdated: "2021-01-15"
 
 subcollection: assistant-data
 
@@ -63,7 +63,7 @@ The following table describes which versions of {{site.data.keyword.conversation
 | 1.4.2 | 3.0.1 | 3.11 | N/A |
 | 1.4.2 | 2.5 | 3.11 | N/A |
 | 1.4.1 | 2.5 | 3.11 | N/A |
-| 1.4.1 | 2.5 | stand-alone version | N/A |
+| 1.4.1 | 2.5 Stand-alone version | N/A | N/A |
 {: caption="Support matrix" caption-side="top"}
 
 N/A means `not applicable`.
