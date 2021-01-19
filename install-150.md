@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2021
-lastupdated: "2021-01-14"
+lastupdated: "2021-01-19"
 
 subcollection: assistant-data
 
@@ -166,7 +166,7 @@ After installing the service, run a verification test to make sure that things a
       # The name of the WA instance to target with this DVT run
       assistantInstanceName: watson-assistant---${instance-name}
       # The cucumber test tags to execute
-      testTags: "@accuracy,@dialogErrors,@dialogs,@dialogV1,@dialogV1errors,@embedsearch,@entities,@folders,@fuzzy,@generic,@healthcheck,@intents,@newse,@openentities,@patterns,@prebuilt,@search,@slots,@spellcheck,@spellcheckfr,@v2assistants,@v2authorskill,@v2authorwksp,@v2healthcheck,@v2skillref,@v2snapshots,@workspaces"
+      testTags: "@accuracy,@dialogErrors,@dialogs,@dialogV1,@dialogV1errors,@embedsearch,@entities,@folders,@fuzzy,@generic,@healthcheck,@intents,@openentities,@patterns,@prebuilt,@search,@slots,@spellcheck,@spellcheckfr,@v2assistants,@v2authorskill,@v2authorwksp,@v2skillref,@v2snapshots,@workspaces"
       # Information specific to this cluster
       cluster:
         # :type: Cluster environment type
