@@ -1,10 +1,12 @@
 ---
 
 copyright:
-  years: 2015, 2020
-lastupdated: "2020-12-04"
+  years: 2015, 2021
+lastupdated: "2021-01-22"
 
 subcollection: assistant-data
+
+content-type: faq
 
 ---
 
@@ -32,6 +34,7 @@ Find answers to frequently-asked questions and quick fixes for common problems.
 
 ## What's a...
 {: #faqs-answers}
+{: faq}
 
 | Term | Definition |
 |------|------------|
@@ -59,21 +62,25 @@ Find answers to frequently-asked questions and quick fixes for common problems.
 
 ## I don’t see the Analytics page
 {: #faqs-view-analytics}
+{: faq}
 
 You can only view the Analytics page if the system administrator enabled the feature in your deployment. A prerequisite service that is required by the feature is only available on OpenShift Red Hat 4.5; it is not available on 3.11.
 
 ## Where can I find an example for creating my first assistant?
 {: #faqs-get-started}
+{: faq}
 
 Follow the steps in the [Getting started with {{site.data.keyword.conversationshort}}](/docs/assistant-data?topic=assistant-data-getting-started) tutorial for a product introduction and to get help creating your first assistant.
 
 ## Can I export the user conversations from the Analytics page?
 {: #faqs-export-conversation}
+{: faq}
 
 You cannot directly export conversations from the User conversation page.  You can, however, use the `/logs` API to list events from the transcripts of conversations that occurred between your users and your assistant. For more information, see the [API reference](https://cloud.ibm.com/apidocs/assistant-data-v1#listlogs){: external} and the [Filter query reference](/docs/assistant-data?topic=assistant-data-filter-reference).
 
 ## Can I export and import dialog nodes?
 {: #faqs-nodes}
+{: faq}
 
 No, you cannot export and import dialog nodes from the product user interface.
 
@@ -87,20 +94,24 @@ If you want to copy dialog nodes from one skill into another skill, follow these
 
 ## How long are log files kept for a workspace?
 {: #faqs-assistant-logs}
+{: faq}
 
 Messages are retained for 90 days. For more information, see [Log limits](/docs/assistant-data?topic=assistant-data-logs#logs-limits).
 
 ## How do I create a webhook?
 {: #faqs-webhook-how}
+{: faq}
 
 To define a webhook and add its details, open the skill where you want to add the webhook. Open the **Options** page, and then click **Webhooks** to add details about your webhook. To invoke the webhook, call it from one or more of your dialog nodes. For more information, see [Making a programmatic call from dialog](/docs/assistant-data?topic=assistant-data-dialog-webhooks).
 
 ## Can I have more than one entry in the URL field for a webhook?
 {: #faqs-webhook-url}
+{: faq}
 
 No, you can define only one webhook URL for a dialog skill. For more information, see [Defining the webhook](/docs/assistant-data?topic=assistant-data-dialog-webhooks#dialog-webhooks-create).
 
 ## Can I extend the webhook time limit?
 {: #faqs-webhook-timeout}
+{: faq}
 
 No. The service that you call from the webhook must return a response in 8 seconds or less, or the call is canceled. You cannot increase this time limit. For more information about strategies for handling complex actions with a webhook, watch the video in [Making a programmatic call from dialog](/docs/assistant-data?topic=assistant-data-dialog-webhooks).
