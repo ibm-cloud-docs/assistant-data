@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2015, 2020
-lastupdated: "2020-08-20"
+  years: 2015, 2021
+lastupdated: "2021-02-04"
 
 subcollection: assistant-data
 
@@ -53,6 +53,15 @@ To upgrade your instance, complete these steps:
 1.  Import the data you downloaded from your previous skill by creating a new dialog skill. 
 
     At creation time, choose to import a skill, and then upload the JSON file from the skill that was exported earlier. For more details, see [Creating a dialog skill](/docs/assistant-data?topic=assistant-data-skill-dialog-add).
+
+    If you are upgrading to 1.5.0 and see the message `New System Entities are not supported`, you must edit the downloaded JSON file before you upload it. Search the JSON file for the system entities entry and disable the feature. For example:
+
+    ```json
+    "system_entities": {
+      "enabled": false
+    }
+    ```
+    {: codeblock}
 
     If you are upgrading to V1.3, in this version of the product, a workspace is now represented by a dialog skill.
     {: note} 
