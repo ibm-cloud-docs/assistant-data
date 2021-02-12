@@ -101,7 +101,6 @@ Watson Assistant for IBM Cloud Pak for Data (Installed)
          architecture.md
          information-security.md
          backup.md
-         recovery.md
          upgrade.md
 
     {: .topicgroup}
@@ -118,6 +117,7 @@ Watson Assistant for IBM Cloud Pak for Data (Installed)
     {: .navgroup id="reference"}
     [v2 API reference](https://cloud.ibm.com/apidocs/assistant-data-v2)
     [v1 API reference](https://cloud.ibm.com/apidocs/assistant-data-v1)
+    recovery.md
     dialog-methods.md
     expression-language.md
     filter-reference.md
