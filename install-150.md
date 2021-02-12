@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2021
-lastupdated: "2021-01-20"
+lastupdated: "2021-02-12"
 
 subcollection: assistant-data
 
@@ -32,6 +32,13 @@ For installation instructions, find the instructions for the appropriate version
 
 - [Installing on {{site.data.keyword.icp4dfull_notm}} 3.5](#install-150-on-35)
 - [Installing on {{site.data.keyword.icp4dfull_notm}} 3.0.1](#install-150-on-301)
+
+## Architecture
+{: #install-150-arch}
+
+When you install the service, you add multiple services and resources that are needed by {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull_notm}}. The following diagram illustrates the components that are used by the service.
+
+![Diagram of the components used by the assistant service](images/components.png)
 
 ## System requirements
 {: #install-150-reqs}
