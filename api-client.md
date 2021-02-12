@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-08-20"
+lastupdated: "2021-02-12"
 
 subcollection: assistant-data
 
@@ -263,10 +263,14 @@ This output tells us that we have successfully communicated with the {{site.data
 ## Processing user input to detect intents
 {: #api-client-process-input}
 
-To be able to process user input, we need to add a user interface to our client application. For this example, we'll keep things simple and use standard input and output.
-<span class="ph style-scope doc-content" data-hd-programlang="javascript">We can use the Node.js prompt-sync module to do this. (You can install prompt-sync using `npm install prompt-sync`.)</span>
-<span class="ph style-scope doc-content" data-hd-programlang="python">We can use the Python 3 `input` function to do this.</span>
-<span class="ph style-scope doc-content" data-hd-programlang="java">We can use the Java `Console.readLine()` function to do this.</span>
+To be able to process user input, we need to add a user interface to our client application. For this example, we'll keep things simple and use standard input and output. We can use the Node.js prompt-sync module to do this. (You can install prompt-sync using `npm install prompt-sync`.)
+{: javascript}
+
+To be able to process user input, we need to add a user interface to our client application. For this example, we'll keep things simple and use standard input and output. We can use the Python 3 `input` function to do this.
+{: python}
+
+To be able to process user input, we need to add a user interface to our client application. For this example, we'll keep things simple and use standard input and output. We can use the Java `Console.readLine()` function to do this.
+{: java}
 
 ```javascript
 // Example 2: adds user input and detects intents.
