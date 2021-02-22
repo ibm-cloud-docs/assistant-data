@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-12-10"
+lastupdated: "2021-02-22"
 
 subcollection: assistant-data
 
@@ -29,21 +29,21 @@ subcollection: assistant-data
 Learn about the components that comprise {{site.data.keyword.conversationfull}} for {{site.data.keyword.icp4dfull}} and how data flows through the service.
 {: shortdesc}
 
-The {{site.data.keyword.conversationshort}} service provides a Helm chart, which you install on the Kubernetes cluster that powers {{site.data.keyword.icp4dfull_notm}}. The Helm chart for {{site.data.keyword.conversationshort}} consists of the following types of resources:
+{{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull_notm}} consists of the following types of resources:
 
 - [Microservices](#architecture-microservices)
 - [Supporting data stores](#architecture-datasources)
 - [Training component](#architectture-slad)
 
-{{site.data.keyword.conversationshort}} uses the following patterns to communicate and pass information among its resources:
+{{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull_notm}} uses the following patterns to communicate and pass information among its resources:
 
 - **REST API**: Sends representational state transfer (REST) API calls over secure HTTP. 
 - **gRPC**: Makes method calls by using an open source remote procedure call framework, which enables the service to call a resource that is running on another system in the cluster as if it were a local object. For more information, see [gRPC](https://grpc.io/){: external}.
 - **LiteLinks**: Uses the LiteLinks protocol that was developed by IBM. LiteLinks has a custom service discovery layer that serves as a wrapper for an underlying Apache Thrift-based remote procedure call framework.
 
-The following diagram illustrates how data flows through the service's resources.
+The following diagram illustrates the components that are used by the service.
 
-![Flow diagram of the service](images/arch-diagram-150.png)
+![Diagram of the components used by the assistant service](images/components.png)
 
 The following sections provide more detail about each resource that is used by the system. The objective is to give you information that can help you to do initial resource planning and help you to manage changes in data needs over time.
 
