@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-09-15"
+lastupdated: "2021-02-22"
 
 subcollection: assistant-data
 
@@ -1488,6 +1488,21 @@ If you run the installation with no errors, but cannot provision an instance, ch
 
     - **3.0.1**: See [Step 4: Add the cluster namespace label to your service namespace](#install-142-cpd30-apply-namespace-label).
     - **2.5**: See: [Step 4: Add the cluster namespace label to your service namespace](#install-142-cpd25-apply-namespace-label).
+
+### Getting an error when using v2 `/message` API
+{: #install-142-v2-error}
+
+<!--https://github.ibm.com/watson-engagement-advisor/wea-backlog/issues/44398-->
+- Problem: When calling the [`/message` v2 API](https://cloud.ibm.com/apidocs/assistant-data-v2#message){: external} to send user input to your assistant, the following error is returned: `Unable to query assistant metadata`.
+- Cause: A database race condition occurs when too many Postgres heartbeat calls are sent.
+- Solution: To resolve the issue, turn off the `DB_USE_HEARTBEAT` environment setting on the store pods.
+  
+  You can use the following command to change the setting:
+
+  ```
+  oc set env deploy watson-assistant-store DB_USE_HEARTBEAT=false
+  ```
+  {: codeblock}
 
 ### To check the configuration
 {: #install-142-check-config}
