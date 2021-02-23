@@ -30,6 +30,7 @@ Watson Assistant for IBM Cloud Pak for Data (Installed)
         {: .topicgroup}
         Installing previous versions
             install-142.md
+            backup-142.md
             install-141.md
             install-140.md
             install-130.md
