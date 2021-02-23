@@ -52,7 +52,7 @@ When you back up data with one of these procedures before you upgrade from one v
 ## Backing up data by using the CronJob
 {: #backup-cronjob}
 
-If you're using version 1.4.2, see the instructions [here](/docs/discovery-data?topic=discovery-data-backup-142).
+If you're using version 1.4.2, see the instructions [here](/docs/assistant-data?topic=assistant-data-backup-142).
 
 A CronJob named `$INSTANCE-store-cronjob` is created and enabled for you automatically when you deploy the service. A CronJob is a type of Kubernetes controller. A CronJob creates Jobs on a repeating schedule. For more information, see [CronJob](https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/){: external} in the Kubernetes documentation. 
 
