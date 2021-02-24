@@ -29,13 +29,13 @@ subcollection: assistant-data
 You can back up and restore the data that is associated with your {{site.data.keyword.conversationshort}} deployment in {{site.data.keyword.icp4dfull_notm}}.
 {: shortdesc}
 
-These instructions describe how to backup and restore {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull_notm}} 1.4.2. Use these instructions to backup and restore 1.4.1 to 1.4.2 and 1.4.2 to 1.4.2.
+These instructions describe how to back up and restore {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull_notm}} 1.4.2. Use these instructions to back up and restore 1.4.1 to 1.4.2 and 1.4.2 to 1.4.2.
 
 The primary data storage for {{site.data.keyword.conversationshort}} is a Postgres database. Your data, such as workspaces, assistants, and skills are stored in Postgres. Other internal data, such as trained models, can be recreated from the data in Postgres.
 
 To back up the data, you use a tool that Postgres provides that is called `pg_dump`. The dump tool creates a backup by sending the database contents to `stdout` where you can write it to a file. 
 
-Choose one of the following ways to manage the backup of data:
+Choose one of the following ways to manage the back up of data:
 
 - **[Kubernetes CronJob](#backup-142-cronjob) (1.4.2 and later only)**: Use the `$RELEASE-backup-cronjob` cron job that is provided for you.
 - **[backupPG.sh script](#backup-142-os) (1.4.1 and later only)**: Use the `backupPG.sh` bash script that is provided with the service's installation files.
