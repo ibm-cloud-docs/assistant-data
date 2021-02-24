@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2021
-lastupdated: "2021-02-12"
+lastupdated: "2021-02-23"
 
 subcollection: assistant-data
 
@@ -63,6 +63,8 @@ The following table shows details for a typical deployment.
 {: #install-150-on-35}
 
 The overall steps are specified here as a preview. For the complete procedure, see the installation instructions on the [{{site.data.keyword.icp4dfull_notm}} knowledge center 3.5](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.5.0/svc-assistant/assistant-install.html){: external}
+
+You can backup data from a previous release before you install the new one if you want. For more information about backing up data from a 1.4.2 instance or another 1.5.0 instance, see [Backing up and restoring data](/docs/assistant-data?topic=assistant-data-backup).
 
 The installation process takes 1 or 2 hours. These example commands are for installing in a cluster with internet access.
 

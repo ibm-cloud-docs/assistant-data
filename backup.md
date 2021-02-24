@@ -29,6 +29,10 @@ subcollection: assistant-data
 You can back up and restore the data that is associated with your {{site.data.keyword.conversationshort}} deployment in {{site.data.keyword.icp4dfull_notm}}.
 {: shortdesc}
 
+These instructions describe how to backup and restore {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull_notm}} 1.5.0. Use these instructions to backup and restore 1.4.2 to 1.5 and 1.5 to 1.5.
+
+If you're using {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull_notm}} 1.4.2, see the instructions [here](/docs/assistant-data?topic=assistant-data-backup-142).
+
 The primary data storage for {{site.data.keyword.conversationshort}} is a Postgres database. Your data, such as workspaces, assistants, and skills are stored in Postgres. Other internal data, such as trained models, can be recreated from the data in Postgres.
 
 Choose one of the following ways to manage the backup of data:
@@ -51,8 +55,6 @@ When you back up data with one of these procedures before you upgrade from one v
 
 ## Backing up data by using the CronJob
 {: #backup-cronjob}
-
-If you're using version 1.4.2, see the instructions [here](/docs/assistant-data?topic=assistant-data-backup-142).
 
 A CronJob named `$INSTANCE-store-cronjob` is created and enabled for you automatically when you deploy the service. A CronJob is a type of Kubernetes controller. A CronJob creates Jobs on a repeating schedule. For more information, see [CronJob](https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/){: external} in the Kubernetes documentation. 
 
