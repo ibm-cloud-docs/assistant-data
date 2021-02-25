@@ -1423,11 +1423,11 @@ If you plan to restore service instances that you backed up from a deployment of
 
 Use the {{site.data.keyword.conversationshort}} product user interface to build training data and a dialog that can be used by your assistant.
 
-- To learn more about the service first, read the [overview](https://cloud.ibm.com/docs/assistant-data?topic=assistant-data-index).
-- To see how it works for yourself, follow the steps in the [getting started tutorial](https://cloud.ibm.com/docs/assistant-data?topic=assistant-data-getting-started).
-- For help managing the cluster, see [Managing the cluster](https://cloud.ibm.com/docs/assistant-data?topic=assistant-data-manage).
+- To learn more about the service first, read the [overview](/docs/assistant-data?topic=assistant-data-index).
+- To see how it works for yourself, follow the steps in the [getting started tutorial](/docs/assistant-data?topic=assistant-data-getting-started).
+- For help managing the cluster, see [Managing the cluster](/docs/assistant-data?topic=assistant-data-manage).
 
-## Troubleshooting issues
+## Troubleshooting installation issues
 {: #install-142-ts-get-logs}
 
 The first step to take if you hit an installation issue, such as a cluster node is not starting as expected, is to get logs from the cluster which can provide more detail.
@@ -1473,36 +1473,8 @@ To get log files, complete the following steps:
     ```
     {: codeblock}
 
-### Cannot provision an instance, and service images are missing from the catalog
-{: #install-142-missing-label}
+For more information about troubleshooting problems, see [Troubleshooting](/docs/assistant-data?topic=assistant-data-troubleshoot#troubleshoot-142).
 
-If you run the installation with no errors, but cannot provision an instance, check whether the product icon is visible in the service tile. From the {{site.data.keyword.icp4dfull_notm}} web client, go to the *Services* page. 
-
-    ![Services icon](images/cp4d-services-icon.png)
-
-1.  Find the {{site.data.keyword.conversationshort}} service tile. Check whether the product logo (![Watson Assistant logo](images/assistant-icon.png)) is displayed on the tile. 
-
-    ![Watson Assistant service tile](images/missing-icon.png)
-
-1.  If the logo is missing, it is likely that you missed the step in the installation process where you label the namespace.
-
-    - **3.0.1**: See [Step 4: Add the cluster namespace label to your service namespace](#install-142-cpd30-apply-namespace-label).
-    - **2.5**: See: [Step 4: Add the cluster namespace label to your service namespace](#install-142-cpd25-apply-namespace-label).
-
-### Getting an error when using v2 `/message` API
-{: #install-142-v2-error}
-
-- Problem: When calling the [`/message` v2 API](https://cloud.ibm.com/apidocs/assistant-data-v2#message){: external} to send user input to your assistant, the following error is returned: `Unable to query assistant metadata`.
-- Cause: A database race condition occurs when too many Postgres heartbeat calls are sent.
-- Solution: To resolve the issue, turn off the `DB_USE_HEARTBEAT` environment setting on the store pods.
-  
-  You can use the following command to change the setting:
-
-  ```
-  oc set env deploy watson-assistant-store DB_USE_HEARTBEAT=false
-  ```
-  {: codeblock}
-<!--issue 44398-->
 ### To check the configuration
 {: #install-142-check-config}
 
@@ -1514,4 +1486,3 @@ helm get <release-name> --tls [--tiller-namespace {namespace-name}]
 {: pre}
 
 The user-provided configuration values are listed at the start of the information that is returned.
-
