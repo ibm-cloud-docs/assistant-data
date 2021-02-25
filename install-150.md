@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2021
-lastupdated: "2021-02-23"
+lastupdated: "2021-02-25"
 
 subcollection: assistant-data
 
@@ -62,11 +62,16 @@ The following table shows details for a typical deployment.
 ## Installing on IBM Cloud Pak for Data 3.5
 {: #install-150-on-35}
 
-The overall steps are specified here as a preview. For the complete procedure, see the installation instructions on the [{{site.data.keyword.icp4dfull_notm}} knowledge center 3.5](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.5.0/svc-assistant/assistant-install.html){: external}
+The overall steps are specified here as a preview. For the complete procedure, see the installation instructions on the [{{site.data.keyword.icp4dfull_notm}} knowledge center 3.5](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.5.0/svc-assistant/assistant-install.html){: external}.
 
 You can back up data from a previous release before you install the new one if you want. For more information about backing up data from a 1.4.2 instance or another 1.5.0 instance, see [Backing up and restoring data](/docs/assistant-data?topic=assistant-data-backup).
 
-The installation process takes 1 or 2 hours. These example commands are for installing in a cluster with internet access.
+### Example simple overview of steps
+{: #install-150-on-35-example}
+
+The installation process takes 1 or 2 hours. 
+
+These example commands are for illustrative purposes only. This checklist gives you an idea of the overall process. When you are ready to install the product, be sure to follow the more detailed steps in the [{{site.data.keyword.icp4dfull_notm}} knowledge center 3.5](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.5.0/svc-assistant/assistant-install.html){: external}. These example steps cover installing in a cluster with internet access.
 
 1.  Copy images to your cluster. For example:
 
@@ -351,7 +356,7 @@ To use Microsoft Azure Disk volumes as a storage solution, complete the followin
     ```
     {: codeblock}
 
-## Troubleshooting issues
+## Troubleshooting installation issues
 {: #install-150-ts-get-logs}
 
 The first step to take if you hit an installation issue, such as a cluster node is not starting as expected, is to get logs from the cluster which can provide more detail.
@@ -396,6 +401,8 @@ To get log files, complete the following steps:
     oc describe pod {pod-name}
     ```
     {: codeblock}
+
+For more information about troubleshooting problems, see [Troubleshooting](/docs/assistant-data?topic=assistant-data-troubleshoot).
 
 ## Uninstalling on IBM Cloud Pak for Data 3.5
 {: #install-150-uninstall-35}
