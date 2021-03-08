@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2021
-lastupdated: "2021-02-23"
+lastupdated: "2021-03-08"
 
 subcollection: assistant-data
 
@@ -373,7 +373,7 @@ Before it adds the backed-up data, the tool removes the data for all instances i
     ```
     {: codeblock}
 
-1.  Initiate the execution of a remote command in the Proxy Pod.
+1.  Initiate the execution of a remote command in the Keeper Pod.
 
     ```bash
     oc exec -it $KEEPER_POD /bin/bash
@@ -456,7 +456,7 @@ To add the values that are required but currently missing from the file, complet
 ### Creating the postgres.yaml file
 {: #backup-142-postgres-yaml}
 
-The **postgres.yaml** file contains details about the Postgres pods from the old environment where you backed up the data. Add the following information to the file:
+The **postgres.yaml** file contains details about the Postgres pods from the old environment where you backed up the data. Update the following information in the file to reflect the target Postgres pods instead:
 
 ```yaml
 host: localhost
@@ -511,7 +511,7 @@ To add the values that are required but currently missing from the file, complet
     username: store_icp_${release-name}
     ```
 
-1.  To get the value of `su_username`, you need to get details for the postgres keeper pods:
+1.  To get the value of the super user (`su_username`), you need to get details for the postgres keeper pods:
 
     To get the keeper pod names, use the following command:
 
