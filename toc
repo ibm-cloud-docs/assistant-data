@@ -1,7 +1,7 @@
 {:navgroup: .navgroup}
 {:topicgroup: .topicgroup}
 
-{: .toc subcollection="assistant-data" category="cloud_pak" audience="service" href="/docs/assistant-data?topic=assistant-data-getting-started" path="assistant-data"}
+{: .toc subcollection="assistant-data" category="ai" audience="software" href="/docs/assistant-data?topic=assistant-data-getting-started" path="assistant-data"}
 Watson Assistant for IBM Cloud Pak for Data (Installed)
 
     {: .navgroup id="learn"}
