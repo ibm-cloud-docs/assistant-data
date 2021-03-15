@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2021
-lastupdated: "2021-03-08"
+lastupdated: "2021-03-15"
 
 subcollection: assistant-data
 
@@ -456,7 +456,7 @@ To add the values that are required but currently missing from the file, complet
 ### Creating the postgres.yaml file
 {: #backup-142-postgres-yaml}
 
-The **postgres.yaml** file contains details about the Postgres pods from the old environment where you backed up the data. Update the following information in the file to reflect the target Postgres pods instead:
+The **postgres.yaml** file contains details about the Postgres pods in the target environment (the environment where you will restore the data). Add the following YAML snippet to the file:
 
 ```yaml
 host: localhost
