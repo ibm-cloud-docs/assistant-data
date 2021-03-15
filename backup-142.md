@@ -456,7 +456,7 @@ To add the values that are required but currently missing from the file, complet
 ### Creating the postgres.yaml file
 {: #backup-142-postgres-yaml}
 
-The **postgres.yaml** file contains details about the Postgres pods in the target environment (the environment where you will restore the data). Add the following YAML snippet to the file:
+The **postgres.yaml** file contains details about the Postgres pods in your target environment (the environment where you will restore the data). Add the following information to the file:
 
 ```yaml
 host: localhost
