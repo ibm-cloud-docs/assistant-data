@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2021
-lastupdated: "2021-02-25"
+lastupdated: "2021-03-17"
 
 subcollection: assistant-data
 
@@ -24,20 +24,33 @@ subcollection: assistant-data
 {:swift: .ph data-hd-programlang='swift'}
 
 # Troubleshooting
-{: #troublehoot}
+{: #troubleshoot}
 
 Get help with solving issues that you encounter while using the product.
 {: shortdesc}
 
+## 1.5.0 
+{: #troubleshoot-150}
+
+### Delete the pdb (poddisruptionbudgets) when changing instance from medium to small
+{: #troubleshoot-delete-pdb}
+Whenever the size of Watson Assistant is changed from medium to small, a manual step is required to delete the `poddisruptionbudgets` that are created for medium instances.
+
+Run the following command, replacing `<instance-name>` with the name of your Watson Assistant CR instance and replacing `<namespace-name>` with the name of the namespace where the instance resides.
+
+```
+oc get pdb  -l icpdsupport/addOnId=assistant,component!=etcd,ibmevents.ibm.com/kind!=Kafka,app.kubernetes.io/instance=<instance-name> -n <namespace-name>
+```
+
 ## 1.4.2 
-{: #troublehoot-142}
+{: #troubleshoot-142}
 
 ### Cannot provision an instance, and service images are missing from the catalog
 {: #troubleshoot-142-missing-label}
 
 If you run the installation with no errors, but cannot provision an instance, check whether the product icon is visible in the service tile. From the {{site.data.keyword.icp4dfull_notm}} web client, go to the *Services* page. 
 
-    ![Services icon](images/cp4d-services-icon.png)
+  ![Services icon](images/cp4d-services-icon.png)
 
 1.  Find the {{site.data.keyword.conversationshort}} service tile. Check whether the product logo (![Watson Assistant logo](images/assistant-icon.png)) is displayed on the tile. 
 
