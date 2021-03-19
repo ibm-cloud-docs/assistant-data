@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2021
-lastupdated: "2021-03-17"
+lastupdated: "2021-03-19"
 
 subcollection: assistant-data
 
@@ -40,6 +40,8 @@ Run the following command, replacing `<instance-name>` with the name of your Wat
 
 ```
 oc get pdb  -l icpdsupport/addOnId=assistant,component!=etcd,ibmevents.ibm.com/kind!=Kafka,app.kubernetes.io/instance=<instance-name> -n <namespace-name>
+oc delete pdb watson-assistant---wa001-analytics watson-assistant---wa001-clu-embedding ... etc  -n <namespace-name>
+
 ```
 
 ## 1.4.2 
