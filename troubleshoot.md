@@ -39,8 +39,7 @@ Whenever the size of Watson Assistant is changed from medium to small, a manual 
 Run the following command, replacing `<instance-name>` with the name of your Watson Assistant CR instance and replacing `<namespace-name>` with the name of the namespace where the instance resides.
 
 ```
-oc get pdb  -l icpdsupport/addOnId=assistant,component!=etcd,ibmevents.ibm.com/kind!=Kafka,app.kubernetes.io/instance=<instance-name> -n <namespace-name>
-oc delete pdb watson-assistant---wa001-analytics watson-assistant---wa001-clu-embedding ... etc  -n <namespace-name>
+oc delete pdb  -l icpdsupport/addOnId=assistant,component!=etcd,ibmevents.ibm.com/kind!=Kafka,app.kubernetes.io/instance=<instance-name> -n <namespace-name>
 
 ```
 
