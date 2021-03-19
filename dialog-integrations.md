@@ -88,7 +88,7 @@ You might embed the web chat in multiple pages on your website. Let's say you wa
 - Response type: *Connect to human agent*
 - Button ID: `Z23453j24ty` (The button that routes to the investment experts agent queue)
 
-For more information about implementing chat transfers, see [Adding a *Connect to human agent* response type](/docs/assistant-data?topic=assistant-data-dialog-overview#dialog-overview-add-connect-to-human-agent). For more information about the `contains()` SpEL expression method, see [Expression language methods](https://cloud.ibm.com/docs/assistant-data?topic=assistant-data-dialog-methods#dialog-methods-strings-contains).
+For more information about implementing chat transfers, see [Adding a *Connect to human agent* response type](/docs/assistant-data?topic=assistant-data-dialog-overview#dialog-overview-multimedia-add). For more information about the `contains()` SpEL expression method, see [Expression language methods](https://cloud.ibm.com/docs/assistant-data?topic=assistant-data-dialog-methods).
 
 ## Web chat: Reusing the JWT for webhook authentication
 {: #dialog-integrations-chat-jwt}

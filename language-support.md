@@ -79,7 +79,7 @@ Table 2. Intent feature support details
 
 Table 3. Entity feature support details
 
-| Language | **[Entity fuzzy matching](/docs/assistant-data?topic=assistant-data-entities#entities-fuzzy-matching)** | **[Contextual entities](/docs/assistant-data?topic=assistant-data-entities#entities-create-annotation-based)** | **[Synonym recommendations](/docs/assistant-data?topic=assistant-data-entities#entities-synonyms)** |
+| Language | **[Entity fuzzy matching](/docs/assistant-data?topic=assistant-data-entities#entities-fuzzy-matching)** | **[Contextual entities](/docs/assistant-data?topic=assistant-data-entities#entities-create-annotation-based)** | **[Synonym recommendations](/docs/assistant-data?topic=assistant-data-entities#entities-create-dictionary-based)** |
 |:---:|:---:|:---:|:---:|
 | **English (en)**                   | GA | Beta | GA |
 | **Arabic (ar)**                    | GA (Misspelling only) | NA | NA |
