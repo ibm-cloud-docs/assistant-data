@@ -204,7 +204,7 @@ To add an entity that recognizes a pattern:
 
 1.  Click **Add value** and repeat the process to add more entity values.
 
-When you use pattern entities to find patterns in user input, you often need a way to store the part of the user input text that matches the pattern. To do so, you can use a context variable. For more information, see [Defining a context variable](/docs/assistant-data?topic=assistant-data-dialog-runtime#dialog-runtime-context-var-define).
+When you use pattern entities to find patterns in user input, you often need a way to store the part of the user input text that matches the pattern. To do so, you can use a context variable. For more information, see [Defining a context variable](/docs/assistant-data?topic=assistant-data-dialog-runtime-context#dialog-runtime-context-var-define).
 
 For example, your dialog might ask users for their email addresses. The dialog node condition will contain a condition similar to `@contactInfo:email`. You can use the following syntax in the dialog node's response section to define a context variable that captures and stores the user's email address text:
 

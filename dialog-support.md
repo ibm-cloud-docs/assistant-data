@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-10-02"
+lastupdated: "2021-03-19"
 
 subcollection: assistant
 
@@ -44,7 +44,7 @@ For example, you might add an intent and use it in a dialog node like the intent
 | Intent name | Intent user example 1 | Intent user example 2 | Response from dialog node that conditions on intent |
 |--------|-----------------------|-----------------------|-----------------------------------------------------|
 | `#call_support` | *How do I reach support?* | *What's your toll-free number?* | *Call 1-800-555-0123 to reach a call center agent at any time.* |
-| `#support_ticket` | *How do I get help?* | *Who can help me with an issue I'm having?* |  *Go to [Support Center](https://example.com/support) and open a support ticket.* |
+| `#support_ticket` | *How do I get help?* | *Who can help me with an issue I'm having?* |  *Go to `Support Center` and open a support ticket.* |
 {: caption="Alternative support request intent examples" caption-side="top"}
 
 ## Adding chat transfer support
@@ -70,7 +70,7 @@ To design a dialog that can transfer the conversation, complete the following st
 
 1.  Add a root node to your dialog that conditions on the intent you created in the previous step. Choose **Connect to human agent** as the response type.
 
-    For more information, see [Adding a *Connect to human agent* response type](/docs/assistant-data?topic=assistant-data-dialog-overview#dialog-overview-add-connect-to-human-agent).
+    For more information, see [Adding a *Connect to human agent* response type](/docs/assistant-data?topic=assistant-data-dialog-overview#dialog-overview-multimedia-add).
 
 1.  Add meaningful names to the dialog nodes in your dialog.
 

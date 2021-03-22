@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2021-02-23"
+lastupdated: "2021-03-19"
 
 subcollection: assistant-data
 
@@ -202,7 +202,7 @@ To upgrade the license, go to the [Portworx support site](https://docs.portworx.
     - 3.0.1: [Creating Portworx storage classes](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.0.1/cpd/install/portworx-storage-classes.html){: external}.
     - 2.5: You can run a script that is provided with the service installation files to define the Portworx storage class.
 
-      - Access the Helm chart from the file server at https://github.com/IBM/cloud-pak/tree/master/repo/cpd/modules/ibm-watson-assistant/x86_64/1.4.2/.
+      - Access the Helm chart from the file server at https://github.com/IBM/cloud-pak/blob/master/repo/cpd/2.5/modules/ibm-watson-assistant/x86_64/1.4.2/.
       - Unzip the helm chart so you can access the scripts that are provided in the service installation package.
       - On the coordinator node, change to the **/path/to/ibm-watson-assistant-prod/ibm_cloud_pak/pak_extensions/pre-install** subdirectory of the archive file that you extracted the product files from earlier.
       - Run the **storage.sh** script and specify a single parameter.
@@ -242,7 +242,7 @@ A script is provided that you can use to create a local storage persistent volum
     You must be a cluster administrator to create a local storage volume, and the script used to create it must be run from the coordinator node of the cluster. The coordinator node must have `ssh` access to all of the nodes in your cluster.
     {: important}
 
-    - Access the Helm chart from the file server at https://github.com/IBM/cloud-pak/tree/master/repo/cpd/modules/ibm-watson-assistant/x86_64/1.4.2/.
+    - Access the Helm chart from the file server at https://github.com/IBM/cloud-pak/blob/master/repo/cpd/2.5/modules/ibm-watson-assistant/x86_64/1.4.2/.
     - Unzip the helm chart so you can access the scripts that are provided in the service installation package.
     - On the coordinator node, change to the **/path/to/ibm-watson-assistant-prod/ibm_cloud_pak/pak_extensions/pre-install** subdirectory of the archive file that you extracted the product files from earlier.
     - Run the following command:
@@ -268,7 +268,7 @@ When you install the service, persistent volume claims are created for the compo
 
 Use the **storage.sh** script to create persistent volumes that are bounded to cluster nodes where data stores such as MongoDB and Postgres will run. Volumes that you create with the script are assigned a label that uses the release name. This label is used later to bound each volume to the correct datastore pods.
 
-The `storage.sh` script is included in the Helm chart for the product. The chart can be found in fileserver https://github.com/IBM/cloud-pak/tree/master/repo/cpd/modules/ibm-watson-assistant/x86_64/1.4.2/. Extract the storage.sh file from the Helm chart named `ibm-watson-assistant-prod-1.4.2.tgz`. The script is in the `ibm_cloud_pak/pak_extensions/pre-install/clusterAdministration` directory.
+The `storage.sh` script is included in the Helm chart for the product. The chart can be found in fileserver https://github.com/IBM/cloud-pak/blob/master/repo/cpd/2.5/modules/ibm-watson-assistant/x86_64/1.4.2/. Extract the storage.sh file from the Helm chart named `ibm-watson-assistant-prod-1.4.2.tgz`. The script is in the `ibm_cloud_pak/pak_extensions/pre-install/clusterAdministration` directory.
 
 The **storage.sh** script generates a file named `wa-persistence.yaml`. This YAML file adds configuration values that prevent dynamic provisioning from being applied to the volumes. You will reference the content of this YAML file in an override file that you create and pass to the install command later.
 
@@ -595,7 +595,7 @@ For more information, see [Creating persistent volumes](#install-142-create-pvs)
 ### Step 7: Configure the deployment
 {: #install-142-cpd30-config}
 
-1.  Create a YAML file in which to specify configuration settings for your deployment. You can download the [sample overrides.yaml file](https://github.com/IBM/cloud-pak/blob/master/repo/cpd3/modules/ibm-watson-assistant/x86_64/1.4.2/overrides.yaml) from GitHub to use as a starting point.
+1.  Create a YAML file in which to specify configuration settings for your deployment. You can download the [sample overrides.yaml file](https://github.com/IBM/cloud-pak/blob/master/repo/cpd/2.5/modules/ibm-watson-assistant/x86_64/1.4.2/overrides.yaml) from GitHub to use as a starting point.
 
     At a minimum, you must provide your own values for the following configurable settings:
 
