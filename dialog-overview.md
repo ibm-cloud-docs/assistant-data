@@ -223,6 +223,7 @@ If you include one of these special characters in a text response, escape it by 
 |-------------------|----------|---------|
 | `$` | Context variable | `The transaction fee is \$2.` |
 | `@` | Entity | `Send us your feedback at feedback\@example.com.` |
+| `#` | Intent | `We are the \#1 seller of lobster rolls in Maine.` |
 {: caption="Special characters to escape in responses" caption-side="top"}
 
 To include a hypertext link that is rendered in the "Try it out" pane, you can use HTML syntax. For example: `Contact us at <a href="https://www.ibm.com">ibm.com</a>.` (Do *not* try to escape the quotations mark with a backslash `\"`, for example.)
