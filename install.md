@@ -55,7 +55,7 @@ The following table describes which versions of {{site.data.keyword.conversation
 
 | {{site.data.keyword.conversationshort}} version | {{site.data.keyword.icp4dfull_notm}} version | Red Hat OpenShift version | Special notes |
 | ----------------------------------|----------------|----------------|----------|
-| 1.5.0 | 3.5 | 4.6 | Analytics feature is supported with this configuration only. |
+| 1.5.0 | 3.5 | 4.6 | Analytics feature and OpenShift Container Storage is supported with this configuration only.|
 | 1.5.0 | 3.5 | 3.11 | N/A |
 | 1.5.0 | 3.0.1 | 4.5 | N/A |
 | 1.5.0 | 3.0.1 | 3.11 | N/A |
