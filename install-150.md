@@ -62,7 +62,10 @@ The following table shows details for a typical deployment.
 ## Installing on IBM Cloud Pak for Data 3.5
 {: #install-150-on-35}
 
-The overall steps are specified here as a preview. For the complete procedure, see the installation instructions on the [{{site.data.keyword.icp4dfull_notm}} knowledge center 3.5](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.5.0/svc-assistant/assistant-install.html){: external}.
+The overall steps are specified here as a preview. For the complete procedure, see the installation instructions in the [{{site.data.keyword.icp4dfull_notm}} documentation 3.5](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.5.0/svc-assistant/assistant-install.html){: external}.
+
+**Watson Assistant 1.5.0 patch 1 is available**: For installations on {site.data.keyword.icp4dfull}} 3.5, patch 1 includes configuration changes for FIPS compatibility and other fixes. See [Available patches for Watson Assistant for IBM Cloud Pak for Data](https://www.ibm.com/support/pages/node/6240164){: external}
+{: note} 
 
 You can back up data from a previous release before you install the new one if you want. For more information about backing up data from a 1.4.2 instance or another 1.5.0 instance, see [Backing up and restoring data](/docs/assistant-data?topic=assistant-data-backup).
 
@@ -71,7 +74,7 @@ You can back up data from a previous release before you install the new one if y
 
 The installation process takes 1 or 2 hours. 
 
-These example commands are for illustrative purposes only. This checklist gives you an idea of the overall process. When you are ready to install the product, be sure to follow the more detailed steps in the [{{site.data.keyword.icp4dfull_notm}} knowledge center 3.5](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.5.0/svc-assistant/assistant-install.html){: external}. These example steps cover installing in a cluster with internet access.
+These example commands are for illustrative purposes only. This checklist gives you an idea of the overall process. When you are ready to install the product, be sure to follow the more detailed steps in the [{{site.data.keyword.icp4dfull_notm}} documentation 3.5](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.5.0/svc-assistant/assistant-install.html){: external}. These example steps cover installing in a cluster with internet access.
 
 1.  Copy images to your cluster. For example:
 
