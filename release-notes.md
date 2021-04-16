@@ -37,7 +37,7 @@ IBM releases services, features, and language support for your evaluation that a
 ### 19 March 2021
 {: #19March2021}
 
-**Watson Assistant 1.5.0 patch 1 is available**: For installations on {site.data.keyword.icp4dfull}} 3.5, patch 1 includes configuration changes for FIPS compatibility and other fixes. See [Available patches for Watson Assistant for IBM Cloud Pak for Data](https://www.ibm.com/support/pages/node/6240164){: external}
+**Watson Assistant 1.5.0 patch 1 is available**: For installations on {{site.data.keyword.icp4dfull}} 3.5, patch 1 includes configuration changes for FIPS compatibility and other fixes. See [Available patches for Watson Assistant for IBM Cloud Pak for Data](https://www.ibm.com/support/pages/node/6240164){: external}
 
 ### 9 December 2020
 {: #9December2020}

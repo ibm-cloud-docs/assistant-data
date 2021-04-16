@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2021
-lastupdated: "2021-02-25"
+lastupdated: "2021-04-16"
 
 subcollection: assistant-data
 
@@ -64,7 +64,7 @@ The following table shows details for a typical deployment.
 
 The overall steps are specified here as a preview. For the complete procedure, see the installation instructions in the [{{site.data.keyword.icp4dfull_notm}} documentation 3.5](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.5.0/svc-assistant/assistant-install.html){: external}.
 
-**Watson Assistant 1.5.0 patch 1 is available**: For installations on {site.data.keyword.icp4dfull}} 3.5, patch 1 includes configuration changes for FIPS compatibility and other fixes. See [Available patches for Watson Assistant for IBM Cloud Pak for Data](https://www.ibm.com/support/pages/node/6240164){: external}
+**Watson Assistant 1.5.0 patch 1 is available**: For installations on {{site.data.keyword.icp4dfull}} 3.5, patch 1 includes configuration changes for FIPS compatibility and other fixes. See [Available patches for Watson Assistant for IBM Cloud Pak for Data](https://www.ibm.com/support/pages/node/6240164){: external}
 {: note} 
 
 You can back up data from a previous release before you install the new one if you want. For more information about backing up data from a 1.4.2 instance or another 1.5.0 instance, see [Backing up and restoring data](/docs/assistant-data?topic=assistant-data-backup).
