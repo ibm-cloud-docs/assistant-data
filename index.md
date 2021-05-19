@@ -64,7 +64,7 @@ This diagram illustrates how the product delivers an omnichannel customer experi
 
 - Any questions that cannot be answered by the dialog skill are sent to the **search skill**, which finds relevant answers by searching the company knowledge bases that you configure for the purpose. The **search skill** routes complex customer inquiries to {{site.data.keyword.discoveryfull}} for {{site.data.keyword.icp4dfull}}. {{site.data.keyword.discoveryshort}} treats the user input as a search query. It finds information that is relevant to the query from the configured data sources and returns it so the assistant can share the information with the user as its response.
 
-You can integrate your assistant with the Watson Assistant for Voice Interaction service. For more details, see [Watson Assistant for Voice Interaction](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.5.0/svc-wavi/wavi-overview.html){: external}.
+You can integrate your assistant with the Watson Assistant for Voice Interaction service. For more details, see [Watson Assistant for Voice Interaction](https://www.ibm.com/docs/en/cloud-paks/cp-data/3.5.0?topic=catalog-watson-assistant-voice-interaction){: external}.
 {: tip}
 
 ## Implementation

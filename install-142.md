@@ -242,7 +242,7 @@ A script is provided that you can use to create a local storage persistent volum
     You must be a cluster administrator to create a local storage volume, and the script used to create it must be run from the coordinator node of the cluster. The coordinator node must have `ssh` access to all of the nodes in your cluster.
     {: important}
 
-    - Access the Helm chart from the file server at https://github.com/IBM/cloud-pak/blob/master/repo/cpd/2.5/modules/ibm-watson-assistant/x86_64/1.4.2/.
+    - Access the Helm chart from the file server at https://github.com/IBM/cloud-pak/tree/master/repo/cpd/2.5/modules/ibm-watson-assistant/x86_64/1.4.2.
     - Unzip the helm chart so you can access the scripts that are provided in the service installation package.
     - On the coordinator node, change to the **/path/to/ibm-watson-assistant-prod/ibm_cloud_pak/pak_extensions/pre-install** subdirectory of the archive file that you extracted the product files from earlier.
     - Run the following command:
