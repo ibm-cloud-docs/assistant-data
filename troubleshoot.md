@@ -101,7 +101,7 @@ Watson Assistant uses Redis to store web session-related data. Here are steps to
             cpu:     4
             cpu:     50m
             cpu:     2
-            cpu:     20m
+            cpu:     50m
             cpu:     2
             cpu:      50m
             cpu:     2
