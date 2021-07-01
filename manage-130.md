@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2015, 2020
-lastupdated: "2020-07-01"
+  years: 2015, 2021
+lastupdated: "2021-07-01"
 
 subcollection: assistant-data
 
@@ -64,7 +64,7 @@ kubectl get pods -o wide
 ## Scaling
 {: #manage-130-scale}
 
- Horizontal Pod Autoscaling (HPA) is enabled automatically for {{site.data.keyword.conversationshort}}. As a result, the number of replicas changes dynamically in the range of 1/2 to 10 replicas.
+ Horizontal Pod Autoscaling (HPA) is enabled automatically for {{site.data.keyword.conversationshort}}. As a result, the number of replicas changes dynamically in the range of 1 to 10 replicas.
 
 To use horizontal pod autoscalers in a deployment with OpenShift, you must install the OpenShift Container Platform metrics server. For details, see [Requirements for Using Horizontal Pod Autoscalers](https://docs.openshift.com/container-platform/3.11/dev_guide/pod_autoscaling.html#req-for-using-hpas){: external}.
 
@@ -106,16 +106,16 @@ The following table describes the stateful set details.
 ### To scale the number of replicas:
 {: #manage-130-scale-replicas}
 
-Some of the microservices do not benefit from being scaled up; more replicas does not always mean more throughput. 
-  
+Some of the microservices do not benefit from being scaled up; more replicas does not always mean more throughput.
+
 - `etcd` cannot be scaled to more than 3 replicas by using the `kubectl scale statefulset` command.
-- `master` triggers workspace trainings. Adding more master microservice replicas adds resiliency. 
+- `master` triggers workspace trainings. Adding more master microservice replicas adds resiliency.
 - `TAS` and `ed-mm` manage how many models are loaded and where they are loaded. More replicas might mean that a model can be loaded more times. However, unless high load is present, scaling too high does not help.
 - `Minio` has a hard-coded number of replicas and cannot be scaled manually.
-- `MongoDB` cannot be scaled manually. 
+- `MongoDB` cannot be scaled manually.
 - `Redis` can be scaled, but adding more redis-servers only improves resiliency to outages because only one of the servers is marked as coordinator and responds to requests.
 - `Store` can be scaled up to a maximum of 10 replicas.
-- `PostgreSQL` can be scaled, but you might reach a limit to the number of database connections that can be created. 
+- `PostgreSQL` can be scaled, but you might reach a limit to the number of database connections that can be created.
 
 1.  Disable Horizontal Pod Autoscaling (HPA). If you want to scale the deployment manually, you must disable HPA first or autoscaling will override any values you try to set manually.
 
@@ -151,7 +151,7 @@ To scale down the cluster all the way, you must scale down the deployed services
 - All other deployments
 - All statefulsets
 
-1.  If you have local storage, then connect over SSH to each worker node, and then run the following command from a given worker to synchronize data to the same directory on each other worker. 
+1.  If you have local storage, then connect over SSH to each worker node, and then run the following command from a given worker to synchronize data to the same directory on each other worker.
 
     The destination folders should be empty. If they're not, empty them.
 
@@ -160,13 +160,13 @@ To scale down the cluster all the way, you must scale down the deployed services
     ```
     {: pre}
 
-1.  Double-check the **postgres-keeper** persistent volume permissions on each worker node. 
+1.  Double-check the **postgres-keeper** persistent volume permissions on each worker node.
 
     You might need to scale postgres-keeper deployments first to see which persistent volumes they claim.
 
     ```bash
     kubectl get pvc
-    ``` 
+    ```
     {: pre}
 
     For each `postgres-keeper` persistent volume claim, change the permissions of `/postgres` to `u=rwx (0700)` on its given worker node.
@@ -213,11 +213,11 @@ If you plan to use SAML for single sign-on (SSO), complete [Configuring single s
 
 1.  Click the user name field to see a list of the people you can add.
 
-    The users you added in the previous steps are listed. Select a name, choose **User** or **Admin** as their access role, and then click **Add**. 
+    The users you added in the previous steps are listed. Select a name, choose **User** or **Admin** as their access role, and then click **Add**.
 
     If you aren't connecting to an existing user registry and enabling single sign-on, then temporary passwords are created for the users you add and are sent to them by way of the email addresses you specified.
 
-1. {: #manage-add-users-to-disco}Repeat the access management steps on the {{site.data.keyword.discoveryshort}} instance. 
+1. {: #manage-add-users-to-disco}Repeat the access management steps on the {{site.data.keyword.discoveryshort}} instance.
 
    Before people can create search skills in {{site.data.keyword.conversationshort}}, they need to have access to a {{site.data.keyword.discoveryshort}} instance. Add to the {{site.data.keyword.discoveryshort}} instance those people who need to be able to add new data collections to or query from existing collections by way of a search skill.
 
@@ -227,15 +227,15 @@ If you plan to use SAML for single sign-on (SSO), complete [Configuring single s
 Prepare your local machine to perform cluster management tasks.
 
 1.  Install the tools you will need on your local machine before you can complete management tasks from the command line.
- 
+
     The following software and tools are available as part of {{site.data.keyword.icp4dfull_notm}} V2.1.0.0, which runs on top of {{site.data.keyword.icpfull_notm}} V3.1.2:
 
     - **Helm V2.9.1**: You need this software to run the `helm` commands that are used in this installation.
 
     - **{{site.data.keyword.icpfull_notm}} V3.1.2 Command Line Interface**: You need this CLI to run `cloudctl` commands.
 
-    - **Kubernetes V1.12.4**: You need this software to run `kubectl` commands. 
-    
+    - **Kubernetes V1.12.4**: You need this software to run `kubectl` commands.
+
       Technically, Kubernetes V1.10 is required, but a compatible version can also be used. V1.12 is provided with the cluster tools, so is easier to download and use.
 
 1.  Go to this url to get the tools:
@@ -245,7 +245,7 @@ Prepare your local machine to perform cluster management tasks.
     ```
     {: pre}
 
-1.  Download each tool to your local machine by using the curl command that is appropriate for your operating system. 
+1.  Download each tool to your local machine by using the curl command that is appropriate for your operating system.
 
 1.  After downloading the file, use these commands to get access to the file and move it to the right directory:
 
@@ -256,7 +256,7 @@ Prepare your local machine to perform cluster management tasks.
     {: pre}
 
 1.  After you download the Helm software, run this command to start it:
-  
+
     ```bash
     helm init --client-only
     ```
@@ -270,7 +270,7 @@ Prepare your local machine to perform cluster management tasks.
       cloudctl login -a https://{cluster4d-coordinator-node}:8443 -u {admin user id} -p {admin password}
       ```
       {: pre}
-    
+
       If you are using a load balancer, the hostname to specify here is the hostname of the load balancer instead of the coordinator node.
       {: note}
 

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2021
-lastupdated: "2021-03-19"
+lastupdated: "2021-07-01"
 
 subcollection: assistant-data
 
@@ -29,8 +29,43 @@ subcollection: assistant-data
 Get help with solving issues that you encounter while using the product.
 {: shortdesc}
 
-## 1.5.0 
+## 1.5.0
 {: #troubleshoot-150}
+
+### Disable Horizontal Pod Autoscaling and set a maximum number of master pods
+{: #troubleshoot-150-disable-hpa}
+
+Horizontal Pod Autoscaling (HPA) is enabled automatically for Watson Assistant. As a result, the number of replicas changes dynamically in the range of 1 to 10 replicas. You can disable HPA if you want to limit the maximum number of master pods or if you're concerned about master pods being created and deleted too frequently.
+
+1.  First, disable HPA for the `master` microservice by running the following command. In these steps, substitute your instance name for the `INSTANCE_NAME` variable:
+
+    ```
+    oc patch wa ${INSTANCE_NAME} --type='json' --patch='[{"op": "add", "path": "/appConfigOverrides/clu_master", "value":{"autoscaling":{"enabled":"false"}}}]'
+    ```
+
+1.  Wait until the information propagates into the Watson Assistant operator:
+
+    ```
+    sleep 600
+    ```
+
+1.  Run the following command to remove HPA for the `master` microservice:
+
+    ```
+    oc delete hpa ${INSTANCE_NAME}-master
+    ```
+
+1.  Wait for about 30 seconds:
+
+    ```
+    sleep 30
+    ```
+
+1.  Finally, scale down the `master` microservice to the number of replicas that you want. In the following example, the `master` microservice is scaled down to two replicas:
+
+    ```
+    oc scale deploy ${INSTANCE_NAME}-master --replicas=2
+    ```
 
 ### Watson Assistant 1.5.0 patch 1
 [Watson Assistant 1.5.0 patch 1](https://www.ibm.com/support/pages/node/6240164) is available for installations of version 1.5.0.
@@ -56,7 +91,7 @@ Watson Assistant uses Redis to store web session-related data. Here are steps to
     ```
     oc patch statefulset c-$INSTANCENAME-redis-m -p '{"spec":{"updateStrategy":{"type":"RollingUpdate"}}}'
     oc patch statefulset c-$INSTANCENAME-redis-s -p '{"spec":{"updateStrategy":{"type":"RollingUpdate"}}}'
-    ``` 
+    ```
 
 1.  Update the Redis statefulsets with the resized cpu and memory values:
 
@@ -84,7 +119,7 @@ Watson Assistant uses Redis to store web session-related data. Here are steps to
     ```
     {: codeblock}
 
-1.  Confirm the Redis member and sentinel pods have the new memory and cpu values, for example: 
+1.  Confirm the Redis member and sentinel pods have the new memory and cpu values, for example:
 
       `oc describe pod c-$INSTANCENAME-redis-m-0 |grep cpu`
 
@@ -163,17 +198,17 @@ oc delete pdb  -l icpdsupport/addOnId=assistant,component!=etcd,ibmevents.ibm.co
 
 ```
 
-## 1.4.2 
+## 1.4.2
 {: #troubleshoot-142}
 
 ### Cannot provision an instance, and service images are missing from the catalog
 {: #troubleshoot-142-missing-label}
 
-If you run the installation with no errors, but cannot provision an instance, check whether the product icon is visible in the service tile. From the {{site.data.keyword.icp4dfull_notm}} web client, go to the *Services* page. 
+If you run the installation with no errors, but cannot provision an instance, check whether the product icon is visible in the service tile. From the {{site.data.keyword.icp4dfull_notm}} web client, go to the *Services* page.
 
   ![Services icon](images/cp4d-services-icon.png)
 
-1.  Find the {{site.data.keyword.conversationshort}} service tile. Check whether the product logo (![Watson Assistant logo](images/assistant-icon.png)) is displayed on the tile. 
+1.  Find the {{site.data.keyword.conversationshort}} service tile. Check whether the product logo (![Watson Assistant logo](images/assistant-icon.png)) is displayed on the tile.
 
     ![Watson Assistant service tile](images/missing-icon.png)
 
@@ -189,7 +224,7 @@ If you run the installation with no errors, but cannot provision an instance, ch
 - Problem: When calling the [`/message` v2 API](https://cloud.ibm.com/apidocs/assistant-data-v2#message){: external} to send user input to your assistant, the following error is returned: `Unable to query assistant metadata`.
 - Cause: A database race condition occurs when too many Postgres heartbeat calls are sent.
 - Solution: To resolve the issue, turn off the `DB_USE_HEARTBEAT` environment setting on the store pods.
-  
+
   You can use the following command to change the setting:
 
   ```
