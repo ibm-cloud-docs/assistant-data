@@ -32,9 +32,6 @@ Get help with solving issues that you encounter while using the product.
 ## 1.5.0
 {: #troubleshoot-150}
 
-### Watson Assistant 1.5.0 patch 1
-[Watson Assistant 1.5.0 patch 1](https://www.ibm.com/support/pages/node/6240164) is available for installations of version 1.5.0.
-
 ### Disable Horizontal Pod Autoscaling and set a maximum number of master pods
 {: #troubleshoot-150-disable-hpa}
 
@@ -70,13 +67,14 @@ Horizontal Pod Autoscaling (HPA) is enabled automatically for Watson Assistant. 
     oc scale deploy ${INSTANCE_NAME}-master --replicas=2
     ```
 
+### Watson Assistant 1.5.0 patch 1
+[Watson Assistant 1.5.0 patch 1](https://www.ibm.com/support/pages/node/6240164) is available for installations of version 1.5.0.
+
 ### Resizing the Redis statefulset memory and cpu values after applying patch 1 for Watson Assistant 1.5.0
 
 Watson Assistant uses Redis to store web session-related data. Here are steps to resize Redis statefulset memory and cpu values after applying [Watson Assistant 1.5.0 patch 1](https://www.ibm.com/support/pages/node/6240164).
 
 1.  Use `oc get wa` to see your instance name.
-
-    In this example, the instance name is `wa-qa`, after the prefix `watson-assistant---`:
 
     ```
     oc get wa
@@ -86,78 +84,78 @@ Watson Assistant uses Redis to store web session-related data. Here are steps to
 1.  Export your instance name as a variable that you can use in each step, for example:
 
     ```
-    export INSTANCENAME=wa-qa
+    export INSTANCENAME=watson-assistant---wa-qa
     ```
 1.  Change the `updateStrategy` in both Redis statefulsets to type `RollingUpdate`:
 
     ```
-    oc patch statefulset c-watson-assistant---$INSTANCENAME-redis-m -p '{"spec":{"updateStrategy":{"type":"RollingUpdate"}}}'
-    oc patch statefulset c-watson-assistant---$INSTANCENAME-redis-s -p '{"spec":{"updateStrategy":{"type":"RollingUpdate"}}}'
+    oc patch statefulset c-$INSTANCENAME-redis-m -p '{"spec":{"updateStrategy":{"type":"RollingUpdate"}}}'
+    oc patch statefulset c-$INSTANCENAME-redis-s -p '{"spec":{"updateStrategy":{"type":"RollingUpdate"}}}'
     ```
 
 1.  Update the Redis statefulsets with the resized cpu and memory values:
 
     **Member CPU**
     ```
-    oc patch statefulset c-watson-assistant---$INSTANCENAME-redis-m --type='json' -p='[{"op": "replace", "path": "/spec/template/spec/containers/0/resources/requests/cpu", "value":"50m"},{"op": "replace", "path": "/spec/template/spec/containers/1/resources/requests/cpu", "value":"50m"},{"op": "replace", "path": "/spec/template/spec/containers/2/resources/requests/cpu", "value":"50m"},{"op": "replace", "path": "/spec/template/spec/containers/3/resources/requests/cpu", "value":"50m"}]'
+    oc patch statefulset c-$INSTANCENAME-redis-m --type='json' -p='[{"op": "replace", "path": "/spec/template/spec/containers/0/resources/requests/cpu", "value":"50m"},{"op": "replace", "path": "/spec/template/spec/containers/1/resources/requests/cpu", "value":"50m"},{"op": "replace", "path": "/spec/template/spec/containers/2/resources/requests/cpu", "value":"50m"},{"op": "replace", "path": "/spec/template/spec/containers/3/resources/requests/cpu", "value":"50m"}]'
     ```
     {: codeblock}
 
     **Member memory**
     ```
-    oc patch statefulset c-watson-assistant---$INSTANCENAME-redis-m --type='json' -p='[{"op": "replace", "path": "/spec/template/spec/containers/0/resources/limits/memory", "value":"256Mi"},{"op": "replace", "path": "/spec/template/spec/containers/1/resources/limits/memory", "value":"256Mi"},{"op": "replace", "path": "/spec/template/spec/containers/2/resources/limits/memory", "value":"256Mi"},{"op": "replace", "path": "/spec/template/spec/containers/3/resources/limits/memory", "value":"256Mi"},{"op": "replace", "path": "/spec/template/spec/containers/0/resources/requests/memory", "value":"256Mi"},{"op": "replace", "path": "/spec/template/spec/containers/1/resources/requests/memory", "value":"256Mi"},{"op": "replace", "path": "/spec/template/spec/containers/2/resources/requests/memory", "value":"256Mi"},{"op": "replace", "path": "/spec/template/spec/containers/3/resources/requests/memory", "value":"256Mi"}]'
+    oc patch statefulset c-$INSTANCENAME-redis-m --type='json' -p='[{"op": "replace", "path": "/spec/template/spec/containers/0/resources/limits/memory", "value":"256Mi"},{"op": "replace", "path": "/spec/template/spec/containers/1/resources/limits/memory", "value":"256Mi"},{"op": "replace", "path": "/spec/template/spec/containers/2/resources/limits/memory", "value":"256Mi"},{"op": "replace", "path": "/spec/template/spec/containers/3/resources/limits/memory", "value":"256Mi"},{"op": "replace", "path": "/spec/template/spec/containers/0/resources/requests/memory", "value":"256Mi"},{"op": "replace", "path": "/spec/template/spec/containers/1/resources/requests/memory", "value":"256Mi"},{"op": "replace", "path": "/spec/template/spec/containers/2/resources/requests/memory", "value":"256Mi"},{"op": "replace", "path": "/spec/template/spec/containers/3/resources/requests/memory", "value":"256Mi"}]'
     ```
     {: codeblock}
 
     **Sentinel CPU**
     ```
-    oc patch statefulset c-watson-assistant---$INSTANCENAME-redis-s --type='json' -p='[{"op": "replace", "path": "/spec/template/spec/containers/0/resources/requests/cpu", "value":"50m"},{"op": "replace", "path": "/spec/template/spec/containers/1/resources/requests/cpu", "value":"50m"},{"op": "replace", "path": "/spec/template/spec/containers/2/resources/requests/cpu", "value":"50m"},{"op": "replace", "path": "/spec/template/spec/containers/3/resources/requests/cpu", "value":"50m"}]'
+    oc patch statefulset c-$INSTANCENAME-redis-s --type='json' -p='[{"op": "replace", "path": "/spec/template/spec/containers/0/resources/requests/cpu", "value":"50m"},{"op": "replace", "path": "/spec/template/spec/containers/1/resources/requests/cpu", "value":"50m"},{"op": "replace", "path": "/spec/template/spec/containers/2/resources/requests/cpu", "value":"50m"},{"op": "replace", "path": "/spec/template/spec/containers/3/resources/requests/cpu", "value":"50m"}]'
     ```
     {: codeblock}
 
     **Sentinel memory**
     ```
-    oc patch statefulset c-watson-assistant---$INSTANCENAME-redis-s --type='json' -p='[{"op": "replace", "path": "/spec/template/spec/containers/0/resources/limits/memory", "value":"256Mi"},{"op": "replace", "path": "/spec/template/spec/containers/1/resources/limits/memory", "value":"256Mi"},{"op": "replace", "path": "/spec/template/spec/containers/2/resources/limits/memory", "value":"256Mi"},{"op": "replace", "path": "/spec/template/spec/containers/3/resources/limits/memory", "value":"256Mi"},{"op": "replace", "path": "/spec/template/spec/containers/0/resources/requests/memory", "value":"256Mi"},{"op": "replace", "path": "/spec/template/spec/containers/1/resources/requests/memory", "value":"256Mi"},{"op": "replace", "path": "/spec/template/spec/containers/2/resources/requests/memory", "value":"256Mi"},{"op": "replace", "path": "/spec/template/spec/containers/3/resources/requests/memory", "value":"256Mi"}]'
+    oc patch statefulset c-$INSTANCENAME-redis-s --type='json' -p='[{"op": "replace", "path": "/spec/template/spec/containers/0/resources/limits/memory", "value":"256Mi"},{"op": "replace", "path": "/spec/template/spec/containers/1/resources/limits/memory", "value":"256Mi"},{"op": "replace", "path": "/spec/template/spec/containers/2/resources/limits/memory", "value":"256Mi"},{"op": "replace", "path": "/spec/template/spec/containers/3/resources/limits/memory", "value":"256Mi"},{"op": "replace", "path": "/spec/template/spec/containers/0/resources/requests/memory", "value":"256Mi"},{"op": "replace", "path": "/spec/template/spec/containers/1/resources/requests/memory", "value":"256Mi"},{"op": "replace", "path": "/spec/template/spec/containers/2/resources/requests/memory", "value":"256Mi"},{"op": "replace", "path": "/spec/template/spec/containers/3/resources/requests/memory", "value":"256Mi"}]'
     ```
     {: codeblock}
 
 1.  Confirm the Redis member and sentinel pods have the new memory and cpu values, for example:
 
-      `oc describe pod c-watson-assistant---$INSTANCENAME-redis-m-0 |grep cpu`
+      `oc describe pod c-$INSTANCENAME-redis-m-0 |grep cpu`
 
-      `oc describe pod c-watson-assistant---$INSTANCENAME-redis-m-0 |grep memory`
+      `oc describe pod c-$INSTANCENAME-redis-m-0 |grep memory`
 
-      `oc describe pod c-watson-assistant---$INSTANCENAME-redis-s-0 |grep cpu`
+      `oc describe pod c-$INSTANCENAME-redis-s-0 |grep cpu`
 
-      `oc describe pod c-watson-assistant---$INSTANCENAME-redis-s-0 |grep memory`
+      `oc describe pod c-$INSTANCENAME-redis-s-0 |grep memory`
 
       The results should look like these examples:
       ```
-      oc describe sts c-watson-assistant---$INSTANCENAME-redis-m |grep cpu
+      oc describe sts c-$INSTANCENAME-redis-m |grep cpu
                             {"m":{"db":{"limits":{"cpu":"4","memory":"256Mi"},"requests":{"cpu":"25m","memory":"256Mi"}},"mgmt":{"limits":{"cpu":"2","memory":"100Mi"}...
             cpu:     4
             cpu:     50m
             cpu:     2
-            cpu:     20m
+            cpu:     50m
             cpu:     2
-            cpu:      20m
+            cpu:      50m
             cpu:     2
-            cpu:     20m
+            cpu:     50m
       ```
       ```
-      oc describe sts c-watson-assistant---$INSTANCENAME-redis-m |grep memory
+      oc describe sts c-$INSTANCENAME-redis-m |grep memory
                             {"m":{"db":{"limits":{"cpu":"4","memory":"256Mi"},"requests":{"cpu":"25m","memory":"256Mi"}},"mgmt":{"limits":{"cpu":"2","memory":"100Mi"}...
             memory:  256Mi
             memory:  256Mi
             memory:  256Mi
-            memory:  100Mi
             memory:  256Mi
-            memory:   200Mi
             memory:  256Mi
-            memory:  100Mi
+            memory:   256Mi
+            memory:  256Mi
+            memory:  256Mi
       ```
       ```
-      oc describe pod c-watson-assistant---$INSTANCENAME-redis-s-0 |grep cpu
+      oc describe pod c-$INSTANCENAME-redis-s-0 |grep cpu
                       {"m":{"db":{"limits":{"cpu":"4","memory":"256Mi"},"requests":{"cpu":"25m","memory":"256Mi"}},"mgmt":{"limits":{"cpu":"2","memory":"100Mi"}...
             cpu:     2
             cpu:     50m
@@ -169,7 +167,7 @@ Watson Assistant uses Redis to store web session-related data. Here are steps to
             cpu:     50m
       ```
       ```
-      oc describe pod c-watson-assistant---$INSTANCENAME-redis-s-0 |grep memory
+      oc describe pod c-$INSTANCENAME-redis-s-0 |grep memory
                       {"m":{"db":{"limits":{"cpu":"4","memory":"256Mi"},"requests":{"cpu":"25m","memory":"256Mi"}},"mgmt":{"limits":{"cpu":"2","memory":"100Mi"}...
             memory:  256Mi
             memory:  256Mi
@@ -183,8 +181,8 @@ Watson Assistant uses Redis to store web session-related data. Here are steps to
 
 1. Change the `updateStrategy` in both Redis statefulsets back to type `OnDelete`:
     ```
-    oc patch statefulset c-watson-assistant---$INSTANCENAME-redis-m -p '{"spec":{"updateStrategy":{"type":"OnDelete"}}}'
-    oc patch statefulset c-watson-assistant---$INSTANCENAME-redis-s -p '{"spec":{"updateStrategy":{"type":"OnDelete"}}}'
+    oc patch statefulset c-$INSTANCENAME-redis-m -p '{"spec":{"updateStrategy":{"type":"OnDelete"}}}'
+    oc patch statefulset c-$INSTANCENAME-redis-s -p '{"spec":{"updateStrategy":{"type":"OnDelete"}}}'
     ```
 
 
@@ -193,10 +191,11 @@ Watson Assistant uses Redis to store web session-related data. Here are steps to
 {: #troubleshoot-delete-pdb}
 Whenever the size of Watson Assistant is changed from medium to small, a manual step is required to delete the `poddisruptionbudgets` that are created for medium instances.
 
-Run the following command, replacing `<instance-name>` with the name of your Watson Assistant instance and replacing `<namespace-name>` with the name of the namespace where the instance resides.
+Run the following command, replacing `<instance-name>` with the name of your Watson Assistant CR instance and replacing `<namespace-name>` with the name of the namespace where the instance resides.
 
 ```
-oc get pdb  -l icpdsupport/addOnId=assistant,component!=etcd,ibmevents.ibm.com/kind!=Kafka,app.kubernetes.io/instance=<instance-name> -n <namespace-name>
+oc delete pdb  -l icpdsupport/addOnId=assistant,component!=etcd,ibmevents.ibm.com/kind!=Kafka,app.kubernetes.io/instance=<instance-name> -n <namespace-name>
+
 ```
 
 ## 1.4.2
