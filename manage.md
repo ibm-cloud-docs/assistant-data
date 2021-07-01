@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2015, 2020
-lastupdated: "2020-07-22"
+  years: 2015, 2021
+lastupdated: "2021-07-01"
 
 subcollection: assistant-data
 
@@ -64,7 +64,7 @@ kubectl get pods -o wide
 ## Scaling
 {: #manage-scale}
 
- Horizontal Pod Autoscaling (HPA) is enabled automatically for {{site.data.keyword.conversationshort}}. As a result, the number of replicas changes dynamically in the range of 1/2 to 10 replicas.
+ Horizontal Pod Autoscaling (HPA) is enabled automatically for {{site.data.keyword.conversationshort}}. As a result, the number of replicas changes dynamically in the range of 1 to 10 replicas.
 
 To use horizontal pod autoscalers in a deployment with OpenShift, you must install the OpenShift Container Platform metrics server. For more information, see [Requirements for Using Horizontal Pod Autoscalers](https://docs.openshift.com/container-platform/3.11/dev_guide/pod_autoscaling.html#req-for-using-hpas){: external}.
 
@@ -109,16 +109,16 @@ The following table describes the stateful set details.
 ### To scale the number of replicas:
 {: #manage-scale-replicas}
 
-Some of the microservices do not benefit from being scaled up; more replicas does not always mean more throughput. 
-  
+Some of the microservices do not benefit from being scaled up; more replicas does not always mean more throughput.
+
 - `etcd` cannot be scaled to more than 5 replicas by using the `kubectl scale statefulset` command.
-- `master` triggers workspace trainings. Adding more master microservice replicas adds resiliency. 
+- `master` triggers workspace trainings. Adding more master microservice replicas adds resiliency.
 - `TAS` and `ed-mm` manage how many models are loaded and where they are loaded. More replicas might mean that a model can be loaded more times. However, unless high load is present, scaling too high does not help.
 - `Minio` has a hardcoded number of replicas and cannot be scaled manually.
-- `MongoDB` cannot be scaled manually. 
+- `MongoDB` cannot be scaled manually.
 - `Redis` can be scaled, but adding more redis-servers only improves resiliency to outages because only one of the servers is marked as coordinator and responds to requests.
 - `Store` can be scaled up to a maximum of 10 replicas.
-- `PostgreSQL` can be scaled, but you might reach a limit to the number of database connections that can be created. 
+- `PostgreSQL` can be scaled, but you might reach a limit to the number of database connections that can be created.
 
 1.  Disable Horizontal Pod Autoscaling (HPA). If you want to scale the deployment manually, you must disable HPA first or autoscaling will override any values you try to set manually.
 
@@ -148,7 +148,7 @@ Some of the microservices do not benefit from being scaled up; more replicas doe
 
 You can manually scale the cluster down and back up or use a script to stop and restart the service.
 
-### Use a script to stop and restart Watson Assistant 
+### Use a script to stop and restart Watson Assistant
 {: #manage-stop-restart-script}
 
 Starting with 1.4.2, you can use the **wactl.sh** script to stop or restart the service.
@@ -162,10 +162,10 @@ To use the script to stop or restart the service, complete the following steps:
 1.  Run the `wactl.sh` script.
 
 ```
-wactl.sh 
-  --action [stop | start | restart | clean] 
-  --release RELEASE 
-  [--cli kubectl | oc] 
+wactl.sh
+  --action [stop | start | restart | clean]
+  --release RELEASE
+  [--cli kubectl | oc]
   [--include-ds]
 ```
 {: codeblock}
@@ -180,7 +180,7 @@ The script accepts the following parameters:
   - `clean`: Removes the annotation that was created by the `stop` option from all objects including datastores.
 
 - `release`: For 1.4.2, the release name is hardcoded as `watson-assistant`.
-- `cli`: Specify the command line interface you are using. 
+- `cli`: Specify the command line interface you are using.
 
   Specify `oc` for OpenShift and `kubectl` for Kubernetes.
 - `include-ds`: Optional. Indicates that you want to perform the action on the data sources. When you specify this parameter with the `restart` action, all of the data sources are restarted except Redis.
@@ -207,13 +207,13 @@ To scale down the cluster all the way, you must scale down the deployed services
       ```
       {: codeblock}
 
-    - Double-check the **postgres-keeper** persistent volume permissions on each worker node. 
+    - Double-check the **postgres-keeper** persistent volume permissions on each worker node.
 
       You might need to scale postgres-keeper deployments first to see which persistent volumes they claim. Connect over SSH to a worker node, and then run the following command:
 
       ```bash
       kubectl get pvc
-      ``` 
+      ```
       {: pre}
 
       For each `postgres-keeper` persistent volume claim, change the permissions of `/postgres` to `u=rwx (0700)` on its given worker node.
@@ -223,7 +223,7 @@ To scale down the cluster all the way, you must scale down the deployed services
       ```
       {: pre}
 
-1.  If you need to stop and restart the underlying OpenShift cluster for any reason, you can do so now. 
+1.  If you need to stop and restart the underlying OpenShift cluster for any reason, you can do so now.
 
     For more information, see [How To: Stop and start a production OpenShift Cluster](https://servicesblog.redhat.com/2019/05/29/how-to-stop-and-start-a-production-openshift-cluster/){: external}.
 
@@ -262,10 +262,10 @@ If you plan to use SAML for single sign-on (SSO), complete [Configuring single s
 
 1.  Click the user name field to see a list of the people you can add.
 
-    The users you added in the previous steps are listed. Select a name, choose **User** or **Admin** as their access role, and then click **Add**. 
+    The users you added in the previous steps are listed. Select a name, choose **User** or **Admin** as their access role, and then click **Add**.
 
     If you aren't connecting to an existing user registry and enabling single sign-on, then temporary passwords are created for the users you add and are sent to them by way of the email addresses you specified.
 
-1. {: #manage-add-users-to-disco}Repeat the access management steps on the {{site.data.keyword.discoveryshort}} instance. 
+1. {: #manage-add-users-to-disco}Repeat the access management steps on the {{site.data.keyword.discoveryshort}} instance.
 
    Before people can create search skills in {{site.data.keyword.conversationshort}}, they need to have access to a {{site.data.keyword.discoveryshort}} instance. Add to the {{site.data.keyword.discoveryshort}} instance those people who need to be able to add new data collections to or query from existing collections by using a search skill.
