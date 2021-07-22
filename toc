@@ -5,7 +5,7 @@
 Watson Assistant for IBM Cloud Pak for Data (Installed)
 
     {: .navgroup id="learn"}
-    getting-started.md    
+    getting-started.md
     index.md
     tool-overview.md
     [Demo: Banking Assistant](https://watson-conversation-duo-dev.ng.bluemix.net/)
@@ -88,6 +88,7 @@ Watson Assistant for IBM Cloud Pak for Data (Installed)
         deploy-web-link.md
         deploy-web-chat.md
         deploy-custom-app.md
+        [Integrating with your own service desk](https://github.com/watson-developer-cloud/assistant-web-chat-service-desk-starter)
         deploy-integration-delete.md
 
     {: .topicgroup}
