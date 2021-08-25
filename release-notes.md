@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2021
-lastupdated: "2021-04-15"
+lastupdated: "2021-08-25"
 
 subcollection: assistant-data
 
@@ -34,6 +34,23 @@ IBM releases services, features, and language support for your evaluation that a
 ## Change log
 {: #rn-change-log}
 
+### 29 July 2021
+{: #29July2021}
+
+**{{site.data.keyword.conversationfull}} Cartridge for {{site.data.keyword.icp4dfull}} 4.0 is available**:  {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} 4.0.0 is compatible with {{site.data.keyword.icp4dfull}} 4.0 on Red Hat OpenShift 4.6. See the [support matrix](/docs/assistant-data?topic=assistant-data-install#install-support-matrix) for more details.
+
+The following changes were made in this release:
+
+**[Universal language](/docs/assistant-data?topic=assistant-data-assistant-language#assistant-language-universal)**: You now can build an assistant in any language you want to support. If a dedicated language model is not available for your target language, create a skill that uses the universal language model. The universal model applies a set of shared linguistic characteristics and rules from multiple languages as a starting point. It then learns from training data written in the target language that you add to it.
+
+**[Premessage](/docs/assistant-data?topic=assistant-data-webhook-pre), [postmessage](/docs/assistant-data?topic=assistant-data-webhook-post), and [log webhooks](/docs/assistant-data?topic=assistant-data-webhook-log)**: A set of new webhooks are available for each assistant. You can use the webhooks to perform preprocessing tasks on incoming messages and postprocessing tasks on the corresponding responses. You can use the new log webhook feature to log each message with an external service.
+
+This release does not include the following features, which are available for cloud instances at the time of this release:
+- Service desk support is not included.
+- The phone integration is not supported.
+- The actions skill is not available.
+- The intent recommendations feature and the enhanced intent detection model are not supported.
+
 ### 19 March 2021
 {: #19March2021}
 
@@ -48,12 +65,13 @@ OpenShift Container Storage is supported with Red Hat OpenShift 4.6 only.
 {: note}
 
 
+**{{site.data.keyword.conversationfull}} for {{site.data.keyword.icp4dfull}} 1.5.0 is available**:  {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} 1.5.0 is compatible with {{site.data.keyword.icp4dfull}} 3.5 and {{site.data.keyword.icp4dfull}} 3.0.1 deployments on Red Hat OpenShift 4.5 or 3.11.
 
 The following changes were made in this release:
 
 - **Now access conversation logs and metrics**: An **Analytics** page is now available. From this page, you can see conversation logs and metrics that give you insights, such as what topics your customers are asking about and how often the assistant succeeds in addressing customer requests. For more information, see [Metrics overview](/docs/assistant-data?topic=assistant-data-logs-overview).
 
-- **Introducing the *Web chat* integration**: Deploy your assistant in minutes. Create a web chat integration to embed your assistant into a page on your website as a chat widget. Web chat version 3.3.0 is included in this release. For more information, see [Integrating the web chat with your website](/docs/assistant-data?topic=assistant-data-deploy-web-chat). 
+- **Introducing the *Web chat* integration**: Deploy your assistant in minutes. Create a web chat integration to embed your assistant into a page on your website as a chat widget. Web chat version 3.3.0 is included in this release. For more information, see [Integrating the web chat with your website](/docs/assistant-data?topic=assistant-data-deploy-web-chat).
 
 - **Introducing the *Preview link* integration**: Deploy your assistant to an IBM-branded web site for testing purposes. When you add both a dialog skill and search skill to your assistant, you can test the overall interaction between the two skills by using the preview link integration. For more information, see [Testing your assistant from a web page](/docs/assistant-data?topic=assistant-data-deploy-web-link).
 
@@ -75,21 +93,6 @@ This release does not include the following features, which are available for cl
 - The intent recommendations feature and the enhanced intent detection model are not supported.
 - The *Learning center* and its associated product tours are not available.
 - You cannot manage user access at the individual skill and assistant level. You can control only who can access the entire service instance, which includes all of its skills and assistants. For more information about granting access to services in {{site.data.keyword.icp4dfull_notm}}, see [3.5 Managing users](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.5.0/cpd/admin/users.html){: external} or [3.0.1 Managing users](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.0.1/cpd/admin/users.html){: external}.
-
-#### Known issues
-{: #9December2020-bugs}
-
-- The Events service is not supported on a Red Hat OpenShift 4.5 air-gapped cluster that uses the in-cluster registry for storing images. If you have such a cluster, you must disable the Analytics feature and skip the prerequisite step of installing the Events service. Alternatively, you can install on a cluster that is connected to the internet.
-
-<!-- {{site.data.keyword.conversationshort}} 1.5.0 is not supported on FIPS-enabled clusters.-->
-
-- The assistant might return a 400 error if the following set of events occur:
-<!-- issue 39667-->
-  - Autocorrection is enabled, and is being applied to an incoming message.
-  - The Postgres data store is down.
-  - The dialog skill that is being used by the assistant is being used for the first time, or there is otherwise no cache for it in the data store.
-  
-  To prevent the errors, you can temporarily disable autocorrection from the *Options>Autocorrection* page of the dialog skill.
 
 ### 19 June 2020
 {: #19June2020}
@@ -214,7 +217,7 @@ This release does not include the following features, which are currently availa
 - Search skill is a new beta feature. You can create a search skill to trigger a search in an external data source that you configure in Watson Discovery. See [Creating a search skill](/docs/assistant-data?topic=assistant-data-skill-search-add).
 - Instead of creating a workspace as the container for your training data and dialog, you create a dialog skill. See [Creating a dialog skill](/docs/assistant-data?topic=assistant-data-skill-dialog-add).
 - Prevent your assistant from answering the wrong question by keeping your intents distinct from one another. Intent conflict resolution is now available. It can find intents with overlapping user examples, and gives you a graphical user interface in which to fix them. Nondistinct intents can result in misclassifications of user input. See [Resolving intent conflicts](/docs/assistant-data?topic=assistant-data-intents#intents-resolve-conflicts).
-- You can opt to see synonym recommendations that are made by Watson as you create a dictionary-based entity. See [Synonyms](/docs/assistant-data?topic=assistant-data-entities#entities-create-dictionary-based).
+- You can opt to see synonym recommendations that are made by Watson as you create a dictionary-based entity. See [Synonyms](/docs/assistant-data?topic=assistant-data-entities#entities-synonyms).
 
 For information about upgrading from a previous version, see [Upgrading](/docs/assistant-data?topic=assistant-data-upgrade)
 

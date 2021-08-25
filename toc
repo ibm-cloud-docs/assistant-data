@@ -25,20 +25,17 @@ Watson Assistant for IBM Cloud Pak for Data (Installed)
     {: .topicgroup}
     Installing
         install.md
-        install-150.md
+        install-400.md
         troubleshoot.md
 
         {: .topicgroup}
         Installing previous versions
+            install-150.md
+            backup-150.md
             install-142.md
             backup-142.md
             install-141.md
             install-140.md
-            install-130.md
-            manage-130.md
-            install-120.md
-            install-120-addon.md
-            [1.1 and 1.0 PDF](https://github.com/watson-developer-cloud/community/blob/master/watson-assistant/data/pre1.4/assistant-icp-1.1.pdf)
 
     {: .topicgroup}
     Creating your assistant
@@ -73,7 +70,6 @@ Watson Assistant for IBM Cloud Pak for Data (Installed)
 
         {: .topicgroup}
         Advanced dialog tasks
-            dialog-webhooks.md
             dialog-actions-client.md
             dialog-integrations.md
             dialog-responses-json.md
@@ -81,6 +77,8 @@ Watson Assistant for IBM Cloud Pak for Data (Installed)
         versions.md
 
     skill-search-add.md
+
+    assistant-language.md
 
     {: .topicgroup}
     Deploying
@@ -105,6 +103,14 @@ Watson Assistant for IBM Cloud Pak for Data (Installed)
          information-security.md
          backup.md
          upgrade.md
+
+    {: .topicgroup}
+    Using webhooks
+         webhook-overview.md
+         dialog-webhooks.md
+         webhook-pre.md
+         webhook-post.md
+         webhook-log.md
 
     {: .topicgroup}
     Using the API

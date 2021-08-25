@@ -96,10 +96,10 @@ To add the webhook details, complete the following steps:
       <td>application/json</td>
       </tr>
     </table>
-    
-1.  If the external service requires that you pass basic authentication credentials with the request, then provide them. Click **Add authorization**, add your credentials to the **User name** and **Password** fields, and then click **Save**. 
 
-    The product creates a base-64 encoded ASCII string from the credentials and generates a header that it adds to the page for you. 
+1.  If the external service requires that you pass basic authentication credentials with the request, then provide them. Click **Add authorization**, add your credentials to the **User name** and **Password** fields, and then click **Save**.
+
+    The product creates a base-64 encoded ASCII string from the credentials and generates a header that it adds to the page for you.
 
     <table>
     <caption>Header example</caption>
@@ -112,7 +112,7 @@ To add the webhook details, complete the following steps:
       <td>Basic `<encoded-api-key>`</td>
       </tr>
     </table>
-    
+
     For testing purposes, you can submit an API key over basic authentication. Click **Add authorization**, and then add `apikey` to the **User name** field, and paste the API key value into the **Password** field. Click **Save**.
     {: tip}
 
@@ -191,10 +191,10 @@ To use a webhook from a dialog node, you must enable webhooks on the node, and t
 
 1.  In the conditional responses section, two response conditions are added automatically, one response to show when the webhook callout is successful and a return variable is sent back. And one response to show when the callout fails. You can edit these responses, and add more conditional responses to the node.
 
-    - If the callout returns a response, and you know the format of the JSON response, then you can edit the dialog node response to include only the section of the response that you want to share with users. 
-    
+    - If the callout returns a response, and you know the format of the JSON response, then you can edit the dialog node response to include only the section of the response that you want to share with users.
+
       For example, the Language Translator service returns an object like this:
-    
+
       ```json
          {
          "translations":[
@@ -205,7 +205,7 @@ To use a webhook from a dialog node, you must enable webhooks on the node, and t
          }
       ```
       {: codeblock}
-    
+
       Use a SpEL expression that extracts only the translated text value.
 
       <table>
@@ -271,7 +271,7 @@ You write the webhook URL and provide headers differently based on whether you a
 
 Typically, web actions can be run without requiring the caller to authenticate first. However, you can secure a web action that requires any callers to pass an ID with the request. For more information about how to secure a web action, see [Securing web actions](/docs/openwhisk?topic=openwhisk-actions_web#actions_web_secure){: external}.
 
-The following tips will help you call a {{site.data.keyword.openwhisk_short}} web action from your dialog. 
+The following tips will help you call a {{site.data.keyword.openwhisk_short}} web action from your dialog.
 
 1.  Open the **Options** page for the skill, and then click **Webhooks**.
 
@@ -320,7 +320,7 @@ The following tips will help you call a {{site.data.keyword.openwhisk_short}} we
     When calling a {{site.data.keyword.openwhisk_short}} web action, you cannot pass parameters with the same key as parameters that are defined as part of the web action. See [Protected parameters](/docs/openwhisk?topic=openwhisk-actions_web#protected-parameters){: new_window} for more details.
     {: note}
 
-1.  You can edit the dialog node response to include only the section of the response that you want to display to users. 
+1.  You can edit the dialog node response to include only the section of the response that you want to display to users.
 
     The Hello World {{site.data.keyword.openwhisk_short}} web action includes a message name and value pair in its response, along with other information. To show only the content of the message, you can use `<return-variable>.message` syntax to extract the message section only from the response object.
 
@@ -355,7 +355,7 @@ To make a synchronous call to a {{site.data.keyword.openwhisk_short}} action tha
 
 1.  Click **Webhooks**.
 
-1.  In the **URL** field, specify the URL for the action. 
+1.  In the **URL** field, specify the URL for the action.
 
     Append a `?blocking=true` parameter to the action URL to force a synchronous call to be made.
 
@@ -373,19 +373,19 @@ To make a synchronous call to a {{site.data.keyword.openwhisk_short}} action tha
     To call a {{site.data.keyword.openwhisk_short}} action that is managed by Cloud Foundry, complete the following steps:
 
     1.  Get the API Key. From the {{site.data.keyword.openwhisk_short}} Endpoint page, find the CURL section and click the eye icon to show the key details. Copy the `user ID:password` key that is listed after the `-u` parameter in the curl command.
-    
-    1.  Click **Add authorization**, add your credentials to the **User name** and **Password** fields, and then click **Save**. 
 
-    The credentials are encoded and a header is generated and added to the page for you. 
-    
+    1.  Click **Add authorization**, add your credentials to the **User name** and **Password** fields, and then click **Save**.
+
+    The credentials are encoded and a header is generated and added to the page for you.
+
     ![Shows the URL field and Headers section of the Options page.](images/webhook-to-cfaction.png)
 
-    - If you are calling a {{site.data.keyword.openwhisk_short}} action that is managed by IBM Cloud Identity and Access Management (IAM) instead of Cloud Foundry, then you must provide an IAM bearer token to authenticate the request. 
-    
-      1. Follow the instructions in [Passing an IBM Cloud IAM token to authenticate with a service's API](/docs/iam?topic=iam-iamapikeysforservices#token_auth). 
-      
+    - If you are calling a {{site.data.keyword.openwhisk_short}} action that is managed by IBM Cloud Identity and Access Management (IAM) instead of Cloud Foundry, then you must provide an IAM bearer token to authenticate the request.
+
+      1. Follow the instructions in [Passing an IBM Cloud IAM token to authenticate with a service's API](/docs/iam?topic=iam-iamapikeysforservices#token_auth).
+
       1. To pass the IAM bearer token, use a header like this:
-    
+
          <table>
          <caption>Header example</caption>
            <tr>
@@ -410,7 +410,7 @@ To make a synchronous call to a {{site.data.keyword.openwhisk_short}} action tha
 
     When you call a {{site.data.keyword.openwhisk_short}} action, you *can* pass parameters with the same key as parameters that are defined as part of the action. The parameters are not reserved like they are for web actions.
 
-1.  You can edit the dialog node response to include only the section of the response that you want to display to users. 
+1.  You can edit the dialog node response to include only the section of the response that you want to display to users.
 
     For example, in the conditional responses section, you can use an expression with the syntax `$webhook_result.response.result.message` to extract the returned message only.
 
