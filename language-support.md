@@ -58,7 +58,7 @@ The following tables illustrate the level of language support available for prod
 In the following tables, the level of language and feature support is indicated by these codes:
 
 - GA: The feature is generally available and supported for this language. Note that features might continue to be updated even after they are generally available.
-- Beta: The feature is supported only as a Beta release, and is still undergoing testing before it is made generally available in this language.
+- Beta: The feature is supported only as a beta release, and is still undergoing testing before it is made generally available in this language.
 - NA: Indicates that a feature is not available in this language.
 
 ### Skill support details
@@ -221,7 +221,7 @@ For bidirectional languages, such as Arabic, you can change your skill preferenc
 1.  Select from the following options for your skill:
 
     - **GUI Direction**: Specifies the layout direction of elements, such as buttons or menus, in the graphical user interface. Choose `LTR` (left-to-right) or `RTL` (right-to-left). If not specified, the tool follows the web browser GUI direction setting.
-    - **Text Direction**: Specifies the direction of typed text. Choose `LTR` (left-to-right) or `RTL` (right-to-left), or select `Auto` which will automatically choose the text direction based on your system settings. The `None` option will display left-to-right text.
+    - **Text Direction**: Specifies the direction of typed text. Choose `LTR` (left-to-right), `RTL` (right-to-left), or `Auto` (which automatically chooses the text direction based on your system settings). The `None` option displays left-to-right text.
     - **Numeric Shaping**: Specifies which form of numerals to use when presenting regular digits. Choose from `Nominal`, `Arabic-Indic`, or `Arabic-European`. The `None` option will display Western numerals.
     - **Calendar Type**: Specifies how you choose filtering dates in the skill UI. Choose `Islamic-Civil`, `Islamic-Tabular`, `Islamic-Umm al-Qura`, or `Gregorian`.
 

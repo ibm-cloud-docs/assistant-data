@@ -107,7 +107,8 @@ There are situations in which you might want to specify the locale yourself. The
 
 - When the skill language is English
 
-  If you choose to create an English skill, the American English (`en-us`) locale is used automatically. As a result, dates and times are formatted for American customers. If your audience is mostly British English speakers or other European English speakers, setting the locale to `en-gb` can be beneficial. The `en-gb` locale changes the date format to `DDMMYYYY`, and times to the 24 hour format, for example. For a Canadian audience, you can change the locale to `en-ca`.
+  If you choose to create an English skill, the American English (`en-us`) locale is used automatically. As a result, dates and times are formatted for American customers. If your audience is mostly British English speakers or other European English speakers, setting the locale to `en-gb` can be beneficial. The `en-gb` locale changes the date format to `DDMMYYYY`, and times to the 24-hour format, for example. For a Canadian audience, you can change the locale to `en-ca`.
+
 - If you choose to use the universal language model in your skill
 
   If you are creating a conversation in one of the following languages, you might want to specify a locale setting also:

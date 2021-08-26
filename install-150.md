@@ -412,7 +412,7 @@ For more information about troubleshooting problems, see [Troubleshooting](/docs
 
 The steps to uninstall are outlined here:
 
-1.  **Optional**: From the web client, remove any provisioned instances of you service.
+1.  **Optional**: From the web client, remove any provisioned instances of your service.
 
     This step is a useful check for you to see what instances will be removed when you uninstall the service.
 

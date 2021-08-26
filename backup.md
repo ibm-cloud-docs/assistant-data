@@ -337,7 +337,7 @@ Before it adds the backed-up data, the tool removes the data for all instances i
     ```
     {: codeblock}
 
-1.  Initiate the execution of a remote command in the Postgres Pod.
+1.  Initiate the execution of a remote command in the Postgres pod.
 
     ```bash
     oc exec -it $POSTGRES_POD /bin/bash
