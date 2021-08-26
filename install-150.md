@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2021
-lastupdated: "2021-04-16"
+lastupdated: "2021-08-25"
 
 subcollection: assistant-data
 
@@ -25,7 +25,7 @@ subcollection: assistant-data
 {:download: .download}
 {:gif: data-image-type='gif'}
 
-# Installing 1.5.0
+# Installing Watson Assistant 1.5.0
 {: #install-150}
 
 For installation instructions, find the instructions for the appropriate version of {{site.data.keyword.icp4dfull_notm}}:
@@ -38,7 +38,7 @@ For installation instructions, find the instructions for the appropriate version
 
 When you install the service, you add multiple services and resources that are needed by {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull_notm}}. The following diagram illustrates the components that are used by the service.
 
-![Diagram of the components used by the assistant service](images/components.png)
+![Diagram of the components used by the assistant service](images/components-150.png)
 
 ## System requirements
 {: #install-150-reqs}
@@ -65,14 +65,14 @@ The following table shows details for a typical deployment.
 The overall steps are specified here as a preview. For the complete procedure, see the installation instructions in the [{{site.data.keyword.icp4dfull_notm}} documentation 3.5](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.5.0/svc-assistant/assistant-install.html){: external}.
 
 **Watson Assistant 1.5.0 patch 1 is available**: For installations on {{site.data.keyword.icp4dfull}} 3.5, patch 1 includes configuration changes for FIPS compatibility and other fixes. See [Available patches for Watson Assistant for IBM Cloud Pak for Data](https://www.ibm.com/support/pages/node/6240164){: external}
-{: note} 
+{: note}
 
 You can back up data from a previous release before you install the new one if you want. For more information about backing up data from a 1.4.2 instance or another 1.5.0 instance, see [Backing up and restoring data](/docs/assistant-data?topic=assistant-data-backup).
 
 ### Example simple overview of steps
 {: #install-150-on-35-example}
 
-The installation process takes 1 or 2 hours. 
+The installation process takes 1 or 2 hours.
 
 These example commands are for illustrative purposes only. This checklist gives you an idea of the overall process. When you are ready to install the product, be sure to follow the more detailed steps in the [{{site.data.keyword.icp4dfull_notm}} documentation 3.5](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.5.0/svc-assistant/assistant-install.html){: external}. These example steps cover installing in a cluster with internet access.
 
@@ -225,14 +225,14 @@ After installing the service, run a verification test to make sure that things a
     ```
     {: pre}
 
-    When the job is available, a response like this is displayed: 
-    
+    When the job is available, a response like this is displayed:
+
     ```
     watson-assistant---wa001-dvt-job    1/1   66m   5h46m
     ```
     {: codeblock}
 
-    When the job runs it starts a pod to use for processing the test. 
+    When the job runs it starts a pod to use for processing the test.
 
 1.  Check to see if the `dvt` pod is now available. You can run the following command to list the pods.
 
@@ -241,8 +241,8 @@ After installing the service, run a verification test to make sure that things a
     ```
     {: pre}
 
-    When the pod is available, a response like this is displayed: 
-    
+    When the pod is available, a response like this is displayed:
+
     ```
     watson-assistant---wa001-dvt-job-gq68t   0/1   Completed   0   5h47m
     ```
@@ -412,7 +412,7 @@ For more information about troubleshooting problems, see [Troubleshooting](/docs
 
 The steps to uninstall are outlined here:
 
-1.  **Optional**: From the web client, remove any provisioned instances of you service. 
+1.  **Optional**: From the web client, remove any provisioned instances of your service.
 
     This step is a useful check for you to see what instances will be removed when you uninstall the service.
 

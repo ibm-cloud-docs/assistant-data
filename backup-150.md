@@ -1,7 +1,7 @@
 ---
 
 copyright:
-  years: 2015, 2021
+  years: 2021
 lastupdated: "2021-08-25"
 
 subcollection: assistant-data
@@ -23,11 +23,15 @@ subcollection: assistant-data
 {:python: .ph data-hd-programlang='python'}
 {:swift: .ph data-hd-programlang='swift'}
 
-# Backing up and restoring data
-{: #backup}
+# Backing up and restoring data 1.5.0
+{: #backup-150}
 
 You can back up and restore the data that is associated with your {{site.data.keyword.conversationshort}} deployment in {{site.data.keyword.icp4dfull_notm}}.
 {: shortdesc}
+
+These instructions describe how to back up and restore {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull_notm}} 1.5.0. Use these instructions to back up and restore 1.4.2 to 1.5.0 and 1.5.0 to 1.5.0.
+
+If you're using {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull_notm}} 1.4.2, see [Backing up and restoring data 1.4.2](/docs/assistant-data?topic=assistant-data-backup-142).
 
 The primary data storage for {{site.data.keyword.conversationshort}} is a Postgres database. Your data, such as workspaces, assistants, and skills are stored in Postgres. Other internal data, such as trained models, can be recreated from the data in Postgres.
 
@@ -77,7 +81,7 @@ To access the backup files from Portworx, complete the following steps:
 1.  Get the name of the persistent volume that is used for the Postgres backup.
 
     ```bash
-    oc get pv |grep $INSTANCE-store
+    oc get pv |grep $INSTANCE-store-backup
     ```
     {: codeblock}
 
@@ -100,7 +104,7 @@ To access the backup files from Portworx, complete the following steps:
 
 1.  Make sure the persistent volume is in a detached state and that no store backups are scheduled to occur during the time you plan to transfer the backup files.
 
-    Remember, backups occur daily at 11 PM (in the time zone configured for the nodes) unless you change the schedule by editing the value of the `postgres.backup.schedule` configuration parameter. You can run the `oc get cronjobs` command to check the current schedule for the `$RELEASE-backup-cronjob` job.
+    Remember, backups occur daily at 11 PM (in the time zone configured for the nodes) unless you change the schedule by editing the value of the `postgres.backup.schedule` configuration parameter. You can run the `oc get cronjobs` command to check the current schedule for the `$INSTANCE-store-cronjob` job.
 
     ```bash
     pxctl volume inspect $pv_name |head -40
@@ -171,14 +175,14 @@ To back up data by using the provided script, complete the following steps:
 1.  Run the script by using the following command:
 
     ```
-    ./backupPG.sh --instance ${instance-name} > ${file-name}
+    ./backupPG.sh [--instance ${instance-name}] > ${file-name}
     ```
     {: codeblock}
 
     where these are the arguments:
 
     - `${file-name}`: Specify a file where you want to write the downloaded data. Be sure to specify a backup directory in which to store the file. For example, `/bu/store.dump` to create a backup directory named `bu`. This directory will be referenced later as `$BACKUP-DIR`.
-    - `--instance ${instance-name}`: Select the specific instance of {{site.data.keyword.conversationshort}} to be backed up.
+    - `--instance ${instance-name}`: Targets a specific instance of the {{site.data.keyword.conversationshort}} deployment. Otherwise, the script backs up the first instance it finds in the namespace you are logged in to. You can find the instance name by running the command `./cpd-cli status -n $NAMESPACE`.
 
 If you prefer to back up data by using the Postgres tool directly, you can complete the procedure to back up data manually.
 
@@ -192,7 +196,7 @@ To back up your data, complete these steps:
 1.  Fetch a running Postgres keeper pod.
 
     ```
-    oc get pods -l app=${INSTANCE}-postgres -o jsonpath="{.items[0].metadata.name}"
+    oc get pods -l component=stolon-keeper,app.kubernetes.io/instance=${INSTANCE} -o jsonpath="{.items[0].metadata.name}"
     ```
     {: codeblock}
 
@@ -277,10 +281,12 @@ Before it adds the backed-up data, the tool removes the data for all instances i
 
 1.  Go to the backup directory that you specified in the file-name parameter in the previous procedure.
 
-1.  Download the `pgmig` tool from the [GitHub Watson Developer Cloud Community](https://github.com/watson-developer-cloud/community/tree/master/watson-assistant/data) repository.
+1.  Download the `pgmig` tool from the correct directory for your release from the [GitHub Watson Developer Cloud Community](https://github.com/watson-developer-cloud/community/tree/master/watson-assistant/data) repository.
+
+    For example:
 
     ```
-    wget https://github.com/watson-developer-cloud/community/raw/master/watson-assistant/data/4.0.0/pgmig
+    wget https://github.com/watson-developer-cloud/community/raw/master/watson-assistant/data/1.5.0/pgmig
     ```
     {: codeblock}
 
@@ -295,17 +301,16 @@ Before it adds the backed-up data, the tool removes the data for all instances i
 
     - **postgres.yaml**: The Postgres file lists details for the target Postgres pods. See [Creating the postgres.yaml file](#backup-postgres-yaml).
 
-1.  Run the following command to get the secret:
+1.  Copy the files that you downloaded and created in the previous steps into an existing directory of your choice on a Postgres Keeper pod.
+
+    Use the following command to find the keeper pods:
 
     ```
-    oc get secret ${INSTANCE}-postgres-ca -o jsonpath='{.data.ca\.crt}' | base64 -d | tee ${BACKUP_DIR}/ca.crt | openssl x509 -noout -text
+    oc get pods --field-selector=status.phase=Running -l component=stolon-keeper
     ```
-    {: codeblock}
+    {: pre}
 
-    - Replace ${INSTANCE} with the instance of the {{site.data.keyword.conversationshort}} deployment that you want to back up.
-    - Replace ${BACKUP_DIR} with the folder where the `postgres.yaml` and `resourceController.yaml` files are located.
-
-1.  Copy the files that you downloaded and created in the previous steps into an existing directory of your choice on a Postgres pod. The files that you need to copy are `pgmig`, `postgres.yaml`, `resourceController.yaml`, and `store.dump`.
+    The files that you need to copy are `pgmig`, `postgres.yaml`, `resourceController.yaml`, and `store.dump`.
 
     You can use the following commands to do so.
 
@@ -313,42 +318,40 @@ Before it adds the backed-up data, the tool removes the data for all instances i
     {: note}
 
     ```bash
-    oc exec -it $POSTGRES_POD -- mkdir /controller/tmp
-    oc exec -it $POSTGRES_POD -- mkdir /controller/tmp/bu
+    oc exec -it $KEEPER_POD -- mkdir /tmp/bu
     ```
     {: codeblock}
 
     ```bash
-    oc rsync bu/ $POSTGRES_POD:/controller/tmp/bu/
+    oc rsync $BACKUP_DIR $KEEPER_POD:/tmp/bu/.
     ```
     {: codeblock}
 
-1.  Stop the Store by scaling the store deployment down to 0 replicas.
+1.  Stop the Store by scaling the store pods down to 0 replicas.
 
     ```bash
     oc get deployments -l component=store
     ```
     {: codeblock}
 
-    Make a note of how many replicas there are in the store deployment.
+    Make a note of how many replicas there are.
 
     ```bash
     oc scale deployment $STORE_DEPLOYMENT_NAME --replicas=0
     ```
     {: codeblock}
 
-1.  Initiate the execution of a remote command in the Postgres pod.
+1.  Initiate the execution of a remote command in the Keeper Pod.
 
     ```bash
-    oc exec -it $POSTGRES_POD /bin/bash
+    oc exec -it $KEEPER_POD /bin/bash
     ```
     {: codeblock}
 
 1.  Run the `pgmig` tool.
 
     ```
-    cd /controller/tmp/bu
-    export PG_CA_FILE=/controller/tmp/bu/ca.crt
+    cd /tmp/bu
     ./pgmig --resourceController resourceController.yaml --target postgres.yaml --source store.dump
     ```
     {: codeblock}
@@ -357,7 +360,7 @@ Before it adds the backed-up data, the tool removes the data for all instances i
 
     As the script runs, you are prompted for information that includes the instance on the target cluster to which to add the backed-up data. The data on the instance you specify will be removed and replaced. If there are multiple instances in the backup, you are prompted multiple times to specify the target instance information.
 
-1.  Scale the store deployment back up.
+1.  Scale the Store database pods back up.
 
     ```bash
     oc scale deployment $STORE_DEPLOYMENT --replicas=$ORIGINAL_NUMBER_OF_REPLICAS
@@ -453,7 +456,7 @@ To add the values that are required but currently missing from the file, complet
           "label": "user-provided",
           "credentials":
           {
-            "host": "${instance}-rw",
+            "host": "${instance}-postgres-proxy-service.${namespace}.svc.cluster.local",
             "port": 5432,
             "database": "conversation_pprd_${instance}",
             "username": "${dbadmin}",
@@ -473,7 +476,7 @@ To add the values that are required but currently missing from the file, complet
     The updated file will look something like this:
 
     ```yaml
-    host: wa_inst-postgres-rw
+    host: wa_inst-postgres-proxy-service.my150wa.svc.cluster.local
     port: 5432
     database: conversation_pprd_wa_inst
     username: dbadmin

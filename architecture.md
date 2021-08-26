@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2015, 2020
-lastupdated: "2021-02-22"
+  years: 2015, 2021
+lastupdated: "2021-08-25"
 
 subcollection: assistant-data
 
@@ -37,7 +37,7 @@ Learn about the components that comprise {{site.data.keyword.conversationfull}} 
 
 {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull_notm}} uses the following patterns to communicate and pass information among its resources:
 
-- **REST API**: Sends representational state transfer (REST) API calls over secure HTTP. 
+- **REST API**: Sends representational state transfer (REST) API calls over secure HTTP.
 - **gRPC**: Makes method calls by using an open source remote procedure call framework, which enables the service to call a resource that is running on another system in the cluster as if it were a local object. For more information, see [gRPC](https://grpc.io/){: external}.
 - **LiteLinks**: Uses the LiteLinks protocol that was developed by IBM. LiteLinks has a custom service discovery layer that serves as a wrapper for an underlying Apache Thrift-based remote procedure call framework.
 
@@ -71,7 +71,7 @@ The following sections provide more detail about each resource that is used by t
 
   - Registers the installation of {{site.data.keyword.conversationshort}} into {{site.data.keyword.icp4dfull_notm}}.
   - For API requests, it adds authentication data that is required by the Store microservice.
-  - Notifies the Store microservice when a service instance is created or deleted. 
+  - Notifies the Store microservice when a service instance is created or deleted.
   - When a user requests instance details from the web UI, it mimics the {{site.data.keyword.cloud_notm}} interface so the UI microservice can return the information.
 
   When an API request comes in, it is processed by the {{site.data.keyword.icp4dfull_notm}} ingress nginx server first. The nginx server is configured to call the Gateway microservice to check authorization and obtain authentication data for the request. The nginx server adds a header to the original request, and then calls the Store microservice. However, the initial steps do not produce any logs. To see the first logs from an incoming API request, check the logs in the Store microservice.
@@ -108,7 +108,7 @@ The {{site.data.keyword.conversationshort}} microservices use the following reso
 
 - **Etcd**: A popular distributed key-value storage solution. Ectd is used by Litelinks clients and servers (Store, Dialog, NLU, Master, TAS, ED-MM) for service discovery. It is used by microservices from the language understanding pipeline (NLU, Master, TAS, ED-MM) to store metadata. For more information, see [Etcd store](#architecture-etcd).
 
-- **Kafka**: A queuing system for incoming customer messages. Introduced with the 1.5.0 release. 
+- **Kafka**: A queuing system for incoming customer messages. Introduced with the 1.5.0 release.
 
 - **MinIO**: MinIO is an object storage service that implements the Amazon S3 API. It is used by the language understanding pipeline microservices (NLU, Master, TAS, ED-MM, and the training pods) to store and load trained models for intent and entity classification. Data is stored in the `nlclassifier-icp` bucket. In {{site.data.keyword.conversationshort}}, MinIO is often referred to as `COS`, which stands for Cloud Object Storage. For more information, see [MinIO](#architecture-minio).
 
@@ -194,7 +194,7 @@ Microservice pods that are either LiteLinks clients or servers contain an initCo
 #### Configuration storage
 {: #architecture-etcd-config}
 
-The microservices in the language understanding pipeline use Etcd to store some configuration values. 
+The microservices in the language understanding pipeline use Etcd to store some configuration values.
 
 Each microservice has its own path in Etcd. Other metadata about models, such as the instance in which a model is loaded, is stored under different keys under the Etcd path.
 
@@ -206,12 +206,12 @@ Each microservice has its own path in Etcd. Other metadata about models, such as
 | ED-MM | `/bluegoat/tas-runtime/${release-name}-ed-mm/` |
 {: caption="Microservice configuration store Etcd paths" caption-side="top"}
 
-The configuration values per microservice are stored under a `/config` subpath. 
+The configuration values per microservice are stored under a `/config` subpath.
 
 ### MinIO
 {: #architecture-minio}
 
-MinIO is an enterprise-grade object storage service that implements the Amazon S3 API. The {{site.data.keyword.conversationshort}} chart runs MinIO in distributed mode with four pods. With this configuration, MinIO functions fully in read/write mode if more than half, meaning three or more, of the pods are available. Its function is degraded to read-only mode if only half (two) of the pods are available. 
+MinIO is an enterprise-grade object storage service that implements the Amazon S3 API. The {{site.data.keyword.conversationshort}} chart runs MinIO in distributed mode with four pods. With this configuration, MinIO functions fully in read/write mode if more than half, meaning three or more, of the pods are available. Its function is degraded to read-only mode if only half (two) of the pods are available.
 
 MinIO pods are named `${release-name}-clu-minio-[0-9]*`. CLU, which stands for Conversational Language Understanding, is included in the pod names to associate the MinIO pods with the language understanding pipeline. It is only the pipeline microservices, such as NLU, Master, TAS, ED-MM, and the training pods that use MinIO.
 
@@ -220,7 +220,7 @@ MinIO pods are named `${release-name}-clu-minio-[0-9]*`. CLU, which stands for C
 
 The Postgres data store is based on stolon, which is a cloud-native PostgreSQL manager for PostgreSQL high availability. (For more information, see the [GitHub sorintlab repo](https://github.com/sorintlab/stolon){: external}.) The Postgres store consists of the following kinds of pods:
 
-- keeper: These pods run the PostgreSQL database. There are three keeper pods. One of the three is selected as the coordinator keeper. The coordinator keeper handles all of the SQL queries. The remaining pods are on standby and their state is updated by the coordinator keeper pod. 
+- keeper: These pods run the PostgreSQL database. There are three keeper pods. One of the three is selected as the coordinator keeper. The coordinator keeper handles all of the SQL queries. The remaining pods are on standby and their state is updated by the coordinator keeper pod.
 
   The keeper pod names follow the convention of `${release-name}-store-postgres-keeper-*`. If the release name is long, the pod names might be shortened to something like `${release-name prefix}-[a-f0-9]{4}-st-a617-keeper-*`.
 
@@ -228,11 +228,11 @@ The Postgres data store is based on stolon, which is a cloud-native PostgreSQL m
   {: note}
 
 - proxy: These pods are the entry point that is used by the Store microservice. The proxy pods route traffic to the coordinator keeper pod.
-- sentinel: These pods are the ones that decide which of the keepers is the coordinator. 
+- sentinel: These pods are the ones that decide which of the keepers is the coordinator.
 
 To manage the PostgreSQL cluster, use `stolonctl` commands inside the keeper pods. The metadata about the PostgreSQL configuration is stored in the configmap named `stolon-cluster-${release-name}`.
 
-Postgres is used by the Store microservice to store assistants, skills, and workspaces. If PostgreSQL and the Store microservice are running, even if nothing else is working, you can export your skills from the product and save them. 
+Postgres is used by the Store microservice to store assistants, skills, and workspaces. If PostgreSQL and the Store microservice are running, even if nothing else is working, you can export your skills from the product and save them.
 
 During installation, the Postgres database is created. The Store microstore user is also created. You can specify the name of the database, the name of the user, and a corresponding password if you want by overriding configuration settings in the `values.yaml` configuration file.
 
@@ -250,7 +250,7 @@ The following table lists the configuration settings that are used by the Store 
 
 The TAS and ED-MM microservices use a model-mesh pattern. In model mesh, each pod contains a set of loaded NLP models. Managing where models are loaded is handled by a model-mesh library. During normal operations, the model is loaded in one pod only. If traffic to the model cannot be handled by a single pod, the model is loaded into other pods also. The metadata about where the models are loaded is stored in Etcd.
 
-TAS and ED-MM belong to separate model-mesh groups. Each group has an independent set of pods and loaded models. 
+TAS and ED-MM belong to separate model-mesh groups. Each group has an independent set of pods and loaded models.
 
 Here's how model mesh functions in the ED-MM microservice pod group. For the ED-MM microservice, you might have two pods, A and B. A gRPS request for help with contextual entity recognition is received through Kubernetes DNS. The request goes to pod A, but the contextual entity model that is needed is loaded in pod B. The model mesh on pod A forwards the request to pod B by using LiteLinks. Pod B uses the appropriate model to identify contextual entities in the input, and then sends a response to pod A. Pod A sends the information in a response back to the service that sent the initial gRPC request.
 
