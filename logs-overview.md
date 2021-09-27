@@ -1,11 +1,10 @@
 ---
 
 copyright:
-  years: 2015, 2020
-lastupdated: "2020-12-01"
+  years: 2015, 2021
+lastupdated: "2021-09-27"
 
 subcollection: assistant-data
-
 
 ---
 
@@ -54,8 +53,8 @@ You can use the following controls to filter the information:
 
   ![Time period control](images/oview-time.png)
 
-  You can choose whether to view data for a single day, a week, a month, or a quarter. In each case, the data points on the graph adjust to an appropriate measurement period. For example, when viewing a graph for a day, the data is presented in hourly values, but when viewing a graph for a week, the data is shown by day. A week always runs from Sunday through Saturday. 
-  
+  You can choose whether to view data for a single day, a week, a month, or a quarter. In each case, the data points on the graph adjust to an appropriate measurement period. For example, when viewing a graph for a day, the data is presented in hourly values, but when viewing a graph for a week, the data is shown by day. A week always runs from Sunday through Saturday.
+
   You can create custom time periods also, such as a week that runs from Thursday to the following Wednesday, or a month that begins on any date other than the first.
 
   The time shown for each conversation is localized to reflect the time zone of your browser. However, API log calls are always shown in UTC time. As a result, if you choose a single day view, for example, the time shown in the visualization might differ from the timestamp specified in the log for the same conversation.
@@ -81,7 +80,7 @@ The scorecards give you a quick view of your metrics. Scroll to see full interac
 - *Total conversations*: The total number of conversations between active users and your assistant that occur during the selected time period.
 
   A single conversation consists of messages that an active user sends to your assistant, and the messages your assistant sends to the user to initiate the conversation or respond.
-  
+
   If your assistant starts by saying "Hi, how can I help you?", and then the user closes the browser without responding, that message is included in the total conversation count.
 
   The total conversations metric is not used for billing purposes. An exchange with a user is not considered a billable conversation until the user submits a message.
@@ -101,18 +100,27 @@ Detailed graphs provide additional information. Click a data point on the graphs
 - *Containment*: Number of conversations in which the assistant is able to satisfy the customer's request without human intervention.
 
   - The volume graph shows the total number of conversations per day and how many of the conversations were contained and not contained.
-  - The trend graph shows the percentage of daily conversations that were contained. This graph helps you to see if the assistant is getting better or worse at containing conversations over time. 
+  - The trend graph shows the percentage of daily conversations that were contained. This graph helps you to see if the assistant is getting better or worse at containing conversations over time.
 
   ![Shows the two containment metrics for volume and trend](images/containment-metric.png)
 
   The containment metric requires that your dialog flag requests for external support when they occur. For more information, see [Measuring containment](/docs/assistant-data?topic=assistant-data-dialog-support#dialog-support-containment).
+- *Coverage*: Number of conversations in which the assistant is confident that it can address a customer's request.
+
+  - The volume graph shows the total number of conversations per day and how many of the conversations were covered (meaning intents in your dialog understood user requests and were able to address them), and not covered (meaning the input did not match an intent in the dialog and was processed by the *Anything else* node instead).
+  - The trend graph shows the percentage of daily conversations that were covered. This graph helps you to see if your dialog is getting better or worse at covering conversations over time.
+
+  ![Shows the two coverage metrics for volume and trend](images/coverage-metric.png)
+
+  The coverage metric requires that your dialog contain an *Anything else* node. If your coverage rate is low, consider using intent recommendations to help you fill in the gaps in your coverage.
+
 - *Total conversations*: The total number of conversations between active users and your assistant during the selected time period.
 - *Average messages per conversation* - The total messages received during the selected time period divided by the total conversations during the selected time period.
 - *Total messages* - The total number of messages received from active users over the selected time period.
 - *Active users* - The number of unique users who have engaged with your assistant within the selected time period.
 - *Average conversations per user* - The total conversations divided by the total number of unique users during the selected time period.
 
-  Statistics for *Active users* and *Average conversations per user* require a unique `user_id` parameter. See [Enabling user metrics](/docs/assistant?topic=assistant-logs-resources#logs-resources-user-id) for more information.
+  Statistics for *Active users* and *Average conversations per user* require a unique `user_id` parameter. See [Enabling user metrics](/docs/assistant-data?topic=assistant-data-logs-resources#logs-resources-user-id) for more information.
   {: important}
 
 ## Top Intents and Top Entities
@@ -124,4 +132,4 @@ You can also view the intents and entities that were recognized most often durin
 
 - *Top entities* are also shown in a list. For each entity you can select from the **Values** column to see a list of the most common values that were identified for this entity during the time period. You can also select an entity to open the **User conversations** page with the date range filtered to match the data you are viewing, and the entity filtered to match the selected entity.
 
-See [Improve your skill](/docs/assistant?topic=assistant-logs) for tips on how to edit intents and entities based on discoveries you make by reviewing the intents and entities that your assistant recognizes.
+See [Improve your skill](/docs/assistant-data?topic=assistant-data-logs) for tips on how to edit intents and entities based on discoveries you make by reviewing the intents and entities that your assistant recognizes.
