@@ -2,7 +2,7 @@
 
 copyright:
   years: 2021
-lastupdated: "2021-08-25"
+lastupdated: "2021-10-04"
 
 subcollection: assistant-data
 
@@ -25,7 +25,7 @@ subcollection: assistant-data
 {:download: .download}
 {:gif: data-image-type='gif'}
 
-# Installing Watson Assistant 4.0.0
+# Installing Watson Assistant 4.0.x
 {: #install-400}
 
 For installation instructions, find the instructions for the appropriate version of {{site.data.keyword.icp4dfull_notm}}:

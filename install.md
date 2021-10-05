@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2021
-lastupdated: "2021-08-27"
+lastupdated: "2021-10-04"
 
 subcollection: assistant-data
 
@@ -37,7 +37,8 @@ The installation process differs depending on the version you are installing. Th
 
 | Version |  Cluster | Installation checklist |
 |------------------------|---------------------------|-------------------|
-| 4.0.0 | {{site.data.keyword.icp4dfull_notm}} 4.0.x | [Installing 4.0](https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=assistant-installing-watson) |
+| 4.0.2 | {{site.data.keyword.icp4dfull_notm}} 4.0.x | [Installing Watson Assistant](https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=assistant-installing-watson){: external} |
+| 4.0.0 | {{site.data.keyword.icp4dfull_notm}} 4.0.x | [Installing Watson Assistant](https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=assistant-installing-watson){: external} |
 | 1.5.0 | {{site.data.keyword.icp4dfull_notm}} 3.0.1 or 3.5 | [Installing 1.5.0](/docs/assistant-data?topic=assistant-data-install-150) |
 | 1.4.2 | {{site.data.keyword.icp4dfull_notm}} 2.5 or 3.0.1 (**I do not have a cluster**)  | [Installing {{site.data.keyword.conversationshort}} 1.4.2](/docs/assistant-data?topic=assistant-data-install-142) |
 | 1.4.2 | {{site.data.keyword.icp4dfull_notm}} 3.0.1 (**I already have a cluster**) | [Installing the {{site.data.keyword.conversationshort}} service](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.0.1/cpd/svc/watson/assistant-install.html){: external} |
@@ -56,6 +57,8 @@ The following table describes which versions of {{site.data.keyword.conversation
 
 | {{site.data.keyword.conversationshort}} version | {{site.data.keyword.icp4dfull_notm}} version | Red Hat OpenShift version | Special notes |
 | ----------------------------------|----------------|----------------|----------|
+| 4.0.2 | 4.0.x | 4.8 | N/A |
+| 4.0.2 | 4.0.x | 4.6 | N/A |
 | 4.0.0 | 4.0.x | 4.6 | N/A |
 | 1.5.0 | 3.5 | 4.6 | Analytics feature and OpenShift Container Storage is supported with this configuration.|
 | 1.5.0 | 3.5 | 3.11 | N/A |

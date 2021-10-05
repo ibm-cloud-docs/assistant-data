@@ -26,16 +26,19 @@ Watson Assistant for IBM Cloud Pak for Data (Installed)
     Installing
         install.md
         install-400.md
-        troubleshoot.md
 
         {: .topicgroup}
         Installing previous versions
             install-150.md
-            backup-150.md
             install-142.md
-            backup-142.md
             install-141.md
             install-140.md
+
+        {: .topicgroup}
+        Backing up and restoring previous versions
+            backup-400.md
+            backup-150.md
+            backup-142.md
 
     {: .topicgroup}
     Creating your assistant
@@ -145,6 +148,7 @@ Watson Assistant for IBM Cloud Pak for Data (Installed)
     {: .navgroup id="help"}
     faqs.md
     release-notes.md
+    troubleshoot.md
     get-help.md
     feedback.md
 
