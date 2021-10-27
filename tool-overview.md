@@ -6,7 +6,6 @@ lastupdated: "2019-05-28"
 
 subcollection: assistant-data
 
-
 ---
 
 {:shortdesc: .shortdesc}
@@ -21,8 +20,4 @@ subcollection: assistant-data
 
 With {{site.data.keyword.conversationshort}}, you can create and manage one or more assistants. Watch this video to learn more about the product.
 
-<p>
-  <div class="embed-responsive embed-responsive-16by9">
-    <iframe class="embed-responsive-item" id="youtubeplayer" title="Watson Assistant product overview" type="text/html" width="640" height="390" src="https://www.youtube.com/embed/h-u-5f8fZtc?rel=0" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen> </iframe>
-  </div>
-</p>
+<iframe class="embed-responsive-item" id="youtubeplayer" title="Watson Assistant product overview" type="text/html" width="640" height="390" src="https://www.youtube.com/embed/h-u-5f8fZtc?rel=0" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen> </iframe>
