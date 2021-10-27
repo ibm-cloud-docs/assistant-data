@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2021
-lastupdated: "2021-10-04"
+lastupdated: "2021-10-27"
 
 subcollection: assistant-data
 
@@ -118,7 +118,7 @@ Horizontal Pod Autoscaling (HPA) is enabled automatically for Watson Assistant. 
 
 1.  First, disable HPA for the `master` microservice by running the following command. In these steps, substitute your instance name for the `INSTANCE_NAME` variable:
     ```
-    oc patch wa ${INSTANCE_NAME} --type='json' --patch='[{"op": "add", "path": "/appConfigOverrides/clu_master", "value":{"autoscaling":{"enabled":"false"}}}]'
+    oc patch wa ${INSTANCE_NAME} --type='json' --patch='[{"op": "add", "path": "/appConfigOverrides/clu_master", "value":{"autoscaling":{"enabled":false}}}]'
     ```
 
 1.  Wait until the information propagates into the Watson Assistant operator:
