@@ -1,0 +1,182 @@
+#  Watson Assistant for IBM Cloud Pak for Data
+---
+toc:
+  properties:
+    subcollection: assistant-data
+    category: ai
+    audience: service
+    href: /docs/assistant-data?topic=assistant-data-getting-started
+    product-page: https://ibm.com/cloud/assistant-data
+    path: assistant-data
+    label: Watson Assistant for IBM Cloud Pak for Data (Installed)
+
+  entries:
+  - navgroup:
+      id: learn
+      topics:
+      - getting-started.md
+      - index.md
+      - tool-overview.md
+      - link:
+          label: Banking assistant demo
+          href: https://watson-conversation-duo-dev.ng.bluemix.net/
+      - sample-apps.md
+      - release-notes.md
+
+  - navgroup:
+      id: tutorial
+      topics:
+      - tutorial.md
+      - tutorial-slots.md
+      - tutorial-slots-complex.md
+      - tutorial-digressions.md
+
+  - navgroup:
+      id: howto
+      topics:
+      - dev-process.md
+      - topicgroup:
+          label: Installing
+          topics:
+          - install.md
+          - install-400.md
+          - topicgroup:
+              label: Installing previous versions
+              topics:
+              - install-150.md
+              - install-142.md
+              - install-141.md
+              - install-140.md
+          - topicgroup:
+              label: Backing up and restoring previous versions
+              topics:
+              - backup-400.md
+              - backup-150.md
+              - backup-142.md
+      - topicgroup:
+          label: Creating your assistant
+          topics:
+          - assistants.md
+          - assistant-add.md
+          - skill-add.md
+          - assistant-settings.md
+      - topicgroup:
+          label: Creating a dialog skill
+          topics:
+          - skill-dialog-add.md
+          - topicgroup:
+              label: Adding intents
+              topics:
+              - catalog.md
+              - intents.md
+          - topicgroup:
+              label: Creating a dialog
+              topics:
+              - dialog-build.md
+              - dialog-plan.md
+              - dialog-overview.md
+              - dialog-runtime-context.md
+              - dialog-slots.md
+              - dialog-runtime.md
+              - dialog-tasks.md
+              - dialog-tips.md
+              - dialog-support.md
+              - dialog-runtime-spell-check.md
+          - entities.md
+          - topicgroup:
+              label: Advanced dialog tasks
+              topics:
+              - dialog-actions-client.md
+              - dialog-integrations.md
+              - dialog-responses-json.md
+          - versions.md
+      - skill-search-add.md
+      - assistant-language.md
+      - topicgroup:
+          label: Deploying
+          topics:
+          - deploy-integration-add.md
+          - deploy-web-link.md
+          - deploy-web-chat.md
+          - deploy-custom-app.md
+          - link:
+              label: Integrating with your own service desk
+              href: https://github.com/watson-developer-cloud/assistant-web-chat-service-desk-starter
+          - deploy-integration-delete.md
+      - topicgroup:
+          label: Analytics
+          topics:
+          - logs-overview.md
+          - logs.md
+          - irrelevance-detection.md
+          - logs-resources.md
+      - topicgroup:
+          label: Administering
+          topics:
+          - manage.md
+          - architecture.md
+          - information-security.md
+          - backup.md
+          - upgrade.md
+      - topicgroup:
+          label: Using webhooks
+          topics:
+          - webhook-overview.md
+          - dialog-webhooks.md
+          - webhook-pre.md
+          - webhook-post.md
+          - webhook-log.md
+      - topicgroup:
+          label: Using the API
+          topics:
+          - api-overview.md
+          - api-methods.md
+          - api-client.md
+          - api-context.md
+          - api-dialog-responses.md
+          - api-dialog-modify.md
+          - /watson/watson-using-sdks
+
+  - navgroup:
+      id: reference
+      topics:
+      - link:
+          label: v2 API reference
+          href: https://cloud.ibm.com/apidocs/assistant-data-v2
+      - link:
+          label: v1 API reference
+          href: https://cloud.ibm.com/apidocs/assistant-data-v1
+      - recovery.md
+      - dialog-methods.md
+      - expression-language.md
+      - filter-reference.md
+      - topicgroup:
+          label: Built-in entities
+          topics:
+          - system-entities.md
+          - system-entities-142.md
+          - sys-date-festivals.md
+          - time-zones.md
+      - services-information.md
+      - language-support.md
+
+  - navgroup:
+      id: help
+      topics:
+      - faqs.md
+      - troubleshoot.md
+      - get-help.md
+      - feedback.md
+      - topicgroup:
+          label: Communities
+          links:
+          - link:
+              label: Stack Overflow
+              href: https://stackoverflow.com/questions/tagged/watson-assistant
+          - link:
+              label: WDC Slack channel
+              href: http://wdc-slack-inviter.mybluemix.net/
+          - link:
+              label: IBM Watson Apps Community
+              href: https://community.ibm.com/community/user/watsonapps/communities/community-home?CommunityKey=7a3dc5ba-3018-452d-9a43-a49dc6819633
+      - accessibility.md

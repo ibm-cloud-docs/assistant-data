@@ -47,19 +47,19 @@ kubectl get pods -o wide
 ### To find out how many replicas are in use
 {: #manage-get-replica-number}
 
-  ```bash
-  kubectl get deploy  -n {namespace-name}
-  ```
-  {: pre}
+```bash
+kubectl get deploy  -n {namespace-name}
+```
+{: pre}
 
-  or
+or
 
-  ```bash
-  kubectl get statefulset -n {namespace-name}
-  ```
-  {: pre}
+```bash
+kubectl get statefulset -n {namespace-name}
+```
+{: pre}
 
-  The response shows you name and number of replicas.
+The response shows you name and number of replicas.
 
 ## Scaling
 {: #manage-scale}
