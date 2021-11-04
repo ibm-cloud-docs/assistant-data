@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2021
-lastupdated: "2021-08-25"
+lastupdated: "2021-11-04"
 
 subcollection: assistant-data
 
@@ -74,7 +74,7 @@ The following table lists the configuration values that control the backup cron 
 
 To access the backup files from Portworx, complete the following steps:
 
-1.  Get the name of the persistent volume that is used for the Postgres backup.
+1.  Get the name of the persistent volume that is used for the Postgres backup:
 
     ```bash
     oc get pv |grep $INSTANCE-store
@@ -83,14 +83,14 @@ To access the backup files from Portworx, complete the following steps:
 
     This command returns the name of the persistent volume claim where the store backup is located, such as `pvc-d2b7aa93-3602-4617-acea-e05baba94de3`. The name is referred to later in this procedure as the `$pv_name`.
 
-1.  Find nodes where Portworx is running.
+1.  Find nodes where Portworx is running:
 
     ```bash
     oc get pods -n kube-system -o wide -l name=portworx-api
     ```
     {: codeblock}
 
-1.  Log in as the core user to one of the nodes where Portworx is running.
+1.  Log in as the core user to one of the nodes where Portworx is running:
 
     ```bash
     ssh core@<node hostname>
@@ -100,54 +100,144 @@ To access the backup files from Portworx, complete the following steps:
 
 1.  Make sure the persistent volume is in a detached state and that no store backups are scheduled to occur during the time you plan to transfer the backup files.
 
-    Remember, backups occur daily at 11 PM (in the time zone configured for the nodes) unless you change the schedule by editing the value of the `postgres.backup.schedule` configuration parameter. You can run the `oc get cronjobs` command to check the current schedule for the `$RELEASE-backup-cronjob` job.
+    Remember, backups occur daily at 11 PM (in the time zone configured for the nodes) unless you change the schedule by editing the value of the `postgres.backup.schedule` configuration parameter. You can run the `oc get cronjobs` command to check the current schedule for the `$RELEASE-backup-cronjob` job. In the following command, `$pvc_node` is the name of the node that you discovered in the first step of this task:
 
     ```bash
     pxctl volume inspect $pv_name |head -40
     ```
     {: codeblock}
 
-    where `$pvc_node` is the name of the node that you discovered in Step 1 of this procedure.
+1.  Attach the persistent volume to the host:
 
-1.  Attach the persistent volume to the host.
+    ```bash
+    pxctl host attach $pv_name
+    ```
+    {: codeblock}
 
-   ```bash
-   pxctl host attach $pv_name
-   ```
-   {: codeblock}
-
-1.  Create a folder where you want to mount the node.
+1.  Create a folder where you want to mount the node:
 
     ```bash
     mkdir /var/lib/osd/mounts/voldir
     ```
     {: codeblock}
 
-1.  Mount the node.
+1.  Mount the node:
 
     ```bash
     pxctl host mount $pv_name --path /var/lib/osd/mounts/voldir
     ```
     {: codeblock}
 
-1.  Change Directory to `/var/lib/osd/mounts/voldir`. Transfer backup files to a secure location. Afterwards, exit the directory. Unmount the volume.
+1.  Change directory to `/var/lib/osd/mounts/voldir`. Transfer backup files to a secure location. Afterwards, exit the directory. Unmount the volume:
 
     ```bash
     pxctl host unmount --path /var/lib/osd/mounts/voldir $pv_name
     ```
     {: codeblock}
 
-1.  Detach the volume from the host.
+1.  Detach the volume from the host:
 
     ```bash
     pxctl host detach $pv_name
     ```
     {: codeblock}
 
-1.  Make sure the volume is in the detached state. Otherwise, subsequent backups will fail.
+1.  Make sure the volume is in the detached state. Otherwise, subsequent backups will fail:
 
     ```bash
     pxctl volume inspect $pv_name |head -40
+    ```
+    {: codeblock}
+
+### Accessing backed-up files from OpenShift Container Storage
+{: #backup-access-ocs}
+
+To access the backup files from OpenShift Container Storage (OCS), complete the following steps:
+
+1.  Create a volume snapshot of the persistent volume claim that is used for the Postgres backup:
+
+    ```
+    cat <<EOF | oc apply -f -
+    apiVersion: snapshot.storage.k8s.io/v1
+    kind: VolumeSnapshot
+    metadata:
+      name: wa-backup-snapshot
+    spec:
+      source:
+        persistentVolumeClaimName: ${INSTANCE_NAME}-store-pvc
+      volumeSnapshotClassName: ocs-storagecluster-rbdplugin-snapclass
+    EOF
+    ```
+    {: codeblock}
+
+1.  Create a persistent volume claim from the volume snapshot:
+
+    ```
+    cat <<EOF | oc apply -f -
+    apiVersion: v1
+    kind: PersistentVolumeClaim
+    metadata:
+      name: wa-backup-snapshot-pvc
+    spec:
+      storageClassName: ocs-storagecluster-ceph-rbd
+      accessModes:
+      - ReadWriteOnce
+      volumeMode: Filesystem
+      dataSource:
+        apiGroup: snapshot.storage.k8s.io
+        kind: VolumeSnapshot
+        name: wa-backup-snapshot
+      resources:
+        requests:
+          storage: 1Gi     
+    EOF
+    ```
+    {: codeblock}
+
+1.  Create a pod to access the persistent volume claim:
+
+    ```
+    cat <<EOF | oc apply -f -
+    kind: Pod
+    apiVersion: v1
+    metadata:
+      name: wa-retrieve-backup
+    spec:
+      volumes:
+        - name: backup-snapshot-pvc
+          persistentVolumeClaim:
+           claimName: wa-backup-snapshot-pvc
+      containers:
+        - name: retrieve-backup-container
+          image: cp.icr.io/cp/watson-assistant/conan-tools:20210630-0901-signed@sha256:e6bee20736bd88116f8dac96d3417afdfad477af21702217f8e6321a99190278
+          command: ['sh', '-c', 'echo The pod is running && sleep 360000']
+          volumeMounts:
+            - mountPath: "/watson_data"
+              name: backup-snapshot-pvc
+    EOF
+    ```
+    {: codeblock}
+
+1.  If you do not know the name of the backup file that you want to extract and are unable to check the most recent backup cron job, run the following command:
+
+    ```
+    oc exec -it wa-retrieve-backup -- ls /watson_data
+    ```
+    {: codeblock}
+
+1.  Transfer the backup files to a secure location:
+
+    ```
+    kubectl cp wa-retrieve-backup:/watson_data/${FILENAME} ${SECURE_LOCAL_DIRECTORY}/${FILENAME}
+    ```
+    {: codeblock}
+
+1.  Run the following commands to clean up the resources that you created for to retrieve the files:
+
+    ```
+    oc delete wa-retrieve-backup
+    oc delete pvc wa-restore-backup
+    oc delete volumesnapshot wa-backup-snapshot-pvc
     ```
     {: codeblock}
 

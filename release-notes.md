@@ -25,7 +25,7 @@ content-type: release-note
 {:python: .ph data-hd-programlang='python'}
 {:swift: .ph data-hd-programlang='swift'}
 
-# Release notes for {{site.data.keyword.conversationfull}} for {{site.data.keyword.icp4dfull}}
+# Release notes for {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}}
 {: #release-notes}
 
 Use these release notes to learn about the latest updates to {{site.data.keyword.conversationfull}} for {{site.data.keyword.icp4dfull}}.
