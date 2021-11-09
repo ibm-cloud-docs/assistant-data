@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2021
-lastupdated: "2021-09-29"
+lastupdated: "2021-11-09"
 
 subcollection: assistant-data
 
@@ -38,7 +38,7 @@ Use these release notes to learn about the latest updates to {{site.data.keyword
 {{site.data.keyword.conversationfull}} Cartridge for {{site.data.keyword.icp4dfull}} 4.0.2 is available
 :   {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} 4.0.2 is compatible with {{site.data.keyword.icp4dfull}} 4.0 on Red Hat OpenShift 4.8.
 
-Integration with the {{site.data.keyword.icp4dfull}} auditing service
+[Integration with the {{site.data.keyword.icp4dfull}} auditing service](/docs/assistant-data?topic=assistant-data-audit-events)
 :   {{site.data.keyword.conversationshort}} integrates with the {{site.data.keyword.icp4dfull}} auditing service feature, providing standard auditing records for important lifecycle and security events. The service generates audit records for events such as intent edits, entity creation, dialog node deletion, and more.
 
 ## 29 July 2021

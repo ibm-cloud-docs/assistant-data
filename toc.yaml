@@ -146,6 +146,7 @@ toc:
       - link:
           label: v1 API reference
           href: https://cloud.ibm.com/apidocs/assistant-data-v1
+      - audit-events.md
       - recovery.md
       - dialog-methods.md
       - expression-language.md
