@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2021
-lastupdated: "2021-10-27"
+lastupdated: "2021-11-15"
 
 subcollection: assistant-data
 
@@ -32,13 +32,13 @@ Get help with solving issues that you encounter while using the product.
 ## 4.0.0
 {: #troubleshoot-400}
 
-### Install Watson Assistant 4.0.0 with EDB version 1.8
+### Install {{site.data.keyword.conversationshort}} 4.0.0 with EDB version 1.8
 {: #troubleshoot-400-install-edb18}
 
-Complete this task only if you need a fresh installation of Watson Assistant 4.0.0. Do not complete this task on existing clusters with data. Completing this task on an existing cluster with data results in data loss.
+Complete this task only if you need a fresh installation of {{site.data.keyword.conversationshort}} 4.0.0. Do not complete this task on existing clusters with data. Completing this task on an existing cluster with data results in data loss.
 {: important}
 
-If you upgraded to EDB version 1.8 and need a new installation of Watson Assistant 4.0.0, complete the following steps. In the following steps, `wa` is used as the name of the custom resource. Replace this value with the name of your custom resource:
+If you upgraded to EDB version 1.8 and need a new installation of {{site.data.keyword.conversationshort}} 4.0.0, complete the following steps. In the following steps, `wa` is used as the name of the custom resource. Replace this value with the name of your custom resource:
 
 1. First, apply the following patch:
     ```
@@ -104,24 +104,140 @@ If you upgraded to EDB version 1.8 and need a new installation of Watson Assista
     wa-4.0.0-update-schema-store-db-job   1/1           13s        31m
     ```
 
-    If the jobs don't complete successfully, then they timed out and need to be recreated. Delete the jobs by running the `oc delete jobs wa-create-slot-store-db-job wa-4.0.0-update-schema-store-db-job` command. The jobs are recreated after 10 minutes by the Watson Assistant operator.
+    If the jobs don't complete successfully, then they timed out and need to be recreated. Delete the jobs by running the `oc delete jobs wa-create-slot-store-db-job wa-4.0.0-update-schema-store-db-job` command. The jobs are recreated after 10 minutes by the {{site.data.keyword.conversationshort}} operator.
 
-For information about upgrading from Watson Assistant 4.0.0 to Watson Assistant 4.0.2, see [Upgrading Watson Assistant to a newer 4.0 refresh](https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=assistant-upgrading-watson-version-40){: external}.
+For information about upgrading from {{site.data.keyword.conversationshort}} 4.0.0 to {{site.data.keyword.conversationshort}} 4.0.2, see [Upgrading {{site.data.keyword.conversationshort}} to a newer 4.0 refresh](https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=assistant-upgrading-watson-version-40){: external}.
 
 ## 1.5.0
 {: #troubleshoot-150}
 
+### Search skill not working because of custom certificate
+{: #troubleshoot-150-search-skill}
+
+The search skill, which is the integration with the Watson Discovery service, might not work if you [configured a custom TLS certificate](https://www.ibm.com/docs/en/cloud-paks/cp-data/3.5.0?topic=client-using-custom-tls-certificate) in Cloud Pak for Data. If the custom certificate is not signed by a well-known certificate authority (CA), the search skill does not work as expected. You might also see errors in the **Try out** section of the search skill.
+
+#### Validate the issue
+First, check the logs of the search skill pods to confirm whether this issue applies to you.
+
+1.  Run the following command to list the search skill pods:
+    ```
+    oc get pods -l component=skill-search
+    ```
+
+1.  Run the following command to check the logs for the following exception:
+    ```
+    oc logs -l component=skill-search | grep "IBMCertPathBuilderException"
+    ```
+
+    The error looks similar to the following example:
+    ```
+    {"level":"ERROR","logger":"wa-skills","message":"Search skill exception","exception":[{"message":"com.ibm.jsse2.util.h: PKIX path building failed: com.ibm.security.cert.IBMCertPathBuilderException: unable to find valid certification path to requested target","name":"SSLHandshakeException"
+    ```
+
+    If you see this error, continue to follow the steps to apply the fix.
+
+#### Apply the fix
+
+To fix the search skill, you inject the CA that signed your TLS certificate into the Java truststore that is used by the search skill. The search skill pods are then able to validate your certificate and communicate with the Watson Discovery service.
+
+1.  First, get your certificate. You might have this certificate, but in these steps you can retrieve the certificate directly from the cluster.
+
+    a) Run the following command to check that the secret exists:
+    ```
+    oc get secret external-tls-secret
+    ```
+
+    b) Run the following command to retrieve the certificate chain from the secret:
+    ```
+    oc get secret external-tls-secret --output jsonpath='{.data.cert\.crt}' | base64 -d | tee ingress_cert_chain.crt
+    ```
+
+    c) Extract the CA certificate. The `ingress_cert_chain.crt` file typically contains multiple certificates. The last certificate in the file is usually your CA certificate. Copy the last certificate block that begins with `-----BEGIN CERTIFICATE-----` and ends with `-----END CERTIFICATE-----`. Save this certificate in the `ingress_ca.crt` file. When you save the `ingress_ca.crt` file, the `-----BEGIN CERTIFICATE-----` line must be the first line of the file, and the `-----END CERTIFICATE-----` line must be the last line of the file.
+
+1.  Retrieve the truststore that is used by the search skill pods.
+
+    a) Run the following command to list the search skill pods:
+    ```
+    oc get pods -l component=skill-search
+    ```
+
+    b) Run the following command to set the `SEARCH_SKILL_POD` environment variable with the search skill pod name:
+    ```
+    SEARCH_SKILL_POD="$(oc get pods -l component=skill-search --output custom-columns=NAME:.metadata.name --no-headers | head -n 1)"
+    ```
+
+    c) Run the following command to see the selected pod:
+    ```
+    echo "Selected search skill pod: ${SEARCH_SKILL_POD}"
+    ```
+
+    d) Retrieve the truststore file. The `cacerts` file is the default truststore that is used by Java. It contains the list of the certificate authorities that Java trusts by default. Run the following command to copy the binary `cacerts` file from the pod into your current directory:
+    ```
+    oc cp ${SEARCH_SKILL_POD}:/opt/ibm/java/jre/lib/security/cacerts cacerts
+    ```
+
+1.  Run the following command to inject the `ingress_ca.crt` file into the `cacerts` file:
+    ```
+    keytool -import -trustcacerts -keystore cacerts -storepass changeit -alias customer_ca -file ingress_ca.crt
+    ```
+
+    You can run the `keytool -list -keystore cacerts -storepass changeit | grep customer_ca -A 1` command to check that your CA certificate is included in the `cacerts` file.
+    {: tip}
+
+1.  Run the following command to create the configmap that contains the updated `cacerts` file:
+    ```
+    oc create configmap watson-assistant-skill-cacerts --from-file=cacerts
+    ```
+
+    Because the `cacerts` file is binary, the output of the `oc describe configmap watson-assistant-skill-cacerts` command shows an empty data section. To check whether the updated `cacerts` file is present in the configmap, run the `oc get configmap watson-assistant-skill-cacerts --output yaml` command.
+
+1.  Override the `cacerts` file in the search skill pods. In this step, you configure the {{site.data.keyword.conversationshort}} operator to override the `cacerts` file in the search skill pods with the updated `cacerts` file. In the following example file, the {{site.data.keyword.conversationshort}} instance is called `watson-assistant---wa`. Replace this value with the name of your instance:
+    ```
+    cat <<EOF | oc apply -f -
+    kind: TemporaryPatch
+    apiVersion: com.ibm.oppy/v1
+    metadata:
+      name: watson-assistant---wa-skill-cert
+    spec:
+      apiVersion: com.ibm.watson.watson-assistant/v1
+      kind: WatsonAssistantSkillSearch
+      name: "watson-assistant---wa"    # Replace this with the name of your Watson Assistance instance
+      patchType: patchStrategicMerge
+      patch:
+        "skill-search":
+          deployment:
+            spec:
+              template:
+                spec:
+                  volumes:
+                   - name: updated-cacerts
+                     configMap:
+                       name: watson-assistant-skill-cacerts
+                       defaultMode: 420
+                  containers:
+                  - name: skill-search
+                    volumeMounts:
+                    - name: updated-cacerts
+                      mountPath: /opt/ibm/java/jre/lib/security/cacerts
+                      subPath: cacerts
+    EOF
+    ```  
+
+1.  Wait until new search skill pods are created. It might take up to 10 minutes before the updates take affect.
+
+1.  Check that the search skill feature is working as expected.
+
 ### Disable Horizontal Pod Autoscaling and set a maximum number of master pods
 {: #troubleshoot-150-disable-hpa}
 
-Horizontal Pod Autoscaling (HPA) is enabled automatically for Watson Assistant. As a result, the number of replicas changes dynamically in the range of 1 to 10 replicas. You can disable HPA if you want to limit the maximum number of master pods or if you're concerned about master pods being created and deleted too frequently.
+Horizontal Pod Autoscaling (HPA) is enabled automatically for {{site.data.keyword.conversationshort}}. As a result, the number of replicas changes dynamically in the range of 1 to 10 replicas. You can disable HPA if you want to limit the maximum number of master pods or if you're concerned about master pods being created and deleted too frequently.
 
 1.  First, disable HPA for the `master` microservice by running the following command. In these steps, substitute your instance name for the `INSTANCE_NAME` variable:
     ```
     oc patch wa ${INSTANCE_NAME} --type='json' --patch='[{"op": "add", "path": "/appConfigOverrides/clu_master", "value":{"autoscaling":{"enabled":false}}}]'
     ```
 
-1.  Wait until the information propagates into the Watson Assistant operator:
+1.  Wait until the information propagates into the {{site.data.keyword.conversationshort}} operator:
     ```
     sleep 600
     ```
@@ -141,12 +257,12 @@ Horizontal Pod Autoscaling (HPA) is enabled automatically for Watson Assistant. 
     oc scale deploy ${INSTANCE_NAME}-master --replicas=2
     ```
 
-### Watson Assistant 1.5.0 patch 1
-[Watson Assistant 1.5.0 patch 1](https://www.ibm.com/support/pages/node/6240164) is available for installations of version 1.5.0.
+### {{site.data.keyword.conversationshort}} 1.5.0 patch 1
+[{{site.data.keyword.conversationshort}} 1.5.0 patch 1](https://www.ibm.com/support/pages/node/6240164) is available for installations of version 1.5.0.
 
-### Resizing the Redis statefulset memory and cpu values after applying patch 1 for Watson Assistant 1.5.0
+### Resizing the Redis statefulset memory and cpu values after applying patch 1 for {{site.data.keyword.conversationshort}} 1.5.0
 
-Watson Assistant uses Redis to store web session-related data. Here are steps to resize Redis statefulset memory and cpu values after applying [Watson Assistant 1.5.0 patch 1](https://www.ibm.com/support/pages/node/6240164).
+{{site.data.keyword.conversationshort}} uses Redis to store web session-related data. Here are steps to resize Redis statefulset memory and cpu values after applying [{{site.data.keyword.conversationshort}} 1.5.0 patch 1](https://www.ibm.com/support/pages/node/6240164).
 
 1.  Use `oc get wa` to see your instance name:
     ```
@@ -261,9 +377,9 @@ Watson Assistant uses Redis to store web session-related data. Here are steps to
 ### Delete the pdb (poddisruptionbudgets) when changing instance from medium to small
 {: #troubleshoot-delete-pdb}
 
-Whenever the size of Watson Assistant is changed from medium to small, a manual step is required to delete the `poddisruptionbudgets` that are created for medium instances.
+Whenever the size of {{site.data.keyword.conversationshort}} is changed from medium to small, a manual step is required to delete the `poddisruptionbudgets` that are created for medium instances.
 
-Run the following command, replacing `<instance-name>` with the name of your Watson Assistant CR instance and replacing `<namespace-name>` with the name of the namespace where the instance resides.
+Run the following command, replacing `<instance-name>` with the name of your {{site.data.keyword.conversationshort}} CR instance and replacing `<namespace-name>` with the name of the namespace where the instance resides.
 
 ```
 oc delete pdb  -l icpdsupport/addOnId=assistant,component!=etcd,ibmevents.ibm.com/kind!=Kafka,app.kubernetes.io/instance=<instance-name> -n <namespace-name>
