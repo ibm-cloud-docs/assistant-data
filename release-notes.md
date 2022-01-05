@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2015, 2021
-lastupdated: "2021-12-17"
+  years: 2015, 2022
+lastupdated: "2022-01-05"
 
 subcollection: assistant-data
 
@@ -36,7 +36,7 @@ Use these release notes to learn about the latest updates to {{site.data.keyword
 {: release-note}
 
 {{site.data.keyword.conversationfull}} Cartridge for {{site.data.keyword.icp4dfull}} 4.0.4 is available
-:   {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} 4.0.4 is compatible with {{site.data.keyword.icp4dfull}} 4.0 on Red Hat OpenShift 4.8. This release of {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} includes critical security fixes.
+:   {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} 4.0.4 is compatible with {{site.data.keyword.icp4dfull}} 4.0 on Red Hat OpenShift 4.8. This release of {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} includes critical security fixes. {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} 4.0.4 is not compatible with FIPS-enabled clusters.
 
 ## 4 October 2021
 {: #assistant-data-oct042021}
