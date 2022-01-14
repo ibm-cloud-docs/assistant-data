@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2015, 2020
-lastupdated: "2020-10-20"
+  years: 2015, 2022
+lastupdated: "2022-01-14"
 
 subcollection: assistant-data
 
@@ -47,17 +47,10 @@ Follow these steps to add integrations to your assistant:
 
 1.  Go to the Integrations section.
 
-    **Why do I have *Preview link* and *Web chat* integrations?** These integrations are provisioned for you automatically (unless you choose not to enable them). 
-    
-    The preview link embeds your assistant as a simple chat widget in an IBM-branded web page where you can test your assistant.
-
-    The web chat is a chat window that you can embed in one or more pages on your website to share your assistant with your customers.
-
 1.  Click **Add integration**.
 
 1.  Click the tile for the channel with which you want to integrate the assistant. The options include:
 
-    - [Preview link](/docs/assistant?topic=assistant-deploy-web-link)
     - [Web chat](/docs/assistant-data?topic=assistant-data-deploy-web-chat)
     - [Custom application](/docs/assistant-data?topic=assistant-data-deploy-custom-app)
 
