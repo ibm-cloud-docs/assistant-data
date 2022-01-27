@@ -36,7 +36,7 @@ Use these release notes to learn about the latest updates to {{site.data.keyword
 {: release-note}
 
 {{site.data.keyword.conversationfull}} Cartridge for {{site.data.keyword.icp4dfull}} 4.0.5 is available
-:   {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} 4.0.5 is compatible with {{site.data.keyword.icp4dfull}} 4.0 on Red Hat OpenShift 4.8. This release of {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} includes various fixes.
+:   {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} 4.0.5 is compatible with {{site.data.keyword.icp4dfull}} 4.0 on Red Hat OpenShift 4.8. This release of {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} includes various fixes. {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} 4.0.5 is compatible with FIPS-enabled clusters.
 
 ## 20 December 2021
 {: #assistant-data-dec202021}
