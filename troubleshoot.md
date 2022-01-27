@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2022
-lastupdated: "2022-01-12"
+lastupdated: "2022-01-26"
 
 subcollection: assistant-data
 
@@ -28,6 +28,82 @@ subcollection: assistant-data
 
 Get help with solving issues that you encounter while using the product.
 {: shortdesc}
+
+## 4.0.x
+{: #troubleshoot-40x}
+
+The following fixes apply to all versions of {{site.data.keyword.conversationshort}} 4.0.x.
+
+### Unable to collect logs with a webhook
+{: #troubleshoot-40x-collect-logs-webhook}
+
+If you're unable to collect logs with a webhook, it might be because you are using a webhook that connects to a server that is using a self-signed certificate. If so, complete the following steps to import the certificate into the keystore so that you can collect {{site.data.keyword.conversationshort}} logs with a webhook:
+
+1. Log in to cluster and `oc project cpd-instance`, which is the namespace where the {{site.data.keyword.conversationshort}} instance is located.
+
+1. Run the following command. In the following command, replace `INSTANCE_NAME` with the name of your {{site.data.keyword.conversationshort}} instance and replace `CUSTOM_CERTIFICATE` with your Base64 encoded custom certificate key:
+    ```
+    INSTANCE="INSTANCE_NAME"     # Replace instance-name with the name of the Watson Assistant instance
+    CERT="CUSTOM_CERTIFICATE"     # Replace custom-certificate with the custom certificate key
+
+    cat <<EOF | oc apply -f -
+    apiVersion: v1
+    data:
+      ca_cert: ${CERT}
+    kind: Secret
+    metadata:
+      name: ${INSTANCE}-custom-webhooks-cert
+    type: Opaque
+    ---
+    apiVersion: assistant.watson.ibm.com/v1
+    kind: TemporaryPatch
+    metadata:
+      name: ${INSTANCE}-add-custom-webhooks-cert
+    spec:
+      apiVersion: assistant.watson.ibm.com/v1
+      kind: WatsonAssistantStore
+      name: ${INSTANCE}
+      patchType: patchStrategicMerge
+      patch:
+        webhooks-connector:
+          deployment:
+            spec:
+              template:
+                spec:
+                  containers:
+                  - name: webhooks-connector
+                    env:
+                    - name: CERTIFICATES_IMPORT_LIST
+                      value: /etc/secrets/kafka/ca.pem:kafka_ca,/etc/secrets/custom/ca.pem:custom_ca
+                    volumeMounts:
+                    - mountPath: /etc/secrets/custom
+                      name: custom-cert
+                      readOnly: true
+                  volumes:
+                  - name: custom-cert
+                    secret:
+                      defaultMode: 420
+                      items:
+                      - key: ca_cert
+                        path: ca.pem
+                      secretName: ${INSTANCE}-custom-webhooks-cert
+    EOF
+    ```
+
+1. Wait approximately 10 minutes for the `wa-webhooks-connector` pod to restart. This pod restarts automatically.
+
+1. After the pod restarts, check the logs by running the following command. In the command, replace `XXXX` with the suffix of the `wa-webhooks-connector` pod:
+    ```
+    oc logs wa-webhooks-connector-XXXX     // Replace XXXX with the suffix of the wa-webhooks-connector pod
+    ```
+
+    After you run this command, you should see two lines similar to the following example at the beginning of the log:
+    ```
+    Certificate was added to keystore
+    Certificate was added to keystore
+    ```
+
+    When you see these two lines, then the custom certificate was properly imported into the keystore.
 
 ## 4.0.0
 {: #troubleshoot-400}
