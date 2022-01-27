@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2015, 2021
-lastupdated: "2021-12-16"
+  years: 2015, 2022
+lastupdated: "2022-01-26"
 
 subcollection: assistant-data
 
@@ -37,6 +37,7 @@ The installation process differs depending on the version you are installing. Th
 
 | Version |  Cluster | Installation checklist |
 |------------------------|---------------------------|-------------------|
+| 4.0.5 | {{site.data.keyword.icp4dfull_notm}} 4.0.x | [Installing 4.0.5](https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=assistant-installing-watson){: external} |
 | 4.0.4 | {{site.data.keyword.icp4dfull_notm}} 4.0.x | [Installing 4.0.4](https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=assistant-installing-watson){: external} |
 | 4.0.2 | {{site.data.keyword.icp4dfull_notm}} 4.0.x | [Installing 4.0.2](https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=assistant-installing-watson){: external} |
 | 4.0.0 | {{site.data.keyword.icp4dfull_notm}} 4.0.x | [Installing 4.0.0](https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=assistant-installing-watson){: external} |
@@ -58,6 +59,8 @@ The following table describes which versions of {{site.data.keyword.conversation
 
 | {{site.data.keyword.conversationshort}} version | {{site.data.keyword.icp4dfull_notm}} version | Red Hat OpenShift version | Special notes |
 | ----------------------------------|----------------|----------------|----------|
+| 4.0.5 | 4.0.x | 4.8 | N/A |
+| 4.0.5 | 4.0.x | 4.6 | N/A |
 | 4.0.4 | 4.0.x | 4.8 | N/A |
 | 4.0.4 | 4.0.x | 4.6 | N/A |
 | 4.0.2 | 4.0.x | 4.8 | N/A |
