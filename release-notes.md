@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2022
-lastupdated: "2022-01-26"
+lastupdated: "2022-02-23"
 
 subcollection: assistant-data
 
@@ -31,12 +31,19 @@ content-type: release-note
 Use these release notes to learn about the latest updates to {{site.data.keyword.conversationfull}} for {{site.data.keyword.icp4dfull}}.
 {: shortdesc}
 
+## 23 February 2022
+{: #assistant-data-feb232022}
+{: release-note}
+
+{{site.data.keyword.conversationfull}} Cartridge for {{site.data.keyword.icp4dfull}} 4.0.6 is available
+:   {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} 4.0.6 is compatible with {{site.data.keyword.icp4dfull}} 4.0 on Red Hat OpenShift 4.8. This release of {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} includes various fixes.
+
 ## 26 January 2022
 {: #assistant-data-jan262022}
 {: release-note}
 
 {{site.data.keyword.conversationfull}} Cartridge for {{site.data.keyword.icp4dfull}} 4.0.5 is available
-:   {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} 4.0.5 is compatible with {{site.data.keyword.icp4dfull}} 4.0 on Red Hat OpenShift 4.8. This release of {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} includes various fixes. {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} 4.0.5 is compatible with FIPS-enabled clusters.
+:   {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} 4.0.5 is compatible with {{site.data.keyword.icp4dfull}} 4.0 on Red Hat OpenShift 4.8. This release of {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} includes various fixes.
 
 ## 20 December 2021
 {: #assistant-data-dec202021}
