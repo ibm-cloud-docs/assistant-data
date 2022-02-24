@@ -38,10 +38,10 @@ The installation process differs depending on the version you are installing. Th
 | Version |  Cluster | Installation checklist |
 |------------------------|---------------------------|-------------------|
 | 4.0.6 | {{site.data.keyword.icp4dfull_notm}} 4.0.x | [Installing 4.0.6](https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=assistant-installing-watson){: external} |
-| 4.0.5 | {{site.data.keyword.icp4dfull_notm}} 4.0.x | [Installing 4.0.5](https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=assistant-installing-watson){: external} |
-| 4.0.4 | {{site.data.keyword.icp4dfull_notm}} 4.0.x | [Installing 4.0.4](https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=assistant-installing-watson){: external} |
-| 4.0.2 | {{site.data.keyword.icp4dfull_notm}} 4.0.x | [Installing 4.0.2](https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=assistant-installing-watson){: external} |
-| 4.0.0 | {{site.data.keyword.icp4dfull_notm}} 4.0.x | [Installing 4.0.0](https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=assistant-installing-watson){: external} |
+| 4.0.5 | {{site.data.keyword.icp4dfull_notm}} 4.0.x | [Installing 4.0.5](https://www.ibm.com/docs/en/SSQNUZ_4.0/archives/refresh-5/CP-Data-4.0-R5-PDF5-Installing.pdf){: external} |
+| 4.0.4 | {{site.data.keyword.icp4dfull_notm}} 4.0.x | [Installing 4.0.4](https://www.ibm.com/docs/en/SSQNUZ_4.0/archives/refresh-4/CP-Data-4.0-R4-PDF5-Installing.pdf){: external} |
+| 4.0.2 | {{site.data.keyword.icp4dfull_notm}} 4.0.x | [Installing 4.0.2](https://www.ibm.com/docs/en/SSQNUZ_4.0/archives/refresh-2/CP-Data-4.0-R2-PDF5-Installing.pdf){: external} |
+| 4.0.0 | {{site.data.keyword.icp4dfull_notm}} 4.0.x | [Installing 4.0.0](https://www.ibm.com/docs/en/SSQNUZ_4.0/archives/refresh-0/CP-Data-4.0-R0-PDF5-Installing.pdf){: external} |
 | 1.5.0 | {{site.data.keyword.icp4dfull_notm}} 3.0.1 or 3.5 | [Installing 1.5.0](/docs/assistant-data?topic=assistant-data-install-150) |
 | 1.4.2 | {{site.data.keyword.icp4dfull_notm}} 2.5 or 3.0.1 (**I do not have a cluster**)  | [Installing {{site.data.keyword.conversationshort}} 1.4.2](/docs/assistant-data?topic=assistant-data-install-142) |
 | 1.4.2 | {{site.data.keyword.icp4dfull_notm}} 3.0.1 (**I already have a cluster**) | [Installing the {{site.data.keyword.conversationshort}} service](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.0.1/cpd/svc/watson/assistant-install.html){: external} |
