@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2022
-lastupdated: "2022-01-26"
+lastupdated: "2022-03-03"
 
 subcollection: assistant-data
 
@@ -32,12 +32,46 @@ Get help with solving issues that you encounter while using the product.
 ## 4.0.x
 {: #troubleshoot-40x}
 
-The following fixes apply to all versions of {{site.data.keyword.conversationshort}} 4.0.x.
+### Security context constraint permission errors
+{: #troubleshoot-40x-scc-permission-error}
+
+The following fix applies to {{site.data.keyword.conversationshort}} 4.0.0 through 4.0.5. If a cluster has a security context constraint (SCC) that takes precedence over **restricted** SCCs and has different permissions than **restricted** SCCs, then {{site.data.keyword.conversationshort}} 4.0.0 through 4.0.5 installations might fail with permission errors. For example, the `update-schema-store-db-job` job reports errors similar to the following example:
+```
+oc logs wa-4.0.2-update-schema-store-db-job-bpsdr postgres-is-prepared
+Waiting until postgres is running and responding
+psql: error: could not read root certificate file "/tls/ca.crt": Permission denied
+    - The basic command to postgres failed (retry in 5 sec)
+psql: error: could not read root certificate file "/tls/ca.crt": Permission denied
+    - The basic command to postgres failed (retry in 5 sec)
+psql: error: could not read root certificate file "/tls/ca.crt": Permission denied
+    - The basic command to postgres failed (retry in 5 sec)
+..
+..
+```
+
+Other pods might have similar permission errors. If you look at the SCCs of the pods, you can see they are not restricted. For example, if you run the `oc describe pod wa-etcd-0 |grep scc` command, you get an output similar to the following example:
+```
+openshift.io/scc: fsgroup-scc
+```
+
+To fix this issue, raise the priority of the **restricted** SCC so that it takes precedence. To do this, complete the following steps:
+
+1. Run the following command:
+    ```
+    oc edit scc restricted
+    ```
+
+1. Change the `priority` from `null` to `1`.
+
+Now, new {{site.data.keyword.conversationshort}} pods default back to the expected **restricted** SCC. When you run the `oc describe pod wa-etcd-0 |grep scc` command, you get an output similar to the following example:
+```
+openshift.io/scc: restricted
+```
 
 ### Unable to collect logs with a webhook
 {: #troubleshoot-40x-collect-logs-webhook}
 
-If you're unable to collect logs with a webhook, it might be because you are using a webhook that connects to a server that is using a self-signed certificate. If so, complete the following steps to import the certificate into the keystore so that you can collect {{site.data.keyword.conversationshort}} logs with a webhook:
+The following fix applies to all versions of {{site.data.keyword.conversationshort}} 4.0.x. If you're unable to collect logs with a webhook, it might be because you are using a webhook that connects to a server that is using a self-signed certificate. If so, complete the following steps to import the certificate into the keystore so that you can collect {{site.data.keyword.conversationshort}} logs with a webhook:
 
 1. Log in to cluster and `oc project cpd-instance`, which is the namespace where the {{site.data.keyword.conversationshort}} instance is located.
 
@@ -104,6 +138,109 @@ If you're unable to collect logs with a webhook, it might be because you are usi
     ```
 
     When you see these two lines, then the custom certificate was properly imported into the keystore.
+
+## 4.0.4
+{: #troubleshoot-404}
+
+### Integrations image problem on air-gapped installations
+{: #troubleshoot-404-integrations-image-air-gapped}
+
+If your {{site.data.keyword.conversationshort}} 4.0.4 installation is air-gapped, your integrations image fails to properly start.
+
+If the installation uses the IBM Entitled Registry to pull images, complete the steps in the **IBM Entitled Registry** section. If the installation uses a private Docker registry to pull images, complete the steps in the **Private Docker registry** section.
+
+#### IBM Entitled Registry
+
+If your installation uses the IBM Entitled Registry to pull images, complete the following steps to add an override entry to the {{site.data.keyword.conversationshort}} CR:
+
+1. Get the name of your {{site.data.keyword.conversationshort}} by running the following command:
+    ```
+    oc get wa
+    ```
+
+1. Edit and save the CR.
+
+    a) Run the following command to edit the CR. In the command, replace `INSTANCE_NAME` with the name of the {{site.data.keyword.conversationshort}} instance:
+    ```
+    oc edit wa INSTANCE_NAME
+    ```
+
+    b) Edit the CR by adding the following lines:
+    ```
+    appConfigOverrides:
+      container_images:
+      integrations:
+        image: cp.icr.io/cp/watson-assistant/servicedesk-integration
+        tag: 20220106-143142-0ea3fbf7-wa_icp_4.0.5-signed@sha256:7078fdba4ab0b69dbb93f47836fd9fcb7cfb12f103662fef0d9d1058d2553910
+    ```
+
+1. Wait for the {{site.data.keyword.conversationshort}} operator to pick up the change and start a new integrations pod. This might take up to 10 minutes.
+
+1. After the new integrations pod starts, the old pod terminates. When the new pod starts, the server starts locally and the log looks similar to the following example:
+    ```
+    oc logs -f ${INTEGRATIONS_POD}
+    [2022-01-07T01:33:13.609] [OPTIMIZED] db.redis.RedisManager - Redis trying to connect. counter# 1
+    [2022-01-07T01:33:13.628] [OPTIMIZED] db.redis.RedisManager - Redis connected
+    [2022-01-07T01:33:13.629] [OPTIMIZED] db.redis.RedisManager - Redis is ready to serve!
+    [2022-01-07T01:33:14.614] [OPTIMIZED] Server - Server started at: https://localhost:9449
+    ```
+
+#### Private Docker registry
+
+If your installation uses a private Docker registry to pull images, complete the following steps to download and push the new integrations image to your private Docker registry and add an override entry to the {{site.data.keyword.conversationshort}} CR:
+
+1.  Edit the {{site.data.keyword.conversationshort}} CSV file to add the new integrations image.
+
+    a) Run the following command to open the {{site.data.keyword.conversationshort}} CSV file:
+    ```
+    vi $OFFLINEDIR/ibm-watson-assistant-4.0.4-images.csv
+    ```
+
+    b) Add the following line to {{site.data.keyword.conversationshort}} CSV file immediately after the existing integrations image:
+    ```
+    cp.icr.io,cp/watson-assistant/servicedesk-integration,20220106-143142-0ea3fbf7-wa_icp_4.0.5-signed,sha256:7078fdba4ab0b69dbb93f47836fd9fcb7cfb12f103662fef0d9d1058d2553910,IMAGE,linux,x86_64,"",0,CASE,"",ibm_wa_4_0_0;ibm_wa_4_0_2;ibm_wa_4_0_4;vLatest
+    ```
+
+1. Mirror the image again using the commands that you used to download and push all the images, for example:
+    ```
+    cloudctl case launch \
+      --case ${OFFLINEDIR}/ibm-cp-datacore-2.0.9.tgz \
+      --inventory cpdPlatformOperator \
+      --action configure-creds-airgap \
+      --args "--registry cp.icr.io --user cp --pass $PRD_ENTITLED_REGISTRY_APIKEY --inputDir ${OFFLINEDIR}"
+    ```
+
+1. Get the name of your {{site.data.keyword.conversationshort}} by running the following command:
+    ```
+    oc get wa
+    ```
+
+1. Edit and save the CR.
+
+    a) Run the following command to edit the CR. In the command, replace `INSTANCE_NAME` with the name of the {{site.data.keyword.conversationshort}} instance:
+    ```
+    oc edit wa INSTANCE_NAME
+    ```
+
+    b) Edit the CR by adding the following lines:
+    ```
+    appConfigOverrides:
+      container_images:
+      integrations:
+        image: cp.icr.io/cp/watson-assistant/servicedesk-integration
+        tag: 20220106-143142-0ea3fbf7-wa_icp_4.0.5-signed@sha256:7078fdba4ab0b69dbb93f47836fd9fcb7cfb12f103662fef0d9d1058d2553910
+    ```
+
+1. Wait for the {{site.data.keyword.conversationshort}} operator to pick up the change and start a new integrations pod. This might take up to 10 minutes.
+
+1. After the new integrations pod starts, the old pod terminates. When the new pod starts, the server starts locally and the log looks similar to the following example:
+    ```
+    oc logs -f ${INTEGRATIONS_POD}
+    [2022-01-07T01:33:13.609] [OPTIMIZED] db.redis.RedisManager - Redis trying to connect. counter# 1
+    [2022-01-07T01:33:13.628] [OPTIMIZED] db.redis.RedisManager - Redis connected
+    [2022-01-07T01:33:13.629] [OPTIMIZED] db.redis.RedisManager - Redis is ready to serve!
+    [2022-01-07T01:33:14.614] [OPTIMIZED] Server - Server started at: https://localhost:9449
+    ```
 
 ## 4.0.0
 {: #troubleshoot-400}
@@ -468,9 +605,7 @@ oc delete pdb  -l icpdsupport/addOnId=assistant,component!=etcd,ibmevents.ibm.co
 ### Cannot provision an instance, and service images are missing from the catalog
 {: #troubleshoot-142-missing-label}
 
-If you run the installation with no errors, but cannot provision an instance, check whether the product icon is visible in the service tile. From the {{site.data.keyword.icp4dfull_notm}} web client, go to the *Services* page.
-
-  ![Services icon](images/cp4d-services-icon.png)
+If you run the installation with no errors, but cannot provision an instance, check whether the product icon is visible in the service tile. From the {{site.data.keyword.icp4dfull_notm}} web client, go to the *Services* page (![Services icon](images/cp4d-services-icon.png)).
 
 1.  Find the {{site.data.keyword.conversationshort}} service tile. Check whether the product logo (![Watson Assistant logo](images/assistant-icon.png)) is displayed on the tile.
 
