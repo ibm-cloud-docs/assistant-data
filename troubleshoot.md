@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2022
-lastupdated: "2022-03-03"
+lastupdated: "2022-03-10"
 
 subcollection: assistant-data
 
@@ -138,6 +138,179 @@ The following fix applies to all versions of {{site.data.keyword.conversationsho
     ```
 
     When you see these two lines, then the custom certificate was properly imported into the keystore.
+
+## 4.0.5
+{: #troubleshoot-405}
+
+### Install Redis with {{site.data.keyword.conversationshort}} if foundational services version is higher than 3.14.1
+{: #troubleshoot-405-install-redis-foundational-services}
+
+If you are installing the Redis operator with {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} 4.0.5 with an IBM Cloud Pak foundational services version higher than 3.14.1, the Redis operator might get stuck in `Pending` status. If you have an air-gapped cluster, complete the steps in the [Air-gapped cluster](#troubleshoot-405-install-redis-foundational-services-air-gapped) section to resolve this issue. If you are using the IBM Entitled Registry, complete the steps in the [IBM Entitled Registry](#troubleshoot-405-install-redis-foundational-services-entitled-registry) section to resolve this issue.
+
+#### Air-gapped cluster
+{: #troubleshoot-405-install-redis-foundational-services-air-gapped}
+
+1. Check the status of the Redis operator:
+    ```
+    oc get opreq common-service-redis -n ibm-common-services -o jsonpath='{.status.phase}  {"\n"}'
+    ```
+
+1. If the Redis operand request is stuck in `Pending` status, delete the operand request:
+    ```
+    oc delete opreq watson-assistant-redis -n ibm-common-services
+    ```
+
+1. Set up your environment to download the CASE packages.
+
+    a) Create the directories where you want to store the CASE packages:
+    ```
+    mkdir -p $HOME/offline/cpd  
+    mkdir -p $HOME/offline/cpfs  
+    ```
+
+    b) Set the following environment variables:
+    ```
+    export CASE_REPO_PATH=https://github.com/IBM/cloud-pak/raw/master/repo/case  
+    export OFFLINEDIR=$HOME/offline/cpd  
+    export OFFLINEDIR_CPFS=$HOME/offline/cpfs  
+    ```
+
+1. Download the Redis operator and {{site.data.keyword.icp4dfull}} platform operator CASE packages:
+    ```
+    cloudctl case save \
+    --repo ${CASE_REPO_PATH} \
+    --case ibm-cloud-databases-redis \
+    --version  1.4.5  \
+    --outputdir $OFFLINEDIR
+
+    cloudctl case save \
+    --repo ${CASE_REPO_PATH} \
+    --case ibm-cp-datacore \
+    --version 2.0.10 \
+    --outputdir ${OFFLINEDIR} \
+    --no-dependency
+    ```
+
+1. Create the Redis catalog source:
+    ```
+    cloudctl case launch \
+    --case ${OFFLINEDIR}/ibm-cloud-databases-redis-1.4.5.tgz \
+    --inventory redisOperator \
+    --action install-catalog \
+    --namespace openshift-marketplace \
+    --args "--registry icr.io --inputDir ${OFFLINEDIR} --recursive"
+    ```
+
+1. Set the environment variables for your registry credentials:
+    ```
+    export PRIVATE_REGISTRY_USER=username  
+    export PRIVATE_REGISTRY_PASSWORD=password  
+    export PRIVATE_REGISTRY={registry-info}  
+    ```
+
+1. Run the following command to store the credentials:
+    ```
+    cloudctl case launch \
+    --case ${OFFLINEDIR}/ibm-cp-datacore-2.0.10.tgz \
+    --inventory cpdPlatformOperator \
+    --action configure-creds-airgap \
+    --args "--registry ${PRIVATE_REGISTRY} --user ${PRIVATE_REGISTRY_USER} --pass ${PRIVATE_REGISTRY_PASSWORD}"
+    ```
+
+1. Mirror the images:
+    ```
+    export USE_SKOPEO=true  
+    cloudctl case launch \
+    --case ${OFFLINEDIR}/ibm-cp-datacore-2.0.10.tgz \
+    --inventory cpdPlatformOperator \
+    --action mirror-images \
+    --args "--registry ${PRIVATE_REGISTRY} --user ${PRIVATE_REGISTRY_USER} --pass ${PRIVATE_REGISTRY_PASSWORD} --inputDir ${OFFLINEDIR}"
+    ```
+
+1. Create the Redis subscription.
+
+    a) Export the project that contains the {{site.data.keyword.icp4dfull}} operator:
+    ```
+    export OPERATOR_NS=ibm-common-services|cpd-operators     # Select the project that contains the Cloud Pak for Data operator
+    ```
+
+    b) Create the subscription:
+    ```
+    cat <<EOF | oc apply --namespace $OPERATOR_NS -f -
+    apiVersion: operators.coreos.com/v1alpha1
+    kind: Subscription
+    metadata:
+      name: ibm-cloud-databases-redis-operator
+    spec:
+      name: ibm-cloud-databases-redis-operator
+      source: ibm-cloud-databases-redis-operator-catalog
+      sourceNamespace: openshift-marketplace
+    EOF
+    ```
+
+#### IBM Entitled Registry
+{: #troubleshoot-405-install-redis-foundational-services-entitled-registry}
+
+1. Check the status of the Redis operator:
+    ```
+    oc get opreq common-service-redis -n ibm-common-services -o jsonpath='{.status.phase}  {"\n"}'
+
+    ```
+
+1. If the Redis operand request is stuck in `Pending` status, delete the operand request:
+    ```
+    oc delete opreq watson-assistant-redis -n ibm-common-services
+    ```
+
+1. Create the Redis subscription. Create one of the following two subscriptions, depending on whether you are using.
+
+    a) Export the project that contains the {{site.data.keyword.icp4dfull}} operator:
+    ```
+    export OPERATOR_NS=ibm-common-services|cpd-operators     # Select the project that contains the Cloud Pak for Data operator
+    ```
+
+    b) Create the subscription. Choose one of the following two subscriptions, depending on how you are using the IBM Entitled Registry:
+
+    - IBM Entitled Registry from the `ibm-operator-catalog`:
+    ```
+    cat <<EOF | oc apply --namespace  $OPERATOR_NS -f -
+    apiVersion: operators.coreos.com/v1alpha1
+    kind: Subscription
+    metadata:
+      name: ibm-cloud-databases-redis-operator
+    spec:
+      name: ibm-cloud-databases-redis-operator
+      source: ibm-operator-catalog
+      sourceNamespace: openshift-marketplace
+    EOF
+    ```
+
+    - IBM Entitled Registry with catalog sources that pull specific versions of the images:
+    ```
+    cat <<EOF | oc apply --namespace $OPERATOR_NS -f -
+    apiVersion: operators.coreos.com/v1alpha1
+    kind: Subscription
+    metadata:
+      name: ibm-cloud-databases-redis-operator
+    spec:
+      name: ibm-cloud-databases-redis-operator
+      source: ibm-cloud-databases-redis-operator-catalog
+      sourceNamespace: openshift-marketplace
+    EOF
+    ```
+
+1. Validate that the operator was successfully created.
+
+    a) Run the following command to confirm that the subscription was applied:
+    ```
+    oc get sub -n $OPERATOR_NS  ibm-cloud-databases-redis-operator -o jsonpath='{.status.installedCSV} {"\n"}'
+    ```
+
+    b) Run the following command to confirm that the operator is installed:
+    ```
+    oc get pod -n $OPERATOR_NS -l app.kubernetes.io/name=ibm-cloud-databases-redis-operator \
+    -o jsonpath='{.items[0].status.phase} {"\n"}'
+    ```
 
 ## 4.0.4
 {: #troubleshoot-404}
@@ -327,7 +500,7 @@ For information about upgrading from {{site.data.keyword.conversationshort}} 4.0
 ### Search skill not working because of custom certificate
 {: #troubleshoot-150-search-skill}
 
-The search skill, which is the integration with the Watson Discovery service, might not work if you [configured a custom TLS certificate](https://www.ibm.com/docs/en/cloud-paks/cp-data/3.5.0?topic=client-using-custom-tls-certificate) in Cloud Pak for Data. If the custom certificate is not signed by a well-known certificate authority (CA), the search skill does not work as expected. You might also see errors in the **Try out** section of the search skill.
+The search skill, which is the integration with the Watson Discovery service, might not work if you [configured a custom TLS certificate](https://www.ibm.com/docs/en/cloud-paks/cp-data/3.5.0?topic=client-using-custom-tls-certificate) in {{site.data.keyword.icp4dfull}}. If the custom certificate is not signed by a well-known certificate authority (CA), the search skill does not work as expected. You might also see errors in the **Try out** section of the search skill.
 
 #### Validate the issue
 First, check the logs of the search skill pods to confirm whether this issue applies to you.
