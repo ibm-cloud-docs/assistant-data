@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2022
-lastupdated: "2022-02-23"
+lastupdated: "2022-03-30"
 
 subcollection: assistant-data
 
@@ -30,6 +30,19 @@ content-type: release-note
 
 Use these release notes to learn about the latest updates to {{site.data.keyword.conversationfull}} for {{site.data.keyword.icp4dfull}}.
 {: shortdesc}
+
+## 30 March 2022
+{: #assistant-data-mar302022}
+{: release-note}
+
+{{site.data.keyword.conversationfull}} Cartridge for {{site.data.keyword.icp4dfull}} 4.0.7 is available
+:   {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} 4.0.7 is compatible with {{site.data.keyword.icp4dfull}} 4.0 on Red Hat OpenShift 4.8. This release of {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} includes various fixes and features.
+
+Enhanced irrelevance detection update
+:   We revised the enhanced irrelevance detection classification algorithm. Now, enhanced irrelevant detection uses any provided counterexamples in training. This change does not affect workspaces without counterexamples. This update applies to the following languages: English, French, Spanish, Italian, and the universal language model. For more information, see [Defining what's irrelevant](/docs/assistant-data?topic=assistant-data-irrelevance-detection).
+
+Fuzzy matching updates
+:   Interactions between the stemming and misspelling fuzzy matching features are not allowed. Improve fuzzy matching behavior by limiting the interactions between different fuzzy matching features. This change applies to the following languages: English, French, German, and Czech. For more information, see [How fuzzy matching works](/docs/assistant-data?topic=assistant-data-entities#entities-fuzzy-matching).
 
 ## 23 February 2022
 {: #assistant-data-feb232022}

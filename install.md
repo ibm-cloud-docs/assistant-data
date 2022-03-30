@@ -37,20 +37,21 @@ The installation process differs depending on the version you are installing. Th
 
 | Version |  Cluster | Installation checklist |
 |------------------------|---------------------------|-------------------|
-| 4.0.6 | {{site.data.keyword.icp4dfull_notm}} 4.0.x | [Installing 4.0.6](https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=assistant-installing-watson){: external} |
+| 4.0.7 | {{site.data.keyword.icp4dfull_notm}} 4.0.x | [Installing 4.0.7](https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=assistant-installing-watson){: external} |
+| 4.0.6 | {{site.data.keyword.icp4dfull_notm}} 4.0.x | [Installing 4.0.6](https://www.ibm.com/docs/en/SSQNUZ_4.0/archives/refresh-6/CP-Data-4.0-R6-PDF5-Installing.pdf){: external} |
 | 4.0.5 | {{site.data.keyword.icp4dfull_notm}} 4.0.x | [Installing 4.0.5](https://www.ibm.com/docs/en/SSQNUZ_4.0/archives/refresh-5/CP-Data-4.0-R5-PDF5-Installing.pdf){: external} |
 | 4.0.4 | {{site.data.keyword.icp4dfull_notm}} 4.0.x | [Installing 4.0.4](https://www.ibm.com/docs/en/SSQNUZ_4.0/archives/refresh-4/CP-Data-4.0-R4-PDF5-Installing.pdf){: external} |
 | 4.0.2 | {{site.data.keyword.icp4dfull_notm}} 4.0.x | [Installing 4.0.2](https://www.ibm.com/docs/en/SSQNUZ_4.0/archives/refresh-2/CP-Data-4.0-R2-PDF5-Installing.pdf){: external} |
 | 4.0.0 | {{site.data.keyword.icp4dfull_notm}} 4.0.x | [Installing 4.0.0](https://www.ibm.com/docs/en/SSQNUZ_4.0/archives/refresh-0/CP-Data-4.0-R0-PDF5-Installing.pdf){: external} |
 | 1.5.0 | {{site.data.keyword.icp4dfull_notm}} 3.0.1 or 3.5 | [Installing 1.5.0](/docs/assistant-data?topic=assistant-data-install-150) |
-| 1.4.2 | {{site.data.keyword.icp4dfull_notm}} 2.5 or 3.0.1 (**I do not have a cluster**)  | [Installing {{site.data.keyword.conversationshort}} 1.4.2](/docs/assistant-data?topic=assistant-data-install-142) |
+<!--- | 1.4.2 | {{site.data.keyword.icp4dfull_notm}} 2.5 or 3.0.1 (**I do not have a cluster**)  | [Installing {{site.data.keyword.conversationshort}} 1.4.2](/docs/assistant-data?topic=assistant-data-install-142) |
 | 1.4.2 | {{site.data.keyword.icp4dfull_notm}} 3.0.1 (**I already have a cluster**) | [Installing the {{site.data.keyword.conversationshort}} service](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.0.1/cpd/svc/watson/assistant-install.html){: external} |
 | 1.4.1 | {{site.data.keyword.icp4dfull_notm}} 2.1.0.2 or 2.5 (**I do not have a cluster**)  | [Installing {{site.data.keyword.conversationshort}} 1.4.1](/docs/assistant-data?topic=assistant-data-install-141) |
 | 1.4 - 1.4.2 | {{site.data.keyword.icp4dfull_notm}} 2.5 (**I already have a cluster**) | [Installing the {{site.data.keyword.conversationshort}} service](https://www.ibm.com/support/knowledgecenter/SSQNUZ_2.5.0/cpd/svc/watson/assistant-install.html){: external} |
 | 1.4 | {{site.data.keyword.icp4dfull_notm}} 2.1.0.2 or 2.5 (**I do not have a cluster**)  | [Installing {{site.data.keyword.conversationshort}} 1.4](/docs/assistant-data?topic=assistant-data-install-140) |
 | 1.3 or 1.2 | {{site.data.keyword.icp4dfull_notm}} 2.1.0.0 - 2.1.0.2 (**I already have a cluster**) | [Installing the {{site.data.keyword.conversationshort}} add-on](https://www.ibm.com/support/knowledgecenter/SSQNUZ_2.1.0/com.ibm.icpdata.doc/watson/assistant-install.html){: external} |
 | 1.3 | {{site.data.keyword.icp4dfull_notm}} 2.1.0.1 -2.1.0.2 (**I do not have a cluster**)  | [Installing 1.3](/docs/assistant-data?topic=assistant-data-install-130) |
-| 1.2 | {{site.data.keyword.icp4dfull_notm}} 2.1.0.0 (**I do not have a cluster**)  | [Installing 1.2](/docs/assistant-data?topic=assistant-data-install-120) |
+| 1.2 | {{site.data.keyword.icp4dfull_notm}} 2.1.0.0 (**I do not have a cluster**)  | [Installing 1.2](/docs/assistant-data?topic=assistant-data-install-120) | --->
 {: caption="Available versions" caption-side="top"}
 
 ## Support matrix
@@ -60,6 +61,8 @@ The following table describes which versions of {{site.data.keyword.conversation
 
 | {{site.data.keyword.conversationshort}} version | {{site.data.keyword.icp4dfull_notm}} version | Red Hat OpenShift version | Special notes |
 | ----------------------------------|----------------|----------------|----------|
+| 4.0.7 | 4.0.x | 4.8 | N/A |
+| 4.0.7 | 4.0.x | 4.6 | N/A |
 | 4.0.6 | 4.0.x | 4.8 | N/A |
 | 4.0.6 | 4.0.x | 4.6 | N/A |
 | 4.0.5 | 4.0.x | 4.8 | N/A |
@@ -73,11 +76,11 @@ The following table describes which versions of {{site.data.keyword.conversation
 | 1.5.0 | 3.5 | 3.11 | N/A |
 | 1.5.0 | 3.0.1 | 4.5 | N/A |
 | 1.5.0 | 3.0.1 | 3.11 | N/A |
-| 1.4.2 | 3.0.1 | 4.5 | N/A |
+<!--- | 1.4.2 | 3.0.1 | 4.5 | N/A |
 | 1.4.2 | 3.0.1 | 3.11 | N/A |
 | 1.4.2 | 2.5 | 3.11 | N/A |
 | 1.4.1 | 2.5 | 3.11 | N/A |
-| 1.4.1 | 2.5 Stand-alone version | N/A | N/A |
+| 1.4.1 | 2.5 Stand-alone version | N/A | N/A | --->
 {: caption="Support matrix" caption-side="top"}
 
 N/A means `not applicable`.
