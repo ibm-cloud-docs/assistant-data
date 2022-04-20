@@ -44,15 +44,6 @@ toc:
               label: Installing previous versions
               topics:
               - install-150.md
-              - install-142.md
-              - install-141.md
-              - install-140.md
-          - topicgroup:
-              label: Backing up and restoring previous versions
-              topics:
-              - backup-400.md
-              - backup-150.md
-              - backup-142.md
       - topicgroup:
           label: Creating your assistant
           topics:
@@ -117,6 +108,11 @@ toc:
           - architecture.md
           - information-security.md
           - backup.md
+          - topicgroup:
+              label: Backing up and restoring previous versions
+              topics:
+              - backup-400.md
+              - backup-150.md
           - upgrade.md
       - topicgroup:
           label: Using webhooks
@@ -155,7 +151,6 @@ toc:
           label: Built-in entities
           topics:
           - system-entities.md
-          - system-entities-142.md
           - sys-date-festivals.md
           - time-zones.md
       - services-information.md
