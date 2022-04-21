@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2022
-lastupdated: "2022-03-30"
+lastupdated: "2022-04-20"
 
 subcollection: assistant-data
 
@@ -49,7 +49,42 @@ Fuzzy matching updates
 {: release-note}
 
 {{site.data.keyword.conversationfull}} Cartridge for {{site.data.keyword.icp4dfull}} 4.0.6 is available
-:   {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} 4.0.6 is compatible with {{site.data.keyword.icp4dfull}} 4.0 on Red Hat OpenShift 4.8. This release of {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} includes various fixes.
+:   {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} 4.0.6 is compatible with {{site.data.keyword.icp4dfull}} 4.0 on Red Hat OpenShift 4.8. This release of {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} includes various fixes and features.
+
+New API version
+:   The current API version is now `2021-11-27`. This version introduces the following changes:
+
+    - The `output.text` object is no longer returned in `message` responses. All responses, including text responses, are returned only in the `output.generic` array.
+
+Configure webhook timeout
+:   From the **Pre-message webhook** and **Post-message webhook** configuration pages, you can configure the webhook timeout length from a minimum of 1 second to a maximum of 30 seconds. For more information, see [Webhook overview](/docs/assistant-data?topic=assistant-data-webhook-overview).
+
+Rich response types
+:   Your assistant can now send responses that include elements such as audio, video, or embedded `iframe` content. For more information, see [Rich responses](/docs/assistant-data?topic=assistant-data-dialog-overview#dialog-overview-multimedia).
+
+Analytics overview change
+:   To improve reliability, the **Values** column has been removed from **Top entities** on the **Analytics Overview** page. **Top Entities** continues to provide counts of entity types. For more information, see [Top intents and top entities](/docs/assistant-data?topic=assistant-data-logs-overview#logs-overview-tops).
+
+Dialog skill "Try it out" improvements
+:   For dialog skills, the **Try it out** pane now uses the [React](https://reactjs.org/){: external} UI framework similar to the rest of the {{site.data.keyword.conversationshort}} user interface. You shouldn't see any change in behavior or functionality. As a part of the update, dialog skill error handling has been improved within the "Try it out" pane.
+
+Disambiguation feature updates
+:   The dialog skill disambiguation feature now includes improved features:
+
+    - **Increased control**: The frequency and depth of disambiguation can now be controlled by using the **sensitivity** parameter in the [workspace API](/apidocs/assistant-data/assistant-data-v1#updateworkspace){: external}. There are 5 levels of sensitivity:
+        - `high`
+        - `medium_high`
+        - `medium`
+        - `medium_low`
+        - `low`
+
+        The default (`auto`) is `medium_high` if this option is not set.
+
+    - **More predictable**: The new disambiguation feature is more stable and predictable. The choices shown may sometimes vary slightly to enable learning and analytics, but the order and depth of disambiguation is largely stable.
+
+    These new features may affect various metrics, such as disambiguation rate and click rates, as well as influence conversation-level key performance indicators such as containment.
+
+    If the new disambiguation algorithm works differently than expected for your assistant, you can adjust it using the sensitivity parameter in the update workspace API. For more information, see [Update workspace](/apidocs/assistant-data/assistant-data-v1#updateworkspace){: external}.
 
 ## 26 January 2022
 {: #assistant-data-jan262022}
