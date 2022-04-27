@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2022
-lastupdated: "2022-04-20"
+lastupdated: "2022-04-27"
 
 subcollection: assistant-data
 
@@ -30,6 +30,34 @@ content-type: release-note
 
 Use these release notes to learn about the latest updates to {{site.data.keyword.conversationfull}} for {{site.data.keyword.icp4dfull}}.
 {: shortdesc}
+
+## 27 April 2022
+{: #assistant-data-apr272022}
+{: release-note}
+
+{{site.data.keyword.conversationfull}} Cartridge for {{site.data.keyword.icp4dfull}} 4.0.8 is available
+:   {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} 4.0.8 is compatible with {{site.data.keyword.icp4dfull}} 4.0 on Red Hat OpenShift 4.8. This release of {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} includes various fixes and features.
+
+Closed entity matching with accent-normalized values in French
+:   Closed entities exact matches in French are completed using accent-normalized values or synonyms. For example, if you define a closed entity with a value or synonym with accent marks (for example, garçon or déjà), then variants without accent marks are also recognized (garcon or deja). Likewise, if a closed entity value or synonym is defined without accent marks, then user inputs with accent marks are also recognized. For more information about defining entities, see [Defining information to look for in customer input](/docs/assistant-data?topic=assistant-data-entities).
+
+Pattern entities do not prevent spelling autocorrection
+:   Pattern entities that match all characters and words that are usually used to count input words do not prevent spelling autocorrection. For example, if a customer defines the `^..{0,19}$` pattern entity that matches the first 20 characters of an input, then the entity match does not affect spelling autocorrection. In this example, an input of `cancl transaction` is autocorrected to `cancel transaction`.
+
+   This change applies to the following languages: English and French. For more information, see [Correcting user input](/docs/assistant-data?topic=assistant-data-dialog-runtime-spell-check#dialog-runtime-spell-check-rules).
+
+Fuzzy matching updates
+:   Previously, an update was made so that interactions between the stemming and misspelling fuzzy matching features were not allowed. This change applied to the following languages: English, French, German, and Czech. This was updated so that this change applies only to the English language. For more information, see [How fuzzy matching works](/docs/assistant-data?topic=assistant-data-entities#entities-fuzzy-matching).
+
+Improved irrelevance detection for Dutch
+:   Irrelevance detection for Dutch disregards any punctuation in an input sentence. For example, you can now expect the same confidence score for the following two inputs: `ik ben een kleine krijger?` and `ik ben een kleine krijger`. In this example, the question mark (`?`) doesn't affect the confidence score.
+
+Improved enhanced intent detection
+:   The exact match in enhanced intent detection now better handles small differences between training examples and runtime utterances when the differences do not change the meaning of a sentence.
+
+   For example, suppose in your training examples, `covid-19` is in the `#covid` intent and `@doctortype_facilitytype around Palm Beach` is in the `#find_provide_master` intent. In this example, the `@doctortype_facilitytype` direct entity reference contains entity values, including `hospital`. At run time, `covid19` is predicted as 100% confident for the `#covid` intent, and `hospital around palm beach` is predicted as 100% confident for the `#find_provide_master` intent.
+
+   This update applies to the following languages: English, French, Spanish, Italian, and the universal language model. For more information, see [Accessing intents](/docs/assistant-data?topic=assistant-data-expression-language#expression-language-intent).
 
 ## 30 March 2022
 {: #assistant-data-mar302022}
