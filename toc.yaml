@@ -88,7 +88,11 @@ toc:
           topics:
           - deploy-integration-add.md
           - deploy-web-link.md
-          - deploy-web-chat.md
+          - topicgroup:
+              label: Deploying to your website
+              topics:
+                - deploy-web-chat.md
+                - web-chat-config.md
           - deploy-custom-app.md
           - link:
               label: Integrating with your own service desk
