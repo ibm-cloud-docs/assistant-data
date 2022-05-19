@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2019, 2020
-lastupdated: "2020-12-10"
+  years: 2019, 2022
+lastupdated: "2022-05-19"
 
 subcollection: assistant-data
 
@@ -55,7 +55,7 @@ To add the assistant to a web page on your company website, complete the followi
 
 1.  **Optional**: Customize the style of the chat window. You can make the following changes:
 
-    - **Public assistant name**. Name by which the assistant is known to users. This name is displayed in the header of the chat window. The name can be up to 18 characters in length. 
+    - **Public assistant name**. Name by which the assistant is known to users. This name is displayed in the header of the chat window. The name can be up to 18 characters in length.
 
     - **Primary color**. Sets the color of the web chat header.
 
@@ -74,8 +74,8 @@ To add the assistant to a web page on your company website, complete the followi
       - Typing indicator that is shown to repesent a pause response
 
     - **Assistant image**: This image is displayed in the web chat header along with the assistant name to represent your assistant or organization. Specify the URL for a publicly accessible hosted image, such as a company or brand logo or an assistant avatar.
-    
-      The image file must be between 64 x 64 and 100 x 100 pixels in size. 
+
+      The image file must be between 64 x 64 and 100 x 100 pixels in size.
 
     Style changes you make are immediately applied to the preview that is shown on the page, so you can see how your choices impact the style of the chat UI.
 
@@ -121,7 +121,7 @@ To add the assistant to a web page on your company website, complete the followi
     For information about the web browsers that are supported by the web chat, see [Browser Support](https://web-chat.global.assistant.watson.cloud.ibm.com/docs.html?to=key-concepts#browsersupport){: external}.
 
     ![Chat icon](images/web-chat-icon.png)
-    
+
     The web chat launcher icon is displayed at the end of the page. The icon is blue unless you customize the accent color.
 
     The placement of the web chat icon is always the same regardless of where you paste the script element into the web page source. The chat window is represented by a `div` HTML element.
@@ -194,19 +194,19 @@ To enable suggestions, complete the following steps:
     The *Include a connection to support* section is displayed where you can configure whether and how to give customers the ability to connect with support.
 1.  Decide when you want an option to connect with support to be shown in the suggestions list. The choices are:
 
-    - **Always**: Always shows the option to get support in the list of suggestions. 
+    - **Always**: Always shows the option to get support in the list of suggestions.
     - **Never**: Never shows the option to get support in the list of suggestions.
     - **After one failed attempt**: Adds the option to the list only if the customer reached a node with an anything_else condition in the previous conversation turn or reaches the same dialog node for a second time in succession.
 
 1.  In the **Option label** field, add a label for the option.
 
     The text in the **Option label** field has two functions:
-    
+
     - The text is shown in the suggestions list as an option for customers to select.
     - When selected by a customer, the text is sent to your assistant as a new message. The label must be able to function as input that your dialog understands and knows how to handle.
-    
+
     By default, the option label `Connect with agent` is used. Change the option label to a message that helps your customers reach whatever form of support you do offer. If you offer a toll-free support line, you might add `Get the support line phone number`. Or if you offer an online support request form, you might add `Open a support ticket`.
-    
+
     Whether you use the default option label or add your own, make sure your dialog is designed to recognize the message and respond to it appropriately. For more information, see [Connecting customers with support](/docs/assistant-data?topic=assistant-data-dialog-support).
 
 ## Dialog considerations
@@ -290,7 +290,7 @@ User information is used in the following ways:
 - The ability to delete any data created by someone who requests to be forgotten requires that a `customer_id` be associated with the user input. When a `user_id` is defined, the product can reuse it to pass a `customer_id` parameter. See [Labeling and deleting data](/docs/assistant-data?topic=assistant-data-information-security#information-security-gdpr-wa).
 
 Because the `user_id` value that you submit is included in the `customer_id` value that is added to the `X-Watson-Metadata` header in each message request, the `user_id` syntax must meet the requirements for header fields as defined in [RFC 7230](https://tools.ietf.org/html/rfc7230#section-3.2).
-{: note} 
+{: note}
 
 To support these user-based capabilities, add the `updateUserID()` method in the code snippet before you paste it into your web page.
 
@@ -300,11 +300,11 @@ In the following example, the user ID `L12345` is added to the script.
 <script>
   window.watsonAssistantChatOptions = {
       integrationID: 'YOUR_INTEGRATION_ID',
-      region: 'YOUR_REGION', 
+      region: 'YOUR_REGION',
       serviceInstanceID: 'YOUR_SERVICE_INSTANCE',
-      onLoad: function(instance) { 
+      onLoad: function(instance) {
         instance.updateUserID(L12345);
-        instance.render(); 
+        instance.render();
         }
     };
   setTimeout(function(){
@@ -314,7 +314,33 @@ In the following example, the user ID `L12345` is added to the script.
   });
 </script>
 ```
-{: codeblock} 
+{: codeblock}
+
+## Global audience support
+{: #deploy-web-chat-global-support}
+
+The underlying skills understand customer messages that are written in any of the languages that are supported by the service. For more information, see [Supported languages](/docs/assistant-data?topic=assistant-data-language-support). The responses from your assistant are defined by you in the underlying skill and can be written in any language you want.
+
+Even if your skill includes responses in a language other than English, some of the phrases that are displayed in the web chat widget are added by the web chat itself and do not come from the underlying skill. These hardcoded phrases are specified in English unless you choose to apply a different language.
+
+There are language files that contain translations of each English-language phrase that is used by the web chat. You can instruct the web chat to use one of these other languages files by using the `instance.updateLanguagePack()` method.
+
+Likewise, the web chat applies an American English locale to content that is added by the web chat unless you specify something else. The locale setting affects how values such as dates and times are formatted.
+
+To configure the web chat for customers outside the US, follow these steps:
+
+1.  To apply the appropriate syntax to dates and times *and* to use a translation of the English-language phrases, set the locale. Use the `instance.updateLocale()` method.
+
+    For example, if you apply the Spanish locale (`es`), the web chat uses Spanish-language phrases that are listed in the `es.json` file, and uses the `DD-MM-YYYY` format for dates instead of `MM-DD-YYYY`.
+
+    The locale you specify for the web chat does not impact the syntax of dates and times that are returned by the underlying skill.
+    {: note}
+
+1.  To change only the language of the hardcoded English phrases, use the `instance.updateLanguagePack()` method.
+
+    For more information, see [Instance methods](https://web-chat.global.assistant.watson.cloud.ibm.com/docs.html?to=api-instance-methods#languages){: external}.
+
+1.  To change the text direction of the page from right to left, use the `direction` method. For more information, see [Configuration](https://web-chat.global.assistant.watson.cloud.ibm.com/docs.html?to=api-configuration#configurationobject){: external}.
 
 ## Securing the web chat
 {: #deploy-web-chat-security}
@@ -347,7 +373,7 @@ Before you enable security, complete the following steps:
     You can use a tool such as the OpenSSL command line or PuTTYgen.
 
     - For example, to create the key pair: `openssl genrsa -out key.pem 2048`
-    
+
 1.  Use your private key to sign a JSON Web Token (JWT). You will pass the token with the messages that are sent from your website as proof of their origin.
 
     The JWT payload must specify values for the following claims:
@@ -357,20 +383,20 @@ Before you enable security, complete the following steps:
     - `exp`: Represents the expiration time on or after which the JWT cannot be accepted for processing. Many libraries set this value for you automatically. Set a short-lived `exp` claim with whatever library you use.
 
     For more information about JSON Web Tokens, see the [RFC7519](https://tools.ietf.org/html/rfc7519){: external} and [OpenID Connect 1.0](https://openid.net/specs/openid-connect-core-1_0.html){: external} specifications.
-    
+
     Most programming languages offer JWT libraries that you can use to generate a token. The following NodeJS code sample illustrates how to generate a JWT token.
 
     ```javascript
     // Sample NodeJS code on your server.
     const jwt = require('jsonwebtoken');
-    
+
     /**
      * Returns a signed JWT generated by RS256 algorithm.
      */
     function mockLogin() {
         const payload = {
             /*
-             * Even if this is an unauthenticated user, add a userID in the sub claim that can be used 
+             * Even if this is an unauthenticated user, add a userID in the sub claim that can be used
              * for billing purposes.
              * This ID will help us keep track "unique users". For unauthenticated users, drop a
              * cookie in the browser so you can make sure the user is counted uniquely across visits.
@@ -389,9 +415,9 @@ To enable security, complete the following steps:
 1.  From the web chat integration page in {{site.data.keyword.conversationshort}}, set the **Secure your web chat** switch to **On**.
 
 1.  Add your public key to the **Your public key** field.
-    
-    The public key that you add is used to verify that data which claims to come from your web chat instance *is* coming from your web chat instance. 
-    
+
+    The public key that you add is used to verify that data which claims to come from your web chat instance *is* coming from your web chat instance.
+
 1.  To prove that a message is coming from your website, each message that is submitted from your web chat implementation must include the JSON Web Token (JWT) that you created earlier.
 
     Add the token to the web chat code snippet that you embed in your website page. Specify the token in the `identityToken` property.
@@ -402,11 +428,11 @@ To enable security, complete the following steps:
     <script>
       window.watsonAssistantChatOptions = {
           integrationID: 'YOUR_INTEGRATION_ID',
-          region: 'YOUR_REGION', 
+          region: 'YOUR_REGION',
           serviceInstanceID: 'YOUR_SERVICE_INSTANCE',
           identityToken: 'YOUR_JWT',
           onLoad: function(instance) {
-            instance.render(); 
+            instance.render();
             }
         };
       setTimeout(function(){
@@ -417,7 +443,7 @@ To enable security, complete the following steps:
     </script>
     ```
     {: codeblock}
-    
+
     The JSON Web Token is automatically included on each subsequent request that is sent from the web chat until it expires.
 
 1.  You can add an event that is triggered when your token expires. The event has a callback you can use to update the token and process any messages that were added to a queue to wait to be processed while the token was expired.
