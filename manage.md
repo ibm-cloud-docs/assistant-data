@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2015, 2021
-lastupdated: "2021-07-01"
+  years: 2015, 2022
+lastupdated: "2022-05-26"
 
 subcollection: assistant-data
 
@@ -241,14 +241,14 @@ To scale down the cluster all the way, you must scale down the deployed services
 ## To view logs
 {: #manage-view-logs}
 
-Consider using [Analytics Dashboards](https://www.ibm.com/support/knowledgecenter/SSQNUZ_2.5.0/cpd/svc/cognos/dashboard/dashboard-svc.html) to identify patterns in your data.
+Consider using [Analytics Dashboards](https://www.ibm.com/support/knowledgecenter/SSQNUZ_2.5.0/cpd/svc/cognos/dashboard/dashboard-svc.html){: external} to identify patterns in your data.
 
 ## Managing user access
 {: #manage-add-users}
 
 After you provision an instance, you can share the URL for the product user interface with other users. However, those users can only log in to the product user interface if you give them access.
 
-If you plan to use SAML for single sign-on (SSO), complete [Configuring single sign-on](https://www.ibm.com/support/knowledgecenter/SSQNUZ_2.5.0/cpd/install/saml-sso.html) before you add users. If you add users before you configure SSO, you will need to re-add the users with their SAML ID to enable them to use SSO.
+If you plan to use SAML for single sign-on (SSO), complete [Configuring single sign-on](https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=client-configuring-sso){: external} before you add users. If you add users before you configure SSO, you will need to re-add the users with their SAML ID to enable them to use SSO.
 
 1.  From the web client menu, click **Administer > Manage users**.
 

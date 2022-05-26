@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2022
-lastupdated: "2022-04-27"
+lastupdated: "2022-05-26"
 
 subcollection: assistant-data
 
@@ -247,7 +247,7 @@ Features not included
   - You cannot use the Activity Tracker service to track user actions.
   - Intent recommendations and the new irrelevance detection model are not supported.
   - The product tour that is available to some first-time users of the cloud-based product is not available.
-  - You cannot manage user access at the individual skill and assistant level. You can control only who can access the entire service instance, which includes all of its skills and assistants. For more information about granting access to services in {{site.data.keyword.icp4dfull_notm}}, see [3.0.1 Managing users](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.0.1/cpd/admin/users.html){: external} or [2.5 Managing users](https://www.ibm.com/support/knowledgecenter/SSQNUZ_2.5.0/cpd/admin/users.html){: external}.
+  - You cannot manage user access at the individual skill and assistant level. You can control only who can access the entire service instance, which includes all of its skills and assistants. For more information about granting access to services in {{site.data.keyword.icp4dfull_notm}}, see [3.0.1 Managing users](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.0.1/cpd/admin/users.html).
 
 ## 14 April 2020
 {: #assistant-data-apr142020}
