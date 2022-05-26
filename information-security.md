@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2015, 2020
-lastupdated: "2020-01-29"
+  years: 2015, 2022
+lastupdated: "2022-05-26"
 
 subcollection: assistant-data
 
@@ -49,7 +49,7 @@ Learn more about IBM's own GDPR readiness journey and our GDPR capabilities and 
 ## More information
 {: #information-security-gdpr-icp4d}
 
-For more information about data privacy in {{site.data.keyword.icp4dfull_notm}}, see [Considerations for GDPR readiness](https://www.ibm.com/support/knowledgecenter/SSQNUZ_2.5.0/cpd/overview/gdpr.html){: external}.
+For more information about data privacy in {{site.data.keyword.icp4dfull_notm}}, see [IBM Cloud Pak for Data considerations for GDPR readiness](https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=compliance-considerations-gdpr-readiness){: external}.
 
 ## Labeling and deleting data in Watson Assistant
 {: #information-security-gdpr-wa}
