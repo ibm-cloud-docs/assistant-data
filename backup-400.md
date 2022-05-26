@@ -24,7 +24,7 @@ subcollection: assistant-data
 {:swift: .ph data-hd-programlang='swift'}
 
 # Backing up and restoring data 4.0.0
-{: #backup}
+{: #backup-400}
 
 You can back up and restore the data that is associated with your {{site.data.keyword.conversationshort}} deployment in {{site.data.keyword.icp4dfull_notm}}.
 {: shortdesc}
@@ -74,7 +74,7 @@ The following table lists the configuration values that control the backup cron 
 
 To access the backup files from Portworx, complete the following steps:
 
-1.  Get the name of the persistent volume that is used for the Postgres backup.
+1.  Get the name of the persistent volume that is used for the Postgres backup:
 
     ```bash
     oc get pv |grep $INSTANCE-store
@@ -83,14 +83,14 @@ To access the backup files from Portworx, complete the following steps:
 
     This command returns the name of the persistent volume claim where the store backup is located, such as `pvc-d2b7aa93-3602-4617-acea-e05baba94de3`. The name is referred to later in this procedure as the `$pv_name`.
 
-1.  Find nodes where Portworx is running.
+1.  Find nodes where Portworx is running:
 
     ```bash
     oc get pods -n kube-system -o wide -l name=portworx-api
     ```
     {: codeblock}
 
-1.  Log in as the core user to one of the nodes where Portworx is running.
+1.  Log in as the core user to one of the nodes where Portworx is running:
 
     ```bash
     ssh core@<node hostname>
@@ -100,51 +100,49 @@ To access the backup files from Portworx, complete the following steps:
 
 1.  Make sure the persistent volume is in a detached state and that no store backups are scheduled to occur during the time you plan to transfer the backup files.
 
-    Remember, backups occur daily at 11 PM (in the time zone configured for the nodes) unless you change the schedule by editing the value of the `postgres.backup.schedule` configuration parameter. You can run the `oc get cronjobs` command to check the current schedule for the `$RELEASE-backup-cronjob` job.
+    Remember, backups occur daily at 11 PM (in the time zone configured for the nodes) unless you change the schedule by editing the value of the `postgres.backup.schedule` configuration parameter. You can run the `oc get cronjobs` command to check the current schedule for the `$RELEASE-backup-cronjob` job. In the following command, `$pvc_node` is the name of the node that you discovered in the first step of this task:
 
     ```bash
     pxctl volume inspect $pv_name |head -40
     ```
     {: codeblock}
 
-    where `$pvc_node` is the name of the node that you discovered in Step 1 of this procedure.
+1.  Attach the persistent volume to the host:
 
-1.  Attach the persistent volume to the host.
+    ```bash
+    pxctl host attach $pv_name
+    ```
+    {: codeblock}
 
-   ```bash
-   pxctl host attach $pv_name
-   ```
-   {: codeblock}
-
-1.  Create a folder where you want to mount the node.
+1.  Create a folder where you want to mount the node:
 
     ```bash
     mkdir /var/lib/osd/mounts/voldir
     ```
     {: codeblock}
 
-1.  Mount the node.
+1.  Mount the node:
 
     ```bash
     pxctl host mount $pv_name --path /var/lib/osd/mounts/voldir
     ```
     {: codeblock}
 
-1.  Change Directory to `/var/lib/osd/mounts/voldir`. Transfer backup files to a secure location. Afterwards, exit the directory. Unmount the volume.
+1.  Change directory to `/var/lib/osd/mounts/voldir`. Transfer backup files to a secure location. Afterwards, exit the directory. Unmount the volume:
 
     ```bash
     pxctl host unmount --path /var/lib/osd/mounts/voldir $pv_name
     ```
     {: codeblock}
 
-1.  Detach the volume from the host.
+1.  Detach the volume from the host:
 
     ```bash
     pxctl host detach $pv_name
     ```
     {: codeblock}
 
-1.  Make sure the volume is in the detached state. Otherwise, subsequent backups will fail.
+1.  Make sure the volume is in the detached state. Otherwise, subsequent backups will fail:
 
     ```bash
     pxctl volume inspect $pv_name |head -40
