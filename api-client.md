@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2015, 2020
-lastupdated: "2021-02-12"
+  years: 2015, 2022
+lastupdated: "2022-06-13"
 
 subcollection: assistant-data
 
@@ -789,7 +789,7 @@ public class AssistantSimpleExample {
 The app now checks the `actions` array in the response to see if an action with `type`=`client` is present. If so, it checks the `name` value of the action and carries out the appropriate action (either displaying the local system time, or setting an internal flag that indicates that the conversation is over).
 
 ```
-Welcome to the {{site.data.keyword.conversationshort}} example!
+Welcome to the Watson Assistant example!
 >> hello
 Good day to you.
 >> what time is it?
