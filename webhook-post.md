@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2019, 2021
-lastupdated: "2021-08-25"
+  years: 2019, 2022
+lastupdated: "2022-06-13"
 
 keywords: post webhook, postwebhook, post-webhook
 
@@ -146,7 +146,7 @@ The following error codes can help you track down the cause of issues you might 
 {: caption="Error code details" caption-side="top"}
 
 ## Webhook security
-{: #webhook-pre-security}
+{: #webhook-post-security}
 
 To authenticate the webhook request, verify the JSON Web Token (JWT) that is sent with the request. The webhook microservice automatically generates a JWT and sends it in the `Authorization` header with each webhook call. It is your responsibility to add code to the external service that verifies the JWT.
 
@@ -226,7 +226,7 @@ This example shows you how to add `y'all` to the end of each response from the a
 
 In the postmessage webhook configuration page, the following values are specified:
 
-- **URL**: https://us-south.functions.appdomain.cloud/api/v1/web/e97d2516-5ce4-4fd9-9d05-acc3dd8ennn/southernize/add_southern_charm
+- **URL**: `https://us-south.functions.appdomain.cloud/api/v1/web/e97d2516-5ce4-4fd9-9d05-acc3dd8ennn/southernize/add_southern_charm`
 - **Secret**: none
 - **Header name**: Content-Type
 - **Header value**: application/json
@@ -278,7 +278,7 @@ Define a sequence of web actions in IBM Cloud Functions. The first action in the
 
 In the premessage webhook configuration page, the following values are specified:
 
-- **URL**: https://us-south.functions.appdomain.cloud/api/v1/web/e97d2516-5ce4-4fd9-9d05-acc3dd8ennn/default/response-translation_sequence
+- **URL**: `https://us-south.functions.appdomain.cloud/api/v1/web/e97d2516-5ce4-4fd9-9d05-acc3dd8ennn/default/response-translation_sequence`
 - **Secret**: none
 - **Header name**: Content-Type
 - **Header value**: application/json
