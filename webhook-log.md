@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2019, 2021
-lastupdated: "2021-08-25"
+  years: 2019, 2022
+lastupdated: "2022-06-13"
 
 keywords: log webhook
 
@@ -67,14 +67,7 @@ To add the webhook details, complete the following steps:
 
 1. In the **URL** field, add the URL for the external application to which you want to send HTTP POST request callouts.
 
-  For example, to write the message to the
-
-  ```bash
-  https://www.mycompany.com/my_log_service
-  ```
-  {: codeblock}
-
-  You must specify a URL that uses the SSL protocol, so specify a URL that begins with `https`.
+  For example, to write the message to `https://www.mycompany.com/my_log_service`, you must specify a URL that uses the SSL protocol. In this case, specify a URL that begins with `https`.
 
 1. In the **Secret** field, add a token to pass with the request that can be used to authenticate with the external service.
 
