@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2022
-lastupdated: "2022-05-26"
+lastupdated: "2022-06-13"
 
 subcollection: assistant-data
 
@@ -241,7 +241,7 @@ To scale down the cluster all the way, you must scale down the deployed services
 ## To view logs
 {: #manage-view-logs}
 
-Consider using [Analytics Dashboards](https://www.ibm.com/support/knowledgecenter/SSQNUZ_2.5.0/cpd/svc/cognos/dashboard/dashboard-svc.html){: external} to identify patterns in your data.
+Consider using [Cognos Dashboards](https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=services-cognos-dashboards){: external} to identify patterns in your data.
 
 ## Managing user access
 {: #manage-add-users}
