@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2015, 2020
-lastupdated: "2020-04-14"
+  years: 2015, 2022
+lastupdated: "2022-06-13"
 
 subcollection: assistant-data
 
@@ -40,9 +40,9 @@ subcollection: assistant-data
 - Teach Watson about your intents.
 
   After you decide which business requests that you want your application to handle for your customers, you must teach Watson about them. For each business goal (such as `#buy_something`), you must provide at least 5 examples of utterances that your customers typically use to indicate their goal. For example, `I want to make a purchase.`
-  
+
   Ideally, find real-world user utterance examples that you can extract from existing business processes. The user examples should be tailored to your specific business. For example, if you are an insurance company, a user example might look more like this, `I want to buy a new XYZ insurance plan.`
-  
+
   The examples that you provide are used by your assistant to build a machine learning model that can recognize the same and similar types of utterances and map them to the appropriate intent.
 
 Start with a few intents, and test them as you iteratively expand the scope of the application.
@@ -151,7 +151,7 @@ Defining one example intent with an `@Entity` that has 10 values that are define
 
 After you have finished creating new intents, you can test the system to see if it recognizes your intents as you expect.
 
-1.  Click **Try it**. 
+1.  Click **Try it**.
 
     ![Ask Watson](images/ask_watson.png)
 
@@ -170,12 +170,11 @@ After you have finished creating new intents, you can test the system to see if 
 
     ![Screen capture of correcting a recognized intent](images/correct_intent.png)
 
-{: #intents-mark-irrelevant}
-1.  If the input is unrelated to any of the intents in your application, you can teach your assistant that by selecting the displayed intent, and then clicking **Mark as irrelevant**.
+1.  If the input is unrelated to any of the intents in your application, you can teach your assistant that by selecting the displayed intent, and then clicking **Mark as irrelevant**. {: #intents-mark-irrelevant}
 
     ![Mark as irrelevant screen capture](images/irrelevant.png)
 
-    For more information about this action, see [Teaching your assistant about topics to ignore](#logs-mark-irrelevant).
+    For more information about this action, see [Teaching your assistant about topics to ignore](/docs/assistant-data?topic=assistant-data-logs#logs-mark-irrelevant).
 
 If your intents are not being correctly recognized, consider making the following kinds of changes:
 
@@ -310,8 +309,8 @@ To resolve conflicts:
 
     ![Shows the Move menu with a list of one intent options](images/intent-move-conflict.png)
 
-    When deciding where to put an example, look for the intent that has synonymous, or nearly synonymous, examples. 
-    
+    When deciding where to put an example, look for the intent that has synonymous, or nearly synonymous, examples.
+
     If the exact same example is used by the other intent already, the move action only removes the example from the current intent. It does not add the same example to the other intent twice.
 
 1.  After moving or deleting the example, click **Submit** to resolve the conflict.
@@ -342,19 +341,3 @@ You can select a number of intents for deletion.
     - To delete one or more specific intents, select the intents that you want to delete, and then click **Delete**.
 
       ![Shows that an intent was selected and the delete icon is in focus](images/intent-delete.png)
-
-### Teaching your assistant about topics to ignore
-{: #logs-mark-irrelevant}
-
-It is important to help your assistant stay focused on the types of customer questions and business transactions you have designed it to handle. You can use test utterances that you submit through the "Try it out" pane to highlight subjects that you do not want your assistant to even attempt to address.
-
-To teach your assistant about subjects it should ignore, mark utterances that discuss these off-topic subjects as irrelevant.
-
-The **Mark as irrelevant** option is not available in all languages. See [supported languages](/docs/assistant?topic=assistant-language-support) for details.
-
-Intents that are marked as irrelevant are saved as counterexamples in the JSON workspace, and are included as part of the training data. They teach your assistant to explicitly not answer utterances of this type.
-
-Be sure before you designate an input as irrelevant.
-
-- There is no way to access or change the inputs from the user interface later.
-- The only way to reverse the identification of an input as being irrelevant is to use the same input as a test utterance, and then explicitly assign it to an intent.
