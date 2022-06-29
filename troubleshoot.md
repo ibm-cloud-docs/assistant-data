@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2022
-lastupdated: "2022-03-10"
+lastupdated: "2022-06-29"
 
 subcollection: assistant-data
 
@@ -31,6 +31,71 @@ Get help with solving issues that you encounter while using the product.
 
 ## 4.0.x
 {: #troubleshoot-40x}
+
+### Data Governor error causing deployment failure
+{: #troubleshoot-40x-data-governor-deployment-fail}
+
+The following fix applies to {{site.data.keyword.conversationshort}} 4.0.0 through 4.0.8. In some cases, {{site.data.keyword.conversationshort}} deployment is stuck and pods are not coming up because of an issue with the interaction between the Events operator and the Data Governor custom resource (CR).  
+
+Complete the following steps to determine whether you are impacted by this issue and, if necessary, apply the patch to resolve it:
+
+1. To determine whether you are impacted, run the following command to see whether the CR was applied successfully:
+    ```sh
+    oc get dataexhaust wa-data-governor -n $OPERAND_NS -o yaml
+    ```
+    {: pre}
+
+    If you do not receive any error, then you do not need to apply the patch. If you receive an error similar to the following example, complete the next step to apply the patch:
+    ```text
+    message: 'Failed to create object: b''{"kind":"Status","apiVersion":"v1","metadata":{},"status":"Failure","message":"Internal
+          error occurred: replace operation does not apply: doc is missing path: /metadata/labels/icpdsupport/serviceInstanceId:
+          missing value","reason":"InternalError","details":{"causes":[{"message":"replace
+          operation does not apply: doc is missing path: /metadata/labels/icpdsupport/serviceInstanceId:
+          missing value"}]},"code":500}\n'''
+        reason: Failed
+        status: "True"
+        type: Failure
+      ibmDataGovernorService: InProgress
+    ```
+    {: codeblock}
+
+1. From your operand namespace, run the following command to apply the patch. In the command, `wa` is used as the name of the instance. Replace this value with the name of your {{site.data.keyword.conversationshort}} instance:
+    ```yaml
+    cat <<EOF | oc apply -f -
+    apiVersion: assistant.watson.ibm.com/v1
+    kind: TemporaryPatch
+    metadata:
+     name: wa-data-governor
+    spec:
+       apiVersion: assistant.watson.ibm.com/v1
+       kind: WatsonAssistant
+       name: wa     # Replace wa with the name of your Watson Assistant instance
+       patch:
+         data-governor:
+           dataexhaust:
+             spec:
+               additionalLabels:
+                 icpdsupport/serviceInstanceId: inst-1
+       patchType: patchStrategicMerge
+    EOF
+    ```
+    {: codeblock}
+
+    Wait about 15 minutes for the changes to take effect.
+
+1. Validate that the patch was applied successfully:
+    ```sh
+    oc get dataexhaust wa-data-governor -n $OPERAND_NS -o yaml
+    ```
+    {: pre}
+
+    The patch was applied successfully when the value of `serviceInstanceId` is `inst-1`:
+    ```text
+    spec:
+      additionalLabels:
+        icpdsupport/serviceInstanceId: inst-1
+    ```
+    {: codeblock}
 
 ### Security context constraint permission errors
 {: #troubleshoot-40x-scc-permission-error}
@@ -77,8 +142,8 @@ The following fix applies to all versions of {{site.data.keyword.conversationsho
 
 1. Run the following command. In the following command, replace `INSTANCE_NAME` with the name of your {{site.data.keyword.conversationshort}} instance and replace `CUSTOM_CERTIFICATE` with your Base64 encoded custom certificate key:
     ```
-    INSTANCE="INSTANCE_NAME"     # Replace instance-name with the name of the Watson Assistant instance
-    CERT="CUSTOM_CERTIFICATE"     # Replace custom-certificate with the custom certificate key
+    INSTANCE="INSTANCE_NAME"     # Replace INSTANCE_NAME with the name of the Watson Assistant instance
+    CERT="CUSTOM_CERTIFICATE"     # Replace CUSTOM_CERTIFICATE with the custom certificate key
 
     cat <<EOF | oc apply -f -
     apiVersion: v1
