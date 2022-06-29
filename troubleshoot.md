@@ -86,12 +86,16 @@ Complete the following steps to determine whether you are impacted by this issue
 1. Validate that the patch was applied successfully:
     ```sh
     oc get dataexhaust wa-data-governor -n $OPERAND_NS -o yaml
-    Check the value of `serviceInstanceId` which should be 'inst-1'
+    ```
+    {: pre}
+
+    The patch was applied successfully when the value of `serviceInstanceId` is `inst-1`:
+    ```text
     spec:
       additionalLabels:
         icpdsupport/serviceInstanceId: inst-1
     ```
-    {: pre}
+    {: screen}
 
 ### Security context constraint permission errors
 {: #troubleshoot-40x-scc-permission-error}
