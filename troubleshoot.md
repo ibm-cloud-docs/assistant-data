@@ -57,7 +57,7 @@ Complete the following steps to determine whether you are impacted by this issue
         type: Failure
       ibmDataGovernorService: InProgress
     ```
-    {: screen}
+    {: codeblock}
 
 1. From your operand namespace, run the following command to apply the patch. In the command, `wa` is used as the name of the instance. Replace this value with the name of your {{site.data.keyword.conversationshort}} instance:
     ```yaml
@@ -95,7 +95,7 @@ Complete the following steps to determine whether you are impacted by this issue
       additionalLabels:
         icpdsupport/serviceInstanceId: inst-1
     ```
-    {: screen}
+    {: codeblock}
 
 ### Security context constraint permission errors
 {: #troubleshoot-40x-scc-permission-error}
