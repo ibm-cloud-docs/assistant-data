@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2015, 2020
-lastupdated: "2020-12-03"
+  years: 2015, 2022
+lastupdated: "2022-06-30"
 
 subcollection: assistant-data
 
@@ -96,7 +96,7 @@ Here's how you implement your assistant:
 
 1.  Add the skills to your assistant.
 
-1.  Bring the assistant to your customers where they are by adding **integrations**. 
+1.  Bring the assistant to your customers where they are by adding **integrations**.
 
     Build your own client application as the user interface for the assistant. Or add the built-in web chat integration to your company website.
 
@@ -113,7 +113,21 @@ Read more about these steps by following these links:
 ## Browser support
 {: #index-browser-support}
 
-The {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull_notm}} product user interface requires the same level of browser software as is required by {{site.data.keyword.icp4dfull_notm}}. For details, see [Browser requirements](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.5.0/cpd/plan/rhos-reqs.html#rhos-reqs__web){: external}.
+The minimum required browser software for the product user interface includes the following browsers:
+
+- Google Chrome
+  :   Latest version -1 for your operating system
+
+- Mozilla Firefox
+  :   Latest regular -1 and Extended Support Release (ESR) version for your operating system
+
+- Microsoft Edge
+  :   Latest version -1 for Windows
+
+- Apple Safari
+  :   Latest version -1 for Mac
+
+The {{site.data.keyword.icp4dfull_notm}} web client where you create service instances supports the {{site.data.keyword.icp4dfull_notm}} requirements. For more information, see [Supported web browsers](https://www.ibm.com/docs/en/cloud-paks/cp-data/4.5.x?topic=requirements-software#software-reqs__web){: external}.
 
 ## Language support
 {: #index-language-support}

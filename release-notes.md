@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2022
-lastupdated: "2022-05-26"
+lastupdated: "2022-06-30"
 
 subcollection: assistant-data
 
@@ -30,6 +30,37 @@ content-type: release-note
 
 Use these release notes to learn about the latest updates to {{site.data.keyword.conversationfull}} for {{site.data.keyword.icp4dfull}}.
 {: shortdesc}
+
+## 29 June 2022
+{: #assistant-data-jun292022}
+{: release-note}
+
+{{site.data.keyword.conversationfull}} Cartridge for {{site.data.keyword.icp4dfull}} Version 4.5 is available
+:   {{site.data.keyword.conversationshort}} 4.5.0 is compatible with {{site.data.keyword.icp4dfull}} Version 4.5. This release of {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} includes various fixes and features.
+
+Red Hat OpenShift Container Platform support
+:   You can deploy {{site.data.keyword.icp4dfull}} Version 4.5 on the following versions of Red Hat OpenShift Container Platform:
+    - Version 4.6.29 or later fixes
+    - Version 4.8.0 or later fixes
+    - Version 4.10.0 or later fixes
+
+New {{site.data.keyword.icp4dfull}} CLI commands and reference
+:   Starting in {{site.data.keyword.icp4dfull}} Version 4.5, the `cpd-cli` includes new commands and a new command reference. For more information, see the [cpd-cli command reference](https://www.ibm.com/docs/en/cloud-paks/cp-data/4.5.x?topic=interface-cpd-cli-command-reference){: external}.
+
+Microsoft Edge browser support
+:   Beginning in Version 4.5, Microsoft Edge is fully supported for use with {{site.data.keyword.icp4dfull}}. For more information, see [Browser support](/docs/assistant-data?topic=assistant-data-index#index-browser-support).
+
+Language support improvements
+:   Entity recognition and intent classification for Japanese and Korean languages changed to improve the reliability of {{site.data.keyword.conversationshort}}. You might see minor differences in how {{site.data.keyword.conversationshort}} handles entity recognition and intent classification.
+
+  Any visible changes are most likely to be seen in dictionary-based or pattern-based entity matching. For more information about defining entities, see [Adding entities](/docs/assistant-data?topic=assistant-data-entities). As a suggested practice, you can test your dialog skill with your current test framework to determine whether your workspace is impacted before you update your production workspace.
+
+  If entity values or synonyms that previously matched no longer match, you can update the entity and add a synonym with white space between the tokens, for example:
+    - Japanese: Add “見 た” as a synonym for “見た”
+    - Korean: Add “잘 자 요” as a synonym for “잘자요”
+
+Assistant preview link can be disabled
+:   Assistant preview now includes a toggle to disable the preview link. This allows you to stop access to the preview link if necessary. For more information, see [Using the preview link integration to test your assistant](/docs/assistant-data?topic=assistant-data-deploy-web-link#deploy-web-link-try).
 
 ## 27 April 2022
 {: #assistant-data-apr272022}
