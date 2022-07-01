@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2022
-lastupdated: "2022-06-30"
+lastupdated: "2022-07-01"
 
 subcollection: assistant-data
 
@@ -30,6 +30,19 @@ content-type: release-note
 
 Use these release notes to learn about the latest updates to {{site.data.keyword.conversationfull}} for {{site.data.keyword.icp4dfull}}.
 {: shortdesc}
+
+## Web chat versions
+{: #release-notes-web-chat}
+
+When you install {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}}, the latest available version of the web chat integration is included. See the following table for details about the latest available web chat version for each {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} release. If your web chat version isn't locked, then the web chat integration is upgraded to the latest available version when you upgrade {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}}.
+
+The following table shows the latest version of the web chat integration that is included with each release of {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}}.
+
+| {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} version | Latest web chat version available |
+|----------------|----------------|
+| 4.5.0 | [6.4.1](https://cloud.ibm.com/docs/watson-assistant?topic=watson-assistant-release-notes-chat#6.4.1) |
+| 4.0.8 | [6.2.0](https://cloud.ibm.com/docs/watson-assistant?topic=watson-assistant-release-notes-chat#6.2.0) |
+{: caption="Web chat versions in {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}}" caption-side="top"}
 
 ## 29 June 2022
 {: #assistant-data-jun292022}
