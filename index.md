@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2022
-lastupdated: "2022-06-30"
+lastupdated: "2022-07-21"
 
 subcollection: assistant-data
 
@@ -25,7 +25,7 @@ subcollection: assistant-data
 {:download: .download}
 {:gif: data-image-type='gif'}
 
-# About
+# About {{site.data.keyword.conversationshort}}
 {: #index}
 
 Use {{site.data.keyword.conversationfull}} for {{site.data.keyword.icp4dfull}} to build your own branded assistant into any device, application, or channel. Connect your assistant to the customer engagement resources you already use to deliver an engaging, unified problem-solving experience to your customers.
@@ -40,6 +40,18 @@ Use {{site.data.keyword.conversationfull}} for {{site.data.keyword.icp4dfull}} t
 
 This documentation describes installed instances of {{site.data.keyword.conversationshort}}. For more information about using a managed instance in IBM Cloud or in Cloud Pak for Data as a Service, see [this documentation](/docs/assistant?topic=assistant-index){: external}.
 {: note}
+
+## Feature availability
+{: #index-available-features}
+
+{{site.data.keyword.conversationshort}} can be deployed as a managed cloud service or can be installed on premises. This documentation describes how to use the product installed on premises with {{site.data.keyword.icp4dfull}}. Some features that are available with {{site.data.keyword.conversationshort}} for cloud are not available with {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}}.
+
+The following features are not available with {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}}:
+- Intent recommendations
+- Actions skill
+- Third party channel support, for example, Slack, Facebook, SMS, and WhatsApp
+- Service desk support, for example, Salesforce and Zendesk
+- The new {{site.data.keyword.conversationshort}} experience. For more information about the new experience, see the [documentation](https://cloud.ibm.com/docs/watson-assistant){: external}.
 
 ## How it works
 {: #index-how-it-works}
