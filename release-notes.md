@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2022
-lastupdated: "2022-07-01"
+lastupdated: "2022-07-21"
 
 subcollection: assistant-data
 
@@ -30,6 +30,11 @@ content-type: release-note
 
 Use these release notes to learn about the latest updates to {{site.data.keyword.conversationfull}} for {{site.data.keyword.icp4dfull}}.
 {: shortdesc}
+
+## Feature availability
+{: #release-notes-available-features}
+
+Some features that are available with {{site.data.keyword.conversationshort}} for cloud are not available with {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}}. For a list of features that are not available with {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}}, see [About {{site.data.keyword.conversationshort}}](/docs/assistant-data?topic=assistant-data-index#index-available-features).
 
 ## Web chat versions
 {: #release-notes-web-chat}
