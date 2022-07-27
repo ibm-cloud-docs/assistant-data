@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2022
-lastupdated: "2022-07-01"
+lastupdated: "2022-07-27"
 
 subcollection: assistant-data
 
@@ -168,35 +168,6 @@ You built a simple dialog to recognize and respond to both greeting and ending i
 ### Result of building a dialog
 
 That's it. You created a simple conversation with two intents and a dialog to recognize them.
-
-## Step 6: Integrate the assistant
-{: #getting-started-integrate-assistant}
-
-Now that you have an assistant that can participate in a simple conversational exchange, test it.
-
-1.  Click the **Assistants** icon ![Assistants menu icon](images/nav-ass-icon.png) to open a list of your assistants.
-1.  Find the *My first assistant* assistant, and open it.
-1.  Test your assistant with a *Preview link* integration.
-
-    The *Preview link* integration is created for your automatically. It builds your assistant into a chat widget that is hosted by an IBM-branded web page. You can open the web page and chat with your assistant to test it out.
-
-1.  From the Integrations section, click the **Preview link** tile.
-
-    ![Assistant page where the Integrations section has the Preview link and Web chat tiles](images/gs-ass-integrations.png)
-1.  Click the URL that is displayed on the page.
-
-    The test web page opens in a new tab. You can start submitting message to see how your assistant responds.
-
-    With a Lite plan, you can use the service for free. With other plans, you are charged for messages that you submit from the preview link integration. You can review metrics about the test user conversations from the Analytics page. You are not charged for messages that you submit from the "Try it out" pane, and the exchanges you have there are not logged.
-    {: note}
-
-1.  Type `hello` into the text field, and watch your assistant respond.
-
-    ![The widget in the preview link integration showing a single dialog exchange.](images/gs-test-from-preview-link.png)
-
-    You can share the URL with others who might want to try out your assistant.
-
-1.  After testing, close the web page. Click the **X** to close the preview link integration page.
 
 ## Next steps
 {: #getting-started-next-steps}
