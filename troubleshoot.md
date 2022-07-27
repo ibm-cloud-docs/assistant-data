@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2022
-lastupdated: "2022-06-29"
+lastupdated: "2022-07-27"
 
 subcollection: assistant-data
 
@@ -23,11 +23,296 @@ subcollection: assistant-data
 {:python: .ph data-hd-programlang='python'}
 {:swift: .ph data-hd-programlang='swift'}
 
-# Troubleshooting
+# Troubleshooting known issues
 {: #troubleshoot}
 
-Get help with solving issues that you encounter while using the product.
+Get help with solving issues that you might encounter while using {{site.data.keyword.conversationshort}}.
 {: shortdesc}
+
+## 4.5.0
+{: #troubleshoot-450}
+
+### Data Governor not healthy after installation
+{: #troubleshoot-450-data-governor-not-healthy}
+
+After {{site.data.keyword.conversationshort}} is installed, the `dataexhausttenant` custom resource named `wa-data-governor-ibm-data-governor-data-exhaust-internal` gets stuck in the `Topics` phase. When this happens, errors in the Data Governor pods report that the service does not exist.
+
+1. Get the status of the `wa-data-governor` custom resource:
+    ```bash
+    oc get DataExhaust
+    ```
+    {: codeblock}
+
+1. Wait for the `wa-data-governor` custom resource to be in the `Completed` phase:
+    ```
+    NAME               STATUS      VERSION   COMPLETED
+    wa-data-governor   Completed   master    1s
+    ```
+    {: codeblock}
+
+1. Pause the reconciliation of the `wa-data-governor` custom resource:
+    ```bash
+    oc patch dataexhaust wa-data-governor -p '{"metadata":{"annotations":{"pause-reconciliation":"true"}}}' --type merge
+    ```
+    {: codeblock}
+
+1. Apply the fix to the `dataexhausttenant` custom resource:
+    ```bash
+    oc patch dataexhausttenant wa-data-governor-ibm-data-governor-data-exhaust-internal  -p '{"spec":{"topics":{"data":{"replicas": 1}}}}' --type merge
+    ```
+    {: codeblock}
+
+1. Wait for the Data Governor pods to stop failing. You can restart the admin pods to speed up this process.
+
+1. Continue the reconciliation of the `wa-data-governor` custom resource:
+    ```bash
+    oc patch dataexhaust wa-data-governor --type=json -p='[{"op": "remove", "path": "/metadata/annotations/pause-reconciliation"}]'
+    ```
+    {: codeblock}
+
+### RabbitMQ gets stuck in a loop after several installation attempts
+{: #troubleshoot-450-rabbitmq-stuck}
+
+After an initial installation or upgrade failure and repeated attempts to retry, the common services RabbitMQ operator pod can get into a `CrashLoopBackOff` state. For example, the log might include the following types of messages:
+```
+"error":"failed to upgrade release: post-upgrade hooks failed: warning:
+Hook post-upgrade ibm-rabbitmq/templates/rabbitmq-backup-labeling-job.yaml
+failed: jobs.batch "{%name}-ibm-rabbitmq-backup-label" already exists"
+```
+{: codeblock}
+
+Resources for the `ibm-rabbitmq-operator.v1.0.11` component must be removed before a new installation or upgrade is started. If too many attempts occur in succession, remaining resources can cause new installations to fail.
+
+1. Delete the RabbitMQ backup label job from the previous installation or upgrade attempt. Look for the name of the job in the logs. The name ends in `-ibm-rabbitmq-backup-label`:
+    ```bash
+    oc delete job {%name}-ibm-rabbitmq-backup-label -n ${PROJECT_CPD_INSTANCE}
+    ```
+    {: codeblock}
+
+1. Check that the pod returns a `Ready` state:
+    ```bash
+    oc get pods -n ibm-common-services | grep ibm-rabbitmq
+    ```
+    {: codeblock}
+
+### Preparing to install a size large {{site.data.keyword.conversationshort}} deployment
+{: #troubleshoot-450-prepare-large-install}
+
+If you specify `large` for the `watson_assistant_size` option when you install {{site.data.keyword.conversationshort}}, the installation fails to complete successfully.
+
+Before you install a size large deployment of {{site.data.keyword.conversationshort}}, apply the following fix. The following fix uses `wa` as the name of the Watson Assistant instance and `cpd` as the namespace where Watson Assistant is installed. These values are set in environment variables. Before you run the command, update the `INSTANCE` variable with the name of your instance, and update the `NAMESPACE` variable with the namespace where your instance in installed:
+```bash
+INSTANCE=wa ; \
+NAMESPACE=cpd ; \
+#DRY_RUN="--dry-run=client --output=yaml"     # To apply the changes, change to an empty string
+DRY_RUN=""
+cat <<EOF | tee wa-network-policy-base.yaml
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  annotations:
+    oppy.ibm.com/internal-name: infra.networkpolicy
+  labels:
+    app: ${INSTANCE}-network-policy
+    app.kubernetes.io/instance: ${INSTANCE}
+    app.kubernetes.io/managed-by: Ansible
+    app.kubernetes.io/name: watson-assistant
+    component: network-policy
+    icpdsupport/addOnId: assistant
+    icpdsupport/app: ${INSTANCE}-network-policy
+    icpdsupport/ignore-on-nd-backup: "true"
+    icpdsupport/serviceInstanceId: inst-1
+    service: conversation
+    slot: ${INSTANCE}
+    tenant: PRIVATE
+    velero.io/exclude-from-backup: "true"
+  name: ${INSTANCE}-network-policy
+  namespace: ${NAMESPACE}
+spec:
+  ingress:
+  - from:
+    - podSelector:
+        matchLabels:
+          service: conversation
+          slot: ${INSTANCE}
+    - podSelector:
+        matchLabels:
+          slot: global
+    - podSelector:
+        matchLabels:
+          component: watson-gateway
+    - podSelector:
+        matchLabels:
+          component: dvt
+    - podSelector:
+        matchLabels:
+          dwf_service: ${INSTANCE}-clu
+          network-policy: allow-egress
+    - podSelector:
+        matchLabels:
+          app: 0020-zen-base
+    - namespaceSelector:
+        matchLabels:
+          ns: ${NAMESPACE}
+      podSelector:
+        matchLabels:
+          app: 0020-zen-base
+    - podSelector:
+        matchLabels:
+          component: ibm-nginx
+    - namespaceSelector:
+        matchLabels:
+          ns: ${NAMESPACE}
+      podSelector:
+        matchLabels:
+          component: ibm-nginx
+    - namespaceSelector:
+        matchLabels:
+          assistant.watson.ibm.com/role: operator
+      podSelector:
+        matchLabels:
+          release: assistant-operator
+    - namespaceSelector:
+        matchLabels:
+          assistant.watson.ibm.com/role: operator
+      podSelector:
+        matchLabels:
+          app: watson-assistant-operator
+    - namespaceSelector:
+        matchLabels:
+          assistant.watson.ibm.com/role: operator
+      podSelector:
+        matchLabels:
+          app.kubernetes.io/instance: watson-assistant-operator
+    - namespaceSelector:
+        matchLabels:
+          assistant.watson.ibm.com/role: operator
+      podSelector:
+        matchLabels:
+          app.kubernetes.io/instance: ibm-etcd-operator-release
+    - namespaceSelector:
+        matchLabels:
+          assistant.watson.ibm.com/role: operator
+      podSelector:
+        matchLabels:
+          app.kubernetes.io/instance: ibm-etcd-operator
+  podSelector:
+    matchLabels:
+      service: conversation
+      slot: ${INSTANCE}
+  policyTypes:
+  - Ingress
+EOF
+for MICROSERVICE in analytics clu-embedding clu-serving clu-training create-slot-job data-governor dialog dragonfly-clu-mm ed es-store etcd integrations master nlu recommends sireg-ubi-ja-tok-20160902 sireg-ubi-ko-tok-20181109 spellchecker-mm store store-admin store-cronjob store-sync store_db_creator store_db_schema_updater system-entities tfmm ui ${INSTANCE}-redis webhooks-connector
+do
+  # Change name and add component to selector
+  # Apply to the cluster
+  cat wa-network-policy-base.yaml | \
+    oc patch --dry-run=client --output=yaml -f - --type=merge --patch "{
+        \"metadata\": {\"name\": \"${INSTANCE}-network-policy-$( echo $MICROSERVICE | tr _ -)\"},
+        \"spec\": {\"podSelector\":{\"matchLabels\":{\"component\": \"${MICROSERVICE}\"}}}
+      }" |
+    oc apply -f - ${DRY_RUN}
+done
+```
+{: codeblock}
+
+### Fixing a size large {{site.data.keyword.conversationshort}} installation
+{: #troubleshoot-450-fix-large-install}
+
+Apply this fix if you installed a size `large` {{site.data.keyword.conversationshort}} deployment, and your installation fails to complete successfully. In some cases, {{site.data.keyword.conversationshort}} pods aren't able to communicate with other pods, and the Transmission Control Protocol (TCP) connections can't be established.
+
+To confirm whether you are affected by this issue, run the following command:
+```bash
+oc logs --selector app=sdn --namespace openshift-sdn --container sdn | grep "Ignoring NetworkPolicy"
+```
+{: codeblock}
+
+If you are affected, you see output similar to the following example:
+```
+W0624 12:58:21.407901    2480 networkpolicy.go:484] Ignoring NetworkPolicy cpd/wa-network-policy because it generates
+```
+{: codeblock}
+
+If you encounter this error, apply the following fix to resolve the issue. The following fix uses `wa` as the name of the Watson Assistant instance. This value is set in an environment variable. Before you run the command, update the `INSTANCE` variable with the name of your instance:
+```bash
+INSTANCE=wa ; \
+#DRY_RUN="--dry-run=client --output=yaml"     # To apply the changes, change to an empty string
+DRY_RUN=""
+for MICROSERVICE in analytics clu-embedding clu-serving clu-training create-slot-job data-governor dialog dragonfly-clu-mm ed es-store etcd integrations master nlu recommends sireg-ubi-ja-tok-20160902 sireg-ubi-ko-tok-20181109 spellchecker-mm store store-admin store-cronjob store-sync store_db_creator store_db_schema_updater system-entities tfmm ui ${INSTANCE}-redis webhooks-connector
+do
+  # Get original networking policy
+  # Clean up metadata fields to get the resource applied by Watson Assistant
+  # Change name and add component to selector
+  # Apply to the cluster
+  oc get networkpolicy $INSTANCE-network-policy --output yaml | \
+  oc patch --dry-run=client --output=yaml -f - --type=json --patch='[
+      {"op":"remove", "path":"/metadata/creationTimestamp"},
+      {"op":"remove", "path":"/metadata/generation"},
+      {"op":"remove", "path":"/metadata/resourceVersion"},
+      {"op":"remove", "path":"/metadata/uid"},
+      {"op":"remove", "path":"/metadata/annotations/kubectl.kubernetes.io~1last-applied-configuration"},
+      {"op":"remove", "path":"/metadata/ownerReferences"}
+    ]' | \
+    oc patch --dry-run=client --output=yaml -f - --type=merge --patch "{
+        \"metadata\": {\"name\": \"${INSTANCE}-network-policy-$( echo $MICROSERVICE | tr _ -)\"},
+        \"spec\": {\"podSelector\":{\"matchLabels\":{\"component\": \"${MICROSERVICE}\"}}}
+      }" |
+    oc apply -f - ${DRY_RUN}
+done
+```
+{: codeblock}
+
+### Unable to scale the size of Redis pods
+{: #troubleshoot-450-scale-redis}
+
+When you scale the deployment size of {{site.data.keyword.conversationshort}}, the Redis pods do not scale correctly and will not match the new size of the {{site.data.keyword.conversationshort}} deployment (`small`, `medium`, or `large`). This problem is a known issue in Redis operator v1.5.1.
+
+When you scale the size of your {{site.data.keyword.conversationshort}} deployment, you must delete the Redis custom resource. This allows Redis to automatically re-create the custom resource with the correct size and pods.
+
+To delete and re-create the Redis custom resource:
+
+1. Source the environment variables from the script:
+    ```bash
+    source ./cpd_vars.sh
+    ```
+    {: codeblock}
+
+    If you don't have the script that defines the environment variables, see [Setting up installation environment variables](https://www.ibm.com/docs/en/cloud-paks/cp-data/4.5.x?topic=information-setting-up-installation-environment-variables){: external}.
+
+1. Export the name of the Redis custom resource to an environment variable:
+    ```bash
+    export REDIS_CR_NAME=`oc get redissentinels.redis.databases.cloud.ibm.com -l icpdsupport/addOnId=assistant -n ${PROJECT_CPD_INSTANCE} | grep -v NAME| awk '{print $1}'`
+    ```
+    {: codeblock}
+
+1. Delete the Redis custom resource:
+    ```bash
+    oc delete redissentinels.redis.databases.cloud.ibm.com ${REDIS_CR_NAME} -n ${PROJECT_CPD_INSTANCE}
+    ```
+    {: codeblock}
+
+    It might take approximately 5 minutes for the custom resource to be re-created.
+
+1. Verify that Redis is running:
+    ```bash
+    oc get redissentinels.redis.databases.cloud.ibm.com -n ${PROJECT_CPD_INSTANCE}
+    ```
+    {: codeblock}
+
+1. Export the name of your {{site.data.keyword.conversationshort}} instance as an environment variable:
+    ```bash
+    export INSTANCE=`oc get wa -n ${PROJECT_CPD_INSTANCE} |grep -v NAME| awk '{print $1}'`
+    ```
+    {: codeblock}
+
+1. Delete the Redis analytics secret:
+    ```bash
+    oc delete secrets ${INSTANCE}-analytics-redis
+    ```
+    {: codeblock}
+
+1. Delete the `${INSTANCE}-analytics` deployment pods.
 
 ## 4.0.x
 {: #troubleshoot-40x}

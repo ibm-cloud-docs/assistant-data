@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2015, 2021
-lastupdated: "2021-11-04"
+  years: 2015, 2022
+lastupdated: "2022-07-27"
 
 subcollection: assistant-data
 
@@ -353,8 +353,8 @@ To back up your data, complete these steps:
 
 IBM created a restore tool called `pgmig`. The tool restores your database backup by adding it to a database you choose. It also upgrades the schema to the one that is associated with the version of the product where you restore the data.
 
-Before it adds the backed-up data, the tool removes the data for all instances in the current service deployment, so any spares are removed also.
-{: important}
+Before the tool adds the backed-up data, it removes the data for all instances in the current service deployment, so any spares are also removed.
+{: note}
 
 1.  Install the target {{site.data.keyword.icp4dfull_notm}} cluster to which you want to restore the data. From the web client for the target cluster, create one service instance of {{site.data.keyword.conversationshort}} for each service instance that was backed up on the old cluster.
 
@@ -365,78 +365,81 @@ Before it adds the backed-up data, the tool removes the data for all instances i
 
     The tool clears the current database before it restores the backup. So, if you might need to revert to the current database, be sure to create a backup of it first.
 
-1.  Go to the backup directory that you specified in the file-name parameter in the previous procedure.
+1.  Go to the backup directory that you specified in the `${file-name}` parameter in the previous procedure.
 
-1.  Download the `pgmig` tool from the [GitHub Watson Developer Cloud Community](https://github.com/watson-developer-cloud/community/tree/master/watson-assistant/data) repository.
+1.  Download the `pgmig` tool from the [GitHub Watson Developer Cloud Community](https://github.com/watson-developer-cloud/community/tree/master/watson-assistant/data) repository:
 
-    ```
-    wget https://github.com/watson-developer-cloud/community/raw/master/watson-assistant/data/4.0.0/pgmig
+    ```bash
+    wget https://github.com/watson-developer-cloud/community/raw/master/watson-assistant/data/4.5.0/pgmig
     ```
     {: codeblock}
 
-    ```
+    ```bash
     chmod 755 pgmig
     ```
     {: codeblock}
 
-1.  Create two configuration files, and store them in the same backup directory.
+1.  Create two configuration files and store them in the same backup directory.
 
-    - **resourceController.yaml**: The Resource Controller file keeps a list of all provisioned {{site.data.keyword.conversationshort}} instances. See [Creating the resourceController.yaml file](#backup-resource-controller-yaml).
+    - `resourceController.yaml`: The Resource Controller file keeps a list of all provisioned {{site.data.keyword.conversationshort}} instances. See [Creating the resourceController.yaml file](#backup-resource-controller-yaml).
 
-    - **postgres.yaml**: The Postgres file lists details for the target Postgres pods. See [Creating the postgres.yaml file](#backup-postgres-yaml).
+    - `postgres.yaml`: The Postgres file lists details for the target Postgres pods. See [Creating the postgres.yaml file](#backup-postgres-yaml).
 
-1.  Run the following command to get the secret:
+1.  Get the secret:
 
-    ```
+    ```bash
     oc get secret ${INSTANCE}-postgres-ca -o jsonpath='{.data.ca\.crt}' | base64 -d | tee ${BACKUP_DIR}/ca.crt | openssl x509 -noout -text
     ```
     {: codeblock}
 
-    - Replace ${INSTANCE} with the instance of the {{site.data.keyword.conversationshort}} deployment that you want to back up.
-    - Replace ${BACKUP_DIR} with the folder where the `postgres.yaml` and `resourceController.yaml` files are located.
+    - Replace `${INSTANCE}` with the name of the {{site.data.keyword.conversationshort}} instance that you want to back up.
+    - Replace `${BACKUP_DIR}` with the folder where the `postgres.yaml` and `resourceController.yaml` files are located.
 
 1.  Copy the files that you downloaded and created in the previous steps into an existing directory of your choice on a Postgres pod. The files that you need to copy are `pgmig`, `postgres.yaml`, `resourceController.yaml`, and `store.dump`.
-
-    You can use the following commands to do so.
 
     If you are restoring data to a stand-alone {{site.data.keyword.icp4dfull_notm}} cluster, then replace all references to `oc` with `kubectl` in these sample commands.
     {: note}
 
     ```bash
-    oc exec -it $POSTGRES_POD -- mkdir /controller/tmp
-    oc exec -it $POSTGRES_POD -- mkdir /controller/tmp/bu
+    oc exec -it ${POSTGRES_POD} -- mkdir /controller/tmp
+    oc exec -it ${POSTGRES_POD} -- mkdir /controller/tmp/bu
     ```
     {: codeblock}
 
     ```bash
-    oc rsync bu/ $POSTGRES_POD:/controller/tmp/bu/
+    oc rsync bu/ ${POSTGRES_POD}:/controller/tmp/bu/
     ```
     {: codeblock}
 
-1.  Stop the Store by scaling the store deployment down to 0 replicas.
+1.  Stop the store deployment by scaling the store deployment down to 0 replicas:
+
+    ```bash
+    oc scale deploy ibm-watson-assistant-operator -n ${OPERATOR_NS} --replicas=0
+    ```
+    {: codeblock}
 
     ```bash
     oc get deployments -l component=store
     ```
     {: codeblock}
 
-    Make a note of how many replicas there are in the store deployment.
+    Make a note of how many replicas there are in the store deployment:
 
     ```bash
-    oc scale deployment $STORE_DEPLOYMENT_NAME --replicas=0
+    oc scale deployment ${STORE_DEPLOYMENT} --replicas=0
     ```
     {: codeblock}
 
-1.  Initiate the execution of a remote command in the Postgres pod.
+1.  Initiate the execution of a remote command in the Postgres pod:
 
     ```bash
-    oc exec -it $POSTGRES_POD /bin/bash
+    oc exec -it ${POSTGRES_POD} /bin/bash
     ```
     {: codeblock}
 
-1.  Run the `pgmig` tool.
+1.  Run the `pgmig` tool:
 
-    ```
+    ```bash
     cd /controller/tmp/bu
     export PG_CA_FILE=/controller/tmp/bu/ca.crt
     ./pgmig --resourceController resourceController.yaml --target postgres.yaml --source store.dump
@@ -447,14 +450,19 @@ Before it adds the backed-up data, the tool removes the data for all instances i
 
     As the script runs, you are prompted for information that includes the instance on the target cluster to which to add the backed-up data. The data on the instance you specify will be removed and replaced. If there are multiple instances in the backup, you are prompted multiple times to specify the target instance information.
 
-1.  Scale the store deployment back up.
+1.  Scale the store deployment back up:
 
     ```bash
-    oc scale deployment $STORE_DEPLOYMENT --replicas=$ORIGINAL_NUMBER_OF_REPLICAS
+    oc scale deployment ${STORE_DEPLOYMENT} --replicas=${ORIGINAL_NUMBER_OF_REPLICAS}
     ```
     {: codeblock}
 
-You might need to wait a few minutes before the skills you restored are visible from the web UI.
+    ```bash
+    oc scale deploy ibm-watson-assistant-operator -n ${OPERATOR_NS} --replicas=1
+    ```
+    {: codeblock}
+
+You might need to wait a few minutes before the skills you restored are visible from the web interface.
 
 Reopen only one assistant or dialog skill at a time. Each time you open a dialog skill after its training data has been changed, training is initiated automatically. Give the skill time to retrain on the restored data. Remember, the process of training a machine learning model requires at least one node to have 4 CPUs that can be dedicated to training. Therefore, open restored assistants and skills during low traffic periods and open them one at a time.
 
