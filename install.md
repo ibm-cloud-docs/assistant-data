@@ -38,7 +38,7 @@ The installation process differs depending on the version you are installing. Th
 | Version |  Cluster | Installation instructions |
 |------------------------|---------------------------|-------------------|
 | 4.5.1 | {{site.data.keyword.icp4dfull_notm}} 4.5.x | [Installing 4.5.1](https://www.ibm.com/docs/SSQNUZ_4.5.x/svc-assistant/assistant-svc-install.html){: external} |
-| 4.5.0 | {{site.data.keyword.icp4dfull_notm}} 4.5.x | [Installing 4.5.0](https://www.ibm.com/docs/en/SSQNUZ_4.5.x/archives/refresh-0/CP-Data-4.5-R0-PDF5-Installing.pdf){: external} |
+| 4.5.0 | {{site.data.keyword.icp4dfull_notm}} 4.5.x | [Installing 4.5.0](https://www.ibm.com/docs/en/SSQNUZ_4.5.x/archives/refresh-0/CP-Data-4.5.x-R0-PDF5-Installing.pdf){: external} |
 | 4.0.8 | {{site.data.keyword.icp4dfull_notm}} 4.0.x | [Installing 4.0.8](https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=assistant-installing-watson){: external} |
 | 4.0.7 | {{site.data.keyword.icp4dfull_notm}} 4.0.x | [Installing 4.0.7](https://www.ibm.com/docs/en/SSQNUZ_4.0/archives/refresh-7/CP-Data-4.0-R7-PDF5-Installing.pdf){: external} |
 | 4.0.6 | {{site.data.keyword.icp4dfull_notm}} 4.0.x | [Installing 4.0.6](https://www.ibm.com/docs/en/SSQNUZ_4.0/archives/refresh-6/CP-Data-4.0-R6-PDF5-Installing.pdf){: external} |

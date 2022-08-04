@@ -28,7 +28,7 @@ subcollection: assistant-data
 # Installing Watson Assistant 4.5.x
 {: #install-450}
 
-To learn how to install {{site.data.keyword.conversationshort}} on {{site.data.keyword.icp4dfull_notm}} Version 4.5, see [Installing {{site.data.keyword.conversationshort}} 4.5.0](https://www.ibm.com/docs/SSQNUZ_4.5.x/svc-assistant/assistant-svc-install.html){: external}.
+To learn how to install {{site.data.keyword.conversationshort}} on {{site.data.keyword.icp4dfull_notm}} Version 4.5, see [Installing {{site.data.keyword.conversationshort}} 4.5.x](https://www.ibm.com/docs/SSQNUZ_4.5.x/svc-assistant/assistant-svc-install.html){: external}.
 
 ## System requirements
 {: #install-450-reqs}
