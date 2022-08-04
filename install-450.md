@@ -2,7 +2,7 @@
 
 copyright:
   years: 2022
-lastupdated: "2022-06-30"
+lastupdated: "2022-08-03"
 
 subcollection: assistant-data
 
@@ -35,7 +35,9 @@ To learn how to install {{site.data.keyword.conversationshort}} on {{site.data.k
 
 The following table provides system requirements for the various supported deployment sizes.
 
-| Resource | Large  | Medium |  Small |
+**4.5.1**: The `Starter` and `Production` sizes became available in {{site.data.keyword.conversationshort}} Version 4.5.1.
+
+| Resource | Large  | Medium (Production) |  Small (Starter) |
 |----------|--------|--------|--------|
 | vCPU     |     60 |     45 |     30 |
 | Memory   | 350 GB | 250 GB | 150 GB |

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2022
-lastupdated: "2022-07-21"
+lastupdated: "2022-08-03"
 
 subcollection: assistant-data
 
@@ -45,16 +45,27 @@ The following table shows the latest version of the web chat integration that is
 
 | {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} version | Latest web chat version available |
 |----------------|----------------|
+| 4.5.1 | [6.5.2](https://cloud.ibm.com/docs/watson-assistant?topic=watson-assistant-release-notes-chat#6.5.2) |
 | 4.5.0 | [6.4.1](https://cloud.ibm.com/docs/watson-assistant?topic=watson-assistant-release-notes-chat#6.4.1) |
 | 4.0.8 | [6.2.0](https://cloud.ibm.com/docs/watson-assistant?topic=watson-assistant-release-notes-chat#6.2.0) |
 {: caption="Web chat versions in {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}}" caption-side="top"}
+
+## 3 August 2022
+{: #assistant-data-aug032022}
+{: release-note}
+
+{{site.data.keyword.conversationfull}} Cartridge for {{site.data.keyword.icp4dfull}} Version 4.5.1 is available
+:   {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} 4.5.1 is compatible with {{site.data.keyword.icp4dfull}} Version 4.5. See the [support matrix](/docs/assistant-data?topic=assistant-data-install#install-support-matrix) for more details. This release of {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} includes various fixes and features.
+
+New deployment sizes
+:   Two new deployment sizes are now available. The two new sizes are `Starter` and `Production`. The `Starter` size is equivalent to the `small` deployment size, and the `Production` size is equivalent to the `medium` deployment size.
 
 ## 29 June 2022
 {: #assistant-data-jun292022}
 {: release-note}
 
-{{site.data.keyword.conversationfull}} Cartridge for {{site.data.keyword.icp4dfull}} Version 4.5 is available
-:   {{site.data.keyword.conversationshort}} 4.5.0 is compatible with {{site.data.keyword.icp4dfull}} Version 4.5. This release of {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} includes various fixes and features.
+{{site.data.keyword.conversationfull}} Cartridge for {{site.data.keyword.icp4dfull}} Version 4.5.0 is available
+:   {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} 4.5.0 is compatible with {{site.data.keyword.icp4dfull}} Version 4.5. See the [support matrix](/docs/assistant-data?topic=assistant-data-install#install-support-matrix) for more details. This release of {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} includes various fixes and features.
 
 Red Hat OpenShift Container Platform support
 :   You can deploy {{site.data.keyword.icp4dfull}} Version 4.5 on the following versions of Red Hat OpenShift Container Platform:
@@ -191,7 +202,7 @@ Disambiguation feature updates
 {: #assistant-data-jul292021}
 {: release-note}
 
-{{site.data.keyword.conversationfull}} Cartridge for {{site.data.keyword.icp4dfull}} 4.0 is available
+{{site.data.keyword.conversationfull}} Cartridge for {{site.data.keyword.icp4dfull}} 4.0.0 is available
 :   {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} 4.0.0 is compatible with {{site.data.keyword.icp4dfull}} 4.0 on Red Hat OpenShift 4.6. See the [support matrix](/docs/assistant-data?topic=assistant-data-install#install-support-matrix) for more details.
 
 [Universal language](/docs/assistant-data?topic=assistant-data-assistant-language#assistant-language-universal)
