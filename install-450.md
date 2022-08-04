@@ -2,7 +2,7 @@
 
 copyright:
   years: 2022
-lastupdated: "2022-06-30"
+lastupdated: "2022-08-03"
 
 subcollection: assistant-data
 
@@ -28,14 +28,16 @@ subcollection: assistant-data
 # Installing Watson Assistant 4.5.x
 {: #install-450}
 
-To learn how to install {{site.data.keyword.conversationshort}} on {{site.data.keyword.icp4dfull_notm}} Version 4.5, see [Installing {{site.data.keyword.conversationshort}} 4.5.0](https://www.ibm.com/docs/SSQNUZ_4.5.x/svc-assistant/assistant-svc-install.html){: external}.
+To learn how to install {{site.data.keyword.conversationshort}} on {{site.data.keyword.icp4dfull_notm}} Version 4.5, see [Installing {{site.data.keyword.conversationshort}} 4.5.x](https://www.ibm.com/docs/SSQNUZ_4.5.x/svc-assistant/assistant-svc-install.html){: external}.
 
 ## System requirements
 {: #install-450-reqs}
 
 The following table provides system requirements for the various supported deployment sizes.
 
-| Resource | Large  | Medium |  Small |
+**4.5.1**: The `Starter` and `Production` sizes became available in {{site.data.keyword.conversationshort}} Version 4.5.1.
+
+| Resource | Large  | Medium (Production) |  Small (Starter) |
 |----------|--------|--------|--------|
 | vCPU     |     60 |     45 |     30 |
 | Memory   | 350 GB | 250 GB | 150 GB |
