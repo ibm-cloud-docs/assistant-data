@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2021
-lastupdated: "2021-08-25"
+  years: 2021, 2022
+lastupdated: "2022-08-09"
 
 subcollection: assistant-data
 
@@ -152,6 +152,98 @@ To access the backup files from Portworx, complete the following steps:
 
     ```bash
     pxctl volume inspect $pv_name |head -40
+    ```
+    {: codeblock}
+
+### Accessing backed-up files from OpenShift Container Storage
+{: #backup-access-ocs}
+
+To access the backup files from OpenShift Container Storage (OCS), complete the following steps:
+
+1.  Create a volume snapshot of the persistent volume claim that is used for the Postgres backup:
+
+    ```
+    cat <<EOF | oc apply -f -
+    apiVersion: snapshot.storage.k8s.io/v1
+    kind: VolumeSnapshot
+    metadata:
+      name: wa-backup-snapshot
+    spec:
+      source:
+        persistentVolumeClaimName: ${INSTANCE_NAME}-store-pvc
+      volumeSnapshotClassName: ocs-storagecluster-rbdplugin-snapclass
+    EOF
+    ```
+    {: codeblock}
+
+1.  Create a persistent volume claim from the volume snapshot:
+
+    ```
+    cat <<EOF | oc apply -f -
+    apiVersion: v1
+    kind: PersistentVolumeClaim
+    metadata:
+      name: wa-backup-snapshot-pvc
+    spec:
+      storageClassName: ocs-storagecluster-ceph-rbd
+      accessModes:
+      - ReadWriteOnce
+      volumeMode: Filesystem
+      dataSource:
+        apiGroup: snapshot.storage.k8s.io
+        kind: VolumeSnapshot
+        name: wa-backup-snapshot
+      resources:
+        requests:
+          storage: 1Gi     
+    EOF
+    ```
+    {: codeblock}
+
+1.  Create a pod to access the persistent volume claim:
+
+    ```
+    cat <<EOF | oc apply -f -
+    kind: Pod
+    apiVersion: v1
+    metadata:
+      name: wa-retrieve-backup
+    spec:
+      volumes:
+        - name: backup-snapshot-pvc
+          persistentVolumeClaim:
+           claimName: wa-backup-snapshot-pvc
+      containers:
+        - name: retrieve-backup-container
+          image: cp.icr.io/cp/watson-assistant/conan-tools:20210630-0901-signed@sha256:e6bee20736bd88116f8dac96d3417afdfad477af21702217f8e6321a99190278
+          command: ['sh', '-c', 'echo The pod is running && sleep 360000']
+          volumeMounts:
+            - mountPath: "/watson_data"
+              name: backup-snapshot-pvc
+    EOF
+    ```
+    {: codeblock}
+
+1.  If you do not know the name of the backup file that you want to extract and are unable to check the most recent backup cron job, run the following command:
+
+    ```
+    oc exec -it wa-retrieve-backup -- ls /watson_data
+    ```
+    {: codeblock}
+
+1.  Transfer the backup files to a secure location:
+
+    ```
+    kubectl cp wa-retrieve-backup:/watson_data/${FILENAME} ${SECURE_LOCAL_DIRECTORY}/${FILENAME}
+    ```
+    {: codeblock}
+
+1.  Run the following commands to clean up the resources that you created for to retrieve the files:
+
+    ```
+    oc delete wa-retrieve-backup
+    oc delete pvc wa-restore-backup
+    oc delete volumesnapshot wa-backup-snapshot-pvc
     ```
     {: codeblock}
 
