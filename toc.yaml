@@ -113,11 +113,6 @@ toc:
           - architecture.md
           - information-security.md
           - backup.md
-          - topicgroup:
-              label: Backing up and restoring previous versions
-              topics:
-              - backup-400.md
-              - backup-150.md
           - upgrade.md
       - topicgroup:
           label: Using webhooks
