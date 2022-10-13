@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2022
-lastupdated: "2022-07-27"
+lastupdated: "2022-10-13"
 
 subcollection: assistant-data
 
@@ -28,6 +28,20 @@ subcollection: assistant-data
 
 Get help with solving issues that you might encounter while using {{site.data.keyword.conversationshort}}.
 {: shortdesc}
+
+## 4.5.x
+{: #troubleshoot-45x}
+
+### Pod "RESTARTS" count stays at 0 after a 4.5.x upgrade even though a few assistant pods are restarting
+{: #troubleshoot-453-restarts-zero}
+<!--issue 56209-->
+
+- Problem: After upgrading {{site.data.keyword.conversationshort}}, the pod "RESTARTS" count stays at 0 even though certain assistant pods are restarting.
+- Cause: During the upgrade, custom resources owned by {{site.data.keyword.conversationshort}} for the "certificates.certmanager.k8s.io" CRD are deleted using a script that runs in the background. Sometimes the CR deletion script completes before the assistant operator gets upgraded. In that case, the old assistant operator might recreate custom resources for the "certificates.certmanager.k8s.io" CRD. Leftover CRs might cause the certificate manager to continuously regenerate some certificate secrets, causing some assistant pods to restart recursively.
+- Solution: Run the following script to delete leftover custom resources for the "certificates.certmanager.k8s.io" CRD after setting INSTANCE (normally `wa`) and PROJECT_CPD_INSTANCE variables:
+```
+for i in `oc get certificates.certmanager.k8s.io -l icpdsupport/addOnId=assistant --namespace ${PROJECT_CPD_INSTANCE} | grep "${INSTANCE}-"| awk '{print $1}'`; do oc delete certificates.certmanager.k8s.io $i --namespace ${PROJECT_CPD_INSTANCE}; done
+```
 
 ## 4.5.0
 {: #troubleshoot-450}
