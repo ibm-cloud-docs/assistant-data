@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2022
-lastupdated: "2022-08-03"
+lastupdated: "2022-10-13"
 
 subcollection: assistant-data
 
@@ -45,10 +45,21 @@ The following table shows the latest version of the web chat integration that is
 
 | {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} version | Latest web chat version available |
 |----------------|----------------|
+| 4.5.3 | [6.6.2](https://cloud.ibm.com/docs/watson-assistant?topic=watson-assistant-release-notes-chat#6.6.2) |
 | 4.5.1 | [6.5.2](https://cloud.ibm.com/docs/watson-assistant?topic=watson-assistant-release-notes-chat#6.5.2) |
 | 4.5.0 | [6.4.1](https://cloud.ibm.com/docs/watson-assistant?topic=watson-assistant-release-notes-chat#6.4.1) |
 | 4.0.8 | [6.2.0](https://cloud.ibm.com/docs/watson-assistant?topic=watson-assistant-release-notes-chat#6.2.0) |
 {: caption="Web chat versions in {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}}" caption-side="top"}
+
+## 13 October 2022
+{: #assistant-data-oct132022}
+{: release-note}
+
+{{site.data.keyword.conversationfull}} Cartridge for {{site.data.keyword.icp4dfull}} Version 4.5.3 is available
+:   {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} 4.5.3 is compatible with {{site.data.keyword.icp4dfull}} Version 4.5. See the [support matrix](/docs/assistant-data?topic=assistant-data-install#install-support-matrix) for more details. This release of {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} includes various fixes and features.
+
+Support for `autoScaleConfig`
+:   Support for automatically scaling resources using the Red Hat OpenShift Horizontal Pod Autoscaler (HPA).
 
 ## 3 August 2022
 {: #assistant-data-aug032022}
