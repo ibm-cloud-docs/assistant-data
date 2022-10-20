@@ -17,9 +17,6 @@ toc:
       - getting-started.md
       - index.md
       - tool-overview.md
-      - link:
-          label: Banking assistant demo
-          href: https://watson-conversation-duo-dev.ng.bluemix.net/
       - sample-apps.md
       - release-notes.md
 
