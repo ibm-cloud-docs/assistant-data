@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2022
-lastupdated: "2022-08-15"
+lastupdated: "2022-10-20"
 
 subcollection: assistant-data
 
@@ -54,7 +54,10 @@ When you back up data with one of these procedures before you upgrade from one v
 
 A CronJob named `$INSTANCE-store-cronjob` is created and enabled for you automatically when you deploy the service. A CronJob is a type of Kubernetes controller. A CronJob creates Jobs on a repeating schedule. For more information, see [CronJob](https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/){: external} in the Kubernetes documentation.
 
-The jobs that are created by the store cron job are called `$INSTANCE-backup-job-$TIMESTAMP`. Each job deletes old logs and runs a backup of the store Postgres database. Postgres provides a tool that is called `pg_dump`. The dump tool creates a backup by sending the database contents to `stdout` where you can write it to a file. The backups are created with the `pg_dump` command and stored in a persistent volume claim (PVC) named $INSTANCE-store-pvc . You are responsible for moving the backup to a more secure location after its initial creation.
+The jobs that are created by the store cron job are called `$INSTANCE-backup-job-$TIMESTAMP`. Each job deletes old logs and runs a backup of the store Postgres database. Postgres provides a tool that is called `pg_dump`. The dump tool creates a backup by sending the database contents to `stdout` where you can write it to a file. The backups are created with the `pg_dump` command and stored in a persistent volume claim (PVC) named $INSTANCE-store-pvc.
+
+You are responsible for moving the backup to a more secure location after its initial creation, preferrably a location that can be accessed outside of the cluster where the backups cannot be deleted easily. Ensure this happens for all environments, especially for Production clusters.
+{: note}
 
 The following table lists the configuration values that control the backup cron job. You can change the default values for these settings by adding them to the `install-override.yaml` file and changing their default values when you deploy the service. Or you can edit these settings by editing the cron job after the service is deployed by using the `oc edit cronjob $INSTANCE-store-cronjob` command.
 
@@ -244,7 +247,7 @@ To access the backup files from OpenShift Container Storage (OCS), complete the 
 ## Backing up data by using the script
 {: #backup-os}
 
-The `backupPG.sh` script gathers the pod name and credentials for one of your Postgres Keeper pods, which is the pod from which the `pg_dump` command must be run, and then runs the command for you.
+The `backupPG.sh` script gathers the pod name and credentials for one of your Postgres pods, which is the pod from which the `pg_dump` command must be run, and then runs the command for you.
 
 To back up data by using the provided script, complete the following steps:
 
@@ -263,14 +266,14 @@ To back up data by using the provided script, complete the following steps:
 1.  Run the script:
 
     ```bash
-    ./backupPG.sh --instance ${instance-name} > ${file-name}
+    ./backupPG.sh --instance ${INSTANCE} > ${BACKUP_DIR}
     ```
     {: codeblock}
 
     Replace the following values in the command:
 
-    - `${file-name}`: Specify a file where you want to write the downloaded data. Be sure to specify a backup directory in which to store the file. For example, `/bu/backup-file-name.dump` creates a backup directory named `bu`. This directory is referenced later as `${BACKUP_DIR}`.
-    - `--instance ${instance-name}`: Select the specific instance of {{site.data.keyword.conversationshort}} to be backed up.
+    - `${BACKUP_DIR}`: Specify a file where you want to write the downloaded data. Be sure to specify a backup directory in which to store the file. For example, `/bu/backup-file-name.dump` creates a backup directory named `bu`.
+    - `--instance ${INSTANCE}`: Select the specific instance of {{site.data.keyword.conversationshort}} to be backed up.
 
 If you prefer to back up data by using the Postgres tool directly, you can complete the procedure to back up data manually.
 
@@ -281,7 +284,7 @@ Complete the steps in this procedure to back up your data by using the Postgres 
 
 To back up your data, complete these steps:
 
-1.  Fetch a running Postgres keeper pod:
+1.  Fetch a running Postgres pod:
 
     ```bash
     oc get pods -l app=${INSTANCE}-postgres -o jsonpath="{.items[0].metadata.name}"
@@ -330,14 +333,14 @@ To back up your data, complete these steps:
 1.  Run the following command:
 
     ```bash
-    oc exec $KEEPER_POD -- bash -c "export PGPASSWORD='$PASSWORD' && pg_dump -Fc -h $HOSTNAME -d $DATABASE -U $USERNAME" > ${file-name}
+    oc exec $KEEPER_POD -- bash -c "export PGPASSWORD='$PASSWORD' && pg_dump -Fc -h $HOSTNAME -d $DATABASE -U $USERNAME" > ${BACKUP_DIR}
     ```
     {: codeblock}
 
     The following lists describes the arguments. You retrieved the values for some of these parameters in the previous step:
 
-    - `$KEEPER_POD`: Any Postgres Keeper pod in your {{site.data.keyword.conversationshort}} instance.
-    - `${file-name}`: Specify a file where you want to write the downloaded data. Be sure to specify a backup directory in which to store the file. For example, `/bu/backup-file-name.dump` creates a backup directory named `bu`. This directory is referenced later as `${BACKUP_DIR}`.
+    - `$KEEPER_POD`: Any Postgres pod in your {{site.data.keyword.conversationshort}} instance.
+    - `${BACKUP_DIR}`: Specify a file where you want to write the downloaded data. Be sure to specify a backup directory in which to store the file. For example, `/bu/backup-file-name.dump` creates a backup directory named `bu`.
     - `$DATABASE`: The store database name that was retrieved from the Store VCAP secret in step 3.
     - `$HOSTNAME`: The hostname that was retrieved from the Store VCAP secret in step 3.
     - `$USERNAME`: The username that was retrieved from the Store VCAP secret in step 3.
@@ -363,7 +366,7 @@ IBM created a restore tool called `pgmig`. The tool restores your database backu
 
     The tool clears the current database before it restores the backup. So, if you might need to revert to the current database, be sure to create a backup of it first.
 
-1.  Go to the backup directory that you specified in the `${file-name}` parameter in the previous procedure.
+1.  Go to the backup directory that you specified in the `${BACKUP_DIR}` parameter in the previous procedure.
 
 1.  Run the following command to download the `pgmig` tool from the [GitHub Watson Developer Cloud Community](https://github.com/watson-developer-cloud/community/tree/master/watson-assistant/data) repository.
 
