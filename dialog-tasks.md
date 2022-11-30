@@ -218,3 +218,7 @@ If the total seems larger than you expected, it might be because the dialog that
 - Each node and folder is represented as its own node.
 - Each conditional response that is associated with a single dialog node is represented as an individual node.
 - For a node with slots, each slot, slot found response, slot not found response, slot handler, and if set, the "prompt for everything" response is an individual node. In effect, one node with three slots might be equivalent to eleven dialog nodes.
+
+**Previous topic:** [Controlling the dialog flow](/docs/assistant-data?topic=assistant-data-dialog-runtime)
+
+**Next topic:** [Dialog building tips](/docs/assistant-data?topic=assistant-data-dialog-tips)

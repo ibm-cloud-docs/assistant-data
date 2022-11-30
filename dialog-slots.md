@@ -688,3 +688,7 @@ In the JSON editor for the Found condition, reset the value of the $animal conte
 To access JSON files that implement different common slot usage scenarios, go to the community [conversation repo](https://github.com/watson-developer-cloud/community/tree/master/watson-assistant){: external} in GitHub.
 
 To explore an example, download one of the example JSON files, and then import it as a new dialog skill. From the Dialog tab, you can review the dialog nodes to see how slots were implemented to address different use cases.
+
+**Previous topic:** [Personalizing the dialog with context](/docs/assistant-data?topic=assistant-data-dialog-runtime-context)
+
+**Next topic:** [Controlling the dialog flow](/docs/assistant-data?topic=assistant-data-dialog-runtime)

@@ -589,3 +589,7 @@ To test disambiguation, complete the following steps:
     ![Service returns an array of intents, including Customer_Care_Cancel_Account and eCommerce_Cancel_Product_Order.](images/disambig-show-intents.png)
 
 After you finish testing, remove any SpEL expressions that you appended to node responses, or add back any original responses that you replaced with expressions, and repopulate any *external node name* fields from which you removed text.
+
+**Previous topic:** [Gathering information with slots](/docs/assistant-data?topic=assistant-data-dialog-slots)
+
+**Next topic:** [Improving your conversation](/docs/assistant-data?topic=assistant-data-dialog-tasks)

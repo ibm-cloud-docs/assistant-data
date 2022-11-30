@@ -37,3 +37,7 @@ Learn how to approach building a dialog.
 - Decide on the tone, personality, and positioning of your assistant. Consistently reflect these choices in the dialog you create.
 - Never misrepresent the assistant as being a human. If users believe the assistant is a person, then find out it's not, they are likely to distrust it.
 - Not everything has to be a conversation. Sometimes a web form works better.
+
+**Previous topic:** [Dialog overview](/docs/assistant-data?topic=assistant-data-dialog-build)
+
+**Next topic:** [Building a conversational flow](/docs/assistant-data?topic=assistant-data-dialog-overview)

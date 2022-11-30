@@ -567,3 +567,7 @@ If you choose to jump to another node, specify when the target node is processed
 - For more information about the expression language that you can use to improve your dialog, such as methods that reformat dates or text, see [Expression language methods](/docs/assistant-data?topic=assistant-data-dialog-methods).
 
 You can also use the API to add nodes or otherwise edit a dialog. For more information, see [Modifying a dialog using the API](/docs/assistant-data?topic=assistant-data-api-dialog-modify).
+
+**Previous topic:** [Planning the dialog](/docs/assistant-data?topic=assistant-data-dialog-plan)
+
+**Next topic:** [Personalizing the dialog with context](/docs/assistant-data?topic=assistant-data-dialog-runtime-context)

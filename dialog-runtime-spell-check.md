@@ -103,3 +103,5 @@ Normally, user input is saved as-is in the `text` field of the `input` object of
 If you want to ask users to confirm the assistant's understanding of their meaning, you can do so in a way that takes into account that their input might have been corrected. Set the condition for the dialog node or conditional response that is asking for confirmation to `original_text`. This means that if the user's input was automatically corrected, show the corresponding response. And the response can contain the expression: `You said: <? input.original_text ?>. Did you mean: <? input.text ?>?`
 
 Remember, the `input.text` field stores either the never-corrected original text from the user or the user’s text after it is corrected. The `input.original_text` field is only created if the input is corrected. And the user’s incorrect input is stored in it.”
+
+**Previous topic:** [Connecting customers with support](/docs/assistant-data?topic=assistant-data-dialog-support)

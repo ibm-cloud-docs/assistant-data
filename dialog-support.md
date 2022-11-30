@@ -137,3 +137,7 @@ To enable the containment metric, complete the following steps:
       {: tip}
  
  To track containment for your assistant, go to the *Analytics* page. For more information, see [Metrics overview](/docs/assistant-data?topic=assistant-data-logs-overview#logs-overview-graphs).
+ 
+ **Previous topic:** [Dialog building tips](/docs/assistant-data?topic=assistant-data-dialog-tips)
+
+**Next topic:** [Correcting user input](/docs/assistant-data?topic=assistant-data-dialog-runtime-spell-check)
