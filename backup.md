@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2022
-lastupdated: "2022-11-04"
+lastupdated: "2022-11-30"
 
 subcollection: assistant-data
 
@@ -54,7 +54,7 @@ When you back up data with one of these procedures before you upgrade from one v
 
 A CronJob named `$INSTANCE-store-cronjob` is created and enabled for you automatically when you deploy the service. A CronJob is a type of Kubernetes controller. A CronJob creates Jobs on a repeating schedule. For more information, see [CronJob](https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/){: external} in the Kubernetes documentation.
 
-The jobs that are created by the store cron job are called `$INSTANCE-backup-job-$TIMESTAMP`. Each job deletes old logs and runs a backup of the store Postgres database. Postgres provides a tool that is called `pg_dump`. The dump tool creates a backup by sending the database contents to `stdout` where you can write it to a file. The backups are created with the `pg_dump` command and stored in a persistent volume claim (PVC) named $INSTANCE-store-pvc.
+The jobs that are created by the store cron job are called `$INSTANCE-backup-job-$TIMESTAMP`. Each job deletes old logs and runs a backup of the store Postgres database. Postgres provides a tool that is called `pg_dump`. The dump tool creates a backup by sending the database contents to `stdout` where you can write it to a file. The backups are created with the `pg_dump` command and stored in a persistent volume claim (PVC) named $INSTANCE-store-pvc. 
 
 You are responsible for moving the backup to a more secure location after its initial creation, preferrably a location that can be accessed outside of the cluster where the backups cannot be deleted easily. Ensure this happens for all environments, especially for Production clusters.
 {: note}
@@ -370,7 +370,7 @@ IBM created a restore tool called `pgmig`. The tool restores your database backu
 
 1.  Run the following command to download the `pgmig` tool from the [GitHub Watson Developer Cloud Community](https://github.com/watson-developer-cloud/community/tree/master/watson-assistant/data) repository.
 
-    In the first command, update `<WA_VERSION>` to the version that you want to restore. For example, update `<WA_VERSION>` to `4.5.0` if you want to restore {{site.data.keyword.conversationshort}} 4.5.0.
+    In the first command, update `<WA_VERSION>` to the version that you want to restore. For example, update `<WA_VERSION>` to `4.6.0` if you want to restore {{site.data.keyword.conversationshort}} 4.6.0.
     {:important: .important}
 
     ```bash
@@ -400,11 +400,11 @@ IBM created a restore tool called `pgmig`. The tool restores your database backu
     1. Run the following command to find Postgres pods:
 
         ```bash
-        oc get pods | grep postgres
+        oc get pods | grep ${INSTANCE}-postgres
         ```
         {: codeblock}
 
-    1. The files that you must copy are `pgmig`, `postgres.yaml`, `resourceController.yaml`, and the file that you created for your downloaded data. Run the following commands to copy the files.
+    1. The files that you must copy are `pgmig`, `postgres.yaml`, `resourceController.yaml`, `ca.crt` (the secret file generated in step 6), and the file that you created for your downloaded data. Run the following commands to copy the files.
 
         If you are restoring data to a stand-alone {{site.data.keyword.icp4dfull_notm}} cluster, then replace all references to `oc` with `kubectl` in these sample commands.
         {: note}
@@ -412,11 +412,11 @@ IBM created a restore tool called `pgmig`. The tool restores your database backu
         ```bash
         oc exec -it ${POSTGRES_POD} -- mkdir /controller/tmp
         oc exec -it ${POSTGRES_POD} -- mkdir /controller/tmp/bu
-        oc rsync bu/ ${POSTGRES_POD}:/controller/tmp/bu/
+        oc rsync ${BACKUP_DIR} ${POSTGRES_POD}:/controller/tmp/bu/
         ```
         {: codeblock}
 
-        - Replace `${POSTGRES_POD}` with the name of one of the Postgres pods from the previous step.
+    - Replace `${POSTGRES_POD}` with the name of one of the Postgres pods from the previous step.
 
 1.  Stop the store deployment by scaling the store deployment down to 0 replicas:
 
@@ -473,9 +473,9 @@ Reopen only one assistant or dialog skill at a time. Each time you open a dialog
 The **resourceController.yaml** file contains details about the new environment where you are adding the backed-up data. Add the following information to the file:
 
 ```yaml
-accessTokens: 
-  - value
-  - value2
+accessTokens: 
+  - value
+  - value2
 host: localhost
 port: 5000
 ```
@@ -495,14 +495,14 @@ To add the values that are required but currently missing from the file, complet
 
     If the service has multiple instances, each owned by a different user, then you must gather bearer tokens for each user who owns an instance. You can list multiple bearer token values in the `accessTokens` section.
 
-1.  To get the host information, you need details for the pod that hosts the {{site.data.keyword.conversationshort}} UI component: 
+1.  To get the host information, you need details for the pod that hosts the {{site.data.keyword.conversationshort}} UI component: 
 
     ```bash
     oc describe pod -l component=ui
     ```
     {: codeblock}
 
-    Look for the section that says, `RESOURCE_CONTROLLER_URL: https://${release-name}-addon-assistant-gateway-svc.zen:5000/api/ibmcloud/resource-controller`
+    Look for the section that says, `RESOURCE_CONTROLLER_URL: https://${release-name}-addon-assistant-gateway-svc.zen:5000/api/ibmcloud/resource-controller`
 
     For example, you can use a command like this to find it:
 
@@ -537,7 +537,7 @@ To add the values that are required but currently missing from the file, complet
 1.  To get information about the `host`, you must get the Store VCAP secret.
 
     ```bash
-    oc get secret ${instance}-store-vcap -o jsonpath='{.data.vcap_services}' | base64 -d
+    oc get secret ${INSTANCE}-store-vcap -o jsonpath='{.data.vcap_services}' | base64 -d
     ```
     {: codeblock}
 
@@ -551,9 +551,9 @@ To add the values that are required but currently missing from the file, complet
           "label": "user-provided",
           "credentials":
           {
-            "host": "${instance}-rw",
+            "host": "${INSTANCE}-rw",
             "port": 5432,
-            "database": "conversation_pprd_${instance}",
+            "database": "conversation_pprd_${INSTANCE}",
             "username": "${dbadmin}",
             "password": "${password}"
           }
@@ -589,15 +589,15 @@ The following table lists the arguments that are supported by the `pgmig` tool:
 
 | Argument | Description |
 |---------|-------------|
-| -h, --help | Command usage |                    
-| -f, --force | Erase data if present in target Store |
-| -s, --source string | Backup file name |   
-| -r, --resourceController string | Resource Controller configuration file name |
-| -t, --target string | Target Postgres server configuration file name |
-| -m, --mapping string | Service instance-mapping configuration file name (optional) |
-| --testRCConnection | Test the connection for Resource Controller, then exit |
+| -h, --help | Command usage |                    
+| -f, --force | Erase data if present in target Store |
+| -s, --source string | Backup file name |   
+| -r, --resourceController string | Resource Controller configuration file name |
+| -t, --target string | Target Postgres server configuration file name |
+| -m, --mapping string | Service instance-mapping configuration file name (optional) |
+| --testRCConnection | Test the connection for Resource Controller, then exit |
 | --testPGConnection | Test the connection for Postgres server, then exit |
-| -v, --version | Get Build version |
+| -v, --version | Get Build version |
 {: caption="pgmig tool arguments" caption-side="top"}
 
 ### The mapping configuration file
@@ -609,7 +609,7 @@ For example, the YAML file contains values like this:
 
 ```yaml
 instance-mappings:
-  00000000-0000-0000-0000-001570184978: 00000000-0000-0000-0000-001570194490
+  00000000-0000-0000-0000-001570184978: 00000000-0000-0000-0000-001570194490
 ```
 {: codeblock}
 
