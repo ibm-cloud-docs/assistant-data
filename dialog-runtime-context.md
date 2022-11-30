@@ -673,3 +673,7 @@ For example, to create a copy of the values of an array at a certain point of th
  }
  ```
 {: codeblock}
+
+**Previous topic:** [Building a conversational flow](/docs/assistant-data?topic=assistant-data-dialog-overview)
+
+**Next topic:** [Gathering information with slots](/docs/assistant-data?topic=assistant-data-dialog-slots)
