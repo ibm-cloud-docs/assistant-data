@@ -102,3 +102,5 @@ The dialog tree in this diagram contains two root dialog nodes. A typical dialog
 {: #dialog-build-start}
 
 For more information, see [Building a dialog](/docs/assistant-data?topic=assistant-data-dialog-overview).
+
+**Next topic:** [Planning the dialog](/docs/assistant-data?topic=assistant-data-dialog-plan)
