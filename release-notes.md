@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2022
-lastupdated: "2022-10-13"
+lastupdated: "2022-11-30"
 
 subcollection: assistant-data
 
@@ -41,15 +41,39 @@ Some features that are available with {{site.data.keyword.conversationshort}} fo
 
 When you install {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}}, the latest available version of the web chat integration is included. See the following table for details about the latest available web chat version for each {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} release. If your web chat version isn't locked, then the web chat integration is upgraded to the latest available version when you upgrade {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}}.
 
-The following table shows the latest version of the web chat integration that is included with each release of {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}}.
+The following table shows the latest version of the web chat integration that is included with each release of {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}}. {{site.data.keyword.icp4dfull}} supports web chat versions 5.1.1 or later. To customize and change version numbers, see [Controlling the web chat version](https://cloud.ibm.com/docs/watson-assistant?topic=watson-assistant-web-chat-develop-versions).
 
 | {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} version | Latest web chat version available |
 |----------------|----------------|
-| 4.5.3 | [6.6.2](https://cloud.ibm.com/docs/watson-assistant?topic=watson-assistant-release-notes-chat#6.6.2) |
-| 4.5.1 | [6.5.2](https://cloud.ibm.com/docs/watson-assistant?topic=watson-assistant-release-notes-chat#6.5.2) |
-| 4.5.0 | [6.4.1](https://cloud.ibm.com/docs/watson-assistant?topic=watson-assistant-release-notes-chat#6.4.1) |
-| 4.0.8 | [6.2.0](https://cloud.ibm.com/docs/watson-assistant?topic=watson-assistant-release-notes-chat#6.2.0) |
+| 4.6.0 | [6.7.0](https://cloud.ibm.com/docs/watson-assistant?topic=watson-assistant-release-notes-chat#6.7.0){: external} |
+| 4.5.3 | [6.6.2](https://cloud.ibm.com/docs/watson-assistant?topic=watson-assistant-release-notes-chat#6.6.2){: external} |
+| 4.5.1 | [6.5.2](https://cloud.ibm.com/docs/watson-assistant?topic=watson-assistant-release-notes-chat#6.5.2){: external} |
+| 4.5.0 | [6.4.1](https://cloud.ibm.com/docs/watson-assistant?topic=watson-assistant-release-notes-chat#6.4.1){: external} |
+| 4.0.8 | [6.2.0](https://cloud.ibm.com/docs/watson-assistant?topic=watson-assistant-release-notes-chat#6.2.0){: external} |
 {: caption="Web chat versions in {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}}" caption-side="top"}
+
+## 30 November 2022
+{: #assistant-data-nov302022}
+{: release-note}
+
+New {{site.data.keyword.conversationshort}} experience
+:   With the new experience in {{site.data.keyword.conversationshort}}, you can build, test, publish, and analyze your assistant from one simple and intuitive interface that focuses on using actions to build customer conversations. To learn more about building your assistant with actions, see [Welcome to the new {{site.data.keyword.conversationshort}}](https://cloud.ibm.com/docs/watson-assistant){: external}.
+
+New algorithm version setting
+:   You can now choose one of three Watson Assistant algorithm version settings to apply to your future trainings: **Beta**, **Latest**, or **Previous**. This new **Algorithm Version** setting replaced **Intent Detection** in the **Options** section of a dialog skill. **Beta** and **Latest** use more enhanced intent detection that is available in more languages: Arabic, Chinese (Simplified), Chinese (Traditional) Czech, Dutch, French, German, Japanese, Korean, Italian, Portuguese, and Spanish. See [Algorithm version](https://cloud.ibm.com/docs/watson-assistant?topic=watson-assistant-algorithm-version){: external}.
+
+Credential rotation
+:   You can now rotate your credentials for added data store security. See [Managing security for your Watson Assistant datastores](https://www.ibm.com/docs/en/cloud-paks/cp-data/4.6.x?topic=administering-managing-security-your-datastores){: external}.
+
+Autoscaling
+:   Using Red Hat® OpenShift® Horizontal Pod Autoscaler, you can optionally enable autoscaling for {{site.data.keyword.conversationshort}} so that the service dynamically scales up and down to make efficient use of cluster resources. For details, see [Automatically scaling resources for services](https://www.ibm.com/docs/en/cloud-paks/cp-data/4.6.x?topic=services-automatically-scaling){: external}.
+
+New commands for shutting down and restarting services
+:   The `cpd-cli` manage command now includes `shutdown` and `restart` sub-commands to make it easier to shut down and restart the {{site.data.keyword.icp4dfull}} services on your cluster. For details, see [Shutting down and restarting services](https://www.ibm.com/docs/en/cloud-paks/cp-data/4.6.x?topic=resources-shutting-down-restarting-services){: external}.
+
+Action skills
+:   The classic {{site.data.keyword.conversationshort}} experience now supports action skills.
+
 
 ## 13 October 2022
 {: #assistant-data-oct132022}
@@ -59,7 +83,7 @@ The following table shows the latest version of the web chat integration that is
 :   {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} 4.5.3 is compatible with {{site.data.keyword.icp4dfull}} Version 4.5. See the [support matrix](/docs/assistant-data?topic=assistant-data-install#install-support-matrix) for more details. This release of {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} includes various fixes and features.
 
 Support for `autoScaleConfig`
-:   Support for automatically scaling resources using the Red Hat OpenShift Horizontal Pod Autoscaler (HPA).
+:   Support for automatically scaling resources using the Red Hat OpenShift Horizontal Pod Autoscaler (HPA). See [Automatically scaling resources for services](https://www.ibm.com/docs/en/cloud-paks/cp-data/4.5.x?topic=services-automatically-scaling).
 
 ## 3 August 2022
 {: #assistant-data-aug032022}
