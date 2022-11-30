@@ -208,3 +208,7 @@ As you test your dialog with the "Try it out" pane, you might want to know what 
 From Chrome, for example, open the Developer tools. Click the Network tool. The Name section lists multiple API calls. Click the message call associated with your test utterance, and then click the Response column to see the API response body. It lists the intents and entities that were recognized in the user input with their confidence scores, and the values of context variables at the time of the call. To view the response body in structured format, click the Preview column.
 
 ![Shows how to view the API call details by using Chrome web browser developer tools.](images/api-browser-dev.png)
+
+**Previous topic:** [Improving your conversation](/docs/assistant-data?topic=assistant-data-dialog-tasks)
+
+**Next topic:** [Connecting customers with support](/docs/assistant-data?topic=assistant-data-dialog-support)
