@@ -487,9 +487,8 @@ To add the values that are required but currently missing from the file, complet
 
     - Log in to the {{site.data.keyword.icp4dfull_notm}} web client.
     - From the main {{site.data.keyword.icp4dfull_notm}} web client navigation menu, select **My instances**.
-    - On the **Provisioned instances** tab, find your {{site.data.keyword.conversationshort}} instance, and then hover over the last column to show and click the ellipses icon ![More icon](images/cp4d-sideways-kebab.png).
-    - Choose **View details**.
-    - In the details of the instance, find the **Bearer token**. Copy the token and paste it into the accessTokens list.
+    - On the **Provisioned instances** tab, click your {{site.data.keyword.conversationshort}} instance.
+    - In the Access information of the instance, find the **Bearer token**. Copy the token and paste it into the accessTokens list.
 
     A bearer token for an instance can access all instances that are owned by the user. Therefore, if a single user owns all of the instances, then only one bearer token is required.
 
