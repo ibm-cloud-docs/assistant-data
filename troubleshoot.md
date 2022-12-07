@@ -359,23 +359,28 @@ Complete the following steps to determine whether you are impacted by this issue
     {: codeblock}
 
 1. From your operand namespace, run the following command to apply the patch. In the command, `wa` is used as the name of the instance. Replace this value with the name of your {{site.data.keyword.conversationshort}} instance:
-    ```yaml
+
+    ```
     cat <<EOF | oc apply -f -
     apiVersion: assistant.watson.ibm.com/v1
     kind: TemporaryPatch
     metadata:
-     name: wa-data-governor
+      name: wa-data-governor
     spec:
-       apiVersion: assistant.watson.ibm.com/v1
-       kind: WatsonAssistant
-       name: wa     # Replace wa with the name of your Watson Assistant instance
-       patch:
-         data-governor:
-           dataexhaust:
-             spec:
-               additionalLabels:
-                 icpdsupport/serviceInstanceId: inst-1
-       patchType: patchStrategicMerge
+        apiVersion: assistant.watson.ibm.com/v1
+        kind: WatsonAssistant
+        name: wa     # Replace wa with the name of your Watson Assistant instance
+        patch:
+          data-governor:
+            dataexhaust:
+              spec:
+                additionalLabels:
+                  icpdsupport/serviceInstanceId: inst-1
+          kafkauser:
+            metadata:
+              labels:
+                icpdsupport/serviceInstanceId: inst-1
+    patchType: patchStrategicMerge
     EOF
     ```
     {: codeblock}

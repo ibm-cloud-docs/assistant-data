@@ -47,7 +47,7 @@ When you back up data with one of these procedures before you upgrade from one v
 - You cannot use this procedure to back up the data that is returned by the search skill. Data that is retrieved by the search skill comes from a data collection in a {{site.data.keyword.discoveryshort}} instance. See the [{{site.data.keyword.discoveryshort}} documentation](/docs/discovery-data?topic=discovery-data-backup-restore) to find out how to back up its data.
 - If you back up and restore or otherwise change the {{site.data.keyword.discoveryshort}} service that your search skill connects to, then you cannot restore the search skill, but must recreate it. When you set up a search skill, you map sections of the assistant's response to fields in a data collection that is hosted by an instance of {{site.data.keyword.discoveryshort}} on the same cluster. If the {{site.data.keyword.discoveryshort}} instance changes, your mapping to it is broken. If your {{site.data.keyword.discoveryshort}} service does not change, then the search skill can continue to connect to the data collection.
 - The tool that restores the data clears the current database before it restores the backup. Therefore, if you might need to revert to the current database, create a backup of it first.
-- The target {{site.data.keyword.icp4dfull_notm}} cluster where you restore the data must have the same number of provisioned {{site.data.keyword.conversationshort}} service instances as the environment from which you back up the database.
+- The target {{site.data.keyword.icp4dfull_notm}} cluster where you restore the data must have the same number of provisioned {{site.data.keyword.conversationshort}} service instances as the environment from which you back up the database. To verify in the {{site.data.keyword.icp4dfull_notm}} web client, select **Services** from the main navigation menu, select **Instances**, and then open the **Provisioned instances** tab. If more than one user created instances, then ask the other users who created instances to log in and check the number they created. You can then add up the total sum of instances for your deployment. Note that not even an administrative user can see instances that were created by others from the web client user interface.
 
 ## Backing up data by using the CronJob
 {: #backup-cronjob}
@@ -257,12 +257,6 @@ To back up data by using the provided script, complete the following steps:
 
 1.  Log in to the OpenShift project namespace where you installed the product.
 
-1.  Find out how many provisioned service instances there are in your existing cluster. You need to know this information so you can be sure to set up the target cluster with the same number of instances.
-
-    To find out, open the {{site.data.keyword.icp4dfull_notm}} web client. From the main navigation menu, select **Services**, then **Instances**, and then open the **Provisioned instances** tab.
-
-    If more than one person created instances, then ask the other people who created instances to log in and check the number they created. You can then sum them to get the total number of instances for your deployment. Not even an administrative user can see instances that were created by others from the web client user interface.
-
 1.  Run the script:
 
     ```bash
@@ -412,7 +406,7 @@ IBM created a restore tool called `pgmig`. The tool restores your database backu
         ```bash
         oc exec -it ${POSTGRES_POD} -- mkdir /controller/tmp
         oc exec -it ${POSTGRES_POD} -- mkdir /controller/tmp/bu
-        oc rsync ${BACKUP_DIR} ${POSTGRES_POD}:/controller/tmp/bu/
+        oc rsync ${BACKUP_DIR}/ ${POSTGRES_POD}:/controller/tmp/bu/
         ```
         {: codeblock}
 
@@ -465,7 +459,7 @@ IBM created a restore tool called `pgmig`. The tool restores your database backu
 
     You might need to wait a few minutes before the skills you restored are visible from the web interface.
 
-Reopen only one assistant or dialog skill at a time. Each time you open a dialog skill after its training data has been changed, training is initiated automatically. Give the skill time to retrain on the restored data. Remember, the process of training a machine learning model requires at least one node to have 4 CPUs that can be dedicated to training. Therefore, open restored assistants and skills during low traffic periods and open them one at a time.
+1.  After restoring the data, you have to train the backend model. Ensure you reopen only one assistant or dialog skill at a time. Each time you open a dialog skill after its training data has been changed, training is initiated automatically. Give the skill time to retrain on the restored data. It usually takes less than 10 minutes to get trained. Remember that the process of training a machine learning model requires at least one node to have 4 CPUs that can be dedicated to training. Therefore, open restored assistants and skills during low traffic periods and open them one at a time. If the assistant or dialog skill does not respond, then modify the workspace (for example, add an intent and then remove it). Check and confirm.
 
 ### Creating the resourceController.yaml file
 {: #backup-resource-controller-yaml}
