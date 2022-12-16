@@ -124,7 +124,6 @@ toc:
           topics:
           - api-overview.md
           - api-methods.md
-          - api-client.md
           - api-context.md
           - api-dialog-responses.md
           - api-dialog-modify.md
