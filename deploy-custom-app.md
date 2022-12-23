@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-10-06"
+lastupdated: "2022-12-23"
 
 subcollection: assistant-data
 
@@ -44,6 +44,4 @@ To use the API, you need to construct the URL to use in your requests.
     ```
     {: codeblock}
 
-- For more information, see [Building a client application](/docs/assistant-data?topic=assistant-data-api-client).
-- For more information about the API, see [API overview](/docs/assistant-data?topic=assistant-data-api-overview).
 - For API reference documentation, see [API reference](https://cloud.ibm.com/apidocs/assistant/assistant-data-v2){: external}.

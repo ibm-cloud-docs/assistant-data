@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-10-06"
+lastupdated: "2022-12-23"
 
 subcollection: assistant-data
 
@@ -95,8 +95,6 @@ For more information about how to specify each supported response type using JSO
 If you are using the {{site.data.keyword.conversationshort}} connector, the response is converted at run time into the format expected by the channel (Slack or Facebook Messenger). If the response contains multiple media types or attachments, the generic response is converted into a series of separate message payloads as needed. The connector then sends each message payload to the channel in a separate message.
 
 **Note:** When a response is split into multiple messages, the {{site.data.keyword.conversationshort}} connector sends these messages to the channel in sequence. It is the responsibility of the channel to deliver these messages to the end user; this can be affected by network or server issues.
-
-If you are building your own client application, your app must implement each response type as appropriate. For more information, see [Implementing responses](/docs/assistant-data?topic=assistant-data-api-dialog-responses).
 
 ## Native JSON format
 {: #dialog-responses-json-native}
