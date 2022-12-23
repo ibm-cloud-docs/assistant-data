@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-03-20"
+lastupdated: "2022-12-23"
 
 subcollection: assistant-data
 
@@ -698,7 +698,3 @@ Now, when you test, you can provide a set of number or a mix of numbers and text
 Another way you can address this type of scenario is to add a node with slots. See the [Adding a node with slots to a dialog](/docs/assistant-data?topic=assistant-data-tutorial-slots) tutorial to learn more about using slots.
 {:tip}
 
-## Next steps
-{: #tutorial-deploy}
-
-Now that you have built and tested your dialog skill, you can share it with customers. Deploy your skill by first connecting it to an assistant, and then deploying the assistant. See [Building a client application](/docs/assistant-data?topic=assistant-data-api-client) for more details.

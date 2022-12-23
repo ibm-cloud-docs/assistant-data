@@ -119,15 +119,6 @@ toc:
           - webhook-pre.md
           - webhook-post.md
           - webhook-log.md
-      - topicgroup:
-          label: Using the API
-          topics:
-          - api-overview.md
-          - api-methods.md
-          - api-context.md
-          - api-dialog-responses.md
-          - api-dialog-modify.md
-          - /watson/watson-using-sdks
 
   - navgroup:
       id: reference
