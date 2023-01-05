@@ -68,7 +68,6 @@ The following table describes which versions of {{site.data.keyword.conversation
 |----------------|----------------|----------------|
 | 4.6.0 | 4.6.x | 4.10 |
 | 4.6.0 | 4.6.x | 4.8 |
-| 4.6.0 | 4.6.x | 4.6 |
 | 4.5.3 | 4.5.x | 4.10 |
 | 4.5.3 | 4.5.x | 4.8 |
 | 4.5.3 | 4.5.x | 4.6 |
