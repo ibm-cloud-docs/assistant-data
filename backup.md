@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2015, 2022
-lastupdated: "2022-11-30"
+  years: 2015, 2023
+lastupdated: "2023-01-25"
 
 subcollection: assistant-data
 
@@ -238,9 +238,9 @@ To access the backup files from OpenShift Container Storage (OCS), complete the 
 1.  Run the following commands to clean up the resources that you created for to retrieve the files:
 
     ```bash
-    oc delete wa-retrieve-backup
-    oc delete pvc wa-restore-backup
-    oc delete volumesnapshot wa-backup-snapshot-pvc
+    oc delete pod wa-retrieve-backup
+    oc delete pvc wa-backup-snapshot-pvc
+    oc delete volumesnapshot wa-backup-snapshot
     ```
     {: codeblock}
 
