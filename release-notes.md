@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2015, 2022
-lastupdated: "2022-11-30"
+  years: 2015, 2023
+lastupdated: "2023-01-30"
 
 subcollection: assistant-data
 
@@ -45,12 +45,20 @@ The following table shows the latest version of the web chat integration that is
 
 | {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} version | Latest web chat version available |
 |----------------|----------------|
+| 4.6.2 | [7.0.0](https://cloud.ibm.com/docs/watson-assistant?topic=watson-assistant-release-notes-chat#7.0.0){: external} |
 | 4.6.0 | [6.7.0](https://cloud.ibm.com/docs/watson-assistant?topic=watson-assistant-release-notes-chat#6.7.0){: external} |
 | 4.5.3 | [6.6.2](https://cloud.ibm.com/docs/watson-assistant?topic=watson-assistant-release-notes-chat#6.6.2){: external} |
 | 4.5.1 | [6.5.2](https://cloud.ibm.com/docs/watson-assistant?topic=watson-assistant-release-notes-chat#6.5.2){: external} |
 | 4.5.0 | [6.4.1](https://cloud.ibm.com/docs/watson-assistant?topic=watson-assistant-release-notes-chat#6.4.1){: external} |
 | 4.0.8 | [6.2.0](https://cloud.ibm.com/docs/watson-assistant?topic=watson-assistant-release-notes-chat#6.2.0){: external} |
 {: caption="Web chat versions in {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}}" caption-side="top"}
+
+## 30 January 2023
+{: #assistant-data-jan302023}
+{: release-note}
+
+New {{site.data.keyword.conversationshort}} v2 APIs
+:   {{site.data.keyword.conversationshort}} now provides new methods related to assistants, skills, environments, and releases. For details, see the [Watson Assistant v2 API documentation](https://cloud.ibm.com/apidocs/assistant/assistant-v2){: external}.
 
 ## 30 November 2022
 {: #assistant-data-nov302022}
