@@ -62,6 +62,7 @@ This diagram illustrates how the product delivers an omnichannel customer experi
 
   - A web chat that you embed in your company website that can answer customer questions directly.
   - A custom application that you develop, such as a mobile app or a robot with a voice interface. The custom application can be hosted either inside or outside the {{site.data.keyword.icp4dfull_notm}} infrastructure.
+  - Watson Assistant for Voice Interaction (creating your own orchestration). For details, see [Watson Assistant for Voice Interaction](https://www.ibm.com/docs/en/cloud-paks/cp-data/4.6.x?topic=services-watson-assistant-voice-interaction){: external}.
 
 - The **assistant** receives user input and routes it to the dialog skill.
 
@@ -73,9 +74,6 @@ This diagram illustrates how the product delivers an omnichannel customer experi
     - **Back-end systems**: Based on the user's intent and additional information, extract information or perform transactions by interacting with your back-end systems. For example, answer question, open tickets, update account information, or place orders.
 
 - Any questions that cannot be answered by the dialog skill are sent to the **search skill**, which finds relevant answers by searching the company knowledge bases that you configure for the purpose. The **search skill** routes complex customer inquiries to {{site.data.keyword.discoveryfull}} for {{site.data.keyword.icp4dfull}}. {{site.data.keyword.discoveryshort}} treats the user input as a search query. It finds information that is relevant to the query from the configured data sources and returns it so the assistant can share the information with the user as its response.
-
-You can integrate your assistant with the Watson Assistant for Voice Interaction service. For more details, see [Watson Assistant for Voice Interaction](https://www.ibm.com/docs/en/cloud-paks/cp-data/3.5.0?topic=catalog-watson-assistant-voice-interaction){: external}.
-{: tip}
 
 ## Implementation
 {: #index-implementation}
