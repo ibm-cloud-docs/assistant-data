@@ -38,7 +38,7 @@ Use {{site.data.keyword.conversationfull}} for {{site.data.keyword.icp4dfull}} t
 | *Bring the assistant to your customers, where they are* | Add your assistant as a chat widget to your company website, or build your own custom app. |
 | *Track customer engagement and satisfaction* | Use built-in metrics to analyze logs from conversations between customers and your assistant to gauge how well it's doing and identify areas for improvement. |
 
-This documentation describes installed instances of {{site.data.keyword.conversationshort}}. For more information about using a managed instance in IBM Cloud or in Cloud Pak for Data as a Service, see [this documentation](/docs/assistant?topic=assistant-index){: external}.
+This documentation describes installed instances of {{site.data.keyword.conversationshort}}. For more information about using a managed instance in IBM Cloud or in Cloud Pak for Data as a Service, see [this documentation](/docs/watson-assistant?topic=watson-assistant-welcome-new-assistant){: external}.
 {: note}
 
 ## Feature availability
@@ -47,11 +47,9 @@ This documentation describes installed instances of {{site.data.keyword.conversa
 {{site.data.keyword.conversationshort}} can be deployed as a managed cloud service or can be installed on premises. This documentation describes how to use the product installed on premises with {{site.data.keyword.icp4dfull}}. Some features that are available with {{site.data.keyword.conversationshort}} for cloud are not available with {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}}.
 
 The following features are not available with {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}}:
-- Intent recommendations
-- Actions skill
 - Third party channel support, for example, Slack, Facebook, SMS, and WhatsApp
 - Service desk support, for example, Salesforce and Zendesk
-- The new {{site.data.keyword.conversationshort}} experience. For more information about the new experience, see the [documentation](https://cloud.ibm.com/docs/watson-assistant){: external}.
+- Voice Integration
 
 ## How it works
 {: #index-how-it-works}
