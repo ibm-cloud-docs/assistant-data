@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2023
-lastupdated: "2023-02-23"
+lastupdated: "2023-03-08"
 
 subcollection: assistant-data
 
@@ -58,11 +58,15 @@ The following table shows the latest version of the web chat integration that is
 {: #assistant-data-feb232023}
 {: release-note}
 
-New security fixes.
+{{site.data.keyword.conversationfull}} Cartridge for {{site.data.keyword.icp4dfull}} Version 4.6.3 is available
+:   {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} 4.6.3 is compatible with {{site.data.keyword.icp4dfull}} Version 4.6. See the [support matrix](/docs/assistant-data?topic=assistant-data-install#install-support-matrix) for more details. This release of {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} includes various fixes and features.
 
 ## 30 January 2023
 {: #assistant-data-jan302023}
 {: release-note}
+
+{{site.data.keyword.conversationfull}} Cartridge for {{site.data.keyword.icp4dfull}} Version 4.6.2 is available
+:   {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} 4.6.2 is compatible with {{site.data.keyword.icp4dfull}} Version 4.6. See the [support matrix](/docs/assistant-data?topic=assistant-data-install#install-support-matrix) for more details. This release of {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} includes various fixes and features.
 
 New {{site.data.keyword.conversationshort}} v2 APIs
 :   {{site.data.keyword.conversationshort}} now provides new methods related to assistants, skills, environments, and releases. For details, see the [Watson Assistant v2 API documentation](https://cloud.ibm.com/apidocs/assistant/assistant-v2){: external}.
@@ -70,6 +74,9 @@ New {{site.data.keyword.conversationshort}} v2 APIs
 ## 30 November 2022
 {: #assistant-data-nov302022}
 {: release-note}
+
+{{site.data.keyword.conversationfull}} Cartridge for {{site.data.keyword.icp4dfull}} Version 4.6.0 is available
+:   {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} 4.6.0 is compatible with {{site.data.keyword.icp4dfull}} Version 4.6. See the [support matrix](/docs/assistant-data?topic=assistant-data-install#install-support-matrix) for more details. This release of {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} includes various fixes and features.
 
 New {{site.data.keyword.conversationshort}} experience
 :   With the new experience in {{site.data.keyword.conversationshort}}, you can build, test, publish, and analyze your assistant from one simple and intuitive interface that focuses on using actions to build customer conversations. To learn more about building your assistant with actions, see [Welcome to the new {{site.data.keyword.conversationshort}}](https://cloud.ibm.com/docs/watson-assistant){: external}.
