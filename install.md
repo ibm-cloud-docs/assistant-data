@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2023
-lastupdated: "2023-02-23"
+lastupdated: "2023-03-30"
 
 subcollection: assistant-data
 
@@ -68,6 +68,7 @@ The following table describes which versions of {{site.data.keyword.conversation
 
 | {{site.data.keyword.conversationshort}} version | {{site.data.keyword.icp4dfull_notm}} version | Red Hat OpenShift version |
 |----------------|----------------|----------------|
+| 4.6.3 | 4.6.4 | 4.12 |
 | 4.6.3 | 4.6.x | 4.10 |
 | 4.6.2 | 4.6.x | 4.10 |
 | 4.6.2 | 4.6.x | 4.8 |
