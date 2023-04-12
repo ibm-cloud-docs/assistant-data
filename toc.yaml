@@ -110,7 +110,6 @@ toc:
           - architecture.md
           - information-security.md
           - backup.md
-          - upgrade.md
       - topicgroup:
           label: Using webhooks
           topics:
