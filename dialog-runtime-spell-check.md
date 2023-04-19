@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2015, 2020
-lastupdated: "2020-10-06"
+  years: 2015, 2023
+lastupdated: "2023-04-19"
 
 subcollection: assistant-data
 
@@ -26,9 +26,6 @@ subcollection: assistant-data
 
 # Correcting user input
 {: #dialog-runtime-spell-check}
-
-This feature was added with version 1.4.2.
-{: note}
 
 *Autocorrection* fixes misspellings that users make in the utterances that they submit as user input. When autocorrection is enabled, the misspelled words are automatically corrected. And it is the corrected words that are used to evaluate the input. When given more precise input, your assistant can more often recognize entity mentions and understand the user's intent.
 
