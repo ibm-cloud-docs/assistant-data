@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2015, 2021
-lastupdated: "2021-08-25"
+  years: 2015, 2023
+lastupdated: "2023-04-19"
 
 subcollection: assistant-data
 
@@ -64,7 +64,7 @@ The following sections provide more detail about each resource that is used by t
 
 - **Gateway**: An adaption layer that interacts with {{site.data.keyword.icp4dfull_notm}} API and mimics the behavior of the public IBM Cloud. Its pods are named `${release-name}-addon-assistant-gw-deployment`.
 
-  For 1.4.2 and later, the ${release-name} is `watson-assistant`.
+  The ${release-name} is `watson-assistant`.
   {: note}
 
   It serves the following functions:
@@ -89,7 +89,7 @@ The following sections provide more detail about each resource that is used by t
 
 - **Skill-search**: Manages API calls to a {{site.data.keyword.discoveryshort}} service instance that is enabled in the same cluster. When a v2 `/message` API call reaches the Store microservice, the Store retrieves session state information from Redis and start processing skills. When the assistant that is being processed has a search skill, the Store microservice calls this microservice over HTTPS REST. This microservice queries the {{site.data.keyword.discoveryshort}} instance and and converts the output that is returned by {{site.data.keyword.discoveryshort}} to the v2 `/message` API schema.
 
-- **Spellchecker**: Corrects spelling mistakes that are made in user input that is submitted with `/message` requests. This autocorrection feature is enabled automatically for English dialog skills, and can be turned on for French skills. This microservice provides basic spell-checking capabilities by using correction techniques such as edit-distance from vocabulary word and generic language models. If enabled, the TAS microservice calls the Spellchecker using gRPC before it performs recognition of intents and entities in the user input. Spellchecker does not depend on datastores and it does not call any other microservice. Spellcheker was added with the 1.4.2 release.
+- **Spellchecker**: Corrects spelling mistakes that are made in user input that is submitted with `/message` requests. This autocorrection feature is enabled automatically for English dialog skills, and can be turned on for French skills. This microservice provides basic spell-checking capabilities by using correction techniques such as edit-distance from vocabulary word and generic language models. If enabled, the TAS microservice calls the Spellchecker using gRPC before it performs recognition of intents and entities in the user input. Spellchecker does not depend on datastores and it does not call any other microservice.
 
 - **Store**: Handles all assistant API calls. This microservice either processes the request itself or calls the other {{site.data.keyword.conversationshort}} microservices that are needed to process the request. For example, if a customer submits user input with a v1 /message API call, the request is sent to and processed by the store. For stateful v2 `/message` API calls, the store retrieves session state information from Redis first. It then calls the NLU microservice to analyze the user input and identify any intent and entity references in the input. Next, the Store calls the Dialog microservice to generate the appropriate response to return to the customer. The Store microservice stores the assistants, skills, and workspace definitions in a PostgreSQL database. The Store microservice saves the state of the session (from the v2 API) in the Redis data store.
 
@@ -128,7 +128,7 @@ The {{site.data.keyword.conversationshort}} microservices use the following reso
   - The mongoDB pod names follow the convention `${release-name}-ibm-mongodb-server-[0-9]*`. For longer release names, the name is shorten to `${release-name prefix}-[a-f0-9]{4}-336f-server-*`.
   - The names of the Kubernetes job that runs during the installation of the service is `${release-name}-recommends-load-mongo`.
 
-  For 1.4.2 and later, the ${release-name} is `watson-assistant`.
+  The ${release-name} is `watson-assistant`.
   {: note}
 
 #### Architecture changes
@@ -137,12 +137,6 @@ The {{site.data.keyword.conversationshort}} microservices use the following reso
 
   - The *Analytics*, *Integrations*, and *Numeric system entities* microservices were introduced.
   - The *Elastic search* and *Kafka* data sources were introduced. The *MongoDB* data source was removed.
-
-- **1.4.2**: The following changes to the architecture occurred with this release:
-
-  - The *Skill-conversation* microservice was removed. The microservice used to convert v2 API calls to v1 format and the other way around. The conversion is now done within the Store microservice. Reimplementing this function in the Store increased the overall speed with which v2 API requests are processed.
-  - The *Spellchecker* and *CLU Embedding* microservices were added.
-  - The word embeddings that are used by the language understanding pipeline (training, TAS, ED-MM) now are stored in the CLU Embedding microservice instead of MongoDB.
 
 ## Training component
 {: #architecture-slad}
@@ -153,7 +147,7 @@ The CLU microservice notifies the Master microservice when a new machine learnin
 
 The training pods that are started by this component are sometimes referred to as SLAD pods. SLAD stands for Statistical Learning and Discovery, which is the name of the research group that developed the language classifier that is used by the pods. The training pod names start with `tr[12]?`, followed by the internal `vn-…` ID. The training images are named `nlclassifier-training` or `clu-training`, depending on the chart version. The `${release-name}-master-config` configuration map contains the JSON template for the training pods.
 
-For 1.4.2 and later, the ${release-name} is `watson-assistant`.
+The ${release-name} is `watson-assistant`.
   {: note}
 
 ## Data store details
@@ -173,7 +167,7 @@ Etcd consists of five pods. The Etcd pod names follow the convention `${release-
 
 The Dialog, NLU, Master, TAS, and ED-MM microservices act as LiteLinks servers. Each LiteLinks server is registered in Etcd with its own key under the `/bluegoat/litelinks/` path. Each pod stores its metadata, such as its IP address and port, into Etcd. For example, the Dialog microservice pod with IP address 10.131.2.25 might register itself under a key named `/bluegoat/litelinks/voyager-dialog-slot-${release-name}/10.128.0.231_8089_16ea2cde43f`.
 
-For 1.4.2 and later, the ${release-name} is `watson-assistant`.
+The ${release-name} is `watson-assistant`.
   {: note}
 
 The Store, NLU, Master, TAS, and ED-MM microservices are LiteLinks clients. (Some microservices function as both a server and client.) Each LiteLinks client reads these Etcd keys and communicates directly with the registered pod IP address and port of the server. In effect, LiteLinks clients do not use the Kubernetes DNS. As a result, Kubernetes service objects are not used for LiteLinks servers. Without the Kubernetes service objects, the readiness probes are ignored even though they are good indicators of pod health.
@@ -224,7 +218,7 @@ The Postgres data store is based on stolon, which is a cloud-native PostgreSQL m
 
   The keeper pod names follow the convention of `${release-name}-store-postgres-keeper-*`. If the release name is long, the pod names might be shortened to something like `${release-name prefix}-[a-f0-9]{4}-st-a617-keeper-*`.
 
-  For 1.4.2 and later, the ${release-name} is `watson-assistant`. The shortened name is `watson-ass`.
+  The ${release-name} is `watson-assistant`. The shortened name is `watson-ass`.
   {: note}
 
 - proxy: These pods are the entry point that is used by the Store microservice. The proxy pods route traffic to the coordinator keeper pod.

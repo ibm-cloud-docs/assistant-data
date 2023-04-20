@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2015, 2022
-lastupdated: "2022-06-13"
+  years: 2015, 2023
+lastupdated: "2023-04-19"
 
 subcollection: assistant-data
 
@@ -70,7 +70,7 @@ To use horizontal pod autoscalers in a deployment with OpenShift, you must insta
 
 The following table describes the deployment details.
 
-For 1.4.2, the `${release-name}` is hardcoded to `watson-assistant`. If a pod name becomes too long, the `${release-name}` is shortened to 10 characters.
+The `${release-name}` is hardcoded to `watson-assistant`. If a pod name becomes too long, the `${release-name}` is shortened to 10 characters.
 {: note}
 
 | Component name | Deployment name | Pod name | Default number of replicas |
@@ -151,12 +151,12 @@ You can manually scale the cluster down and back up or use a script to stop and 
 ### Use a script to stop and restart Watson Assistant
 {: #manage-stop-restart-script}
 
-Starting with 1.4.2, you can use the **wactl.sh** script to stop or restart the service.
+You can use the **wactl.sh** script to stop or restart the service.
 
 To use the script to stop or restart the service, complete the following steps:
 
 1.  From a machine that has Kubernetes access to your cluster, log in to your cluster and change to the correct namespace (project).
-1.  Access the Helm chart from the file server on [Github](https://github.com/IBM/cloud-pak/tree/master/repo/cpd3/modules/ibm-watson-assistant/x86_64/1.4.2/){: external}.
+1.  Access the Helm chart from the file server on [Github](https://github.com/IBM/cloud-pak/tree/master/repo/cpd3/modules/ibm-watson-assistant/x86_64/){: external}.
 1.  Unzip the Helm chart TGZ file so you can access the scripts that are provided in the service installation package.
 1.  On the coordinator node, change to the **/path/to/ibm-watson-assistant-prod/ibm_cloud_pakpak_extensions/post-install/namespaceAdministration/** subdirectory.
 1.  Run the `wactl.sh` script.
@@ -179,7 +179,7 @@ The script accepts the following parameters:
   - `restart`: Use this method to scale down the replicas, but to keep at least one replica for each pod running at all times to prevent a disruption in service.
   - `clean`: Removes the annotation that was created by the `stop` option from all objects including datastores.
 
-- `release`: For 1.4.2, the release name is hardcoded as `watson-assistant`.
+- `release`: The release name is hardcoded as `watson-assistant`.
 - `cli`: Specify the command line interface you are using.
 
   Specify `oc` for OpenShift and `kubectl` for Kubernetes.

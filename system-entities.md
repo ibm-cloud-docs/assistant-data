@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2015, 2020
-lastupdated: "2020-10-06"
+  years: 2015, 2023
+lastupdated: "2023-04-19"
 
 keywords: system entity, sys-number, sys-date, sys-time
 
@@ -30,7 +30,7 @@ subcollection: assistant-data
 Learn about system entities that are provided by IBM for you to use out of the box. These built-in utility entities help your assistant recognize terms and references that are commonly used by customers in conversation, such as numbers and dates.
 {: shortdesc}
 
-With the 1.5.0 release, a new and improved version of the system entities was introduced. The new version returns an `interpretation` property. The information that is included by this property offers better date and time understanding and can classify mentions with more precision. For more information about the version of system entities that was available with earlier versions of the product, see [System entities (1.4.2 and earlier)](/docs/assistant-data?topic=assistant-data-system-entities-142).
+System entities return an `interpretation` property. The information that is included by this property offers better date and time understanding and can classify mentions with more precision.
 
 If you used an earlier product version and imported skills, review any dialog skills that use system entities. See if you can improve their detection capabilities by leveraging the new `interpretation` property.
 

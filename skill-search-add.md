@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2015, 2020
-lastupdated: "2020-12-03"
+  years: 2015, 2023
+lastupdated: "2023-04-19"
 
 subcollection: assistant-data
 
@@ -36,7 +36,7 @@ Add a search skill to your assistant to prevent the assistant from having to say
 You must have {{site.data.keyword.discoveryshort}} for {{site.data.keyword.icp4dfull_notm}} installed and an instance provisioned before you can complete this procedure to create a search skill. The search skill can connect only to an existing {{site.data.keyword.discoveryshort}} for {{site.data.keyword.icp4dfull_notm}} instance.
 {: important} 
 
-Starting with 1.5.0, your search skill can connect to a single {{site.data.keyword.discoveryshort}} project. The project can contain multiple collections.
+Your search skill can connect to a single {{site.data.keyword.discoveryshort}} project. The project can contain multiple collections.
 
 To learn more about how search skill can benefit your business, [read this blog post](https://medium.com/ibm-watson/adding-search-to-watson-assistant-99e4e81839e5){: external}.
 
@@ -82,15 +82,10 @@ If you do not have access to a provisioned instance of {{site.data.keyword.disco
 
     If no instances are available, ask an administrator whether {{site.data.keyword.discoveryshort}} is deployed in your environment. If so, ask to be given access to the {{site.data.keyword.discoveryshort}} instance. If not, you cannot create a search skill.
 
-1.  {: #pick-data-collection} **1.5.0**: Starting with the 1.5.0 release, choose the project that you want to use, by doing one of the following things:
+1.  {: #pick-data-collection} Choose the project that you want to use, by doing one of the following things:
 
     - Choose an existing project, and then click **Configure**. Skip to the [Configure the search](#search-skill-add-configure) procedure.
     - If you do not have a project or do not want to use any of the projects that are listed, click **Create a new project** to add one. Follow the procedure in [Create a data collection](#search-skill-add-create-discovery-collection).
-
-1.  {: #pick-data-collection} **1.4.2**: With the 1.4.2 and earlier releases: Indicate the data collection to use, by doing one of the following things:
-
-    - Choose an existing data collection, and then skip to the [Configure the search](#search-skill-add-configure) procedure.
-    - If you do not have a collection or do not want to use any of the data collections that are listed, click **Create new collection** to add one. Follow the procedure in [Create a data collection](#search-skill-add-create-discovery-collection).
 
 ## Create a data collection
 {: #skill-search-add-create-discovery-collection}
