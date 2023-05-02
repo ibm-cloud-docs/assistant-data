@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2023
-lastupdated: "2023-03-08"
+lastupdated: "2023-05-02"
 
 subcollection: assistant-data
 
@@ -45,6 +45,7 @@ The following table shows the latest version of the web chat integration that is
 
 | {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} version | Latest web chat version available |
 |----------------|----------------|
+| 4.6.5 | [7.2.0](https://cloud.ibm.com/docs/watson-assistant?topic=watson-assistant-release-notes-chat#7.2.0){: external} |
 | 4.6.3 | [7.1.0](https://cloud.ibm.com/docs/watson-assistant?topic=watson-assistant-release-notes-chat#7.1.0){: external} |
 | 4.6.2 | [7.0.0](https://cloud.ibm.com/docs/watson-assistant?topic=watson-assistant-release-notes-chat#7.0.0){: external} |
 | 4.6.0 | [6.7.0](https://cloud.ibm.com/docs/watson-assistant?topic=watson-assistant-release-notes-chat#6.7.0){: external} |
@@ -53,6 +54,30 @@ The following table shows the latest version of the web chat integration that is
 | 4.5.0 | [6.4.1](https://cloud.ibm.com/docs/watson-assistant?topic=watson-assistant-release-notes-chat#6.4.1){: external} |
 | 4.0.8 | [6.2.0](https://cloud.ibm.com/docs/watson-assistant?topic=watson-assistant-release-notes-chat#6.2.0){: external} |
 {: caption="Web chat versions in {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}}" caption-side="top"}
+
+## 2 May 2023
+{: #assistant-data-may022023}
+{: release-note}
+
+{{site.data.keyword.conversationfull}} Cartridge for {{site.data.keyword.icp4dfull}} Version 4.6.5 is available
+:   {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} 4.6.5 is compatible with {{site.data.keyword.icp4dfull}} Version 4.6. See the [support matrix](/docs/assistant-data?topic=assistant-data-install#install-support-matrix) for more details. This release of {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} includes various fixes and features.
+
+Algorithm version 01-Jun-2022 uses enhanced intent detection by default
+:   The algorithm version **Latest (01-Jun-2022)** now uses enhanced intent detection by default. Before this change, some skills that did not include a specific algorithm version selection inadvertently used **Previous (01-Jan-2022)**. You can notice small changes in intent detection behavior when changes are made to an assistant that previously didn't have enhanced intent detection enabled. For more information, see [Algorithm version and training](/docs/watson-assistant?topic=watson-assistant-algorithm-version){: external}.
+
+Test the **Beta** algorithm version now to prepare for release 4.7.0
+:   The **Beta** algorithm version in release 4.6.5 includes a new irrelevance detection implementation to improve off-topic detection accuracy.
+
+   Improvements include:
+   - Relevant user inputs are expected to get higher confidence, so they are less likely to be considered irrelevant or require clarification
+   - Irrelevance detection is improved in the presence of direct entity references
+   - Irrelevance detection is more stable across small changes to input
+   - Intent detection is more stable regarding occurrence of numerics, such as postal codes
+   - For German-language assistants, intent detection is more robust in the presence of umlauts 
+
+   In the forthcoming 4.7.0 release, it is planned that this **Beta** version will become the **Latest** version, replacing the current **Latest (01 Jun 2022)** version. You can test the **Beta** version in 4.6.5 now to prepare.
+
+For more information, see [Algorithm version and training](/docs/watson-assistant?topic=watson-assistant-algorithm-version){: external}.
 
 ## 23 February 2023
 {: #assistant-data-feb232023}
