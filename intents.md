@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2015, 2022
-lastupdated: "2022-06-13"
+  years: 2015, 2023
+lastupdated: "2023-05-10"
 
 subcollection: assistant-data
 
@@ -27,8 +27,6 @@ subcollection: assistant-data
 
 ***Intents*** are purposes or goals that are expressed in a customer's input, such as answering a question or processing a bill payment. By recognizing the intent expressed in a customer's input, the {{site.data.keyword.conversationshort}} service can choose the correct dialog flow for responding to it.
 {: shortdesc}
-
-<iframe class="embed-responsive-item" id="youtubeplayer" title="Working with intents" type="text/html" width="640" height="390" src="https://www.youtube.com/embed/OPdOCUPGMIQ" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen> </iframe>
 
 ## Intent creation overview
 {: #intents-described}
@@ -109,11 +107,11 @@ When you include an entity mention in a user example, the machine learning model
 
 If you have defined, or plan to define, entities that are related to this intent, mention the entity values or synonyms in some of the examples. Doing so helps to establish a relationship between the intent and entities. It is a weak relationship, but it does inform the model.
 
-*Important*:
+#### Important
 
-  - Intent example data should be representative and typical of data that your users provide. Examples can be collected from actual user data, or from people who are experts in your specific field. The representative and accurate nature of the data is important.
-  - Both training and test data (for evaluation purposes) should reflect the distribution of intents in real usage. Generally, more frequent intents have relatively more examples, and better response coverage.
-  - You can include punctuation in the example text, as long as it appears naturally. If you believe that some users express their intents with examples that include punctuation, and some users will not, include both versions. Generally, the more coverage for various patterns, the better the response.
+- Intent example data should be representative and typical of data that your users provide. Examples can be collected from actual user data, or from people who are experts in your specific field. The representative and accurate nature of the data is important.
+- Both training and test data (for evaluation purposes) should reflect the distribution of intents in real usage. Generally, more frequent intents have relatively more examples, and better response coverage.
+- You can include punctuation in the example text, as long as it appears naturally. If you believe that some users express their intents with examples that include punctuation, and some users will not, include both versions. Generally, the more coverage for various patterns, the better the response.
 
 ### Annotated mentions
 {: #intents-annotated-mentions}
@@ -155,7 +153,7 @@ After you have finished creating new intents, you can test the system to see if 
 
     ![Ask Watson](images/ask_watson.png)
 
-1.  In the "Try it out" pane, enter a question or other text string and press Enter to see which intent is recognized. If the wrong intent is recognized, you can improve your model by adding this text as an example to the correct intent.
+1.  In the **Try it out** pane, enter a question or other text string and press Enter to see which intent is recognized. If the wrong intent is recognized, you can improve your model by adding this text as an example to the correct intent.
 
     If you have recently made changes in your skill, you might see a message that indicates that the system is still retraining. If you see this message, wait until training completes before testing:
     {: tip}
@@ -195,7 +193,7 @@ As intent confidence scores change, your dialogs might need restructuring. For e
 | Intents per skill | Examples per skill |
 |-------------------|--------------------|
 |             2,000 |             25,000 |
-{: caption="Limit details" caption-side="top"}
+{: caption="Limit details" caption-side="bottom"}
 
 ## Editing intents
 {: #intents-edit}
@@ -320,10 +318,6 @@ To resolve conflicts:
     The *Reset* reverts your changes. Click the **x** to close the page without submitting your changes.
 
 1.  Repeat the previous steps to resolve other intents with conflicts.
-
-You can watch the following video to learn more.
-
-<iframe class="embed-responsive-item" id="youtubeplayer0" title="Intent conflict resolution overview" type="text/html" width="640" height="390" src="https://www.youtube.com/embed/9gQtjCBxjdc?rel=0" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen> </iframe>
 
 ## Deleting intents
 {: #intents-delete}

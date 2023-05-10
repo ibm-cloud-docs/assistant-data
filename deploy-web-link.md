@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2015, 2020
-lastupdated: "2020-10-06"
+  years: 2015, 2023
+lastupdated: "2023-05-08"
 
 subcollection: assistant-data
 
@@ -30,10 +30,7 @@ If you do not disable the preview link when you create an assistant, the assista
 
 The preview link renders your assistant as a web chat integration that is embedded in a simple IBM-branded web page. You can test the skills that you added to the assistant by entering text into the chat window. Each preview link that is created is hosted within your private cluster environment. You can send the preview link URL to others with access to the cluster to enlist their help in testing and sharing feedback about the assistant.
 
-Unlike when you test using the "Try it out" pane, any API calls that result from your interactions with the assistant hosted by the preview link URL do incur charges.
-
-The **preview link** integration was introduced with version 1.5.0.
-{: note}
+Unlike when you test using the **Try it out** pane, any API calls that result from your interactions with the assistant hosted by the preview link URL do incur charges.
 
 ## Using the preview link integration to test your assistant
 {: #deploy-web-link-try}

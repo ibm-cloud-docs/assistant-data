@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2015, 2020
-lastupdated: "2020-12-10"
+  years: 2015, 2023
+lastupdated: "2023-05-09"
 
 keywords: context, context variable
 
@@ -42,46 +42,46 @@ The body of the `/message` API call request and response includes the following 
 
 - `context`: Contains variables that are meant to be persisted. For the dialog to subsequently reference information that is submitted by the user, you must store the information in the context object. For example, the dialog can collect the user's name and then refer to the user by name in subsequent nodes. The following example shows how the context object is represented in the dialog JSON editor:
 
-  ```json
-  {
-    "context" : {
-      "user_name" : "<? @name.literal ?>"
-    }
-  ```
-  {: codeblock}
+   ```json
+   {
+     "context" : {
+       "user_name" : "<? @name.literal ?>"
+     }
+   ```
+   {: codeblock}
 
-  See [Retaining information across dialog turns](#dialog-runtime-context) for more information.
+   See [Retaining information across dialog turns](#dialog-runtime-context) for more information.
 
 - `input`: The string of text that was submitted by the user. The text string can contain up to 2,048 characters. The following example shows how the `input` object is represented in the dialog JSON editor:
 
-  ```json
-  {
-    "input" : {
-      "text" : "Where's your nearest store?"
-    }
-  ```
-  {: codeblock}
+   ```json
+   {
+     "input" : {
+       "text" : "Where's your nearest store?"
+     }
+   ```
+   {: codeblock}
 
 - `output`: The dialog response to return to the user. The following example shows how the output object is represented in the dialog JSON editor:
 
-  ```json
-  {
-  "output": {
-    "generic": [
-      {
-        "values": [
-          {
-            "text": "This is my response text."
-          }
-        ],
-        "response_type": "text",
-        "selection_policy": "sequential"
-      }
-    ]
-  }
-  }
-  ```
-  {: codeblock}
+    ```json
+    {
+    "output": {
+      "generic": [
+        {
+          "values": [
+            {
+              "text": "This is my response text."
+            }
+          ],
+          "response_type": "text",
+          "selection_policy": "sequential"
+        }
+      ]
+    }
+    }
+    ```
+    {: codeblock}
 
 In the resulting API `/message` response, the text response is formatted as follows:
 
@@ -95,24 +95,25 @@ In the resulting API `/message` response, the text response is formatted as foll
 The following `output` object JSON format is supported for backwards compatibility. With the introduction of rich response types, the `output.text` structure was augmented with the `output.generic` structure to facilitate supporting other types of responses in addition to text. Use the new format when you create new nodes to give yourself more flexibility, because you can subsequently change the response type, if needed.
 {: note}
 
-  ```json
-  {
-  "output": {
-    "text": {
-      "values": [
-        "This is my response text."
-      ]
-    }
-  }
-  ```
-  {: codeblock}
+```json
+ {
+ "output": {
+   "text": {
+     "values": [
+       "This is my response text."
+     ]
+   }
+ }
+ }
+```
+{: codeblock}
 
 There are response types other than a text response that you can define. See [Responses](/docs/assistant-data?topic=assistant-data-dialog-overview#dialog-overview-responses) for more details.
 
 You can learn more about the `/message` API call from the [API reference](https://{DomainName}/apidocs/assistant/assistant-v2){: external}.
 
 ### Retaining information across dialog turns
-{: #dialog-runtime-context}
+{: #dialog-runtime-context-retain-information}
 
 The dialog in a dialog skill is stateless, meaning that it does not retain information from one interaction with the user to the next. When you add a dialog skill to an assistant and deploy it, the assistant saves the context from one message call and then re-submits it on the next request throughout the current session. The current session lasts for as long a user interacts with the assistant plus the designated session inactivity time frame. The maximum session inactivity time allowed ranges from 5 minutes to 7 days, depending on your plan type. If you do not add the dialog skill to an assistant, it is your responsibility as the custom application developer to maintain any continuing information that the application needs.
 
@@ -177,10 +178,10 @@ Define a context variable by adding the variable name to the **Variable** field 
 
 1.  Add the variable name and value pair to the **Variable** and **Value** fields.
 
-    - The `name` can contain any upper- and lowercase alphabetic characters, numeric characters (0-9), and underscores.
+    - The `name` can contain any uppercase and lowercase alphabetic characters, numeric characters (0-9), and underscores.
 
       You can include other characters, such as periods and hyphens, in the name. However, if you do, then you must specify the shorthand syntax `$(variable-name)` every time you subsequently reference the variable. See [Expressions for accessing objects](/docs/assistant-data?topic=assistant-data-expression-language#expression-language-shorthand-syntax) for more details.
-      {:tip}
+      {: tip}
 
     - The `value` can be any supported JSON type, such as a simple string variable, a number, a JSON array, or a JSON object.
 
@@ -335,7 +336,7 @@ You can also define a context variable in the JSON editor. You might want to use
 
 The name and value pair must meet these requirements:
 
-- The `name` can contain any upper- and lowercase alphabetic characters, numeric characters (0-9), and underscores.
+- The `name` can contain any uppercase and lowercase alphabetic characters, numeric characters (0-9), and underscores.
 
   You can include other characters, such as periods and hyphens, in the name. However, if you do, then you must specify the shorthand syntax `$(variable-name)` every time you subsequently reference the variable. See [Expressions for accessing objects](/docs/assistant-data?topic=assistant-data-expression-language#expression-language-shorthand-syntax) for more details.
   {:tip}
@@ -454,6 +455,7 @@ Alternatively you can delete the context variable in your application logic.
 In general, if a node sets the value of a context variable that is already set, then the previous value is overwritten by the new value.
 
 #### Updating a complex JSON object
+{: #dialog-runtime-context-update-complex-json}
 
 Previous values are overwritten for all JSON types except a JSON object. If the context variable is a complex type such as JSON object, a JSON merge procedure is used to update the variable. The merge operation adds any newly defined properties and overwrites any existing properties of the object.
 
@@ -500,6 +502,7 @@ The result is this context:
 See [Expression language methods](/docs/assistant-data?topic=assistant-data-dialog-methods#dialog-methods-objects) for more information about methods you can perform on objects.
 
 #### Updating arrays
+{: #dialog-runtime-context-update-array}
 
 If your dialog context data contains an array of values, you can update the array by appending values, removing a value, or replacing all the values.
 

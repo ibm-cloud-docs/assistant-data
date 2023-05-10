@@ -34,12 +34,12 @@ Test your dialog, and organize your dialog nodes.
 
 As you make changes to your dialog, you can test it at any time to see how the dialog responds to input.
 
-Queries you submit through the "Try it out" pane generate `/message` API calls, but they are not logged and do not incur charges.
+Queries you submit through the **Try it out** pane generate `/message` API calls, but they are not logged and do not incur charges.
 
 1.  From the Dialog tab, click the ![Try it](images/ask_watson.png) icon.
 1.  In the chat pane, type some text and then press Enter.
 
-    Make sure the system has finished training on your most recent changes before you start to test the dialog. If the system is still training, a message is displayed in the *Try it out* pane:
+    Make sure the system has finished training on your most recent changes before you start to test the dialog. If the system is still training, a message is displayed in the **Try it out** pane:
     {: tip}
 
     ![Screen capture of training message](images/training.png)
@@ -52,7 +52,7 @@ Queries you submit through the "Try it out" pane generate `/message` API calls, 
 
     ![Screen capture of the eye icon that is shown next to the top-most recognizes intent](images/tryit-intent-details.png)
 
-1.  If the response is not what you expected it to be, you can take the following actions from the "Try it out" pane:
+1.  If the response is not what you expected it to be, you can take the following actions from the **Try it out** pane:
 
     - If you want to edit an entity that is recognized in the input, click the entity name to open it in the Entities page.
     - If the wrong intent is recognized, you can click the arrow next to the intent name to correct it or mark the topic as irrelevant. For more information, see [Making training data improvements](/docs/assistant?topic=assistant-logs#logs-fix-data).
@@ -66,7 +66,7 @@ Queries you submit through the "Try it out" pane generate `/message` API calls, 
 
     Any context variables that you defined in the dialog are displayed.
 
-    In addition, a `$timezone` context variable is listed. The *Try it out* pane user interface gets user locale information from the web browser and uses it to set the `$timezone` context variable. This context variable makes it easier to deal with time references in test dialog exchanges. Consider doing something similar in your user application. If not specified, Greenwich Mean Time (GMT) is used.
+    In addition, a `$timezone` context variable is listed. The **Try it out** pane user interface gets user locale information from the web browser and uses it to set the `$timezone` context variable. This context variable makes it easier to deal with time references in test dialog exchanges. Consider doing something similar in your user application. If not specified, Greenwich Mean Time (GMT) is used.
 
     You can add a variable and set its value to see how the dialog responds in the next test dialog turn. This capability is helpful if, for example, the dialog is set up to show different responses based on a context variable value that is provided by the user.
 
@@ -111,7 +111,7 @@ Dialog nodes that contain your search term, with corresponding examples, are sho
 ## Copying a dialog node
 {: #dialog-tasks-copy-node}
 
-You can duplicate a node to create an exact copy of it as a peer node directly after it in the dialog tree. The copied node itself is given the same name as the original node, but with `- copy`*`n`* appended to it, where *`n`* is a number that starts with 1. If you duplicate the same node more than once, then the *`n`* in the name increments by one for each copy to help you distinguish the copies from one another. If the node has no name, it is given the name `copy`*`n`*.
+You can duplicate a node to create an exact copy of it as a peer node directly after it in the dialog tree. The copied node itself is given the same name as the original node, but with `-copy n` appended to it, where *`n`* is a number that starts with 1. If you duplicate the same node more than once, then the *`n`* in the name increments by one for each copy to help you distinguish the copies from one another. If the node has no name, it is given the name `copy n`.
 
 When you duplicate a node that has child nodes, the child nodes are duplicated also. The copied child nodes have the exact same names as the original child nodes. The only way to distinguish a copied child node from an original child node is the `copy` reference in the parent node name.
 
@@ -200,12 +200,7 @@ If you deleted the folder only, then the nodes that were in the folder are displ
 ## Dialog node limits
 {: #dialog-tasks-node-limits}
 
-The number of dialog nodes you can create per skill depends on your plan type.
-
-| Dialog nodes per skill     |
-|----------------------------|
-|                    100,000 |
-{: caption="Limit details" caption-side="top"}
+The number of dialog nodes you can create per skill is 100,000.
 
 The welcome and anything_else dialog nodes that are prepopulated in the tree do count toward the total.
 
@@ -217,7 +212,7 @@ If the total seems larger than you expected, it might be because the dialog that
 
 - Each node and folder is represented as its own node.
 - Each conditional response that is associated with a single dialog node is represented as an individual node.
-- For a node with slots, each slot, slot found response, slot not found response, slot handler, and if set, the "prompt for everything" response is an individual node. In effect, one node with three slots might be equivalent to eleven dialog nodes.
+- For a node with slots, each slot, slot found response, slot not found response, slot handler, and if set, the `prompt for everything` response is an individual node. In effect, one node with three slots might be equivalent to eleven dialog nodes.
 
 **Previous topic:** [Controlling the dialog flow](/docs/assistant-data?topic=assistant-data-dialog-runtime)
 

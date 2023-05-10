@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2020
-lastupdated: "2020-08-03"
+lastupdated: "2023-05-09"
 
 subcollection: assistant-data
 
@@ -35,7 +35,7 @@ Get tips about ways to address common tasks.
 
 - Add a node name that describes the purpose of the node.
 
-  You know what the node does right now, but months from now you might not. Your future self and any team members will thank you for adding a descriptive node name. And the node name is displayed in the log, which can help you debug a conversation later.
+  You currently know what the node does, but months from now you might not. Your future self and any team members will thank you for adding a descriptive node name. And the node name is displayed in the log, which can help you debug a conversation later.
 - To gather the information that is required to perform a task, try using a node with slots instead of a bunch of separate nodes to elicit information from users. See [Gathering information with slots](/docs/assistant-data?topic=assistant-data-dialog-slots).
 - For a complex process flow, tell users about any information they will need to provide at the start of the process.
 - Understand how your assistant travels through the dialog tree and the impact that folders, branches, jump-tos, and digressions have on the route. See [Dialog flow](/docs/assistant-data?topic=assistant-data-dialog-build#dialog-build-flow).
@@ -51,7 +51,7 @@ Get tips about ways to address common tasks.
 - Keep answers short and useful.
 - Reflect the user's intent in the response.
 
-  Doing so assures users that the bot is understanding them, or if it is not, gives users a chance to correct a misunderstanding right away.
+  Doing so assures users that the bot is understanding them, or if it is not, gives users a chance to correct a misunderstanding.
 - Only include links to external sites in responses if the answer depends on data that changes frequently.
 - Avoid overusing buttons. Encouraging users to pick predefined options from a set of buttons is less like a real conversation, and decreases your ability to learn what users really want to do. When you let real users ask for things in their own words, you can use the input to train the system and derive better intents.
 - Avoid using a bunch of nodes when one node will do. For example, add multiple conditional responses to a single node to return different responses depending on details provided by the user. See [Conditional responses](/docs/assistant-data?topic=assistant-data-dialog-overview#dialog-overview-multiple).
@@ -78,7 +78,7 @@ It can be difficult to know the syntax to use in your dialog node to accurately 
 
 - **Dealing with multiple intents**: A user enters input that expresses a wish to complete two separate tasks. `I want to open a savings account and apply for a credit card.` How does the dialog recognize and address both of them? See the [Compound questions](https://sodoherty.ai/2017/02/06/compound-questions/){: external} entry from Simon O'Doherty's blog for strategies you can try. (Simon is a developer on the {{site.data.keyword.conversationshort}} team.)
 
-- **Dealing with ambiguous intents**: A user enters input that expresses a wish that is ambiguous enough that your assistant finds two or more nodes with intents that could potentially address it. How does the dialog know which dialog branch to follow? If you enable disambiguation, it can show users their options and ask the user to pick the right one. See [Disambiguation](/docs/assistant-data?topic=assistant-data-dialog-runtime#dialog-runtime-disambiguation) for more details.
+- **Dealing with ambiguous intents**: A user enters input that expresses a wish that is ambiguous enough that your assistant finds two or more nodes with intents that could potentially address it. How does the dialog know which dialog branch to follow? If you enable disambiguation, it can show users their options and ask the user to pick the correct one. See [Disambiguation](/docs/assistant-data?topic=assistant-data-dialog-runtime#dialog-runtime-disambiguation) for more details.
 
 - **Handling multiple entities in input**: If you want to evaluate only the value of the first detected instance of an entity type, you can use the syntax  `@entity == 'specific-value'` instead of the `@entity:(specific-value)` format.
 
@@ -153,7 +153,7 @@ To help you decipher which group number to use to capture the section of input y
 |--------------------------|----------------------------|
 | array_of_matched_groups  | <? @phone_number.groups ?> |
 
-Use the "Try it out" pane to enter some test phone number values. For the input `958-123-2345`, this expression sets `$array_of_matched_groups` to `["958-123-2345","958","958",null,"123","2345"]`.
+Use the **Try it out** pane to enter some test phone number values. For the input `958-123-2345`, this expression sets `$array_of_matched_groups` to `["958-123-2345","958","958",null,"123","2345"]`.
 
 You can then count each value in the array starting with 0 to get the group number for it.
 
@@ -203,7 +203,7 @@ If the input is `I want to change my phone number from 958-234-3456 to 555-456-5
 ## Viewing API call details
 {: #dialog-tips-inspect-api}
 
-As you test your dialog with the "Try it out" pane, you might want to know what the underlying API calls look like that are being returned from the service. You can use the developer tools provided by your web browser to inspect them.
+As you test your dialog with the **Try it out** pane, you might want to know what the underlying API calls look like that are being returned from the service. You can use the developer tools provided by your web browser to inspect them.
 
 From Chrome, for example, open the Developer tools. Click the Network tool. The Name section lists multiple API calls. Click the message call associated with your test utterance, and then click the Response column to see the API response body. It lists the intents and entities that were recognized in the user input with their confidence scores, and the values of context variables at the time of the call. To view the response body in structured format, click the Preview column.
 

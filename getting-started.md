@@ -129,7 +129,7 @@ You created a dialog node that is triggered by the `welcome` condition. (`welcom
 
 You can test your dialog at any time to verify the dialog. Let's test it now.
 
-- Click the ![Try it](images/try-it.png) icon to open the "Try it out" pane. You should see your welcome message.
+- Click the ![Try it](images/try-it.png) icon to open the **Try it out** pane. You should see your welcome message.
 
 ### Adding nodes to handle intents
 
@@ -152,7 +152,7 @@ Now let's add nodes between the `Welcome` node and the `Anything else` node that
 
 You built a simple dialog to recognize and respond to both greeting and ending inputs. Let's see how well it works.
 
-1.  Click the ![Try it](images/try-it.png) icon to open the "Try it out" pane. There's that reassuring welcome message.
+1.  Click the ![Try it](images/try-it.png) icon to open the **Try it out** pane. There's that reassuring welcome message.
 1.  In the text field, type `Hello` and press Enter. The output indicates that the `#General_Greetings` intent was recognized, and the appropriate response (`Good day to you.`) is displayed.
 1.  Try the following input:
     - `bye`
@@ -162,8 +162,6 @@ You built a simple dialog to recognize and respond to both greeting and ending i
     - `sayonara`
 
 {{site.data.keyword.watson}} can recognize your intents even when your input doesn't exactly match the examples that you included. The dialog uses intents to identify the purpose of the user's input regardless of the precise wording used, and then responds in the way you specify.
-
-![Testing the dialog in the Try it out pane](images/gs-try-it.mp4){: video controls loop autoplay}
 
 ### Result of building a dialog
 

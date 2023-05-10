@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2015, 2021
-lastupdated: "2021-01-22"
+  years: 2015, 2023
+lastupdated: "2023-05-09"
 
 subcollection: assistant-data
 
@@ -56,7 +56,7 @@ Find answers to frequently-asked questions and quick fixes for common problems.
 | Skill version | Versions are snapshots of a skill that you can create at key points during the development lifecycle. You can deploy one version to production, while you continue to make and test improvements that you make to another version of the skill. [Learn more](/docs/assistant-data?topic=assistant-data-versions). |
 | Slots | A special set of fields that you can add to a dialog node that enable the assistant to collect necessary pieces of information from the customer. For example, the assistant can require a customer to provide valid date and location details before it gets weather forecast information on the customer's behalf. [Learn more](/docs/assistant-data?topic=assistant-data-dialog-slots). |
 | System entity | Prebuilt entities that recognize references to common things like dates and numbers. You can add these to your skill and start using them immediately. [Learn more](/docs/assistant-data?topic=assistant-data-system-entities). |
-| Try it out | A chat window that you use to test as you build. For example, from the dialog skill's "Try it out" pane, you can mimic the behavior of a customer and enter a query to see how the assistant responds. You can test only the current skill; you cannot test your assistant and all attached skills from end to end. [Learn more](/docs/assistant-data?topic=assistant-data-dialog-tasks). |  
+| Try it out | A chat window that you use to test as you build. For example, from the dialog skill's **Try it out** pane, you can mimic the behavior of a customer and enter a query to see how the assistant responds. You can test only the current skill; you cannot test your assistant and all attached skills from end to end. [Learn more](/docs/assistant-data?topic=assistant-data-dialog-tasks). |  
 | Web chat | An integration that you can use to embed your assistant in your company website. [Learn more](/docs/assistant-data?topic=assistant-data-deploy-web-chat). |
 | Webhook | A mechanism for calling out to an external program as part of the dialog. For example, if a customer asks the assistant to translate a string from English to French, the dialog can call an external language translation service to translate the phrase and return the translation to the customer in the course of the conversation. [Learn more](/docs/assistant-data?topic=assistant-data-dialog-webhooks). |
 

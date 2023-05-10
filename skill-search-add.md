@@ -254,7 +254,7 @@ If you upload a JSON file that contains repeating name values, then only the fir
     This option was introduced with the 1.5.0 release.
     {: note}
 
-1.  Click **Try it** to open the "Try it out" pane for testing. Enter a test message to see the results that are returned when your configuration choices are applied to the search. Make adjustments as necessary.
+1.  Click **Try it** to open the **Try it out** pane for testing. Enter a test message to see the results that are returned when your configuration choices are applied to the search. Make adjustments as necessary.
 
 1.  Click **Create**.
 
@@ -283,7 +283,7 @@ Review this information for help with performing common tasks.
     - To decreate the number of documents that are available to the data collection, specify a subdomain of the base URL. Or, in the web crawl settings, limit the number of hops that Watson can make from the original page. You can specify subdomains to explicitly exclude from the crawl also.
     - If no documents are listed after a few minutes and a page refresh, then make sure that the content you want to ingest is available from the URL's page source. Some web page content is dynamically generated and therefore cannot be crawled.
 
-- **Configuring search results for uploaded documents**: If you are using a collection of uploaded documents and cannot get the right search results or the results are not concise enough, consider using *Smart Document Understanding* when you create the data collection. 
+- **Configuring search results for uploaded documents**: If you are using a collection of uploaded documents and cannot get the correct search results or the results are not concise enough, consider using *Smart Document Understanding* when you create the data collection. 
 
   This feature enables you to annotate documents based on text formatting. For example, you can teach {{site.data.keyword.discoveryshort}} that any text in 28-point bold font is a document title. If you apply this information to the collection when you ingest it, you can later use the *title* field as the source for the title section of your search result. 
   
@@ -345,7 +345,7 @@ The search skill is triggered in the following ways:
 
   Instead of showing a standard message, such as `I don't know how to help you with that.` the assistant can say, `Maybe this information can help:` followed by the passage returned by the search. If a search skill is linked to your assistant, then whenever the `anything_else` node is triggered, rather than displaying the node response, you can set it up to trigger a search instead. The assistant passes the user input as the query to your search skill, and returns the search results as the response.
   
-  To see how this works at run time (where v2 API is used) from the "Try it out" pane (where v1 API is used), you must add a *search skill* response type to the Anything else node in your dialog. Doing so mimics the behavior that occurs at run time. Only keep this response type on the Anything else node for the duration of your dialog testing, and then remove it when you're done. The best way to see how the assistant will behave from end-to-end is to test by using the API. See [Test the search skill](#search-skill-add-test-via-api).
+  To see how this works at run time (where v2 API is used) from the **Try it out** pane (where v1 API is used), you must add a *search skill* response type to the Anything else node in your dialog. Doing so mimics the behavior that occurs at run time. Only keep this response type on the Anything else node for the duration of your dialog testing, and then remove it when you're done. The best way to see how the assistant will behave from end-to-end is to test by using the API. See [Test the search skill](#search-skill-add-test-via-api).
   {: tip}
 
   You can prevent the search from being triggered from the `anything_else` node by following the steps in [Disabling search](#search-skill-add-disable).
@@ -359,18 +359,9 @@ The search skill is triggered in the following ways:
 ## Test the search skill
 {: #search-skill-add-test-via-api}
 
-After you configure the search, you can send test queries to see the search results that get returned from {{site.data.keyword.discoveryshort}} by using the "Try it out" pane of the search skill.
+After you configure the search, you can send test queries to see the search results that get returned from {{site.data.keyword.discoveryshort}} by using the **Try it out** pane of the search skill.
 
-You cannot test the full end-to-end user experience from the dialog skill's "Try it out" pane. The search skill is configured separately and attached to an assistant. The dialog skill has no way of knowing the details of the search, and therefore cannot show search results in its "Try it out" pane.
-
-**1.5.0 and later**: Starting with the 1.5.0 release, you can test the end-to-end user experience by using the *preview link* integration. For more information, see [Testing your assistant from a web page](/docs/assistant-data?topic=assistant-data-deploy-web-link).
-{: important}
-
-### Testing the search skill by using the API
-{: #search-skill-add-test-via-api}
-
-If you are using a version of the product before the 1.5.0 release, you must use the API to test the end-to-end user experience. With version 1.5.0 or later, you can use the preview link integration for testing.
-{: note}
+You cannot test the full end-to-end user experience from the dialog skill's **Try it out** pane. The search skill is configured separately and attached to an assistant. The dialog skill has no way of knowing the details of the search, and therefore cannot show search results in its **Try it out** pane.
 
 To test the full experience that customers will have when they ask questions that are either answered by the dialog or trigger a search, you must test it by using the API. 
 
@@ -439,7 +430,7 @@ Follow this procedure to make it less likely that the dialog will respond by res
 
 After changing the dialog, test the assistant to make sure the search skill is triggered as often as you want it to be.
 
-An alternative approach is to teach the dialog about topics to ignore. To do so, you can add utterances that you want the assistant to send to the search skill immediately as test utterances in the dialog skill's "Try it out" pane. You can then select the **Mark as irrevlant** option within the "Try it out" pane to teach the dialog not to respond to this utterance or others like it.
+An alternative approach is to teach the dialog about topics to ignore. To do so, you can add utterances that you want the assistant to send to the search skill immediately as test utterances in the dialog skill's **Try it out** pane. You can then select the **Mark as irrevlant** option within the **Try it out** pane to teach the dialog not to respond to this utterance or others like it.
 
 ## Disabling search
 {: #search-skill-add-disable}

@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2015, 2020
-lastupdated: "2019-11-26"
+  years: 2015, 2023
+lastupdated: "2023-05-10"
 
 subcollection: assistant-data
 
@@ -30,10 +30,6 @@ Versions help you manage the workflow of a dialog skill development project.
 {: shortdesc}
 
 Create a skill version to capture a snapshot of the training data (intents and entities) and dialog in the skill at key points during the development process. Being able to save an in-progress skill at a specific point in time is especially useful as you start to fine tune your assistant. You often need to make a change and see the impact of the change in real time before you can determine whether or not the change improves or lessens the effectiveness of the assistant. Based on your findings from a test environment deployment, you can make an informed decision about whether to deploy a given change to an assistant that is deployed in a production environment.
-
-This 2 1/2 minute video describes how using versions can help you.
-
-<iframe class="embed-responsive-item" id="youtubeplayer" title="Creating skill versions" type="text/html" width="640" height="390" src="https://www.youtube.com/embed/FDolnBxvcZ8" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen> </iframe>
 
 To learn more about how versions can improve the workflow you use to build an assistant, [read this blog post](https://medium.com/ibm-watson/watson-assistant-versions-announcement-d60869b1f5f){: external}.
 

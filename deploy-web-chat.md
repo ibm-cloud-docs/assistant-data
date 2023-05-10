@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2019, 2022
-lastupdated: "2022-05-19"
+  years: 2019, 2023
+lastupdated: "2023-05-08"
 
 subcollection: assistant-data
 
@@ -32,13 +32,6 @@ Add your assistant to your company website as a web chat widget that can help yo
 {: shortdesc}
 
 When you create a web chat integration, code is generated that calls a script that is written in JavaScript. The script instantiates a unique instance of your assistant. You can then copy and paste the HTML `script` element into any page or pages on your website where you want users to be able to ask your assistant for help.
-
-To learn more about web chat, watch the following 3-minute video.
-
-![Web chat overview](https://www.youtube.com/embed/52bpMKVigGU){: video output="iframe" id="youtubeplayer" frameborder="0" width="560" height="315" webkitallowfullscreen mozallowfullscreen allowfullscreen}
-
-The **web chat** integration was introduced with version 1.5.0. Web chat version 3.3.0 is included with the 1.5.0 release.
-{: note}
 
 ## Create a web chat instance to add to your website
 {: #deploy-web-chat-task}
