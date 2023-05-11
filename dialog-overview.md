@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2015, 2020
-lastupdated: "2022-12-23"
+  years: 2015, 2023
+lastupdated: "2023-05-10"
 
 subcollection: assistant-data
 
@@ -226,7 +226,7 @@ If you include one of these special characters in a text response, escape it by 
 | `#` | Intent | `We are the \#1 seller of lobster rolls in Maine.` |
 {: caption="Special characters to escape in responses" caption-side="top"}
 
-To include a hypertext link that is rendered in the "Try it out" pane, you can use HTML syntax. For example: `Contact us at <a href="https://www.ibm.com">ibm.com</a>.` (Do *not* try to escape the quotations mark with a backslash `\"`, for example.)
+To include a hypertext link that is rendered in the **Try it out** pane, you can use HTML syntax. For example: `Contact us at <a href="https://www.ibm.com">ibm.com</a>.` (Do *not* try to escape the quotations mark with a backslash `\"`, for example.)
 {: note}
 
 #### Learn more about simple responses
@@ -357,11 +357,11 @@ You can return responses with multimedia or interactive elements such as images 
 
 In addition to the default response type of **Text**, for which you specify the text to return to the user as a response, the following response types are supported:
 
-- **Connect to human agent**: The dialog calls a service that you designate, typically a service that manages human agent support ticket queues, to pass off the conversation to a person. You can optionally include a message that summarizes the user's issue to be provided to the human agent. It is the responsibility of the external service to display a message that is shown to the user that explains that the conversation is being transferred. The dialog does not manage that communication itself. The dialog transfer does not occur when you are testing nodes with this response type in the "Try it out" pane. You must access a node that uses this response type from a test deployment to see how your users will experience it.
+- **Connect to human agent**: The dialog calls a service that you designate, typically a service that manages human agent support ticket queues, to pass off the conversation to a person. You can optionally include a message that summarizes the user's issue to be provided to the human agent. It is the responsibility of the external service to display a message that is shown to the user that explains that the conversation is being transferred. The dialog does not manage that communication itself. The dialog transfer does not occur when you are testing nodes with this response type in the **Try it out** pane. You must access a node that uses this response type from a test deployment to see how your users will experience it.
 
 - **Image**: Embeds an image into the response. The source image file must be hosted somewhere and have a URL that you can use to reference it. It cannot be a file that is stored in a directory that is not publicly accessible.
 - **Option**: Adds a list of one or more options. When a user clicks one of the options, an associated user input value is sent to your assistant. How options are rendered can differ depending on where you deploy the dialog. For example, in one integration channel the options might be displayed as clickable buttons, but in another they might be displayed as a dropdown list.
-- **Pause**: Forces the application to wait for a specified number of milliseconds before continuing with processing. You can choose to show an indicator that the dialog is working on typing a response. Use this response type if you need to perform an action that might take some time. For example, a parent node makes a Cloud Function call and displays the result in a child node. You could use this response type as the response for the parent node to give the programmatic call time to complete, and then jump to the child node to show the result. This response type does not render in the "Try it out" pane. You must access a node that uses this response type from a test deployment to see how your users will experience it.
+- **Pause**: Forces the application to wait for a specified number of milliseconds before continuing with processing. You can choose to show an indicator that the dialog is working on typing a response. Use this response type if you need to perform an action that might take some time. For example, a parent node makes a Cloud Function call and displays the result in a child node. You could use this response type as the response for the parent node to give the programmatic call time to complete, and then jump to the child node to show the result. This response type does not render in the **Try it out** pane. You must access a node that uses this response type from a test deployment to see how your users will experience it.
 - **Search skill**: Searches an external data source for relevant information to return to the user. The data source that is searched is a {{site.data.keyword.discoveryshort}} service data collection that you configure when you add a search skill to the assistant that uses this dialog skill. For more information, see [Creating a search skill](/docs/assistant-data?topic=assistant-data-skill-search-add).
 
 #### Adding rich responses
@@ -491,8 +491,6 @@ To add a rich response, complete the following steps:
 {: #dialog-overview-multiple}
 
 A single dialog node can provide different responses, each one triggered by a different condition.  Use this approach to address multiple scenarios in a single node.
-
-<iframe class="embed-responsive-item" id="youtubeplayer1" title="Adding conditional responses" type="text/html" width="640" height="390" src="https://www.youtube.com/embed/Q5_-f7_Iyvg?rel=0" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen> </iframe>
 
 The node still has a main condition, which is the condition for using the node and processing the conditions and responses that it contains.
 

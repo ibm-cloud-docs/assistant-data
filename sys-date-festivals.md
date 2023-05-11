@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2015, 2021
-lastupdated: "2021-01-20"
+  years: 2015, 2023
+lastupdated: "2023-05-10"
 
 subcollection: assistant-data
 
@@ -169,7 +169,7 @@ The following sections list the holidays that are recognized for different local
 | Bank Holiday (Day 2) | `bankholidaysecond` |
 | 2nd January (substitute day) (Scotland)| `2ndjanuary` |
 | New Year's Eve | `newyearseve` |
-| 'New Year's Day' Observed | `newyearsdayobserved` |
+| New Year's Day Observed | `newyearsdayobserved` |
 {: caption="British English holidays" caption-side="top"}
 
 ## Holidays (cs-cz)
@@ -555,32 +555,32 @@ The following sections list the holidays that are recognized for different local
 | Constitution Memorial Day | `constitutionmemorialday` |
 | Greenery Day | `greeneryday` |
 | Children's Day | `childrensday` |
-| 'Children's Day' observed | `childrensdayobserved` |
+| Children's Day observed | `childrensdayobserved` |
 | Star Festival | `starfestival` |
 | Sea Day | `seaday` |
 | Mountain Day | `mountainday` |
-| 'Mountain Day' observed | `mountaindayobserved` |
+| Mountain Day observed | `mountaindayobserved` |
 | Respect for the Aged Day | `respectfortheagedday` |
 | Autumn Equinox | `autumnequinox` |
 | Health and Sports Day | `healthandsportsday` |
 | Enthronement Ceremony Day | `enthronementceremonyday` |
 | Culture Day | `cultureday` |
-| 'Culture Day' Observed | `culturedayobserved` |
+| Culture Day Observed | `culturedayobserved` |
 | 7-5-3 Day | `753day` |
 | Labor Thanksgiving Day | `laborthanksgivingday` |
 | Christmas | `christmas` |
 | December 31 Bank Holiday | `december31bankholiday` |
 | Emperor's Birthday | `emperorsbirthday` |
-| 'Emperor's Birthday' observed | `emperorsbirthdayobserved` |
-| 'Constitution Memorial Day' observed | `constitutionmemorialdayobserved` |
+| Emperor's Birthday observed | `emperorsbirthdayobserved` |
+| Constitution Memorial Day observed | `constitutionmemorialdayobserved` |
 | Sports Day | `sportsday` |
-| 'New Year's Day' observed | `newyearsdayobserved` |
-| 'National Foundation Day' observed | `nationalfoundationdayobserved` |
-| 'Autumn Equinox' observed | `autumnequinoxobserved` |
-| 'Greenery Day' observed | `greenerydayobserved` |
-| 'Labor Thanksgiving Day' observed | `laborthanksgivingdayobserved` |
+| New Year's Day observed | `newyearsdayobserved` |
+| National Foundation Day observed | `nationalfoundationdayobserved` |
+| Autumn Equinox observed | `autumnequinoxobserved` |
+| Greenery Day observed | `greenerydayobserved` |
+| Labor Thanksgiving Day observed | `laborthanksgivingdayobserved` |
 | Bridge Public holiday | `bridgepublicholiday` |
-| 'Spring Equinox' observed | `springequinoxobserved` |
+| Spring Equinox observed | `springequinoxobserved` |
 | December 31 Bank Holiday | `december31bankholiday` |
 {: caption="Japanese holidays" caption-side="top"}
 

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2023
-lastupdated: "2023-04-19"
+lastupdated: "2023-05-10"
 
 subcollection: assistant-data
 
@@ -39,7 +39,7 @@ Autocorrection corrects user input in the following way:
 
 When your assistant evaluates whether to correct the spelling of a word, it does not rely on a simple dictionary lookup process. Instead, it uses a combination of Natural Language Processing and probabalistic models to assess whether a term is, in fact, misspelled and should be corrected.
 
-### Turning autocorrection on or off
+## Turning autocorrection on or off
 {: #dialog-runtime-spell-check-disable}
 
 Autocorrection helps your assistant understand user input. It is enabled automatically for some languages and available, but disabled in others.
@@ -54,17 +54,17 @@ To turn autocorrection on or off, complete the following steps:
 1.  From the Skills menu, click **Options**, and then click **Autocorrection**.
 1.  Click the toggle to enable or disable the feature.
 
-### Testing autocorrection
+## Testing autocorrection
 {: #dialog-runtime-spell-check-test}
 
-1.  From the "Try it out" pane, submit an utterance that includes some misspelled words.
+1.  From the **Try it out** pane, submit an utterance that includes some misspelled words.
 
     If words in your input are misspelled, they are corrected automatically, and an ![auto-correct](images/auto-correct.png) icon is displayed. The corrected utterance is underlined.
 1.  Hover over the underlined utterance to see the original wording.
 
 If there are misspelled terms that you expected your assistant to correct, but it did not, then review the rules that your assistant uses to decide whether to correct a word to see if the word falls into the category of words that your assistant intentionally does not change.
 
-### Autocorrection rules
+## Autocorrection rules
 {: #dialog-runtime-spell-check-rules}
 
 To avoid overcorrection, your assistant does not correct the spelling of the following types of input:
@@ -83,7 +83,7 @@ To avoid overcorrection, your assistant does not correct the spelling of the fol
 
 If the word that is not corrected is not obviously one of these types of input, then it might be worth checking whether the entity has fuzzy matching enabled for it.
 
-#### How is spelling autocorrection related to fuzzy matching?
+### How is spelling autocorrection related to fuzzy matching?
 {: #dialog-runtime-spell-check-vs-fuzzy-matching}
 
 Fuzzy matching helps your assistant recognize dictionary-based entity mentions in user input. It uses a dictionary lookup approach to match a word from the user input to an existing entity value or synonym in the skill's training data. For example, if the user enters `boook`, and your training data contains a `@reading_material` entity with a `book` value, then fuzzy matching recognizes that the two terms (`boook` and `book`) mean the same thing.
@@ -92,7 +92,7 @@ When you enable both autocorrection and fuzzy matching, the fuzzy matching funct
 
 For example, if a user enters a sentence like `I wnt to buy a boook`, fuzzy matching recognizes that the term `boook` means the same thing as your entity value `book`, and adds it to the protected words list. Your assistant corrects the input to be, `I want to buy a boook`. Notice that it corrects `wnt` but does *not* correct the spelling of `boook`. If you see this type of result when you are testing your dialog, you might think your assistant is misbehaving. However, your assistant is not. Thanks to fuzzy matching, it correctly identifies `boook` as a `@reading_material` entity mention. And thanks to autocorrection revising the term to `want`, your assistant is able to map the input to your `#buy_something` intent. Each feature does its part to help your assistant understand the meaning of the user input.
 
-#### How autocorrection works
+### How autocorrection works
 {: #dialog-runtime-spell-check-how-it-works}
 
 Normally, user input is saved as-is in the `text` field of the `input` object of the message. If, and only if the user input is corrected in some way, a new field is created in the `input` object, called `original_text`. This field stores the user's original input that includes any misspelled words in it. And the corrected text is added to the `input.text` field.

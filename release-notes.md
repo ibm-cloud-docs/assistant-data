@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2023
-lastupdated: "2023-05-02"
+lastupdated: "2023-05-10"
 
 subcollection: assistant-data
 
@@ -235,8 +235,8 @@ Rich response types
 Analytics overview change
 :   To improve reliability, the **Values** column has been removed from **Top entities** on the **Analytics Overview** page. **Top Entities** continues to provide counts of entity types. For more information, see [Top intents and top entities](/docs/assistant-data?topic=assistant-data-logs-overview#logs-overview-tops).
 
-Dialog skill "Try it out" improvements
-:   For dialog skills, the **Try it out** pane now uses the [React](https://reactjs.org/){: external} UI framework similar to the rest of the {{site.data.keyword.conversationshort}} user interface. You shouldn't see any change in behavior or functionality. As a part of the update, dialog skill error handling has been improved within the "Try it out" pane.
+Dialog skill **Try it out** improvements
+:   For dialog skills, the **Try it out** pane now uses the [React](https://reactjs.org/){: external} UI framework similar to the rest of the {{site.data.keyword.conversationshort}} user interface. You shouldn't see any change in behavior or functionality. As a part of the update, dialog skill error handling has been improved within the **Try it out** pane.
 
 Disambiguation feature updates
 :   The dialog skill disambiguation feature now includes improved features:
@@ -458,7 +458,7 @@ Webhook callouts are available
 :   Add webhooks to dialog nodes to make programmatic calls to an external application as part of the conversational flow. This capability is being introduced as a beta feature. For more details, see [Making a programmatic call from dialog](/docs/assistant-data?topic=assistant-data-dialog-webhooks).
 
 Testing improvement
-:   You can now see the top three intents that were recognized in a test user input from the "Try it out" pane. For more details, see [Testing your dialog](/docs/assistant-data?topic=assistant-data-dialog-tasks#dialog-tasks-test).
+:   You can now see the top three intents that were recognized in a test user input from the **Try it out** pane. For more details, see [Testing your dialog](/docs/assistant-data?topic=assistant-data-dialog-tasks#dialog-tasks-test).
 
 ## 3 September 2019
 {: #assistant-data-sep032019}

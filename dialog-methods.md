@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2015, 2020
-lastupdated: "2020-03-20"
+  years: 2015, 2023
+lastupdated: "2023-05-10"
 
 subcollection: assistant-data
 
@@ -969,7 +969,7 @@ Returns a string with the current date and time in the format `yyyy-MM-dd HH:mm:
 
 - Static function.
 - The other date/time methods can be invoked on date-time values that are returned by this function and it can be passed in as their argument.
-- The user interface creates a `$timezone` context variable for you automatically so the correct time is returned when you test from the "Try it out" pane. If you don't pass a time zone, the time zone that is set automatically by the UI is used. Outside of the UI, `GMT` is used as the time zone. To learn about the syntax to use to specify the time zone, see [Time zones supported by system entities](/docs/assistant-data?topic=assistant-data-time-zones).
+- The user interface creates a `$timezone` context variable for you automatically so the correct time is returned when you test from the **Try it out** pane. If you don't pass a time zone, the time zone that is set automatically by the UI is used. Outside of the UI, `GMT` is used as the time zone. To learn about the syntax to use to specify the time zone, see [Time zones supported by system entities](/docs/assistant-data?topic=assistant-data-time-zones).
 
 Example of `now()` being used to first check whether it's morning before responding with a morning-specific greeting.
 
@@ -1438,8 +1438,7 @@ Returns a random number. You can use one of the following syntax options:
 
 - To return a random boolean value (true or false), use `<?new Random().nextBoolean()?>`.
 - To return a random double number between 0 (included) and 1 (excluded), use `<?new Random().nextDouble()?>`
-- To return a random integer between 0 (included) and a number you specify, use `<?new Random().nextInt(n)?>`  where n is the top of the number range you want + 1.
-  For example, if you want to return a random number between 0 and 10, specify `<?new Random().nextInt(11)?>`.
+- To return a random integer between 0 (included) and a number you specify, use `<?new Random().nextInt(n)?>`  where n is the top of the number range you want + 1. For example, if you want to return a random number between 0 and 10, specify `<?new Random().nextInt(11)?>`.
 - To return a random integer from the full Integer value range (-2147483648 to 2147483648), use `<?new Random().nextInt()?>`.
 
 For example, you might create a dialog node that is triggered by the #random_number intent. The first response condition might look like this:
@@ -1491,8 +1490,8 @@ For example, you want to clear the current values from the $user context variabl
 {
   "context": {
     "user": {
-      "first_name":"John",
-      "last_name":"Snow"
+      "first_name": "John",
+      "last_name": "Snow"
     }
   }
 }
@@ -1525,8 +1524,8 @@ When you use the `clear()` method to clear the `context` object, it clears all v
 
 All context variable values means:
 
-  - All default values that were set for variables in nodes that have been triggered during the current session.
-  - Any updates made to the default values with information provided by the user or external services during the current session.
+- All default values that were set for variables in nodes that have been triggered during the current session.
+- Any updates made to the default values with information provided by the user or external services during the current session.
 
 To use the method, you can specify it in an expression in a variable that you define in the output object. For example:
 
@@ -1712,7 +1711,7 @@ Results in this output:
 
 This method returns true if the string contains the input substring.
 
-Input: "Yes, I'd like to go."
+Input: `Yes, I'd like to go.`
 
 This syntax:
 
@@ -2134,7 +2133,7 @@ As another example, the following $array context variable is an array, but the $
 ```
 {: codeblock}
 
-If you check the values of these context variables in the Try it out pane, you will see their values specified as follows:
+If you check the values of these context variables in the **Try it out** pane, you will see their values specified as follows:
 
 **$array** : `["one","two"]`
 

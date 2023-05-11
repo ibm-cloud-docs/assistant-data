@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2015, 2020
-lastupdated: "2020-10-06"
+  years: 2015, 2023
+lastupdated: "2023-05-10"
 
 keywords: integration settings
 
@@ -76,13 +76,13 @@ You can design your dialog to take advantage of details about the web browser in
 
 You might embed the web chat in multiple pages on your website. Let's say you want to route chat transfers from the web chat to different Salesforce agents based on the page from which the customer asks to speak to someone. If the customer is on the insurance plans page of your website (`https://www.example.com/insurance.html`), you want to route them to agents who are experts in your company's insurance plans. If the customer is on the investments web page (`https://www.example.com/invest.html`), you want to route them to agents who are experts in your company's investment opportunities. You can add multiple conditioned responses to the dialog node where the transfer takes place and add logic like this:
 
-**Conditioned response 1**
+#### Conditioned response 1
 
 - Condition: `$integrations.chat.browser_info.page_url.contains('insurance.html')`
 - Response type: *Connect to human agent*
 - Button ID: `Z23453e25vv` (The button that routes to the insurance experts agent queue)
 
-**Conditioned response 2**
+#### Conditioned response 2
 
 - Condition: `$integrations.chat.browser_info.page_url.contains('invest.html')`
 - Response type: *Connect to human agent*

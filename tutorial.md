@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2015, 2020
-lastupdated: "2022-12-23"
+  years: 2015, 2023
+lastupdated: "2023-05-10"
 
 subcollection: assistant-data
 
@@ -135,7 +135,7 @@ Add a dialog node that recognizes when the user input maps to the intent that yo
 
 Test the intent by checking whether user utterances that are similar to, but not exactly the same as, the examples you added to the training data have successfully trained your assistant to recognize input with an `#about_restaurant` intent.
 
-1.  Click the ![Try it](images/ask_watson.png) icon to open the "Try it out" pane.
+1.  Click the ![Try it](images/ask_watson.png) icon to open the **Try it out** pane.
 
 1.  Enter, `I want to learn more about your restaurant.`
 
@@ -370,7 +370,7 @@ You have added nodes that recognize user requests for menu details. Your respons
 
 Test the dialog nodes that you added to recognize menu questions.
 
-1.  Click the ![Try it](images/ask_watson.png) icon to open the "Try it out" pane.
+1.  Click the ![Try it](images/ask_watson.png) icon to open the **Try it out** pane.
 
 1.  Enter, `What type of food do you serve?`
 
@@ -623,7 +623,7 @@ Now, add a dialog node that can handle requests to cancel a cake order.
 
 Test whether your assistant can recognize character patterns that match the pattern used for product order numbers in user input.
 
-1.  Click the ![Try it](images/ask_watson.png) icon to open the "Try it out" pane.
+1.  Click the ![Try it](images/ask_watson.png) icon to open the **Try it out** pane.
 
 1.  Enter, `i want to cancel my order number TW12345.`
 
@@ -636,7 +636,7 @@ Test whether your assistant can recognize character patterns that match the patt
     ![Shows the Try it out pane test of the cancel order number node when the user provides the order number in the initial input.](images/gs-ass-test-cancel-order-number-provided.png)
 
     Now, try it when you don't know the order number.
-1.  Click **Clear** in the "Try it out" pane to start over. Enter, `I want to cancel my order.`
+1.  Click **Clear** in the **Try it out** pane to start over. Enter, `I want to cancel my order.`
 
     Your assistant recognizes the `#cancel_order` intent, and responds with, `If the pickup time is more than 48 hours from now, you can cancel your order. What is the order number?`
 
@@ -649,7 +649,7 @@ Test whether your assistant can recognize character patterns that match the patt
 ### Add nodes to clarify order number format
 {: #tutorial-clarify-order-number format}
 
-If you do more testing, you might find that the dialog isn't very helpful in scenarios where the user does not remember the order number format. The user might include only the numbers or the letters too, but forget that they are meant to be uppercase. So, it would be a nice touch to give them a hint in such cases, right? If you want to be kind, add another node to the dialog tree that checks for numbers in the user input.
+If you do more testing, you might find that the dialog isn't very helpful in scenarios where the user does not remember the order number format. The user might include only the numbers or the letters too, but forget that they are meant to be uppercase. So, it would be a nice touch to give them a hint in such cases. If you want to be kind, add another node to the dialog tree that checks for numbers in the user input.
 
 1.  Find the `@order_number` node that is a child of the *Ask order number* node.
 

@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2015, 2020
-lastupdated: "2020-03-20"
+  years: 2015, 2023
+lastupdated: "2020-05-10"
 
 subcollection: assistant-data
 
@@ -85,7 +85,7 @@ When the date and time system entity values are saved, they are converted into a
 
 1.  Click **Save**.
 
-1.  Test the node again. Open the "Try it out" pane, and click **Clear** to delete the slot context variable values that you specified when you tested the node with slots earlier. To see the impact of the changes you made, use the following script:
+1.  Test the node again. Open the **Try it out** pane, and click **Clear** to delete the slot context variable values that you specified when you tested the node with slots earlier. To see the impact of the changes you made, use the following script:
 
     <table>
     <caption>Script details</caption>
@@ -146,7 +146,7 @@ In this step, you will learn how to prompt for everything at once.
 
 1.  Click ![Close](images/close.png) to close the node edit view.
 
-1.  Test this change from the "Try it out" pane. Open the pane, and then click **Clear** to nullify the slot context variable values from the previous test.
+1.  Test this change from the **Try it out** pane. Open the pane, and then click **Clear** to nullify the slot context variable values from the previous test.
 
 1.  Enter `i'd like to make a reservation.`
 
@@ -166,7 +166,7 @@ If the user provides any one of the slot values in their initial input, then the
 
 When you use the `sys-number` system entity in a slot condition, it does not deal with zeros properly. Instead of setting the context variable that you define for the slot to 0, your assistant sets the context variable to false. As a result, the slot does not think it is full and prompts the user for a number again and again until the user specifies a number other than zero.
 
-1.  Test the node so you can better understand the problem. Open the "Try it out" pane, and click **Clear** to delete the slot context variable values that you specified when you tested the node with slots earlier. Use the following script:
+1.  Test the node so you can better understand the problem. Open the **Try it out** pane, and click **Clear** to delete the slot context variable values that you specified when you tested the node with slots earlier. Use the following script:
 
     <table>
     <caption>Script details</caption>
@@ -235,7 +235,7 @@ When you use the `sys-number` system entity in a slot condition, it does not dea
     You must edit the context variable value in the JSON editor. Do not edit the value in the slot's **Check for** field. The **Check for** field must remain set to `@sys-number >= 0`. When you edit the value in the JSON editor, you are effectively changing only what to save in the context variable. However, you do not want to change what to look for in the input. These two values will be different. That is how you want it to be. Do not edit the **Check for** field or even give it focus or you will undo the change you made by using the JSON editor to change the value that gets saved.
     {: important}
 
-1.  Test the node again. Open the "Try it out" pane, and click **Clear** to delete the slot context variable values that you specified when you tested the node with slots earlier. To see the impact of the changes you made, use the following script:
+1.  Test the node again. Open the **Try it out** pane, and click **Clear** to delete the slot context variable values that you specified when you tested the node with slots earlier. To see the impact of the changes you made, use the following script:
 
     <table>
     <caption>Script details</caption>
@@ -662,7 +662,7 @@ Adding a node with slots is powerful because it keeps users on track with provid
 
 1.  You want your assistant to check for the `has_skipped_slots` property before it displays the standard node-level response. Move the `has_skipped_slots` conditional response up so it gets processed before the original conditional response or it will never be triggered. To do so, click the response you just added, use the **up arrow** to move it up, and then click **Save**.
 
-1.  Test this change by using the following script in the "Try it out" pane.
+1.  Test this change by using the following script in the **Try it out** pane.
 
     <table>
     <caption>Script details</caption>

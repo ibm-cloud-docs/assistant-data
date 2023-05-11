@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2015, 2021
-lastupdated: "2021-09-27"
+  years: 2015, 2023
+lastupdated: "2023-05-10"
 
 subcollection: assistant-data
 
@@ -81,7 +81,7 @@ The scorecards give you a quick view of your metrics. Scroll to see full interac
 
   A single conversation consists of messages that an active user sends to your assistant, and the messages your assistant sends to the user to initiate the conversation or respond.
 
-  If your assistant starts by saying "Hi, how can I help you?", and then the user closes the browser without responding, that message is included in the total conversation count.
+  If your assistant starts by saying `Hi, how can I help you?`, and then the user closes the browser without responding, that message is included in the total conversation count.
 
   The total conversations metric is not used for billing purposes. An exchange with a user is not considered a billable conversation until the user submits a message.
   {: important}
@@ -112,7 +112,7 @@ Detailed graphs provide additional information. Click a data point on the graphs
 
   ![Shows the two coverage metrics for volume and trend](images/coverage-metric.png)
 
-  The coverage metric requires that your dialog contain an *Anything else* node. If your coverage rate is low, consider using intent recommendations to help you fill in the gaps in your coverage.
+  The coverage metric requires that your dialog contain an *Anything else* node.
 
 - *Total conversations*: The total number of conversations between active users and your assistant during the selected time period.
 - *Average messages per conversation* - The total messages received during the selected time period divided by the total conversations during the selected time period.

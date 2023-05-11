@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2020, 2021
-lastupdated: "2021-11-09"
+  years: 2020, 2023
+lastupdated: "2023-05-10"
 
 subcollection: assistant-data
 
@@ -36,14 +36,14 @@ As a security officer, auditor, or manager, you can use the [{{site.data.keyword
 ## List of events
 {: #audit-events-actions}
 
-The following table lists the {{site.data.keyword.conversationshort}} actions that generate events.
+The following table lists the {{site.data.keyword.conversationshort}} activities that generate events.
 
 | Action                                          | Triggered when someone...       |
 |-------------------------------------------------|---------------------------------|
 | `conversation.assistant.create` | creates an assistant. |
 | `conversation.assistant.delete` | deletes an assistant. |
 | `conversation.assistant.update` | updates an assistant. For example, renames the skill, changes the session timeout, or changes its associated skills. |
-| `conversation.counterexample.create` | marks test user input in the "Try it out" pane as being irrelevant or corrects the categorization of a user input that was incorrectly assigned to an intent by marking it as irrelevant. |
+| `conversation.counterexample.create` | marks test user input in the **Try it out** pane as being irrelevant or corrects the categorization of a user input that was incorrectly assigned to an intent by marking it as irrelevant. |
 | `conversation.counterexample.delete` | deletes a counterexample. |
 | `conversation.counterexample.update` | edits a counterexample. |
 | `conversation.data.update` | does a bulk action, such as importing a CSV file of intents or entities to the skill, or deleting multiple training data items, such as multiple entities or intents. |
@@ -60,8 +60,6 @@ The following table lists the {{site.data.keyword.conversationshort}} actions th
 | `conversation.node.create` | creates a dialog node. |
 | `conversation.node.delete` | deletes a dialog node. |
 | `conversation.node.update` | edits a dialog node. |
-| `conversation.seedlog.create` | uploads a CSV file of utterances to a service instance so that skills in the instance can derive intent recommendations from it. |
-| `conversation.seedlog.delete` | deletes all of the CSV files that are used to derive intent recommendations from a service instance. |
 | `conversation.skill.create` | creates a skill, either dialog or search. |
 | `conversation.skill.delete` | deletes a skill. |
 | `conversation.skill.update` | updates a skill. |
@@ -80,4 +78,4 @@ The following table lists the {{site.data.keyword.conversationshort}} actions th
 | `conversation.workspace.create` | creates a workspace. |
 | `conversation.workspace.delete` | deletes a workspace. |
 | `conversation.workspace.update` | makes changes to a workspace. |
-{: caption="Table 1. Actions that generate events" caption-side="top"}
+{: caption="Table 1. Activities that generate events" caption-side="top"}

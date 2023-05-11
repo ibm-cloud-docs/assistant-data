@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2015, 2020
-lastupdated: "2022-12-23"
+  years: 2015, 2023
+lastupdated: "2023-05-10"
 
 subcollection: assistant-data
 
@@ -216,7 +216,7 @@ This example displays two options:
 ### Pause
 {: #dialog-responses-json-pause}
 
-Pauses before sending the next message to the channel, and optionally sends a "user is typing" event (for channels that support it).
+Pauses before sending the next message to the channel, and optionally sends a `user is typing` event (for channels that support it).
 
 #### Fields
 {: #dialog-responses-json-pause-fields}
@@ -225,12 +225,12 @@ Pauses before sending the next message to the channel, and optionally sends a "u
 |---------------|--------|--------------------|-----------|
 | response_type | enum   | `pause`            | Y         |
 | time          | int    | How long to pause, in milliseconds. | Y |
-| typing        | boolean | Whether to send the "user is typing" event during the pause. Ignored if the channel does not support this event. | N |
+| typing        | boolean | Whether to send the `user is typing` event during the pause. Ignored if the channel does not support this event. | N |
 
 #### Example
 {: #dialog-responses-json-pause-example}
 
-This examples sends the "user is typing" event while pausing for 5 seconds.
+This examples sends the `user is typing` event while pausing for 5 seconds.
 
 ```json
 {

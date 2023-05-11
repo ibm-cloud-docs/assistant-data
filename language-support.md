@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2015, 2021
-lastupdated: "2021-08-25"
+  years: 2015, 2023
+lastupdated: "2023-05-10"
 
 subcollection: assistant-data
 
@@ -103,27 +103,6 @@ In the following tables, the level of language and feature support is indicated 
 | **Universal (xx)**                 | NA | GA | GA |
 {: caption="Table 3. Intent feature support details" caption-side="top"}
 
-### Recommendations feature support details continued
-{: #language-support-recommendations}
-
-| Language | **[User example recommendations](/docs/assistant-data?topic=assistant-data-intent-recommendations#intent-recommendations-get-example-recommendations-task)** | **[Intent recommendations](/docs/assistant-data?topic=assistant-data-intent-recommendations#intent-recommendations-get-intent-recommendations-task)** |
-|:---:|:---:|:---:|
-| **English (en)**                   | GA | GA |
-| **Arabic (ar)**                    | NA | NA |
-| **Chinese (Simplified) (zh-cn)**   | NA | NA |
-| **Chinese (Traditional) (zh-tw)**  | NA | NA |
-| **Czech (cs)**                     | NA | NA |
-| **Dutch (nl)**                     | NA | NA |
-| **French (fr)**                    | NA | GA |
-| **German (de)**                    | NA | GA |
-| **Italian (it)**                   | NA | GA |
-| **Japanese (ja)**                  | GA | NA |
-| **Korean (ko)**                    | NA | NA |
-| **Portuguese (Brazilian) (pt-br)** | NA | GA |
-| **Spanish (es)**                   | NA | GA |
-| **Universal (xx)**                 | NA | NA |
-{: caption="Table 4. Recommendations feature support details continued" caption-side="top"}
-
 ### User input processing support details
 {: #language-support-input}
 
@@ -143,7 +122,7 @@ In the following tables, the level of language and feature support is indicated 
 | **Portuguese (Brazilian) (pt-br)** | GA | GA | NA | NA |
 | **Spanish (es)**                   | GA | GA | NA | NA |
 | **Universal (xx)**                 | GA | GA | NA | NA |
-{: caption="Table 5. User input processing support details" caption-side="top"}
+{: caption="Table 4. User input processing support details" caption-side="top"}
 
 ### Entity feature support details
 {: #language-support-entities}
@@ -164,7 +143,7 @@ In the following tables, the level of language and feature support is indicated 
 | **Portuguese (Brazilian) (pt-br)** | NA | NA |
 | **Spanish (es)**                   | NA | GA |
 | **Universal (xx)**                 | NA | NA |
-{: caption="Table 6. Entity feature support details" caption-side="top"}
+{: caption="Table 5. Entity feature support details" caption-side="top"}
 
 ### System entity feature support details
 {: #language-support-system-entities}
@@ -185,7 +164,7 @@ In the following tables, the level of language and feature support is indicated 
 | **Portuguese (Brazilian) (pt-br)** | GA | Deprecated |
 | **Spanish (es)**                   | GA | Deprecated |
 | **Universal (xx)**                 | GA | NA |
-{: caption="Table 7. System entity feature support details" caption-side="top"}
+{: caption="Table 6. System entity feature support details" caption-side="top"}
 
 The {{site.data.keyword.conversationshort}} service supports multiple languages as noted, but the tool interface itself (descriptions, labels, etc.) is in English. All supported languages can be input and trained through the English interface.
 {: note}
@@ -225,7 +204,7 @@ For bidirectional languages, such as Arabic, you can change your skill preferenc
     - **Numeric Shaping**: Specifies which form of numerals to use when presenting regular digits. Choose from `Nominal`, `Arabic-Indic`, or `Arabic-European`. The `None` option will display Western numerals.
     - **Calendar Type**: Specifies how you choose filtering dates in the skill UI. Choose `Islamic-Civil`, `Islamic-Tabular`, `Islamic-Umm al-Qura`, or `Gregorian`.
 
-    This setting is not reflected in the "Try it out" panel.
+    This setting is not reflected in the **Try it out** panel.
     {: note}
 
     ![Bidi options](images/bidi-options.png)

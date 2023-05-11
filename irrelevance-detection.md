@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2015, 2020
-lastupdated: "2020-10-09"
+  years: 2015, 2023
+lastupdated: "2023-05-10"
 
 subcollection: assistant-data
 
@@ -35,7 +35,7 @@ To teach your assistant about subjects it should ignore, you can review your use
 
 Intents that are marked as irrelevant are saved as counterexamples in the JSON workspace, and are included as part of the training data. They teach your assistant to explicitly not answer utterances of this type.
 
-While testing your dialog, you can mark an intent as irrelevant directly from the *Try it out* pane.
+While testing your dialog, you can mark an intent as irrelevant directly from the **Try it out** pane.
 
 ![Mark as irrelevant screen capture](images/irrelevant.png)
 
@@ -55,7 +55,7 @@ To learn more about the benefits of the new algorithm, read the [Why Zero-Effort
 
 The new algorithm is enabled automatically for any English-language skills that you import or create.
 
-To test the new detection mechanism in the "Try it out" pane, submit one or more utterances that have absolutely nothing to do with your training data. The new mechanism helps your skill to correctly recognize that the test utterances do not map to any of the intents defined in your training data, and classifies them as being `Irrelevant`.
+To test the new detection mechanism in the **Try it out** pane, submit one or more utterances that have absolutely nothing to do with your training data. The new mechanism helps your skill to correctly recognize that the test utterances do not map to any of the intents defined in your training data, and classifies them as being `Irrelevant`.
 
 ## How irrelevance detection works
 {: #irrelevance-detection-how-it-works}

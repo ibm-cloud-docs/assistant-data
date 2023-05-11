@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2015, 2021
-lastupdated: "2021-08-25"
+  years: 2015, 2023
+lastupdated: "2023-05-10"
 
 subcollection: assistant-data
 
@@ -26,16 +26,9 @@ subcollection: assistant-data
 # Making a programmatic call from dialog
 {: #dialog-webhooks}
 
-This feature became generally available in the 1.4.1 release. It was released as a beta feature with 1.4.
-{: note}
-
 To make a programmatic call, define a webhook that sends a POST request callout to an external application that performs a programmatic function. You can then invoke the webhook from one or more dialog nodes.
 
 A webhook is a mechanism that allows you to call out to an external program based on something happening in your program. When used in a dialog skill, a webhook is triggered when the assistant processes a node that has a webhook enabled. The webhook collects data that you specify or that you collect from the user during the conversation and save in context variables. It sends the data as part of a HTTP POST request to the URL that you specify as part of your webhook definition. The URL that receives the webhook is the listener. It performs a predefined action using the information that you pass to it as specified in the webhook definition, and can optionally return a response.
-
-Watch this video to learn more.
-
-<iframe class="embed-responsive-item" id="youtubeplayer" title="Webhooks demo" type="text/html" width="640" height="390" src="https://www.youtube.com/embed/j8TBqD2rx2o?rel=0" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen> </iframe>
 
 You can use a webhook to do the following types of things:
 
@@ -61,8 +54,8 @@ The programmatic call to the external service must meet these requirements:
 - The format of the request and response must be in JSON. For example: `Content-Type: application/json`.
 - The call must return in **8 seconds or less**.
 
-  For less efficient services that you need to call, you can manage the call through a client application and pass the information to the dialog as a separate step. For more information, see [Calling a client application from a dialog node](/docs/assistant-data?topic=assistant-data-dialog-actions-client).
-  {: tip}
+   For less efficient services that you need to call, you can manage the call through a client application and pass the information to the dialog as a separate step. For more information, see [Calling a client application from a dialog node](/docs/assistant-data?topic=assistant-data-dialog-actions-client).
+   {: tip}
 
 To add the webhook details, complete the following steps:
 

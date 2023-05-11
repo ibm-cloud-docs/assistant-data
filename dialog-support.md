@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2019, 2020
-lastupdated: "2021-03-19"
+  years: 2019, 2023
+lastupdated: "2023-05-10"
 
 subcollection: assistant
 
@@ -35,16 +35,16 @@ Build your dialog to recognize when customers need help that cannot be provided 
 
 - A toll-free phone number to a call center that is manned by human agents
 - An online support ticket form that customers fill out and submit
-- A service desk solution that is configured to work with your custom client application
+- A service desk solution that is configured to work with your custom client application. The built-in Zendesk and Salesforce integrations aren’t supported.
 
 Design your dialog to recognize customer requests for help and address them. Add an intent that understands the customer request, and then add a dialog branch that handles the request.
 
-For example, you might add an intent and use it in a dialog node like the intents that are shown in the table below.
+You might add an intent and use it in a dialog node like these example intents:
 
 | Intent name | Intent user example 1 | Intent user example 2 | Response from dialog node that conditions on intent |
 |--------|-----------------------|-----------------------|-----------------------------------------------------|
 | `#call_support` | *How do I reach support?* | *What's your toll-free number?* | *Call 1-800-555-0123 to reach a call center agent at any time.* |
-| `#support_ticket` | *How do I get help?* | *Who can help me with an issue I'm having?* |  *Go to `Support Center` and open a support ticket.* |
+| `#support_ticket` | *How do I get help?* | *Who can help me with an issue I'm having?* |  *Go to [Support Center](https://example.com/support) and open a support ticket.* |
 {: caption="Alternative support request intent examples" caption-side="top"}
 
 ## Adding chat transfer support
@@ -52,11 +52,11 @@ For example, you might add an intent and use it in a dialog node like the intent
 
 Design your dialog so that it can transfer customers to human agents. Consider adding support for initiating a transfer in the following scenarios:
 
-- Any time a user asks to speak to a person. 
+- Any time a user asks to speak to a person.
 
   Create an intent that can recognize when a customer asks to speak to someone. After defining the intent, you can add a root-level dialog node that conditions on the intent. As the dialog node response, add a *Connect to human agent* response type. At run time, if the user asks to speak to someone, this node is triggered and a transfer is initiated on the user's behalf.
 
-- When the conversation broaches a topic that is sensitive in nature, you can start a transfer. 
+- When the conversation broaches a topic that is sensitive in nature, you can start a transfer.
 
   For example, an insurance company might want questions about bereavement benefits always to be handled by a person. Or, if a customer wants to close an account, you might want to transfer the conversation to a respresentative who is authorized to offer incentives to keep the customer's business.
 
@@ -70,12 +70,12 @@ To design a dialog that can transfer the conversation, complete the following st
 
 1.  Add a root node to your dialog that conditions on the intent you created in the previous step. Choose **Connect to human agent** as the response type.
 
-    For more information, see [Adding a *Connect to human agent* response type](/docs/assistant-data?topic=assistant-data-dialog-overview#dialog-overview-multimedia-add).
+    For more information, see [Adding a *Connect to human agent* response type](/docs/assistant-data?topic=assistant-data-dialog-overview#dialog-overview-add-connect-to-human-agent).
 
 1.  Add meaningful names to the dialog nodes in your dialog.
 
     When a conversation is transferred to an agent, the name of the most-recently processed dialog node is sent with it. To ensure that a useful summary is provided to service desk agents when a conversation is transferred to them, add short dialog node names that reflect the node's purpose. For example, *Find a store*.
-    
+
     Some older skills specify the purpose of the node in the **external node name** field instead.
 
     ![Screen capture of the field in the node edit view where you add the node purpose summary.](images/disambig-node-purpose.png)
@@ -135,9 +135,9 @@ To enable the containment metric, complete the following steps:
 
       If you're using multiple conditioned responses, you must click **Save** first.
       {: tip}
- 
+
  To track containment for your assistant, go to the *Analytics* page. For more information, see [Metrics overview](/docs/assistant-data?topic=assistant-data-logs-overview#logs-overview-graphs).
- 
- **Previous topic:** [Dialog building tips](/docs/assistant-data?topic=assistant-data-dialog-tips)
+
+**Previous topic:** [Dialog building tips](/docs/assistant-data?topic=assistant-data-dialog-tips)
 
 **Next topic:** [Correcting user input](/docs/assistant-data?topic=assistant-data-dialog-runtime-spell-check)

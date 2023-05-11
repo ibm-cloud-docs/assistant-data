@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2015, 2020
-lastupdated: "2020-10-06"
+  years: 2015, 2023
+lastupdated: "2023-05-10"
 
 subcollection: assistant-data
 
@@ -33,8 +33,6 @@ If intents represent verbs (the action a user wants to do), entities represent n
 Recognizing entities in the user's input helps you to craft more useful, targeted responses. For example, you might have a `#buy_something` intent. When a user makes a request that triggers the `#buy_something` intent, the assistant's response should reflect an understanding of what the *something* is that the customer wants to buy. You can add a `@product` entity, and then use it to extract information from the user input about the product that the customer is interested in. (The `@` prepended to the entity name helps to clearly identify it as an entity.)
 
 Finally, you can add multiple responses to your dialog tree with wording that differs based on the `@product` value that is detected in the user's request.
-
-<iframe class="embed-responsive-item" id="youtubeplayer" title="Working with entities" type="text/html" width="640" height="390" src="https://www.youtube.com/embed/o-uhdw6bIyI" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen> </iframe>
 
 ## Entity evaluation overview
 {: #entities-described}
@@ -242,7 +240,7 @@ Fuzzy matching is available for languages noted in the [Supported languages](/do
 
 Fuzzy matching has these components:
 
-- *Stemming* - The feature recognizes the stem form of entity values that have several grammatical forms. For example, the stem of 'bananas' would be 'banana', while the stem of 'running' would be 'run'.
+- *Stemming* - The feature recognizes the stem form of entity values that have several grammatical forms. For example, the stem of `bananas` would be `banana`, while the stem of `running` would be `run`.
 - *Misspelling* - The feature is able to map user input to the appropriate corresponding entity despite the presence of misspellings or slight syntactical differences. For example, if you define *giraffe* as a synonym for an animal entity, and the user input contains the terms *giraffes* or *girafe*, the fuzzy match is able to map the term to the animal entity correctly.
 - *Partial match* - With partial matching, the feature automatically suggests substring-based synonyms present in the user-defined entities, and assigns a lower confidence score as compared to the exact entity match.
 
@@ -336,10 +334,6 @@ Using an intent's user examples to define contextual entities does not affect th
     {: note}
 
     If you do not want your contextual entities to use this expanded understanding of entity values, select all the user examples in the *Annotation* view for that entity, and then click **Delete**.
-
-The following video demonstrates how to annotate entity mentions.
-
-<iframe class="embed-responsive-item" id="youtubeplayer0" title="Annotating entity mentions" type="text/html" width="640" height="390" src="https://www.youtube.com/embed/3WjzJpLsnhQ" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen> </iframe>
 
 **Tutorial**: To walk through a tutorial that shows you how to define contextual entities before you add your own, go to [Tutorial: Defining contextual entities](https://www.ibm.com/cloud/architecture/demo/try-watson-assistant-contextual-entities){: external}.
 
