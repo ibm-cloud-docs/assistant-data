@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2023
-lastupdated: "2023-05-10"
+lastupdated: "2023-06-14"
 
 subcollection: assistant-data
 
@@ -10,20 +10,7 @@ content-type: release-note
 
 ---
 
-{:shortdesc: .shortdesc}
-{:new_window: target="_blank"}
-{:external: target="_blank" .external}
-{:deprecated: .deprecated}
-{:important: .important}
-{:note: .note}
-{:tip: .tip}
-{:pre: .pre}
-{:codeblock: .codeblock}
-{:screen: .screen}
-{:javascript: .ph data-hd-programlang='javascript'}
-{:java: .ph data-hd-programlang='java'}
-{:python: .ph data-hd-programlang='python'}
-{:swift: .ph data-hd-programlang='swift'}
+{{site.data.keyword.attribute-definition-list}}
 
 # Release notes for {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}}
 {: #release-notes}
@@ -45,16 +32,15 @@ The following table shows the latest version of the web chat integration that is
 
 | {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} version | Latest web chat version available |
 |----------------|----------------|
-| 4.6.5 | [7.2.0](https://cloud.ibm.com/docs/watson-assistant?topic=watson-assistant-release-notes-chat#7.2.0){: external} |
-| 4.6.3 | [7.1.0](https://cloud.ibm.com/docs/watson-assistant?topic=watson-assistant-release-notes-chat#7.1.0){: external} |
-| 4.6.2 | [7.0.0](https://cloud.ibm.com/docs/watson-assistant?topic=watson-assistant-release-notes-chat#7.0.0){: external} |
-| 4.6.0 | [6.7.0](https://cloud.ibm.com/docs/watson-assistant?topic=watson-assistant-release-notes-chat#6.7.0){: external} |
-| 4.5.3 | [6.6.2](https://cloud.ibm.com/docs/watson-assistant?topic=watson-assistant-release-notes-chat#6.6.2){: external} |
-| 4.5.1 | [6.5.2](https://cloud.ibm.com/docs/watson-assistant?topic=watson-assistant-release-notes-chat#6.5.2){: external} |
-| 4.5.0 | [6.4.1](https://cloud.ibm.com/docs/watson-assistant?topic=watson-assistant-release-notes-chat#6.4.1){: external} |
-| 4.0.8 | [6.2.0](https://cloud.ibm.com/docs/watson-assistant?topic=watson-assistant-release-notes-chat#6.2.0){: external} |
+| 4.6.5 | [7.2.0](/docs/watson-assistant?topic=watson-assistant-release-notes-chat#7.2.0){: external} |
+| 4.6.3 | [7.1.0](/docs/watson-assistant?topic=watson-assistant-release-notes-chat#7.1.0){: external} |
+| 4.6.2 | [7.0.0](/docs/watson-assistant?topic=watson-assistant-release-notes-chat#7.0.0){: external} |
+| 4.6.0 | [6.7.0](/docs/watson-assistant?topic=watson-assistant-release-notes-chat#6.7.0){: external} |
+| 4.5.3 | [6.6.2](/docs/watson-assistant?topic=watson-assistant-release-notes-chat#6.6.2){: external} |
+| 4.5.1 | [6.5.2](/docs/watson-assistant?topic=watson-assistant-release-notes-chat#6.5.2){: external} |
+| 4.5.0 | [6.4.1](/docs/watson-assistant?topic=watson-assistant-release-notes-chat#6.4.1){: external} |
+| 4.0.8 | [6.2.0](/docs/watson-assistant?topic=watson-assistant-release-notes-chat#6.2.0){: external} |
 {: caption="Web chat versions in {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}}" caption-side="top"}
-
 ## 2 May 2023
 {: #assistant-data-may022023}
 {: release-note}
@@ -94,7 +80,7 @@ For more information, see [Algorithm version and training](/docs/watson-assistan
 :   {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} 4.6.2 is compatible with {{site.data.keyword.icp4dfull}} Version 4.6. See the [support matrix](/docs/assistant-data?topic=assistant-data-install#install-support-matrix) for more details. This release of {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} includes various fixes and features.
 
 New {{site.data.keyword.conversationshort}} v2 APIs
-:   {{site.data.keyword.conversationshort}} now provides new methods related to assistants, skills, environments, and releases. For details, see the [Watson Assistant v2 API documentation](https://cloud.ibm.com/apidocs/assistant/assistant-v2){: external}.
+:   {{site.data.keyword.conversationshort}} now provides new methods related to assistants, skills, environments, and releases. For details, see the [{{site.data.keyword.conversationshort}} v2 API documentation](https://cloud.ibm.com/apidocs/assistant/assistant-v2){: external}.
 
 ## 30 November 2022
 {: #assistant-data-nov302022}
@@ -107,10 +93,10 @@ New {{site.data.keyword.conversationshort}} experience
 :   With the new experience in {{site.data.keyword.conversationshort}}, you can build, test, publish, and analyze your assistant from one simple and intuitive interface that focuses on using actions to build customer conversations. To learn more about building your assistant with actions, see [Welcome to the new {{site.data.keyword.conversationshort}}](https://cloud.ibm.com/docs/watson-assistant){: external}.
 
 New algorithm version setting
-:   You can now choose one of three Watson Assistant algorithm version settings to apply to your future trainings: **Beta**, **Latest**, or **Previous**. This new **Algorithm Version** setting replaced **Intent Detection** in the **Options** section of a dialog skill. **Beta** and **Latest** use more enhanced intent detection that is available in more languages: Arabic, Chinese (Simplified), Chinese (Traditional) Czech, Dutch, French, German, Japanese, Korean, Italian, Portuguese, and Spanish. See [Algorithm version](https://cloud.ibm.com/docs/watson-assistant?topic=watson-assistant-algorithm-version){: external}.
+:   You can now choose one of three {{site.data.keyword.conversationshort}} algorithm version settings to apply to your future trainings: **Beta**, **Latest**, or **Previous**. This new **Algorithm Version** setting replaced **Intent Detection** in the **Options** section of a dialog skill. **Beta** and **Latest** use more enhanced intent detection that is available in more languages: Arabic, Chinese (Simplified), Chinese (Traditional) Czech, Dutch, French, German, Japanese, Korean, Italian, Portuguese, and Spanish. See [Algorithm version](https://cloud.ibm.com/docs/watson-assistant?topic=watson-assistant-algorithm-version){: external}.
 
 Credential rotation
-:   You can now rotate your credentials for added data store security. See [Managing security for your Watson Assistant datastores](https://www.ibm.com/docs/en/cloud-paks/cp-data/4.6.x?topic=administering-managing-security-your-datastores){: external}.
+:   You can now rotate your credentials for added data store security. See [Managing security for your {{site.data.keyword.conversationshort}} datastores](https://www.ibm.com/docs/en/cloud-paks/cp-data/4.6.x?topic=administering-managing-security-your-datastores){: external}.
 
 Autoscaling
 :   Using Red Hat® OpenShift® Horizontal Pod Autoscaler, you can optionally enable autoscaling for {{site.data.keyword.conversationshort}} so that the service dynamically scales up and down to make efficient use of cluster resources. For details, see [Automatically scaling resources for services](https://www.ibm.com/docs/en/cloud-paks/cp-data/4.6.x?topic=services-automatically-scaling){: external}.
