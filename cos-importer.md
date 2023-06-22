@@ -13,22 +13,22 @@ subcollection: assistant-data
 # Using the Cloud Object Storage importer to migrate chat logs
 {: #cos-importer}
 
-You can use the Cloud Object Storage (COS) importer service to migrate your chat logs from one installation of {{site.data.keyword.conversationshort}} to another.
+You can use the Cloud Object Storage importer service to migrate your chat logs from one installation of {{site.data.keyword.conversationshort}} to another.
 
 This diagram shows two clusters:
 
 | Cluster | Description |
 | --- | --- |
-| COS consumer | OpenShift cluster with the {{site.data.keyword.conversationshort}} installation used to export chat log data to COS |
-| COS importer | OpenShift cluster with the {{site.data.keyword.conversationshort}} installation that imports chat log data from the COS consumer cluster's copied bucket |
+| Cloud Object Storage consumer | Red Hat OpenShift cluster with the {{site.data.keyword.conversationshort}} installation used to export chat log data to Cloud Object Storage |
+| Cloud Object Storage importer | Red Hat OpenShift cluster with the {{site.data.keyword.conversationshort}} installation that imports chat log data from the Cloud Object Storage consumer cluster's copied bucket |
 {: caption="Diagram clusters" caption-side="bottom"}
 
 ![Architecture Diagram](images/data-governor-architecture.png)
 
-## Configuring the data governor COS consumer service
+## Configuring the data governor Cloud Object Storage consumer service
 {: #cos-importer-configure-consumer}
 
-1. Use the script to create a new file on the COS consumer cluster.
+1. Use the script to create a new file on the Cloud Object Storage consumer cluster.
 
    ```text
    COS_ACCESS_KEY=`echo -n "<enter_COS_key_here>"|base64` 
@@ -89,34 +89,34 @@ This diagram shows two clusters:
 
 1. When the pods are stable, log in to {{site.data.keyword.conversationshort}}. 
 
-1. After selecting the correct assistant, click the `Preview` icon on the left vertical bar and generate chat logs. 
+1. Select the correct assistant, then click the `Preview` icon on the left vertical bar and generate chat logs. 
 
-1. Check if the COS Objects are getting created in the `data-exhaust-backup-wa-data-governor-e58d5f4a1344` COS bucket.
+1. Check if the Cloud Object Storage objects are getting created in the `data-exhaust-backup-wa-data-governor-e58d5f4a1344` Cloud Object Storage bucket.
 
-## Configuring the data governor COS importer service
+## Configuring the data governor Cloud Object Storage importer service
 {: #cos-importer-configure-importer}
 
-Create a new file on the COS Importer cluster and copy the following script into it. Replace the placeholders `<enter_COS_key_here>`, `<enter_COS_secret_access_key_here>`, and `<enter_COS_endpoint here>` with the actual values and save the file. Then execute the script. Wait 15-20 minutes and check if the data governor pods are stable. Once the pods are stable, check if the importer cron is executing as scheduled. Once the `importer` pod completes, check if chat logs data were imported in the correct assistant chat logs by going to Assistant UI and checking the `Analyze` screen for imported data.
+Create a file on the Cloud Object Storage Importer cluster and copy the following script into it. Replace the placeholders `<enter_COS_key_here>`, `<enter_COS_secret_access_key_here>`, and `<enter_COS_endpoint here>` with the actual values and save the file. Then, run the script. Wait 15-20 minutes and check if the data governor pods are stable. When the pods are stable, check if the importer cron is running as scheduled. When the `importer` pod completes, check if chat logs data were imported in the correct assistant chat logs by going to Assistant UI and checking the `Analyze` screen for imported data.
 
-1. Use the script to create a new file on the COS importer cluster.
+1. Use the script to create a new file on the Cloud Object Storage importer cluster.
 
-```text
-   COS_ACCESS_KEY=`echo -n "<enter_COS_key_here>"|base64` 
-   COS_SECRET_ACCESS_KEY=`echo -n "<enter_COS_secret_access_key_here>"|base64`
-
-   cat <<EOF | oc apply -f -
-
-   apiVersion: v1
-   kind: Secret
-   metadata:
-     name: wa-data-governor-cos-credentials
-     namespace: cpd
-   data:
-     COS_ACCESS_KEY: ${COS_ACCESS_KEY}
-     COS_SECRET_KEY: ${COS_SECRET_ACCESS_KEY}
-   type: Opaque
-
-   EOF
+   ```text
+      COS_ACCESS_KEY=`echo -n "<enter_COS_key_here>"|base64` 
+      COS_SECRET_ACCESS_KEY=`echo -n "<enter_COS_secret_access_key_here>"|base64`
+   
+      cat <<EOF | oc apply -f -
+   
+      apiVersion: v1
+      kind: Secret
+      metadata:
+        name: wa-data-governor-cos-credentials
+        namespace: cpd
+      data:
+        COS_ACCESS_KEY: ${COS_ACCESS_KEY}
+        COS_SECRET_KEY: ${COS_SECRET_ACCESS_KEY}
+      type: Opaque
+   
+      EOF
    ```
    {: codeblock}
 
@@ -170,25 +170,25 @@ Create a new file on the COS Importer cluster and copy the following script into
    
 1. Wait 15 to 20 minutes and then check if the data governor pods are stable. 
 
-1. When the pods are stable, check that the importer cron is executing as scheduled. 
+1. When the pods are stable, check that the importer cron is running as scheduled. 
 
 1. When the `importer` pod completes, check that chat logs data were imported in the correct assistant chat logs by opening {{site.data.keyword.conversationshort}} and checking the `Analyze` screen for imported data.
 
 | Parameter | Description |
 | --- | --- |
-| fromBucket | COS bucket containing data to be imported |
-| schedule | Schedule for COS cron job to run |
-| clearObjectTags | Set to true to allow the importer to rerun on already processed COS objects |
+| fromBucket | Cloud Object Storage bucket with the data to be imported |
+| schedule | Schedule for Cloud Object Storage cron job to run |
+| clearObjectTags | Set to true to allow the importer to rerun on already processed Cloud Object Storage objects |
 | workers | Number of worker threads. Increasing the number requires more job resources. |
-| filter | Provides control over which objects are imported from the COS bucket |
+| filter | Provides control over which objects are imported from the Cloud Object Storage bucket |
 | prefix | Allows for objects from a specific date to be imported |
 | documentTimestampWindow | Allows for objects during a specific time range to be imported |
-| cos | COS credentials |
+| cos | Cloud Object Storage credentials |
 | schema | Transformation schema, which allows the importer to modify {{site.data.keyword.conversationshort}} fields to allow analytic data from pprd instance to be viewed in train. For more information, see [Generating a JSON ID mapping definition for the data governor importer service](#cos-importer-json-mapping). |
 | fromTenant | Allows import on specific filter tenant data |
 {: caption="Parameters" caption-side="bottom"}
 
-`instance_id_consumer1`, `draft_or_live_environment_id_consumer1`, and `action_skill_id_consumer1` values can be found on the Assistant settings page in on the COS consumer cluster.
+`instance_id_consumer1`, `draft_or_live_environment_id_consumer1`, and `action_skill_id_consumer1` values can be found on the Assistant settings page in on the Cloud Object Storage consumer cluster.
 {: tip}
 
 ![Assistant settings](images/assistant-settings.png)
@@ -201,26 +201,26 @@ For example:
 
 - `action_skill_id_consumer1` value is the `Action Skill ID`.
 
-Similarly, you can extract COS importer instances, assistants, and workspaces target_id values from assistant settings for the COS importer cluster.
+Similarly, you can extract Cloud Object Storage importer instances, assistants, and workspaces target_id values from assistant settings for the Cloud Object Storage importer cluster.
 
 ## Generating a JSON ID mapping definition for the data governor importer service
 {: #cos-importer-json-mapping}
 
 You can use the Analytics reports in your development environment to gain insight into your production chat logs.
 
-You need to move your production chat logs data to your development environment,  and then transform the production chat logs data to be consumed by the Analytics reports in your development assistants.
+You need to move your production chat logs data to your development environment, and then transform the production chat logs data to be used by the Analytics reports in your development assistants.
 
-For the moved chat logs data to be consumable by the Analytics reports in a different {{site.data.keyword.conversationshort}} instance and assistant in their development environment, the various IDs of the Elastic documents for the chat logs need to be transformed from the source to the target.
+For the moved chat logs data to be used by the Analytics reports in a different {{site.data.keyword.conversationshort}} instance and assistant in your development environment, the various IDs of the chat log Elastic documents need to be transformed from the source to the target.
 
 Use this code for the ID mapping definition.
 
-- This mapping definition supports transforming the chat logs for multiple {{site.data.keyword.conversationshort}} instances and assistants/workspaces.
+- This mapping definition supports transforming the chat logs for multiple {{site.data.keyword.conversationshort}} instances and assistants.
 
-- The mapping is hierarchical, so each instance level mapping also contains multiple assistant/workspace level mappings for such instance.
+- The mapping is hierarchical, so each instance level mapping also contains multiple assistant-level mappings for such instance.
 
-- Each mapping contains two ID fields: `source_id` and `target_id`. You need to supply data for each mapping at the instance and assistant/workspace levels.
+- Each mapping contains two ID fields: `source_id` and `target_id`. You need to supply data for each mapping at the instance and assistant levels.
 
-You can look up the ID data in applicable {{site.data.keyword.conversationshort}} instances and assistants/workspaces.
+You can look up the ID data in applicable {{site.data.keyword.conversationshort}} instances and assistants.
 
 ```json
 {
