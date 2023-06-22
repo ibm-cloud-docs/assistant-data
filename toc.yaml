@@ -9,7 +9,6 @@ toc:
     product-page: https://www.ibm.com/products/watson-assistant
     path: assistant-data
     label: Watson Assistant for IBM Cloud Pak for Data (Installed)
-
   entries:
   - navgroup:
       id: learn
@@ -17,7 +16,6 @@ toc:
       - getting-started.md
       - index.md
       - release-notes.md
-
   - navgroup:
       id: tutorial
       topics:
@@ -25,7 +23,6 @@ toc:
       - tutorial-slots.md
       - tutorial-slots-complex.md
       - tutorial-digressions.md
-
   - navgroup:
       id: howto
       topics:
@@ -116,7 +113,6 @@ toc:
           - webhook-pre.md
           - webhook-post.md
           - webhook-log.md
-
   - navgroup:
       id: reference
       topics:
@@ -139,7 +135,6 @@ toc:
           - time-zones.md
       - services-information.md
       - language-support.md
-
   - navgroup:
       id: help
       topics:
