@@ -98,6 +98,7 @@ toc:
           - logs.md
           - irrelevance-detection.md
           - logs-resources.md
+          - cos-importer.md
       - topicgroup:
           label: Administering
           topics:
