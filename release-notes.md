@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2023
-lastupdated: "2023-06-14"
+lastupdated: "2023-06-22"
 
 subcollection: assistant-data
 
@@ -32,6 +32,7 @@ The following table shows the latest version of the web chat integration that is
 
 | {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} version | Latest web chat version available |
 |----------------|----------------|
+| 4.7.0 | [7.3.0](/docs/watson-assistant?topic=watson-assistant-release-notes-chat#7.3.0){: external} |
 | 4.6.5 | [7.2.0](/docs/watson-assistant?topic=watson-assistant-release-notes-chat#7.2.0){: external} |
 | 4.6.3 | [7.1.0](/docs/watson-assistant?topic=watson-assistant-release-notes-chat#7.1.0){: external} |
 | 4.6.2 | [7.0.0](/docs/watson-assistant?topic=watson-assistant-release-notes-chat#7.0.0){: external} |
@@ -41,6 +42,57 @@ The following table shows the latest version of the web chat integration that is
 | 4.5.0 | [6.4.1](/docs/watson-assistant?topic=watson-assistant-release-notes-chat#6.4.1){: external} |
 | 4.0.8 | [6.2.0](/docs/watson-assistant?topic=watson-assistant-release-notes-chat#6.2.0){: external} |
 {: caption="Web chat versions in {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}}" caption-side="top"}
+## 28 June 2023
+{: #assistant-data-jun282023}
+{: release-note}
+
+{{site.data.keyword.conversationfull}} Cartridge for {{site.data.keyword.icp4dfull}} Version 4.7.0 is available
+:   {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} 4.7.0 is compatible with {{site.data.keyword.icp4dfull}} Version 4.7. See the [support matrix](/docs/assistant-data?topic=assistant-data-install#install-support-matrix) for more details. 
+
+The new {{site.data.keyword.conversationshort}} experience is now available for all new instances
+:   When you create a new instance of {{site.data.keyword.conversationshort}}, the new {{site.data.keyword.conversationshort}} experience will be the default interface to use for building your assistants. The new experience makes it easier to use actions to build customer conversations. If you don't want to use the new experience, you can use the Manage menu to switch to the classic experience. For details, see [Welcome to the new {{site.data.keyword.conversationshort}}](/docs/watson-assistant?topic=watson-assistant-welcome-new-assistant){: external}.
+
+All languages are now enabled by default
+:   You don't need to add languages during installation. All supported languages are now enabled by default with no increase in footprint. For details, see [Supported languages](/docs/assistant-data?topic=assistant-data-language-support){: external}.
+
+New algorithm version Latest (20 Dec 2022) provides improved irrelevance detection
+:   A new algorithm version is available. The Latest (20 Dec 2022) version includes a new irrelevance detection implementation to improve off-topic detection. For details, see [Algorithm version and training](/docs/watson-assistant?topic=watson-assistant-algorithm-version){: external}.
+
+Actions templates updated with new design and new choices
+:   The actions template catalog has a new design. Now you can select multiple templates at the same time. The catalog also has new and updated templates, including starter kits that you can use with external services such as Google and HubSpot. For details, see [Building actions from a template](/docs/watson-assistant?topic=watson-assistant-actions-templates){: external}.
+
+Organize actions into collections
+:   Now you can put actions into collections, which are folder-style groups based on whatever categorization you need at your organization, such as by use case, internal team, or status. For details, see [Organizing actions in collections](/docs/watson-assistant?topic=watson-assistant-collections){: external}.
+
+Display iframe inline in the conversation
+:   In the web chat, an assistant can now include an iframe response within the conversation. This new option is useful for smaller pieces of iframe content. For details, see [Adding an iframe response](/docs/watson-assistant?topic=watson-assistant-respond#respond-add-iframe){: external}.
+
+New validation choices for date, time, and numeric customer responses
+:   For Number, Date, Time, Currency, and Percentage customer responses, you can now customize the validation to check for a specific answer, such as a range of dates or a limited currency amount. For details, see [Customizing validation for a response](/docs/watson-assistant?topic=watson-assistant-handle-errors#customize-validation){: external}.
+
+Confirmation to return to previous action
+:   If a customer changes to a different topic, assistants now ask a "yes or no" confirmation question to determine whether the customer wants to return to the previous action. Previously, the assistant returned to the previous action without asking. New assistants are set to use this confirmation by default. For details, see [Confirmation to return to previous topic](/docs/watson-assistant?topic=watson-assistant-change-topic#change-topic-confirmation){: external}.
+
+New "Never return" choice for when a customer changes topics
+:   In some cases, you might not want a customer to return to a previous action after the customer changes the topic. To set up this option, use the new Never return choice in Action settings. For details, see [Disabling returning to the original topic](/docs/watson-assistant?topic=watson-assistant-change-topic#change-topic-never-return){: external}.
+
+Allow changing topics in free text and regex responses
+:   By default, customers can't change topics when the assistant is asking for a free text response or when an utterance matches the pattern in a regex response. Now free text and regex customer response types have a setting to allow a customer to digress and change topics. For details, see [Enabling changing the topic for free text and regex customer responses](/docs/watson-assistant?topic=watson-assistant-change-topic#change-topic-free-text-regex){: external}.
+
+Adding and using multiple environments
+:   Each assistant has a draft and live environment. You can now add up to three environments to test your assistant before deployment. You can build content in the draft environment and test versions of your content in the extra environments. For details, see [Adding and using multiple environments](/docs/watson-assistant?topic=watson-assistant-multiple-environments){: external}.
+
+Display formats for variables
+:   In the Global settings page for actions, you can use the Display formats tab to specify the display formats for variables that use date, time, numbers, currency, or percentages. You can also choose a default locale to ensure that the format of a variable that's displayed in the web chat is what you want for your assistant. For example, you can choose to have the output of a time variable appear in HH:MM format instead of HH:MM:SS. For details, see [Display formats](/docs/watson-assistant?topic=watson-assistant-actions-global-settings#actions-global-settings-display-formats){: external}.
+
+Debug custom extensions
+:   You can use the new extension inspector in the action editor Preview pane to debug problems with custom extensions. The extension inspector shows detailed information about what data is being sent to and returned from an external API. For details, see [Debugging failures](/docs/watson-assistant?topic=watson-assistant-call-extension#extension-debug){: external}.
+
+New expression choice for setting a session variable
+:   Previously, to use an expression to set or modify a variable value, you needed to pick an existing variable or create a new one and select the expression option. Now you can use a new Expression choice to write an expression directly without first picking a variable. For details, see [Storing a value in a session variable](/docs/watson-assistant?topic=watson-assistant-manage-info#store-session-variable){: external}.
+
+Using the Cloud Object Storage importer to migrate chat logs
+:   You can use the Cloud Object Storage importer service to migrate your chat logs from one installation of {{site.data.keyword.conversationshort}} to another.For more information, see [Using the Cloud Object Storage importer to migrate chat logs](/docs/assistant-data?topic=assistant-data-cos-importer).
 ## 2 May 2023
 {: #assistant-data-may022023}
 {: release-note}

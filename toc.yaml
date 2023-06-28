@@ -31,7 +31,6 @@ toc:
           label: Installing
           topics:
           - install.md
-          - install-450.md
           - topicgroup:
               label: Installing previous versions
               topics:
@@ -98,6 +97,7 @@ toc:
           - logs.md
           - irrelevance-detection.md
           - logs-resources.md
+          - cos-importer.md
       - topicgroup:
           label: Administering
           topics:
