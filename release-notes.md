@@ -93,6 +93,7 @@ New expression choice for setting a session variable
 
 Using the Cloud Object Storage importer to migrate chat logs
 :   You can use the Cloud Object Storage importer service to migrate your chat logs from one installation of {{site.data.keyword.conversationshort}} to another.For more information, see [Using the Cloud Object Storage importer to migrate chat logs](/docs/assistant-data?topic=assistant-data-cos-importer).
+
 ## 2 May 2023
 {: #assistant-data-may022023}
 {: release-note}
