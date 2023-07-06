@@ -27,10 +27,7 @@ toc:
       id: howto
       topics:
       - dev-process.md
-      - topicgroup:
-          label: Installing
-          topics:
-          - install.md
+      - install.md
       - topicgroup:
           label: Creating your assistant
           topics:
