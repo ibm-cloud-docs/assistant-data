@@ -27,16 +27,7 @@ toc:
       id: howto
       topics:
       - dev-process.md
-      - topicgroup:
-          label: Installing
-          topics:
-          - install.md
-          - install-450.md
-          - topicgroup:
-              label: Installing previous versions
-              topics:
-              - install-150.md
-              - install-400.md
+      - install.md
       - topicgroup:
           label: Creating your assistant
           topics:
