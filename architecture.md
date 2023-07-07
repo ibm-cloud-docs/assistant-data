@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2023
-lastupdated: "2023-07-06"
+lastupdated: "2023-07-07"
 
 subcollection: assistant-data
 
@@ -72,8 +72,6 @@ The following sections provide more detail about each resource that is used by t
 
 - **Recommends**: Supports recommendations from Watson, such as dictionary-based entity synonyms and intent conflicts. Used only at authoring time from the web UI. When a user requests synonym recommendations for an entity, for example, the UI microservice calls the Store microservice. The Store microservice forwards the request to the Recommends microservice. The Recommends microservice looks up the synonyms for the current word by using the embeddings that are stored in MongoDB, and stores them in a Redis cache. This microservice sends a response with a list of synonyms to the Store microservice. A similar workflow is used to identify intent conflicts in a dialog skill.
 
-- **SIREG**: Tokenizes user input that is sumbmitted to the system. SIRE stands for Statistical Information and Relation Extraction. SIREG runs SIRE tokenizers as microservices with a gRPC interface. For most of the supported Romance languages, the language understanding pipeline has a built-in library for tokenization. Generally, and to oversimplify it, each word in the user input is treated as a separate token. However, for supported languages with a more complex syntax, namely Korean, Chinese, Japanese, and German, SIREG is needed. SIREG provides extra resources that are needed to tokenize the input properly. One or more separate SIREG pods (per language) are started if these languages are installed. The SIREG microservice is called from the training pods and from the TAS microservice by using gRPC.
-
 - **Skill-search**: Manages API calls to a {{site.data.keyword.discoveryshort}} service instance that is enabled in the same cluster. When a v2 `/message` API call reaches the Store microservice, the Store retrieves session state information from Redis and start processing skills. When the assistant that is being processed has a search skill, the Store microservice calls this microservice over HTTPS REST. This microservice queries the {{site.data.keyword.discoveryshort}} instance and and converts the output that is returned by {{site.data.keyword.discoveryshort}} to the v2 `/message` API schema.
 
 - **Spellchecker**: Corrects spelling mistakes that are made in user input that is submitted with `/message` requests. This autocorrection feature is enabled automatically for English dialog skills, and can be turned on for French skills. This microservice provides basic spell-checking capabilities by using correction techniques such as edit-distance from vocabulary word and generic language models. If enabled, the TAS microservice calls the Spellchecker using gRPC before it performs recognition of intents and entities in the user input. Spellchecker does not depend on datastores and it does not call any other microservice.
@@ -97,8 +95,6 @@ The {{site.data.keyword.conversationshort}} microservices use the following reso
 
 - **Kafka**: A queuing system for incoming customer messages. Introduced with the 1.5.0 release.
 
-- **MinIO**: MinIO is an object storage service that implements the Amazon S3 API. It is used by the language understanding pipeline microservices (NLU, Master, TAS, ED-MM, and the training pods) to store and load trained models for intent and entity classification. Data is stored in the `nlclassifier-icp` bucket. In {{site.data.keyword.conversationshort}}, MinIO is often referred to as `COS`, which stands for Cloud Object Storage. For more information, see [MinIO](#architecture-minio).
-
 - **PostgreSQL**: A popular relational database. This database is used only by the Store microservice and it is the primary store for workspaces, skills, and assistants. The deployment and pod names that are related to PostgreSQL are prefixed as `${release-name}-store-postgres`. For more information, see [PostgreSQL data store](#architecture-postgres).
 
 - **Redis**: An in-memory data store, often used for caching or sharing session state. Redis is used by the Store microservice for storing current conversation state for assistants. The UI microservice stores session state in Redis. The Recommends and Dialog microservices use a Redis instance as a cache.
@@ -118,12 +114,20 @@ The {{site.data.keyword.conversationshort}} microservices use the following reso
   The ${release-name} is `watson-assistant`.
   {: note}
 
+**4.7.0**: The following data source is no longer used, starting with the 4.7.0 release:
+
+- **MinIO**: MinIO is an object storage service that implements the Amazon S3 API. It is used by the language understanding pipeline microservices (NLU, Master, TAS, ED-MM, and the training pods) to store and load trained models for intent and entity classification. Data is stored in the `nlclassifier-icp` bucket. In {{site.data.keyword.conversationshort}}, MinIO is often referred to as `COS`, which stands for Cloud Object Storage. For more information, see [MinIO](#architecture-minio).
+
 #### Architecture changes
 
 - **1.5.0**: The following changes to the architecture occurred with this release:
 
   - The *Analytics*, *Integrations*, and *Numeric system entities* microservices were introduced.
   - The *Elastic search* and *Kafka* data sources were introduced. The *MongoDB* data source was removed.
+  
+- **4.7.0**: The following changes to the architecture occurred with this release:
+
+  - The *Multicloud Object Gateway* was introduced. The *MinIO* data source and *SIREG* microservice were removed.
 
 ## Training component
 {: #architecture-slad}
