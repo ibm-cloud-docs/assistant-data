@@ -97,11 +97,7 @@ The {{site.data.keyword.conversationshort}} microservices use the following reso
 
 - **PostgreSQL**: A popular relational database. This database is used only by the Store microservice and it is the primary store for workspaces, skills, and assistants. The deployment and pod names that are related to PostgreSQL are prefixed as `${release-name}-store-postgres`. For more information, see [PostgreSQL data store](#architecture-postgres).
 
-<draft>
-
-- **Multicloud Object Gateway**: Multicloud Object Gateway is an object storage service that implements the Amazon S3 API. It is used by the language understanding pipeline microservices (clu-controller, clu-serving, clu-training, tf-mm, ed-mm, and dragonfly) to store and load trained models for intent and entity classification. It is used by the authoring & runtime service (store) to store versioned data of the skills and also used as a temporary storage for asynchronous uploads for the authoring experience. In Watson Assistant, Multicloud Object Gateway is often referred to as `COS`, which stands for Cloud Object Storage. For more information, see [Multicloud Object Gateway](https://www.ibm.com/docs/en/cloud-paks/cp-data/4.7.x?topic=cluster-installing-multicloud-object-gateway).
-
-</Draft>
+- **Multicloud Object Gateway**: Multicloud Object Gateway is an object storage service that implements the Amazon S3 API. It is used by the language understanding pipeline microservices (clu-controller, clu-serving, clu-training, tf-mm, ed-mm, and dragonfly) to store and load trained models for intent and entity classification. It is used by the authoring and runtime service (store) to store versioned data of the skills and also used as a temporary storage for asynchronous uploads for the authoring experience. In {{site.data.keyword.conversationshort}}, Multicloud Object Gateway is often referred to as Cloud Object Storage. For more information, see [Multicloud Object Gateway](https://www.ibm.com/docs/en/cloud-paks/cp-data/4.7.x?topic=cluster-installing-multicloud-object-gateway).{: external}
 
 - **Redis**: An in-memory data store, often used for caching or sharing session state. Redis is used by the Store microservice for storing current conversation state for assistants. The UI microservice stores session state in Redis. The Recommends and Dialog microservices use a Redis instance as a cache.
 
