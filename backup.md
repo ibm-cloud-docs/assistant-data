@@ -59,7 +59,7 @@ The jobs that are created by the store cron job are called `$INSTANCE-backup-job
 You are responsible for moving the backup to a more secure location after its initial creation, preferrably a location that can be accessed outside of the cluster where the backups cannot be deleted easily. Ensure this happens for all environments, especially for Production clusters.
 {: note}
 
-The following table lists the configuration values that control the backup cron job. You can change the default values for these settings by adding them to the `install-override.yaml` file and changing their default values when you deploy the service. Or you can edit these settings by editing the cron job after the service is deployed by using the `oc edit cronjob $INSTANCE-store-cronjob` command.
+<draft>The following table lists the configuration values that control the backup cron job. You can edit these settings by editing the cron job after the service is deployed by using the `oc edit cronjob $INSTANCE-store-cronjob` command.<draft>
 
 | Variable | Description | Default value |
 |----------|-------------|---------------|
@@ -467,9 +467,9 @@ IBM created a restore tool called `pgmig`. The tool restores your database backu
 The **resourceController.yaml** file contains details about the new environment where you are adding the backed-up data. Add the following information to the file:
 
 ```yaml
-accessTokens: 
-  - value
-  - value2
+accessTokens: 
+  - value
+  - value2
 host: localhost
 port: 5000
 ```
@@ -488,14 +488,14 @@ To add the values that are required but currently missing from the file, complet
 
     If the service has multiple instances, each owned by a different user, then you must gather bearer tokens for each user who owns an instance. You can list multiple bearer token values in the `accessTokens` section.
 
-1.  To get the host information, you need details for the pod that hosts the {{site.data.keyword.conversationshort}} UI component: 
+1.  To get the host information, you need details for the pod that hosts the {{site.data.keyword.conversationshort}} UI component: 
 
     ```bash
     oc describe pod -l component=ui
     ```
     {: codeblock}
 
-    Look for the section that says, `RESOURCE_CONTROLLER_URL: https://${release-name}-addon-assistant-gateway-svc.zen:5000/api/ibmcloud/resource-controller`
+    Look for the section that says, `RESOURCE_CONTROLLER_URL: https://${release-name}-addon-assistant-gateway-svc.zen:5000/api/ibmcloud/resource-controller`
 
     For example, you can use a command like this to find it:
 
@@ -582,15 +582,15 @@ The following table lists the arguments that are supported by the `pgmig` tool:
 
 | Argument | Description |
 |---------|-------------|
-| -h, --help | Command usage |                    
-| -f, --force | Erase data if present in target Store |
-| -s, --source string | Backup file name |   
-| -r, --resourceController string | Resource Controller configuration file name |
-| -t, --target string | Target Postgres server configuration file name |
-| -m, --mapping string | Service instance-mapping configuration file name (optional) |
-| --testRCConnection | Test the connection for Resource Controller, then exit |
+| -h, --help | Command usage |                    
+| -f, --force | Erase data if present in target Store |
+| -s, --source string | Backup file name |   
+| -r, --resourceController string | Resource Controller configuration file name |
+| -t, --target string | Target Postgres server configuration file name |
+| -m, --mapping string | Service instance-mapping configuration file name (optional) |
+| --testRCConnection | Test the connection for Resource Controller, then exit |
 | --testPGConnection | Test the connection for Postgres server, then exit |
-| -v, --version | Get Build version |
+| -v, --version | Get Build version |
 {: caption="pgmig tool arguments" caption-side="top"}
 
 ### The mapping configuration file
@@ -602,7 +602,7 @@ For example, the YAML file contains values like this:
 
 ```yaml
 instance-mappings:
-  00000000-0000-0000-0000-001570184978: 00000000-0000-0000-0000-001570194490
+  00000000-0000-0000-0000-001570184978: 00000000-0000-0000-0000-001570194490
 ```
 {: codeblock}
 
