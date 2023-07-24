@@ -59,7 +59,7 @@ The jobs that are created by the store cron job are called `$INSTANCE-backup-job
 You are responsible for moving the backup to a more secure location after its initial creation, preferrably a location that can be accessed outside of the cluster where the backups cannot be deleted easily. Ensure this happens for all environments, especially for Production clusters.
 {: note}
 
-<draft>The following table lists the configuration values that control the backup cron job. You can edit these settings by editing the cron job after the service is deployed by using the `oc edit cronjob $INSTANCE-store-cronjob` command.<draft>
+The following table lists the configuration values that control the backup cron job. You can edit these settings by editing the cron job after the service is deployed by using the `oc edit cronjob $INSTANCE-store-cronjob` command.
 
 | Variable | Description | Default value |
 |----------|-------------|---------------|
