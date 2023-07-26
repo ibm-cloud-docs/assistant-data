@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2023
-lastupdated: "2023-07-24"
+lastupdated: "2023-07-26"
 
 subcollection: assistant-data
 
@@ -32,7 +32,7 @@ The following table shows the latest version of the web chat integration that is
 
 | {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} version | Latest web chat version available |
 |----------------|----------------|
-
+| 4.7.1 | [7.4.0](/docs/watson-assistant?topic=watson-assistant-release-notes-chat#7.4.0){: external} |
 | 4.7.0 | [7.3.0](/docs/watson-assistant?topic=watson-assistant-release-notes-chat#7.3.0){: external} |
 | 4.6.5 | [7.2.0](/docs/watson-assistant?topic=watson-assistant-release-notes-chat#7.2.0){: external} |
 | 4.6.3 | [7.1.0](/docs/watson-assistant?topic=watson-assistant-release-notes-chat#7.1.0){: external} |
@@ -43,6 +43,46 @@ The following table shows the latest version of the web chat integration that is
 | 4.5.0 | [6.4.1](/docs/watson-assistant?topic=watson-assistant-release-notes-chat#6.4.1){: external} |
 | 4.0.8 | [6.2.0](/docs/watson-assistant?topic=watson-assistant-release-notes-chat#6.2.0){: external} |
 {: caption="Web chat versions in {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}}" caption-side="top"}
+
+## 26 July 2023
+{: #assistant-data-jul262023}
+{: release-note}
+
+{{site.data.keyword.conversationfull}} Cartridge for {{site.data.keyword.icp4dfull}} Version 4.7.1 is available
+:   {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} 4.7.1 is compatible with {{site.data.keyword.icp4dfull}} Version 4.7. See the [support matrix](/docs/assistant-data?topic=assistant-data-install#install-support-matrix) for more details. 
+
+Edit step titles
+:  You can now add and edit titles for each step, which can help you more easily identify what a step does in an action. For more information, see [Editing actions](/docs/watson-assistant?topic=watson-assistant-build-actions-overview){: external}.
+
+Filtering the list of actions
+:   You can locate specific actions by filtering the list by subactions, by custom extension, or by variable. For more information, see [Filtering actions](/docs/watson-assistant?topic=watson-assistant-filter-actions){: external}.
+
+See which actions use a specific variable
+:   The Variables page now includes a new *Actions count* column. You can click on the number in the column to see which actions use a variable. For more information, see [Creating a session variable](https://cloud.ibm.com/docs/watson-assistant?topic=watson-assistant-manage-info#create-session-variable){: external}.
+
+New expression choice for setting a session variable
+:   Previously, to use an expression to set or modify a variable value, you needed to pick an existing variable or create a new one and select the expression option. Now you can use a new **Expression** choice to write an expression directly without first picking a variable. For more information, see [Storing a value in a session variable](/docs/watson-assistant?topic=watson-assistant-manage-info#store-session-variable){: external}.
+
+Changes to validation of OpenAPI specifications 
+:   When you build a custom extension, you work with OpenAPI specification files. This release includes changes to the validation of OpenAPI files, which might affect the connection between your actions and extensions 
+
+   You can import an action with references to a custom extension and {{site.data.keyword.conversationshort}} can automatically connect the action and extension. With the validation change, modifications to the OpenAPI specification for your custom extension might affect this automatic connection. For more information, see [Building a custom extension](/docs/watson-assistant?topic=watson-assistant-build-custom-extension){: external}.
+
+Changes to the date and number formats in assistant responses
+:   You might see changes to the date and number formats in assistant responses.
+
+   Examples of date changes include removed or added periods, such as:
+   -  In Spanish, `18 abr. 2021` changes to `18 abr 2021`
+   -  In Portuguese, `18 de abr` changes to `18 de abr.`
+
+   The delimiter character changes for numbers in some languages. For example, in French, nonbreaking space (NBSP) changes to narrow no-break space (NNBSP).
+
+   These changes are the result of migrating the {{site.data.keyword.conversationshort}} platform to Java 17, where locale values are updated by using specifications in [CLDR 39](https://cldr.unicode.org/index/downloads/cldr-39){: external}. 
+   
+   To avoid or minimize the impact of similar changes in the future, you can use [Display formats](/docs/watson-assistant?topic=watson-assistant-actions-global-settings#actions-global-settings-display-formats){: external}.
+
+Differences in contextual entity detection for dialog skills with few annotations
+:   If you have 10 to 20 examples of contextual entities in your dialog skill, you might see differences in the entities detected due to updates made to address critical vulnerabilities. The impact of these differences is limited to only newly-trained models. Existing models are unaffected. You can mitigate these differences by annotating more examples. For more information, see [Annotation-based method](/docs/assistant?topic=assistant-entities#entities-annotations-overview){: external}.
 
 ## 28 June 2023
 {: #assistant-data-jun282023}
