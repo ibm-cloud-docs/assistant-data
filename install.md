@@ -2,28 +2,13 @@
 
 copyright:
   years: 2015, 2023
-lastupdated: "2023-06-28"
+lastupdated: "2023-07-26"
 
 subcollection: assistant-data
 
 ---
 
-{:shortdesc: .shortdesc}
-{:new_window: target="_blank"}
-{:external: target="_blank" .external}
-{:deprecated: .deprecated}
-{:important: .important}
-{:note: .note}
-{:tip: .tip}
-{:pre: .pre}
-{:codeblock: .codeblock}
-{:screen: .screen}
-{:javascript: .ph data-hd-programlang='javascript'}
-{:java: .ph data-hd-programlang='java'}
-{:python: .ph data-hd-programlang='python'}
-{:swift: .ph data-hd-programlang='swift'}
-{:download: .download}
-{:gif: data-image-type='gif'}
+{{site.data.keyword.attribute-definition-list}}
 
 # Installing
 {: #install}
@@ -36,7 +21,8 @@ The {{site.data.keyword.icp4dfull_notm}} environment is a Kubernetes-based conta
 The installation process differs depending on the version you are installing. The following table shows the available versions.
 
 | Version |  Cluster | Installation instructions |
-|------------------------|---------------------------|-------------------|
+| --- | --- | --- |
+| 4.7.1 | {{site.data.keyword.icp4dfull_notm}} 4.7.x | [Installing 4.7.1](https://www.ibm.com/docs/SSQNUZ_4.7.x/svc-assistant/assistant-svc-install.html){: external} |
 | 4.7.0 | {{site.data.keyword.icp4dfull_notm}} 4.7.x | [Installing 4.7.0](https://www.ibm.com/docs/SSQNUZ_4.7.x/svc-assistant/assistant-svc-install.html){: external} |
 | 4.6.5 | {{site.data.keyword.icp4dfull_notm}} 4.6.x | [Installing 4.6.5](https://www.ibm.com/docs/SSQNUZ_4.6.x/svc-assistant/assistant-svc-install.html){: external} |
 | 4.6.3 | {{site.data.keyword.icp4dfull_notm}} 4.6.x | [Installing 4.6.3](https://www.ibm.com/docs/SSQNUZ_4.6.x/svc-assistant/assistant-svc-install.html){: external} |
@@ -62,7 +48,9 @@ The installation process differs depending on the version you are installing. Th
 The following table describes which versions of {{site.data.keyword.conversationshort}} are supported on which versions of {{site.data.keyword.icp4dfull_notm}} and Red Hat OpenShift.
 
 | {{site.data.keyword.conversationshort}} version | {{site.data.keyword.icp4dfull_notm}} version | Red Hat OpenShift version |
-|----------------|----------------|----------------|
+| --- | --- | --- |
+| 4.7.1 | 4.7.x | 4.12 |
+| 4.7.1 | 4.7.x | 4.10 |
 | 4.7.0 | 4.7.x | 4.12 |
 | 4.7.0 | 4.7.x | 4.10 |
 | 4.6.5 | 4.6.x | 4.12 |
