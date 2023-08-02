@@ -93,7 +93,6 @@ toc:
       - topicgroup:
           label: Administering
           topics:
-          - manage.md
           - architecture.md
           - information-security.md
           - backup.md
