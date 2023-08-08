@@ -33,6 +33,7 @@ toc:
           topics:
           - assistants.md
           - assistant-add.md
+          - skill-add.md
           - assistant-settings.md
       - topicgroup:
           label: Creating a dialog skill
@@ -64,7 +65,6 @@ toc:
               - dialog-integrations.md
               - dialog-responses-json.md
           - versions.md
-      - skill-search-add.md
       - assistant-language.md
       - topicgroup:
           label: Deploying
