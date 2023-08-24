@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2023
-lastupdated: "2023-07-26"
+lastupdated: "2023-08-23"
 
 subcollection: assistant-data
 
@@ -32,6 +32,7 @@ The following table shows the latest version of the web chat integration that is
 
 | {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} version | Latest web chat version available |
 |----------------|----------------|
+
 | 4.7.1 | [7.4.0](/docs/watson-assistant?topic=watson-assistant-release-notes-chat#7.4.0){: external} |
 | 4.7.0 | [7.3.0](/docs/watson-assistant?topic=watson-assistant-release-notes-chat#7.3.0){: external} |
 | 4.6.5 | [7.2.0](/docs/watson-assistant?topic=watson-assistant-release-notes-chat#7.2.0){: external} |
@@ -43,6 +44,7 @@ The following table shows the latest version of the web chat integration that is
 | 4.5.0 | [6.4.1](/docs/watson-assistant?topic=watson-assistant-release-notes-chat#6.4.1){: external} |
 | 4.0.8 | [6.2.0](/docs/watson-assistant?topic=watson-assistant-release-notes-chat#6.2.0){: external} |
 {: caption="Web chat versions in {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}}" caption-side="top"}
+
 
 ## 26 July 2023
 {: #assistant-data-jul262023}

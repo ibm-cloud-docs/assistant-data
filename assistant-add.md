@@ -1,26 +1,17 @@
 ---
 
 copyright:
-  years: 2015, 2020
-lastupdated: "2020-11-25"
+  years: 2015, 2023
+lastupdated: "2023-08-24"
 
 subcollection: assistant-data
 
 ---
 
-{:shortdesc: .shortdesc}
-{:new_window: target="_blank"}
-{:deprecated: .deprecated}
-{:important: .important}
-{:note: .note}
-{:tip: .tip}
-{:pre: .pre}
-{:codeblock: .codeblock}
-{:screen: .screen}
-{:javascript: .ph data-hd-programlang='javascript'}
-{:java: .ph data-hd-programlang='java'}
-{:python: .ph data-hd-programlang='python'}
-{:swift: .ph data-hd-programlang='swift'}
+{{site.data.keyword.attribute-definition-list}}
+
+This documentation for the **classic {{site.data.keyword.conversationshort}}** experience has moved. For the most up-to-date version, see [Adding more assistants](/docs/watson-assistant?topic=watson-assistant-assistant-add){: external} and [Renaming or deleting assistants](/docs/watson-assistant?topic=watson-assistant-assistant-rename-delete). To see all documentation for the new {{site.data.keyword.conversationshort}}, please go [here](https://cloud.ibm.com/docs/watson-assistant){: external}.
+{: attention}
 
 # Creating an assistant
 {: #assistant-add}
@@ -32,22 +23,12 @@ Follow these steps to create an assistant:
 
 1.  Click the **Assistants** icon ![Assistants menu icon](images/nav-ass-icon.png).
 
-    **1.3**: Click the Assistants tab. If you don't see the Assistants tab, click the breadcrumb link in the page header.
-
 1.  Click **Create assistant**.
 
 1.  Add details about the new assistant:
 
     - **Name**: A name no more than 100 characters in length. A name is required.
     - **Description**: An optional description no more than 200 characters in length.
-
-    **1.5**: With the 1.5.0 release, if your assistant has a skill associated with it, the following integrations are created for you automatically unless you choose not to enable them:
-
-    - **Web chat**: Creates a chat widget that you can embed in your company website to deploy your assistant in minutes.
-    - **Preview link**: Creates an IBM-branded public web page that you and your team can use to test your assistant.
-
-    You cannot enable the integrations from the assistant creation page unless a skill (dialog or search) exists.
-    {: note}
 
 1.  Click **Create assistant**.
 
@@ -124,5 +105,3 @@ You can add one skill of each skill type to an assistant. If you want to change 
 If you have more than one deployed instance of {{site.data.keyword.conversationshort}} in your cluster, you can switch to a different instance.
 
 To change to a different instance, you must open the other instance from the *My instances* page of the {{site.data.keyword.icp4dfull_notm}} web client.
-
-**V1.3 only**: If you are working within a skill, click the **Skills** breadcrumb link first. The banner displays the current instance name. To switch to a different service instance, click **Change**, and then choose the appropriate instance.
