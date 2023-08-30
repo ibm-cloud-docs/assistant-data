@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2023
-lastupdated: "2023-08-24"
+lastupdated: "2023-08-30"
 
 subcollection: assistant-data
 
@@ -32,6 +32,7 @@ The following table shows the latest version of the web chat integration that is
 
 | {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} version | Latest web chat version available |
 |----------------|----------------|
+| 4.7.2 | [7.5.0](/docs/watson-assistant?topic=watson-assistant-release-notes-chat#7.5.0){: external} |
 | 4.7.1 | [7.4.0](/docs/watson-assistant?topic=watson-assistant-release-notes-chat#7.4.0){: external} |
 | 4.7.0 | [7.3.0](/docs/watson-assistant?topic=watson-assistant-release-notes-chat#7.3.0){: external} |
 | 4.6.5 | [7.2.0](/docs/watson-assistant?topic=watson-assistant-release-notes-chat#7.2.0){: external} |
@@ -44,6 +45,36 @@ The following table shows the latest version of the web chat integration that is
 | 4.0.8 | [6.2.0](/docs/watson-assistant?topic=watson-assistant-release-notes-chat#6.2.0){: external} |
 {: caption="Web chat versions in {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}}" caption-side="top"}
 
+## 30 August 2023
+{: #assistant-data-aug302023}
+{: release-note}
+
+{{site.data.keyword.conversationfull}} Cartridge for {{site.data.keyword.icp4dfull}} Version 4.7.2 is available
+:   {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} 4.7.2 is compatible with {{site.data.keyword.icp4dfull}} Version 4.7. See the [support matrix](/docs/assistant-data?topic=assistant-data-install#install-support-matrix) for more details. 
+
+Multiple validation responses
+:   When you edit a validation for a customer response, you can now include several validation responses. For more information, see [Customizing validation for a response](/docs/watson-assistant?topic=watson-assistant-handle-errors#customize-validation){: external}.
+
+Multilingual downloads
+:   You can download language data files, in CSV format, so that you can translate training examples and assistant responses into other languages for use in other assistants. For more information, see [Using multilingual downloads for translation](/docs/watson-assistant?topic=watson-assistant-admin-language-support){: external}.
+
+Algorithm for improved intent detection and action matching
+:   You can now use the algorithm version Beta, which includes a new foundation model that is trained with a transformer architecture. The Beta algorithm provides the following improvements:  
+
+   - Improved intent detection and action matching for English, French, German, Portuguese (Brazilian), and Spanish
+   - Improved robustness to variations in user inputs such as typos and different inflection forms
+   - Reduction in the amount of training data required to reach the same level of performance compared to previous algorithms
+
+   For more information, see [Algorithm version and training](/docs/watson-assistant?topic=watson-assistant-algorithm-version){: external}.
+
+Fallback choice for dynamic options
+:   The dynamic options response type now includes a fallback static choice, such as "None of the above", if the options aren't what the customer wants. You can then add a step that is conditioned on this static option to provide further assistance. For more information, see [Dynamic options](/docs/watson-assistant?topic=watson-assistant-dynamic-options){: external}.
+
+Option to allow change of topic between actions and dialog
+:   If you are using actions and dialog, there is a new setting you can use to ensure that customers can change topics between an action and a dialog node. For more information, see [Allow change of topic between actions and dialog](/docs/watson-assistant?topic=watson-assistant-change-topic){: external}.
+
+Action and collection names must now be unique
+:   With this release, each action name must be different from other action names, and each collection name must be different from other collection names. If your existing actions or collections have duplicate names, a warning icon will appear in the Status column. For more information, see [Overview: Editing actions](/docs/watson-assistant?topic=watson-assistant-build-actions-overview){: external} and [Organizing actions in collections](https://cloud.ibm.com/docs/watson-assistant?topic=watson-assistant-collections){: external}.
 
 ## 26 July 2023
 {: #assistant-data-jul262023}
