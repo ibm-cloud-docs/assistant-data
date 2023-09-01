@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2015, 2020
-lastupdated: "2020-01-29"
+  years: 2015, 2023
+lastupdated: "2023-09-01"
 
 subcollection: assistant-data
 
@@ -42,10 +42,6 @@ The typical workflow for an assistant project includes the following steps:
 1.  Define any entities that are needed to more clearly understand the user's meaning.
 
     Mine existing intent user examples for common entity value mentions. Using annotations to define entities captures not only the text of the entity value, but the context in which the entity value is typically used in a sentence.
-
-    For dictionary-based entities, use synonym recommendations to expand your entity definitions.
-    {: tip}
-
 1.  Test each function that you add to the assistant in the "Try it" pane, incrementally, as you go.
 1.  When you have a working assistant that can successfully handle key tasks, add an integration that deploys the assistant to a development environment. Test the deployed assistant and make refinements.
 
