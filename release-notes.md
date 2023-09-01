@@ -21,7 +21,7 @@ Use these release notes to learn about the latest updates to {{site.data.keyword
 ## Feature availability
 {: #release-notes-available-features}
 
-Some features that are available with {{site.data.keyword.assistant_classic_short}} for cloud are not available with {{site.data.keyword.assistant_classic_short}} for {{site.data.keyword.icp4dfull}}. For a list of features that are not available with {{site.data.keyword.assistant_classic_short}} for {{site.data.keyword.icp4dfull}}, see [About {{assistant_classic_short.assistant_classic_short}}](/docs/assistant-data?topic=assistant-data-index#index-available-features).
+Some features that are available with {{site.data.keyword.assistant_classic_short}} for cloud are not available with {{site.data.keyword.assistant_classic_short}} for {{site.data.keyword.icp4dfull}}. For a list of features that are not available with {{site.data.keyword.assistant_classic_short}} for {{site.data.keyword.icp4dfull}}, see [About {{site.data.keyword.assistant_classic_short}}](/docs/assistant-data?topic=assistant-data-index#index-available-features).
 
 ## Web chat versions
 {: #release-notes-web-chat}
