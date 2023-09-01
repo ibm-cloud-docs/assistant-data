@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2023
-lastupdated: "2023-06-22"
+lastupdated: "2023-09-01"
 
 subcollection: assistant-data
 
@@ -13,14 +13,14 @@ subcollection: assistant-data
 # Using the Cloud Object Storage importer to migrate chat logs
 {: #cos-importer}
 
-You can use the Cloud Object Storage importer service to migrate your chat logs from one installation of {{site.data.keyword.conversationshort}} to another.
+You can use the Cloud Object Storage importer service to migrate your chat logs from one installation of {{site.data.keyword.assistant_classic_short}} to another.
 
 This diagram shows two clusters:
 
 | Cluster | Description |
 | --- | --- |
-| Cloud Object Storage consumer | Red Hat OpenShift cluster with the {{site.data.keyword.conversationshort}} installation used to export chat log data to Cloud Object Storage |
-| Cloud Object Storage importer | Red Hat OpenShift cluster with the {{site.data.keyword.conversationshort}} installation that imports chat log data from the Cloud Object Storage consumer cluster's copied bucket |
+| Cloud Object Storage consumer | Red Hat OpenShift cluster with the {{site.data.keyword.assistant_classic_short}} installation used to export chat log data to Cloud Object Storage |
+| Cloud Object Storage importer | Red Hat OpenShift cluster with the {{site.data.keyword.assistant_classic_short}} installation that imports chat log data from the Cloud Object Storage consumer cluster's copied bucket |
 {: caption="Diagram clusters" caption-side="bottom"}
 
 ![Architecture Diagram](images/data-governor-architecture.png)
@@ -87,7 +87,7 @@ This diagram shows two clusters:
    
 1. Wait 15 to 20 minutes and then check if the data governor pods are stable. 
 
-1. When the pods are stable, log in to {{site.data.keyword.conversationshort}}. 
+1. When the pods are stable, log in to {{site.data.keyword.assistant_classic_short}}. 
 
 1. Select the correct assistant, then click the `Preview` icon on the left vertical bar and generate chat logs. 
 
@@ -172,7 +172,7 @@ Create a file on the Cloud Object Storage Importer cluster and copy the followin
 
 1. When the pods are stable, check that the importer cron is running as scheduled. 
 
-1. When the `importer` pod completes, check that chat logs data were imported in the correct assistant chat logs by opening {{site.data.keyword.conversationshort}} and checking the `Analyze` screen for imported data.
+1. When the `importer` pod completes, check that chat logs data were imported in the correct assistant chat logs by opening {{site.data.keyword.assistant_classic_short}} and checking the `Analyze` screen for imported data.
 
 | Parameter | Description |
 | --- | --- |
@@ -184,7 +184,7 @@ Create a file on the Cloud Object Storage Importer cluster and copy the followin
 | prefix | Allows for objects from a specific date to be imported |
 | documentTimestampWindow | Allows for objects during a specific time range to be imported |
 | cos | Cloud Object Storage credentials |
-| schema | Transformation schema, which allows the importer to modify {{site.data.keyword.conversationshort}} fields to allow analytic data from pprd instance to be viewed in train. For more information, see [Generating a JSON ID mapping definition for the data governor importer service](#cos-importer-json-mapping). |
+| schema | Transformation schema, which allows the importer to modify {{site.data.keyword.assistant_classic_short}} fields to allow analytic data from pprd instance to be viewed in train. For more information, see [Generating a JSON ID mapping definition for the data governor importer service](#cos-importer-json-mapping). |
 | fromTenant | Allows import on specific filter tenant data |
 {: caption="Parameters" caption-side="bottom"}
 
@@ -210,17 +210,17 @@ You can use the Analytics reports in your development environment to gain insigh
 
 You need to move your production chat logs data to your development environment, and then transform the production chat logs data to be used by the Analytics reports in your development assistants.
 
-For the moved chat logs data to be used by the Analytics reports in a different {{site.data.keyword.conversationshort}} instance and assistant in your development environment, the various IDs of the chat log Elastic documents need to be transformed from the source to the target.
+For the moved chat logs data to be used by the Analytics reports in a different {{site.data.keyword.assistant_classic_short}} instance and assistant in your development environment, the various IDs of the chat log Elastic documents need to be transformed from the source to the target.
 
 Use this code for the ID mapping definition.
 
-- This mapping definition supports transforming the chat logs for multiple {{site.data.keyword.conversationshort}} instances and assistants.
+- This mapping definition supports transforming the chat logs for multiple {{site.data.keyword.assistant_classic_short}} instances and assistants.
 
 - The mapping is hierarchical, so each instance level mapping also contains multiple assistant-level mappings for such instance.
 
 - Each mapping contains two ID fields: `source_id` and `target_id`. You need to supply data for each mapping at the instance and assistant levels.
 
-You can look up the ID data in applicable {{site.data.keyword.conversationshort}} instances and assistants.
+You can look up the ID data in applicable {{site.data.keyword.assistant_classic_short}} instances and assistants.
 
 ```json
 {

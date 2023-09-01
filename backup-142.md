@@ -26,12 +26,12 @@ subcollection: assistant-data
 # Backing up and restoring data 1.4.2
 {: #backup-142}
 
-You can back up and restore the data that is associated with your {{site.data.keyword.conversationshort}} deployment in {{site.data.keyword.icp4dfull_notm}}.
+You can back up and restore the data that is associated with your {{site.data.keyword.assistant_classic_short}} deployment in {{site.data.keyword.icp4dfull_notm}}.
 {: shortdesc}
 
-These instructions describe how to back up and restore {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull_notm}} 1.4.2. Use these instructions to back up and restore 1.4.1 to 1.4.2 and 1.4.2 to 1.4.2.
+These instructions describe how to back up and restore {{site.data.keyword.assistant_classic_short}} for {{site.data.keyword.icp4dfull_notm}} 1.4.2. Use these instructions to back up and restore 1.4.1 to 1.4.2 and 1.4.2 to 1.4.2.
 
-The primary data storage for {{site.data.keyword.conversationshort}} is a Postgres database. Your data, such as workspaces, assistants, and skills are stored in Postgres. Other internal data, such as trained models, can be recreated from the data in Postgres.
+The primary data storage for {{site.data.keyword.assistant_classic_short}} is a Postgres database. Your data, such as workspaces, assistants, and skills are stored in Postgres. Other internal data, such as trained models, can be recreated from the data in Postgres.
 
 To back up the data, you use a tool that Postgres provides that is called `pg_dump`. The dump tool creates a backup by sending the database contents to `stdout` where you can write it to a file.
 
@@ -51,7 +51,7 @@ When you back up data with one of these procedures before you upgrade from one v
 - You cannot use this procedure to back up the data that is returned by the search skill. Data that is retrieved by the search skill comes from a data collection in a {{site.data.keyword.discoveryshort}} instance. See the [{{site.data.keyword.discoveryshort}} documentation](/docs/discovery-data?topic=discovery-data-backup-restore) to find out how to back up its data.
 - If you back up and restore or otherwise change the {{site.data.keyword.discoveryshort}} service that your search skill connects to, then you cannot restore the search skill, but must recreate it. When you set up a search skill, you map sections of the assistant's response to fields in a data collection that is hosted by an instance of {{site.data.keyword.discoveryshort}} on the same cluster. If the {{site.data.keyword.discoveryshort}} instance changes, your mapping to it is broken. If your {{site.data.keyword.discoveryshort}} service does not change, then the search skill can continue to connect to the data collection.
 - The tool that restores the data clears the current database before it restores the backup. Therefore, if you might need to revert to the current database, create a backup of it first.
-- The target {{site.data.keyword.icp4dfull_notm}} cluster where you restore the data must have the same number of provisioned {{site.data.keyword.conversationshort}} service instances as the environment from which you back up the database.
+- The target {{site.data.keyword.icp4dfull_notm}} cluster where you restore the data must have the same number of provisioned {{site.data.keyword.assistant_classic_short}} service instances as the environment from which you back up the database.
 
 ## Backing up data by using the CronJob
 {: #backup-142-cronjob}
@@ -291,7 +291,7 @@ To back up your data, complete these steps:
 
     The following lists describes the arguments. You retrieved the values for some of these parameters in the previous step:
 
-    - `PROXY_POD`: Any Postgres Proxy pod in your {{site.data.keyword.conversationshort}} Helm release.
+    - `PROXY_POD`: Any Postgres Proxy pod in your {{site.data.keyword.assistant_classic_short}} Helm release.
     - `DATABASE`: The store database name.
     - `USERNAME`: Postgres user ID that can access the database.
     - `PASSWORD`: The password that corresponds with the Postgres user ID.
@@ -312,7 +312,7 @@ IBM created a restore tool called `pgmig`. The tool restores your database backu
 Before it adds the backed-up data, the tool removes the data for all instances in the current service deployment, so any spares are removed also.
 {: important}
 
-1.  Install the target {{site.data.keyword.icp4dfull_notm}} cluster to which you want to restore the data. From the web client for the target cluster, create one service instance of {{site.data.keyword.conversationshort}} for each service instance that was backed up on the old cluster.
+1.  Install the target {{site.data.keyword.icp4dfull_notm}} cluster to which you want to restore the data. From the web client for the target cluster, create one service instance of {{site.data.keyword.assistant_classic_short}} for each service instance that was backed up on the old cluster.
 
     The target {{site.data.keyword.icp4dfull_notm}} cluster must have the same number of instances as there were in the environment where you backed up the database.
     {: important}
@@ -337,7 +337,7 @@ Before it adds the backed-up data, the tool removes the data for all instances i
 
 1.  Create two configuration files, and store them in the same backup directory.
 
-    - **resourceController.yaml**: The Resource Controller file keeps a list of all provisioned {{site.data.keyword.conversationshort}} instances. See [Creating the resourceController.yaml file](#backup-142-resource-controller-yaml).
+    - **resourceController.yaml**: The Resource Controller file keeps a list of all provisioned {{site.data.keyword.assistant_classic_short}} instances. See [Creating the resourceController.yaml file](#backup-142-resource-controller-yaml).
 
     - **postgres.yaml**: The Postgres file lists details for the target Postgres pods. See [Creating the postgres.yaml file](#backup-142-postgres-yaml).
 
@@ -357,7 +357,7 @@ Before it adds the backed-up data, the tool removes the data for all instances i
     oc rsync #backup_DIR $KEEPER_POD:/tmp/bu/.
     ```
     {: codeblock}
-    <!-- add command for stand-alone since there is no kubectl rsync command -->
+    
 
 1.  Stop the Store by scaling the store pods down to 0 replicas.
 
@@ -423,7 +423,7 @@ To add the values that are required but currently missing from the file, complet
 
     - Log in to the {{site.data.keyword.icp4dfull_notm}} web client.
     - From the main {{site.data.keyword.icp4dfull_notm}} web client navigation menu, select **My instances**.
-    - On the **Provisioned instances** tab, find your {{site.data.keyword.conversationshort}} instance, and then hover over the last column to show and click the ellipses icon ![More icon](images/cp4d-sideways-kebab.png).
+    - On the **Provisioned instances** tab, find your {{site.data.keyword.assistant_classic_short}} instance, and then hover over the last column to show and click the ellipses icon ![More icon](images/cp4d-sideways-kebab.png).
     - Choose **View details**.
     - In the details of the instance, find the **Bearer token**. Copy the token and paste it into the accessTokens list.
 
@@ -594,6 +594,6 @@ instance-mappings:
 ```
 {: codeblock}
 
-where the first value (`00000000-0000-0000-0000-001570184978`) is the instance ID in the database backup and the second value (`00000000-0000-0000-0000-001570194490`) is the ID of a provisioned instance in the {{site.data.keyword.conversationshort}} service on the system.
+where the first value (`00000000-0000-0000-0000-001570184978`) is the instance ID in the database backup and the second value (`00000000-0000-0000-0000-001570194490`) is the ID of a provisioned instance in the {{site.data.keyword.assistant_classic_short}} service on the system.
 
 You can pass this file to the script for subsequent runs of the script in the same environment. Or you can edit it for use in other back up and restore operations. The mapping file is optional. If it is not provided, the tool prompts you for the mapping details based on information you provide in the YAML files.

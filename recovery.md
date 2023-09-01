@@ -28,7 +28,7 @@ subcollection: assistant-data
 Recovering from potential disasters requires planning and preparation.
 {: shortdesc}
 
-You are responsible for understanding your configuration, customization, and usage of {{site.data.keyword.conversationshort}}. You are also responsible for being ready to re-create an instance of the service and to restore your data. 
+You are responsible for understanding your configuration, customization, and usage of {{site.data.keyword.assistant_classic_short}}. You are also responsible for being ready to re-create an instance of the service and to restore your data. 
 
 ## Disaster recovery
 {: #recovery-dr}

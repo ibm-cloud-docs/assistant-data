@@ -26,10 +26,10 @@ subcollection: assistant-data
 # Backing up and restoring data
 {: #backup}
 
-You can back up and restore the data that is associated with your {{site.data.keyword.conversationshort}} deployment in {{site.data.keyword.icp4dfull_notm}}.
+You can back up and restore the data that is associated with your {{site.data.keyword.assistant_classic_short}} deployment in {{site.data.keyword.icp4dfull_notm}}.
 {: shortdesc}
 
-The primary data storage for {{site.data.keyword.conversationshort}} is a Postgres database. Your data, such as workspaces, assistants, and skills are stored in Postgres. Other internal data, such as trained models, can be recreated from the data in Postgres.
+The primary data storage for {{site.data.keyword.assistant_classic_short}} is a Postgres database. Your data, such as workspaces, assistants, and skills are stored in Postgres. Other internal data, such as trained models, can be recreated from the data in Postgres.
 
 Choose one of the following ways to manage the back up of data:
 
@@ -47,7 +47,7 @@ When you back up data with one of these procedures before you upgrade from one v
 - You cannot use this procedure to back up the data that is returned by the search skill. Data that is retrieved by the search skill comes from a data collection in a {{site.data.keyword.discoveryshort}} instance. See the [{{site.data.keyword.discoveryshort}} documentation](/docs/discovery-data?topic=discovery-data-backup-restore) to find out how to back up its data.
 - If you back up and restore or otherwise change the {{site.data.keyword.discoveryshort}} service that your search skill connects to, then you cannot restore the search skill, but must recreate it. When you set up a search skill, you map sections of the assistant's response to fields in a data collection that is hosted by an instance of {{site.data.keyword.discoveryshort}} on the same cluster. If the {{site.data.keyword.discoveryshort}} instance changes, your mapping to it is broken. If your {{site.data.keyword.discoveryshort}} service does not change, then the search skill can continue to connect to the data collection.
 - The tool that restores the data clears the current database before it restores the backup. Therefore, if you might need to revert to the current database, create a backup of it first.
-- The target {{site.data.keyword.icp4dfull_notm}} cluster where you restore the data must have the same number of provisioned {{site.data.keyword.conversationshort}} service instances as the environment from which you back up the database. To verify in the {{site.data.keyword.icp4dfull_notm}} web client, select **Services** from the main navigation menu, select **Instances**, and then open the **Provisioned instances** tab. If more than one user created instances, then ask the other users who created instances to log in and check the number they created. You can then add up the total sum of instances for your deployment. Note that not even an administrative user can see instances that were created by others from the web client user interface.
+- The target {{site.data.keyword.icp4dfull_notm}} cluster where you restore the data must have the same number of provisioned {{site.data.keyword.assistant_classic_short}} service instances as the environment from which you back up the database. To verify in the {{site.data.keyword.icp4dfull_notm}} web client, select **Services** from the main navigation menu, select **Instances**, and then open the **Provisioned instances** tab. If more than one user created instances, then ask the other users who created instances to log in and check the number they created. You can then add up the total sum of instances for your deployment. Note that not even an administrative user can see instances that were created by others from the web client user interface.
 
 ## Backing up data by using the CronJob
 {: #backup-cronjob}
@@ -267,7 +267,7 @@ To back up data by using the provided script, complete the following steps:
     Replace the following values in the command:
 
     - `${BACKUP_DIR}`: Specify a file where you want to write the downloaded data. Be sure to specify a backup directory in which to store the file. For example, `/bu/backup-file-name.dump` creates a backup directory named `bu`.
-    - `--instance ${INSTANCE}`: Select the specific instance of {{site.data.keyword.conversationshort}} to be backed up.
+    - `--instance ${INSTANCE}`: Select the specific instance of {{site.data.keyword.assistant_classic_short}} to be backed up.
 
 If you prefer to back up data by using the Postgres tool directly, you can complete the procedure to back up data manually.
 
@@ -285,7 +285,7 @@ To back up your data, complete these steps:
     ```
     {: codeblock}
 
-    Replace ${INSTANCE} with the instance of the {{site.data.keyword.conversationshort}} deployment that you want to back up.
+    Replace ${INSTANCE} with the instance of the {{site.data.keyword.assistant_classic_short}} deployment that you want to back up.
 
 1.  Fetch the store VCAP secret name:
 
@@ -333,7 +333,7 @@ To back up your data, complete these steps:
 
     The following lists describes the arguments. You retrieved the values for some of these parameters in the previous step:
 
-    - `$KEEPER_POD`: Any Postgres pod in your {{site.data.keyword.conversationshort}} instance.
+    - `$KEEPER_POD`: Any Postgres pod in your {{site.data.keyword.assistant_classic_short}} instance.
     - `${BACKUP_DIR}`: Specify a file where you want to write the downloaded data. Be sure to specify a backup directory in which to store the file. For example, `/bu/backup-file-name.dump` creates a backup directory named `bu`.
     - `$DATABASE`: The store database name that was retrieved from the Store VCAP secret in step 3.
     - `$HOSTNAME`: The hostname that was retrieved from the Store VCAP secret in step 3.
@@ -354,7 +354,7 @@ IBM created a restore tool called `pgmig`. The tool restores your database backu
 
 1.  Install the target {{site.data.keyword.icp4dfull_notm}} cluster to which you want to restore the data.
 
-    From the web client for the target cluster, create one service instance of {{site.data.keyword.conversationshort}} for each service instance that was backed up on the old cluster. The target {{site.data.keyword.icp4dfull_notm}} cluster must have the same number of instances as there were in the environment where you backed up the database.
+    From the web client for the target cluster, create one service instance of {{site.data.keyword.assistant_classic_short}} for each service instance that was backed up on the old cluster. The target {{site.data.keyword.icp4dfull_notm}} cluster must have the same number of instances as there were in the environment where you backed up the database.
 
 1.  Back up the current database before you replace it with the backed-up database.
 
@@ -364,7 +364,7 @@ IBM created a restore tool called `pgmig`. The tool restores your database backu
 
 1.  Run the following command to download the `pgmig` tool from the [GitHub Watson Developer Cloud Community](https://github.com/watson-developer-cloud/community/tree/master/watson-assistant/data) repository.
 
-    In the first command, update `<WA_VERSION>` to the version that you want to restore. For example, update `<WA_VERSION>` to `4.6.0` if you want to restore {{site.data.keyword.conversationshort}} 4.6.0.
+    In the first command, update `<WA_VERSION>` to the version that you want to restore. For example, update `<WA_VERSION>` to `4.6.0` if you want to restore {{site.data.keyword.assistant_classic_short}} 4.6.0.
     {:important: .important}
 
     ```bash
@@ -375,7 +375,7 @@ IBM created a restore tool called `pgmig`. The tool restores your database backu
 
 1.  Create the following two configuration files and store them in the same backup directory:
 
-    - `resourceController.yaml`: The Resource Controller file keeps a list of all provisioned {{site.data.keyword.conversationshort}} instances. See [Creating the resourceController.yaml file](#backup-resource-controller-yaml).
+    - `resourceController.yaml`: The Resource Controller file keeps a list of all provisioned {{site.data.keyword.assistant_classic_short}} instances. See [Creating the resourceController.yaml file](#backup-resource-controller-yaml).
 
     - `postgres.yaml`: The Postgres file lists details for the target Postgres pods. See [Creating the postgres.yaml file](#backup-postgres-yaml).
 
@@ -386,7 +386,7 @@ IBM created a restore tool called `pgmig`. The tool restores your database backu
     ```
     {: codeblock}
 
-    - Replace `${INSTANCE}` with the name of the {{site.data.keyword.conversationshort}} instance that you want to back up.
+    - Replace `${INSTANCE}` with the name of the {{site.data.keyword.assistant_classic_short}} instance that you want to back up.
     - Replace `${BACKUP_DIR}` with the directory where the `postgres.yaml` and `resourceController.yaml` files are located.
 
 1.  Copy the files that you downloaded and created in the previous steps to any existing directory on a Postgres pod.
@@ -481,14 +481,14 @@ To add the values that are required but currently missing from the file, complet
 
     - Log in to the {{site.data.keyword.icp4dfull_notm}} web client.
     - From the main {{site.data.keyword.icp4dfull_notm}} web client navigation menu, select **My instances**.
-    - On the **Provisioned instances** tab, click your {{site.data.keyword.conversationshort}} instance.
+    - On the **Provisioned instances** tab, click your {{site.data.keyword.assistant_classic_short}} instance.
     - In the Access information of the instance, find the **Bearer token**. Copy the token and paste it into the accessTokens list.
 
     A bearer token for an instance can access all instances that are owned by the user. Therefore, if a single user owns all of the instances, then only one bearer token is required.
 
     If the service has multiple instances, each owned by a different user, then you must gather bearer tokens for each user who owns an instance. You can list multiple bearer token values in the `accessTokens` section.
 
-1.  To get the host information, you need details for the pod that hosts the {{site.data.keyword.conversationshort}} UI component: 
+1.  To get the host information, you need details for the pod that hosts the {{site.data.keyword.assistant_classic_short}} UI component: 
 
     ```bash
     oc describe pod -l component=ui
@@ -606,6 +606,6 @@ instance-mappings:
 ```
 {: codeblock}
 
-where the first value (`00000000-0000-0000-0000-001570184978`) is the instance ID in the database backup and the second value (`00000000-0000-0000-0000-001570194490`) is the ID of a provisioned instance in the {{site.data.keyword.conversationshort}} service on the system.
+where the first value (`00000000-0000-0000-0000-001570184978`) is the instance ID in the database backup and the second value (`00000000-0000-0000-0000-001570194490`) is the ID of a provisioned instance in the {{site.data.keyword.assistant_classic_short}} service on the system.
 
 You can pass this file to the script for subsequent runs of the script in the same environment. Or you can edit it for use in other back up and restore operations. The mapping file is optional. If it is not provided, the tool prompts you for the mapping details based on information you provide in the YAML files.

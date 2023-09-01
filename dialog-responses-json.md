@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2023
-lastupdated: "2023-05-10"
+lastupdated: "2023-05-09"
 
 subcollection: assistant-data
 
@@ -31,7 +31,7 @@ In some situations, you might need to define responses using the JSON editor. (F
 ## Generic JSON format
 {: #dialog-responses-json-generic}
 
-The generic JSON format for responses is used to specify responses that are intended for any messaging channel. This format can be implemented by a custom client application. (This is the format that is used by default for dialog responses defined using the {{site.data.keyword.conversationshort}} user interface.)
+The generic JSON format for responses is used to specify responses that are intended for any messaging channel. This format can be implemented by a custom client application. (This is the format that is used by default for dialog responses defined using the {{site.data.keyword.assistant_classic_short}} user interface.)
 
 For information about how to open the JSON editor for a dialog node response from the tool, see [Context variables in the JSON editor](/docs/assistant-data?topic=assistant-data-dialog-runtime-context#dialog-runtime-context-var-json).
 
@@ -92,14 +92,14 @@ To specify an interactive response in the generic JSON format, insert the approp
 
 For more information about how to specify each supported response type using JSON objects, see [Response types](#dialog-responses-json-response-types).
 
-If you are using the {{site.data.keyword.conversationshort}} connector, the response is converted at run time into the format expected by the channel (Slack or Facebook Messenger). If the response contains multiple media types or attachments, the generic response is converted into a series of separate message payloads as needed. The connector then sends each message payload to the channel in a separate message.
+If you are using the {{site.data.keyword.assistant_classic_short}} connector, the response is converted at run time into the format expected by the channel (Slack or Facebook Messenger). If the response contains multiple media types or attachments, the generic response is converted into a series of separate message payloads as needed. The connector then sends each message payload to the channel in a separate message.
 
-**Note:** When a response is split into multiple messages, the {{site.data.keyword.conversationshort}} connector sends these messages to the channel in sequence. It is the responsibility of the channel to deliver these messages to the end user; this can be affected by network or server issues.
+**Note:** When a response is split into multiple messages, the {{site.data.keyword.assistant_classic_short}} connector sends these messages to the channel in sequence. It is the responsibility of the channel to deliver these messages to the end user; this can be affected by network or server issues.
 
 ## Native JSON format
 {: #dialog-responses-json-native}
 
-In addition to the generic JSON format, the dialog node JSON also supports channel-specific responses written using the native Slack and Facebook Messenger formats. These formats are also supported by the {{site.data.keyword.conversationshort}} connector. You might want to use the native JSON formats if you know your workspace will only be integrated with one channel type, and you need to specify a response type that is not currently supported by the generic JSON format.
+In addition to the generic JSON format, the dialog node JSON also supports channel-specific responses written using the native Slack and Facebook Messenger formats. These formats are also supported by the {{site.data.keyword.assistant_classic_short}} connector. You might want to use the native JSON formats if you know your workspace will only be integrated with one channel type, and you need to specify a response type that is not currently supported by the generic JSON format.
 
 You can specify native JSON for Slack or Facebook using the appropriate field in the dialog node response:
 
@@ -160,10 +160,10 @@ Displays a set of buttons or a drop-down list users can use to choose an option.
 | response_type | enum   | `option`                            | Y         |
 | title         | string | The title to show before the options. | Y       |
 | description   | string | The text of the description that accompanies the options. | N |
-| preference    | enum   | The preferred type of control to display, if supported by the channel (`dropdown` or `button`). The {{site.data.keyword.conversationshort}} connector currently supports only `button`.| N |
+| preference    | enum   | The preferred type of control to display, if supported by the channel (`dropdown` or `button`). The {{site.data.keyword.assistant_classic_short}} connector currently supports only `button`.| N |
 | options       | list   | A list of key/value pairs specifying the options from which the user can choose. | Y |
 | options[].label | string | The user-facing label for the option. | Y     |
-| options[].value | object | An object defining the response that will be sent to the {{site.data.keyword.conversationshort}} service if the user selects the option. | Y |
+| options[].value | object | An object defining the response that will be sent to the {{site.data.keyword.assistant_classic_short}} service if the user selects the option. | Y |
 | options[].value.input | object | An input object that includes the input text corresponding to the option. | N |
 | options[].value.input.text | string | The text that will be sent to your assistant for the option. | N |
 
@@ -173,7 +173,7 @@ Displays a set of buttons or a drop-down list users can use to choose an option.
 This example displays two options:
 
 - Option 1 (labeled `Buy something`) sends a simple string message (`Place order`), which is sent to the workspace as the input text.
-- Option 2 (labeled `Exit`) sends a complex message that includes both input text and an array of intents. The response can include any field that is a valid part of a {{site.data.keyword.conversationshort}} message. (For more information about the structure of message input, see the [API Reference](https://cloud.ibm.com/apidocs/assistant/assistant-data-v2#message){: external}.)
+- Option 2 (labeled `Exit`) sends a complex message that includes both input text and an array of intents. The response can include any field that is a valid part of a {{site.data.keyword.assistant_classic_short}} message. (For more information about the structure of message input, see the [API Reference](https://cloud.ibm.com/apidocs/assistant/assistant-data-v2#message){: external}.)
 
 ```json
 {

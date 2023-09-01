@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2023
-lastupdated: "2023-05-10"
+lastupdated: "2023-05-08"
 
 subcollection: assistant-data
 
@@ -103,7 +103,7 @@ To add the assistant to a web page on your company website, complete the followi
     <body>
         <title>My Test Page</title>
         <p>The body of my page.</p>
-        <!-- copied script elements -->
+        
         </body>
     </html>
     ```
@@ -143,7 +143,7 @@ To add the assistant to a web page on your company website, complete the followi
 
     If you don't extend the session timeout setting for the assistant, the dialog flow for the current session is restarted after 60 minutes of inactivity. This means that if a user stops interacting with the assistant, after 60 minutes, any context variable values that were set during the previous conversation are set to null or back to their initial values.
 
-You can apply more advanced customizations to the style of the web chat by using the {{site.data.keyword.conversationshort}} web chat toolkit on [GitHub](https://web-chat.global.assistant.watson.cloud.ibm.com/docs.html?to=api-configuration){: external}. For example, the text that is displayed in the chat window uses the fonts: `IBMPlexSans, Arial, Helvetica, sans-serif`. If you want to use a different font, you can specify it by using the `instance.updateCSSVariables()` method.
+You can apply more advanced customizations to the style of the web chat by using the {{site.data.keyword.assistant_classic_short}} web chat toolkit on [GitHub](https://web-chat.global.assistant.watson.cloud.ibm.com/docs.html?to=api-configuration){: external}. For example, the text that is displayed in the chat window uses the fonts: `IBMPlexSans, Arial, Helvetica, sans-serif`. If you want to use a different font, you can specify it by using the `instance.updateCSSVariables()` method.
 
 ## Adding a home screen ![Beta](images/beta.png)
 {: #deploy-web-chat-home-screen}
@@ -216,7 +216,7 @@ For more information about rich response types, see [Rich responses](/docs/assis
 ## Extending the web chat
 {: #deploy-web-chat-extend}
 
-A developer can extend the capabilities of the web chat by using the {{site.data.keyword.conversationshort}} web chat toolkit on [GitHub](https://web-chat.global.assistant.watson.cloud.ibm.com/docs.html){: external}.
+A developer can extend the capabilities of the web chat by using the {{site.data.keyword.assistant_classic_short}} web chat toolkit on [GitHub](https://web-chat.global.assistant.watson.cloud.ibm.com/docs.html){: external}.
 
 If you choose to use the provided methods, you implement them by editing the code snippet that was generated earlier. You then embed the updated code snippet into your web page.
 
@@ -405,7 +405,7 @@ Before you enable security, complete the following steps:
 
 To enable security, complete the following steps:
 
-1.  From the web chat integration page in {{site.data.keyword.conversationshort}}, set the **Secure your web chat** switch to **On**.
+1.  From the web chat integration page in {{site.data.keyword.assistant_classic_short}}, set the **Secure your web chat** switch to **On**.
 
 1.  Add your public key to the **Your public key** field.
 

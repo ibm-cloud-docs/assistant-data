@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2023
-lastupdated: "2023-08-24"
+lastupdated: "2023-09-01"
 
 subcollection: assistant-data
 
@@ -10,7 +10,7 @@ subcollection: assistant-data
 
 {{site.data.keyword.attribute-definition-list}}
 
-This documentation for the **classic {{site.data.keyword.conversationshort}}** experience has moved. For the most up-to-date version, see [Adding more assistants](/docs/watson-assistant?topic=watson-assistant-assistant-add){: external} and [Renaming or deleting assistants](/docs/watson-assistant?topic=watson-assistant-assistant-rename-delete){: external}. To see all documentation for the new {{site.data.keyword.conversationshort}}, please go [here](https://cloud.ibm.com/docs/watson-assistant){: external}.
+This documentation for the **classic {{site.data.keyword.assistant_classic_short}}** experience has moved. For the most up-to-date version, see [Adding more assistants](/docs/watson-assistant?topic=watson-assistant-assistant-add){: external} and [Renaming or deleting assistants](/docs/watson-assistant?topic=watson-assistant-assistant-rename-delete){: external}. To see all documentation for the new {{site.data.keyword.assistant_classic_short}}, please go [here](https://cloud.ibm.com/docs/watson-assistant){: external}.
 {: attention}
 
 # Creating an assistant
@@ -102,6 +102,6 @@ You can add one skill of each skill type to an assistant. If you want to change 
 ### Switching between service instances
 {: #assistant-add-switch-instance}
 
-If you have more than one deployed instance of {{site.data.keyword.conversationshort}} in your cluster, you can switch to a different instance.
+If you have more than one deployed instance of {{site.data.keyword.assistant_classic_short}} in your cluster, you can switch to a different instance.
 
 To change to a different instance, you must open the other instance from the *My instances* page of the {{site.data.keyword.icp4dfull_notm}} web client.

@@ -25,10 +25,10 @@ subcollection: assistant-data
 {:download: .download}
 {:gif: data-image-type='gif'}
 
-# About {{site.data.keyword.conversationshort}}
+# About {{site.data.keyword.assistant_classic_short}}
 {: #index}
 
-Use {{site.data.keyword.conversationfull}} for {{site.data.keyword.icp4dfull}} to build your own branded assistant into any device, application, or channel. Connect your assistant to the customer engagement resources you already use to deliver an engaging, unified problem-solving experience to your customers.
+Use {{site.data.keyword.assistant_classic_full}} for {{site.data.keyword.icp4dfull}} to build your own branded assistant into any device, application, or channel. Connect your assistant to the customer engagement resources you already use to deliver an engaging, unified problem-solving experience to your customers.
 {: shortdesc}
 
 | | |
@@ -38,15 +38,15 @@ Use {{site.data.keyword.conversationfull}} for {{site.data.keyword.icp4dfull}} t
 | *Bring the assistant to your customers, where they are* | Add your assistant as a chat widget to your company website, or build your own custom app. |
 | *Track customer engagement and satisfaction* | Use built-in metrics to analyze logs from conversations between customers and your assistant to gauge how well it's doing and identify areas for improvement. |
 
-This documentation describes installed instances of {{site.data.keyword.conversationshort}}. For more information about using a managed instance in IBM Cloud or in Cloud Pak for Data as a Service, see [this documentation](/docs/watson-assistant?topic=watson-assistant-welcome-new-assistant){: external}.
+This documentation describes installed instances of {{site.data.keyword.assistant_classic_short}}. For more information about using a managed instance in IBM Cloud or in Cloud Pak for Data as a Service, see [this documentation](/docs/watson-assistant?topic=watson-assistant-welcome-new-assistant){: external}.
 {: note}
 
 ## Feature availability
 {: #index-available-features}
 
-{{site.data.keyword.conversationshort}} can be deployed as a managed cloud service or can be installed on premises. This documentation describes how to use the product installed on premises with {{site.data.keyword.icp4dfull}}. Some features that are available with {{site.data.keyword.conversationshort}} for cloud are not available with {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}}.
+{{site.data.keyword.assistant_classic_short}} can be deployed as a managed cloud service or can be installed on premises. This documentation describes how to use the product installed on premises with {{site.data.keyword.icp4dfull}}. Some features that are available with {{site.data.keassistant_classic_shortnshort}} for cloud are not available with {{site.dassistant_classic_shortrsationshort}} for {{site.data.keyword.icp4dfull}}.
 
-The following features are not available with {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}}:
+The following features are not available with {{site.data.keyword.assistant_classic_short}} for {{site.data.keyword.icp4dfull}}:
 - Third party channel support, for example, Slack, Facebook, SMS, and WhatsApp
 - Service desk support, for example, Salesforce and Zendesk
 - Voice Integration
@@ -145,7 +145,7 @@ Language support by feature is detailed in the [Supported languages](/docs/assis
 ## Security
 {: #index-security}
 
-Federal Information Security Management Act (FISMA) support is available for {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull_notm}} offerings purchased on or after 30 August 2019. {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull_notm}} is FISMA High Ready.
+Federal Information Security Management Act (FISMA) support is available for {{site.data.keyword.assistant_classic_short}} for {{site.data.keyword.icp4dfull_notm}} offerings purchased on or after 30 August 2019. {{site.data.keassistant_classic_shortnshort}} for {{site.data.keyword.icp4dfull_notm}} is FISMA High Ready.
 
 ## Next steps
 {: #index-next-steps}

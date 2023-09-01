@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2022
-lastupdated: "2022-06-13"
+lastupdated: "2022-05-31"
 
 keywords: log webhook
 
@@ -34,7 +34,7 @@ You can log activity by making a call to an external service or application ever
 
 A webhook is a mechanism that allows you to call out to an external program based on events in your program.
 
-Add a log webhook to your assistant if you want to use an external service to log {{site.data.keyword.conversationshort}} activity. You can log two kinds of activity:
+Add a log webhook to your assistant if you want to use an external service to log {{site.data.keyword.assistant_classic_short}} activity. You can log two kinds of activity:
 
 - **Messages and responses**: The log webhook is triggered each time the assistant responds to user input. You can use this option as an alternative to the built-in analytics feature to handle logging yourself. (For more information about the built-in analytics support, see [Metrics overview](/docs/assistant-data?topic=assistant-data-logs-overview).)
 

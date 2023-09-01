@@ -2,7 +2,7 @@
 
 copyright:
   years: 2020, 2023
-lastupdated: "2023-05-10"
+lastupdated: "2023-05-08"
 
 subcollection: assistant-data
 
@@ -28,15 +28,15 @@ subcollection: assistant-data
 # Audit events
 {: #audit-events}
 
-As a security officer, auditor, or manager, you can use the [{{site.data.keyword.icp4dfull_notm}} audit service](https://www.ibm.com/docs/en/cloud-paks/cp-data/latest?topic=considerations-auditing-cloud-pak-data){: external} to track how users and applications interact with {{site.data.keyword.conversationshort}}.
+As a security officer, auditor, or manager, you can use the [{{site.data.keyword.icp4dfull_notm}} audit service](https://www.ibm.com/docs/en/cloud-paks/cp-data/latest?topic=considerations-auditing-cloud-pak-data){: external} to track how users and applications interact with {{site.data.keyword.assistant_classic_short}}.
 {: shortdesc}
 
-{{site.data.keyword.icp4dfull_notm}} audit service records user-initiated activities that change the state of a service in {{site.data.keyword.conversationshort}}. You can use this service to investigate abnormal activity and critical actions and to comply with regulatory audit requirements. For more information about exporting audit records to your security information and event management (SIEM) solutions, see [Auditing Cloud Pak for Data](https://www.ibm.com/docs/en/cloud-paks/cp-data/latest?topic=considerations-auditing-cloud-pak-data){: external}.
+{{site.data.keyword.icp4dfull_notm}} audit service records user-initiated activities that change the state of a service in {{site.data.keyword.assistant_classic_short}}. You can use this service to investigate abnormal activity and critical actions and to comply with regulatory audit requirements. For more information about exporting audit records to your security information and event management (SIEM) solutions, see [Auditing Cloud Pak for Data](https://www.ibm.com/docs/en/cloud-paks/cp-data/latest?topic=considerations-auditing-cloud-pak-data){: external}.
 
 ## List of events
 {: #audit-events-actions}
 
-The following table lists the {{site.data.keyword.conversationshort}} activities that generate events.
+The following table lists the {{site.data.keyword.assistant_classic_short}} activities that generate events.
 
 | Action                                          | Triggered when someone...       |
 |-------------------------------------------------|---------------------------------|

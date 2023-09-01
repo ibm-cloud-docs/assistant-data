@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2015, 2021
-lastupdated: "2021-02-04"
+  years: 2015, 2020
+lastupdated: "2020-08-20"
 
 subcollection: assistant-data
 
@@ -27,12 +27,12 @@ subcollection: assistant-data
 # Upgrading
 {: #upgrade}
 
-Learn how to upgrade from one version of {{site.data.keyword.conversationfull}} for {{site.data.keyword.icp4dfull_notm}} to another.
+Learn how to upgrade from one version of {{site.data.keyword.assistant_classic_full}} for {{site.data.keyword.icp4dfull_notm}} to another.
 {: shortdesc}
 
 Bulk feature updates are announced as they become available. You can choose whether to upgrade your instance to the latest version or not. If you want continuous updates to be applied to your service instance automatically, consider creating a service instance in the public IBM Cloud.
 
-When you upgrade from one version of the product to another, you can export the following data from a {{site.data.keyword.conversationshort}} service instance:
+When you upgrade from one version of the product to another, you can export the following data from a {{site.data.keyword.assistant_classic_short}} service instance:
 
 - Dialog skill training data (intents and entities)
 - Dialog skill dialog
@@ -53,15 +53,6 @@ To upgrade your instance, complete these steps:
 1.  Import the data you downloaded from your previous skill by creating a new dialog skill. 
 
     At creation time, choose to import a skill, and then upload the JSON file from the skill that was exported earlier. For more details, see [Creating a dialog skill](/docs/assistant-data?topic=assistant-data-skill-dialog-add).
-
-    If you are upgrading to 1.5.0 and see the message `New System Entities are not supported`, you must edit the downloaded JSON file before you upload it. Search the JSON file for the system entities entry and disable the feature. For example:
-
-    ```json
-    "system_entities": {
-      "enabled": false
-    }
-    ```
-    {: codeblock}
 
     If you are upgrading to V1.3, in this version of the product, a workspace is now represented by a dialog skill.
     {: note} 

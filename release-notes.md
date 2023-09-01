@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2023
-lastupdated: "2023-08-30"
+lastupdated: "2023-09-01"
 
 subcollection: assistant-data
 
@@ -12,25 +12,25 @@ content-type: release-note
 
 {{site.data.keyword.attribute-definition-list}}
 
-# Release notes for {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}}
+# Release notes for {{site.data.keyword.assistant_classic_short}} for {{site.data.keyword.icp4dfull}}
 {: #release-notes}
 
-Use these release notes to learn about the latest updates to {{site.data.keyword.conversationfull}} for {{site.data.keyword.icp4dfull}}.
+Use these release notes to learn about the latest updates to {{site.data.keyword.assistant_classic_full}} for {{site.data.keyword.icp4dfull}}.
 {: shortdesc}
 
 ## Feature availability
 {: #release-notes-available-features}
 
-Some features that are available with {{site.data.keyword.conversationshort}} for cloud are not available with {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}}. For a list of features that are not available with {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}}, see [About {{site.data.keyword.conversationshort}}](/docs/assistant-data?topic=assistant-data-index#index-available-features).
+Some features that are available with {{site.data.keyword.assistant_classic_short}} for cloud are not available with {{site.data.keassistant_classic_shortnshort}} for {{site.data.keyword.icp4dfull}}. For a list of features that are not available with {{site.dassistant_classic_shortrsationshort}} for {{site.data.keyword.icp4dfull}}, see [About {{assistant_classic_short.assistant_classic_short}}](/docs/assistant-data?topic=assistant-data-index#index-available-features).
 
 ## Web chat versions
 {: #release-notes-web-chat}
 
-When you install {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}}, the latest available version of the web chat integration is included. See the following table for details about the latest available web chat version for each {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} release. If your web chat version isn't locked, then the web chat integration is upgraded to the latest available version when you upgrade {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}}.
+When you install {{site.data.keyword.assistant_classic_short}} for {{site.data.keyword.icp4dfull}}, the latest available version of the web chat integration is included. See the following table for details about the latest available web chat version for each {{site.data.keassistant_classic_shortnshort}} for {{site.data.keyword.icp4dfull}} release. If your web chat version isn't locked, then the web chat integration is upgraded to the latest available version when you upgrade {{site.dassistant_classic_shortrsationshort}} for {{site.data.keyword.icp4dfull}}.
 
-The following table shows the latest version of the web chat integration that is included with each release of {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}}. {{site.data.keyword.icp4dfull}} supports web chat versions 5.1.1 or later. To customize and change version numbers, see [Controlling the web chat version](https://cloud.ibm.com/docs/watson-assistant?topic=watson-assistant-web-chat-develop-versions).
+The following table shows the latest version of the web chat integration that is included with each release of {{site.data.keyword.assistant_classic_short}} for {{site.data.keyword.icp4dfull}}. {{site.data.keyword.icp4dfull}} supports web chat versions 5.1.1 or later. To customize and change version numbers, see [Controlling the web chat version](https://cloud.ibm.com/docs/watson-assistant?topic=watson-assistant-web-chat-develop-versions).
 
-| {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} version | Latest web chat version available |
+| {{site.data.keyword.assistant_classic_short}} for {{site.data.keyword.icp4dfull}} version | Latest web chat version available |
 |----------------|----------------|
 | 4.7.2 | [7.5.0](/docs/watson-assistant?topic=watson-assistant-release-notes-chat#7.5.0){: external} |
 | 4.7.1 | [7.4.0](/docs/watson-assistant?topic=watson-assistant-release-notes-chat#7.4.0){: external} |
@@ -43,14 +43,14 @@ The following table shows the latest version of the web chat integration that is
 | 4.5.1 | [6.5.2](/docs/watson-assistant?topic=watson-assistant-release-notes-chat#6.5.2){: external} |
 | 4.5.0 | [6.4.1](/docs/watson-assistant?topic=watson-assistant-release-notes-chat#6.4.1){: external} |
 | 4.0.8 | [6.2.0](/docs/watson-assistant?topic=watson-assistant-release-notes-chat#6.2.0){: external} |
-{: caption="Web chat versions in {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}}" caption-side="top"}
+{: caption="Web chat versions in {{site.data.keyword.assistant_classic_short}} for {{site.data.keyword.icp4dfull}}" caption-side="top"}
 
 ## 30 August 2023
 {: #assistant-data-aug302023}
 {: release-note}
 
-{{site.data.keyword.conversationfull}} Cartridge for {{site.data.keyword.icp4dfull}} Version 4.7.2 is available
-:   {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} 4.7.2 is compatible with {{site.data.keyword.icp4dfull}} Version 4.7. See the [support matrix](/docs/assistant-data?topic=assistant-data-install#install-support-matrix) for more details. 
+{{site.data.keyword.assistant_classic_full}} Cartridge for {{site.data.keyword.icp4dfull}} Version 4.7.2 is available
+:   {{site.data.keyword.assistant_classic_short}} for {{site.data.keyword.icp4dfull}} 4.7.2 is compatible with {{site.data.keyword.icp4dfull}} Version 4.7. See the [support matrix](/docs/assistant-data?topic=assistant-data-install#install-support-matrix) for more details. 
 
 Multiple validation responses
 :   When you edit a validation for a customer response, you can now include several validation responses. For more information, see [Customizing validation for a response](/docs/watson-assistant?topic=watson-assistant-handle-errors#customize-validation){: external}.
@@ -80,8 +80,8 @@ Action and collection names must now be unique
 {: #assistant-data-jul262023}
 {: release-note}
 
-{{site.data.keyword.conversationfull}} Cartridge for {{site.data.keyword.icp4dfull}} Version 4.7.1 is available
-:   {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} 4.7.1 is compatible with {{site.data.keyword.icp4dfull}} Version 4.7. See the [support matrix](/docs/assistant-data?topic=assistant-data-install#install-support-matrix) for more details. 
+{{site.data.keyword.assistant_classic_full}} Cartridge for {{site.data.keyword.icp4dfull}} Version 4.7.1 is available
+:   {{site.data.keyword.assistant_classic_short}} for {{site.data.keyword.icp4dfull}} 4.7.1 is compatible with {{site.data.keyword.icp4dfull}} Version 4.7. See the [support matrix](/docs/assistant-data?topic=assistant-data-install#install-support-matrix) for more details. 
 
 Edit step titles
 :  You can now add and edit titles for each step, which can help you more easily identify what a step does in an action. For more information, see [Editing actions](/docs/watson-assistant?topic=watson-assistant-build-actions-overview){: external}.
@@ -98,7 +98,7 @@ New expression choice for setting a session variable
 Changes to validation of OpenAPI specifications 
 :   When you build a custom extension, you work with OpenAPI specification files. This release includes changes to the validation of OpenAPI files, which might affect the connection between your actions and extensions 
 
-   You can import an action with references to a custom extension and {{site.data.keyword.conversationshort}} can automatically connect the action and extension. With the validation change, modifications to the OpenAPI specification for your custom extension might affect this automatic connection. For more information, see [Building a custom extension](/docs/watson-assistant?topic=watson-assistant-build-custom-extension){: external}.
+   You can import an action with references to a custom extension and {{site.data.keyword.assistant_classic_short}} can automatically connect the action and extension. With the validation change, modifications to the OpenAPI specification for your custom extension might affect this automatic connection. For more information, see [Building a custom extension](/docs/watson-assistant?topic=watson-assistant-build-custom-extension){: external}.
 
 Changes to the date and number formats in assistant responses
 :   You might see changes to the date and number formats in assistant responses.
@@ -109,7 +109,7 @@ Changes to the date and number formats in assistant responses
 
    The delimiter character changes for numbers in some languages. For example, in French, nonbreaking space (NBSP) changes to narrow no-break space (NNBSP).
 
-   These changes are the result of migrating the {{site.data.keyword.conversationshort}} platform to Java 17, where locale values are updated by using specifications in [CLDR 39](https://cldr.unicode.org/index/downloads/cldr-39){: external}. 
+   These changes are the result of migrating the {{site.data.keyword.assistant_classic_short}} platform to Java 17, where locale values are updated by using specifications in [CLDR 39](https://cldr.unicode.org/index/downloads/cldr-39){: external}. 
    
    To avoid or minimize the impact of similar changes in the future, you can use [Display formats](/docs/watson-assistant?topic=watson-assistant-actions-global-settings#actions-global-settings-display-formats){: external}.
 
@@ -120,11 +120,11 @@ Differences in contextual entity detection for dialog skills with few annotation
 {: #assistant-data-jun282023}
 {: release-note}
 
-{{site.data.keyword.conversationfull}} Cartridge for {{site.data.keyword.icp4dfull}} Version 4.7.0 is available
-:   {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} 4.7.0 is compatible with {{site.data.keyword.icp4dfull}} Version 4.7. See the [support matrix](/docs/assistant-data?topic=assistant-data-install#install-support-matrix) for more details. 
+{{site.data.keyword.assistant_classic_full}} Cartridge for {{site.data.keyword.icp4dfull}} Version 4.7.0 is available
+:   {{site.data.keyword.assistant_classic_short}} for {{site.data.keyword.icp4dfull}} 4.7.0 is compatible with {{site.data.keyword.icp4dfull}} Version 4.7. See the [support matrix](/docs/assistant-data?topic=assistant-data-install#install-support-matrix) for more details. 
 
-The new {{site.data.keyword.conversationshort}} experience is now available for all new instances
-:   When you create a new instance of {{site.data.keyword.conversationshort}}, the new {{site.data.keyword.conversationshort}} experience will be the default interface to use for building your assistants. The new experience makes it easier to use actions to build customer conversations. If you don't want to use the new experience, you can use the Manage menu to switch to the classic experience. For details, see [Welcome to the new {{site.data.keyword.conversationshort}}](/docs/watson-assistant?topic=watson-assistant-welcome-new-assistant){: external}.
+The new experience is now available for all new instances
+:   When you create a new instance, the new experience will be the default interface to use for building your assistants. The new experience makes it easier to use actions to build customer conversations. If you don't want to use the new experience, you can use the Manage menu to switch to the classic experience. For details, see [Welcome to the new {{site.data.keyword.conversationshort}}](/docs/watson-assistant?topic=watson-assistant-welcome-new-assistant){: external}.
 
 All languages are now enabled by default
 :   You don't need to add languages during installation. All supported languages are now enabled by default with no increase in footprint. For details, see [Supported languages](/docs/assistant-data?topic=assistant-data-language-support){: external}.
@@ -166,14 +166,14 @@ New expression choice for setting a session variable
 :   Previously, to use an expression to set or modify a variable value, you needed to pick an existing variable or create a new one and select the expression option. Now you can use a new Expression choice to write an expression directly without first picking a variable. For details, see [Storing a value in a session variable](/docs/watson-assistant?topic=watson-assistant-manage-info#store-session-variable){: external}.
 
 Using the Cloud Object Storage importer to migrate chat logs
-:   You can use the Cloud Object Storage importer service to migrate your chat logs from one installation of {{site.data.keyword.conversationshort}} to another.For more information, see [Using the Cloud Object Storage importer to migrate chat logs](/docs/assistant-data?topic=assistant-data-cos-importer).
+:   You can use the Cloud Object Storage importer service to migrate your chat logs from one installation of {{site.data.keyword.assistant_classic_short}} to another.For more information, see [Using the Cloud Object Storage importer to migrate chat logs](/docs/assistant-data?topic=assistant-data-cos-importer).
 
 ## 2 May 2023
 {: #assistant-data-may022023}
 {: release-note}
 
-{{site.data.keyword.conversationfull}} Cartridge for {{site.data.keyword.icp4dfull}} Version 4.6.5 is available
-:   {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} 4.6.5 is compatible with {{site.data.keyword.icp4dfull}} Version 4.6. See the [support matrix](/docs/assistant-data?topic=assistant-data-install#install-support-matrix) for more details. This release of {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} includes various fixes and features.
+{{site.data.keyword.assistant_classic_full}} Cartridge for {{site.data.keyword.icp4dfull}} Version 4.6.5 is available
+:   {{site.data.keyword.assistant_classic_short}} for {{site.data.keyword.icp4dfull}} 4.6.5 is compatible with {{site.data.keyword.icp4dfull}} Version 4.6. See the [support matrix](/docs/assistant-data?topic=assistant-data-install#install-support-matrix) for more details. This release of {{site.data.keassistant_classic_shortnshort}} for {{site.data.keyword.icp4dfull}} includes various fixes and features.
 
 Algorithm version 01-Jun-2022 uses enhanced intent detection by default
 :   The algorithm version **Latest (01-Jun-2022)** now uses enhanced intent detection by default. Before this change, some skills that did not include a specific algorithm version selection inadvertently used **Previous (01-Jan-2022)**. You can notice small changes in intent detection behavior when changes are made to an assistant that previously didn't have enhanced intent detection enabled. For more information, see [Algorithm version and training](/docs/watson-assistant?topic=watson-assistant-algorithm-version){: external}.
@@ -196,51 +196,51 @@ For more information, see [Algorithm version and training](/docs/watson-assistan
 {: #assistant-data-feb232023}
 {: release-note}
 
-{{site.data.keyword.conversationfull}} Cartridge for {{site.data.keyword.icp4dfull}} Version 4.6.3 is available
-:   {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} 4.6.3 is compatible with {{site.data.keyword.icp4dfull}} Version 4.6. See the [support matrix](/docs/assistant-data?topic=assistant-data-install#install-support-matrix) for more details. This release of {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} includes various fixes and features.
+{{site.data.keyword.assistant_classic_full}} Cartridge for {{site.data.keyword.icp4dfull}} Version 4.6.3 is available
+:   {{site.data.keyword.assistant_classic_short}} for {{site.data.keyword.icp4dfull}} 4.6.3 is compatible with {{site.data.keyword.icp4dfull}} Version 4.6. See the [support matrix](/docs/assistant-data?topic=assistant-data-install#install-support-matrix) for more details. This release of {{site.data.keassistant_classic_shortnshort}} for {{site.data.keyword.icp4dfull}} includes various fixes and features.
 
 ## 30 January 2023
 {: #assistant-data-jan302023}
 {: release-note}
 
-{{site.data.keyword.conversationfull}} Cartridge for {{site.data.keyword.icp4dfull}} Version 4.6.2 is available
-:   {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} 4.6.2 is compatible with {{site.data.keyword.icp4dfull}} Version 4.6. See the [support matrix](/docs/assistant-data?topic=assistant-data-install#install-support-matrix) for more details. This release of {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} includes various fixes and features.
+{{site.data.keyword.assistant_classic_full}} Cartridge for {{site.data.keyword.icp4dfull}} Version 4.6.2 is available
+:   {{site.data.keyword.assistant_classic_short}} for {{site.data.keyword.icp4dfull}} 4.6.2 is compatible with {{site.data.keyword.icp4dfull}} Version 4.6. See the [support matrix](/docs/assistant-data?topic=assistant-data-install#install-support-matrix) for more details. This release of {{site.data.keassistant_classic_shortnshort}} for {{site.data.keyword.icp4dfull}} includes various fixes and features.
 
-New {{site.data.keyword.conversationshort}} v2 APIs
-:   {{site.data.keyword.conversationshort}} now provides new methods related to assistants, skills, environments, and releases. For details, see the [{{site.data.keyword.conversationshort}} v2 API documentation](https://cloud.ibm.com/apidocs/assistant/assistant-v2){: external}.
+New {{site.data.keyword.assistant_classic_short}} v2 APIs
+:   {{site.data.keyword.assistant_classic_short}} now provides new methods related to assistants, skills, environments, and releases. For details, see the [{{site.data.keassistant_classic_shortnshort}} v2 API documentation](https://cloud.ibm.com/apidocs/assistant/assistant-v2){: external}.
 
 ## 30 November 2022
 {: #assistant-data-nov302022}
 {: release-note}
 
-{{site.data.keyword.conversationfull}} Cartridge for {{site.data.keyword.icp4dfull}} Version 4.6.0 is available
-:   {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} 4.6.0 is compatible with {{site.data.keyword.icp4dfull}} Version 4.6. See the [support matrix](/docs/assistant-data?topic=assistant-data-install#install-support-matrix) for more details. This release of {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} includes various fixes and features.
+{{site.data.keyword.assistant_classic_full}} Cartridge for {{site.data.keyword.icp4dfull}} Version 4.6.0 is available
+:   {{site.data.keyword.assistant_classic_short}} for {{site.data.keyword.icp4dfull}} 4.6.0 is compatible with {{site.data.keyword.icp4dfull}} Version 4.6. See the [support matrix](/docs/assistant-data?topic=assistant-data-install#install-support-matrix) for more details. This release of {{site.data.keassistant_classic_shortnshort}} for {{site.data.keyword.icp4dfull}} includes various fixes and features.
 
 New {{site.data.keyword.conversationshort}} experience
 :   With the new experience in {{site.data.keyword.conversationshort}}, you can build, test, publish, and analyze your assistant from one simple and intuitive interface that focuses on using actions to build customer conversations. To learn more about building your assistant with actions, see [Welcome to the new {{site.data.keyword.conversationshort}}](https://cloud.ibm.com/docs/watson-assistant){: external}.
 
 New algorithm version setting
-:   You can now choose one of three {{site.data.keyword.conversationshort}} algorithm version settings to apply to your future trainings: **Beta**, **Latest**, or **Previous**. This new **Algorithm Version** setting replaced **Intent Detection** in the **Options** section of a dialog skill. **Beta** and **Latest** use more enhanced intent detection that is available in more languages: Arabic, Chinese (Simplified), Chinese (Traditional) Czech, Dutch, French, German, Japanese, Korean, Italian, Portuguese, and Spanish. See [Algorithm version](https://cloud.ibm.com/docs/watson-assistant?topic=watson-assistant-algorithm-version){: external}.
+:   You can now choose one of three {{site.data.keyword.assistant_classic_short}} algorithm version settings to apply to your future trainings: **Beta**, **Latest**, or **Previous**. This new **Algorithm Version** setting replaced **Intent Detection** in the **Options** section of a dialog skill. **Beta** and **Latest** use more enhanced intent detection that is available in more languages: Arabic, Chinese (Simplified), Chinese (Traditional) Czech, Dutch, French, German, Japanese, Korean, Italian, Portuguese, and Spanish. See [Algorithm version](https://cloud.ibm.com/docs/watson-assistant?topic=watson-assistant-algorithm-version){: external}.
 
 Credential rotation
-:   You can now rotate your credentials for added data store security. See [Managing security for your {{site.data.keyword.conversationshort}} datastores](https://www.ibm.com/docs/en/cloud-paks/cp-data/4.6.x?topic=administering-managing-security-your-datastores){: external}.
+:   You can now rotate your credentials for added data store security. See [Managing security for your {{site.data.keyword.assistant_classic_short}} datastores](https://www.ibm.com/docs/en/cloud-paks/cp-data/4.6.x?topic=administering-managing-security-your-datastores){: external}.
 
 Autoscaling
-:   Using Red Hat® OpenShift® Horizontal Pod Autoscaler, you can optionally enable autoscaling for {{site.data.keyword.conversationshort}} so that the service dynamically scales up and down to make efficient use of cluster resources. For details, see [Automatically scaling resources for services](https://www.ibm.com/docs/en/cloud-paks/cp-data/4.6.x?topic=services-automatically-scaling){: external}.
+:   Using Red Hat® OpenShift® Horizontal Pod Autoscaler, you can optionally enable autoscaling for {{site.data.keyword.assistant_classic_short}} so that the service dynamically scales up and down to make efficient use of cluster resources. For details, see [Automatically scaling resources for services](https://www.ibm.com/docs/en/cloud-paks/cp-data/4.6.x?topic=services-automatically-scaling){: external}.
 
 New commands for shutting down and restarting services
 :   The `cpd-cli` manage command now includes `shutdown` and `restart` sub-commands to make it easier to shut down and restart the {{site.data.keyword.icp4dfull}} services on your cluster. For details, see [Shutting down and restarting services](https://www.ibm.com/docs/en/cloud-paks/cp-data/4.6.x?topic=resources-shutting-down-restarting-services){: external}.
 
 Action skills
-:   The classic {{site.data.keyword.conversationshort}} experience now supports action skills.
+:   The classic {{site.data.keyword.assistant_classic_short}} experience now supports action skills.
 
 
 ## 13 October 2022
 {: #assistant-data-oct132022}
 {: release-note}
 
-{{site.data.keyword.conversationfull}} Cartridge for {{site.data.keyword.icp4dfull}} Version 4.5.3 is available
-:   {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} 4.5.3 is compatible with {{site.data.keyword.icp4dfull}} Version 4.5. See the [support matrix](/docs/assistant-data?topic=assistant-data-install#install-support-matrix) for more details. This release of {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} includes various fixes and features.
+{{site.data.keyword.assistant_classic_full}} Cartridge for {{site.data.keyword.icp4dfull}} Version 4.5.3 is available
+:   {{site.data.keyword.assistant_classic_short}} for {{site.data.keyword.icp4dfull}} 4.5.3 is compatible with {{site.data.keyword.icp4dfull}} Version 4.5. See the [support matrix](/docs/assistant-data?topic=assistant-data-install#install-support-matrix) for more details. This release of {{site.data.keassistant_classic_shortnshort}} for {{site.data.keyword.icp4dfull}} includes various fixes and features.
 
 Support for `autoScaleConfig`
 :   Support for automatically scaling resources using the Red Hat OpenShift Horizontal Pod Autoscaler (HPA). See [Automatically scaling resources for services](https://www.ibm.com/docs/en/cloud-paks/cp-data/4.5.x?topic=services-automatically-scaling).
@@ -249,8 +249,8 @@ Support for `autoScaleConfig`
 {: #assistant-data-aug032022}
 {: release-note}
 
-{{site.data.keyword.conversationfull}} Cartridge for {{site.data.keyword.icp4dfull}} Version 4.5.1 is available
-:   {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} 4.5.1 is compatible with {{site.data.keyword.icp4dfull}} Version 4.5. See the [support matrix](/docs/assistant-data?topic=assistant-data-install#install-support-matrix) for more details. This release of {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} includes various fixes and features.
+{{site.data.keyword.assistant_classic_full}} Cartridge for {{site.data.keyword.icp4dfull}} Version 4.5.1 is available
+:   {{site.data.keyword.assistant_classic_short}} for {{site.data.keyword.icp4dfull}} 4.5.1 is compatible with {{site.data.keyword.icp4dfull}} Version 4.5. See the [support matrix](/docs/assistant-data?topic=assistant-data-install#install-support-matrix) for more details. This release of {{site.data.keassistant_classic_shortnshort}} for {{site.data.keyword.icp4dfull}} includes various fixes and features.
 
 New deployment sizes
 :   Two new deployment sizes are now available. The two new sizes are `Starter` and `Production`. The `Starter` size is equivalent to the `small` deployment size, and the `Production` size is equivalent to the `medium` deployment size.
@@ -259,8 +259,8 @@ New deployment sizes
 {: #assistant-data-jun292022}
 {: release-note}
 
-{{site.data.keyword.conversationfull}} Cartridge for {{site.data.keyword.icp4dfull}} Version 4.5.0 is available
-:   {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} 4.5.0 is compatible with {{site.data.keyword.icp4dfull}} Version 4.5. See the [support matrix](/docs/assistant-data?topic=assistant-data-install#install-support-matrix) for more details. This release of {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} includes various fixes and features.
+{{site.data.keyword.assistant_classic_full}} Cartridge for {{site.data.keyword.icp4dfull}} Version 4.5.0 is available
+:   {{site.data.keyword.assistant_classic_short}} for {{site.data.keyword.icp4dfull}} 4.5.0 is compatible with {{site.data.keyword.icp4dfull}} Version 4.5. See the [support matrix](/docs/assistant-data?topic=assistant-data-install#install-support-matrix) for more details. This release of {{site.data.keassistant_classic_shortnshort}} for {{site.data.keyword.icp4dfull}} includes various fixes and features.
 
 Red Hat OpenShift Container Platform support
 :   You can deploy {{site.data.keyword.icp4dfull}} Version 4.5 on the following versions of Red Hat OpenShift Container Platform:
@@ -275,7 +275,7 @@ Microsoft Edge browser support
 :   Beginning in Version 4.5, Microsoft Edge is fully supported for use with {{site.data.keyword.icp4dfull}}. For more information, see [Browser support](/docs/assistant-data?topic=assistant-data-index#index-browser-support).
 
 Language support improvements
-:   Entity recognition and intent classification for Japanese and Korean languages changed to improve the reliability of {{site.data.keyword.conversationshort}}. You might see minor differences in how {{site.data.keyword.conversationshort}} handles entity recognition and intent classification.
+:   Entity recognition and intent classification for Japanese and Korean languages changed to improve the reliability of {{site.data.keyword.assistant_classic_short}}. You might see minor differences in how {{site.data.keassistant_classic_shortnshort}} handles entity recognition and intent classification.
 
   Any visible changes are most likely to be seen in dictionary-based or pattern-based entity matching. For more information about defining entities, see [Adding entities](/docs/assistant-data?topic=assistant-data-entities). As a suggested practice, you can test your dialog skill with your current test framework to determine whether your workspace is impacted before you update your production workspace.
 
@@ -290,8 +290,8 @@ Assistant preview link can be disabled
 {: #assistant-data-apr272022}
 {: release-note}
 
-{{site.data.keyword.conversationfull}} Cartridge for {{site.data.keyword.icp4dfull}} 4.0.8 is available
-:   {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} 4.0.8 is compatible with {{site.data.keyword.icp4dfull}} 4.0 on Red Hat OpenShift 4.8. This release of {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} includes various fixes and features.
+{{site.data.keyword.assistant_classic_full}} Cartridge for {{site.data.keyword.icp4dfull}} 4.0.8 is available
+:   {{site.data.keyword.assistant_classic_short}} for {{site.data.keyword.icp4dfull}} 4.0.8 is compatible with {{site.data.keyword.icp4dfull}} 4.0 on Red Hat OpenShift 4.8. This release of {{site.data.keassistant_classic_shortnshort}} for {{site.data.keyword.icp4dfull}} includes various fixes and features.
 
 Closed entity matching with accent-normalized values in French
 :   Closed entities exact matches in French are completed using accent-normalized values or synonyms. For example, if you define a closed entity with a value or synonym with accent marks (for example, garçon or déjà), then variants without accent marks are also recognized (garcon or deja). Likewise, if a closed entity value or synonym is defined without accent marks, then user inputs with accent marks are also recognized. For more information about defining entities, see [Defining information to look for in customer input](/docs/assistant-data?topic=assistant-data-entities).
@@ -318,8 +318,8 @@ Improved enhanced intent detection
 {: #assistant-data-mar302022}
 {: release-note}
 
-{{site.data.keyword.conversationfull}} Cartridge for {{site.data.keyword.icp4dfull}} 4.0.7 is available
-:   {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} 4.0.7 is compatible with {{site.data.keyword.icp4dfull}} 4.0 on Red Hat OpenShift 4.8. This release of {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} includes various fixes and features.
+{{site.data.keyword.assistant_classic_full}} Cartridge for {{site.data.keyword.icp4dfull}} 4.0.7 is available
+:   {{site.data.keyword.assistant_classic_short}} for {{site.data.keyword.icp4dfull}} 4.0.7 is compatible with {{site.data.keyword.icp4dfull}} 4.0 on Red Hat OpenShift 4.8. This release of {{site.data.keassistant_classic_shortnshort}} for {{site.data.keyword.icp4dfull}} includes various fixes and features.
 
 Enhanced irrelevance detection update
 :   We revised the enhanced irrelevance detection classification algorithm. Now, enhanced irrelevant detection uses any provided counterexamples in training. This change does not affect workspaces without counterexamples. This update applies to the following languages: English, French, Spanish, Italian, and the universal language model. For more information, see [Defining what's irrelevant](/docs/assistant-data?topic=assistant-data-irrelevance-detection).
@@ -331,8 +331,8 @@ Fuzzy matching updates
 {: #assistant-data-feb232022}
 {: release-note}
 
-{{site.data.keyword.conversationfull}} Cartridge for {{site.data.keyword.icp4dfull}} 4.0.6 is available
-:   {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} 4.0.6 is compatible with {{site.data.keyword.icp4dfull}} 4.0 on Red Hat OpenShift 4.8. This release of {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} includes various fixes and features.
+{{site.data.keyword.assistant_classic_full}} Cartridge for {{site.data.keyword.icp4dfull}} 4.0.6 is available
+:   {{site.data.keyword.assistant_classic_short}} for {{site.data.keyword.icp4dfull}} 4.0.6 is compatible with {{site.data.keyword.icp4dfull}} 4.0 on Red Hat OpenShift 4.8. This release of {{site.data.keassistant_classic_shortnshort}} for {{site.data.keyword.icp4dfull}} includes various fixes and features.
 
 New API version
 :   The current API version is now `2021-11-27`. This version introduces the following changes:
@@ -349,7 +349,7 @@ Analytics overview change
 :   To improve reliability, the **Values** column has been removed from **Top entities** on the **Analytics Overview** page. **Top Entities** continues to provide counts of entity types. For more information, see [Top intents and top entities](/docs/assistant-data?topic=assistant-data-logs-overview#logs-overview-tops).
 
 Dialog skill **Try it out** improvements
-:   For dialog skills, the **Try it out** pane now uses the [React](https://reactjs.org/){: external} UI framework similar to the rest of the {{site.data.keyword.conversationshort}} user interface. You shouldn't see any change in behavior or functionality. As a part of the update, dialog skill error handling has been improved within the **Try it out** pane.
+:   For dialog skills, the **Try it out** pane now uses the [React](https://reactjs.org/){: external} UI framework similar to the rest of the {{site.data.keyword.assistant_classic_short}} user interface. You shouldn't see any change in behavior or functionality. As a part of the update, dialog skill error handling has been improved within the **Try it out** pane.
 
 Disambiguation feature updates
 :   The dialog skill disambiguation feature now includes improved features:
@@ -373,32 +373,32 @@ Disambiguation feature updates
 {: #assistant-data-jan262022}
 {: release-note}
 
-{{site.data.keyword.conversationfull}} Cartridge for {{site.data.keyword.icp4dfull}} 4.0.5 is available
-:   {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} 4.0.5 is compatible with {{site.data.keyword.icp4dfull}} 4.0 on Red Hat OpenShift 4.8. This release of {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} includes various fixes. {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} 4.0.5 is compatible with FIPS-enabled clusters.
+{{site.data.keyword.assistant_classic_full}} Cartridge for {{site.data.keyword.icp4dfull}} 4.0.5 is available
+:   {{site.data.keyword.assistant_classic_short}} for {{site.data.keyword.icp4dfull}} 4.0.5 is compatible with {{site.data.keyword.icp4dfull}} 4.0 on Red Hat OpenShift 4.8. This release of {{site.data.keassistant_classic_shortnshort}} for {{site.data.keyword.icp4dfull}} includes various fixes. {{site.dassistant_classic_shortrsationshort}} for {{site.data.keyword.icp4dfull}} 4.0.5 is compatible with FIPS-enabled clusters.
 
 ## 20 December 2021
 {: #assistant-data-dec202021}
 {: release-note}
 
-{{site.data.keyword.conversationfull}} Cartridge for {{site.data.keyword.icp4dfull}} 4.0.4 is available
-:   {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} 4.0.4 is compatible with {{site.data.keyword.icp4dfull}} 4.0 on Red Hat OpenShift 4.8. This release of {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} includes critical security fixes. {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} 4.0.4 is not compatible with FIPS-enabled clusters. The upcoming release of {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} 4.0.5 will be compatible with FIPS-enabled clusters.
+{{site.data.keyword.assistant_classic_full}} Cartridge for {{site.data.keyword.icp4dfull}} 4.0.4 is available
+:   {{site.data.keyword.assistant_classic_short}} for {{site.data.keyword.icp4dfull}} 4.0.4 is compatible with {{site.data.keyword.icp4dfull}} 4.0 on Red Hat OpenShift 4.8. This release of {{site.data.keassistant_classic_shortnshort}} for {{site.data.keyword.icp4dfull}} includes critical security fixes. {{site.dassistant_classic_shortrsationshort}} for {{site.data.keyword.icp4dfull}} 4.0.4 is not compatible with FIPS-enabled clusters. The upcoming release of {{assistant_classic_short.assistant_classic_short}} for {{site.data.keyword.icp4dfull}} 4.0.5 will be compatible with FIPS-enabled clusters.
 
 ## 4 October 2021
 {: #assistant-data-oct042021}
 {: release-note}
 
-{{site.data.keyword.conversationfull}} Cartridge for {{site.data.keyword.icp4dfull}} 4.0.2 is available
-:   {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} 4.0.2 is compatible with {{site.data.keyword.icp4dfull}} 4.0 on Red Hat OpenShift 4.8.
+{{site.data.keyword.assistant_classic_full}} Cartridge for {{site.data.keyword.icp4dfull}} 4.0.2 is available
+:   {{site.data.keyword.assistant_classic_short}} for {{site.data.keyword.icp4dfull}} 4.0.2 is compatible with {{site.data.keyword.icp4dfull}} 4.0 on Red Hat OpenShift 4.8.
 
 [Integration with the {{site.data.keyword.icp4dfull}} auditing service](/docs/assistant-data?topic=assistant-data-audit-events)
-:   {{site.data.keyword.conversationshort}} integrates with the {{site.data.keyword.icp4dfull}} auditing service feature, providing standard auditing records for important lifecycle and security events. The service generates audit records for events such as intent edits, entity creation, dialog node deletion, and more.
+:   {{site.data.keyword.assistant_classic_short}} integrates with the {{site.data.keyword.icp4dfull}} auditing service feature, providing standard auditing records for important lifecycle and security events. The service generates audit records for events such as intent edits, entity creation, dialog node deletion, and more.
 
 ## 29 July 2021
 {: #assistant-data-jul292021}
 {: release-note}
 
-{{site.data.keyword.conversationfull}} Cartridge for {{site.data.keyword.icp4dfull}} 4.0.0 is available
-:   {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} 4.0.0 is compatible with {{site.data.keyword.icp4dfull}} 4.0 on Red Hat OpenShift 4.6. See the [support matrix](/docs/assistant-data?topic=assistant-data-install#install-support-matrix) for more details.
+{{site.data.keyword.assistant_classic_full}} Cartridge for {{site.data.keyword.icp4dfull}} 4.0.0 is available
+:   {{site.data.keyword.assistant_classic_short}} for {{site.data.keyword.icp4dfull}} 4.0.0 is compatible with {{site.data.keyword.icp4dfull}} 4.0 on Red Hat OpenShift 4.6. See the [support matrix](/docs/assistant-data?topic=assistant-data-install#install-support-matrix) for more details.
 
 [Universal language](/docs/assistant-data?topic=assistant-data-assistant-language#assistant-language-universal)
 :   You now can build an assistant in any language you want to support. If a dedicated language model is not available for your target language, create a skill that uses the universal language model. The universal model applies a set of shared linguistic characteristics and rules from multiple languages as a starting point. It then learns from training data written in the target language that you add to it.
@@ -417,18 +417,18 @@ Features not included
 {: #assistant-data-mar192021}
 {: release-note}
 
-{{site.data.keyword.conversationfull}} 1.5.0 patch 1 is available
-:   For installations on {{site.data.keyword.icp4dfull}} 3.5, patch 1 includes configuration changes for FIPS compatibility and other fixes. See [Available patches for {{site.data.keyword.conversationfull}} for {{site.data.keyword.icp4dfull}}](https://www.ibm.com/support/pages/node/6240164){: external}
+{{site.data.keyword.assistant_classic_full}} 1.5.0 patch 1 is available
+:   For installations on {{site.data.keyword.icp4dfull}} 3.5, patch 1 includes configuration changes for FIPS compatibility and other fixes. See [Available patches for {{site.data.keyword.assistant_classic_full}} for {{site.data.keyword.icp4dfull}}](https://www.ibm.com/support/pages/node/6240164){: external}
 
 ## 9 December 2020
 {: #assistant-data-dec092020}
 {: release-note}
 
-{{site.data.keyword.conversationfull}} for {{site.data.keyword.icp4dfull}} 1.5.0 is available
-:   {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} 1.5.0 is compatible with {{site.data.keyword.icp4dfull}} 3.5 and {{site.data.keyword.icp4dfull}} 3.0.1 deployments on Red Hat OpenShift 4.6, 4.5, or 3.11. See the [support matrix](/docs/assistant-data?topic=assistant-data-install#install-support-matrix) for more details.
+{{site.data.keyword.assistant_classic_full}} for {{site.data.keyword.icp4dfull}} 1.5.0 is available
+:   {{site.data.keyword.assistant_classic_short}} for {{site.data.keyword.icp4dfull}} 1.5.0 is compatible with {{site.data.keyword.icp4dfull}} 3.5 and {{site.data.keyword.icp4dfull}} 3.0.1 deployments on Red Hat OpenShift 4.6, 4.5, or 3.11. See the [support matrix](/docs/assistant-data?topic=assistant-data-install#install-support-matrix) for more details.
 
-{{site.data.keyword.conversationfull}} for {{site.data.keyword.icp4dfull}} 1.5.0 is available
-:   {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} 1.5.0 is compatible with {{site.data.keyword.icp4dfull}} 3.5 and {{site.data.keyword.icp4dfull}} 3.0.1 deployments on Red Hat OpenShift 4.5 or 3.11.
+{{site.data.keyword.assistant_classic_full}} for {{site.data.keyword.icp4dfull}} 1.5.0 is available
+:   {{site.data.keyword.assistant_classic_short}} for {{site.data.keyword.icp4dfull}} 1.5.0 is compatible with {{site.data.keyword.icp4dfull}} 3.5 and {{site.data.keyword.icp4dfull}} 3.0.1 deployments on Red Hat OpenShift 4.5 or 3.11.
 
 Access conversation logs and metrics
 :   An **Analytics** page is now available. From this page, you can see conversation logs and metrics that give you insights, such as what topics your customers are asking about and how often the assistant succeeds in addressing customer requests. For more information, see [Metrics overview](/docs/assistant-data?topic=assistant-data-logs-overview).
@@ -466,8 +466,8 @@ Features not included
 {: #assistant-data-jun192020}
 {: release-note}
 
-{{site.data.keyword.conversationfull}} for {{site.data.keyword.icp4dfull}} 1.4.2 is available
-:   {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} 1.4.2 is compatible with {{site.data.keyword.icp4dfull}} 3.0.1 on OpenShift Red Hat 3.11 or 4.5 and {{site.data.keyword.icp4dfull}} 2.5 deployments on OpenShift Red Hat 3.11. The 1.4.2 release is certified on Red Hat OpenShift 4.5.
+{{site.data.keyword.assistant_classic_full}} for {{site.data.keyword.icp4dfull}} 1.4.2 is available
+:   {{site.data.keyword.assistant_classic_short}} for {{site.data.keyword.icp4dfull}} 1.4.2 is compatible with {{site.data.keyword.icp4dfull}} 3.0.1 on OpenShift Red Hat 3.11 or 4.5 and {{site.data.keyword.icp4dfull}} 2.5 deployments on OpenShift Red Hat 3.11. The 1.4.2 release is certified on Red Hat OpenShift 4.5.
 
 Autocorrection support was added
 :   Autocorrection helps your assistant understand what your customers want. It corrects misspellings in the input that customers submit before the input is evaluated. With more precise input, your assistant can more easily recognize entity mentions and understand the customer's intent. This feature is not available in all languages. See [Correcting user input](/docs/assistant-data?topic=assistant-data-dialog-runtime-spell-check) for more details.
@@ -509,14 +509,14 @@ Features not included
 {: release-note}
 
 IBM Cloud Private End Of Support
-:   Effective 30 September 2020, IBM will withdraw support for {{site.data.keyword.conversationfull}} on IBM Cloud Private. For more information, see the [announcement](https://www-01.ibm.com/common/ssi/cgi-bin/ssialias?infotype=an&subtype=ca&appname=gpateam&supplier=897&letternum=ENUS920-075){: external}.
+:   Effective 30 September 2020, IBM will withdraw support for {{site.data.keyword.assistant_classic_full}} on IBM Cloud Private. For more information, see the [announcement](https://www-01.ibm.com/common/ssi/cgi-bin/ssialias?infotype=an&subtype=ca&appname=gpateam&supplier=897&letternum=ENUS920-075){: external}.
 
 ## 28 February 2020
 {: #assistant-data-feb282020}
 {: release-note}
 
-{{site.data.keyword.conversationfull}} for {{site.data.keyword.icp4dfull}} version 1.4.1 is available
-:   {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} version 1.4.1 is compatible with {{site.data.keyword.icp4dfull}} version 2.5.
+{{site.data.keyword.assistant_classic_full}} for {{site.data.keyword.icp4dfull}} version 1.4.1 is available
+:   {{site.data.keyword.assistant_classic_short}} for {{site.data.keyword.icp4dfull}} version 1.4.1 is compatible with {{site.data.keyword.icp4dfull}} version 2.5.
 
 New backup and restore
 :   A new backup and restore script is available. See [Backing up and restoring data](/docs/assistant-data?topic=assistant-data-backup).
@@ -541,8 +541,8 @@ Features not included
 {: #assistant-data-nov272019}
 {: release-note}
 
-{{site.data.keyword.conversationfull}} for {{site.data.keyword.icp4dfull}} version 1.4 is available
-:   {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} version 1.4 is compatible with {{site.data.keyword.icp4dfull}} version 2.5.
+{{site.data.keyword.assistant_classic_full}} for {{site.data.keyword.icp4dfull}} version 1.4 is available
+:   {{site.data.keyword.assistant_classic_short}} for {{site.data.keyword.icp4dfull}} version 1.4 is compatible with {{site.data.keyword.icp4dfull}} version 2.5.
 
 Czech language not automatically enabled
 :   The Czech language is not enabled automatically anymore.
@@ -577,14 +577,14 @@ Testing improvement
 {: #assistant-data-sep032019}
 {: release-note}
 
-{{site.data.keyword.conversationfull}} for {{site.data.keyword.icp4dfull}} version 1.3 is available
-:   {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} version 1.3 is compatible with {{site.data.keyword.icp4dfull}} versions 2.1.0.1 and 2.1.0.2. There is now added support for installing {{site.data.keyword.icp4dfull_notm}} with Red Hat OpenShift.
+{{site.data.keyword.assistant_classic_full}} for {{site.data.keyword.icp4dfull}} version 1.3 is available
+:   {{site.data.keyword.assistant_classic_short}} for {{site.data.keyword.icp4dfull}} version 1.3 is compatible with {{site.data.keyword.icp4dfull}} versions 2.1.0.1 and 2.1.0.2. There is now added support for installing {{site.data.keyword.icp4dfull_notm}} with Red Hat OpenShift.
 
 Federal Information Security Management Act support
-:   Federal Information Security Management Act (FISMA) support is available for {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull_notm}} for this version (V1.3). FISMA support is also available to those who purchased V1.2 (28 June 2019) and upgraded to V1.3. {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull_notm}} is FISMA High Ready.
+:   Federal Information Security Management Act (FISMA) support is available for {{site.data.keyword.assistant_classic_short}} for {{site.data.keyword.icp4dfull_notm}} for this version (V1.3). FISMA support is also available to those who purchased V1.2 (28 June 2019) and upgraded to V1.3. {{site.data.keassistant_classic_shortnshort}} for {{site.data.keyword.icp4dfull_notm}} is FISMA High Ready.
 
 Provision more instances in a single deployment
-:   You can now provision up to 30 instances of {{site.data.keyword.conversationshort}} in a single deployment.
+:   You can now provision up to 30 instances of {{site.data.keyword.assistant_classic_short}} in a single deployment.
 
 Search skill now generally available
 :   The search skill is now generally available.
@@ -599,8 +599,8 @@ Features not included
 {: #assistant-data-jun282019}
 {: release-note}
 
-{{site.data.keyword.conversationfull}} for {{site.data.keyword.icp4dfull}} version 1.2 is available
-:   The {{site.data.keyword.conversationshort}} tool now works with {{site.data.keyword.icp4dfull_notm}} 2.1. It does not work with stand-alone {{site.data.keyword.icpfull_notm}}. The following changes were made in this release:
+{{site.data.keyword.assistant_classic_full}} for {{site.data.keyword.icp4dfull}} version 1.2 is available
+:   The {{site.data.keyword.assistant_classic_short}} tool now works with {{site.data.keyword.icp4dfull_notm}} 2.1. It does not work with stand-alone {{site.data.keyword.icpfull_notm}}. The following changes were made in this release:
 
 Assistants are now available
 :   An assistant can manage user sessions on your behalf. See [Assistants](/docs/assistant-data?topic=assistant-data-assistants).
@@ -621,8 +621,8 @@ Synonym recommendations
 {: #assistant-data-feb212019}
 {: release-note}
 
-{{site.data.keyword.conversationfull}} for {{site.data.keyword.icpfull}} version 1.1 is available
-:   The {{site.data.keyword.conversationshort}} tool now works with {{site.data.keyword.icpfull_notm}} 3.1.0. It does not work with {{site.data.keyword.icpfull_notm}} 2.1.0.3. {{site.data.keyword.conversationshort}} for {{site.data.keyword.icpfull_notm}} version 1.1 is compatible with {{site.data.keyword.icp4dfull}} version 1.2.
+{{site.data.keyword.assistant_classic_full}} for {{site.data.keyword.icpfull}} version 1.1 is available
+:   The {{site.data.keyword.assistant_classic_short}} tool now works with {{site.data.keyword.icpfull_notm}} 3.1.0. It does not work with {{site.data.keyword.icpfull_notm}} 2.1.0.3. {{site.data.keassistant_classic_shortnshort}} for {{site.data.keyword.icpfull_notm}} version 1.1 is compatible with {{site.data.keyword.icp4dfull}} version 1.2.
 
 Decrease in the number of required Virtual Private CPUs
 :   The number of required Virtual Private CPUs has decreased from its previous number (of 60 VPCs).
@@ -634,7 +634,7 @@ Improvements to language support
 {: #assistant-data-nov232018}
 {: release-note}
 
-{{site.data.keyword.conversationfull}} for {{site.data.keyword.icpfull}} version 1.0.1 runs on IBM Cloud Private 2.1.0.3
+{{site.data.keyword.assistant_classic_full}} for {{site.data.keyword.icpfull}} version 1.0.1 runs on IBM Cloud Private 2.1.0.3
 :   A revised Helm chart (version 1.0.1) was published, which improves the Helm chart and packaging.
 
 New configuration settings
@@ -647,18 +647,18 @@ Development deployment required resources
 {: #assistant-data-oct052018}
 {: release-note}
 
-{{site.data.keyword.conversationfull}} for {{site.data.keyword.icpfull}} version 1.0.0.1 runs on IBM Cloud Private 2.1.0.3
+{{site.data.keyword.assistant_classic_full}} for {{site.data.keyword.icpfull}} version 1.0.0.1 runs on IBM Cloud Private 2.1.0.3
 :   A revised Helm chart (version 1.0.0.1) was published, which improves the installation process.
 
 ## 26 September 2018
 {: #assistant-data-sep262018}
 {: release-note}
 
-{{site.data.keyword.conversationfull}} for {{site.data.keyword.icpfull}} 1 is available
-:   {{site.data.keyword.conversationfull}} for {{site.data.keyword.icpfull}} version 1 runs on IBM Cloud Private 2.1.0.3.
+{{site.data.keyword.assistant_classic_full}} for {{site.data.keyword.icpfull}} 1 is available
+:   {{site.data.keyword.assistant_classic_full}} for {{site.data.keyword.icpfull}} version 1 runs on IBM Cloud Private 2.1.0.3.
 
 Introducing the **Build** tab
-:   The {{site.data.keyword.conversationfull}} tool includes a **Build** tab that offers pre-built intents you can add to your workspace from a content catalog, the ability to define your own intents and entities, and has a graphical user interface you can use to build a dialog. The following key features are also available:
+:   The {{site.data.keyword.assistant_classic_full}} tool includes a **Build** tab that offers pre-built intents you can add to your workspace from a content catalog, the ability to define your own intents and entities, and has a graphical user interface you can use to build a dialog. The following key features are also available:
 
   - Dialog: Digression and disambiguation support, nodes with slots, rich responses (including *Connect to human agent*)
   - Entities: Contextual entities, system entities for currency, date, number, percentage, and time.
