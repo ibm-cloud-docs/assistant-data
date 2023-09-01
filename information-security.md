@@ -58,7 +58,7 @@ For more information about data privacy in {{site.data.keyword.icp4dfull_notm}},
 
 Do not add personal data to the training data (entities and intents, including user examples) that you create.
 
-If you need to remove a customer's message data from a {{site.data.keyword.assistant_classic_short}} instance, you can do so based on the customer ID of the client, as long as you associate the message with a customer ID when the message is sent to {{site.data.keassistant_classic_shortnshort}}.
+If you need to remove a customer's message data from a {{site.data.keyword.assistant_classic_short}} instance, you can do so based on the customer ID of the client, as long as you associate the message with a customer ID when the message is sent to {{site.data.keyword.assistant_classic_short}}.
 
 - The preview link integration does not support the labeling and therefore deletion of data based on customer ID. Do not use the preview link integration in a solution that must support the ability to delete data based on a customer ID.
 - For the web chat integration, the service takes the `user_id` that is passed in and adds it as the `customer_id` parameter value to the `X-Watson-Metadata` header with each request.
