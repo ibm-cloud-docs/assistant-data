@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2015, 2023
-lastupdated: "2023-05-10"
+  years: 2015, 2020
+lastupdated: "2023-05-09"
 
 subcollection: assistant-data
 
@@ -76,7 +76,7 @@ It can be difficult to know the syntax to use in your dialog node to accurately 
 
   See [Expression language methods for String](/docs/assistant-data?topic=assistant-data-dialog-methods#dialog-methods-strings) to learn about more methods you can use.
 
-- **Dealing with multiple intents**: A user enters input that expresses a wish to complete two separate tasks. `I want to open a savings account and apply for a credit card.` How does the dialog recognize and address both of them? See the [Compound questions](https://sodoherty.ai/2017/02/06/compound-questions/){: external} entry from Simon O'Doherty's blog for strategies you can try. (Simon is a developer on the {{site.data.keyword.conversationshort}} team.)
+- **Dealing with multiple intents**: A user enters input that expresses a wish to complete two separate tasks. `I want to open a savings account and apply for a credit card.` How does the dialog recognize and address both of them? See the [Compound questions](https://sodoherty.ai/2017/02/06/compound-questions/){: external} entry from Simon O'Doherty's blog for strategies you can try. (Simon is a developer on the {{site.data.keyword.assistant_classic_short}} team.)
 
 - **Dealing with ambiguous intents**: A user enters input that expresses a wish that is ambiguous enough that your assistant finds two or more nodes with intents that could potentially address it. How does the dialog know which dialog branch to follow? If you enable disambiguation, it can show users their options and ask the user to pick the correct one. See [Disambiguation](/docs/assistant-data?topic=assistant-data-dialog-runtime#dialog-runtime-disambiguation) for more details.
 

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2021
-lastupdated: "2021-08-25"
+lastupdated: "2021-01-15"
 
 subcollection: assistant-data
 
@@ -30,7 +30,7 @@ subcollection: assistant-data
 Make a call to an external service or application during a conversation.
 {: shortdesc}
 
-{{site.data.keyword.conversationshort}} supports the following types of webhooks:
+{{site.data.keyword.assistant_classic_short}} supports the following types of webhooks:
 
 - Skill-level webhooks
 

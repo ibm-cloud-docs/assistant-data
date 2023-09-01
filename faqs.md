@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2023
-lastupdated: "2023-05-10"
+lastupdated: "2023-05-09"
 
 subcollection: assistant-data
 
@@ -70,7 +70,7 @@ You can only view the Analytics page if the system administrator enabled the fea
 {: #faqs-get-started}
 {: faq}
 
-Follow the steps in the [Getting started with {{site.data.keyword.conversationshort}}](/docs/assistant-data?topic=assistant-data-getting-started) tutorial for a product introduction and to get help creating your first assistant.
+Follow the steps in the [Getting started with {{site.data.keyword.assistant_classic_short}}](/docs/assistant-data?topic=assistant-data-getting-started) tutorial for a product introduction and to get help creating your first assistant.
 
 ## Can I export the user conversations from the Analytics page?
 {: #faqs-export-conversation}

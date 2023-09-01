@@ -25,7 +25,7 @@ subcollection: assistant-data
 # Development process
 {: #dev-process}
 
-Use {{site.data.keyword.conversationshort}} to leverage AI as you build, deploy, and incrementally improve a conversational assistant.
+Use {{site.data.keyword.assistant_classic_short}} to leverage AI as you build, deploy, and incrementally improve a conversational assistant.
 {: shortdesc}
 
 ![Shows the flow of development steps starting with developing training data and ending with deploying to production](images/dev-process.png)

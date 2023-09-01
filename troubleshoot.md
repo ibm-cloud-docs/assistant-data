@@ -26,7 +26,7 @@ subcollection: assistant-data
 # Troubleshooting known issues
 {: #troubleshoot}
 
-Get help with solving issues that you might encounter while using {{site.data.keyword.conversationshort}}.
+Get help with solving issues that you might encounter while using {{site.data.keyword.assistant_classic_short}}.
 {: shortdesc}
 
 ## 4.5.x
@@ -34,10 +34,10 @@ Get help with solving issues that you might encounter while using {{site.data.ke
 
 ### Pod "RESTARTS" count stays at 0 after a 4.5.x upgrade even though a few assistant pods are restarting
 {: #troubleshoot-453-restarts-zero}
-<!--issue 56209-->
 
-- Problem: After upgrading {{site.data.keyword.conversationshort}}, the pod "RESTARTS" count stays at 0 even though certain assistant pods are restarting.
-- Cause: During the upgrade, custom resources owned by {{site.data.keyword.conversationshort}} for the "certificates.certmanager.k8s.io" CRD are deleted using a script that runs in the background. Sometimes the CR deletion script completes before the assistant operator gets upgraded. In that case, the old assistant operator might recreate custom resources for the "certificates.certmanager.k8s.io" CRD. Leftover CRs might cause the certificate manager to continuously regenerate some certificate secrets, causing some assistant pods to restart recursively.
+
+- Problem: After upgrading {{site.data.keyword.assistant_classic_short}}, the pod "RESTARTS" count stays at 0 even though certain assistant pods are restarting.
+- Cause: During the upgrade, custom resources owned by {{site.data.keyword.assistant_classic_short}} for the "certificates.certmanager.k8s.io" CRD are deleted using a script that runs in the background. Sometimes the CR deletion script completes before the assistant operator gets upgraded. In that case, the old assistant operator might recreate custom resources for the "certificates.certmanager.k8s.io" CRD. Leftover CRs might cause the certificate manager to continuously regenerate some certificate secrets, causing some assistant pods to restart recursively.
 - Solution: Run the following script to delete leftover custom resources for the "certificates.certmanager.k8s.io" CRD after setting INSTANCE (normally `wa`) and PROJECT_CPD_INSTANCE variables:
 ```
 for i in `oc get certificates.certmanager.k8s.io -l icpdsupport/addOnId=assistant --namespace ${PROJECT_CPD_INSTANCE} | grep "${INSTANCE}-"| awk '{print $1}'`; do oc delete certificates.certmanager.k8s.io $i --namespace ${PROJECT_CPD_INSTANCE}; done
@@ -49,7 +49,7 @@ for i in `oc get certificates.certmanager.k8s.io -l icpdsupport/addOnId=assistan
 ### Data Governor not healthy after installation
 {: #troubleshoot-450-data-governor-not-healthy}
 
-After {{site.data.keyword.conversationshort}} is installed, the `dataexhausttenant` custom resource named `wa-data-governor-ibm-data-governor-data-exhaust-internal` gets stuck in the `Topics` phase. When this happens, errors in the Data Governor pods report that the service does not exist.
+After {{site.data.keyword.assistant_classic_short}} is installed, the `dataexhausttenant` custom resource named `wa-data-governor-ibm-data-governor-data-exhaust-internal` gets stuck in the `Topics` phase. When this happens, errors in the Data Governor pods report that the service does not exist.
 
 1. Get the status of the `wa-data-governor` custom resource:
     ```bash
@@ -109,12 +109,12 @@ Resources for the `ibm-rabbitmq-operator.v1.0.11` component must be removed befo
     ```
     {: codeblock}
 
-### Preparing to install a size large {{site.data.keyword.conversationshort}} deployment
+### Preparing to install a size large {{site.data.keyword.assistant_classic_short}} deployment
 {: #troubleshoot-450-prepare-large-install}
 
-If you specify `large` for the `watson_assistant_size` option when you install {{site.data.keyword.conversationshort}}, the installation fails to complete successfully.
+If you specify `large` for the `watson_assistant_size` option when you install {{site.data.keyword.assistant_classic_short}}, the installation fails to complete successfully.
 
-Before you install a size large deployment of {{site.data.keyword.conversationshort}}, apply the following fix. The following fix uses `wa` as the name of the Watson Assistant instance and `cpd` as the namespace where Watson Assistant is installed. These values are set in environment variables. Before you run the command, update the `INSTANCE` variable with the name of your instance, and update the `NAMESPACE` variable with the namespace where your instance in installed:
+Before you install a size large deployment of {{site.data.keyword.assistant_classic_short}}, apply the following fix. The following fix uses `wa` as the name of the Watson Assistant instance and `cpd` as the namespace where Watson Assistant is installed. These values are set in environment variables. Before you run the command, update the `INSTANCE` variable with the name of your instance, and update the `NAMESPACE` variable with the namespace where your instance in installed:
 ```bash
 INSTANCE=wa ; \
 NAMESPACE=cpd ; \
@@ -231,10 +231,10 @@ done
 ```
 {: codeblock}
 
-### Fixing a size large {{site.data.keyword.conversationshort}} installation
+### Fixing a size large {{site.data.keyword.assistant_classic_short}} installation
 {: #troubleshoot-450-fix-large-install}
 
-Apply this fix if you installed a size `large` {{site.data.keyword.conversationshort}} deployment, and your installation fails to complete successfully. In some cases, {{site.data.keyword.conversationshort}} pods aren't able to communicate with other pods, and the Transmission Control Protocol (TCP) connections can't be established.
+Apply this fix if you installed a size `large` {{site.data.keyword.assistant_classic_short}} deployment, and your installation fails to complete successfully. In some cases, {{site.data.keyword.assistant_classic_short}} pods aren't able to communicate with other pods, and the Transmission Control Protocol (TCP) connections can't be established.
 
 To confirm whether you are affected by this issue, run the following command:
 ```bash
@@ -280,9 +280,9 @@ done
 ### Unable to scale the size of Redis pods
 {: #troubleshoot-450-scale-redis}
 
-When you scale the deployment size of {{site.data.keyword.conversationshort}}, the Redis pods do not scale correctly and will not match the new size of the {{site.data.keyword.conversationshort}} deployment (`small`, `medium`, or `large`). This problem is a known issue in Redis operator v1.5.1.
+When you scale the deployment size of {{site.data.keyword.assistant_classic_short}}, the Redis pods do not scale correctly and will not match the new size of the {{site.data.keyword.assistant_classic_short}} deployment (`small`, `medium`, or `large`). This problem is a known issue in Redis operator v1.5.1.
 
-When you scale the size of your {{site.data.keyword.conversationshort}} deployment, you must delete the Redis custom resource. This allows Redis to automatically re-create the custom resource with the correct size and pods.
+When you scale the size of your {{site.data.keyword.assistant_classic_short}} deployment, you must delete the Redis custom resource. This allows Redis to automatically re-create the custom resource with the correct size and pods.
 
 To delete and re-create the Redis custom resource:
 
@@ -314,7 +314,7 @@ To delete and re-create the Redis custom resource:
     ```
     {: codeblock}
 
-1. Export the name of your {{site.data.keyword.conversationshort}} instance as an environment variable:
+1. Export the name of your {{site.data.keyword.assistant_classic_short}} instance as an environment variable:
     ```bash
     export INSTANCE=`oc get wa -n ${PROJECT_CPD_INSTANCE} |grep -v NAME| awk '{print $1}'`
     ```
@@ -334,7 +334,7 @@ To delete and re-create the Redis custom resource:
 ### Data Governor error causing deployment failure
 {: #troubleshoot-40x-data-governor-deployment-fail}
 
-The following fix applies to {{site.data.keyword.conversationshort}} 4.0.0 through 4.0.8. In some cases, {{site.data.keyword.conversationshort}} deployment is stuck and pods are not coming up because of an issue with the interaction between the Events operator and the Data Governor custom resource (CR).  
+The following fix applies to {{site.data.keyword.assistant_classic_short}} 4.0.0 through 4.0.8. In some cases, {{site.data.keyword.assistant_classic_short}} deployment is stuck and pods are not coming up because of an issue with the interaction between the Events operator and the Data Governor custom resource (CR).  
 
 Complete the following steps to determine whether you are impacted by this issue and, if necessary, apply the patch to resolve it:
 
@@ -358,7 +358,7 @@ Complete the following steps to determine whether you are impacted by this issue
     ```
     {: codeblock}
 
-1. From your operand namespace, run the following command to apply the patch. In the command, `wa` is used as the name of the instance. Replace this value with the name of your {{site.data.keyword.conversationshort}} instance:
+1. From your operand namespace, run the following command to apply the patch. In the command, `wa` is used as the name of the instance. Replace this value with the name of your {{site.data.keyword.assistant_classic_short}} instance:
 
     ```
     cat <<EOF | oc apply -f -
@@ -404,7 +404,7 @@ Complete the following steps to determine whether you are impacted by this issue
 ### Security context constraint permission errors
 {: #troubleshoot-40x-scc-permission-error}
 
-The following fix applies to {{site.data.keyword.conversationshort}} 4.0.0 through 4.0.5. If a cluster has a security context constraint (SCC) that takes precedence over **restricted** SCCs and has different permissions than **restricted** SCCs, then {{site.data.keyword.conversationshort}} 4.0.0 through 4.0.5 installations might fail with permission errors. For example, the `update-schema-store-db-job` job reports errors similar to the following example:
+The following fix applies to {{site.data.keyword.assistant_classic_short}} 4.0.0 through 4.0.5. If a cluster has a security context constraint (SCC) that takes precedence over **restricted** SCCs and has different permissions than **restricted** SCCs, then {{site.data.keyword.assistant_classic_short}} 4.0.0 through 4.0.5 installations might fail with permission errors. For example, the `update-schema-store-db-job` job reports errors similar to the following example:
 ```
 oc logs wa-4.0.2-update-schema-store-db-job-bpsdr postgres-is-prepared
 Waiting until postgres is running and responding
@@ -432,7 +432,7 @@ To fix this issue, raise the priority of the **restricted** SCC so that it takes
 
 1. Change the `priority` from `null` to `1`.
 
-Now, new {{site.data.keyword.conversationshort}} pods default back to the expected **restricted** SCC. When you run the `oc describe pod wa-etcd-0 |grep scc` command, you get an output similar to the following example:
+Now, new {{site.data.keyword.assistant_classic_short}} pods default back to the expected **restricted** SCC. When you run the `oc describe pod wa-etcd-0 |grep scc` command, you get an output similar to the following example:
 ```
 openshift.io/scc: restricted
 ```
@@ -440,11 +440,11 @@ openshift.io/scc: restricted
 ### Unable to collect logs with a webhook
 {: #troubleshoot-40x-collect-logs-webhook}
 
-The following fix applies to all versions of {{site.data.keyword.conversationshort}} 4.0.x. If you're unable to collect logs with a webhook, it might be because you are using a webhook that connects to a server that is using a self-signed certificate. If so, complete the following steps to import the certificate into the keystore so that you can collect {{site.data.keyword.conversationshort}} logs with a webhook:
+The following fix applies to all versions of {{site.data.keyword.assistant_classic_short}} 4.0.x. If you're unable to collect logs with a webhook, it might be because you are using a webhook that connects to a server that is using a self-signed certificate. If so, complete the following steps to import the certificate into the keystore so that you can collect {{site.data.keyword.assistant_classic_short}} logs with a webhook:
 
-1. Log in to cluster and `oc project cpd-instance`, which is the namespace where the {{site.data.keyword.conversationshort}} instance is located.
+1. Log in to cluster and `oc project cpd-instance`, which is the namespace where the {{site.data.keyword.assistant_classic_short}} instance is located.
 
-1. Run the following command. In the following command, replace `INSTANCE_NAME` with the name of your {{site.data.keyword.conversationshort}} instance and replace `CUSTOM_CERTIFICATE` with your Base64 encoded custom certificate key:
+1. Run the following command. In the following command, replace `INSTANCE_NAME` with the name of your {{site.data.keyword.assistant_classic_short}} instance and replace `CUSTOM_CERTIFICATE` with your Base64 encoded custom certificate key:
     ```
     INSTANCE="INSTANCE_NAME"     # Replace INSTANCE_NAME with the name of the Watson Assistant instance
     CERT="CUSTOM_CERTIFICATE"     # Replace CUSTOM_CERTIFICATE with the custom certificate key
@@ -511,10 +511,10 @@ The following fix applies to all versions of {{site.data.keyword.conversationsho
 ## 4.0.5
 {: #troubleshoot-405}
 
-### Install Redis with {{site.data.keyword.conversationshort}} if foundational services version is higher than 3.14.1
+### Install Redis with {{site.data.keyword.assistant_classic_short}} if foundational services version is higher than 3.14.1
 {: #troubleshoot-405-install-redis-foundational-services}
 
-If you are installing the Redis operator with {{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull}} 4.0.5 with an IBM Cloud Pak foundational services version higher than 3.14.1, the Redis operator might get stuck in `Pending` status. If you have an air-gapped cluster, complete the steps in the [Air-gapped cluster](#troubleshoot-405-install-redis-foundational-services-air-gapped) section to resolve this issue. If you are using the IBM Entitled Registry, complete the steps in the [IBM Entitled Registry](#troubleshoot-405-install-redis-foundational-services-entitled-registry) section to resolve this issue.
+If you are installing the Redis operator with {{site.data.keyword.assistant_classic_short}} for {{site.data.keyword.icp4dfull}} 4.0.5 with an IBM Cloud Pak foundational services version higher than 3.14.1, the Redis operator might get stuck in `Pending` status. If you have an air-gapped cluster, complete the steps in the [Air-gapped cluster](#troubleshoot-405-install-redis-foundational-services-air-gapped) section to resolve this issue. If you are using the IBM Entitled Registry, complete the steps in the [IBM Entitled Registry](#troubleshoot-405-install-redis-foundational-services-entitled-registry) section to resolve this issue.
 
 #### Air-gapped cluster
 {: #troubleshoot-405-install-redis-foundational-services-air-gapped}
@@ -687,22 +687,22 @@ If you are installing the Redis operator with {{site.data.keyword.conversationsh
 ### Integrations image problem on air-gapped installations
 {: #troubleshoot-404-integrations-image-air-gapped}
 
-If your {{site.data.keyword.conversationshort}} 4.0.4 installation is air-gapped, your integrations image fails to properly start.
+If your {{site.data.keyword.assistant_classic_short}} 4.0.4 installation is air-gapped, your integrations image fails to properly start.
 
 If the installation uses the IBM Entitled Registry to pull images, complete the steps in the **IBM Entitled Registry** section. If the installation uses a private Docker registry to pull images, complete the steps in the **Private Docker registry** section.
 
 #### IBM Entitled Registry
 
-If your installation uses the IBM Entitled Registry to pull images, complete the following steps to add an override entry to the {{site.data.keyword.conversationshort}} CR:
+If your installation uses the IBM Entitled Registry to pull images, complete the following steps to add an override entry to the {{site.data.keyword.assistant_classic_short}} CR:
 
-1. Get the name of your {{site.data.keyword.conversationshort}} by running the following command:
+1. Get the name of your {{site.data.keyword.assistant_classic_short}} by running the following command:
     ```
     oc get wa
     ```
 
 1. Edit and save the CR.
 
-    a) Run the following command to edit the CR. In the command, replace `INSTANCE_NAME` with the name of the {{site.data.keyword.conversationshort}} instance:
+    a) Run the following command to edit the CR. In the command, replace `INSTANCE_NAME` with the name of the {{site.data.keyword.assistant_classic_short}} instance:
     ```
     oc edit wa INSTANCE_NAME
     ```
@@ -716,7 +716,7 @@ If your installation uses the IBM Entitled Registry to pull images, complete the
         tag: 20220106-143142-0ea3fbf7-wa_icp_4.0.5-signed@sha256:7078fdba4ab0b69dbb93f47836fd9fcb7cfb12f103662fef0d9d1058d2553910
     ```
 
-1. Wait for the {{site.data.keyword.conversationshort}} operator to pick up the change and start a new integrations pod. This might take up to 10 minutes.
+1. Wait for the {{site.data.keyword.assistant_classic_short}} operator to pick up the change and start a new integrations pod. This might take up to 10 minutes.
 
 1. After the new integrations pod starts, the old pod terminates. When the new pod starts, the server starts locally and the log looks similar to the following example:
     ```
@@ -729,16 +729,16 @@ If your installation uses the IBM Entitled Registry to pull images, complete the
 
 #### Private Docker registry
 
-If your installation uses a private Docker registry to pull images, complete the following steps to download and push the new integrations image to your private Docker registry and add an override entry to the {{site.data.keyword.conversationshort}} CR:
+If your installation uses a private Docker registry to pull images, complete the following steps to download and push the new integrations image to your private Docker registry and add an override entry to the {{site.data.keyword.assistant_classic_short}} CR:
 
-1.  Edit the {{site.data.keyword.conversationshort}} CSV file to add the new integrations image.
+1.  Edit the {{site.data.keyword.assistant_classic_short}} CSV file to add the new integrations image.
 
-    a) Run the following command to open the {{site.data.keyword.conversationshort}} CSV file:
+    a) Run the following command to open the {{site.data.keyword.assistant_classic_short}} CSV file:
     ```
     vi $OFFLINEDIR/ibm-watson-assistant-4.0.4-images.csv
     ```
 
-    b) Add the following line to {{site.data.keyword.conversationshort}} CSV file immediately after the existing integrations image:
+    b) Add the following line to {{site.data.keyword.assistant_classic_short}} CSV file immediately after the existing integrations image:
     ```
     cp.icr.io,cp/watson-assistant/servicedesk-integration,20220106-143142-0ea3fbf7-wa_icp_4.0.5-signed,sha256:7078fdba4ab0b69dbb93f47836fd9fcb7cfb12f103662fef0d9d1058d2553910,IMAGE,linux,x86_64,"",0,CASE,"",ibm_wa_4_0_0;ibm_wa_4_0_2;ibm_wa_4_0_4;vLatest
     ```
@@ -752,14 +752,14 @@ If your installation uses a private Docker registry to pull images, complete the
       --args "--registry cp.icr.io --user cp --pass $PRD_ENTITLED_REGISTRY_APIKEY --inputDir ${OFFLINEDIR}"
     ```
 
-1. Get the name of your {{site.data.keyword.conversationshort}} by running the following command:
+1. Get the name of your {{site.data.keyword.assistant_classic_short}} by running the following command:
     ```
     oc get wa
     ```
 
 1. Edit and save the CR.
 
-    a) Run the following command to edit the CR. In the command, replace `INSTANCE_NAME` with the name of the {{site.data.keyword.conversationshort}} instance:
+    a) Run the following command to edit the CR. In the command, replace `INSTANCE_NAME` with the name of the {{site.data.keyword.assistant_classic_short}} instance:
     ```
     oc edit wa INSTANCE_NAME
     ```
@@ -773,7 +773,7 @@ If your installation uses a private Docker registry to pull images, complete the
         tag: 20220106-143142-0ea3fbf7-wa_icp_4.0.5-signed@sha256:7078fdba4ab0b69dbb93f47836fd9fcb7cfb12f103662fef0d9d1058d2553910
     ```
 
-1. Wait for the {{site.data.keyword.conversationshort}} operator to pick up the change and start a new integrations pod. This might take up to 10 minutes.
+1. Wait for the {{site.data.keyword.assistant_classic_short}} operator to pick up the change and start a new integrations pod. This might take up to 10 minutes.
 
 1. After the new integrations pod starts, the old pod terminates. When the new pod starts, the server starts locally and the log looks similar to the following example:
     ```
@@ -787,13 +787,13 @@ If your installation uses a private Docker registry to pull images, complete the
 ## 4.0.0
 {: #troubleshoot-400}
 
-### Install {{site.data.keyword.conversationshort}} 4.0.0 with EDB version 1.8
+### Install {{site.data.keyword.assistant_classic_short}} 4.0.0 with EDB version 1.8
 {: #troubleshoot-400-install-edb18}
 
-Complete this task only if you need a fresh installation of {{site.data.keyword.conversationshort}} 4.0.0. Do not complete this task on existing clusters with data. Completing this task on an existing cluster with data results in data loss.
+Complete this task only if you need a fresh installation of {{site.data.keyword.assistant_classic_short}} 4.0.0. Do not complete this task on existing clusters with data. Completing this task on an existing cluster with data results in data loss.
 {: important}
 
-If you upgraded to EDB version 1.8 and need a new installation of {{site.data.keyword.conversationshort}} 4.0.0, complete the following steps. In the following steps, `wa` is used as the name of the custom resource. Replace this value with the name of your custom resource:
+If you upgraded to EDB version 1.8 and need a new installation of {{site.data.keyword.assistant_classic_short}} 4.0.0, complete the following steps. In the following steps, `wa` is used as the name of the custom resource. Replace this value with the name of your custom resource:
 
 1. First, apply the following patch:
     ```
@@ -859,9 +859,9 @@ If you upgraded to EDB version 1.8 and need a new installation of {{site.data.ke
     wa-4.0.0-update-schema-store-db-job   1/1           13s        31m
     ```
 
-    If the jobs don't complete successfully, then they timed out and need to be recreated. Delete the jobs by running the `oc delete jobs wa-create-slot-store-db-job wa-4.0.0-update-schema-store-db-job` command. The jobs are recreated after 10 minutes by the {{site.data.keyword.conversationshort}} operator.
+    If the jobs don't complete successfully, then they timed out and need to be recreated. Delete the jobs by running the `oc delete jobs wa-create-slot-store-db-job wa-4.0.0-update-schema-store-db-job` command. The jobs are recreated after 10 minutes by the {{site.data.keyword.assistant_classic_short}} operator.
 
-For information about upgrading from {{site.data.keyword.conversationshort}} 4.0.0 to {{site.data.keyword.conversationshort}} 4.0.2, see [Upgrading {{site.data.keyword.conversationshort}} to a newer 4.0 refresh](https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=assistant-upgrading-watson-version-40){: external}.
+For information about upgrading from {{site.data.keyword.assistant_classic_short}} 4.0.0 to {{site.data.keyword.assistant_classic_short}} 4.0.2, see [Upgrading {{site.data.keyword.assistant_classic_short}} to a newer 4.0 refresh](https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=assistant-upgrading-watson-version-40){: external}.
 
 ## 1.5.0
 {: #troubleshoot-150}
@@ -946,7 +946,7 @@ To fix the search skill, you inject the CA that signed your TLS certificate into
 
     Because the `cacerts` file is binary, the output of the `oc describe configmap watson-assistant-skill-cacerts` command shows an empty data section. To check whether the updated `cacerts` file is present in the configmap, run the `oc get configmap watson-assistant-skill-cacerts --output yaml` command.
 
-1.  Override the `cacerts` file in the search skill pods. In this step, you configure the {{site.data.keyword.conversationshort}} operator to override the `cacerts` file in the search skill pods with the updated `cacerts` file. In the following example file, the {{site.data.keyword.conversationshort}} instance is called `watson-assistant---wa`. Replace this value with the name of your instance:
+1.  Override the `cacerts` file in the search skill pods. In this step, you configure the {{site.data.keyword.assistant_classic_short}} operator to override the `cacerts` file in the search skill pods with the updated `cacerts` file. In the following example file, the {{site.data.keyword.assistant_classic_short}} instance is called `watson-assistant---wa`. Replace this value with the name of your instance:
     ```
     cat <<EOF | oc apply -f -
     kind: TemporaryPatch
@@ -985,14 +985,14 @@ To fix the search skill, you inject the CA that signed your TLS certificate into
 ### Disable Horizontal Pod Autoscaling and set a maximum number of master pods
 {: #troubleshoot-150-disable-hpa}
 
-Horizontal Pod Autoscaling (HPA) is enabled automatically for {{site.data.keyword.conversationshort}}. As a result, the number of replicas changes dynamically in the range of 1 to 10 replicas. You can disable HPA if you want to limit the maximum number of master pods or if you're concerned about master pods being created and deleted too frequently.
+Horizontal Pod Autoscaling (HPA) is enabled automatically for {{site.data.keyword.assistant_classic_short}}. As a result, the number of replicas changes dynamically in the range of 1 to 10 replicas. You can disable HPA if you want to limit the maximum number of master pods or if you're concerned about master pods being created and deleted too frequently.
 
 1.  First, disable HPA for the `master` microservice by running the following command. In these steps, substitute your instance name for the `INSTANCE_NAME` variable:
     ```
     oc patch wa ${INSTANCE_NAME} --type='json' --patch='[{"op": "add", "path": "/appConfigOverrides/clu", "value":{"master":{"autoscaling":{"enabled":false}}}}]'
     ```
 
-1.  Wait until the information propagates into the {{site.data.keyword.conversationshort}} operator:
+1.  Wait until the information propagates into the {{site.data.keyword.assistant_classic_short}} operator:
     ```
     sleep 600
     ```
@@ -1012,12 +1012,12 @@ Horizontal Pod Autoscaling (HPA) is enabled automatically for {{site.data.keywor
     oc scale deploy ${INSTANCE_NAME}-master --replicas=2
     ```
 
-### {{site.data.keyword.conversationshort}} 1.5.0 patch 1
-[{{site.data.keyword.conversationshort}} 1.5.0 patch 1](https://www.ibm.com/support/pages/node/6240164) is available for installations of version 1.5.0.
+### {{site.data.keyword.assistant_classic_short}} 1.5.0 patch 1
+[{{site.data.keyword.assistant_classic_short}} 1.5.0 patch 1](https://www.ibm.com/support/pages/node/6240164) is available for installations of version 1.5.0.
 
-### Resizing the Redis statefulset memory and cpu values after applying patch 1 for {{site.data.keyword.conversationshort}} 1.5.0
+### Resizing the Redis statefulset memory and cpu values after applying patch 1 for {{site.data.keyword.assistant_classic_short}} 1.5.0
 
-{{site.data.keyword.conversationshort}} uses Redis to store web session-related data. Here are steps to resize Redis statefulset memory and cpu values after applying [{{site.data.keyword.conversationshort}} 1.5.0 patch 1](https://www.ibm.com/support/pages/node/6240164).
+{{site.data.keyword.assistant_classic_short}} uses Redis to store web session-related data. Here are steps to resize Redis statefulset memory and cpu values after applying [{{site.data.keyword.assistant_classic_short}} 1.5.0 patch 1](https://www.ibm.com/support/pages/node/6240164).
 
 1.  Use `oc get wa` to see your instance name:
     ```
@@ -1132,9 +1132,9 @@ Horizontal Pod Autoscaling (HPA) is enabled automatically for {{site.data.keywor
 ### Delete the pdb (poddisruptionbudgets) when changing instance from medium to small
 {: #troubleshoot-delete-pdb}
 
-Whenever the size of {{site.data.keyword.conversationshort}} is changed from medium to small, a manual step is required to delete the `poddisruptionbudgets` that are created for medium instances.
+Whenever the size of {{site.data.keyword.assistant_classic_short}} is changed from medium to small, a manual step is required to delete the `poddisruptionbudgets` that are created for medium instances.
 
-Run the following command, replacing `<instance-name>` with the name of your {{site.data.keyword.conversationshort}} CR instance and replacing `<namespace-name>` with the name of the namespace where the instance resides.
+Run the following command, replacing `<instance-name>` with the name of your {{site.data.keyword.assistant_classic_short}} CR instance and replacing `<namespace-name>` with the name of the namespace where the instance resides.
 
 ```
 oc delete pdb  -l icpdsupport/addOnId=assistant,component!=etcd,ibmevents.ibm.com/kind!=Kafka,app.kubernetes.io/instance=<instance-name> -n <namespace-name>

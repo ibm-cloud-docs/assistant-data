@@ -58,7 +58,7 @@ For more information about data privacy in {{site.data.keyword.icp4dfull_notm}},
 
 Do not add personal data to the training data (entities and intents, including user examples) that you create.
 
-If you need to remove a customer's message data from a {{site.data.keyword.conversationshort}} instance, you can do so based on the customer ID of the client, as long as you associate the message with a customer ID when the message is sent to {{site.data.keyword.conversationshort}}.
+If you need to remove a customer's message data from a {{site.data.keyword.assistant_classic_short}} instance, you can do so based on the customer ID of the client, as long as you associate the message with a customer ID when the message is sent to {{site.data.keassistant_classic_shortnshort}}.
 
 - The preview link integration does not support the labeling and therefore deletion of data based on customer ID. Do not use the preview link integration in a solution that must support the ability to delete data based on a customer ID.
 - For the web chat integration, the service takes the `user_id` that is passed in and adds it as the `customer_id` parameter value to the `X-Watson-Metadata` header with each request.
@@ -86,7 +86,7 @@ The `customer_id` string cannot include the semicolon (`;`) or equal sign (`=`) 
 
 You can pass multiple **customer ID** values with semicolon-separated `customer_id={value}` pairs. For example: `'X-Watson-Metadata: customer_id=abc;customer_id=xyz'`
 
-If you add a search skill to an assistant, user input that is submitted to the assistant is passed to the {{site.data.keyword.discoveryshort}} service as a search query. If the {{site.data.keyword.conversationshort}} integration provides a customer ID, then the resulting `/message` API request includes the customer ID in the header, and the ID is passed through to the {{site.data.keyword.discoveryshort}} `/query` API request. To delete any query data that is associated with a specific customer, you must send a separate delete request directly to the {{site.data.keyword.discoveryshort}} service instance that is linked your the assistant. See the appropriate documentation for the version of the API that is used by your {{site.data.keyword.discoveryshort}} service instance:
+If you add a search skill to an assistant, user input that is submitted to the assistant is passed to the {{site.data.keyword.discoveryshort}} service as a search query. If the {{site.data.keyword.assistant_classic_short}} integration provides a customer ID, then the resulting `/message` API request includes the customer ID in the header, and the ID is passed through to the {{site.data.keyword.discoveryshort}} `/query` API request. To delete any query data that is associated with a specific customer, you must send a separate delete request directly to the {{site.data.keyword.discoveryshort}} service instance that is linked your the assistant. See the appropriate documentation for the version of the API that is used by your {{site.data.keyword.discoveryshort}} service instance:
 
 - v1: [Information security](/docs/discovery?topic=discovery-information-security)
 - v2: [Information security](/docs/discovery-data?topic=discovery-data-information-security)
@@ -113,9 +113,9 @@ To delete any message log data associated with a specific user that your assista
 
 Only data that was added by using the `POST /message` API endpoint with an associated customer ID can be deleted using this delete method. Data that was added by other methods cannot be deleted based on customer ID. For example, entities and intents that were added from customer conversations, cannot be deleted in this way. Personal Data is not supported for those methods.
 
-**IMPORTANT**: Specifying a `customer_id` will delete *all* messages with that `customer_id` that were received before the delete request, across your entire {{site.data.keyword.conversationshort}} instance, not just within one skill.
+**IMPORTANT**: Specifying a `customer_id` will delete *all* messages with that `customer_id` that were received before the delete request, across your entire {{site.data.keyword.assistant_classic_short}} instance, not just within one skill.
 
-As an example, to delete any message data associated with a user that has the customer ID `abc` from your {{site.data.keyword.conversationshort}} instance, send the following cURL command:
+As an example, to delete any message data associated with a user that has the customer ID `abc` from your {{site.data.keyword.assistant_classic_short}} instance, send the following cURL command:
 
 ```sh
 curl -X DELETE -u "apikey:3Df... ...Y7Pc9" \

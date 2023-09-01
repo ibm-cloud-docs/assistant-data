@@ -26,7 +26,7 @@ subcollection: assistant-data
 # Filter query reference
 {: #filter-reference}
 
-The {{site.data.keyword.conversationshort}} service REST API offers powerful log search capabilities through filter queries. You can use the v2 /logs API `filter` parameter to search your skill log for events that match a specified query.
+The {{site.data.keyword.assistant_classic_short}} service REST API offers powerful log search capabilities through filter queries. You can use the v2 /logs API `filter` parameter to search your skill log for events that match a specified query.
 {: shortdesc}
 
 The `filter` parameter is a cacheable query that limits the results to those matching the specified filter. You can filter on various objects that are part of the JSON response model (for example, the user input text, the detected intents and entities, or the confidence score).
@@ -94,10 +94,7 @@ Similarly, you can filter on intents or entities sent as part of the request, as
 
 `request.input.intents:intent::hello`
 
-<!--Filtering on intents operates on all detected intents. To filter only on the detected intent with the highest confidence, you can use the `response.top_intent` shorthand syntax. For example:
 
-`response.top_intent::goodbye`
--->
 ### Filtering by other fields
 {: #filter-reference-fields}
 
@@ -110,7 +107,7 @@ To filter on another field in the log data, specify the location as a path ident
     }
   }
 ```
-<!-- {data-copy=false} -->
+
 
 Filtering is not available for all fields. You can filter on the following fields:
 
@@ -144,7 +141,7 @@ The following examples illustrate various types of queries using this syntax.
 | An intent name in the response exactly matches `place_order`. | `response.output.intents:intent::place_order` |
 | An entity name in the response exactly matches `beverage`.  | `response.output.entities:entity::beverage` |
 | The user input text does not contain the word "order" or a grammatical variant. | `request.input.text:!order` |
-<!--| The name of the detected intent with the highest confidence does not exactly match `hello`. | `response.top_intent::!hello` |-->
+
 | The user input text contains the string `!hello`. | `request.input.text:\!hello` |
 | The user input text contains the string `IBM Watson`. | `request.input.text:"IBM Watson"` |
 | The user input text contains a string that has no more than 2 single-character differences from `Watson`. | `request.input.text:Watson~2` |

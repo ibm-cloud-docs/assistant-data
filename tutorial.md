@@ -26,7 +26,7 @@ subcollection: assistant-data
 # Tutorial: Building a complex dialog
 {: #tutorial}
 
-In this tutorial, you will use the {{site.data.keyword.conversationshort}} service to create a dialog for an assistant that helps users with inquiries about a fictitious restaurant called *Truck Stop Gourmand*.
+In this tutorial, you will use the {{site.data.keyword.assistant_classic_short}} service to create a dialog for an assistant that helps users with inquiries about a fictitious restaurant called *Truck Stop Gourmand*.
 {: shortdesc}
 
 ## Learning objectives

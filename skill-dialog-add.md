@@ -26,7 +26,7 @@ subcollection: assistant-data
 # Adding a dialog skill
 {: #skill-dialog-add}
 
-The natural-language processing for the {{site.data.keyword.conversationshort}} service is defined in a *dialog skill*, which is a container for all of the artifacts that define a conversation flow.
+The natural-language processing for the {{site.data.keyword.assistant_classic_short}} service is defined in a *dialog skill*, which is a container for all of the artifacts that define a conversation flow.
 {: shortdesc}
 
 You can add one dialog skill to an assistant.
@@ -120,7 +120,7 @@ When you add a dialog skill from here, you get the development version. If you w
 ## Downloading a dialog skill
 {: #skill-dialog-add-download}
 
-You can download a dialog skill in JSON format. You might want to download a skill if you want to use the same dialog skill in a different instance of the {{site.data.keyword.conversationshort}} service, for example. You can download it from one instance and import it to another instance as a new dialog skill.
+You can download a dialog skill in JSON format. You might want to download a skill if you want to use the same dialog skill in a different instance of the {{site.data.keyword.assistant_classic_short}} service, for example. You can download it from one instance and import it to another instance as a new dialog skill.
 
 To download a dialog skill, complete the following steps:
 

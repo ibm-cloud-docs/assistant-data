@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2023
-lastupdated: "2023-05-10"
+lastupdated: "2023-05-09"
 
 subcollection: assistant-data
 
@@ -218,8 +218,7 @@ Follow the [tutorial](/docs/assistant-data?topic=assistant-data-tutorial-digress
 ## Disambiguation
 {: #dialog-runtime-disambiguation}
 
-<!--- If you are using version 1.3 of the product, see [Disambiguation in v1.3](#dialog-runtime-disambiguation-v13) instead. The way disambiguation works changed slightly between releases.
-{: important} --->
+
 
 When you enable disambiguation, you instruct your assistant to ask users for help when it finds that more than one dialog node can respond to their input. Instead of guessing which node to process, your assistant shares a list of the best node options with the user, and asks the user to pick the correct one.
 
@@ -311,7 +310,7 @@ To enable disambiguation, complete the following steps:
 
         ![Shows where to add the external node name information in the node edit view.](images/disambig-node-purpose.png)
 
-        To prevent a node from being shown as a disambiguation option, remove the description from the *external node name* field. If you cannot remove text from the field permanently, then switch the disambiguation setting off on the Options page, and then try again to remove the text from the field. <!-- https://github.ibm.com/watson-engagement-advisor/wea-backlog/issues/31618 -->
+        To prevent a node from being shown as a disambiguation option, remove the description from the *external node name* field. If you cannot remove text from the field permanently, then switch the disambiguation setting off on the Options page, and then try again to remove the text from the field. 
         {: tip}
 
 ### Choosing nodes
@@ -319,7 +318,7 @@ To enable disambiguation, complete the following steps:
 
 Choose nodes that serve as the root of a distinct branch of the dialog to be disambiguation choices. These can include nodes that are children of other nodes. The key is for the node to condition on some distinct value or values that distinguish it from everything else.
 
-{{site.data.keyword.conversationshort}} can recognize intent conflicts, which occur when two or more intents have user examples that overlap. [Resolve any such conflicts](/docs/assistant?topic=assistant-intents#intents-resolve-conflicts) first to ensure that the intents themselves are as unique as possible, which helps your assistant attain better intent confidence scores.
+{{site.data.keyword.assistant_classic_short}} can recognize intent conflicts, which occur when two or more intents have user examples that overlap. [Resolve any such conflicts](/docs/assistant?topic=assistant-intents#intents-resolve-conflicts) first to ensure that the intents themselves are as unique as possible, which helps your assistant attain better intent confidence scores.
 {: note}
 
 Keep in mind:

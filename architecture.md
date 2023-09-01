@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2023
-lastupdated: "2023-07-11"
+lastupdated: "2023-09-01"
 
 subcollection: assistant-data
 
@@ -13,16 +13,16 @@ subcollection: assistant-data
 # Service architecture
 {: #architecture}
 
-Learn about the components that comprise {{site.data.keyword.conversationfull}} for {{site.data.keyword.icp4dfull}} and how data flows through the service.
+Learn about the components that comprise {{site.data.keyword.assistant_classic_full}} for {{site.data.keyword.icp4dfull}} and how data flows through the service.
 {: shortdesc}
 
-{{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull_notm}} consists of the following types of resources:
+{{site.data.keyword.assistant_classic_short}} for {{site.data.keyword.icp4dfull_notm}} consists of the following types of resources:
 
 - [Microservices](#architecture-microservices)
 - [Supporting data stores](#architecture-datasources)
 - [Training component](#architectture-slad)
 
-{{site.data.keyword.conversationshort}} for {{site.data.keyword.icp4dfull_notm}} uses the following patterns to communicate and pass information among its resources:
+{{site.data.keyword.assistant_classic_short}} for {{site.data.keyword.icp4dfull_notm}} uses the following patterns to communicate and pass information among its resources:
 
 - **REST API**: Sends representational state transfer (REST) API calls over secure HTTP.
 - **gRPC**: Makes method calls by using an open source remote procedure call framework, which enables the service to call a resource that is running on another system in the cluster as if it were a local object. For more information, see [gRPC](https://grpc.io/){: external}.
@@ -37,7 +37,7 @@ The following sections provide more detail about each resource that is used by t
 ## Microservices
 {: #architecture-microservices}
 
-{{site.data.keyword.conversationshort}} consists of the following stateless microservices:
+{{site.data.keyword.assistant_classic_short}} consists of the following stateless microservices:
 
 - **Analytics**: Logs conversations that take place between the assistant and your customers. These user conversation logs are available from the Analytics page in the product and from the `/logs` API endpoint. Introduced with the 1.5.0 release. The Analytics feature relies on a microservice that is supported only on Red Hat OpenShift 4.5 and later.
 
@@ -47,7 +47,7 @@ The following sections provide more detail about each resource that is used by t
 
 - **Dialog**: Processes the dialog tree that is defined in a dialog skill to generate responses to user inputs. Based on the context (variables that are passed from previous conversation turns) and the intents and entities that are recognized in the user input, this service follows the dialog tree in the skill to find an appropriate response. Dialog is also responsible for making programmatic callouts to other services or programs. This microservice, which is sometimes referred to as the Dialog runtime, is a LiteLinks server that is called by the Store microservice. It has in-memory cache for dialog skills and uses Redis as the cache for dialog skills.
 
-- **ED-MM**: Recognizes contextual entities in user input. This microservice is part of the language understanding pipeline. ED-MM stands for Entities Distro model mesh. The {{site.data.keyword.conversationshort}} service's implementation of the ED-MM microservice is based on the model-mesh pattern. (For more information, see [Model mesh](#architecture-model-mesh).) The ED-MM microservice is called by the TAS microservice to evaluate user input only if the dialog skill that is being processed has contextual entities in its training data. Contextual entities are bound to a context. The ED-MM microservice loads the models from MinIO. At run time, the models are used to look up the entities and validate the context. The ED-MM microservice also accesses the CLU Embedding service for word embeddings.
+- **ED-MM**: Recognizes contextual entities in user input. This microservice is part of the language understanding pipeline. ED-MM stands for Entities Distro model mesh. The {{site.data.keyword.assistant_classic_short}} service's implementation of the ED-MM microservice is based on the model-mesh pattern. (For more information, see [Model mesh](#architecture-model-mesh).) The ED-MM microservice is called by the TAS microservice to evaluate user input only if the dialog skill that is being processed has contextual entities in its training data. Contextual entities are bound to a context. The ED-MM microservice loads the models from MinIO. At run time, the models are used to look up the entities and validate the context. The ED-MM microservice also accesses the CLU Embedding service for word embeddings.
 
 - **Gateway**: An adaption layer that interacts with {{site.data.keyword.icp4dfull_notm}} API and mimics the behavior of the public IBM Cloud. Its pods are named `${release-name}-addon-assistant-gw-deployment`.
 
@@ -56,7 +56,7 @@ The following sections provide more detail about each resource that is used by t
 
   It serves the following functions:
 
-  - Registers the installation of {{site.data.keyword.conversationshort}} into {{site.data.keyword.icp4dfull_notm}}.
+  - Registers the installation of {{site.data.keyword.assistant_classic_short}} into {{site.data.keyword.icp4dfull_notm}}.
   - For API requests, it adds authentication data that is required by the Store microservice.
   - Notifies the Store microservice when a service instance is created or deleted.
   - When a user requests instance details from the web UI, it mimics the {{site.data.keyword.cloud_notm}} interface so the UI microservice can return the information.
@@ -76,7 +76,7 @@ The following sections provide more detail about each resource that is used by t
 
 - **Spellchecker**: Corrects spelling mistakes that are made in user input that is submitted with `/message` requests. This autocorrection feature is enabled automatically for English dialog skills, and can be turned on for French skills. This microservice provides basic spell-checking capabilities by using correction techniques such as edit-distance from vocabulary word and generic language models. If enabled, the TAS microservice calls the Spellchecker using gRPC before it performs recognition of intents and entities in the user input. Spellchecker does not depend on datastores and it does not call any other microservice.
 
-- **Store**: Handles all assistant API calls. This microservice either processes the request itself or calls the other {{site.data.keyword.conversationshort}} microservices that are needed to process the request. For example, if a customer submits user input with a v1 /message API call, the request is sent to and processed by the store. For stateful v2 `/message` API calls, the store retrieves session state information from Redis first. It then calls the NLU microservice to analyze the user input and identify any intent and entity references in the input. Next, the Store calls the Dialog microservice to generate the appropriate response to return to the customer. The Store microservice stores the assistants, skills, and workspace definitions in a PostgreSQL database. The Store microservice saves the state of the session (from the v2 API) in the Redis data store.
+- **Store**: Handles all assistant API calls. This microservice either processes the request itself or calls the other {{site.data.keyword.assistant_classic_short}} microservices that are needed to process the request. For example, if a customer submits user input with a v1 /message API call, the request is sent to and processed by the store. For stateful v2 `/message` API calls, the store retrieves session state information from Redis first. It then calls the NLU microservice to analyze the user input and identify any intent and entity references in the input. Next, the Store calls the Dialog microservice to generate the appropriate response to return to the customer. The Store microservice stores the assistants, skills, and workspace definitions in a PostgreSQL database. The Store microservice saves the state of the session (from the v2 API) in the Redis data store.
 
 - **TAS**: Performs model inferencing, which means it identifies the best-matching intents and entities in the user input. TAS stands for Train and Serve, but it mostly serves up the existing models. The TAS microservice loads the models from MinIO storage into memory and runs the models to find intents. The TAS microservice is called from the NLU microservice by using LiteLinks. TAS and the ED-MM microservices are based on a model-mesh pattern. (For more information, see [Model mesh](#architecture-model-mesh).) If needed, TAS calls other microservices from the language understanding pipeline. Specifically, it calls SireG for tokenization, ED-MM for contextual entities (by using gRPC), and Spellcheck to correct misspellings. For intent recogniton, the TAS microservice requires word-embeddings data, which is provided by the CLU Embedding microservice.
 
@@ -87,7 +87,7 @@ The following sections provide more detail about each resource that is used by t
 ## Data sources
 {: #architecture-datasources}
 
-The {{site.data.keyword.conversationshort}} microservices use the following resources:
+The {{site.data.keyword.assistant_classic_short}} microservices use the following resources:
 
 - **Elastic**: The elastic data store stores customer messages. These user conversation logs that can be reviewed from the Analtyics page or searched from the `/logs` API endpoint. Introduced with the 1.5.0 release.
 
@@ -97,7 +97,7 @@ The {{site.data.keyword.conversationshort}} microservices use the following reso
 
 - **PostgreSQL**: A popular relational database. This database is used only by the Store microservice and it is the primary store for workspaces, skills, and assistants. The deployment and pod names that are related to PostgreSQL are prefixed as `${release-name}-store-postgres`. For more information, see [PostgreSQL data store](#architecture-postgres).
 
-- **Multicloud Object Gateway**: Multicloud Object Gateway is an object storage service that implements the Amazon S3 API. It is used by the language understanding pipeline microservices (clu-controller, clu-serving, clu-training, tf-mm, ed-mm, and dragonfly) to store and load trained models for intent and entity classification. It is used by the authoring and runtime service (store) to store versioned data of the skills and also used as a temporary storage for asynchronous uploads for the authoring experience. In {{site.data.keyword.conversationshort}}, Multicloud Object Gateway is often referred to as Cloud Object Storage. For more information, see [Multicloud Object Gateway](https://www.ibm.com/docs/en/cloud-paks/cp-data/4.7.x?topic=cluster-installing-multicloud-object-gateway).{: external}
+- **Multicloud Object Gateway**: Multicloud Object Gateway is an object storage service that implements the Amazon S3 API. It is used by the language understanding pipeline microservices (clu-controller, clu-serving, clu-training, tf-mm, ed-mm, and dragonfly) to store and load trained models for intent and entity classification. It is used by the authoring and runtime service (store) to store versioned data of the skills and also used as a temporary storage for asynchronous uploads for the authoring experience. In {{site.data.keyword.assistant_classic_short}}, Multicloud Object Gateway is often referred to as Cloud Object Storage. For more information, see [Multicloud Object Gateway](https://www.ibm.com/docs/en/cloud-paks/cp-data/4.7.x?topic=cluster-installing-multicloud-object-gateway).{: external}
 
 - **Redis**: An in-memory data store, often used for caching or sharing session state. Redis is used by the Store microservice for storing current conversation state for assistants. The UI microservice stores session state in Redis. The Recommends and Dialog microservices use a Redis instance as a cache.
 
@@ -118,7 +118,7 @@ The {{site.data.keyword.conversationshort}} microservices use the following reso
 
 **4.7.0**: The following data source is no longer used, starting with the 4.7.0 release:
 
-- **MinIO**: MinIO is an object storage service that implements the Amazon S3 API. It is used by the language understanding pipeline microservices (NLU, Master, TAS, ED-MM, and the training pods) to store and load trained models for intent and entity classification. Data is stored in the `nlclassifier-icp` bucket. In {{site.data.keyword.conversationshort}}, MinIO is often referred to as `COS`, which stands for Cloud Object Storage. For more information, see [MinIO](#architecture-minio).
+- **MinIO**: MinIO is an object storage service that implements the Amazon S3 API. It is used by the language understanding pipeline microservices (NLU, Master, TAS, ED-MM, and the training pods) to store and load trained models for intent and entity classification. Data is stored in the `nlclassifier-icp` bucket. In {{site.data.keyword.assistant_classic_short}}, MinIO is often referred to as `COS`, which stands for Cloud Object Storage. For more information, see [MinIO](#architecture-minio).
 
 #### Architecture changes
 
@@ -134,7 +134,7 @@ The {{site.data.keyword.conversationshort}} microservices use the following reso
 ## Training component
 {: #architecture-slad}
 
-Training a new model is one-time, short-running, resource-heavy activity. Models are trained in pods that are created on demand. The same pods are removed after the training is completed. Because of its transient nature, the training component is not considered to be one of the standard {{site.data.keyword.conversationshort}} microservices. The component, the training pods, only get used when a model needs to be trained. Training starts each time the intent user examples are added or changed in a dialog skill.
+Training a new model is one-time, short-running, resource-heavy activity. Models are trained in pods that are created on demand. The same pods are removed after the training is completed. Because of its transient nature, the training component is not considered to be one of the standard {{site.data.keyword.assistant_classic_short}} microservices. The component, the training pods, only get used when a model needs to be trained. Training starts each time the intent user examples are added or changed in a dialog skill.
 
 The CLU microservice notifies the Master microservice when a new machine learning model needs to be trained. The Master microservice dynamically creates training pods. It handles the training pod removal and retraining if a training run fails. It also is responsible for removing a model from MinIO if the model is deleted. The system determines whether a training run completed successfully based on a flag that is stored in MinIO storage. The Master microservice must have API access to the Docker registry where the training images are stored. The image metadata that is obtained from the registry is used to correctly start the training pods.
 
@@ -146,14 +146,14 @@ The ${release-name} is `watson-assistant`.
 ## Data store details
 {: #architecture-datasource-details}
 
-The following sections provide more detail about how the data stores are used by the {{site.data.keyword.conversationshort}} service. The objective is to help you troubleshoot issues that might arise during installation or after the service is deployed and running in a data center.
+The following sections provide more detail about how the data stores are used by the {{site.data.keyword.assistant_classic_short}} service. The objective is to help you troubleshoot issues that might arise during installation or after the service is deployed and running in a data center.
 
 ### Etcd store
 {: #architecture-etcd}
 
-{{site.data.keyword.conversationshort}} uses Etcd as a key-value store. Etcd is used by LiteLinks for service discovery and by the language understanding pipeline as configuration storage.
+{{site.data.keyword.assistant_classic_short}} uses Etcd as a key-value store. Etcd is used by LiteLinks for service discovery and by the language understanding pipeline as configuration storage.
 
-Etcd consists of five pods. The Etcd pod names follow the convention `${release-name}-etcd3-[0-9]*`. The {{site.data.keyword.conversationshort}} chart requires Etcd version 3 with enabled authorization.
+Etcd consists of five pods. The Etcd pod names follow the convention `${release-name}-etcd3-[0-9]*`. The {{site.data.keyword.assistant_classic_short}} chart requires Etcd version 3 with enabled authorization.
 
 #### LiteLinks service discovery
 {: #architecture-etcd-litelinks}
@@ -198,7 +198,7 @@ The configuration values per microservice are stored under a `/config` subpath.
 ### MinIO
 {: #architecture-minio}
 
-MinIO is an enterprise-grade object storage service that implements the Amazon S3 API. The {{site.data.keyword.conversationshort}} chart runs MinIO in distributed mode with four pods. With this configuration, MinIO functions fully in read/write mode if more than half, meaning three or more, of the pods are available. Its function is degraded to read-only mode if only half (two) of the pods are available.
+MinIO is an enterprise-grade object storage service that implements the Amazon S3 API. The {{site.data.keyword.assistant_classic_short}} chart runs MinIO in distributed mode with four pods. With this configuration, MinIO functions fully in read/write mode if more than half, meaning three or more, of the pods are available. Its function is degraded to read-only mode if only half (two) of the pods are available.
 
 MinIO pods are named `${release-name}-clu-minio-[0-9]*`. CLU, which stands for Conversational Language Understanding, is included in the pod names to associate the MinIO pods with the language understanding pipeline. It is only the pipeline microservices, such as NLU, Master, TAS, ED-MM, and the training pods that use MinIO.
 
