@@ -44,7 +44,7 @@ This documentation describes installed instances of {{site.data.keyword.assistan
 ## Feature availability
 {: #index-available-features}
 
-{{site.data.keyword.assistant_classic_short}} can be deployed as a managed cloud service or can be installed on premises. This documentation describes how to use the product installed on premises with {{site.data.keyword.icp4dfull}}. Some features that are available with {{site.data.keassistant_classic_shortnshort}} for cloud are not available with {{site.dassistant_classic_shortrsationshort}} for {{site.data.keyword.icp4dfull}}.
+{{site.data.keyword.assistant_classic_short}} can be deployed as a managed cloud service or can be installed on premises. This documentation describes how to use the product installed on premises with {{site.data.keyword.icp4dfull}}. Some features that are available with {{ite.data.keyword.assistant_classic_short}} for cloud are not available with {{ite.data.keyword.assistant_classic_short}} for {{site.data.keyword.icp4dfull}}.
 
 The following features are not available with {{site.data.keyword.assistant_classic_short}} for {{site.data.keyword.icp4dfull}}:
 - Third party channel support, for example, Slack, Facebook, SMS, and WhatsApp
@@ -145,7 +145,7 @@ Language support by feature is detailed in the [Supported languages](/docs/assis
 ## Security
 {: #index-security}
 
-Federal Information Security Management Act (FISMA) support is available for {{site.data.keyword.assistant_classic_short}} for {{site.data.keyword.icp4dfull_notm}} offerings purchased on or after 30 August 2019. {{site.data.keassistant_classic_shortnshort}} for {{site.data.keyword.icp4dfull_notm}} is FISMA High Ready.
+Federal Information Security Management Act (FISMA) support is available for {{site.data.keyword.assistant_classic_short}} for {{site.data.keyword.icp4dfull_notm}} offerings purchased on or after 30 August 2019. {{site.data.keyword.assistant_classic_short}} for {{site.data.keyword.icp4dfull_notm}} is FISMA High Ready.
 
 ## Next steps
 {: #index-next-steps}

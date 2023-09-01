@@ -21,12 +21,12 @@ Use these release notes to learn about the latest updates to {{site.data.keyword
 ## Feature availability
 {: #release-notes-available-features}
 
-Some features that are available with {{site.data.keyword.assistant_classic_short}} for cloud are not available with {{site.data.keassistant_classic_shortnshort}} for {{site.data.keyword.icp4dfull}}. For a list of features that are not available with {{site.dassistant_classic_shortrsationshort}} for {{site.data.keyword.icp4dfull}}, see [About {{assistant_classic_short.assistant_classic_short}}](/docs/assistant-data?topic=assistant-data-index#index-available-features).
+Some features that are available with {{site.data.keyword.assistant_classic_short}} for cloud are not available with {{site.data.keyword.assistant_classic_short}} for {{site.data.keyword.icp4dfull}}. For a list of features that are not available with {{site.data.keyword.assistant_classic_short}} for {{site.data.keyword.icp4dfull}}, see [About {{assistant_classic_short.assistant_classic_short}}](/docs/assistant-data?topic=assistant-data-index#index-available-features).
 
 ## Web chat versions
 {: #release-notes-web-chat}
 
-When you install {{site.data.keyword.assistant_classic_short}} for {{site.data.keyword.icp4dfull}}, the latest available version of the web chat integration is included. See the following table for details about the latest available web chat version for each {{site.data.keassistant_classic_shortnshort}} for {{site.data.keyword.icp4dfull}} release. If your web chat version isn't locked, then the web chat integration is upgraded to the latest available version when you upgrade {{site.dassistant_classic_shortrsationshort}} for {{site.data.keyword.icp4dfull}}.
+When you install {{site.data.keyword.assistant_classic_short}} for {{site.data.keyword.icp4dfull}}, the latest available version of the web chat integration is included. See the following table for details about the latest available web chat version for each {{site.data.keyword.assistant_classic_short}} for {{site.data.keyword.icp4dfull}} release. If your web chat version isn't locked, then the web chat integration is upgraded to the latest available version when you upgrade {{site.data.keyword.assistant_classic_short}} for {{site.data.keyword.icp4dfull}}.
 
 The following table shows the latest version of the web chat integration that is included with each release of {{site.data.keyword.assistant_classic_short}} for {{site.data.keyword.icp4dfull}}. {{site.data.keyword.icp4dfull}} supports web chat versions 5.1.1 or later. To customize and change version numbers, see [Controlling the web chat version](https://cloud.ibm.com/docs/watson-assistant?topic=watson-assistant-web-chat-develop-versions).
 
