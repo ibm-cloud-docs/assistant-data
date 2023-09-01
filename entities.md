@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2015, 2020
-lastupdated: "2020-10-06"
+  years: 2015, 2023
+lastupdated: "2023-09-01"
 
 subcollection: assistant-data
 
@@ -122,33 +122,6 @@ Dictionary-based entites are those for which you define specific terms, synonyms
 
     **Note:** You can add *either* synonyms or patterns for a single entity value, not both.
 
-    Watson can also recommend synonyms for your entity values. The recommender finds related synonyms based on contextual similarity extracted from a vast body of existing information, including large sources of written text, and uses natural language processing techniques to identify words similar to the existing synonyms in your entity value.
-
-1.  To see synonym recommendations from Watson, click **Recommend synonyms**. Otherwise, skip this step.
-
-    Synonym recommendations are listed. The terms are displayed in lowercase, but your assistant recognizes mentions of the synonyms whether they are specified in lowercase or uppercase.
-
-    The more coherent your entity value synonyms are, the more relevant and better focused your recommendations will be. For example, if you have several words that are focused on a theme, you will get better suggestions than if you have one or two random words.
-    {: tip}
-
-    ![Shows synonym recommendations for the word apple](images/entities-recommended-synonyms.png)
-
-    1. Select any synonyms you want to include, and then click **Add selected**.
-
-       You must click the **Add selected** button for any synonyms you selected to be added. If you move to the next set without clicking this button first, your selections will be lost.
-
-       The synonyms are added to your entity, and Watson suggests more synonyms.
-
-       If you receive no additional synonym recommendations, it could be because your entity is already well defined, or it contains content that the recommender is not currently able to expand upon.
-       {: tip}
-
-       If you choose not to select a recommended synonym, the system will treat that as a term you are not interested in, and will alter the next set of recommendations you see when you press **Add selected** or **Next set**. This inference only persists while you are choosing synonyms; information about skipped synonyms is not used for any other purpose by your assistant.
-       {: note}
-
-       ![Shows a set of synonym recommendations that will be added to the entity value](images/entities-synonyms-added.png)
-
-    1. Continue adding synonyms as desired. When you're finished accepting recommendations, click the **X** to close the recommendations panel.
-
 1.  If you want your assistant to recognize terms with syntax that is similar to the entity value and synonyms you specify, but without requiring an exact match, click the **Fuzzy Matching** toggle to turn it on. 
 
     For example, if you add `apple` as a value for a `@fruit` entity, and a user enters `apples` or `appel`, if fuzzy matching is enabled, your assistant will recognize the word as a `@fruit` mention. For more information, see [How fuzzy matching works](#entities-fuzzy-matching).
@@ -246,8 +219,6 @@ Fuzzy matching has these components:
 
 For English, fuzzy matching prevents the capturing of some common, valid English words as fuzzy matches for a given entity. This feature uses standard English dictionary words. You can also define an English entity value/synonym, and fuzzy matching will match only your defined entity value/synonym. For example, fuzzy matching may match the term `unsure` with `insurance`; but if you have `unsure` defined as a value/synonym for an entity like `@option`, then `unsure` will always be matched to `@option`, and not to `insurance`.
 {: note}
-
-Your fuzzy matching setting has no impact on synonym recommendations. Even if fuzzy matching is enabled, synonyms are suggested for the exact value you specify only, not the value and slight variations of the value.
 
 To understand how fuzzy matching and autocorrection are related to one another, see the [autocorrection documentation](/docs/assistant-data?topic=assistant-data-dialog-runtime-spell-check#dialog-runtime-spell-check-vs-fuzzy-matching).
 

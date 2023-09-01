@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2023
-lastupdated: "2023-05-09"
+lastupdated: "2023-09-01"
 
 subcollection: assistant-data
 
@@ -127,22 +127,22 @@ In the following tables, the level of language and feature support is indicated 
 ### Entity feature support details
 {: #language-support-entities}
 
-| Language | **[Contextual entities](/docs/assistant-data?topic=assistant-data-entities#entities-create-annotation-based)** | **[Synonym recommendations](/docs/assistant-data?topic=assistant-data-entities#entities-create-dictionary-based)** |
-|:---:|:---:|:---:|
-| **English (en)**                   | GA | GA |
-| **Arabic (ar)**                    | NA | NA |
-| **Chinese (Simplified) (zh-cn)**   | NA | NA |
-| **Chinese (Traditional) (zh-tw)**  | NA | NA |
-| **Czech (cs)**                     | NA | NA |
-| **Dutch (nl)**                     | NA | NA |
-| **French (fr)**                    | Beta | GA |
-| **German (de)**                    | NA | NA |
-| **Italian (it)**                   | NA | NA |
-| **Japanese (ja)**                  | NA | GA |
-| **Korean (ko)**                    | NA | NA |
-| **Portuguese (Brazilian) (pt-br)** | NA | NA |
-| **Spanish (es)**                   | NA | GA |
-| **Universal (xx)**                 | NA | NA |
+| Language | **[Contextual entities](/docs/assistant-data?topic=assistant-data-entities#entities-create-annotation-based)** |
+|:---:|:---:|
+| **English (en)**                   | GA |
+| **Arabic (ar)**                    | NA |
+| **Chinese (Simplified) (zh-cn)**   | NA |
+| **Chinese (Traditional) (zh-tw)**  | NA |
+| **Czech (cs)**                     | NA |
+| **Dutch (nl)**                     | NA |
+| **French (fr)**                    | Beta |
+| **German (de)**                    | NA |
+| **Italian (it)**                   | NA |
+| **Japanese (ja)**                  | NA |
+| **Korean (ko)**                    | NA |
+| **Portuguese (Brazilian) (pt-br)** | NA |
+| **Spanish (es)**                   | NA |
+| **Universal (xx)**                 | NA |
 {: caption="Table 5. Entity feature support details" caption-side="top"}
 
 ### System entity feature support details
