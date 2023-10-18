@@ -8,7 +8,7 @@ subcollection: assistant-data
 
 ---
 
-{site.data.keyword.attribute-definition-list}}
+{{site.data.keyword.attribute-definition-list}}
 
 Documentation about **{{site.data.keyword.assistant_classic_full}} for {{site.data.keyword.icp4dfull}}** has moved. For the most up-to-date version, see [Adding a node with slots to a dialog](/docs/watson-assistant?topic=watson-assistant-tutorial-slots){: external}.
 {: attention}
