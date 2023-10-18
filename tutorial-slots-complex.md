@@ -1,26 +1,17 @@
 ---
 
 copyright:
-  years: 2015, 2023
-lastupdated: "2020-05-10"
+  years: 2015, 2020
+lastupdated: "2020-03-20"
 
 subcollection: assistant-data
 
 ---
 
-{:shortdesc: .shortdesc}
-{:new_window: target="_blank"}
-{:deprecated: .deprecated}
-{:important: .important}
-{:note: .note}
-{:tip: .tip}
-{:pre: .pre}
-{:codeblock: .codeblock}
-{:screen: .screen}
-{:javascript: .ph data-hd-programlang='javascript'}
-{:java: .ph data-hd-programlang='java'}
-{:python: .ph data-hd-programlang='python'}
-{:swift: .ph data-hd-programlang='swift'}
+{site.data.keyword.attribute-definition-list}}
+
+Documentation about **{{site.data.keyword.assistant_classic_full}} for {{site.data.keyword.icp4dfull}}** has moved. For the most up-to-date version, see [Improving a dialog node with slots](/docs/watson-assistant?topic=watson-assistant-tutorial-slots-complex){: external}.
+{: attention}
 
 # Tutorial: Improving a node with slots
 {: #tutorial-slots-complex}

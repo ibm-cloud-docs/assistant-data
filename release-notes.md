@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2023
-lastupdated: "2023-09-01"
+lastupdated: "2023-10-18"
 
 subcollection: assistant-data
 
@@ -15,8 +15,10 @@ content-type: release-note
 # Release notes for {{site.data.keyword.assistant_classic_short}} for {{site.data.keyword.icp4dfull}}
 {: #release-notes}
 
-Use these release notes to learn about the latest updates to {{site.data.keyword.assistant_classic_full}} for {{site.data.keyword.icp4dfull}}.
-{: shortdesc}
+## Release notes for {{site.data.keyword.assistant_classic_short}} for {{site.data.keyword.icp4dfull}} have moved
+
+As of 30 August 2023, these release notes are no longer being updated. For the most up-to-date version, see [Release notes for {{site.data.keyword.assistant_classic_short}} for {{site.data.keyword.icp4dfull}}](/docs/watson-assistant?topic=watson-assistant-release-notes-data){: external}.{: external}
+{: attention}
 
 ## Feature availability
 {: #release-notes-available-features}

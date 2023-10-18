@@ -38,7 +38,6 @@ Information about the artifact limits is available from the topics that describe
 - [Counterexamples](/docs/assistant-data?topic=assistant-data-irrelevance-detection#irrelevance-detection-limits)
 - [Dialog nodes](/docs/assistant-data?topic=assistant-data-dialog-tasks#dialog-tasks-node-limits)
 - [Entities](/docs/assistant-data?topic=assistant-data-entities#entities-limits)
-- [Inactivity timeout](/docs/assistant-data?topic=assistant-data-assistant-settings#assistant-settings-session-limits)
 - [Intents](/docs/assistant-data?topic=assistant-data-intents#intents-limits)
 - [Integrations](/docs/assistant-data?topic=assistant-data-deploy-integration-add#deploy-integration-add-limits)
 - [Logs](/docs/assistant-data?topic=assistant-data-logs#logs-limits)

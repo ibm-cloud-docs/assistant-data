@@ -8,22 +8,10 @@ subcollection: assistant-data
 
 ---
 
-{:shortdesc: .shortdesc}
-{:new_window: target="_blank"}
-{:external: target="_blank" .external}
-{:deprecated: .deprecated}
-{:important: .important}
-{:note: .note}
-{:tip: .tip}
-{:pre: .pre}
-{:codeblock: .codeblock}
-{:screen: .screen}
-{:javascript: .ph data-hd-programlang='javascript'}
-{:java: .ph data-hd-programlang='java'}
-{:python: .ph data-hd-programlang='python'}
-{:swift: .ph data-hd-programlang='swift'}
-{:download: .download}
-{:gif: data-image-type='gif'}
+{{site.data.keyword.attribute-definition-list}}
+
+Documentation about **{{site.data.keyword.assistant_classic_full}} for {{site.data.keyword.icp4dfull}}** has moved. For the most up-to-date version, see [Welcome to {{site.data.keyword.conversationshort}}](/docs/watson-assistant?topic=watson-assistant-welcome-new-assistant){: external}.
+{: attention}
 
 # About {{site.data.keyword.assistant_classic_short}}
 {: #index}
@@ -44,7 +32,7 @@ This documentation describes installed instances of {{site.data.keyword.assistan
 ## Feature availability
 {: #index-available-features}
 
-{{site.data.keyword.assistant_classic_short}} can be deployed as a managed cloud service or can be installed on premises. This documentation describes how to use the product installed on premises with {{site.data.keyword.icp4dfull}}. Some features that are available with {{ite.data.keyword.assistant_classic_short}} for cloud are not available with {{ite.data.keyword.assistant_classic_short}} for {{site.data.keyword.icp4dfull}}.
+{{site.data.keyword.assistant_classic_short}} can be deployed as a managed cloud service or can be installed on premises. This documentation describes how to use the product installed on premises with {{site.data.keyword.icp4dfull}}. Some features that are available with {{site.data.keyword.assistant_classic_short}} for cloud are not available with {{site.data.keyword.assistant_classic_short}} for {{site.data.keyword.icp4dfull}}.
 
 The following features are not available with {{site.data.keyword.assistant_classic_short}} for {{site.data.keyword.icp4dfull}}:
 - Third party channel support, for example, Slack, Facebook, SMS, and WhatsApp

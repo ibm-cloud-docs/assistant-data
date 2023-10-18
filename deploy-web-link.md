@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2023
-lastupdated: "2023-05-10"
+lastupdated: "2023-05-08"
 
 subcollection: assistant-data
 
@@ -53,7 +53,7 @@ To test the assistant from a web-hosted chat widget, complete the following step
 
     No responses are returned until after you create a dialog skill and add it to the assistant.
 
-    The dialog flow for the current session is restarted after the inactivity period is passed. The inactivity period is 1 hour by default, but you can increase it to up to a maximum of 7 days. This means that if a user stops interacting with the assistant, after 1 hour or whatever time frame you configure, any context variable values that were set during the previous conversation are set to null or back to their default values. For more information, see [Changing the inactivity timeout setting](/docs/assistant-data?topic=assistant-data-assistant-settings).
+    The dialog flow for the current session is restarted after the inactivity period is passed. The inactivity period is 1 hour by default, but you can increase it to up to a maximum of 7 days. This means that if a user stops interacting with the assistant, after 1 hour or whatever time frame you configure, any context variable values that were set during the previous conversation are set to null or back to their default values.
 
 1.  After testing, you can close the browser tab to exit the public web page.
 

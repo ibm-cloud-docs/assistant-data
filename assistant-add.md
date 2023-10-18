@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2023
-lastupdated: "2023-09-01"
+lastupdated: "2023-10-18"
 
 subcollection: assistant-data
 
@@ -10,7 +10,7 @@ subcollection: assistant-data
 
 {{site.data.keyword.attribute-definition-list}}
 
-This documentation for the **classic {{site.data.keyword.assistant_classic_short}}** experience has moved. For the most up-to-date version, see [Adding more assistants](/docs/watson-assistant?topic=watson-assistant-assistant-add){: external} and [Renaming or deleting assistants](/docs/watson-assistant?topic=watson-assistant-assistant-rename-delete){: external}. To see all documentation for the new {{site.data.keyword.assistant_classic_short}}, please go [here](https://cloud.ibm.com/docs/watson-assistant){: external}.
+Documentation about **{{site.data.keyword.assistant_classic_full}} for {{site.data.keyword.icp4dfull}}** has moved. For the most up-to-date version, see [Adding more assistants](/docs/watson-assistant?topic=watson-assistant-assistant-add){: external} and [Renaming or deleting assistants](/docs/watson-assistant?topic=watson-assistant-assistant-rename-delete){: external}.
 {: attention}
 
 # Creating an assistant
@@ -54,8 +54,6 @@ Follow these steps to create an assistant:
 |---------------------------------|
 | 100 |
 {: caption="Limit details" caption-side="top"}
-
-For information about the inactivity timeout limit, see [Changing the inactivity timeout setting](/docs/assistant-data?topic=assistant-data-assistant-settings).
 
 You can connect one skill of each type to your assistant. 
 
