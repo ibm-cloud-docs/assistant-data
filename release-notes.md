@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2023
-lastupdated: "2023-09-01"
+lastupdated: "2023-08-30"
 
 subcollection: assistant-data
 
@@ -15,8 +15,10 @@ content-type: release-note
 # Release notes for {{site.data.keyword.assistant_classic_short}} for {{site.data.keyword.icp4dfull}}
 {: #release-notes}
 
-Use these release notes to learn about the latest updates to {{site.data.keyword.assistant_classic_full}} for {{site.data.keyword.icp4dfull}}.
-{: shortdesc}
+## Release notes for {{site.data.keyword.assistant_classic_short}} for {{site.data.keyword.icp4dfull}} have moved
+
+As of 30 August 2023, these release notes are no longer being updated. For the most up-to-date version, see [Release notes for {{site.data.keyword.assistant_classic_short}} for {{site.data.keyword.icp4dfull}}](/docs/watson-assistant?topic=watson-assistant-release-notes-data){: external}.{: external}
+{: attention}
 
 ## Feature availability
 {: #release-notes-available-features}
@@ -62,7 +64,7 @@ Algorithm for improved intent detection and action matching
 :   You can now use the algorithm version Beta, which includes a new foundation model that is trained with a transformer architecture. The Beta algorithm provides the following improvements:  
 
    - Improved intent detection and action matching for English, French, German, Portuguese (Brazilian), and Spanish
-   - Improved robustness to variations in user inputs such as typos and different inflection forms
+   - Improved robustness to variations in user inputs such as typographical errors and different inflection forms
    - Reduction in the amount of training data required to reach the same level of performance compared to previous algorithms
 
    For more information, see [Algorithm version and training](/docs/watson-assistant?topic=watson-assistant-algorithm-version){: external}.
@@ -71,7 +73,7 @@ Fallback choice for dynamic options
 :   The dynamic options response type now includes a fallback static choice, such as "None of the above", if the options aren't what the customer wants. You can then add a step that is conditioned on this static option to provide further assistance. For more information, see [Dynamic options](/docs/watson-assistant?topic=watson-assistant-dynamic-options){: external}.
 
 Option to allow change of topic between actions and dialog
-:   If you are using actions and dialog, there is a new setting you can use to ensure that customers can change topics between an action and a dialog node. For more information, see [Allow change of topic between actions and dialog](/docs/watson-assistant?topic=watson-assistant-change-topic){: external}.
+:   If you are using actions and dialog, there is a new setting that you can use to ensure that customers can change topics between an action and a dialog node. For more information, see [Allow change of topic between actions and dialog](/docs/watson-assistant?topic=watson-assistant-change-topic){: external}.
 
 Action and collection names must now be unique
 :   With this release, each action name must be different from other action names, and each collection name must be different from other collection names. If your existing actions or collections have duplicate names, a warning icon will appear in the Status column. For more information, see [Overview: Editing actions](/docs/watson-assistant?topic=watson-assistant-build-actions-overview){: external} and [Organizing actions in collections](https://cloud.ibm.com/docs/watson-assistant?topic=watson-assistant-collections){: external}.

@@ -2,25 +2,16 @@
 
 copyright:
   years: 2015, 2023
-lastupdated: "2023-09-01"
+lastupdated: "2020-01-29"
 
 subcollection: assistant-data
 
 ---
 
-{:shortdesc: .shortdesc}
-{:new_window: target="_blank"}
-{:deprecated: .deprecated}
-{:important: .important}
-{:note: .note}
-{:tip: .tip}
-{:pre: .pre}
-{:codeblock: .codeblock}
-{:screen: .screen}
-{:javascript: .ph data-hd-programlang='javascript'}
-{:java: .ph data-hd-programlang='java'}
-{:python: .ph data-hd-programlang='python'}
-{:swift: .ph data-hd-programlang='swift'}
+{{site.data.keyword.attribute-definition-list}}
+
+Documentation about **{{site.data.keyword.assistant_classic_full}} for {{site.data.keyword.icp4dfull}}** has moved. For the most up-to-date version, see [Dialog creation workflow](/docs/watson-assistant?topic=watson-assistant-dev-process){: external}.
+{: attention}
 
 # Development process
 {: #dev-process}
@@ -47,7 +38,7 @@ The typical workflow for an assistant project includes the following steps:
 
 1.  After you build an effective assistant, take a snapshot of the dialog skill and save it as a version.
 
-    Saving a version when you reach a development milestone gives you something you can go back to if subsequent changes you make to the skill decrease its effectiveness. See [Creating skill versions](/docs/assistant-data?topic=assistant-data-versions).
+    Saving a version when you reach a development milestone gives you something that you can go back to if subsequent changes you make to the skill decrease its effectiveness. See [Creating skill versions](/docs/assistant-data?topic=assistant-data-versions).
 1.  Deploy the version of the assistant into a test environment, and test it.
 
 1.  Monitor the chat transcript logs for your test assistant to determine if you need to make improvements to your training data or dialog.`*`

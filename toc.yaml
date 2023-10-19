@@ -33,7 +33,6 @@ toc:
           - assistants.md
           - assistant-add.md
           - skill-add.md
-          - assistant-settings.md
       - topicgroup:
           label: Creating a dialog skill
           topics:
@@ -47,7 +46,6 @@ toc:
               label: Creating a dialog
               topics:
               - dialog-build.md
-              - dialog-plan.md
               - dialog-overview.md
               - dialog-runtime-context.md
               - dialog-slots.md

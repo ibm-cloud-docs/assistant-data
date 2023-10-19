@@ -266,7 +266,7 @@ You can reference the `$ismember` context variable from your dialog. For example
 
 If you enable security, you can encrypt the data that you pass to your dialog. For more information, see [Passing sensitive data](#deploy-web-chat-security-encrypt).
 
-Remember that a session ends if there's no interaction with the user after 1 hour (or whatever inactivity timeout setting you specify, which can be up to 7 days). Any contextual information that you pass or collect is reset after the inactivity time period is passed. For more information, see [Changing the inactivity timeout setting](/docs/assistant-data?topic=assistant-data-assistant-settings).
+Remember that a session ends if there's no interaction with the user after 1 hour (or whatever inactivity timeout setting you specify, which can be up to 7 days). Any contextual information that you pass or collect is reset after the inactivity time period is passed.
 
 ### Adding user identity information
 {: #deploy-web-chat-userid}

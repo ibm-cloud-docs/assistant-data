@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2023
-lastupdated: "2023-09-01"
+lastupdated: "2023-08-30"
 
 subcollection: assistant-data
 
@@ -13,12 +13,14 @@ subcollection: assistant-data
 # Installing
 {: #install}
 
-Learn how to install {{site.data.keyword.assistant_classic_short}} for {{site.data.keyword.icp4dfull}}.
-{: shortdesc}
+## Documentation for {{site.data.keyword.assistant_classic_short}} for {{site.data.keyword.icp4dfull}} has moved
+
+As of 30 August 2023, this documentation is no longer being updated. For the most up-to-date version, see [Installing {{site.data.keyword.assistant_classic_short}} for {{site.data.keyword.icp4dfull}}](/docs/watson-assistant?topic=watson-assistant-install){: external}.{: external}
+{: attention}
 
 The {{site.data.keyword.icp4dfull_notm}} environment is a Kubernetes-based container platform that can help you quickly modernize and automate workloads that are associated with the applications and services you use. You can develop and deploy on your own infrastructure and in your data center which helps to mitigate risk and minimize vulnerabilities.
 
-The installation process differs depending on the version you are installing. The following table shows the available versions.
+The installation process differs depending on the version that you are installing. The following table shows the available versions.
 
 | Version |  Cluster | Installation instructions |
 | --- | --- | --- |
