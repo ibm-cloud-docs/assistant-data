@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2023
-lastupdated: "2023-10-18"
+lastupdated: "2020-11-25"
 
 subcollection: assistant-data
 
@@ -16,7 +16,7 @@ Documentation about **{{site.data.keyword.assistant_classic_full}} for {{site.da
 # Creating an assistant
 {: #assistant-add}
 
-Create an assistant with the skills it needs to address the business goals of your customers.
+Create an assistant with the skills that it needs to address the business goals of your customers.
 {: shortdesc}
 
 Follow these steps to create an assistant:

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2023
-lastupdated: "2023-10-18"
+lastupdated: "2020-01-29"
 
 subcollection: assistant-data
 
@@ -38,7 +38,7 @@ The typical workflow for an assistant project includes the following steps:
 
 1.  After you build an effective assistant, take a snapshot of the dialog skill and save it as a version.
 
-    Saving a version when you reach a development milestone gives you something you can go back to if subsequent changes you make to the skill decrease its effectiveness. See [Creating skill versions](/docs/assistant-data?topic=assistant-data-versions).
+    Saving a version when you reach a development milestone gives you something that you can go back to if subsequent changes you make to the skill decrease its effectiveness. See [Creating skill versions](/docs/assistant-data?topic=assistant-data-versions).
 1.  Deploy the version of the assistant into a test environment, and test it.
 
 1.  Monitor the chat transcript logs for your test assistant to determine if you need to make improvements to your training data or dialog.`*`

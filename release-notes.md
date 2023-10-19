@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2023
-lastupdated: "2023-10-18"
+lastupdated: "2023-08-30"
 
 subcollection: assistant-data
 
@@ -64,7 +64,7 @@ Algorithm for improved intent detection and action matching
 :   You can now use the algorithm version Beta, which includes a new foundation model that is trained with a transformer architecture. The Beta algorithm provides the following improvements:  
 
    - Improved intent detection and action matching for English, French, German, Portuguese (Brazilian), and Spanish
-   - Improved robustness to variations in user inputs such as typos and different inflection forms
+   - Improved robustness to variations in user inputs such as typographical errors and different inflection forms
    - Reduction in the amount of training data required to reach the same level of performance compared to previous algorithms
 
    For more information, see [Algorithm version and training](/docs/watson-assistant?topic=watson-assistant-algorithm-version){: external}.
