@@ -66,18 +66,14 @@ toc:
       - topicgroup:
           label: Deploying
           topics:
-          - deploy-integration-add.md
-          - deploy-web-link.md
           - topicgroup:
               label: Deploying to your website
               topics:
                 - deploy-web-chat.md
                 - web-chat-config.md
-          - deploy-custom-app.md
           - link:
               label: Integrating with your own service desk
               href: https://github.com/watson-developer-cloud/assistant-web-chat-service-desk-starter
-          - deploy-integration-delete.md
       - topicgroup:
           label: Analytics
           topics:
@@ -109,8 +105,6 @@ toc:
       - link:
           label: v1 API reference
           href: https://cloud.ibm.com/apidocs/assistant-data-v1
-      - audit-events.md
-      - recovery.md
       - dialog-methods.md
       - expression-language.md
       - filter-reference.md
@@ -120,12 +114,10 @@ toc:
           - system-entities.md
           - sys-date-festivals.md
           - time-zones.md
-      - services-information.md
       - language-support.md
   - navgroup:
       id: help
       topics:
-      - faqs.md
       - troubleshoot.md
       - get-help.md
       - topicgroup:
