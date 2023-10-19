@@ -10,21 +10,10 @@ subcollection: assistant-data
 
 ---
 
-{:shortdesc: .shortdesc}
-{:new_window: target="_blank"}
-{:external: target="_blank" .external}
-{:deprecated: .deprecated}
-{:important: .important}
-{:note: .note}
-{:tip: .tip}
-{:pre: .pre}
-{:codeblock: .codeblock}
-{:screen: .screen}
-{:javascript: .ph data-hd-programlang='javascript'}
-{:java: .ph data-hd-programlang='java'}
-{:python: .ph data-hd-programlang='python'}
-{:swift: .ph data-hd-programlang='swift'}
-{:table: .aria-labeledby="caption"}
+{{site.data.keyword.attribute-definition-list}}
+
+Documentation about **{{site.data.keyword.assistant_classic_full}} for {{site.data.keyword.icp4dfull}}** has moved. For the most up-to-date version, see [Adding custom dialog flows for integrations](/docs/watson-assistant?topic=watson-assistant-dialog-integrations){: external}.
+{: attention}
 
 # Adding custom dialog flows for integrations
 {: #dialog-integrations}
