@@ -10,7 +10,7 @@ subcollection: assistant-data
 
 {{site.data.keyword.attribute-definition-list}}
 
-Documentation about **{{site.data.keyword.assistant_classic_full}} for {{site.data.keyword.icp4dfull}}** has moved. For the most up-to-date version, see [Using the Cloud Object Storage importer to migrate chat logs](/docs/watson-assistant?topic=watson-assistant-cos-importer){: external}.
+Documentation about **{{site.data.keyword.assistant_classic_full}} for {{site.data.keyword.icp4dfull}}** has moved. For the most up-to-date version, see [Using the Cloud Object Storage importer to migrate chat logs](/docs/watson-assistant?topic=watson-assistant-cos-importer-data){: external}.
 {: attention}
 
 # Using the Cloud Object Storage importer to migrate chat logs
