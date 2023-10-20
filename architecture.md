@@ -10,7 +10,7 @@ subcollection: assistant-data
 
 {{site.data.keyword.attribute-definition-list}}
 
-Documentation about **{{site.data.keyword.assistant_classic_full}} for {{site.data.keyword.icp4dfull}}** has moved. For the most up-to-date version, see [Service architecture for {{site.data.keyword.icp4dfull}}](/docs/watson-assistant?topic=watson-assistant-architecture){: external}.
+Documentation about **{{site.data.keyword.assistant_classic_full}} for {{site.data.keyword.icp4dfull}}** has moved. For the most up-to-date version, see [Service architecture for {{site.data.keyword.icp4dfull}}](/docs/watson-assistant?topic=watson-assistant-architecture-data){: external}.
 {: attention}
 
 # Service architecture for {{site.data.keyword.icp4dfull}}

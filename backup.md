@@ -10,7 +10,7 @@ subcollection: assistant-data
 
 {{site.data.keyword.attribute-definition-list}}
 
-Documentation about **{{site.data.keyword.assistant_classic_full}} for {{site.data.keyword.icp4dfull}}** has moved. For the most up-to-date version, see [Backing up and restoring data for {{site.data.keyword.icp4dfull_notm}}](/docs/watson-assistant?topic=watson-assistant-backup){: external}.
+Documentation about **{{site.data.keyword.assistant_classic_full}} for {{site.data.keyword.icp4dfull}}** has moved. For the most up-to-date version, see [Backing up and restoring data for {{site.data.keyword.icp4dfull_notm}}](/docs/watson-assistant?topic=watson-assistant-backup-data){: external}.
 {: attention}
 
 # Backing up and restoring data
