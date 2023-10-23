@@ -64,16 +64,10 @@ toc:
           - versions.md
       - assistant-language.md
       - topicgroup:
-          label: Deploying
+          label: Deploying to your website
           topics:
-          - topicgroup:
-              label: Deploying to your website
-              topics:
                 - deploy-web-chat.md
                 - web-chat-config.md
-          - link:
-              label: Integrating with your own service desk
-              href: https://github.com/watson-developer-cloud/assistant-web-chat-service-desk-starter
       - topicgroup:
           label: Analytics
           topics:
@@ -99,12 +93,6 @@ toc:
   - navgroup:
       id: reference
       topics:
-      - link:
-          label: v2 API reference
-          href: https://cloud.ibm.com/apidocs/assistant-data-v2
-      - link:
-          label: v1 API reference
-          href: https://cloud.ibm.com/apidocs/assistant-data-v1
       - dialog-methods.md
       - expression-language.md
       - filter-reference.md
