@@ -13,7 +13,7 @@ subcollection: assistant-data
 Documentation about **{{site.data.keyword.assistant_classic_full}} for {{site.data.keyword.icp4dfull}}** has moved. For the most up-to-date version, see [Service architecture for {{site.data.keyword.icp4dfull}}](/docs/watson-assistant?topic=watson-assistant-architecture-data){: external}.
 {: attention}
 
-# Service architecture for {{site.data.keyword.icp4dfull}}
+# Service architecture
 {: #architecture}
 
 Learn about the components that comprise {{site.data.keyword.assistant_classic_full}} for {{site.data.keyword.icp4dfull}} and how data flows through the service.
