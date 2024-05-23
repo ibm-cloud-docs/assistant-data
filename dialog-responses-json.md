@@ -2,7 +2,7 @@
 
 copyright:
   years: 2015, 2023
-lastupdated: "2023-05-09"
+lastupdated: "2024-05-23"
 
 subcollection: assistant-data
 
@@ -108,7 +108,7 @@ The following response types are supported by the generic JSON format.
 Displays an image specified by a URL.
 
 #### Fields
-{: #{: #dialog-responses-json-image-fields}
+{: #dialog-responses-json-image-fields}
 
 | Name          | Type   | Description                        | Required? |
 |---------------|--------|------------------------------------|-----------|
